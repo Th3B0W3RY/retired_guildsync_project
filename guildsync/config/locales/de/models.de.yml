@@ -1,0 +1,147 @@
+de:
+  activerecord:
+    models:
+      user: "Benutzer"
+      guild: "Gilde"
+      game: "Spiel"
+      event: "Ereignis"
+      poll: "Umfrage"
+      guild_document: "Dokument"
+      guild_member: "Mitglied"
+      guild_application: "Bewerbung"
+      loot_roll: "Beutewurf"
+    attributes:
+      user:
+        email: "E-Mail"
+        password: "Passwort"
+        display_name: "Anzeigename"
+      guild:
+        name: "Name"
+        description: "Beschreibung"
+      game:
+        name: "Name"
+        description: "Beschreibung"
+    errors:
+      models:
+        landing_user_feedback:
+          attributes:
+            base:
+              entry_limit_reached: "Es sind höchstens %{max} Feedback-Einträge auf der Startseite erlaubt. Löschen Sie einen Eintrag, um einen neuen hinzuzufügen."
+        homepage_feature_card:
+          attributes:
+            icon_key:
+              invalid_fontawesome_icon: "steht nicht im synchronisierten Font-Awesome-Free-Katalog. Bitte Sync ausführen oder ein anderes Symbol wählen."
+        user:
+          attributes:
+            username:
+              invalid_format: "Nur Buchstaben, Zahlen und Unterstriche erlaubt"
+        guild:
+          attributes:
+            name:
+              already_owned: "Sie haben bereits einen Gilden mit diesem Namen."
+            base:
+              subscription_required: "Sie müssen ein aktives Abonnement haben, um eine Gilde zu erstellen"
+              guild_limit_reached: "Sie haben die maximale Anzahl von Gilden (%{max_guilds}) für Ihren %{plan_name}-Plan erreicht."
+        guild_member:
+          attributes:
+            user_id:
+              already_member: "ist bereits ein Mitglied dieser Gilde"
+            base:
+              member_limit_reached: "Die Gilde hat die maximale Anzahl an Mitgliedern (%{max_members} zu) für das %{plan_name}-Plan erreicht."
+        guild_discord_setting:
+          attributes:
+            discord_guild_id:
+              already_connected: "Dieser Discord-Server ist bereits mit einer anderen Gilde verbunden."
+            guild_id:
+              one_connection_only: "Eine Gilde kann nur eine Discord-Verbindung herstellen"
+        feature_request:
+          attributes:
+            description:
+              too_short: "muss mindestens 50 Zeichen lang sein, damit andere Ihre Anfrage verstehen können"
+        poll_vote:
+          attributes:
+            user_id:
+              one_vote_only: "Du kannst nur einmal pro Umfrage abstimmen."
+            base:
+              user_or_discord_required: "Entweder ein Benutzerkonto oder eine Discord-ID ist erforderlich."
+        loot_roll:
+          attributes:
+            max_roll:
+              must_be_greater: "Muss größer als die minimale Rolle sein."
+        loot_roll_entry:
+          attributes:
+            discord_user_id:
+              already_rolled: "Sie haben bereits gerollt."
+            roll_value:
+              out_of_bounds: "muss zwischen %{min} und %{max} sein"
+            base:
+              loot_roll_closed: "Diese Beuteverteilung ist abgeschlossen."
+        guild_battle:
+          attributes:
+            defender_guild_id:
+              same_as_challenger: "Kann nicht dieselbe Gilde wie der Herausforderer sein."
+        gear_snapshot:
+          attributes:
+            data:
+              blank: "kann nicht leer sein"
+            screenshot:
+              must_be_attached: "muss angefügt werden"
+        gear_upload_request:
+          attributes:
+            requester:
+              no_permission: "hat keine Berechtigung, auf Updates für Geräte zu fordern"
+        guild_application:
+          attributes:
+            user_id:
+              already_applied: "Sie haben sich bereits an dieser Gilde angemeldet"
+        guild_invite:
+          attributes:
+            user_id:
+              already_invited: "hat diese Gilde bereits gehört"
+              already_member: "ist bereits ein Mitglied dieser Gilde"
+        discord_event_signup:
+          attributes:
+            discord_user_id:
+              one_role_per_event: "Sie können pro Event nur eine Rolle bestellen."
+        discord_event_participation:
+          attributes:
+            discord_user_id:
+              already_signed_up: "hat sich bereits für diesen Event angemeldet"
+        event_participation:
+          attributes:
+            user_id:
+              already_responded: "hat bereits auf diesen Event geantwortet"
+            base:
+              user_or_discord_required: "Entweder ein Benutzerkonto oder eine Discord-ID ist erforderlich."
+        discord_connection:
+          attributes:
+            guild_id:
+              one_connection_only: "Eine Gilde kann nur eine Discord-Verbindung herstellen"
+        subscription:
+          attributes:
+            expires_at:
+              must_be_after_started: "muss nach dem Startdatum liegen"
+        guild_game:
+          attributes:
+            primary:
+              only_one_allowed: "Nur ein Haupt-Spiel ist pro Spielverband zulässig."
+
+        alliance_poll_vote:
+          attributes:
+            base:
+              user_or_discord_required: "Entweder ein Benutzerkonto oder eine Discord-ID ist erforderlich."
+        alliance_event_participation:
+          attributes:
+            base:
+              user_or_discord_required: "Entweder ein Benutzerkonto oder eine Discord-ID ist erforderlich."
+        alliance_loot_roll_entry:
+          attributes:
+            base:
+              user_or_discord_required: "Entweder ein Benutzerkonto oder eine Discord-ID ist erforderlich."
+  ocr:
+    messages:
+      limit_reached: "Sie haben alle OCR-Anfragen für diesen Abrechnungszeitraum verbraucht. Ihr %{plan_name}-Plan erlaubt %{limit} Anfragen pro Monat. Bitte wenden Sie sich an den Support."
+      hard_locked: "Ihr OCR-Zugang wurde vorübergehend gesperrt. Bitte wenden Sie sich an den Support."
+      trial_expired: "Ihre kostenlosen Test-OCR-Anfragen sind aufgebraucht. Schließen Sie ein Abonnement ab, um OCR weiter zu nutzen."
+      free_blocked: "Sie haben alle kostenlosen OCR-Anfragen verbraucht. Schließen Sie ein Abonnement ab, um mehr freizuschalten."
+      ip_abuse: "Ungewöhnliche OCR-Aktivität wurde von Ihrem Netzwerk erkannt. Bitte wenden Sie sich an den Support, falls das unerwartet ist."

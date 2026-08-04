@@ -1,0 +1,32 @@
+<div class="max-w-3xl mx-auto p-6 space-y-6">
+  <div>
+    <%= link_to t("alliances.outgoing_join_requests.new.back"), guild_path(@guild), class: "text-sm text-theme-accent hover:text-theme-accent-hover mb-4 inline-block" %>
+    <h1 class="text-3xl font-bold text-theme-primary mb-2"><%= t("alliances.received_invites.pending.title") %></h1>
+    <p class="text-theme-secondary"><%= t("alliances.received_invites.pending.subtitle", guild_name: @guild.name) %></p>
+  </div>
+
+  <% if @pending_invites.any? %>
+    <ul class="space-y-4">
+      <% @pending_invites.each do |invite| %>
+        <li class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 bg-theme-secondary border border-theme-primary rounded-lg p-4">
+          <div>
+            <p class="font-semibold text-theme-primary"><%= invite.alliance.name %></p>
+            <p class="text-sm text-theme-secondary"><%= t("alliances.index.invite_from", name: invite.invited_by_user.username) %></p>
+          </div>
+          <div class="flex gap-2">
+            <%= button_to t("alliances.index.accept"),
+                accept_alliance_alliance_invite_path(invite.alliance, invite, return_to: "guild", guild_id: @guild.id),
+                method: :post,
+                class: "px-4 py-2 bg-theme-accent text-white rounded-lg hover:bg-theme-accent-hover font-semibold" %>
+            <%= button_to t("alliances.index.decline"),
+                decline_alliance_alliance_invite_path(invite.alliance, invite, return_to: "guild", guild_id: @guild.id),
+                method: :post,
+                class: "px-4 py-2 bg-theme-secondary text-theme-primary rounded-lg border border-theme-primary font-semibold" %>
+          </div>
+        </li>
+      <% end %>
+    </ul>
+  <% else %>
+    <p class="text-theme-secondary"><%= t("alliances.received_invites.pending.none") %></p>
+  <% end %>
+</div>

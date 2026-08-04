@@ -1,0 +1,822 @@
+zh:
+  guilds:
+    index:
+      title: 我的公会
+      subtitle: 管理您的游戏社区
+      create_new_guild: 创建新公会
+      view_guild: 查看公会
+      no_guilds: 您还没有加入任何公会。
+      create_first_guild: 创建您的第一个公会
+    new:
+      title: 创建公会
+      subtitle: 开启您自己的游戏社区
+      guild_name: 公会名称
+      create_button: 创建公会
+      recruiting_name_warning: 该名称包含我们会在公开招募目录中隐藏的用语。公会创建后将默认不对外公开列出；若您的角色允许，可在公会设置中更改可见性。
+      games:
+        label: 游戏
+        required: 必填
+        help_text: 请至少选择一个公会会玩的游戏。您之后可在设置中添加更多。
+        search_placeholder: 搜索游戏...
+        featured_games: 推荐游戏
+        no_games: 暂无可用游戏。请使用上方搜索栏，或在下方添加自定义游戏。
+        pending_approval: 待审核
+        select_primary: 请选择主游戏（公会重点游玩的主要游戏）。
+        select_one_error: 请至少选择一个游戏。
+        select_primary_error: 请从已选择的游戏中指定一个主游戏。
+        primary_must_be_selected: 主游戏必须是已选择的游戏之一。
+        approve_pending_html: "<strong>要审核待处理游戏：</strong>前往 %{link}，并在任一待处理游戏上点击“切换启用”进行启用。"
+        games_management: 游戏管理
+        select_button: 选择
+      custom_game:
+        add_link: 找不到您的游戏？在这里添加
+        label: 游戏名称
+        placeholder: 输入游戏名称...
+        add_button: 添加游戏
+        no_similar: 未找到相似游戏。点击“添加游戏”以创建“%{name}”。请再次检查拼写。
+        already_exists: 游戏“%{name}”已存在。请从上方列表中选择。
+        search_error: 搜索游戏时出错。请重试。
+        js_no_similar_found: 未找到相似游戏。点击“添加游戏”以创建“%{query}”。请再次检查拼写。
+        js_game_exists: 游戏“%{name}”已存在。请从上方列表中选择。
+        js_search_error: 搜索游戏时出错。请重试。
+        js_adding: 添加中...
+        js_server_error: 服务器错误。请刷新页面后重试。
+        pending_admin_approval: 等待管理员审核
+        js_game_added_success: 游戏添加成功！将在管理员审核后可用。
+        js_failed_add: '添加游戏失败： '
+        js_error_adding: '添加游戏时出错： '
+      modal:
+        title: 确认添加游戏
+        confirm_text: 您确定要将 %{name} 添加为新游戏吗？
+        warning: 请确认拼写正确。该游戏将以待处理状态创建，并需要管理员审核。
+        yes_add: 是，添加游戏
+      pending_admin_info: 要审核待处理游戏：前往“游戏管理”，并在任一待处理游戏上点击“切换启用”进行启用。
+    show:
+      guild_information: 公会信息
+      quick_actions: 快捷操作
+      invite_members: 邀请成员
+      schedule_event: 安排活动
+      about: 简介
+      no_description: 暂无描述。
+      discord_public_invite: 公开 Discord 邀请
+      join_discord: 加入 Discord
+      discord_invite_missing: 添加公开邀请链接，成员可一键打开你的 Discord 服务器。
+      discord_invite_none: 该公会尚未发布 Discord 邀请链接。
+    settings:
+      title: 公会设置
+      subtitle: 管理您的公会设置和偏好。
+      guild_profile:
+        title: 公会资料
+        description: 描述和可选的公开 Discord 邀请会显示在所有成员可见的公会面板上。
+        description_label: 描述
+        discord_invite_label: 公开 Discord 邀请 URL
+        discord_invite_hint: 可选。粘贴 Discord 邀请链接（例如 https://discord.gg/…）。对能查看公会面板的用户可见。
+        save_button: 保存资料
+      logo:
+        title: 公会徽标
+        description: 为您的公会上上传徽标。该徽标会在应用中显示在公会名称旁边。
+        recommended: 推荐尺寸：
+        dimensions_info: 256x256 像素（方形效果最佳）。支持格式：JPG、PNG、GIF、WebP。
+        current_logo: 当前徽标：
+        note: 注意：
+        click_update: 点击“更新徽标”以选择新文件并保存。
+        update_button: 更新徽标
+        delete_button: 删除徽标
+        delete_confirm: 您确定要删除公会徽标吗？
+        save_button: 保存徽标
+      application_messages:
+        title: 申请消息
+        description: 自定义申请者通过或被拒时发送的消息。若留空，将使用默认消息。
+        accept_label: 通过消息
+        accept_default_message: 恭喜！您已被 %{guild_name} 公会录取！
+        accept_hint: 申请者通过时发送的消息。使用 %{guild_name} 可插入公会名称。默认："%{default_message}"
+        reject_label: 拒绝消息
+        reject_default_message: 抱歉，您目前与我们公会不太匹配，但欢迎之后再次申请。
+        reject_hint: 申请者被拒时发送的消息。默认："%{default_message}"
+        save_button: 保存消息
+      discord_channels:
+        title: Discord 频道配置
+        description: 选择不同类型内容通知应发送到哪些 Discord 频道。
+        events_channel: 活动频道
+        events_hint: 选择发布 Discord 活动的频道。
+        battles_channel: 公会战频道
+        battles_hint: 选择发布公会战通知的频道。
+        gear_channel: 成员装备频道
+        gear_hint: 选择发布成员装备更新的频道。
+        polls_channel: 公会投票频道
+        polls_hint: 选择发布公会投票的频道。
+        loot_channel: 战利品掷骰频道
+        loot_hint: 选择发布战利品掷骰的频道。战利品掷骰功能必须配置此项。
+        select_channel: 选择频道...
+        save_button: 保存频道设置
+        unable_to_load: 无法加载频道
+        load_error: 加载 Discord 频道失败。请检查您的 Discord 机器人连接。
+        alliance_section_title: 联盟频道（跨公会）
+        alliance_section_description: 使用已连接的 GuildSync 机器人选择联盟邀请、活动、投票和战利品掷骰的发布频道。若仅配置了部分频道，邀请通知将按以下顺序回退到首个已配置频道：邀请、活动、投票、战利品。
+        alliance_invites_channel: 联盟邀请与申请
+        alliance_invites_hint: 当你的公会被邀请加入联盟，或其他公会请求加入你的联盟时的通知。
+        alliance_events_channel: 联盟活动
+        alliance_events_hint: 创建联盟范围活动时发布嵌入式消息。
+        alliance_polls_channel: 联盟投票
+        alliance_polls_hint: 创建联盟范围投票时发布嵌入式消息。
+        alliance_loot_channel: 联盟战利品掷骰
+        alliance_loot_hint: 创建联盟范围战利品掷骰时发布嵌入式消息。
+      discord_bot:
+        not_connected: 机器人未连接
+        not_connected_authorize: GuildSync 机器人尚未连接到 Discord 服务器。请先授权机器人。
+        not_connected_connect: 请先将 GuildSync 机器人连接到 Discord 服务器，再配置频道。
+        authorize_button: 授权机器人
+        connect_button: 将机器人连接到公会 Discord
+      role_sync:
+        title: Discord 角色同步
+        description: 管理哪些 Discord 角色会同步到数据库。已同步角色每 30 分钟自动刷新一次。
+        sync_all: 同步所有角色
+        remove_all: 移除所有同步
+        refresh: 刷新角色
+        loading: 正在加载角色...
+        role_name: 角色名称
+        role_id: 角色 ID
+        sync_status: 同步状态
+        action: 操作
+        click_refresh: 点击“刷新角色”以加载 Discord 角色
+      games:
+        title: 游戏
+        description: 管理公会游玩的游戏。至少需要一个游戏。
+        no_games: 当前没有可用游戏。请联系管理员添加游戏。
+        required_note: 必须至少选择一个游戏
+        update_button: 更新游戏
+        cant_find: 找不到您的游戏？在这里添加
+        game_name_label: 游戏名称
+        enter_game_name: 输入游戏名称...
+        pending_approval: 等待管理员审核
+        primary_label: 主游戏
+        add_game_button: 添加游戏
+        pending_approval_short: 待审核
+        pending_admin_approval: 等待管理员审核
+        js_no_similar_found: 未找到相似游戏。点击“添加游戏”以创建“%{query}”。请再次检查拼写。
+        js_game_exists: 游戏“%{name}”已存在。请从上方列表中选择。
+        js_search_error: 搜索游戏时出错。请重试。
+        js_confirm_add: 您确定要将“%{name}”添加为新游戏吗？请确认拼写正确。
+        js_adding: 添加中...
+        js_server_error: 服务器错误。请刷新页面后重试。
+      permissions:
+        title: 角色权限
+        description: 最多选择四个可用于管理角色、申请和公会设置的 Discord 角色。勾选复选框以启用各项权限。
+        role_n: 角色 %{n}
+        select_discord_role: 选择 Discord 角色
+        none: 无
+        can_manage_roles: 可管理角色
+        can_manage_applications: 可管理申请
+        can_manage_guild_settings: 可管理公会设置
+        can_kick_members: 可移除成员
+        can_invite_alliance_guilds: 可邀请联盟公会
+        can_kick_alliance_guilds: 可移出联盟公会
+        can_manage_tags: 可管理标签
+        can_manage_warnings: 可管理警告
+        can_manage_documents: 可管理文档
+        can_manage_files: 可管理文件
+        can_manage_events: 可管理活动
+        can_manage_polls: 可管理投票
+        can_manage_loot_rolls: 可管理战利品掷骰
+        can_manage_discord_channels: 可管理 Discord 频道
+        can_view_activity_feed: 可查看活动动态
+        can_export_members_csv: 可导出成员 CSV
+        can_use_message_center: 可使用消息中心
+        can_manage_gear_requests: 可管理装备请求
+        can_edit_gear_scanned_stats: 可编辑扫描的装备属性
+        save_button: 保存权限
+        default_role:
+          title: 新成员默认角色
+          description: 选择当新成员加入公会时自动分配的 Discord 角色。
+          label: 默认角色
+          save_button: 保存默认角色
+      visibility:
+        title: 公会可见性
+        description: 控制你的公会是否出现在公开列表中。私密公会仅能被现有成员找到。
+        toggle_label: 在公开列表中显示该公会
+        toggle_hint: 取消勾选后，你的公会将不会出现在可加入公会列表或搜索结果中。现有成员和申请者不受影响。
+        save_button: 保存可见性
+      react_roles:
+        title: 反应角色
+        description: 最多配置 3 组“表情-角色”映射。向 Discord 频道发布嵌入式消息后，用户通过表情反应获取对应角色，移除反应后角色也会移除。
+        channel_label: 频道（发布嵌入式消息的位置）
+        select_channel: 选择频道...
+        slot_title: 反应角色 %{n}
+        role_label: Discord 角色
+        select_role: 选择角色...
+        emoji_label: 表情
+        select_emoji: 选择表情...
+        emoji_hint: 支持标准 Unicode 表情和服务器自定义表情。
+        server_emojis: 服务器表情
+        standard_emojis: 标准表情
+        loading_emojis: 加载中...
+        save_button: 保存反应角色
+        deploy_button: 发布到 Discord
+        remove_button: 从 Discord 移除
+        remove_confirm: 这将删除 Discord 中的反应角色嵌入式消息。确定继续吗？
+      back_to_dashboard: 返回仪表盘
+    members:
+      title: 公会成员
+      subtitle: 查看并管理所有公会成员。
+      select_all: 全选
+      deselect_all: 取消全选
+      select_role: 选择角色...
+      update_selected: 更新所选
+      search_placeholder: 按用户名或 Discord 搜索用户...
+      invite_user: 邀请用户
+      export_csv: 导出 CSV
+      kick_selected: 移除所选
+      discord_verified: Discord 已验证
+      discord_not_connected: 未连接
+      role_none: 无
+      owner: 所有者
+      kick: 移除
+      kick_confirm: 您确定要移除 %{username} 吗？此操作无法撤销。
+      kick_final_confirm: 最终确认：您确定要将 %{username} 从公会中移除吗？
+      bulk_kick_confirm: 您确定要移除 %{count} 名成员吗？此操作无法撤销。
+      bulk_kick_final: 最终确认：您确定要将 %{count} 名成员从公会中移除吗？
+      no_roles_synced: 没有已同步的角色
+      no_users_found: 未找到用户
+      search_load_more: 加载更多用户
+      js_error_searching_users: 搜索用户时出错
+      js_inviting: 邀请中...
+      select_at_least_one: 请至少选择一名成员。
+      select_a_role: 请选择一个角色。
+      select_user_first: 请先选择一个用户。
+      back_to_dashboard: 返回仪表盘
+      tags:
+        manage_title: 管理公会标签
+        name: 标签名称
+        color: 标签颜色
+        create: 创建标签
+        filter_label: 按标签排序 / 筛选
+        filter_all: 全部标签
+        filter_untagged: 无标签成员
+        clear_filter: 清除
+    members_gear:
+      title: "%{guild_name} 的 AI 装备扫描"
+      pending_request_officer_banner: "%{requester} 请你更新装备截图。准备好后请在下方上传。"
+      filter_by_game: 按游戏筛选：
+      all_games: 全部游戏
+      no_games_configured: 此公会尚未配置游戏。请在公会设置中添加游戏。
+      gear_status_overview: 装备状态概览
+      request_missing_gear: 请求补充缺失装备（%{count}）
+      request_outdated_gear: 请求更新过期装备（%{count}）
+      request_all_missing_outdated: 请求全部缺失/过期装备（%{count}）
+      total_members: 成员总数
+      missing_gear: 缺失装备
+      outdated_gear: 过期装备
+      up_to_date: 最新
+      pending_gear_requests:
+        one: 1 条待处理装备请求
+        other: "%{count} 条待处理装备请求"
+      view_pending_requests: 查看待处理请求
+      filter_all: 全部
+      filter_missing: 缺失
+      filter_outdated: 过期
+      filter_up_to_date: 最新
+      request_updates_from_missing_outdated: 向缺失/过期成员发送更新请求
+      th_avatar: 头像
+      th_member: 成员
+      th_last_updated: 最后更新
+      th_status: 状态
+      th_key_stats: 关键属性
+      th_actions: 操作
+      ago: 前
+      never: 从未
+      view_gear: 查看装备
+      view_stats: 查看属性
+      pending_request: 待处理请求
+      request_update: 请求更新
+      view_image: 图片
+      screenshot_unavailable: 该属性截图已不可用，可能已超过保留期限，或尚未上传。
+      no_members_with_status: 未找到状态为 %{status} 的成员
+      no_members_found: 未找到成员
+      your_gear_screenshot: 您的装备截图
+      last_updated: 最后更新
+      select_game: 选择游戏：
+      select_game_prompt: "-- 选择游戏 --"
+      choose_file: 选择文件
+      upload_screenshot: 上传截图
+      parsed_data_preview: 解析数据预览：
+      upload_preview_heading: 已提取属性预览
+      upload_preview_truncated: "… 另有 %{count} 项"
+      back_to_dashboard: 返回仪表盘
+      gear_details: 装备详情
+      js_processing: 处理中...
+      js_processing_message: 正在处理图片并提取装备数据... 这可能需要一点时间。
+      js_upload_success: 成功！图片已处理并提取装备数据。正在重新加载页面...
+      upload_success_notice: 截图已上传，最新属性已更新。
+      js_loading_gear: 正在加载装备数据...
+      js_no_gear_data: 暂无装备数据
+      js_error_loading_gear: '加载装备数据出错： '
+      js_confirm_bulk_all: 向所有装备缺失或过期的成员发送装备更新请求？
+      js_confirm_bulk_status: 向所有装备状态为 %{status} 的成员发送装备更新请求？
+      js_confirm_request_user: 向 %{name} 发送属性更新请求？
+      stats_hidden: "—"
+    member_stats:
+      back_to_scanner: 返回 AI 属性扫描
+      title: "%{name} 的属性"
+      guild_context: "%{guild_name}"
+      last_updated: 最后更新
+      extracted_heading: 已提取的属性
+      stat_count:
+        one: 共 1 项属性
+        other: 共 %{count} 项属性
+      empty_title: 尚无快照
+      empty_body: 该成员尚未上传属性界面截图。
+      partial_title: 最新快照中没有属性
+      partial_body: 截图已保存，但未能提取名称/数值对。
+      member_not_found: 未找到该成员。
+      unnamed_stat: 属性
+      unparsed_label: 数值
+      remove_stat: 移除此属性
+      undo_stat: 恢复此属性
+      edit_stat: 编辑
+      save_stat: 保存
+      cancel_edit: 取消
+      stat_saved: 已保存。
+      stat_name_label: 属性名称
+      stat_value_label: 属性数值
+      api_error: 无法更新属性。请刷新页面后重试。
+      cannot_view_other_member_stats: 在本公会中，您只能查看自己的装备属性。
+      modify_own_gear_only: 您只能修改自己的装备。
+      cannot_edit_scanned_stats: 只有公会会长或拥有“编辑扫描装备属性”权限的自定义角色可以修改提取的数值。成员不能编辑自己的扫描结果。
+    analytics:
+      title: "%{guild_name} 的分析"
+      subtitle: 查看公会的详细分析和洞察。
+      back_to_dashboard: 返回仪表盘
+    activity_feed:
+      title: "%{guild_name} 的活动动态"
+      subtitle: 该公会的近期活动。日志保留 3 个月。
+      back_to_dashboard: 返回仪表盘
+    review_applications:
+      title: 审核 %{name} 的申请
+      subtitle: 审核并管理加入公会的待处理申请。
+      invited_members: 已邀请成员
+      invited_by: 邀请人：
+      invited: 邀请时间：
+      discord_verified: Discord 已验证
+      dismiss: 忽略
+      dismiss_confirm: 从视图中忽略此邀请？
+      pending_applications: 待处理申请
+      discord_not_connected: Discord：未连接
+      applied: 申请时间：
+      message_label: 消息：
+      accept: 接受
+      accept_confirm: 接受该申请并将该成员加入公会？
+      reject: 拒绝
+      reject_confirm: 拒绝该申请？
+      message_applicant: 给申请者发消息
+      message: 消息
+      enter_message_placeholder: 输入您的消息...
+      send: 发送
+      cancel: 取消
+      no_pending: 当前没有待处理申请。
+      back_to_dashboard: 返回仪表盘
+    invite_members:
+      title: 邀请成员加入 %{name}
+      subtitle: 发送加入公会邀请并审核待处理申请。
+      pending_applications: 待处理申请
+      discord_server_unknown: 未知
+      discord_server_not_available: Discord 服务器：不可用
+      applied: 申请时间：
+      message_label: 消息：
+      character_details: 角色详情：
+      accept: 接受
+      accept_confirm: 接受该申请并将该成员加入公会？
+      reject: 拒绝
+      reject_confirm: 拒绝该申请？
+      message_applicant: 给申请者发消息
+      message: 消息
+      enter_message_placeholder: 输入您的消息...
+      send: 发送
+      cancel: 取消
+      back_to_dashboard: 返回仪表盘
+    schedule_events:
+      title: 为 %{name} 安排活动
+      subtitle: 为您的公会创建并管理 Discord 活动。
+      create_new_event: 创建新的 Discord 活动
+      create_event: 创建活动
+      recent_events: 近期活动
+      signups: 报名：
+      view: 查看
+      delete: 删除
+      delete_confirm: 您确定吗？
+      bot_not_connected: 机器人未连接
+      discord_server_not_selected: 未选择 Discord 服务器
+      bot_not_connected_message: GuildSync 机器人尚未连接到 Discord 服务器。请先授权机器人。
+      select_server_message: 您的 Discord 账户已连接，但还需选择要连接 GuildSync 机器人的 Discord 服务器。
+      connect_bot_message: 创建活动前，请先将 GuildSync 机器人连接到 Discord 服务器。
+      authorize_bot: 授权机器人
+      select_discord_server: 选择 Discord 服务器
+      connect_bot_to_guild: 将机器人连接到公会 Discord
+      back_to_dashboard: 返回仪表盘
+    schedule_guild_battle:
+      title: 为 %{name} 安排公会战
+      subtitle: 组织并安排跨公会战斗。
+      management_title: 公会战管理
+      management_desc: 挑战其他公会、响应挑战并协调战斗。
+      view_all_battles: 查看所有战斗
+      challenge_another_guild: 挑战其他公会
+      notifications: 通知
+      back_to_dashboard: 返回仪表盘
+    connect_discord:
+      title: 将机器人连接到公会 Discord
+      subtitle: 选择一个 Discord 服务器用于连接 GuildSync 机器人，以便进行活动管理和通知。
+      connected:
+        title: Discord 已连接
+        connected_to: 已连接到：
+      channel_config:
+        title: 频道配置
+        subtitle: 选择不同类型内容应发送到哪些 Discord 频道。
+        events_channel:
+          label: 活动频道
+          placeholder: 选择频道...
+          hint: 发布活动公告的频道
+        guild_battles_channel:
+          label: 公会战频道
+          placeholder: 选择频道...
+          hint: 发布公会战公告的频道
+        gear_channel:
+          label: 装备频道
+          placeholder: 选择频道...
+          hint: 发布成员装备上传信息的频道
+        save_button: 保存频道配置
+      select_server:
+        title: 选择 Discord 服务器
+        already_connected: 您的 Discord 账户已连接。请选择要连接 GuildSync 机器人的 Discord 服务器。您必须是该服务器的管理员。
+        not_connected: 请先连接您的 Discord 账户（一次性设置）。然后选择要连接 GuildSync 机器人的 Discord 服务器。您必须是该服务器的管理员。
+        select_button: 选择 Discord 服务器
+        connect_button: 连接 Discord 账户
+      back_to_dashboard: 返回仪表盘
+      popup_blocked: 弹窗被拦截。请允许此站点弹窗后重试。
+      connection_failed: Discord 连接失败：%{error}
+  guild_archives:
+    alerts:
+      archived_unavailable: 该公会已归档，无法访问。
+      archived_success: "「%{guild_name}」已归档。一年后可永久删除。"
+      unarchived_success: "「%{guild_name}」已恢复。"
+      unarchive_plan_limit: 当前活跃公会数量已达上限，无法恢复此公会。请先归档或删除其他活跃公会。
+      purge_not_ready: 尚不能永久删除该公会。归档后须满至少一年。
+      purged_success: "「%{guild_name}」已永久删除。"
+      not_found: 未找到已归档的公会。
+      name_confirmation_mismatch: 公会名称确认不一致。请输入完全相同的名称。
+    index:
+      title: 已归档公会
+      subtitle: 已归档公会计入活跃上限之外。将在一年后自动删除。
+      recovery_note_label: 数据恢复说明
+      long_recovery_hint: 已删除的记录最多保留六个月；期满后将被永久删除。若记录仍在期限内并希望申请恢复，请联系客服。
+      empty: 您没有已归档的公会。
+      archived_on: 归档时间：%{date}
+      auto_delete_on: 自动删除日期：%{date}
+      unarchive_button: 恢复公会
+      permanent_delete_button: 永久删除
+      permanent_delete_confirm: 永久删除 %{guild_name}？此操作无法撤销。
+    settings:
+      title: 危险操作
+      warning: 归档后所有人将无法访问该公会。数据保留一年后将永久删除。
+      type_name_hint: 请准确输入公会名称以归档：%{guild_name}
+      confirmation_label: 公会名称确认
+      archive_button: 归档公会
+      archive_confirm_prompt: 归档 %{guild_name}？该公会将无法访问。
+  polls:
+    index:
+      title: 公会投票
+      subtitle: 查看并参与 %{guild_name} 的投票
+      create_poll: 创建投票
+      created_by: 由 %{name} 创建
+      deadline: 截止时间：
+      vote_count: "%{count} 票"
+      vote_count_plural: "%{count} 票"
+      anonymous: 匿名
+      open: 进行中
+      closed: 已关闭
+      'yes': 是
+      'no': 否
+      maybe: 可能
+      view_vote: 查看并投票
+      view_results: 查看结果
+      delete: 删除
+      delete_confirm: 您确定要删除此投票吗？此操作无法撤销。
+      no_polls: 还没有投票。
+      create_first: 创建第一个投票
+    new:
+      title: 创建新投票
+      subtitle: 为 %{guild_name} 创建投票
+      poll_title: 投票标题
+      poll_title_placeholder: 输入投票标题
+      description: 描述
+      description_placeholder: 输入投票描述
+      discord_roles_title: 要 @ 的 Discord 角色
+      discord_roles_hint: 发布投票时请选择要提及的一个或多个 Discord 角色。
+      deadline: 截止时间
+      deadline_hint: 投票将在此日期和时间关闭。
+      anonymous_voting: 匿名投票
+      anonymous_hint: 启用后，结果中将隐藏投票者身份。
+      create_button: 创建投票
+    show:
+      back_to_polls: "← 返回投票列表"
+      created_by: 由 %{name} 创建
+      deadline: 截止时间：
+      description: 描述
+      cast_vote: 投出您的票
+      'yes': "✅ 是"
+      'no': "❌ 否"
+      maybe: "\U0001F914 可能"
+      change_vote_hint: 在截止时间前，您可随时更改投票。
+      results: 结果
+      votes: 票
+      no_votes: 还没有投票。来成为第一个投票的人吧！
+      delete_poll: 删除投票
+  loot_rolls:
+    index:
+      title: 公会战利品掷骰
+      subtitle: 查看并参与 %{guild_name} 的战利品掷骰
+      create_loot_roll: 创建战利品掷骰
+      created_by: 由 %{name} 创建
+      range: 范围：
+      roll_count: "%{count} 次掷骰"
+      roll_count_plural: "%{count} 次掷骰"
+      deadline: 截止时间：
+      open: 进行中
+      closed: 已关闭
+      highest_roll: 最高点数：
+      winner: 获胜者：
+      view_roll: 查看并掷骰
+      view_results: 查看结果
+      delete: 删除
+      delete_confirm: 您确定要删除此战利品掷骰吗？此操作无法撤销。
+      no_loot_rolls: 还没有战利品掷骰。
+      create_first: 创建第一个战利品掷骰
+    show:
+      back_to_loot_rolls: "← 返回战利品掷骰"
+      created_by: 由 %{name} 创建
+      range: 范围：%{min} - %{max}
+      roll_count:
+        one: 次掷骰
+        other: 次掷骰
+      deadline: 截止时间
+      open: 进行中
+      closed: 已关闭
+      description: 描述
+      time_remaining: 剩余时间
+      calculating: 计算中...
+      expired: 已过期
+      tie_detected: 检测到平局！
+      are_tied_at: 平局点数为
+      tied_reroll_hint: 平局用户必须使用 Discord 按钮重新掷骰。
+      winner: 获胜者！
+      with_roll_of: 掷出点数
+      leaderboard: 排行榜
+      tied: 平局
+      force_reroll: 强制重掷
+      force_reroll_confirm: 这将使 %{name} 的掷骰结果失效并允许其重新掷骰。继续吗？
+      no_rolls_yet: 还没有掷骰。请使用 Discord 按钮掷骰！
+      close_loot_roll: 关闭战利品掷骰
+      close_confirm: 您确定要提前关闭此战利品掷骰吗？系统将选出获胜者。
+      delete_loot_roll: 删除战利品掷骰
+      delete_confirm: 您确定要删除此战利品掷骰吗？此操作无法撤销。
+    new:
+      title: 创建新战利品掷骰
+      subtitle: 为 %{guild_name} 创建战利品掷骰
+      loot_title: 标题
+      loot_title_placeholder: 输入战利品掷骰标题
+      description: 描述（可选）
+      description_placeholder: 输入描述（可选）
+      min_roll: 最小点数
+      max_roll: 最大点数
+      allowed_roles_title: 允许的角色（可选）
+      allowed_roles_hint: 选择可参与的 Discord 角色。留空则允许所有人。
+      deadline: 截止时间（可选）
+      deadline_hint: 战利品掷骰将在该时间自动关闭。留空表示无截止时间。
+      auto_post_title: 自动发布到 Discord
+      auto_post_hint: 此战利品掷骰将自动发布到您配置的战利品掷骰频道。
+      create_button: 创建
+  guild_applications:
+    index:
+      title: 我的申请
+      subtitle: 查看并跟踪您的公会申请。
+      apply_to_guild: 申请加入公会
+      guild_invitations: 公会邀请
+      invited_by: 邀请人：
+      invited: 邀请时间：
+      pending: 待处理
+      accept_invitation: 接受邀请
+      decline: 拒绝
+      applied: 申请时间：
+      your_message: 您的消息：
+      view_guild: 查看公会
+      no_applications: 还没有申请。申请加入一个公会以开始吧！
+    new:
+      title: 申请加入公会
+      subtitle: 提交加入公会的申请。
+      select_guild: 选择公会
+      search_placeholder: 按名称搜索公会...
+      start_typing: 开始输入以搜索公会...
+      discord_username: Discord 用户名
+      discord_placeholder: 你的Discord#1234
+      message_label: 消息（可选）
+      message_placeholder: 告诉公会您想加入的原因...
+      character_details_label: 角色详情（可选）
+      character_details_placeholder: 请填写您的角色属性、所玩游戏、角色名、等级、职业、装备等...
+      character_details_hint: 分享您的角色、属性、游戏及其他相关信息。
+      submit: 提交申请
+      cancel: 取消
+      no_guilds_found: 未找到公会
+      load_more_guilds: 加载更多公会
+      owner_unknown: 未知
+      error_searching: 搜索公会时出错
+    create:
+      guild_not_available: 该公会未公开列出、已归档或不接受申请。
+  guild_battles:
+    index:
+      title: "%{name} 的公会战"
+      subtitle: 管理跨公会战斗挑战及响应。
+      challenge_another_guild: 挑战其他公会
+      your_guild_battles: 您的公会战
+      you_challenged: 您已挑战 %{name}
+      challenged_you: "%{name} 向您发起了挑战"
+      scheduled: 时间：
+      location: 地点：
+      max_participants: 最大参与人数：
+      view_details: 查看详情
+      delete: 删除
+      delete_confirm: 您确定要删除此公会战吗？此操作无法撤销。
+      empty: 还没有公会战。挑战其他公会开始吧！
+    new:
+      title: 挑战其他公会
+      subtitle: 选择要挑战的公会并设置战斗详情。
+      battle_details: 战斗详情
+      select_guild_to_challenge: 选择要挑战的公会
+      search_placeholder: 按公会名称、描述或所有者搜索...
+      search_hint: 开始输入以搜索公会...
+      scheduled_date_time: 预定日期与时间
+      location: 地点
+      location_placeholder: 输入战斗地点
+      max_participants: 最大参与人数
+      optional: 可选
+      notes: 备注
+      notes_placeholder: 附加战斗详情或要求...
+      role_categories: 角色分类
+      role_categories_hint: 选择用户可报名的角色。所有选中角色都将在 Discord 报名中可用。
+      role_dps: DPS
+      role_tank: 坦克
+      role_healer: 治疗
+      role_ranged: 远程
+      send_challenge: 发送挑战
+      cancel: 取消
+      owner_label: 所有者
+      search_error: 搜索公会时出错
+    show:
+      title: 公会战详情
+      subtitle: 公会战挑战
+      battle_details: 战斗详情
+      status: 状态
+      scheduled: 已安排
+      location: 地点
+      max_participants: 最大参与人数
+      notes: 备注
+      respond_to_challenge: 回应挑战
+      scheduled_date_time: 预定日期与时间
+      accept: 接受
+      request_changes: 请求修改
+      decline: 拒绝
+      communication: 沟通
+      communication_visit_html: 要发送消息或查看消息线程，请访问 %{link}。
+      notifications_page: 通知页面
+      communication_discord: 您也可以通过 GuildSync Discord 机器人直接发送消息。
+      cancellation_requested: 已请求取消
+      cancellation_by_challenger: 挑战方已请求取消此战斗。
+      cancellation_by_defender: 防守方已请求取消此战斗。
+      cancellation_waiting: 您已请求取消此战斗。正在等待另一位所有者响应。
+      accept_cancellation: 接受取消
+      accept_cancellation_confirm: 接受后将取消并删除此战斗。您确定吗？
+      decline_cancellation: 拒绝取消
+      back_to_guild_battles: 返回公会战
+      request_cancellation: 请求取消
+      request_cancellation_confirm: 这将发起取消请求。需要另一位所有者同意。继续吗？
+      delete_battle: 删除战斗
+      delete_battle_confirm: 您确定要永久删除此公会战吗？此操作无法撤销，并将删除所有关联的 Discord 活动。系统将通知另一位所有者。
+    notifications:
+      title: 公会战通知
+      subtitle: 管理挑战、消息和战斗沟通。
+      back_to_battle_home: "← 返回公会战主页"
+      pending_incoming: 待处理的收到挑战
+      pending_outgoing: 待处理的发出挑战
+      accepted_battles: 已接受的战斗
+      declined_battles: 已拒绝的战斗
+      reschedule_requests: 改期请求
+      cancelled_battles: 已取消的战斗
+      empty: 还没有公会战通知。挑战其他公会开始吧！
+    battle_notification_card:
+      you_challenged: 您已挑战 %{name}
+      challenged_you: "%{name} 向您发起了挑战"
+      scheduled: 时间：
+      location: 地点：
+      max_participants: 最大参与人数：
+      notes: 备注：
+      messages: 消息
+      no_messages: 还没有消息。开始对话吧！
+      message_placeholder: 输入消息...
+      send: 发送
+      view_details: 查看详情
+      accept: 接受
+      decline: 拒绝
+  guild_documents:
+    index:
+      title: 公会文档
+      subtitle: 管理并分享 %{guild_name} 的文档
+      new_folder: 新建文件夹
+      new_document: 新建文档
+      create_document: 创建文档
+      folder_name: 文件夹名称
+      folder_name_placeholder: 文件夹名称
+      color: 颜色
+      create_folder: 创建文件夹
+      documents_count: 个文档
+      edit: 编辑
+      delete_folder_confirm: 您确定吗？这将把该文件夹中的所有文档移动到“无文件夹”。
+      delete: 删除
+      by_author: 作者：%{author}
+      visibility_public: 公开
+      visibility_private: 私密
+      visibility_unlisted: 未列出
+      share: 分享
+      no_documents_in_folder: 此文件夹中没有文档
+      no_folder: 无文件夹
+      no_documents_yet: 还没有文档
+      create_first_hint: 创建您的第一个文档或文件夹以开始使用。
+      edit_folder_title: 编辑文件夹
+      cancel: 取消
+      update_folder: 更新文件夹
+    new:
+      title: 新建文档
+      subtitle: 为 %{guild_name} 创建新文档
+      fix_errors: 请修复以下错误：
+      document_title_placeholder: 文档标题
+      visibility_private: 私密 - 仅公会成员可见
+      visibility_public: 公开 - 任何持有链接的人可见
+      visibility_unlisted: 未列出 - 不会被索引，但可通过链接查看
+      folder_optional: 文件夹（可选）
+      no_folder: 无文件夹
+      content: 内容
+      cancel: 取消
+      create_document: 创建文档
+    toolbar:
+      image: 上传图片
+    edit:
+      title: 编辑文档
+      subtitle: 编辑 %{guild_name} 的文档
+      fix_errors: 请修复以下错误：
+      document_title_placeholder: 文档标题
+      visibility_private: 私密 - 仅公会成员可见
+      visibility_public: 公开 - 任何持有链接的人可见
+      visibility_unlisted: 未列出 - 不会被索引，但可通过链接查看
+      folder_optional: 文件夹（可选）
+      no_folder: 无文件夹
+      content: 内容
+      cancel: 取消
+      update_document: 更新文档
+  guild_warnings:
+    title: 公会警告中心
+    subtitle: 跟踪对成员的警告并整理状态列表。
+    send_title: 发送警告
+    send_description: 当成员已绑定 Discord 时，通过 GuildSync 机器人发送 Discord 私信。
+    member_label: 公会成员
+    select_member: 选择成员
+    reason_label: 警告原因
+    send_button: 发送警告
+    warning_count: 警告：%{count}/%{limit}
+    empty_column: 此列表中没有成员。
+    save_lists_button: 保存列表
+    back_to_guild: 返回公会面板
+    columns:
+      no_warnings: 无警告
+      warned: 已警告名单
+      banned: 已封禁名单
+    alerts:
+      access_denied: 您无权管理此公会的警告。
+      member_not_found: 未找到公会成员。
+      protected_member: 无法对公会所有者或警告管理员发出警告或重新分类。
+      reason_required: 必须填写警告原因。
+      warning_sent: 已向 %{user} 发送警告。
+      warning_failed: 无法发送警告：%{error}
+      lists_updated: 警告列表已更新。
+      list_update_failed: 无法更新警告列表：%{error}
+    discord:
+      warning_dm: |-
+        您在 **%{guild_name}** 收到了警告。
+        原因：%{reason}
+        警告：%{warning_count}/%{warning_limit}
+    my_status:
+      title: 您的警告状态
+      subtitle: 在此公会为您记录的正式警告。
+      access_denied: 您必须是此公会成员才能查看此页面。
+      none_title: 暂无警告记录
+      none_body: 您在此公会没有活跃的警告记录。
+      state_label: 状态
+      count_label: 警告次数
+      last_reason: 最近原因
+      last_at: 最近警告时间
+      discord_note: 若您在 GuildSync 中绑定了 Discord，发出新警告时也应收到机器人的私信。

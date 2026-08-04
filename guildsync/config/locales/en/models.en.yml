@@ -1,0 +1,253 @@
+# frozen_string_literal: true
+#
+# Model Validation Translations
+# ============================
+# This file contains all model validation error messages for i18n support.
+#
+en:
+  # ============================================================================
+  # ACTIVERECORD MODELS / ATTRIBUTES
+  # ============================================================================
+  activerecord:
+    models:
+      user: "User"
+      guild: "Guild"
+      game: "Game"
+      event: "Event"
+      poll: "Poll"
+      guild_document: "Document"
+      guild_member: "Member"
+      guild_application: "Application"
+      loot_roll: "Loot Roll"
+    attributes:
+      user:
+        email: "Email"
+        password: "Password"
+        display_name: "Display Name"
+      guild:
+        name: "Name"
+        description: "Description"
+      game:
+        name: "Name"
+        description: "Description"
+
+  # ============================================================================
+  # ACTIVERECORD ERRORS
+  # ============================================================================
+    errors:
+      models:
+        landing_user_feedback:
+          attributes:
+            base:
+              entry_limit_reached: "You can have at most %{max} feedback entries on the landing page. Delete an entry to add another."
+
+        homepage_feature_card:
+          attributes:
+            icon_key:
+              invalid_fontawesome_icon: "is not in the synced Font Awesome Free catalog. Run icon sync or choose another icon."
+
+        # ----------------------------------------------------------------------
+        # USER MODEL
+        # ----------------------------------------------------------------------
+        user:
+          attributes:
+            username:
+              invalid_format: "can only contain letters, numbers, and underscores"
+
+        # ----------------------------------------------------------------------
+        # GUILD MODEL
+        # ----------------------------------------------------------------------
+        guild:
+          attributes:
+            name:
+              already_owned: "You already have a guild with this name"
+            base:
+              subscription_required: "An active subscription is required to create a guild. Visit the pricing page to get started."
+              guild_limit_reached: "Guild limit reached. Your %{plan_name} plan allows %{max_guilds} guild(s). Visit your billing page to explore upgrade options."
+              duplicate_permission_role: "This role has already been selected!"
+
+        # ----------------------------------------------------------------------
+        # GUILD MEMBER MODEL
+        # ----------------------------------------------------------------------
+        guild_member:
+          attributes:
+            user_id:
+              already_member: "is already a member of this guild"
+            base:
+              member_limit_reached: "Member limit reached. The %{plan_name} plan allows %{max_members} members per guild. The guild owner can upgrade their plan for higher limits."
+
+        # ----------------------------------------------------------------------
+        # GUILD DISCORD SETTING MODEL
+        # ----------------------------------------------------------------------
+        guild_discord_setting:
+          attributes:
+            discord_guild_id:
+              already_connected: "This Discord server is already connected to another guild"
+            guild_id:
+              one_connection_only: "Guild can only have one Discord connection"
+
+        # ----------------------------------------------------------------------
+        # FEATURE REQUEST MODEL
+        # ----------------------------------------------------------------------
+        feature_request:
+          attributes:
+            description:
+              too_short: "must be at least 50 characters so others can understand your request"
+
+        # ----------------------------------------------------------------------
+        # POLL VOTE MODEL
+        # ----------------------------------------------------------------------
+        poll_vote:
+          attributes:
+            user_id:
+              one_vote_only: "You can only vote once per poll"
+            base:
+              user_or_discord_required: "Either a user account or Discord ID is required"
+
+        # ----------------------------------------------------------------------
+        # LOOT ROLL MODEL
+        # ----------------------------------------------------------------------
+        loot_roll:
+          attributes:
+            max_roll:
+              must_be_greater: "must be greater than minimum roll"
+
+        # ----------------------------------------------------------------------
+        # LOOT ROLL ENTRY MODEL
+        # ----------------------------------------------------------------------
+        loot_roll_entry:
+          attributes:
+            discord_user_id:
+              already_rolled: "You have already rolled."
+            roll_value:
+              out_of_bounds: "must be between %{min} and %{max}"
+            base:
+              loot_roll_closed: "This loot roll is closed."
+
+        # ----------------------------------------------------------------------
+        # GUILD BATTLE MODEL
+        # ----------------------------------------------------------------------
+        guild_battle:
+          attributes:
+            defender_guild_id:
+              same_as_challenger: "cannot be the same as challenger guild"
+
+        # ----------------------------------------------------------------------
+        # GEAR SNAPSHOT MODEL
+        # ----------------------------------------------------------------------
+        gear_snapshot:
+          attributes:
+            data:
+              blank: "can't be blank"
+            screenshot:
+              must_be_attached: "must be attached"
+
+        # ----------------------------------------------------------------------
+        # GEAR UPLOAD REQUEST MODEL
+        # ----------------------------------------------------------------------
+        gear_upload_request:
+          attributes:
+            requester:
+              no_permission: "does not have permission to request stat updates"
+
+        # ----------------------------------------------------------------------
+        # GUILD APPLICATION MODEL
+        # ----------------------------------------------------------------------
+        guild_application:
+          attributes:
+            user_id:
+              already_applied: "You have already applied to this guild"
+
+        # ----------------------------------------------------------------------
+        # GUILD INVITE MODEL
+        # ----------------------------------------------------------------------
+        guild_invite:
+          attributes:
+            user_id:
+              already_invited: "has already been invited to this guild"
+              already_member: "is already a member of this guild"
+
+        # ----------------------------------------------------------------------
+        # DISCORD EVENT SIGNUP MODEL
+        # ----------------------------------------------------------------------
+        discord_event_signup:
+          attributes:
+            discord_user_id:
+              one_role_per_event: "You can only sign up for one role per event"
+
+        # ----------------------------------------------------------------------
+        # DISCORD EVENT PARTICIPATION MODEL
+        # ----------------------------------------------------------------------
+        discord_event_participation:
+          attributes:
+            discord_user_id:
+              already_signed_up: "has already signed up for this event"
+
+        # ----------------------------------------------------------------------
+        # EVENT PARTICIPATION MODEL
+        # ----------------------------------------------------------------------
+        event_participation:
+          attributes:
+            user_id:
+              already_responded: "has already responded to this event"
+            base:
+              user_or_discord_required: "Either a user account or Discord ID is required"
+
+        # ----------------------------------------------------------------------
+        # DISCORD CONNECTION MODEL
+        # ----------------------------------------------------------------------
+        discord_connection:
+          attributes:
+            guild_id:
+              one_connection_only: "Guild can only have one Discord connection"
+
+        # ----------------------------------------------------------------------
+        # SUBSCRIPTION MODEL
+        # ----------------------------------------------------------------------
+        subscription:
+          attributes:
+            expires_at:
+              must_be_after_started: "must be after the start date"
+
+        # ----------------------------------------------------------------------
+        # GUILD GAME MODEL
+        # ----------------------------------------------------------------------
+        guild_game:
+          attributes:
+            primary:
+              only_one_allowed: "only one primary game allowed per guild"
+
+        # ----------------------------------------------------------------------
+        # ALLIANCE POLL VOTE MODEL
+        # ----------------------------------------------------------------------
+        alliance_poll_vote:
+          attributes:
+            base:
+              user_or_discord_required: "Either a user account or Discord ID is required"
+
+        # ----------------------------------------------------------------------
+        # ALLIANCE EVENT PARTICIPATION MODEL
+        # ----------------------------------------------------------------------
+        alliance_event_participation:
+          attributes:
+            base:
+              user_or_discord_required: "Either a user account or Discord ID is required"
+
+        # ----------------------------------------------------------------------
+        # ALLIANCE LOOT ROLL ENTRY MODEL
+        # ----------------------------------------------------------------------
+        alliance_loot_roll_entry:
+          attributes:
+            base:
+              user_or_discord_required: "Either a user account or Discord ID is required"
+
+  # ============================================================================
+  # OCR MESSAGES (used by Ocr::UsageTracker)
+  # ============================================================================
+  ocr:
+    messages:
+      limit_reached: "You've used all your OCR requests for this billing period. Your %{plan_name} plan allows %{limit} requests per month. Please contact support for assistance."
+      hard_locked: "Your OCR access has been temporarily suspended. Please contact support for assistance."
+      trial_expired: "Your free trial OCR requests have been used. Subscribe to a plan to continue using OCR features."
+      free_blocked: "You've used all your free OCR requests. Subscribe to a plan to unlock more."
+      ip_abuse: "Unusual OCR activity has been detected from your network. Please contact support if this is unexpected."

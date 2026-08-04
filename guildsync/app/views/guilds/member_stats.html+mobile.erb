@@ -1,0 +1,56 @@
+<div class="max-w-4xl mx-auto p-6">
+  <div class="mb-6">
+    <%= link_to guild_members_gear_path(@guild), class: "text-sm text-violet-300 hover:text-violet-200 inline-flex items-center gap-1 font-medium" do %>
+      <span aria-hidden="true">←</span> <%= t("guilds.member_stats.back_to_scanner") %>
+    <% end %>
+  </div>
+
+  <div class="bg-theme-secondary rounded-xl border border-violet-500/35 p-6 mb-6 shadow-lg shadow-violet-950/25 ring-1 ring-violet-500/15">
+    <h1 class="text-2xl font-bold text-theme-primary mb-1">
+      <%= t("guilds.member_stats.title", name: @target_user.display_name) %>
+    </h1>
+    <p class="text-theme-secondary text-sm">
+      <%= t("guilds.member_stats.guild_context", guild_name: @guild.name) %>
+    </p>
+    <% if @snapshot %>
+      <p class="mt-3 text-sm text-theme-secondary">
+        <%= t("guilds.member_stats.last_updated") %>:
+        <span class="text-theme-primary font-medium"><%= l(@snapshot.last_activity_at, format: :long) %></span>
+        <span class="text-theme-secondary">(<%= time_ago_in_words(@snapshot.last_activity_at) %> <%= t("guilds.members_gear.ago") %>)</span>
+      </p>
+      <% if @snapshot.validation_warning.present? %>
+        <div class="mt-4 p-4 rounded-lg border border-amber-600/60 bg-amber-900/30 text-amber-100 text-sm">
+          <%= @snapshot.validation_warning %>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
+
+  <% if @snapshot.nil? %>
+    <div class="bg-theme-secondary rounded-xl border border-dashed border-theme-primary/60 p-10 text-center">
+      <h2 class="text-xl font-semibold text-theme-primary mb-2"><%= t("guilds.member_stats.empty_title") %></h2>
+      <p class="text-theme-secondary"><%= t("guilds.member_stats.empty_body") %></p>
+    </div>
+  <% elsif @stat_rows.empty? %>
+    <div class="bg-theme-secondary rounded-xl border border-dashed border-theme-primary/60 p-10 text-center">
+      <h2 class="text-xl font-semibold text-theme-primary mb-2"><%= t("guilds.member_stats.partial_title") %></h2>
+      <p class="text-theme-secondary"><%= t("guilds.member_stats.partial_body") %></p>
+    </div>
+  <% else %>
+    <div class="bg-theme-secondary rounded-xl border border-violet-500/35 overflow-hidden shadow-lg shadow-violet-950/20 ring-1 ring-violet-500/10">
+      <div class="px-4 py-3 bg-theme-brand-gradient border-b border-white/10">
+        <h2 id="member_extracted_stats_heading" class="text-lg font-bold text-white drop-shadow-sm"><%= t("guilds.member_stats.extracted_heading") %></h2>
+        <p id="member_stats_stat_count_line" class="text-xs text-white/85 mt-0.5"><%= t("guilds.member_stats.stat_count", count: @stat_rows.size) %></p>
+      </div>
+      <div
+        class="max-h-[min(70vh,40rem)] overflow-y-auto overflow-x-hidden"
+        data-member-stats-toast-error="<%= ERB::Util.html_escape(t("guilds.member_stats.api_error")) %>"
+        data-member-stats-toast-saved="<%= ERB::Util.html_escape(t("guilds.member_stats.stat_saved")) %>"
+      >
+        <div class="m-0 p-0" role="list" aria-labelledby="member_extracted_stats_heading">
+          <%= render partial: "guilds/member_stat_row", collection: @stat_rows, as: :row, locals: { guild: @guild, target_user: @target_user, mobile: true } %>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>

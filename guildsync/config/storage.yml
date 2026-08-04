@@ -1,0 +1,65 @@
+# Active Storage picks the service from config.active_storage.service (see config/environments/*).
+# In production, when S3_* (or AWS_*) credentials and bucket are set, all attachments below use the
+# same :amazon service — user avatars, guild logos, alliance logos, guild documents, file storage, etc.
+
+test:
+  service: Disk
+  root: <%= Rails.root.join("tmp/storage") %>
+
+local:
+  service: Disk
+  root: <%= Rails.root.join("storage") %>
+
+# S3-compatible object storage (Hetzner, DigitalOcean Spaces, AWS, etc.)
+# Set S3_ACCESS_KEY_ID, S3_SECRET_ACCESS_KEY, S3_BUCKET, S3_REGION, S3_ENDPOINT in .env
+# S3_ENDPOINT optional for AWS; required for custom endpoints (e.g. https://nbg1.your-objectstorage.com)
+#
+# Security / compatibility (GuildSync):
+# - By default we do NOT set per-object ACL or SSE headers. Many AWS buckets use "Bucket owner
+#   enforced" (ACLs disabled); any x-amz-acl causes Aws::S3::Errors::InvalidArgument. Some
+#   S3-compatible APIs reject server_side_encryption on PutObject. Use bucket "default encryption"
+#   + Block Public Access in the provider console instead.
+# - Optional: S3_SSE_AES256=1 — add SSE-S3 (AES256) on each upload (Aws::S3 PutObject param name).
+# - Optional: S3_ACL=private | public-read | bucket-owner-full-control — only if your bucket
+#   still has ACLs enabled. Use S3_ACL=none to omit explicitly (same as unset).
+amazon:
+  service: S3
+  # Support both new S3_* env vars and legacy AWS_* names
+  access_key_id: <%= ENV["S3_ACCESS_KEY_ID"].presence || ENV["AWS_ACCESS_KEY_ID"] %>
+  secret_access_key: <%= ENV["S3_SECRET_ACCESS_KEY"].presence || ENV["AWS_SECRET_ACCESS_KEY"] %>
+  region: <%= (ENV["S3_REGION"].presence || ENV["AWS_REGION"].presence || "eu-central-1") %>
+  bucket: <%= ENV["S3_BUCKET"].presence || ENV["AWS_S3_BUCKET_NAME"].presence || ENV["AWS_BUCKET"] %>
+  <% endpoint = ENV["S3_ENDPOINT"].presence || ENV["AWS_S3_ENDPOINT"] %>
+  <% if endpoint.present? %>
+  endpoint: <%= endpoint.to_s.sub(%r{/+$}, "") %>
+  force_path_style: true
+  <% end %>
+  upload:
+    cache_control: "private, max-age=31536000"
+    <% if ENV["S3_SSE_AES256"].to_s == "1" %>
+    server_side_encryption: "AES256"
+    <% end %>
+    <% s3_acl = (ENV["S3_ACL"].presence || ENV["AWS_S3_ACL"]).to_s.downcase.strip
+       allowed_private_acls = %w[private bucket-owner-full-control]
+       if allowed_private_acls.include?(s3_acl) %>
+    acl: <%= s3_acl %>
+    <% end %>
+
+# Remember not to checkin your GCS keyfile to a repository
+# google:
+#   service: GCS
+#   project: your_project
+#   credentials: <%= Rails.root.join("path/to/gcs.keyfile") %>
+#   bucket: your_own_bucket-<%= Rails.env %>
+
+# Use bin/rails credentials:edit to set the Azure Storage secret (as azure_storage:storage_access_key)
+# microsoft:
+#   service: AzureStorage
+#   storage_account_name: your_account_name
+#   storage_access_key: <%= Rails.application.credentials.dig(:azure_storage, :storage_access_key) %>
+#   container: your_container_name-<%= Rails.env %>
+
+# mirror:
+#   service: Mirror
+#   primary: local
+#   mirrors: [ amazon, google, microsoft ]

@@ -1,0 +1,24 @@
+<% cm = "admin.content_moderation.index" %>
+<div class="bg-theme-card border border-theme-primary rounded-lg p-6 shadow-lg">
+  <h2 class="text-xl font-semibold text-theme-primary mb-4"><%= t("#{cm}.blocked_words_heading") %></h2>
+  <%= form_with url: add_blocked_word_admin_content_moderation_index_path(format: :turbo_stream), method: :post, class: "flex flex-wrap gap-2 mb-6" do %>
+    <input type="text" name="word" placeholder="<%= t("#{cm}.new_word_placeholder") %>" class="px-3 py-2 border border-theme-primary rounded bg-theme-background text-theme-primary" />
+    <select name="category" class="gs-native-select gs-native-select--field px-3 border border-theme-primary rounded bg-theme-background text-theme-primary">
+      <option value="profanity"><%= t("#{cm}.category_profanity") %></option>
+      <option value="spam"><%= t("#{cm}.category_spam") %></option>
+      <option value="harassment"><%= t("#{cm}.category_harassment") %></option>
+    </select>
+    <button type="submit" class="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700"><%= t("#{cm}.add_button") %></button>
+  <% end %>
+  <div class="flex flex-wrap gap-2">
+    <% @blocked_words.each do |bw| %>
+      <span class="inline-flex items-center gap-1 px-3 py-1.5 bg-theme-background border border-theme-primary rounded">
+        <%= bw.word %> <span class="text-theme-secondary text-sm">(<%= bw.category %>)</span>
+        <%= button_to "×", remove_blocked_word_admin_content_moderation_index_path(bw.id, format: :turbo_stream), method: :delete, class: "text-red-500 hover:text-red-700 ml-1", data: { turbo_confirm: t("#{cm}.remove_word_confirm") } %>
+      </span>
+    <% end %>
+  </div>
+  <% if @blocked_words.empty? %>
+    <p class="text-theme-secondary"><%= t("#{cm}.blocked_words_empty_prefix") %><code>config/blocked_content.yml</code><%= t("#{cm}.blocked_words_empty_suffix") %></p>
+  <% end %>
+</div>

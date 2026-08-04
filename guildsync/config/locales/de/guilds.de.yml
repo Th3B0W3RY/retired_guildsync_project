@@ -1,0 +1,822 @@
+de:
+  guilds:
+    index:
+      title: Meine Gilden
+      subtitle: Deine Gaming-Community verwalten
+      create_new_guild: Neue Gilde erstellen
+      view_guild: Gilde ansehen
+      no_guilds: Sie haben sich noch keiner Gilde angeschlossen.
+      create_first_guild: Erstelle deine erste Gilde
+    new:
+      title: Eine Gilde erstellen
+      subtitle: Starte deine eigene Gaming-Community
+      guild_name: Gilde Name
+      create_button: Gilde erstellen
+      recruiting_name_warning: Dieser Name enthält Begriffe, die wir im öffentlichen Rekrutierungsverzeichnis ausblenden. Deine Gilde wird zunächst nicht öffentlich gelistet; du kannst die Sichtbarkeit in den Gildeneinstellungen ändern, sofern deine Rolle das erlaubt.
+      games:
+        label: Spiele
+        required: erforderlich
+        help_text: Wählen Sie mindestens ein Spiel aus, das Ihre Gilde spielt. Sie können mehr hinzufügen später im Menü.
+        search_placeholder: Spiel suchen...
+        featured_games: Empfohlene Spiele
+        no_games: Noch keine Spiele verfügbar. Benutze die Suchleiste oben oder füge ein benutzerdefiniertes Spiel unten hinzu.
+        pending_approval: auf Genehmigung wartend
+        select_primary: Wählen Sie ihr primäres Spiel (das Hauptspiel, auf dem sich eure Gilde konzentriert)
+        select_one_error: Wählen Sie bitte zuminstens ein Spiel.
+        select_primary_error: Bitte wählen Sie einen primären Spiel aus den ausgewählten Spielen.
+        primary_must_be_selected: Primäres Spiel muss eines der ausgewählten Spiele sein.
+        approve_pending_html: <strong>Um die wartenden Spiele zu bestätigen:</strong> Gehe zu %{link} und klicke auf das gewünschte Spiel die Schaltfläche "Aktivieren" zu klicken.
+        games_management: Spieleverwaltung
+        select_button: Auswählen
+      custom_game:
+        add_link: Kannst du dein Spiel nicht finden? Dann füge es hier hinzu.
+        label: Spielname
+        placeholder: Gib den Spielnamen...
+        add_button: Spiel hinzufügen
+        no_similar: Keine ähnlichen Spiele gefunden. Klicken Sie auf „Hinzufügen Spiel“ um %{name} zu erstellen. Bitte überprüfen Sie die Schreibweise erneut.
+        already_exists: Das Spiel "%{name}" existiert bereits. Wählen Sie es aus der Liste oben.
+        search_error: Fehler beim Suchen nach Spielen. Bitte versuchen Sie es noch einmal.
+        js_no_similar_found: Es wurden keine ähnlichen Spiele gefunden. Klicken Sie auf 'Hinzufügen von Spiel' , um '%{query}' zu erstellen. Bitte überprüfen Sie die Rechtschreibung erneut.
+        js_game_exists: Das Spiel "%{name}" existiert bereits. Wählen Sie es aus der Liste oben.
+        js_search_error: Fehler beim Suchen nach Spielen. Bitte versuchen Sie es noch einmal.
+        js_adding: Hinzufügen...
+        js_server_error: Serverfehler. Bitte aktualisieren Sie die Seite und versuchen Sie es erneut.
+        pending_admin_approval: Wartet auf Freigabe durch die Verwaltung
+        js_game_added_success: Spiel wurde erfolgreich hinzugefügt! Es ist nach der Freigabe durch die Verwaltung verfügbar.
+        js_failed_add: 'Fehler beim Hinzufügen des Spiels: '
+        js_error_adding: 'Fehler beim Hinzufügen des Spiels: '
+      modal:
+        title: Bestätigung der Spielauswahl
+        confirm_text: Sind Sie sicher, dass Sie %{name} als neues Spiel hinzufügen möchten?
+        warning: Bitte überprüfen Sie die Rechtschreibung. Das Spiel wird als ausstehend erstellt und benötigt die Freigabe durch die Verwaltung.
+        yes_add: Ja, Spiel hinzufügen
+      pending_admin_info: Um ausstehende Spiele zu genehmigen, gehen Sie zur Spielverwaltung und klicken Sie bei einem ausstehenden Spiel auf „Aktiv umschalten“, um es zu aktivieren.
+    show:
+      guild_information: Gildeinformationen
+      quick_actions: Schnelle Aktionen
+      invite_members: Mitglieder einladen
+      schedule_event: Termin planen
+      about: Über die Gilde
+      no_description: Noch keine Beschreibung.
+      discord_public_invite: Öffentlicher Discord-Einladungslink
+      join_discord: Discord beitreten
+      discord_invite_missing: Füge einen öffentlichen Einladungslink hinzu, damit Mitglieder euren Discord-Server mit einem Klick öffnen können.
+      discord_invite_none: Diese Gilde hat keinen öffentlichen Discord-Einladungslink veröffentlicht.
+    settings:
+      title: Gilde-Einstellungen
+      subtitle: Ihre Gilden-Einstellungen und -Präferenzen verwalten.
+      guild_profile:
+        title: Gildenprofil
+        description: Beschreibung und optionaler öffentlicher Discord-Einladungslink erscheinen auf dem Gilden-Dashboard für alle Mitglieder.
+        description_label: Beschreibung
+        discord_invite_label: Öffentliche Discord-Einladungs-URL
+        discord_invite_hint: Optional. Discord-Einladungslink einfügen (z. B. https://discord.gg/…). Für alle sichtbar, die das Gilden-Dashboard sehen.
+        save_button: Profil speichern
+      logo:
+        title: Gilde-Logo
+        description: Laden Sie ein Logo für Ihre Gilde hoch. Das Logo erscheint neben dem Namen Ihrer Gilde überall in der Anwendung.
+        recommended: 'Vorgeschlagene Maße:'
+        dimensions_info: '256x256 Pixel (Quadratformat ist am besten). Unterstützte Formate: JPG, PNG, GIF, WebP.'
+        current_logo: 'Aktuelles Logo:'
+        note: 'Hinweis:'
+        click_update: Klicken Sie auf den 'Aktualisieren-Logo'-Button, um eine neue Datei auszuwählen und sie zu speichern.
+        update_button: Aktualisieren das Logo
+        delete_button: Löschen Logo
+        delete_confirm: Sind Sie sicher, dass Sie das Gildenlogo löschen möchten?
+        save_button: Logo speichern
+      application_messages:
+        title: Anwendungs-Nachrichten
+        description: Einstellen Sie die Nachrichten, die an Bewerber_innen gesandt werden, wenn sie akzeptiert oder abgelehnt werden. Falls leer gelassen wird, werden standardmäßige Nachrichten verwendet.
+        accept_label: Annehmen Nachricht
+        accept_default_message: Herzlichen Glückwunsch! Du wurdest zur Gilde %{guild_name} aufgenommen.
+        accept_hint: 'Nachricht, die bei Annahme eines Bewerbers gesendet wird. Verwenden Sie %{guild_name}, um den Gildennamen einzufügen. Standard: "%{default_message}"'
+        reject_label: Ablehnungsmeldung
+        reject_default_message: Leider bist du nicht der richtige Kandidat für unseren Zirkel, aber fühle dich frei, später noch einmal zuzutreten.
+        reject_hint: 'Nachricht, die bei Ablehnung eines Bewerbers gesendet wird. Standard: "%{default_message}"'
+        save_button: Nachrichten speichern
+      discord_channels:
+        title: Discord-Channel-Einstellungen
+        description: Wählen Sie die Discord-Channels aus, die Benachrichtigungen für verschiedene Inhaltstypen erhalten sollen.
+        events_channel: Ereignisse-Kanal
+        events_hint: Wählen Sie den Kanal aus, in dem Discord-Events veröffentlicht werden.
+        battles_channel: Gildenshlachten-Kanal
+        battles_hint: Wählen Sie den Kanal, wo die Gildenkampfbenachrichtigungen veröffentlicht werden.
+        gear_channel: Mitglieder Ausrüstung Channel
+        gear_hint: Wählen Sie den Kanal aus, auf dem Rüstung-Hinweise für Mitglieder veröffentlicht werden.
+        polls_channel: Gilden-Umfragen-Kanal
+        polls_hint: Wählen Sie den Channel aus, wo die Gilde-Polls veröffentlicht werden sollen.
+        loot_channel: Beutewürfel-Channel
+        loot_hint: Wählen Sie den Kanal aus, wo Loot-Rolls gepostet werden. Dies ist für Loot-Rolls erforderlich.
+        select_channel: Wählen Sie einen Kanal...
+        save_button: Kanal Einstellungen speichern
+        unable_to_load: Channels laden nicht
+        load_error: Konnte keine Discord-Channels laden. Bitte überprüfen Sie die Verbindung Ihres Discord-Bots.
+        alliance_section_title: Allianz-Kanäle (gildenübergreifend)
+        alliance_section_description: 'Lege fest, wohin Allianz-Einladungen, Events, Umfragen und Loot-Rolls über deinen verbundenen GuildSync-Bot gepostet werden. Wenn nur einige Kanäle gesetzt sind, fallen Einladungs-Benachrichtigungen auf den ersten konfigurierten Kanal in dieser Reihenfolge zurück: Einladungen, Events, Umfragen, Loot.'
+        alliance_invites_channel: Allianz-Einladungen und Anfragen
+        alliance_invites_hint: Benachrichtigungen, wenn deine Gilde in eine Allianz eingeladen wird oder eine andere Gilde deiner Allianz beitreten möchte.
+        alliance_events_channel: Allianz-Events
+        alliance_events_hint: Veröffentlicht eine eingebettete Nachricht, wenn ein allianzweites Event erstellt wird.
+        alliance_polls_channel: Allianz-Umfragen
+        alliance_polls_hint: Veröffentlicht eine eingebettete Nachricht, wenn eine allianzweite Umfrage erstellt wird.
+        alliance_loot_channel: Allianz-Loot-Rolls
+        alliance_loot_hint: Veröffentlicht eine eingebettete Nachricht, wenn ein allianzweiter Loot-Roll erstellt wird.
+      discord_bot:
+        not_connected: Bot nicht verbunden
+        not_connected_authorize: Der GuildSync-Bot ist nicht mit dem Discord-Server verbunden. Bitte authorisieren Sie den Bot.
+        not_connected_connect: Bitte verbinden Sie den GuildSync-Bot mit einem Discord-Server vor der Kanal-Konfiguration.
+        authorize_button: Bot autorisieren
+        connect_button: Bot zur Gilde Discord verbinden
+      role_sync:
+        title: Discord-Rollen-Synchronisierung
+        description: Verwaltung der Discord-Rollen, die in die Datenbank synchronisiert werden. Die synchronisierten Rollen werden automatisch alle 30 Minuten aktualisiert.
+        sync_all: Alle Rollen synchronisieren
+        remove_all: Alle Synchronisationen entfernen
+        refresh: Rollen aktualisieren
+        loading: Rollen laden...
+        role_name: Rollenname
+        role_id: Rolle-ID
+        sync_status: Synchronisierungstatus
+        action: Aktions
+        click_refresh: Klicken Sie auf 'Aktualisieren von Rollen', um die Discord-Rollen zu laden.
+      games:
+        title: Spiele
+        description: Verwaltung der Spiele, die deine Gilde spielt. Mindestens ein Spiel ist erforderlich.
+        no_games: Aktuell sind keine Spiele verfügbar. Bitte kontaktieren Sie die Verwaltung, um Spiele hinzuzufügen.
+        required_note: Mindestens ein Spiel muss ausgewählt werden
+        update_button: Aktualisieren Spiele
+        cant_find: Kannst du dein Spiel nicht finden? Dann füge es hier hinzu.
+        game_name_label: Spielname
+        enter_game_name: Gib den Spielnamen...
+        pending_approval: Wartet auf Freigabe durch die Verwaltung
+        primary_label: Haupt
+        add_game_button: Spiel hinzufügen
+        pending_approval_short: auf Genehmigung wartend
+        pending_admin_approval: Wartet auf Freigabe durch die Verwaltung
+        js_no_similar_found: Es wurden keine ähnlichen Spiele gefunden. Klicken Sie auf 'Hinzufügen von Spiel' , um '%{query}' zu erstellen. Bitte überprüfen Sie die Rechtschreibung erneut.
+        js_game_exists: Das Spiel "%{name}" existiert bereits. Wählen Sie es aus der Liste oben.
+        js_search_error: Fehler beim Suchen nach Spielen. Bitte versuchen Sie es noch einmal.
+        js_confirm_add: Möchten Sie wirklich "%{name}" als neues Spiel hinzufügen? Bitte überprüfen Sie, ob die Schreibweise korrekt ist.
+        js_adding: Hinzufügen...
+        js_server_error: Serverfehler. Bitte aktualisieren Sie die Seite und versuchen Sie es erneut.
+      permissions:
+        title: Rollenberechtigungen
+        description: Wählen Sie bis zu vier Discord-Rollen aus, die Berechtigungen haben, um Rollen, Anwendungen und Guild-Einstellungen zu verwalten. Markieren Sie die jeweiligen Optionen, um jede Berechtigung aktivieren.
+        select_discord_role: Die Discord-Rolle auswählen
+        none: keiner
+        can_manage_roles: Kann Rollen Verwalten
+        can_manage_applications: Können Anwendungen verwalten
+        can_manage_guild_settings: Kann Gilde-Einstellungen verwalten
+        can_kick_members: Kann Mitglieder kicken
+        can_invite_alliance_guilds: Kann Allianz-Gilden einladen
+        can_kick_alliance_guilds: Kann Allianz-Gilden entfernen
+        can_manage_tags: Kann Tags verwalten
+        can_manage_warnings: Kann Warnungen verwalten
+        can_manage_documents: Kann Dokumente verwalten
+        can_manage_files: Kann Dateien verwalten
+        can_manage_events: Kann Events verwalten
+        can_manage_polls: Kann Umfragen verwalten
+        can_manage_loot_rolls: Kann Loot-Rolls verwalten
+        can_manage_discord_channels: Kann Discord-Kanäle verwalten
+        can_view_activity_feed: Kann Aktivitätsfeed ansehen
+        can_export_members_csv: Kann Mitglieder-CSV exportieren
+        can_use_message_center: Kann Message Center nutzen
+        can_manage_gear_requests: Kann Ausrüstungsanfragen verwalten
+        can_edit_gear_scanned_stats: Kann gescannte Ausrüstungswerte bearbeiten
+        save_button: Rechte speichern
+        default_role:
+          title: Standard-Rolle für neue Mitglieder
+          description: Wählen Sie eine Discord-Rolle aus, die automatisch allen neuen Mitgliedern zugewiesen wird, wenn sie die Gilde beitreten.
+          label: Standardrolle
+          save_button: Vorgeschlagene Rolle speichern
+        role_n: Rolle %{n}
+      visibility:
+        title: Gildensichtbarkeit
+        description: Steuere, ob deine Gilde in öffentlichen Listen erscheint. Private Gilden sind nur für bestehende Mitglieder auffindbar.
+        toggle_label: Diese Gilde in öffentlichen Listen anzeigen
+        toggle_hint: Wenn deaktiviert, erscheint deine Gilde nicht in der Liste verfügbarer Gilden oder in Suchergebnissen. Bestehende Mitglieder und Bewerber sind nicht betroffen.
+        save_button: Sichtbarkeit speichern
+      react_roles:
+        title: Reaktionsrollen
+        description: Konfiguriere bis zu 3 Emoji-zu-Rolle-Zuordnungen. Poste eine eingebettete Nachricht in einen Discord-Kanal — Nutzer reagieren mit einem Emoji, um die zugehörige Rolle zu erhalten, und verlieren sie beim Entfernen der Reaktion.
+        channel_label: Kanal (in dem die eingebettete Nachricht gepostet wird)
+        slot_title: Reaktionsrolle %{n}
+        role_label: Discord-Rolle
+        select_role: Rolle auswählen...
+        emoji_label: Emoji
+        select_emoji: Emoji auswählen...
+        emoji_hint: Unterstützt Standard-Unicode-Emojis und benutzerdefinierte Server-Emojis.
+        server_emojis: Server-Emojis
+        standard_emojis: Standard-Emojis
+        save_button: Reaktionsrollen speichern
+        deploy_button: In Discord bereitstellen
+        remove_button: Aus Discord entfernen
+        remove_confirm: Dadurch wird die eingebettete Reaktionsrollen-Nachricht aus Discord gelöscht. Bist du sicher?
+        select_channel: Wählen Sie einen Kanal...
+        loading_emojis: Laden...
+      back_to_dashboard: Zurück zum Dashboard
+    members:
+      title: Gildenmitglieder
+      subtitle: Alle Mitglieder der Gilde anzeigen und verwalten.
+      select_all: Alle auswählen
+      deselect_all: Alle abwählen
+      select_role: Wählen Sie Rolle...
+      update_selected: Aktualisierte ausgewählte
+      search_placeholder: Suchen Sie nach einem Benutzer über den Benutzernamen oder Discord...
+      invite_user: Benutzer einladen
+      kick_selected: Ausschließen Ausgewählte
+      discord_verified: Discord-verifiziert
+      discord_not_connected: Nicht verbunden
+      role_none: keiner
+      owner: Besitzer
+      kick: Auswerfen
+      kick_confirm: Möchten Sie %{username} wirklich ausstoßen? Diese Aktion kann nicht rückgängig gemacht werden.
+      kick_final_confirm: 'Letzte Bestätigung: Sind Sie sicher, dass Sie %{username} wirklich aus der Gilde entfernen möchten?'
+      bulk_kick_confirm: Sind Sie sicher, dass Sie %{count} Mitglied(er) ausstoßen möchten? Diese Aktion kann nicht rückgängig gemacht werden.
+      bulk_kick_final: 'Letzte Bestätigung: Sind Sie absolut sicher, dass Sie %{count} Mitglied(er) aus dem Gilden verbieten möchten?'
+      no_roles_synced: Keine Rollen synchronisiert
+      no_users_found: Keine Nutzer gefunden
+      select_at_least_one: Bitte wählen Sie mindestens einen Mitglied.
+      select_a_role: Bitte wählen Sie eine Rolle.
+      select_user_first: Bitte wählen Sie zuerst einen Benutzer aus.
+      back_to_dashboard: Zurück zum Dashboard
+      js_error_searching_users: Fehler beim Suchen von Benutzern
+      js_inviting: Einladung...
+      tags:
+        manage_title: Gilden-Tags verwalten
+        name: Tag-Name
+        color: Tag-Farbe
+        create: Tag erstellen
+        filter_label: Nach Tag sortieren/filtern
+        filter_all: Alle Tags
+        filter_untagged: Mitglieder ohne Tag
+        clear_filter: Zurücksetzen
+      export_csv: CSV exportieren
+      search_load_more: Mehr Benutzer laden
+    members_gear:
+      title: KI-Ausrüstungs-Scanner für %{guild_name}
+      pending_request_officer_banner: "%{requester} hat dich gebeten, deinen Ausrüstungs-Screenshot zu aktualisieren. Lade unten hoch, sobald du bereit bist."
+      filter_by_game: 'Filter nach Spiel:'
+      all_games: Alle Spiele
+      no_games_configured: Diese Gilde hat keine Spiele konfiguriert. Bitte fügen Sie Spiele in den Guild-Einstellungen hinzu.
+      gear_status_overview: Ausrüstungszustandübersicht
+      request_missing_gear: Fehlendes Ausrüstung anfordern (%{count})
+      request_outdated_gear: Veraltete Ausrüstung anfordern (%{count})
+      request_all_missing_outdated: Alle fehlenden/veralteten (%{count}) anfordern
+      total_members: Gesamtmitglieder
+      missing_gear: Fehlendes Gerät
+      outdated_gear: Veraltetes Ausrüstung
+      up_to_date: Aktuell
+      pending_gear_requests:
+        one: 1 Ausstehendes Ausrüstungsgesuch
+        other: "%{count} Ausstehende Ausrüstungsanfragen"
+      view_pending_requests: Ausstehende Anfragen ansehen
+      filter_all: Alle
+      filter_missing: Fehlend
+      filter_outdated: Veraltet
+      filter_up_to_date: Aktuell
+      request_updates_from_missing_outdated: Aktualisierung anfordern von fehlenden/veralten Geräten
+      th_avatar: Avater
+      th_member: Mitglied
+      th_last_updated: Letzte Aktualisierung
+      th_status: Status
+      th_key_stats: Schlüsselstatistiken
+      th_actions: Aktionen
+      ago: vor
+      never: Nie
+      view_gear: Ausrüstung ansehen
+      pending_request: Ausstehende Anfrage
+      request_update: Anfrage aktualisieren
+      view_image: Bild
+      screenshot_unavailable: Dieses Statistik-Screenshot ist nicht mehr verfügbar. Es ist möglicherweise nach der Aufbewahrungsfrist abgelaufen oder es gibt keinen Upload.
+      no_members_with_status: 'Keine Mitglieder mit dem Status: %{status} gefunden.'
+      no_members_found: Keine Mitglieder gefunden
+      your_gear_screenshot: Ihr Geräte-Auszugsbild
+      last_updated: Zuletzt aktualisiert
+      select_game: 'Wählen Sie das Spiel:'
+      select_game_prompt: "-- Bitte wählen Sie ein Spiel --"
+      choose_file: Datei auswählen
+      upload_screenshot: Hochladen von Bildschirmfoto
+      parsed_data_preview: 'Analysierte-Daten-Vorschau:'
+      back_to_dashboard: Zurück zum Dashboard
+      gear_details: Ausrüstungsdetails
+      js_processing: Verarbeitung...
+      js_processing_message: Bildverarbeitung und Ausrüstungsdaten extrahieren... Das kann einige Zeit dauern.
+      js_upload_success: Erfolg! Bild verarbeitet und Ausrüstungsdaten wurden extrahiert. Seite wird neu geladen...
+      upload_success_notice: Screenshot erfolgreich hochgeladen. Deine aktuellen Werte wurden aktualisiert.
+      js_loading_gear: Gerätdata wird geladen...
+      js_no_gear_data: Keine Geräte-Daten verfügbar
+      js_error_loading_gear: 'Fehler beim Laden der Ausrüstungsdaten: '
+      js_confirm_bulk_all: Sende Aktualisierungsmeldungen an alle Mitglieder mit fehlendem oder veraltetem Ausrüstung?
+      js_confirm_bulk_status: Übermitteln Sie Ausrüstungsupdate-Anfragen an alle Mitglieder mit %{status} Ausrüstung?
+      js_confirm_request_user: Stat-Aktualisierung an %{name} senden?
+      view_stats: Stats anzeigen
+      upload_preview_heading: Vorschau extrahierter Werte
+      upload_preview_truncated: "… und %{count} weitere"
+      stats_hidden: "—"
+    member_stats:
+      back_to_scanner: Zurück zum KI-Statistik-Scanner
+      title: Werte für %{name}
+      guild_context: "%{guild_name}"
+      last_updated: Zuletzt aktualisiert
+      extracted_heading: Erkannte Werte
+      stat_count:
+        one: 1 Wert
+        other: "%{count} Werte"
+      empty_title: Noch kein Snapshot
+      empty_body: Dieses Mitglied hat noch keinen Statistik-Screenshot hochgeladen.
+      partial_title: Keine Werte im letzten Snapshot
+      partial_body: Screenshot gespeichert, aber es konnten keine Name/Wert-Paare erkannt werden.
+      member_not_found: Mitglied nicht gefunden.
+      unnamed_stat: Statistik
+      unparsed_label: Wert
+      remove_stat: Diesen Wert entfernen
+      undo_stat: Wert wiederherstellen
+      edit_stat: Bearbeiten
+      save_stat: Speichern
+      cancel_edit: Abbrechen
+      stat_saved: Wert gespeichert.
+      stat_name_label: Statistikname
+      stat_value_label: Statistikwert
+      api_error: Werte konnten nicht aktualisiert werden. Seite neu laden und erneut versuchen.
+      cannot_view_other_member_stats: Sie können in dieser Gilde nur Ihre eigenen Ausrüstungswerte einsehen.
+      modify_own_gear_only: Sie können nur Ihre eigene Ausrüstung bearbeiten.
+      cannot_edit_scanned_stats: Nur der Gildenleiter oder eine Rolle mit der Berechtigung zum Bearbeiten gescannter Ausrüstungswerte kann extrahierte Werte ändern. Mitglieder können ihre eigenen Scan-Ergebnisse nicht bearbeiten.
+    analytics:
+      title: Analysen für %{guild_name}
+      subtitle: Detaillierte Analysen und Einblicke für deine Gilde ansehen.
+      back_to_dashboard: Zurück zum Dashboard
+    connect_discord:
+      title: Bot zur Gilde Discord verbinden
+      subtitle: Wählen Sie einen Discord-Server aus, um den GuildSync-Bot für die Eventverwaltung und Benachrichtigungen zu verbinden.
+      connected:
+        title: Discord verbunden
+        connected_to: 'Verbinden mit:'
+      channel_config:
+        title: Kanal-Konfiguration
+        subtitle: Wählen Sie welche Discord-Channels unterschiedliche Inhaltstypen erhalten sollen.
+        events_channel:
+          label: Ereignisse-Kanal
+          placeholder: Wählen Sie einen Kanal...
+          hint: Kanal, auf dem die Veranstaltungsmeldungen veröffentlicht werden.
+        guild_battles_channel:
+          label: Gildenshlachten-Kanal
+          placeholder: Wählen Sie einen Kanal...
+          hint: Channel, wo die Gilden-Schlachtankündigungen veröffentlicht werden.
+        gear_channel:
+          label: Ausrüstungskanal
+          placeholder: Wählen Sie einen Kanal...
+          hint: Kanal, auf dem Ausrüstung hochgeladen von Mitgliedern veröffentlicht wird.
+        save_button: Kanal-Konfiguration speichern
+      select_server:
+        title: Discord-Server auswählen
+        already_connected: Ihr Discord-Konto ist bereits verbunden. Wählen Sie den Discord-Server aus, mit dem Sie die GuildSync-Bot-Dienste verbinden möchten. Sie müssen Besitzer oder Serveradministrator des Servers sein.
+        not_connected: Zuerst binden Sie Ihr Discord-Konto (einmalige Einrichtung) an. Dann wählen Sie den Discord-Server aus, an dem Sie den GuildSync-Bot binden möchten. Sie müssen Besitzer oder Serveradministrator des Servers sein.
+        select_button: Discord-Server auswählen
+        connect_button: Discord-Konto verbinden
+      back_to_dashboard: Zurück zum Dashboard
+      popup_blocked: Popup wurde blockiert. Bitte erlauben Sie Popups für diese Website und versuchen Sie es erneut.
+      connection_failed: 'Discord-Verbindung fehlgeschlagen: %{error}'
+    activity_feed:
+      title: Aktivitätsfeed für %{guild_name}
+      subtitle: Aktuelle Aktivitäten in dieser Gilde. Protokolle werden 3 Monate aufbewahrt.
+      back_to_dashboard: Zurück zum Dashboard
+    review_applications:
+      title: Prüfe die Anwendungen für %{name}
+      subtitle: Übersichtlich prüfen und die ausstehenden Anträge in Ihrer Gilde verwalten.
+      invited_members: Eingeladene Mitglieder
+      invited_by: 'Einladung von:'
+      invited: 'Eingeladen:'
+      discord_verified: Discord-verifiziert
+      dismiss: Ablehnen
+      dismiss_confirm: Möchtest du diese Einladung abbrechen?
+      pending_applications: Ausstehende Anwendungen
+      discord_not_connected: 'Discord: nicht verbunden'
+      applied: 'Gewannt:'
+      message_label: 'Nachricht:'
+      accept: Annehmen
+      accept_confirm: Okay, Mitglied zur Gilde hinzufügen?
+      reject: Ablehnen
+      reject_confirm: Verweigere diese Anwendung?
+      message_applicant: Bewerber kontaktieren
+      message: Nachricht
+      enter_message_placeholder: Gib deine Nachricht...
+      send: Absenden
+      cancel: Abbrechen
+      no_pending: Keine ausstehenden Anmeldungen zur Zeit.
+      back_to_dashboard: Zurück zum Dashboard
+    invite_members:
+      title: Guild Mitglieder laden zu %{name}
+      subtitle: Versturen Sie Einladungen zu Ihrer Gilde und überprüfen Sie die wartenden Anmeldungen.
+      pending_applications: Ausstehende Anwendungen
+      discord_server_unknown: Unbekannt
+      discord_server_not_available: 'Discord Server: Nicht verfügbar'
+      applied: 'Gewannt:'
+      message_label: 'Nachricht:'
+      character_details: 'Charakterdetails:'
+      accept: Annehmen
+      accept_confirm: Okay, Mitglied zur Gilde hinzufügen?
+      reject: Ablehnen
+      reject_confirm: Verweigere diese Anwendung?
+      message_applicant: Bewerber kontaktieren
+      message: Nachricht
+      enter_message_placeholder: Gib deine Nachricht...
+      send: Absenden
+      cancel: Abbrechen
+      back_to_dashboard: Zurück zum Dashboard
+    schedule_events:
+      title: Terminplanung für %{name}
+      subtitle: Erstelle und verwirde Discord-Events für deine Gilde.
+      create_new_event: Neues Discord-Ereignis erstellen
+      create_event: Ereignis erstellen
+      recent_events: Letzte Ereignisse
+      signups: 'Anmeldungen:'
+      view: anzeigen
+      delete: Löschen
+      delete_confirm: Sind Sie sicher?
+      bot_not_connected: Bot nicht verbunden
+      discord_server_not_selected: Discord-Server nicht ausgewählt
+      bot_not_connected_message: Der GuildSync-Bot ist nicht mit dem Discord-Server verbunden. Bitte authorisieren Sie den Bot.
+      select_server_message: Ihr Discord-Konto ist verbunden, aber Sie müssen einen Discord-Server auswählen, um den GuildSync-Bot mit ihm zu verbinden.
+      connect_bot_message: Vereinigen Sie den GuildSync-Boten mit einem Discord-Server, bevor Sie Events erstellen.
+      authorize_bot: Bot autorisieren
+      select_discord_server: Discord-Server auswählen
+      connect_bot_to_guild: Bot zur Gilde Discord verbinden
+      back_to_dashboard: Zurück zum Dashboard
+    schedule_guild_battle:
+      title: Terminiere Gildekampf für %{name}
+      subtitle: Zwischen verschiedenen Gilden organisiert und planen Sierosse Schläge.
+      management_title: Gilde Schlacht Management
+      management_desc: Andere Gilde herausfordern, Angriffe abfangen und Kämpfe organisieren.
+      view_all_battles: Alle Kämpfe ansehen
+      challenge_another_guild: Terminiere Gildekampf
+      notifications: Benachrichtigungen
+      back_to_dashboard: Zurück zum Dashboard
+  guild_archives:
+    alerts:
+      archived_unavailable: Diese Gilde ist archiviert und kann nicht aufgerufen werden.
+      archived_success: '"%{guild_name}" wurde archiviert. Sie kann nach einem Jahr endgültig gelöscht werden.'
+      unarchived_success: '"%{guild_name}" wurde wiederhergestellt.'
+      unarchive_plan_limit: Sie können diese Gilde nicht wiederherstellen, weil Ihr Limit aktiver Gilden erreicht ist. Archivieren oder löschen Sie zuerst eine andere aktive Gilde.
+      purge_not_ready: Diese Gilde kann noch nicht endgültig gelöscht werden. Sie muss mindestens ein Jahr archiviert bleiben.
+      purged_success: '"%{guild_name}" wurde endgültig gelöscht.'
+      not_found: Archivierte Gilde nicht gefunden.
+      name_confirmation_mismatch: Der Gildenname stimmte nicht überein. Bitte geben Sie den exakten Gildenname ein.
+    index:
+      title: Archivierte Gilden
+      subtitle: Archivierte Gilden zählen nicht zu Ihrem Limit aktiver Gilden. Sie werden nach einem Jahr automatisch gelöscht.
+      recovery_note_label: Informationen zur Datenwiederherstellung
+      long_recovery_hint: Wir speichern gelöschte Datensätze bis zu sechs Monate lang. Danach werden sie unwiderruflich gelöscht. Kontaktieren Sie den Support, wenn sich Ihre Daten noch in diesem Zeitraum befinden und Sie eine Wiederherstellung beantragen möchten.
+      empty: Sie haben keine archivierten Gilden.
+      archived_on: 'Archiviert am: %{date}'
+      auto_delete_on: 'Automatisches Löschdatum: %{date}'
+      unarchive_button: Gilde wiederherstellen
+      permanent_delete_button: Endgültig löschen
+      permanent_delete_confirm: "%{guild_name} endgültig löschen? Dies kann nicht rückgängig gemacht werden."
+    settings:
+      title: Gefahrenbereich
+      warning: Durch Archivieren wird der Zugriff auf diese Gilde für alle deaktiviert. Daten werden ein Jahr aufbewahrt, danach erfolgt die endgültige Löschung.
+      type_name_hint: 'Geben Sie den Gildenname exakt ein, um sie zu archivieren: %{guild_name}'
+      confirmation_label: Bestätigung des Gildennamens
+      archive_button: Gilde archivieren
+      archive_confirm_prompt: "%{guild_name} archivieren? Diese Gilde ist danach nicht mehr zugänglich."
+  polls:
+    index:
+      title: Gildeabstimmungen
+      subtitle: Umfragen für %{guild_name} betrachten und teilnehmen
+      create_poll: Umfrage erstellen
+      created_by: Erstellt von %{name}
+      deadline: 'Frist:'
+      vote_count: "%{count} Abstimmungen"
+      vote_count_plural: "%{count} Abstimmungen"
+      anonymous: Anonym
+      open: Öffnen
+      closed: geschlossen
+      maybe: Vielleicht
+      view_vote: Ansicht & Stimmen
+      view_results: Ergebnisse ansehen
+      delete: Löschen
+      delete_confirm: Sind Sie sicher, dass Sie diese Umfrage löschen möchten? Diese Aktion kann nicht rückgängig gemacht werden.
+      no_polls: Aktuell keine Umfragen vorhanden.
+      create_first: Die erste Umfrage erstellen
+      'yes': Ja
+      'no': Nein
+    new:
+      title: Neue Umfrage erstellen
+      subtitle: Erstelle eine Umfrage für %{guild_name}
+      poll_title: Umfragesatz
+      poll_title_placeholder: Titel derUmfrageeingeben
+      description: Beschreibung
+      description_placeholder: Geben Sie den_POLL_beschreibung_ein.
+      discord_roles_title: Discord-Rollen zu @
+      discord_roles_hint: Wählen Sie eine oder mehrere Discord-Rollen aus, um sie beim Posten der Meinungsumfrage erwähmen zu lassen.
+      deadline: Frist
+      deadline_hint: Die Umfrage wird am folgenden Datum und Uhrzeit abgeschlossen.
+      anonymous_voting: Anonyme Wahl
+      anonymous_hint: Wenn aktiviert, werden die Wähleridentitäten im Ergebnis versteckt.
+      create_button: Umfrage erstellen
+    show:
+      back_to_polls: "← Zurück zu Umfragen"
+      created_by: Erstellt von %{name}
+      deadline: 'Frist:'
+      description: Beschreibung
+      cast_vote: Geben Sie Ihre Stimme ab
+      maybe: "\U0001F914 Vielleicht"
+      change_vote_hint: Sie können Ihre Stimme jederzeit vor dem Fristdatum ändern.
+      results: Ergebnisse
+      votes: Abstimmungen
+      no_votes: Noch keine Stimmen. Seien Sie der Erste, der abstimmt!
+      delete_poll: Lösche die Umfrage
+      'yes': "✅ Ja"
+      'no': "❌ Nein"
+  loot_rolls:
+    index:
+      title: Gildenbeutelosungen
+      subtitle: Anzeigen und teilnehmen an Beutelspinnungen für %{guild_name}
+      create_loot_roll: Loot-Roll erstellen
+      created_by: Erstellt von %{name}
+      range: 'Bereich:'
+      roll_count: "%{count} Wurf"
+      roll_count_plural: "%{count} Würfe"
+      deadline: 'Frist:'
+      open: Öffnen
+      closed: geschlossen
+      highest_roll: 'Höchster Wurf:'
+      winner: 'Gewinner:'
+      view_roll: Ansicht & Würfel
+      view_results: Ergebnisse ansehen
+      delete: Löschen
+      delete_confirm: Sind Sie sicher, dass Sie diese Loot-Roll löschen möchten? Diese Aktion kann nicht rückgängig gemacht werden.
+      no_loot_rolls: Es gibt noch keine Beute-Würfe.
+      create_first: Erster Plunder-Roll erstellen
+    new:
+      title: Neuen Plunderwurf erstellen
+      subtitle: Erstelle einen Beutezettel für %{guild_name}
+      loot_title: Titel
+      loot_title_placeholder: Geben Sie den Beuterox.Roll-Titel ein
+      description: Beschreibung (optional)
+      description_placeholder: Geben Sie eine Beschreibung ein (optional)
+      min_roll: Mindestwurf
+      max_roll: Maximaler Wurf
+      allowed_roles_title: Gewährte Rollen (Optional)
+      allowed_roles_hint: Wählen Sie welche Discord-Rollen teilnehmen dürfen. Lassen Sie das Feld leer, um allen zu erlauben.
+      deadline: Frist (optional)
+      deadline_hint: Die Beute-Runde wird automatisch zu dieser Zeit schließen. Lassen Sie den Text leer für keine Frist.
+      auto_post_title: Automatisch posten nach Discord
+      auto_post_hint: Diese Loot-Rolls-Austeilung wird automatisch in Ihrem konfigurierten Kanal gepostet.
+      create_button: Erstellen
+    show:
+      back_to_loot_rolls: "← Zurück zu Beutewurf"
+      created_by: Erstellt von %{name}
+      range: 'Bereich: %{min} - %{max}'
+      roll_count:
+        one: Rolle
+        other: Würfle
+      deadline: Frist
+      open: Öffnen
+      closed: geschlossen
+      description: Beschreibung
+      time_remaining: Zeit verbleiben
+      calculating: Berechnung...
+      expired: abgelaufen
+      tie_detected: Unentschieden erkannt!
+      are_tied_at: sind angespitzt bei
+      tied_reroll_hint: Gekoppelte Benutzer müssen erneut mit dem Discord-Button übernimmern.
+      winner: Gewinner!
+      with_roll_of: mit einem Wurf von
+      leaderboard: Rangliste
+      tied: unentschieden
+      force_reroll: Zwangs-erneuter Wurf
+      force_reroll_confirm: Dies wird %{name}'s Wurf annullieren und ihnen erlaubt, noch einmal zu würfeln. Fortfahren?
+      no_rolls_yet: Noch keine Rolls. Benutze den Discord-Button, um zu rollen!
+      close_loot_roll: Schließen Sie die Loot-Roll
+      close_confirm: Sind Sie sicher, dass Sie diesen Beutelauftragen früh schließen möchten? Es wird ein Gewinner bestimmt.
+      delete_loot_roll: Plunderliste löschen
+      delete_confirm: Sind Sie sicher, dass Sie diese Loot-Roll löschen möchten? Diese Aktion kann nicht rückgängig gemacht werden.
+  guild_applications:
+    index:
+      title: Meine Anwendungen
+      subtitle: Ihre Gildeanwendungen betrachten und verfolgen.
+      apply_to_guild: sich bei der Gilde bewerben
+      guild_invitations: Gilde-Einladungen
+      invited_by: 'Einladung von:'
+      invited: 'Eingeladen:'
+      pending: Ausstehend
+      accept_invitation: Einladung annehmen
+      decline: Ablehnen
+      applied: 'Gewannt:'
+      your_message: 'Ihr Nachricht:'
+      view_guild: Gilde ansehen
+      no_applications: Keine Anmeldungen vorhanden. Melden Sie sich einer Gilde an, um loszulegen!
+    new:
+      title: sich bei der Gilde bewerben
+      subtitle: Legen Sie eine Anmeldung zum Beitritt einer Gilde ein.
+      select_guild: Gilde auswählen
+      search_placeholder: Gilde nach dem Namen suchen...
+      start_typing: Beginnen Sie zu tippen, um Gilden zu suchen...
+      discord_username: Discord Benutzername
+      discord_placeholder: DeinDiscord#1234
+      message_label: Nachricht (Optional)
+      message_placeholder: Sagen Sie der Gilde, warum Sie Mitglied werden möchten...
+      character_details_label: Charakterdetails (optional)
+      character_details_placeholder: Führe deine Character-Stats auf, welches Spiel du spielst, Charakternamen, Stufe, Klasse, Ausrüstung, etc...
+      character_details_hint: Teile Details über deinen Charakter, deine Statistiken, dein Game und alle anderen relevante Informationen.
+      submit: Application anmelden
+      cancel: Abbrechen
+      no_guilds_found: Keine Gilden gefunden
+      owner_unknown: Unbekannt
+      error_searching: Fehler beim Suchen von Gilden
+      load_more_guilds: Mehr Gilden laden
+    create:
+      guild_not_available: Diese Gilde ist nicht gelistet, wurde archiviert oder nimmt keine Bewerbungen an.
+  guild_battles:
+    index:
+      title: Gildekämpfe für %{name}
+      subtitle: Verwalten Sie die Herausforderungen und Antworten der zwischen-Gilde-Kämpfe.
+      challenge_another_guild: Terminiere Gildekampf
+      your_guild_battles: Deine Gildenkämpfe
+      you_challenged: Hast du %{name} gefordert?
+      challenged_you: "%{name} hat dich herausgefordert"
+      scheduled: 'Terminiert:'
+      location: 'Ort:'
+      max_participants: 'Max Teilnehmer:'
+      view_details: Einzelheiten ansehen
+      delete: Löschen
+      delete_confirm: Sind Sie sicher, dass Sie diese Gildenkampagne löschen möchten? Diese Handlung kann nicht rückgängig gemacht werden.
+      empty: Noch keine Gildenkämpfe. Fordere eine andere Gilde zum Duell heraus, um loszulegen!
+    new:
+      title: Terminiere Gildekampf
+      subtitle: Wählen Sie eine Gilde zum Kampf herausfordern und die Battle-Details konfigurieren
+      battle_details: Schlachtdetails
+      select_guild_to_challenge: Wählen Sie eine Gilde um eine Auseinandersetzung zu fordern
+      search_placeholder: Suche nach einer Gilde nach Name, Beschreibung oder Besitzer...
+      search_hint: Beginnen Sie zu tippen, um Gilden zu suchen...
+      scheduled_date_time: Geplantes Datum & Zeit
+      location: Ort
+      location_placeholder: Kampfplatz eingeben
+      max_participants: Max Teilnehmer
+      optional: wünschbar
+      notes: Anmerkungen
+      notes_placeholder: weitere Schlacht Details oder Anforderungen...
+      role_categories: Rollenkategorien
+      role_categories_hint: Wählen Sie die Rollen aus, für die sich Benutzer registrieren können. Alle ausgewählten Rollen werden für die Registrierung in Discord verfügbar gemacht.
+      role_dps: Schaden pro Sekunde
+      role_tank: Verteidiger
+      role_healer: Heiler
+      role_ranged: Entfernungsschaden
+      send_challenge: Übernehmen Herausforderung
+      cancel: Abbrechen
+      owner_label: Besitzer
+      search_error: Fehler beim Suchen von Gilden
+    show:
+      title: Gildekampf Details
+      subtitle: Gilde-Battle-Challenge
+      battle_details: Schlachtdetails
+      status: Status
+      scheduled: Geplant
+      location: Ort
+      max_participants: Max Teilnehmer
+      notes: Anmerkungen
+      respond_to_challenge: Auf die Herausforderung antworten
+      scheduled_date_time: Geplantes Datum & Zeit
+      accept: Annehmen
+      request_changes: Änderungen beantragen
+      decline: Ablehnen
+      communication: Kommunikation
+      communication_visit_html: Um Nachrichten zu senden oder die Chatverlauf anzuzeigen, besuchen Sie bitte den %{link}.
+      notifications_page: Benachrichtigungen-Seite
+      communication_discord: Sie können auch Nachrichten direkt über den GuildSync-Discord-Bot senden.
+      cancellation_requested: Stornierung beantragt
+      cancellation_by_challenger: Der Challenger hat beantragt, diesen Kampf abzubrechen.
+      cancellation_by_defender: Der Verteidiger hat beantragt, diesen Krieg abzuschaffen.
+      cancellation_waiting: Sie haben die Anfrage zum Stornieren dieser Schlacht gestellt. Warten auf die Reaktion des anderen Besitzers.
+      accept_cancellation: Anmeldung abbrechen akzeptieren
+      accept_cancellation_confirm: Die Annahme wird den Kampf abbrechen und löschen. Sind Sie sicher?
+      decline_cancellation: Ablehnen Stornieren
+      back_to_guild_battles: Zurück zu den Guild Battles
+      request_cancellation: Anfrageabbrechen
+      request_cancellation_confirm: Dies wird die Stornierung anfordern. Der andere Besitzer muss zustimmen. Weiter?
+      delete_battle: Schlacht löschen
+      delete_battle_confirm: Sind Sie sicher, dass Sie diese Gilden-Schlacht unausweichlich löschen möchten? Diese Aktion kann nicht rückgängig gemacht werden und wird alle mit ihr verbundenen Discord-Events löschen. Der andere Besitzer wird benachrichtigt.
+    notifications:
+      title: Gildekampfbenachrichtigungen
+      subtitle: Die Verwaltung von Herausforderungen, Nachrichten und der Kommunikation in Schlachten.
+      back_to_battle_home: "← Zurück zu der Gilde-Battle-Home"
+      pending_incoming: Eingehende Herausforderungen noch offen
+      pending_outgoing: Ausstehende ausgehende Herausforderungen
+      accepted_battles: Ange accepted Schlachten
+      declined_battles: Abgelehnte Schlachten
+      reschedule_requests: Terminänderung Anfragen
+      cancelled_battles: Abgeblase Kämpfe
+      empty: Keine Guild-Battle-Benachrichtigungen noch. Fordere eine andere Gilde heraus, um loszulegen!
+    battle_notification_card:
+      you_challenged: Hast du %{name} gefordert?
+      challenged_you: "%{name} hat dich herausgefordert"
+      scheduled: 'Terminiert:'
+      location: 'Ort:'
+      max_participants: 'Max Teilnehmer:'
+      notes: Hinweise
+      messages: Nachrichten
+      no_messages: Noch keine Nachrichten. Beginnen Sie die Konversation!
+      message_placeholder: Tippe eine Nachricht...
+      send: Absenden
+      view_details: Einzelheiten ansehen
+      accept: Annehmen
+      decline: Ablehnen
+  guild_documents:
+    index:
+      title: Gilddokumente
+      subtitle: Verwalten und teilen Sie Dokumente für %{guild_name}
+      new_folder: Neuer Ordner
+      new_document: Dokument erstellen
+      create_document: Dokument erstellen
+      folder_name: Ordnername
+      folder_name_placeholder: Ordnername
+      color: Farbe
+      create_folder: Ordner erstellen
+      documents_count: Dokumente
+      edit: Bearbeiten
+      delete_folder_confirm: Sind Sie sicher? Das wird alle Dokumente in diesem Ordner in den Ordner 'Kein Ordner' verschieben.
+      delete: Löschen
+      by_author: Von %{author}
+      visibility_public: öffentliche
+      visibility_private: Privat
+      visibility_unlisted: Nicht gelistet
+      share: Teilen
+      no_documents_in_folder: Keine Dokumente in diesem Ordner
+      no_folder: Kein Ordner
+      no_documents_yet: Keine Dokumente vorhanden
+      create_first_hint: Erstes Dokument oder Ordner erstellen, um loszulegen.
+      edit_folder_title: Ordner bearbeiten
+      cancel: Abbrechen
+      update_folder: Aktualisieren Ordner
+    new:
+      title: Dokument erstellen
+      subtitle: Erstelle ein neues Dokument für %{guild_name}
+      fix_errors: 'Bitte beheben Sie die folgenden Fehler:'
+      document_title_placeholder: Dokumententitel
+      visibility_private: Privat - Nur Mitglieder der Gilde
+      visibility_public: Öffentlich – Jeder mit dem Link
+      visibility_unlisted: Nicht aufgelistet - Nicht indiziert, aber über einen Link erreichbar
+      folder_optional: Ordner (optional)
+      no_folder: Kein Ordner
+      content: Inhalt
+      cancel: Abbrechen
+      create_document: Dokument erstellen
+    toolbar:
+      image: Bild hochladen
+    edit:
+      title: Dokument bearbeiten
+      subtitle: Dokument für %{guild_name} bearbeiten
+      fix_errors: 'Bitte beheben Sie die folgenden Fehler:'
+      document_title_placeholder: Dokumententitel
+      visibility_private: Privat - Nur Mitglieder der Gilde
+      visibility_public: Öffentlich – Jeder mit dem Link
+      visibility_unlisted: Nicht aufgelistet - Nicht indiziert, aber über einen Link erreichbar
+      folder_optional: Ordner (optional)
+      no_folder: Kein Ordner
+      content: Inhalt
+      cancel: Abbrechen
+      update_document: Aktualisieren Dokument
+  guild_warnings:
+    title: "Verwarnungszentrale"
+    subtitle: "Verwarnungen nachverfolgen und Statuslisten organisieren."
+    send_title: "Verwarnung senden"
+    send_description: "Sendet eine Discord-Direktnachricht über den GuildSync-Bot, wenn das Mitglied ein verknüpftes Discord-Konto hat."
+    member_label: "Gildenmitglied"
+    select_member: "Mitglied auswählen"
+    reason_label: "Grund der Verwarnung"
+    send_button: "Verwarnung senden"
+    warning_count: "Verwarnungen: %{count}/%{limit}"
+    empty_column: "Keine Mitglieder in dieser Liste."
+    save_lists_button: "Listen speichern"
+    back_to_guild: "Zurück zum Gilden-Dashboard"
+    columns:
+      no_warnings: Keine Verwarnungen
+      warned: Liste „Verwarnt“
+      banned: Liste „Gesperrt“
+    alerts:
+      access_denied: Sie haben keine Berechtigung, Verwarnungen für diese Gilde zu verwalten.
+      member_not_found: Gildenmitglied wurde nicht gefunden.
+      protected_member: Gildenbesitzer oder Verwarnungs-Manager können nicht verwarnt oder umklassifiziert werden.
+      reason_required: Ein Grund für die Verwarnung ist erforderlich.
+      warning_sent: Verwarnung an %{user} gesendet.
+      warning_failed: 'Verwarnung konnte nicht gesendet werden: %{error}'
+      lists_updated: Verwarnungslisten wurden aktualisiert.
+      list_update_failed: 'Verwarnungslisten konnten nicht aktualisiert werden: %{error}'
+    discord:
+      warning_dm: |-
+        Sie haben eine Verwarnung in **%{guild_name}** erhalten.
+        Grund: %{reason}
+        Verwarnungen: %{warning_count}/%{warning_limit}
+    my_status:
+      title: Ihr Verwarnungsstatus
+      subtitle: Offizielle Verwarnungen für Sie in dieser Gilde.
+      access_denied: Sie müssen Mitglied dieser Gilde sein, um diese Seite zu sehen.
+      none_title: Keine Verwarnungen gespeichert
+      none_body: Für diese Gilde liegt kein aktiver Verwarnungseintrag für Sie vor.
+      state_label: Status
+      count_label: Anzahl Verwarnungen
+      last_reason: Letzter Grund
+      last_at: Zuletzt verwarnt am
+      discord_note: Wenn Ihr Discord-Konto in GuildSync verknüpft ist, sollten Sie bei neuer Verwarnung auch eine Direktnachricht vom Bot erhalten.

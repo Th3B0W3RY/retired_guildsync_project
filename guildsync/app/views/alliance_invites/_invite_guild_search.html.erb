@@ -1,0 +1,146 @@
+<%# locals: alliance (Alliance) %>
+<div class="space-y-4 mb-4" data-testid="alliance-invite-guild-search">
+  <div>
+    <label class="block text-sm font-medium text-theme-primary mb-1" for="alliance-invite-guild-search-input">
+      <%= t("alliances.invites.index.search_label") %>
+    </label>
+    <input type="search" id="alliance-invite-guild-search-input" autocomplete="off"
+      placeholder="<%= t("alliances.invites.index.search_placeholder") %>"
+      class="w-full px-4 py-2 bg-theme-primary border border-theme-secondary rounded-lg text-theme-primary" />
+    <p id="alliance-invite-search-status" class="text-xs text-theme-secondary mt-1 hidden"></p>
+    <ul id="alliance-invite-search-results" class="mt-2 space-y-1 hidden max-h-60 overflow-y-auto"></ul>
+  </div>
+  <p class="text-xs text-theme-secondary"><%= t("alliances.invites.index.search_hint") %></p>
+</div>
+
+<%= form_with url: alliance_alliance_invites_path(alliance), method: :post, local: true, id: "alliance-invite-form", class: "flex flex-col gap-3" do |f| %>
+  <%= f.hidden_field :guild_id, value: "", id: "alliance-invite-selected-guild-id" %>
+  <p class="text-sm text-theme-secondary min-h-[1.25rem]" id="alliance-invite-selected-label"></p>
+  <div class="flex gap-3 flex-wrap items-end">
+    <%= f.submit t("alliances.invites.index.send_invite"), id: "alliance-invite-submit", disabled: true,
+        class: "px-6 py-2 bg-theme-accent text-white rounded-lg hover:bg-theme-accent-hover transition-colors font-semibold cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed" %>
+  </div>
+<% end %>
+
+<script>
+  (function() {
+    const searchUrl = "<%= guild_search_alliance_alliance_invites_path(alliance) %>";
+    const input = document.getElementById('alliance-invite-guild-search-input');
+    const resultsEl = document.getElementById('alliance-invite-search-results');
+    const statusEl = document.getElementById('alliance-invite-search-status');
+    const hiddenId = document.getElementById('alliance-invite-selected-guild-id');
+    const labelEl = document.getElementById('alliance-invite-selected-label');
+    const submitBtn = document.getElementById('alliance-invite-submit');
+    let searchTimer;
+
+    function clearSelection() {
+      hiddenId.value = '';
+      labelEl.textContent = '';
+      submitBtn.disabled = true;
+    }
+
+    function selectGuild(id, name) {
+      hiddenId.value = String(id);
+      labelEl.textContent = '<%= j t("alliances.invites.index.selected_guild") %>: ' + name + ' (ID ' + id + ')';
+      submitBtn.disabled = false;
+      resultsEl.classList.add('hidden');
+      input.value = name;
+    }
+
+    function appendInviteSearchRow(row) {
+      const li = document.createElement('li');
+      if (!row.inviteable) {
+        li.className = 'text-theme-secondary text-sm px-2 py-1';
+        const uname = row.owner_username ? ' (@' + row.owner_username + ')' : '';
+        li.textContent = row.name + uname + ' — <%= j t("alliances.invites.index.already_in_alliance_suffix") %>';
+        resultsEl.appendChild(li);
+        return;
+      }
+      const btn = document.createElement('button');
+      btn.type = 'button';
+      btn.className = 'w-full text-left px-3 py-2 rounded-lg hover:bg-theme-primary text-theme-primary text-sm';
+      const uname = row.owner_username ? ' (@' + row.owner_username + ')' : '';
+      btn.textContent = row.name + uname + ' — ID ' + row.id;
+      btn.addEventListener('click', function() {
+        selectGuild(row.id, row.name);
+      });
+      li.appendChild(btn);
+      resultsEl.appendChild(li);
+    }
+
+    function removeInviteLoadMore() {
+      const b = resultsEl.querySelector('[data-invite-guild-search-load-more]');
+      if (b && b.parentNode) b.parentNode.remove();
+    }
+
+    function fetchInviteGuildSearchPage(q, page, append) {
+      statusEl.textContent = '<%= j t("alliances.index.searching") %>';
+      statusEl.classList.remove('hidden');
+      fetch(searchUrl + '?q=' + encodeURIComponent(q) + '&page=' + page, { headers: { 'Accept': 'application/json' } })
+        .then(function(r) {
+          if (!r.ok) {
+              statusEl.textContent = '<%= j t("alliances.invites.index.search_unauthorized") %>';
+            statusEl.classList.remove('hidden');
+            return null;
+          }
+          return r.json();
+        })
+        .then(function(data) {
+          if (!data) return;
+          statusEl.classList.add('hidden');
+          const rows = data.results || [];
+          const pag = data.pagination || { page: 1, total_pages: 1 };
+
+          if (!append) {
+            resultsEl.innerHTML = '';
+          }
+
+          if (!rows.length && !append) {
+            statusEl.textContent = '<%= j t("alliances.index.no_results") %>';
+            statusEl.classList.remove('hidden');
+            return;
+          }
+
+          rows.forEach(appendInviteSearchRow);
+          removeInviteLoadMore();
+
+          if (pag.total_pages > pag.page) {
+            const nextPage = pag.page + 1;
+            const li = document.createElement('li');
+            const loadBtn = document.createElement('button');
+            loadBtn.type = 'button';
+            loadBtn.setAttribute('data-invite-guild-search-load-more', '1');
+            loadBtn.className = 'w-full text-left px-3 py-2 rounded-lg text-theme-accent text-sm font-semibold';
+            loadBtn.textContent = '<%= j t("alliances.invites.index.load_more_results") %>';
+            loadBtn.addEventListener('click', function(e) {
+              e.preventDefault();
+              li.remove();
+              fetchInviteGuildSearchPage(q, nextPage, true);
+            });
+            li.appendChild(loadBtn);
+            resultsEl.appendChild(li);
+          }
+
+          resultsEl.classList.remove('hidden');
+        })
+        .catch(function() {
+          statusEl.classList.add('hidden');
+        });
+    }
+
+    input.addEventListener('input', function() {
+      const q = input.value.trim();
+      clearTimeout(searchTimer);
+      resultsEl.classList.add('hidden');
+      clearSelection();
+      if (q.length < 2) {
+        statusEl.classList.add('hidden');
+        return;
+      }
+
+      searchTimer = setTimeout(function() {
+        fetchInviteGuildSearchPage(q, 1, false);
+      }, 300);
+    });
+  })();
+</script>

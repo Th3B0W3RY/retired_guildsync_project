@@ -1,0 +1,52 @@
+<div class="max-w-4xl mx-auto" data-controller="message-center" data-message-center-guild-id-value="<%= @guild.id %>" data-message-center-current-user-id-value="<%= current_user.id %>" data-message-center-search-url-value="<%= guild_message_center_search_path(@guild) %>" data-message-center-conversation-url-value="<%= guild_message_center_conversation_path(@guild, recipient_id: '__RECIPIENT__') %>" data-message-center-send-url-value="<%= guild_message_center_send_path(@guild) %>">
+  <h1 class="text-3xl font-bold text-theme-primary mb-2"><%= t('message_center.title') %></h1>
+  <p class="text-theme-secondary mb-6"><%= t('message_center.subtitle') %> — <%= @guild.name %></p>
+
+  <div class="mb-6">
+    <label for="recipient-search" class="block text-sm font-medium text-theme-secondary mb-2"><%= t('message_center.search_placeholder') %></label>
+    <div class="relative">
+      <input type="text" id="recipient-search" data-message-center-target="searchInput" data-action="input->message-center#onSearchInput focus->message-center#onSearchFocus" placeholder="<%= t('message_center.search_placeholder') %>" autocomplete="off" class="w-full px-4 py-2.5 bg-theme-primary border border-theme-secondary rounded-lg text-theme-primary placeholder-theme-secondary focus:outline-none focus:ring-2 focus:ring-theme-accent">
+      <div data-message-center-target="searchDropdown" class="absolute z-50 w-full mt-1 bg-theme-card border border-theme-primary rounded-lg shadow-xl max-h-60 overflow-y-auto hidden">
+        <div data-message-center-target="searchResults"></div>
+        <div data-message-center-target="searchLoading" class="hidden px-4 py-3 text-theme-secondary text-sm">Loading...</div>
+        <div data-message-center-target="searchEmpty" class="hidden px-4 py-3 text-theme-secondary text-sm"><%= t('message_center.select_recipient') %></div>
+      </div>
+    </div>
+  </div>
+
+  <div data-message-center-target="conversationPanel" class="hidden bg-theme-card border border-theme-primary rounded-lg overflow-hidden flex flex-col" style="min-height: 400px;">
+    <div class="px-4 py-3 border-b border-theme-primary bg-theme-secondary/50 flex items-center gap-2">
+      <div class="w-10 h-10 rounded-full bg-theme-accent/20 flex items-center justify-center text-theme-accent font-semibold" data-message-center-target="recipientAvatar"></div>
+      <div>
+        <span class="font-semibold text-theme-primary" data-message-center-target="recipientName"></span>
+        <span class="text-xs text-theme-secondary ml-2" data-message-center-target="recipientBadge"></span>
+      </div>
+    </div>
+    <div data-message-center-target="thread" class="flex-1 overflow-y-auto p-4 space-y-3 min-h-[240px] max-h-[400px] bg-theme-primary/30">
+      <!-- Messages appended by JS -->
+    </div>
+    <div class="p-3 border-t border-theme-primary bg-theme-secondary/30">
+      <div class="flex gap-2 items-end">
+        <div class="flex-1 relative">
+          <textarea data-message-center-target="composer" data-action="keydown->message-center#onComposerKeydown" rows="2" maxlength="4000" placeholder="Type a message..." class="w-full px-4 py-2.5 pr-10 bg-theme-primary border border-theme-secondary rounded-lg text-theme-primary placeholder-theme-secondary focus:outline-none focus:ring-2 focus:ring-theme-accent resize-none"></textarea>
+          <div class="absolute right-2 bottom-2 flex gap-0.5" data-message-center-target="emojiStrip">
+            <% %w[😀 😂 👍 ❤️ 🎉 🔥 ✨ 👍].each do |emoji| %>
+              <button type="button" class="emoji-btn text-lg leading-none hover:bg-theme-secondary rounded p-0.5" data-emoji="<%= emoji %>" data-action="click->message-center#insertEmoji"><%= emoji %></button>
+            <% end %>
+          </div>
+        </div>
+        <button type="button" data-message-center-target="sendBtn" data-action="click->message-center#sendMessage" class="px-4 py-2.5 bg-theme-accent text-white rounded-lg hover:bg-theme-accent-hover transition-colors font-semibold disabled:opacity-50 disabled:cursor-not-allowed">
+          <%= t('message_center.send') %>
+        </button>
+      </div>
+      <p class="text-xs text-theme-secondary mt-1" data-message-center-target="charCount">0 / 4000</p>
+    </div>
+  </div>
+
+  <div data-message-center-target="emptyState" class="bg-theme-card border border-theme-primary rounded-lg p-8 text-center text-theme-secondary">
+    <svg class="w-16 h-16 mx-auto mb-4 text-theme-secondary/60" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"></path>
+    </svg>
+    <p><%= t('message_center.no_recipient') %></p>
+  </div>
+</div>

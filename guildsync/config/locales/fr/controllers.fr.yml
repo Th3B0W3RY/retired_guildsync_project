@@ -1,0 +1,299 @@
+fr:
+  controllers:
+    subscription_required:
+      trial_ended: Votre essai est terminé. Choisissez un plan pour continuer à utiliser GuildSync.
+    application:
+      session:
+        expired: Votre session a expiré. Veuillez vous reconnecter.
+        invalid: Votre séance est invalide. Veuillez vous reconnecter.
+        sign_in_required: Il faut être connecté pour accéder à cette page.
+      mfa:
+        complete_setup: Veuillez compléter la configuration de l'authentification multi-facteur pour continuer.
+        verify_identity: Veuillez vérifier votre identité
+        session_expired: Votre session a expiré. Veuillez vérifier à nouveau.
+        setup_required: Veuillez terminer la configuration de l'authentification multifacteur pour continuer.
+        verify_required: Veuillez vérifier votre identité pour continuer.
+      profile:
+        complete_before_mfa: S'il vous plaît remplissez votre profil avant d'activer l'authentification multifactorielle.
+      csrf:
+        error: Jeton de sécurité invalide. Veuillez rafraîchir la page et réessayer.
+      invalid_external_redirect: Ce lien est indisponible. Contactez le support si le problème persiste.
+    guilds:
+      create:
+        success: Gilde créée avec succès !
+        failed: 'Échec de la création de guilde : %{error}'
+        select_game: Veuillez choisir au moins un jeu
+        select_primary_game: S'il vous plaît sélectionner un principal jeu
+        invalid_games: Un ou plusieurs jeux sélectionnés n'existent pas
+      update:
+        success: Paramètres de la guilde mis à jour avec succès !
+        failed: 'Échec de la mise à jour des paramètres : %{errors}'
+        no_changes: Aucun changement à sauvegarder.
+        select_photo: Veuillez sélectionner une photo avant de cliquer sur Sauvegarder le logo.
+        own_role_modify: Seule le propriétaire de la guilde peut modifier vos permissions de rôle. Veuillez essayer d'éditer un rôle inférieur au vôtre ou avec des permissions moins nombreuses.
+      logo:
+        deleted: Logo de la guilde supprimé avec succès !
+        no_logo: Aucun logo à supprimer.
+      permissions:
+        settings_denied: Vous n'avez pas les droits pour gérer les paramètres.
+        kick_denied: Vous n'avez pas la permission d'éjecter des membres.
+        roles_denied: Vous n'avez pas l'autorisation de mettre à jour les rôles des membres.
+        applications_denied: Vous n'avez pas l'autorisation de reviewer les demandes.
+        manage_members_denied: Vous n'êtes pas autorisé à gérer les membres.
+        members_page_denied: Vous n'avez pas l'autorisation d'accéder à la page des membres.
+        owner_only: Seulement le propriétaire de guilde peut accéder à cette fonctionnalité.
+        owner_discord: Seule le propriétaire de guilde peut gérer les paramètres de Discord.
+        discord_channels_denied: Vous n'avez pas la permission de gérer les salons Discord.
+        member_required: Vous devez être un membre pour voir l'équipement.
+        games_denied: Vous n'avez pas l'autorisation de gérer les jeux
+        invite_denied: Vous n'avez pas d'autorisation d'inviter des membres.
+        tags_denied: Vous n'avez pas la permission de gérer les étiquettes.
+        tags_owner_only: Seul le propriétaire de la guilde peut créer des étiquettes de guilde.
+        export_members_csv_denied: Vous n'avez pas la permission d'exporter le CSV des membres.
+      not_found: Guilde non trouvée.
+      access_denied: Guild non trouvée ou vous n'avez pas accès à elle.
+      members:
+        kick_owner: Ne peut pas exclure le propriétaire du guilde.
+        kick_higher_authority: Vous ne pouvez pas bannir un utilisateur avec une autorité supérieure à la vôtre.
+        kicked: Membre exclu de la guilde.
+        bulk_kicked: "%{count} membre(s) ont été expulsés de la guilde."
+        no_selected: Aucun membre n'a été sélectionné.
+        bulk_kick_higher_authority: Ne peut pas exclure %{count} membre(s) d'autorité supérieure à la vôtre.
+        role_updated: Le rôle du membre a été mis à jour.
+        bulk_role_updated: "%{count} rôle(s) de membre modifié(s)."
+        own_role_modify: Vous ne pouvez pas modifier votre propre rôle.
+        settings_user_role: Uniquement le propriétaire de la guilde peut modifier le rôle des utilisateurs avec les permissions de paramétrage de la guilde.
+        higher_authority_role: Vous ne pouvez pas modifier le rôle d'un utilisateur avec une autorité supérieure à la vôtre.
+        bulk_higher_authority: Impossible de mettre à jour %{count} membre(s) avec une autorité supérieure ou des permissions du paramétrage du guilde.
+        tags:
+          created: Étiquette de guilde créée.
+          assigned: Étiquette attribuée.
+          removed: Étiquette retirée.
+          not_found: Étiquette ou membre introuvable.
+      invite:
+        user_not_found: Utilisateur non trouvé
+        already_member: Canard stupide, tu es déjà membre de ce guilde !
+        already_invited: L'Utilisateur a déjà été invité.
+        failed: 'Échec d''envoi de l''invitation : %{errors}'
+        success: L'utilisateur a été invité avec succès.
+      discord:
+        not_connected: Discord n'est pas connecté
+        channels_updated: Discord canaux mis à jour avec succès !
+        channels_failed: 'Échec à mettre à jour les canaux : %{errors}'
+      games:
+        at_least_one: La guilde doit avoir au moins un jeu
+        select_primary: Veuillez choisir un jeu principal parmi les jeux sélectionnés.
+        invalid_games: 'Un ou plusieurs jeux sélectionnés n''existent pas : %{ids}'
+        updated: Les jeux ont été mis à jour avec succès.
+        update_failed: 'Échec de la mise à jour des jeux : %{error}'
+    pricing:
+      plan_not_found: Le plan n'a pas été trouvé.
+      switched_to_free: Vous avez été redirigé vers le plan gratuit.
+      trial_switched_free: Vous avez été redirigé(e)s vers le plan gratuit. Votre essai se poursuivra jusqu'à son expiration.
+      plan_switched_trial: Vous avez été basculé vers le plan %{plan}. Votre essai continue avec la même date de fin.
+      already_free: Vous êtes déjà sur le plan gratuit.
+      trial_started: Votre essai gratuit de 14 jours pour %{plan} a commencé !
+      not_available: Ce plan n'est pas disponible pour l'abonnement pour le moment.
+      payment_error: Erreur de traitement de paiement. Veuillez réessayer.
+      update_failed: Impossible de mettre à jour votre abonnement. Veuillez réessayer.
+      free_not_at_signup: Le plan gratuit n'est pas disponible au moment de l'inscription. Veuillez choisir un plan payant pour commencer votre essai.
+    subscriptions:
+      switched_to_free: Vous avez été redirigé vers le plan gratuit.
+      not_available: Ce plan n'est pas disponible pour l'abonnement pour le moment.
+      activated: Abonnement activé avec succès !
+      payment_not_completed: Le paiement n'a pas été complété.
+      invalid_session: Session non valable.
+      invalid_metadata: Invalide les métadonnées de session.
+      account_mismatch: La session ne correspond pas à votre compte.
+      payment_error: 'Erreur de traitement du paiement : %{error}'
+      general_error: Une erreur s'est produite. Veuillez réessayer, s'il vous plaît.
+      processing_error: Erreur lors du traitement de l'abonnement. Veuillez contacter le support.
+      success_error: Une erreur s'est produite. Veuillez contacter le support.
+    mfa_verification:
+      enter_code: Veuillez entrer un code de vérification
+      success: Vérification réussie !
+      invalid_code: Code de vérification invalide. Veuillez réessayer.
+      sign_in_first: Veuillez vous connecter en premier
+      setup_first: Veuillez finaliser la configuration de l'authentification à plusieurs facteurs tout d'abord.
+      already_verified: Vous êtes déjà vérifié
+    mfa_setup:
+      generate_failed: Échec de la génération du code d'authentification. Veuillez réessayer.
+      qr_failed: Échec de la génération du code QR. Veuillez rafraîchir la page.
+      enter_code: Veuillez entrer un code de vérification
+      invalid_code: Code de vérification invalide. Veuillez réessayer.
+      trial_active: Votre essai gratuit de 14 jours est actif ! Il reste %{days} jours.
+      subscription_active: Bienvenue ! Votre abonnement est actif.
+      free_plan_welcome: Bienvenue ! Vous êtes sur le plan gratuit. Mise à niveau en tout temps pour déverrouiller plus de fonctionnalités.
+      profile_incomplete: S'il vous plaît remplissez votre profil avant d'activer l'authentification multifactorielle.
+    polls:
+      created_discord: Sondage créé et publié sur Discord avec succès !
+      created_discord_failed: 'Sondage créé avec succès ! (Échec du message dans Discord : %{error})'
+      created: Le sondage a été créé avec succès !
+      posted_discord: Son conventionallement posté sur Discord avec succès !
+      post_discord_failed: 'Échec de la publication du sondage sur Discord : %{error}'
+      deleted: Sondage '%{title}' supprimé avec succès.
+      delete_failed: 'Impossible de supprimer le sondage : %{errors}'
+      not_member: Vous n'êtes pas membre de cette guilde.
+      create_denied: Vous n'avez pas les droits pour créer des sondages.
+      delete_denied: Vous n'avez pas la permission de supprimer cette enquête.
+      access_denied: Guild non trouvée ou vous n'avez pas accès à elle.
+      vote:
+        invalid_choice: Choix non valide
+        poll_closed: Cette enquête est fermée
+    react_roles:
+      saved: Rôles de réaction enregistrés avec succès.
+      deployed: Le message intégré des rôles de réaction a été publié sur Discord !
+      removed: Rôles de réaction retirés de Discord.
+      no_roles_configured: Configurez au moins un rôle de réaction avant de publier.
+      no_channel_configured: Sélectionnez un salon pour le message intégré des rôles de réaction.
+      deploy_failed: Échec de la publication du message intégré des rôles de réaction. Réessayez.
+      remove_failed: Échec de la suppression du message intégré des rôles de réaction. Réessayez.
+    loot_rolls:
+      created_discord: Roll de loot créé et posté sur Discord avec succès !
+      created_discord_failed: 'Roll de loot créé ! (Message Discord échoué : %{error})'
+      channel_required: Veuillez configurer un Canal des dés de butin dans les paramètres de la guilde avant de créer un dé de butin.
+      channel_must_configure: Le canal de systèmes de butin doit être configuré dans les paramètres de la guilde.
+      already_closed: Ce roulement de butin est déjà fermé.
+      closed: Le roulement des butins est fermé avec succès !
+      entry_not_found: Entrée non trouvée
+      entry_invalidated: L'entrée est invalidée. L'utilisateur peut relancer.
+      deleted: Le roulement de butin '%{title}' a été supprimé avec succès.
+      delete_failed: Impossible de supprimer le jet de butin.
+      not_member: Vous n'êtes pas membre de cette guilde.
+      create_denied: Vous n'avez pas les permissions pour créer des jets de butin.
+      manage_denied: Vous n'avez pas les permissions pour gérer ce tirage de llotte.
+      access_denied: Guild non trouvée ou vous n'avez pas accès à elle.
+    guild_documents:
+      created: Le document a été créé avec succès.
+      updated: Le document a été mis à jour avec succès.
+      deleted: Le document a été supprimé avec succès.
+      manage_denied: Vous n'avez pas l'autorisation de gérer les documents.
+      view_denied: Vous n'avez pas la permission de visualiser ce document.
+      invalid_link: Lien du document non valide.
+      private_document: Ce document est privé.
+      upload_image:
+        missing: Aucune image fournie.
+        invalid_data: Données d'image invalides.
+        failed: Échec du téléversement de l'image. Réessayez.
+      folder:
+        created: Dossier créé avec succès.
+        create_failed: 'Échoué à créer le dossier : %{errors}'
+        updated: Le dossier a été mis à jour avec succès.
+        update_failed: 'Échec de la mise à jour du dossier : %{errors}'
+        deleted: Dossier supprimé avec succès.
+        edit_denied: Vous n'avez pas l'autorisation de modifier ce dossier.
+        delete_denied: Vous n'avez pas la permission de supprimer ce dossier.
+    games:
+      not_found: Jeu non trouvé
+      created: Jeu créé avec succès
+      updated: La mise à jour du jeu a été effectuée avec succès.
+      deleted: Jeu supprimé avec succès
+      delete_failed: 'Échec de la suppression du jeu : %{errors}'
+      has_guilds: Impossible de supprimer le jeu associé à des guildes
+      has_snapshots: Impossible de supprimer le jeu qui contient des snapshots d'équipement
+      activated: Jeu activé
+      deactivated: Jeu désactivé
+      toggle_failed: 'Impossible de mettre à jour le jeu : %{errors}'
+      admin_required: Accès administrateur requis
+      suggest:
+        name_required: Nom du jeu est requis
+        already_exists: Le jeu existe déjà
+        create_failed: Impossible de créer le jeu
+    storage:
+      not_member: Vous n'êtes pas membre de cette guilde.
+    folders:
+      created: Dossier créé avec succès.
+      create_error: 'Erreur lors de la création du dossier : %{errors}'
+      cannot_move_into_self: Ne peut pas déplacer le dossier dans lui-même ou dans ses sous-dossiers
+      not_empty: Le dossier n'est pas vide. Supprimez tout le contenu d'abord ou utilisez la suppression forcée.
+      manage_denied: Vous n'avez pas la permission de gérer les répertoires.
+      missing_required_parameter: 'Paramètre requis manquant : %{param}'
+      unexpected_create_error: 'Erreur lors de la création du dossier : %{message}'
+    file_entries:
+      no_files_selected: Aucun fichier n'a été sélectionné
+      not_found: Fichier non trouvé
+      not_member: Vous n'êtes pas membre de cette guilde.
+      manage_denied: Vous n'avez pas l'autorisation de gérer les fichiers.
+    discord_connections:
+      authorization_failed: Autorisation Discord échouée. Réessayez.
+      invalid_state: État OAuth invalide. Réessayez.
+      guild_lost: Guilde introuvable. Réessayez.
+      sign_in_first: Connectez-vous d'abord.
+      connect_discord_first: Connectez Discord d'abord.
+      connection_expired: Votre connexion Discord a expiré. Reconnectez votre compte Discord.
+      fetch_servers_failed: Impossible de récupérer les serveurs Discord. Réessayez.
+      guild_not_found: Guilde introuvable.
+    search:
+      search_failed: La recherche a échoué. Veuillez réessayer.
+    discord_event_signups:
+      webhook:
+        missing_required_parameters: Paramètres obligatoires manquants.
+        event_not_found: Événement introuvable.
+        invalid_role: Rôle non valide.
+    billing:
+      sign_in_required: Connectez-vous pour voir vos informations de facturation.
+      select_plan: Sélectionnez un plan pour configurer le paiement.
+      portal_unavailable: Portail de facturation indisponible. Réessayez plus tard.
+      error_occurred: Une erreur s'est produite. Réessayez plus tard.
+      payment_session_failed: 'Impossible de créer la session de paiement : %{error}'
+      invalid_session: Session non valable.
+      session_mismatch: La session ne correspond pas à votre compte.
+      payment_not_completed: Le paiement n'a pas été complété.
+      payment_processing_error: Erreur lors du traitement du paiement. Contactez le support.
+      contact_support: Une erreur s'est produite. Veuillez contacter le support.
+      plan_not_found: Ce forfait n’est pas disponible.
+      plan_changed: Votre abonnement a été mis à jour.
+      canceled_with_refund: Votre abonnement a été annulé et les paiements éligibles ont été remboursés.
+      canceled_at_period_end: Votre abonnement sera annulé à la fin de la période de facturation en cours.
+      canceled: Votre abonnement a été annulé.
+      subscription_resumed: Votre abonnement se poursuivra au-delà de la fin de la période en cours.
+      no_stripe_subscription: Aucun abonnement Stripe trouvé. Terminez le paiement initial ou contactez le support.
+      checkout_active_subscription_use_portal: Vous avez déjà un abonnement actif. Utilisez le portail de facturation pour le gérer.
+      checkout_price_id_required: L’identifiant du tarif est requis.
+      checkout_payment_setup_failed: Échec de la configuration du paiement. Réessayez ou contactez le support.
+      checkout_failed: Échec du paiement. Réessayez.
+      portal_customer_init_failed: Impossible d’initialiser la facturation. Réessayez.
+      portal_session_create_failed: Impossible d’ouvrir le portail de facturation. Réessayez.
+      checkout_success: Paiement configuré avec succès !
+    oidc_user_auth:
+      login_failed: La connexion avec Gmail ou Outlook a échoué. Réessayez.
+      oauth_error: "Connexion annulée ou échouée : %{message}"
+      invalid_state: État OAuth invalide. Réessayez.
+      invalid_profile: Impossible de lire le profil de votre compte auprès du fournisseur. Réessayez.
+      email_not_verified: L’e-mail de votre compte Gmail ou Outlook n’est pas vérifié. Vérifiez-le chez votre fournisseur, puis réessayez.
+      email_missing: Votre fournisseur n’a pas renvoyé d’adresse e-mail. Utilisez une autre méthode de connexion ou contactez le support.
+      email_mismatch: Connectez-vous avec le même compte Gmail ou Outlook que l’e-mail que vous avez vérifié.
+      identity_in_use: Ce compte Gmail ou Outlook est déjà lié à un autre utilisateur GuildSync.
+      signup_session_lost: Votre session d’inscription a expiré. Reprenez la création de compte depuis l’étape e-mail.
+      no_account: Aucun compte GuildSync n’utilise cette connexion Gmail ou Outlook. Créez d’abord un compte.
+      signed_in_notice: Connexion réussie !
+      complete_auth: Terminez l'authentification pour continuer.
+      session_not_found: Session introuvable. Réessayez.
+    discord_user_auth:
+      auth_error: 'Erreur d''authentification Discord : %{error}'
+      login_failed: Échec de la connexion Discord. Réessayez.
+      invalid_state: État OAuth invalide. Réessayez.
+      connection_failed: 'Échec de la connexion Discord : %{error}'
+      oauth_error_login: 'Échec de la connexion Discord : %{error}'
+      already_connected: Ce compte Discord est déjà lié à un autre compte. Déconnectez-le de là ou utilisez un autre compte Discord.
+      linked_successfully: Compte Discord lié avec succès !
+      signed_in_successfully: Connexion avec Discord réussie !
+      already_has_account: Vous avez déjà un compte. Connectez-vous.
+      create_failed: Échec de la création du compte. Réessayez.
+      no_account_found: Aucun compte trouvé avec ce compte Discord. Inscrivez-vous d'abord.
+      token_revoked_reconnect: La connexion Discord a été révoquée. Reconnectez votre compte Discord.
+      token_revoked_signin: La connexion Discord a été révoquée. Reconnectez-vous.
+      link_failed: 'Échec de la liaison du compte Discord : %{error}'
+      must_be_signed_in: Vous devez être connecté pour déconnecter Discord.
+      cannot_disconnect_discord_auth: Impossible de déconnecter Discord tant que vous utilisez la connexion Discord. Passez d'abord à la connexion MFA.
+      disconnected_successfully: Compte Discord déconnecté avec succès.
+      session_not_found: Session introuvable. Réessayez.
+      session_not_found_signin: Session introuvable. Reconnectez-vous.
+      signed_in_notice: Connexion réussie !
+      complete_auth: Terminez l'authentification pour continuer.
+      must_be_signed_in_toggle: Vous devez être connecté.
+      setup_mfa_first: Configurez d'abord le MFA avant de changer.
+      mfa_updated: 'Méthode d''authentification mise à jour : connexion MFA.'
+      discord_updated: 'Méthode d''authentification mise à jour : connexion Discord.'
+      connect_discord_first: Connectez Discord avant d'activer la connexion Discord.
+      invalid_auth_method: Méthode d'authentification non valide.

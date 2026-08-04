@@ -1,0 +1,22 @@
+<% su = "admin.users.show" %>
+<div class="space-y-8">
+  <div class="flex justify-between items-center">
+    <h1 class="text-3xl font-bold text-theme-accent"><%= t("#{su}.page_title") %></h1>
+    <div class="flex gap-4">
+      <%= link_to t("#{su}.back_to_search"), admin_users_path,
+            class: "px-4 py-2 bg-theme-secondary text-theme-primary rounded-lg hover:bg-theme-hover transition-colors",
+            data: { turbo_frame: "_top" } %>
+      <%= link_to t("#{su}.dashboard_link"), admin_root_path,
+            class: "px-4 py-2 bg-theme-secondary text-theme-primary rounded-lg hover:bg-theme-hover transition-colors",
+            data: { turbo_frame: "_top" } %>
+    </div>
+  </div>
+
+  <%= turbo_frame_tag Admin::UsersController::USERS_SHOW_MAIN_FRAME do %>
+    <%= render "users_show_main",
+        user: @user,
+        current_subscription: @current_subscription,
+        pricing_plans: @pricing_plans,
+        account_deletion_eligible_reactivate: @account_deletion_eligible_reactivate %>
+  <% end %>
+</div>

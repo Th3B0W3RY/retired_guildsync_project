@@ -1,0 +1,145 @@
+es:
+  sessions:
+    new:
+      title: Iniciar Sesión
+      forgot_password: "¿Olvidó su contraseña?"
+      resend_confirmation: Reenviar correo de confirmación
+      sign_in_with_discord: Iniciar sesión con Discord
+      sign_in_with_google: Iniciar sesión con Gmail
+      sign_in_with_microsoft: Iniciar sesión con Outlook
+      no_account: "¿No tienes una cuenta?"
+      create_account: Crea uno aquí
+      discord_login_failed: 'Inicio de sesión en Discord fallido:'
+  registrations:
+    new:
+      title: Regístrate
+      have_account: "¿Ya tienes una cuenta?"
+      sign_in_here: Inicia sesión aquí
+      signing_up_for: 'Registrarse para:'
+      trial_after_mfa: La prueba comenzará después de la verificación del MFA.
+      username: Nombre de usuario
+      username_hint: 3-30 caracteres, letras, números y solo guiones bajo
+      password_hint: Mínimo 6 caracteres
+      confirm_password: Confirma la contraseña
+      create_account_button: Crear Cuenta
+      sign_up_with_discord: Regístrate con Discord
+      discord_signup_failed: 'Registro de Discord fallido:'
+      popup_blocked: La ventana emergente fue bloqueada. Por favor, habilite las ventanas emergentes para este sitio y vuelva a intentarlo.
+    errors:
+      captcha_invalid: La verificación de seguridad falló. Complete la comprobación a continuación e inténtelo de nuevo.
+      discord_captcha_required: Use el botón «Regístrate con Discord» en esta página después de completar la verificación de seguridad.
+  confirmations:
+    new:
+      title: Reenviar instrucciones de confirmación
+      intro: Introduzca su correo y le enviaremos un nuevo enlace de confirmación.
+      submit: Reenviar instrucciones
+      back_to_sign_in: Volver al inicio de sesión
+    create:
+      already_registered: Este correo ya está registrado y confirmado. Pruebe con otro correo o inicie sesión.
+  passwords:
+    new:
+      title: "¿Olvidó su contraseña?"
+      instructions: Introduce tu correo electrónico y te enviaremos las instrucciones para reiniciar tu contraseña.
+      send_instructions: Enviar las instrucciones de restablecimiento
+      back_to_sign_in: Volver al Ingreso
+    edit:
+      title: Restablecer tu contraseña
+      subtitle: Introduce tu nueva contraseña a continuación.
+      new_password: Contraseña Nueva
+      confirm_password: Confirma la contraseña
+      confirm_new_password: Confirmar nueva contraseña
+      password_hint: Mínimo 6 caracteres
+      reset_password: Reiniciar Contraseña
+      back_to_sign_in: Volver al Ingreso
+    create:
+      instructions_sent: Si existe una cuenta con ese correo, recibirá instrucciones para restablecer la contraseña.
+      invalid_email: Dirección de correo no válida.
+    update:
+      success: Su contraseña se ha cambiado correctamente. Ya ha iniciado sesión.
+    account_recovery:
+      title: Recuperación de cuenta
+      page_intro: Elija cómo volver a acceder a su cuenta.
+      email_section_title: Restablecer contraseña por correo
+      email_section_intro: Le enviaremos un enlace a su correo. Ábralo en este dispositivo para elegir una nueva contraseña.
+      email_send_button: Enviar enlace de restablecimiento
+      email_link_hint: "¿Ya tiene un correo nuestro? Abra el enlace de restablecimiento en ese mensaje."
+      or_divider: o
+      backup_section_title: Usar un código de respaldo
+      backup_section_intro: Si guardó códigos de respaldo en Configuración de la cuenta, introduzca su correo y un código abajo.
+      backup_code_label: Código de respaldo
+      backup_code_placeholder: XXXX-XXXX-XXXX-XXXX-XXXX-XXXX
+      backup_code_hint: Introduce uno de tus códigos de respaldo de 24 caracteres (guiones opcionales)
+      verify_backup_code: Verificar código de respaldo
+      contact_support: Contactar con soporte
+  backup_codes:
+    verify:
+      invalid_email_or_code: Correo electrónico o código de respaldo inválido.
+      invalid_code: Código de respaldo inválido.
+      success: Código de respaldo aceptado. Establece una nueva contraseña abajo.
+  recoveries:
+    edit:
+      title: Restablecer tu cuenta
+      badge: Recuperando con código de respaldo
+      mfa_section: Autenticación multifactor (MFA)
+      mfa_warning: Tu cuenta tiene MFA habilitado actualmente. Como estás usando un código de respaldo, puedes elegir restablecer MFA.
+      reset_mfa_label: Restablecer MFA (desactivar y permitir reconfiguración)
+      mfa_not_enabled: MFA no está habilitado en tu cuenta.
+      submit: Guardar cambios y recuperar cuenta
+      note: Tras la recuperación, tendrás que iniciar sesión con tu nueva contraseña. Si restableces MFA, podrás configurarlo de nuevo en Configuración de la cuenta.
+      new_password: Contraseña Nueva
+      confirm_password: Confirmar nueva contraseña
+    update:
+      success: Tu cuenta se ha recuperado. Inicia sesión con tu nueva contraseña.
+    expired: "La sesión de recuperación ha expirado. Vuelve a empezar."
+  mfa_setup:
+    show:
+      title: Habilitar la autenticación en varios factores
+      subtitle: Escoane el código QR con tu aplicación de autenticación para comenzar
+      instructions_title: Configuración - Instrucciones
+      step_1: Instala una aplicación de autenticación en tu teléfono (Google Authenticator, Authy, Microsoft Authenticador, etc.)
+      step_2: Abre la aplicación y toca 'Agregar cuenta' o el botón '+'
+      step_3: Escanea el código QR abajo con la cámara de tu teléfono o el escaner de la aplicación.
+      step_4: Introduzca el código de 6 numeros de su aplicación para verificar
+      manual_entry: "¿No puedes escanear el código QR? Introduce este secreto manualmente en tu aplicación de autenticación:"
+      cant_scan: "¿No puedes escanear? Introduce este código manualmente en tu aplicación:"
+      code_label: Introduzca el código de 6 dígitos desde su aplicación autenticadora.
+      code_placeholder: '000000'
+      code_hint: Introduzca el código de 6 dígitos que se muestra en su aplicación autenticadora
+      verify_button: Verificar y Habilitar MFA
+      recommended_apps: 'Aplicaciones autenticadoras recomendadas:'
+      setup_unavailable: No pudimos generar tu clave de configuración. Actualiza la página o inténtalo de nuevo en un momento. Si sigue ocurriendo, contacta con soporte.
+  mfa_verification:
+    show:
+      title: Verifique su identidad
+      subtitle: Introduce el código de 6 dígitos de tu aplicación autenticadora
+      code_label: Código de autenticación
+      code_placeholder: '000000'
+      code_hint: Abre tu aplicación autenticadora y introduce el código de 6 dígitos
+      verify_button: Verificar
+      trouble_text: "¿Problemas para acceder?"
+      having_trouble: "¿Tiene problemas?"
+      contact_support: Contacte el soporte
+  profile_completion:
+    show:
+      title: Completa tu perfil
+      subtitle: Por favor, proporcione sus detalles de cuenta para continuar.
+      email_label: Dirección de correo electrónico
+      email_placeholder: Ingrese su dirección de correo electrónico
+      email_hint: Introduzca una dirección de correo electrónico válida para su cuenta
+      username_hint: 3-30 caracteres, letras, números y solo guiones bajo
+      username_placeholder: Introduzca su nombre de usuario
+      password_hint: Elige una contraseña segura (mínimo 6 caracteres)
+      confirm_password_hint: Introduzca de nuevo su contraseña para confirmar
+      password_confirmation_label: Confirmación de contraseña
+      submit_button: Completa tu perfil
+      complete_button: Completar configuración
+      username_label: Nombre de usuario
+      password_label: Contraseña
+      password_confirmation_hint: Introduzca de nuevo su contraseña para confirmar
+    update:
+      success: Perfil completado. Ahora configure MFA.
+  mfa:
+    setup:
+      title: Configuración de MFA
+    verification:
+      title: Verificar MFA

@@ -1,0 +1,96 @@
+# frozen_string_literal: true
+#
+# JavaScript Alert & Message Translations
+# =======================================
+# This file contains translations for JavaScript alerts and messages.
+#
+en:
+  # ============================================================================
+  # JAVASCRIPT MESSAGES
+  # ============================================================================
+  js:
+    # --------------------------------------------------------------------------
+    # COMMON MESSAGES
+    # --------------------------------------------------------------------------
+    common:
+      unknown_error: "Unknown error"
+      popup_blocked: "Popup was blocked. Please allow popups for this site and try again."
+      error_occurred: "An error occurred. Please try again."
+
+    # --------------------------------------------------------------------------
+    # ADMIN DASHBOARD
+    # --------------------------------------------------------------------------
+    admin:
+      dashboard:
+        delete_success: "All data has been deleted successfully!"
+        delete_error: "Error: %{error}"
+        delete_failed: "Failed to delete data."
+
+    # --------------------------------------------------------------------------
+    # AUTHENTICATION
+    # --------------------------------------------------------------------------
+    sessions:
+      popup_blocked: "Popup was blocked. Please allow popups for this site and try again."
+
+    pricing:
+      price_id_missing: "Price ID is missing. Please contact support."
+      checkout_failed: "Failed to start checkout. Please try again."
+
+    billing:
+      portal_failed: "Failed to open billing portal. Please try again."
+      plan_change_failed: "Unable to change plan. Please try again."
+
+    # --------------------------------------------------------------------------
+    # GUILD MEMBERS
+    # --------------------------------------------------------------------------
+    guilds:
+      members:
+        select_member: "Please select at least one member."
+        select_role: "Please select a role."
+        select_user: "Please select a user first."
+        security_token_missing: "Security token not found. Please refresh the page and try again."
+        invite_error: "An error occurred while inviting the user. Please try again."
+
+    # --------------------------------------------------------------------------
+    # GUILD SETTINGS
+    # --------------------------------------------------------------------------
+      settings:
+        game_added: "Game added successfully!"
+        game_add_failed: "Failed to add game: %{error}"
+        game_add_error: "Error adding game: %{error}"
+        discord_role_sync:
+          section_title: "Discord Role Syncing"
+          missing_role: "Missing role information; refresh and try again."
+          generic_error: "Something went wrong. Please try again."
+
+    # --------------------------------------------------------------------------
+    # MEMBERS GEAR
+    # --------------------------------------------------------------------------
+      members_gear:
+        select_file: "Please select a file"
+        select_game: "Please select a game"
+        upload_failed: "Upload failed: %{error}"
+        session_expired: "Your session expired. Sign in again and retry the upload."
+        requests_sent: "Successfully sent %{count} stat update requests"
+        requests_failed: "Failed to send requests: %{error}"
+        request_failed: "Failed to send request: %{error}"
+
+    # --------------------------------------------------------------------------
+    # GUILD APPLICATIONS
+    # --------------------------------------------------------------------------
+    guild_applications:
+      select_guild: "Please select a guild from the search results."
+
+    # --------------------------------------------------------------------------
+    # GUILD DOCUMENTS
+    # --------------------------------------------------------------------------
+    guild_documents:
+      link_copied: "Share link copied to clipboard!"
+
+    # --------------------------------------------------------------------------
+    # DISCORD CONNECTIONS
+    # --------------------------------------------------------------------------
+    discord_connections:
+      connection_failed: "Discord connection failed: %{error}"
+      popup_blocked: "Popup was blocked. Please allow popups for this site and try again."
+      bot_auth_url_missing: "Error: Bot authorization URL is missing server ID. Please try selecting the server again."

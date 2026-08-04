@@ -1,0 +1,95 @@
+<div class="space-y-8">
+  <div class="flex justify-between items-center">
+    <h1 class="text-3xl font-bold text-theme-accent"><%= t("admin.users.index.page_title") %></h1>
+    <%= link_to t("admin.users.index.back_to_dashboard"), admin_root_path, class: "px-4 py-2 bg-theme-secondary text-theme-primary rounded-lg hover:bg-theme-hover transition-colors" %>
+  </div>
+
+  <div class="bg-theme-card border border-theme-primary rounded-lg p-6 shadow-lg">
+    <div class="flex flex-wrap gap-4 items-end">
+      <%= form_with url: admin_users_path, method: :get,
+          data: { turbo_frame: Admin::UsersController::USERS_INDEX_RESULTS_FRAME },
+          class: "flex flex-wrap gap-4 flex-1 items-end" do |f| %>
+        <div class="flex-1 relative min-w-[12rem]">
+          <%= f.text_field :q, value: @query, placeholder: t("admin.users.index.search_placeholder"),
+              id: "user-search-input",
+              class: "w-full px-4 py-2 bg-theme-secondary border border-theme-primary rounded-lg text-theme-primary focus:outline-none focus:ring-2 focus:ring-theme-accent",
+              autocomplete: "off" %>
+          <div id="user-search-results" class="hidden absolute z-50 w-full mt-1 bg-theme-card border border-theme-primary rounded-lg shadow-xl max-h-64 overflow-y-auto"></div>
+        </div>
+        <%= f.submit t("admin.users.index.search_submit"), class: "px-6 py-2 bg-theme-accent text-white rounded-lg hover:bg-theme-accent-hover transition-colors" %>
+      <% end %>
+      <% if @query.present? %>
+        <%= link_to t("admin.users.index.clear"), admin_users_path,
+          class: "px-6 py-2 bg-theme-secondary text-theme-primary rounded-lg hover:bg-theme-hover transition-colors",
+          data: { turbo_frame: Admin::UsersController::USERS_INDEX_RESULTS_FRAME } %>
+      <% end %>
+    </div>
+  </div>
+
+  <%= turbo_frame_tag Admin::UsersController::USERS_INDEX_RESULTS_FRAME do %>
+    <%= render "users_index_results" %>
+  <% end %>
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const searchInput = document.getElementById('user-search-input');
+    const resultsDiv = document.getElementById('user-search-results');
+    let searchTimeout = null;
+
+    if (searchInput && resultsDiv) {
+      searchInput.addEventListener('input', function() {
+        const query = this.value.trim();
+
+        clearTimeout(searchTimeout);
+
+        if (query.length < 1) {
+          resultsDiv.classList.add('hidden');
+          return;
+        }
+
+        searchTimeout = setTimeout(async () => {
+          try {
+            const response = await fetch(`<%= search_admin_users_path %>?q=${encodeURIComponent(query)}`);
+            const data = await response.json();
+
+            resultsDiv.innerHTML = '';
+
+            if (data.users && data.users.length > 0) {
+              data.users.forEach(user => {
+                const item = document.createElement('div');
+                item.className = 'p-3 hover:bg-theme-secondary cursor-pointer border-b border-theme-primary last:border-b-0';
+                const line1 = document.createElement('div');
+                line1.className = 'font-medium text-theme-primary';
+                line1.textContent = user.email;
+                const line2 = document.createElement('div');
+                line2.className = 'text-sm text-theme-secondary';
+                line2.textContent = `${user.username} • ${user.plan}`;
+                item.appendChild(line1);
+                item.appendChild(line2);
+                item.addEventListener('click', () => {
+                  searchInput.value = user.email;
+                  resultsDiv.classList.add('hidden');
+                  searchInput.form.submit();
+                });
+                resultsDiv.appendChild(item);
+              });
+              resultsDiv.classList.remove('hidden');
+            } else {
+              resultsDiv.classList.add('hidden');
+            }
+          } catch (error) {
+            console.error('Search error:', error);
+            resultsDiv.classList.add('hidden');
+          }
+        }, 300);
+      });
+
+      document.addEventListener('click', (e) => {
+        if (!searchInput.contains(e.target) && !resultsDiv.contains(e.target)) {
+          resultsDiv.classList.add('hidden');
+        }
+      });
+    }
+  });
+</script>

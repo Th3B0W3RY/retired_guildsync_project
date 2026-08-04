@@ -1,0 +1,17 @@
+<%= turbo_stream.update "admin_content_moderation_flash" do %>
+  <%= render "admin/content_moderation/flash_banner",
+      message: @content_moderation_flash_message,
+      variant: @content_moderation_flash_variant %>
+<% end %>
+<%= turbo_stream.replace "admin_content_moderation_pending_wrap" do %>
+  <div id="admin_content_moderation_pending_wrap">
+    <%= render "admin/content_moderation/pending_panel" %>
+  </div>
+<% end %>
+<%= turbo_stream.replace "admin_content_moderation_pending_badge_host" do %>
+  <span id="admin_content_moderation_pending_badge_host" class="contents">
+    <% if @pending_count.to_i > 0 %>
+      <span class="ml-1 font-semibold">(<%= @pending_count %>)</span>
+    <% end %>
+  </span>
+<% end %>

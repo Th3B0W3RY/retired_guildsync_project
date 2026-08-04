@@ -1,0 +1,55 @@
+<%# locals: (error:) %>
+<div id="admin_error_show_main" class="space-y-6">
+  <div class="flex justify-between items-center">
+    <h1 class="text-3xl font-bold text-theme-accent"><%= t("admin.errors.show.page_title") %></h1>
+    <div class="flex gap-4 flex-wrap">
+      <% unless error.resolved? %>
+        <%= button_to t("admin.errors.show.mark_resolved"), resolve_admin_error_path(error), method: :post,
+            class: "px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors font-semibold" %>
+      <% end %>
+      <%= button_to t("admin.errors.show.delete"), admin_error_path(error), method: :delete, data: { turbo_confirm: t("admin.errors.show.confirm_delete") }, class: "px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 transition-colors font-semibold" %>
+      <%= link_to t("admin.errors.show.back_to_list"), admin_errors_path,
+            class: "px-4 py-2 bg-theme-secondary text-theme-primary rounded-lg hover:bg-theme-hover transition-colors",
+            data: { turbo_frame: "_top" } %>
+    </div>
+  </div>
+
+  <div class="bg-theme-card border border-theme-primary rounded-lg p-6 shadow-lg">
+    <div class="space-y-4">
+      <div>
+        <strong class="text-theme-secondary"><%= t("admin.errors.show.error_class") %></strong>
+        <span class="text-theme-primary"><%= error.error_class %></span>
+      </div>
+      <div>
+        <strong class="text-theme-secondary"><%= t("admin.errors.show.message") %></strong>
+        <div class="mt-2 p-4 bg-theme-secondary rounded-lg text-theme-primary"><%= error.message %></div>
+      </div>
+      <% if error.backtrace.present? %>
+        <div>
+          <strong class="text-theme-secondary"><%= t("admin.errors.show.backtrace") %></strong>
+          <pre class="mt-2 p-4 bg-theme-secondary rounded-lg text-theme-primary overflow-x-auto text-sm"><%= error.backtrace %></pre>
+        </div>
+      <% end %>
+      <% if error.context.present? %>
+        <div>
+          <strong class="text-theme-secondary"><%= t("admin.errors.show.context") %></strong>
+          <pre class="mt-2 p-4 bg-theme-secondary rounded-lg text-theme-primary overflow-x-auto"><%= error.context.is_a?(Hash) ? JSON.pretty_generate(error.context) : error.context %></pre>
+        </div>
+      <% end %>
+      <div>
+        <strong class="text-theme-secondary"><%= t("admin.errors.show.occurred_at") %></strong>
+        <span class="text-theme-primary"><%= error.occurred_at.strftime("%Y-%m-%d %H:%M:%S") %></span>
+      </div>
+      <% if error.resolved? %>
+        <div>
+          <strong class="text-theme-secondary"><%= t("admin.errors.show.resolved_at") %></strong>
+          <span class="text-green-400"><%= error.resolved_at.strftime("%Y-%m-%d %H:%M:%S") %></span>
+        </div>
+        <div>
+          <strong class="text-theme-secondary"><%= t("admin.errors.show.resolved_by") %></strong>
+          <span class="text-theme-primary"><%= error.resolved_by %></span>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>

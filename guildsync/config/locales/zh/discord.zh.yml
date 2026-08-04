@@ -1,0 +1,355 @@
+zh:
+  discord_connections:
+    auto_authorize_bot:
+      title: 正在打开机器人授权...
+      please_authorize: 请授权机器人加入“%{server_name}”
+    show:
+      title: 将机器人连接到公会 Discord
+      subtitle_connected: 您的 Discord 账户已连接。请选择一个 Discord 服务器（您在其中是所有者或管理员），以连接 GuildSync 机器人用于活动管理和通知。
+      subtitle_not_connected: 请先连接您的 Discord 账户（一次性设置）。然后选择一个 Discord 服务器（您在其中是所有者或管理员）来连接 GuildSync 机器人。选择服务器后，您将授权 GuildSync 机器人加入该服务器。
+      server_not_selected:
+        title: 未选择 Discord 服务器
+        message: 请选择用于发布活动的 Discord 服务器。
+        select_button: 选择 Discord 服务器
+      server_selected:
+        title: 已选择 Discord 服务器
+        server_label: 服务器：
+        connected: 已连接
+      bot_connected:
+        title: GuildSync 机器人已连接
+      configuration_error:
+        title: 配置错误
+      bot_authorization:
+        title: 需要机器人授权
+        message: 点击下方以授权 GuildSync 机器人加入您的 Discord 服务器“%{server_name}”。
+        authorize_button: 授权 GuildSync 机器人
+        authorize_hint: 点击上方按钮以授权 GuildSync 机器人加入您的 Discord 服务器“%{server_name}”。授权后弹窗将自动关闭。
+      reconnect_button: 重新连接 / 更换账户
+      disconnect_button: 断开 Discord
+      disconnect_confirm: 您确定要将此公会与 Discord 断开吗？
+      connection_invalid:
+        title: 连接无效
+        message: 您的 Discord 连接已失效。请重新连接。
+        last_connected: 上次连接账户：
+      reconnect_discord: 重新连接 Discord
+      delete_connection: 删除连接
+      delete_confirm: 您确定要删除这个无效的 Discord 连接吗？
+      bot_not_connected:
+        title: 机器人未连接
+        message: GuildSync 机器人尚未连接到该公会的 Discord 服务器。
+      connect_section:
+        title: 将机器人连接到 Discord 服务器
+        already_connected: 您的 Discord 账户已连接。请选择要连接 GuildSync 机器人的 Discord 服务器。您必须是该服务器的所有者或管理员。
+        not_connected: 请先连接您的 Discord 账户（一次性设置）。然后选择要连接 GuildSync 机器人的 Discord 服务器。您必须是该服务器的所有者或管理员。选择服务器后，您将授权 GuildSync 机器人加入该服务器。
+        select_server: 选择 Discord 服务器
+        connect_and_select: 连接 Discord 账户并选择服务器
+      back_to_dashboard: 返回仪表盘
+      popup_blocked: 弹窗被拦截。请允许此站点弹窗后重试。
+    select_server:
+      title: 选择 Discord 服务器
+      subtitle: 选择要连接 GuildSync 机器人的 Discord 服务器。选择服务器后，您将授权 GuildSync 机器人加入该服务器。
+      header: Discord 服务器
+      header_subtitle: 请选择一个您是所有者或管理员的服务器，以连接 GuildSync 机器人
+      role_owner: 所有者
+      role_admin: 管理员
+      empty_title: 未找到 Discord 服务器
+      empty_message: 要连接机器人，您必须是至少一个 Discord 服务器的所有者或管理员。
+      go_back: 返回
+      back_to_dashboard: 返回仪表盘
+    callback_success:
+      title: 连接成功！
+      message: Discord 服务器已成功连接。
+      closing: 此窗口将在 1 秒后自动关闭...
+    callback_error:
+      title: 连接失败
+      closing: 此窗口将在 3 秒后自动关闭...
+  discord_user_auth:
+    callback_success:
+      title: Discord 认证成功
+      closing: 成功！正在关闭窗口...
+    callback_error:
+      title: 错误
+      default_message: Discord 认证失败。
+      closing: 此窗口将在 2 秒后自动关闭...
+  discord_events:
+    new:
+      title: 为 %{guild_name} 创建 Discord 活动
+      subtitle: 创建一个新活动并发布到 Discord，供所有用户查看和报名。
+      channel_configured:
+        title: 活动频道已配置
+        message: 活动将发布到设置中配置的频道。
+      event_details: 活动详情
+      event_type:
+        label: 活动类型
+        pvp: PvP
+        guild_scrim: 公会训练赛
+        gvg: GvG
+        regular_scrim: 常规训练赛
+        pve_event: PvE 活动
+        world_boss: 世界首领
+        guild_questing_time: 公会任务时间
+        custom: 自定义
+      custom_event_type:
+        label: 自定义活动类型名称
+        placeholder: 输入自定义活动类型名称
+        hint: 请输入您的自定义活动类型名称
+      event_title:
+        label: 活动标题
+        placeholder: 输入活动标题
+      discord_roles:
+        title: 要 @ 的 Discord 角色
+        subtitle: 发布活动时请选择要提及的一个或多个 Discord 角色。
+      description:
+        label: 描述
+        placeholder: 输入活动描述
+      date:
+        label: 日期
+      time:
+        label: 时间
+        hour: 时
+        minute: 分
+        ampm: 上午/下午
+        timezone_detecting: 正在检测您的时区...
+        timezone_label: 时区：%{timezone}
+        timezone_default: 时区：UTC（默认）
+        incomplete_error: 请选择完整时间（时、分和上午/下午）
+      max_participants:
+        label: 最大参与人数（可选）
+      squad_leader:
+        label: 队长（可选）
+        placeholder: 输入队长名称
+      location:
+        label: 地点（可选）
+        placeholder: 输入活动地点
+      role_categories:
+        label: 角色分类
+        hint: 选择用户可报名的角色。所有选中角色都将在 Discord 报名中可用。
+        dps: DPS
+        tank: 坦克
+        healer: 治疗
+        ranged: 远程
+      create_button: 创建活动
+      back_to_events: 返回活动列表
+    show:
+      signups_by_role: 按角色报名
+      no_signups: 暂无报名
+      status:
+        on_time: 准时
+        tentative: 暂定
+        late: 迟到
+        absent: 缺席
+      back_to_events: 返回活动列表
+      delete_event: 删除活动
+      delete_confirm: 您确定要删除此活动吗？
+  discord:
+    connections:
+      title: Discord 连接
+      select_server: 选择服务器
+      callback_success: 连接成功！
+      callback_error: 连接失败
+    oauth:
+      authorize: 授权
+      select_server: 选择一个 Discord 服务器
+    interactions:
+      account_or_membership_required: 请在 https://guild-sync.net 创建 GuildSync 账户，或确认您已加入此联盟及/或公会。
+    webhooks:
+      invalid_signature: 签名无效
+      unknown_interaction_type: 未知的交互类型
+      invalid_request_format: 请求格式无效
+      request_processing_error: 处理请求时出错，请重试。
+      missing_custom_id: 无效的交互：缺少 custom_id
+      missing_user: 无效的交互：缺少用户
+      invalid_event_signup_format: 活动报名格式无效
+      invalid_alliance_signup_format: 联盟报名格式无效
+      invalid_alliance_status_format: 联盟状态格式无效
+      invalid_status_update_format: 状态更新格式无效
+      event_not_found: 未找到活动
+      unknown_modal: 未知的模态框
+      signup_usage: 用法：/signup role:<dps|tank|healer|ranged> [event:<event_id>]
+      signup_event_not_found: 未找到活动。请指定活动 ID，或回复活动消息后使用此命令。
+      invalid_command_structure: 命令结构无效。
+      missing_interaction_token: 缺少交互令牌。
+      gear_upload_error: 处理上传时出错，请重试。
+      unknown_gear_subcommand: 未知的装备子命令
+      gear_command_error: 处理命令时出错。
+      missing_token_or_application_id: 缺少交互令牌或应用程序 ID
+      fallback_member_name: 成员
+      rsvp:
+        invalid_role: 无效职责
+        followup_error: 错误：%{message}
+        try_again_short: 发生错误，请重试。
+        attendance_prompt: 你已选择 **%{role}**。请选择出勤状态：
+        button_on_time: "✅ 准时"
+        button_late: "⏰ 迟到"
+        button_absent: "❌ 缺席"
+        button_remove: 移除
+        removed_from_signup: "✅ 已从活动报名中移除"
+        signup_not_found: 未找到报名
+        invalid_status_hint: 无效状态。有效：准时、迟到、缺席
+        status_updated: "✅ 已更新：**%{role}** - **%{status}**"
+        status_labels:
+          on_time: 准时
+          late: 迟到
+          absent: 缺席
+      alliance_rsvp:
+        attendance_prompt: 你已选择 **%{role}**。你将如何参加？
+        wrong_account_button: 此状态按钮不适用于你的账号。
+        status_updated: "✅ 联盟活动状态已更新：**%{role}** - **%{status}**"
+      event_embed:
+        squad_leader: "**\U0001F464 小队队长**"
+        location: "**\U0001F4CD 地点**"
+        event_type: "**\U0001F4C5 类型**"
+        total: "**\U0001F465 总计**"
+        general_type: 常规
+        none_markdown: "```无```"
+        none_display: "**无**"
+        status_separator: "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+        status_heading: "**状态**"
+        late: "**⏰ 迟到**"
+        absent: "**❌ 缺席**"
+        scheduled_label: "**⏰ 时间：** %{timestamp}"
+        default_description: 一起来参加这场活动！
+        title: "\U0001F3AF %{title}"
+        footer: GuildSync 活动 • 点击下方按钮报名
+        signup_prompt: "**\U0001F3AF 活动报名** — 点击下方按钮报名："
+      legacy_event_details:
+        scheduled_block: |
+          **时间：** %{date_stamp}
+          %{time_stamp}
+        duration_line: "**时长：** %{minutes} 分钟\n"
+        location_line: "**地点：** %{value}\n"
+        squad_leader_line: "**小队长：** %{value}\n"
+        participants_line: "**参与者：** %{count}\n"
+    commands:
+      help:
+        title: GuildSync — 帮助
+        description: 可用的斜杠命令取决于您在 GuildSync 中的角色。可尝试 /poll、/event、/loot、/invite、/member、/application、/docs、/guild、/alliance、/leaderboard、/profile 等，详情见 Discord 中各命令的选项。
+      errors:
+        server_only: 此命令必须在 Discord 服务器中使用，不能在私信中使用。
+        guild_not_linked: 此 Discord 服务器尚未关联 GuildSync 公会。请让管理员在公会设置中完成关联。
+        user_not_linked: 您的 Discord 账户未关联 GuildSync。请访问 guild-sync.net 注册或关联账户。
+        not_a_member: 您不是该公会在 GuildSync 上的活跃成员。
+        officer_required: 您需要官员（Officer）或更高权限才能使用此命令。
+        owner_required: 只有公会长可以使用此命令。
+        no_plan: 公会长没有有效的 GuildSync 订阅。
+        plan_limit: 您的 %{plan} 方案已达到 %{limit} 个 %{feature} 的上限。请在 guild-sync.net 升级。
+        unknown_subcommand: 未知的子命令。请使用 /help 查看可用命令。
+        not_implemented: 此命令尚未实现，请稍后再试。
+        generic: 处理请求时出错。请重试或联系支持。
+      poll:
+        no_channel: 未配置投票频道。请让管理员在 guild-sync.net 的公会设置中配置。
+        missing_fields: 请提供问题和至少两个选项（option_a 与 option_b）。
+        created: 已创建投票 **"%{title}"** 并发布到投票频道。
+        none_active: 当前公会没有进行中的投票。
+        not_found: 找不到投票。请使用 /poll list 查看。
+        list_title: "%{guild} — 进行中的投票"
+      loot:
+        no_channel: 未配置战利品掷骰频道。请让管理员在 guild-sync.net 中配置。
+        missing_item: 请提供物品名称。
+        invalid_range: 最大掷骰值必须大于最小值。
+        created: 已为 **%{item}** 创建战利品掷骰并发布到频道。
+        none_active: 当前公会没有开放的战利品掷骰。
+        not_found: 找不到掷骰。请使用 /loot list。
+        already_closed: 该战利品掷骰已关闭。
+        closed_winner: "战利品掷骰 **\"%{item}\"** 已结束。获胜者：**%{winner}**，点数：**%{roll}**！ \U0001F3C6"
+        closed_no_entries: 战利品掷骰 **"%{item}"** 已结束。无人参与。
+        list_title: "%{guild} — 开放的战利品掷骰"
+      datetime:
+        invalid_month: 月份无效。请从列表中选择。
+        invalid_day: 日期无效。%{month} 只有 %{max} 天。
+        invalid_time: 时间无效。请选择有效的小时（1–12）、分钟和上午/下午。
+        in_the_past: 该日期和时间在过去。请选择将来时间。
+        parse_error: 无法解析日期：%{detail}
+      event:
+        no_channel: 未配置活动频道。请让管理员在 guild-sync.net 中配置。
+        not_connected: 此服务器尚未完成 Discord 连接。请让管理员完成设置。
+        missing_title: 请提供活动标题。
+        duplicate: 该时间已存在名为 **"%{title}"** 的活动。
+        created: 已创建活动 **"%{title}"** 并发布到活动频道。
+        none_upcoming: 该公会没有即将开始的活动。
+        not_found: 找不到活动。请使用 /event list。
+        cancelled: 活动 **"%{title}"** 已取消并从 Discord 移除。
+        list_title: "%{guild} — 即将开始的活动"
+      invite:
+        no_user: 请 @ 要邀请的 Discord 用户。
+        self_invite: 不能邀请您自己。
+        already_member: 该用户已是本公会的活跃成员。
+        sent: 已通过 Discord 私信向 <@%{discord_user_id}> 发送邀请。链接 7 天内有效。
+        dm_disabled: 无法发送私信——对方可能关闭了私信。
+        dm_intro: "**%{inviter}** 邀请您加入 GuildSync 上的 **%{guild}**！"
+        dm_link: |-
+          点击以下链接接受邀请：
+          %{url}
+        dm_expiry: _此邀请链接将在 7 天后过期。_
+      member:
+        not_found: 在该公会中找不到此成员。
+        kicked: 已将 **%{username}** 移出公会。
+        role_updated: 已将 **%{username}** 的角色更新为 **%{role}**。
+        none: 没有找到成员。
+        list_title: "%{guild} — 成员"
+        info_title: "%{username} 的资料"
+        cannot_kick_owner: 不能踢出公会长。
+        cannot_demote_owner: 不能更改公会长的角色。
+      guild:
+        info_title: "%{name} — 公会信息"
+        settings_title: "%{name} — 设置"
+        channels_title: "%{name} — Discord 频道"
+        not_connected: 该公会未关联 Discord 服务器。
+        channel_not_set: 未配置
+      application:
+        none_pending: 当前没有待处理的申请。
+        not_found: 找不到申请。请使用 /application list。
+        accepted: 已接受申请。**%{username}** 已加入公会。
+        rejected: 已拒绝来自 **%{username}** 的申请。
+        list_title: "%{guild} — 待处理申请"
+        view_title: '申请 #%{id}'
+        already_processed: 该申请已处理。
+      docs:
+        none: 没有找到文档。
+        not_found: 找不到文档。请使用 /docs list。
+        list_title: "%{guild} — 文档"
+        preview_footer: 预览已截断。完整内容请见 guild-sync.net
+        search_none: 没有与 "%{query}" 匹配的文档。
+      leaderboard:
+        title: "%{guild} — 活动参与排行"
+        none: 尚无数据。快去报名参加活动吧！
+        footer: 按准时出席活动统计的前 10 名成员
+      activity:
+        title: "%{guild} — 最近动态"
+        none: 没有可显示的最近动态。
+      profile:
+        title: "%{username} 的 GuildSync 资料"
+        not_found: 该用户未关联 GuildSync 或不是本公会成员。
+      alliance:
+        not_in_alliance: 此 Discord 服务器对应的公会尚未加入 GuildSync 联盟。
+        info_title: "%{name}"
+        no_description: 暂无描述。
+        field_guilds: 成员公会
+        field_hub: 在网页上管理邀请与加入请求。
+        use_hub: 使用 /alliance hub 打开联盟页面。
+        hub_message: 打开 GuildSync 联盟：%{url}
+        requests_unauthorized: 仅联盟领袖、公会长或联盟官员可查看加入请求。
+        no_pending_requests: 该联盟没有待处理的加入请求。
+        requests_body: |-
+          **%{count}** 条待处理加入请求：
+          %{list}
+
+          在网页上处理：%{url}
+  discord_oauth:
+    select_server:
+      title: 选择 Discord 服务器
+      subtitle: 选择您要连接到 %{name} 的 Discord 服务器。
+      owner: 所有者
+      member: 成员
+      no_servers: 未找到 Discord 服务器。
+      no_servers_hint: 请确认您至少加入了一个 Discord 服务器。
+      try_again: 重试
+  discord_onboarding:
+    dm_message: |-
+      感谢参与！创建 GuildSync 账户以管理您的公会活动、追踪您的战利品历史并全面参与您的公会。
+
+      注册: %{signup_url}
+    dm_failed: 无法向 Discord 用户发送引导消息。
+    vote_recorded_unregistered: 投票已记录！创建 GuildSync 账户以使用全部功能。
+    roll_recorded_unregistered: 掷骰已记录！创建 GuildSync 账户以使用全部功能。
+    rsvp_recorded_unregistered: 参与已记录！创建 GuildSync 账户以使用全部功能。

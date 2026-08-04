@@ -1,0 +1,235 @@
+# frozen_string_literal: true
+#
+# Model Validation Translations
+# ============================
+# This file contains all model validation error messages for i18n support.
+#
+ko:
+  # ============================================================================
+  # ACTIVERECORD MODELS
+  # ============================================================================
+  activerecord:
+    models:
+      user: "사용자"
+      guild: "길드"
+      game: "게임"
+      event: "이벤트"
+      poll: "투표"
+      guild_document: "문서"
+      guild_member: "멤버"
+      guild_application: "지원서"
+      loot_roll: "루팅 주사위"
+    attributes:
+      user:
+        email: "이메일"
+        password: "비밀번호"
+        display_name: "표시 이름"
+      guild:
+        name: "이름"
+        description: "설명"
+      game:
+        name: "이름"
+        description: "설명"
+
+  # ============================================================================
+  # ACTIVERECORD ERRORS
+  # ============================================================================
+    errors:
+      models:
+        landing_user_feedback:
+          attributes:
+            base:
+              entry_limit_reached: "홈 피드백은 최대 %{max}개까지입니다. 하나 삭제 후 추가하세요."
+        homepage_feature_card:
+          attributes:
+            icon_key:
+              invalid_fontawesome_icon: "동기화된 Font Awesome Free 카탈로그에 없습니다. 동기화를 실행하거나 다른 아이콘을 선택하세요."
+        # ----------------------------------------------------------------------
+        # USER MODEL
+        # ----------------------------------------------------------------------
+        user:
+          attributes:
+            username:
+              invalid_format: "영문자, 숫자, 밑줄(_)만 사용할 수 있습니다"
+
+        # ----------------------------------------------------------------------
+        # GUILD MODEL
+        # ----------------------------------------------------------------------
+        guild:
+          attributes:
+            name:
+              already_owned: "이미 같은 이름의 길드를 보유하고 있습니다"
+            base:
+              subscription_required: "길드를 생성하려면 활성 구독이 필요합니다"
+              guild_limit_reached: "%{plan_name} 플랜의 길드 최대 개수(%{max_guilds})에 도달했습니다"
+
+        # ----------------------------------------------------------------------
+        # GUILD MEMBER MODEL
+        # ----------------------------------------------------------------------
+        guild_member:
+          attributes:
+            user_id:
+              already_member: "이미 이 길드의 멤버입니다"
+            base:
+              member_limit_reached: "이 길드는 %{plan_name} 플랜의 멤버 최대 수(%{max_members})에 도달했습니다"
+
+        # ----------------------------------------------------------------------
+        # GUILD DISCORD SETTING MODEL
+        # ----------------------------------------------------------------------
+        guild_discord_setting:
+          attributes:
+            discord_guild_id:
+              already_connected: "이 Discord 서버는 이미 다른 길드에 연결되어 있습니다"
+            guild_id:
+              one_connection_only: "길드는 Discord 연결을 하나만 가질 수 있습니다"
+
+        # ----------------------------------------------------------------------
+        # FEATURE REQUEST MODEL
+        # ----------------------------------------------------------------------
+        feature_request:
+          attributes:
+            description:
+              too_short: "다른 사람이 이해할 수 있도록 최소 50자 이상 입력하세요"
+
+        # ----------------------------------------------------------------------
+        # POLL VOTE MODEL
+        # ----------------------------------------------------------------------
+        poll_vote:
+          attributes:
+            user_id:
+              one_vote_only: "투표당 한 번만 투표할 수 있습니다"
+
+        # ----------------------------------------------------------------------
+        # LOOT ROLL MODEL
+        # ----------------------------------------------------------------------
+            base:
+              user_or_discord_required: "유저 계정또는 디스코드 아이디가 필요합니다."
+        loot_roll:
+          attributes:
+            max_roll:
+              must_be_greater: "최소 롤 값보다 커야 합니다"
+
+        # ----------------------------------------------------------------------
+        # LOOT ROLL ENTRY MODEL
+        # ----------------------------------------------------------------------
+        loot_roll_entry:
+          attributes:
+            discord_user_id:
+              already_rolled: "이미 롤을 완료했습니다."
+            roll_value:
+              out_of_bounds: "%{min} 이상 %{max} 이하여야 합니다"
+            base:
+              loot_roll_closed: "이 루트 롤은 종료되었습니다."
+
+        # ----------------------------------------------------------------------
+        # GUILD BATTLE MODEL
+        # ----------------------------------------------------------------------
+        guild_battle:
+          attributes:
+            defender_guild_id:
+              same_as_challenger: "도전 길드와 동일할 수 없습니다"
+
+        # ----------------------------------------------------------------------
+        # GEAR SNAPSHOT MODEL
+        # ----------------------------------------------------------------------
+        gear_snapshot:
+          attributes:
+            data:
+              blank: "값을 입력해 주세요"
+            screenshot:
+              must_be_attached: "첨부되어야 합니다"
+
+        # ----------------------------------------------------------------------
+        # GEAR UPLOAD REQUEST MODEL
+        # ----------------------------------------------------------------------
+        gear_upload_request:
+          attributes:
+            requester:
+              no_permission: "장비 업데이트 요청 권한이 없습니다"
+
+        # ----------------------------------------------------------------------
+        # GUILD APPLICATION MODEL
+        # ----------------------------------------------------------------------
+        guild_application:
+          attributes:
+            user_id:
+              already_applied: "이미 이 길드에 신청했습니다"
+
+        # ----------------------------------------------------------------------
+        # GUILD INVITE MODEL
+        # ----------------------------------------------------------------------
+        guild_invite:
+          attributes:
+            user_id:
+              already_invited: "이미 이 길드에 초대되었습니다"
+              already_member: "이미 이 길드의 멤버입니다"
+
+        # ----------------------------------------------------------------------
+        # DISCORD EVENT SIGNUP MODEL
+        # ----------------------------------------------------------------------
+        discord_event_signup:
+          attributes:
+            discord_user_id:
+              one_role_per_event: "이벤트당 하나의 역할만 신청할 수 있습니다"
+
+        # ----------------------------------------------------------------------
+        # DISCORD EVENT PARTICIPATION MODEL
+        # ----------------------------------------------------------------------
+        discord_event_participation:
+          attributes:
+            discord_user_id:
+              already_signed_up: "이미 이 이벤트에 등록되어 있습니다"
+
+        # ----------------------------------------------------------------------
+        # EVENT PARTICIPATION MODEL
+        # ----------------------------------------------------------------------
+        event_participation:
+          attributes:
+            user_id:
+              already_responded: "이미 이 이벤트에 응답했습니다"
+
+        # ----------------------------------------------------------------------
+        # DISCORD CONNECTION MODEL
+        # ----------------------------------------------------------------------
+            base:
+              user_or_discord_required: "유저 계정또는 디스코드 아이디가 필요합니다."
+        discord_connection:
+          attributes:
+            guild_id:
+              one_connection_only: "길드는 Discord 연결을 하나만 가질 수 있습니다"
+
+        # ----------------------------------------------------------------------
+        # SUBSCRIPTION MODEL
+        # ----------------------------------------------------------------------
+        subscription:
+          attributes:
+            expires_at:
+              must_be_after_started: "시작일시 이후여야 합니다"
+
+        # ----------------------------------------------------------------------
+        # GUILD GAME MODEL
+        # ----------------------------------------------------------------------
+        guild_game:
+          attributes:
+            primary:
+              only_one_allowed: "길드당 기본 게임은 하나만 설정할 수 있습니다"
+
+        alliance_poll_vote:
+          attributes:
+            base:
+              user_or_discord_required: "유저 계정또는 디스코드 아이디가 필요합니다."
+        alliance_event_participation:
+          attributes:
+            base:
+              user_or_discord_required: "유저 계정또는 디스코드 아이디가 필요합니다."
+        alliance_loot_roll_entry:
+          attributes:
+            base:
+              user_or_discord_required: "유저 계정또는 디스코드 아이디가 필요합니다."
+  ocr:
+    messages:
+      limit_reached: "이 청구 기간의 OCR 요청을 모두 사용했습니다. %{plan_name} 플랜은 월 %{limit}회까지 허용됩니다. 지원팀에 문의하세요."
+      hard_locked: "OCR 액세스가 일시 중단되었습니다. 지원팀에 문의하세요."
+      trial_expired: "무료 체험 OCR 요청을 모두 사용했습니다. OCR을 계속 사용하려면 플랜을 구독하세요."
+      free_blocked: "무료 OCR 요청을 모두 사용했습니다. 더 사용하려면 플랜을 구독하세요."
+      ip_abuse: "네트워크에서 비정상적인 OCR 활동이 감지되었습니다. 예상하지 못한 경우 지원팀에 문의하세요."

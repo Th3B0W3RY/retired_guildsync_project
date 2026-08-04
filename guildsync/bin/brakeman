@@ -1,0 +1,12 @@
+#!/usr/bin/env ruby
+require "rubygems"
+require "bundler/setup"
+
+# NOTE: `--ensure-latest` was removed. It makes Brakeman exit non-zero whenever the
+# *pinned gem* is older than the newest published release (e.g. 7.1.1 < 8.0.4),
+# which fails CI/local for a version-currency reason that is unrelated to code
+# security. The full security scan (80+ checks) still runs and gates on real
+# warnings/errors via the default --exit-on-warn / --exit-on-error. To stay current,
+# bump the `brakeman` gem in Gemfile (then optionally re-add `--ensure-latest`).
+
+load Gem.bin_path("brakeman", "brakeman")

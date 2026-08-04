@@ -1,0 +1,399 @@
+ko:
+  # ============================================================================
+  # ALLIANCES FEATURE
+  # ============================================================================
+  alliances:
+    created: "동맹이 생성되었습니다!"
+    updated: "동맹 설정이 저장되었습니다."
+    disbanded: "동맹이 해체되었습니다."
+    left: "동맹에서 나갔습니다."
+    guild_kicked: "길드가 동맹에서 제거되었습니다."
+
+    errors:
+      join_requires_paid_plan: "유료 플랜에서 유효한 구독 또는 체험이 필요합니다. 무료 플랜 및 만료된 구독·체험은 해당되지 않습니다."
+      plan_required_for_alliance_hub: "GuildSync에서 이미 동맹에 속해 있지 않다면, 동맹 허브를 열려면 유료 플랜이 필요합니다. GM에게 동기화를 요청하거나 플랜을 업그레이드하세요."
+      not_found: "동맹을 찾을 수 없습니다."
+      not_member: "이 동맹의 멤버가 아닙니다."
+      not_leader: "동맹장만 할 수 있습니다."
+      kick_unauthorized: "길드를 제거할 수 있는 사람은 길드 소유자 또는 동맹 관리자로 지정된 사람뿐입니다."
+      no_eligible_guild: "현재 소속 길드로는 동맹을 만들 수 없습니다."
+      plan_required: "현재 플랜에서는 동맹을 만들 수 없습니다. 업그레이드해 주세요."
+      disband_unauthorized: "이 동맹을 해체할 권한이 없습니다."
+      leave_unauthorized: "동맹을 나갈 수 있는 사람은 길드 소유자뿐입니다."
+      leader_cannot_leave: "창설 길드는 동맹에서 나갈 수 없습니다. 대신 동맹을 해체하세요."
+      guild_not_found: "길드를 찾을 수 없습니다."
+      cannot_kick_leader_guild: "창설 길드를 동맹에서 제거할 수 없습니다."
+      conflicting_alliance_membership: "동시에 둘 이상의 동맹에 속한 길드에 참여할 수 없습니다."
+    index:
+      title: "동맹"
+      open_alliance: "동맹 열기"
+      invite_from: "%{name} 님이 초대"
+      accept: "수락"
+      decline: "거절"
+      request_join_hint: "이미 동맹에 속한 공개 목록 길드를 검색한 뒤, 내 길드를 고르고 해당 동맹에 가입을 요청하세요."
+      search_label: "길드 검색"
+      search_placeholder: "길드 이름 입력..."
+      search_select_target: "대상 길드(동맹에 속해야 함)"
+      submit_join_request: "가입 요청 보내기"
+      searching: "검색 중..."
+      no_results: "길드를 찾을 수 없습니다."
+      load_more_results: "결과 더 불러오기"
+
+    roles:
+      leader_guild: "창설 길드"
+    new:
+      title: "동맹 만들기"
+      subtitle: "여러 길드를 한 깃발 아래 모읍니다."
+
+    edit:
+      title: "동맹 설정"
+      back: "동맹으로 돌아가기"
+      danger_zone: "위험 구역"
+      disband: "동맹 해체"
+      disband_confirm: "정말 이 동맹을 해체할까요? 되돌릴 수 없습니다."
+
+    form:
+      name: "동맹 이름"
+      name_placeholder: "동맹 이름 입력..."
+      description: "설명"
+      description_placeholder: "동맹을 설명해 주세요..."
+      logo: "동맹 로고"
+      choose_logo_button: "이미지 선택"
+      no_file_chosen: "선택된 파일 없음"
+      logo_hint: "선택 사항. 권장: 정사각형, 최소 256×256 px."
+      logo_replace_hint: "새 파일을 올리면 현재 로고가 바뀝니다."
+      creating_for: "다음을 위해 동맹 생성:"
+      size_info: "동맹에는 길드 1~20개가 들어갈 수 있습니다. 먼저 내 길드로 시작한 뒤 다른 길드를 초대하세요."
+      create_button: "동맹 만들기"
+      save_button: "변경 저장"
+
+    show:
+      guilds: "소속 길드"
+      guilds_count:
+        one: "길드 1개"
+        other: "길드 %{count}개"
+      leader: "동맹장: %{name}"
+      edit: "편집"
+      leave: "동맹 나가기"
+      leave_confirm: "정말 이 동맹에서 나갈까요?"
+      invite_guild: "길드 초대"
+      kick_guild: "추방"
+      kick_guild_confirm: "동맹에서 %{name} 을(를) 제거할까요?"
+      members_preview: "멤버"
+      view_all_members: "모든 멤버 보기"
+      more_members:
+        one: "멤버 1명 더…"
+        other: "멤버 %{count}명 더…"
+
+    nav:
+      members: "멤버"
+      events: "동맹 이벤트"
+      polls: "동맹 투표"
+      rolls: "동맹 주사위"
+      chat: "동맹 채팅"
+      activity_feed: "활동 피드"
+      gm_chat: "GM 채팅"
+      invites: "대기 중인 초대"
+      join_requests: "가입 요청"
+      disband_vote: "해체 표결"
+      back_to_alliance: "동맹으로 돌아가기"
+
+    invites:
+      sent: "%{guild_name} 에게 초대를 보냈습니다."
+      accepted: "%{alliance_name} 에 가입했습니다!"
+      declined: "초대를 거절했습니다."
+
+      errors:
+        not_found: "초대를 찾을 수 없습니다."
+        guild_not_found: "길드를 찾을 수 없습니다. 이름으로 검색해 공개 목록에 있는 길드를 선택하세요."
+        already_in_alliance: "이 길드는 이미 이 동맹에 있습니다."
+        already_invited: "이 길드에는 이미 대기 중인 초대가 있습니다."
+        pending_join_request: "이 길드에는 이 동맹에 대한 가입 요청이 이미 대기 중입니다."
+        max_guilds: "이 동맹은 길드 최대 20개에 도달했습니다."
+        invite_unauthorized: "길드를 초대할 수 있는 사람은 길드 소유자 또는 동맹 관리자로 지정된 사람뿐입니다."
+        accept_unauthorized: "이 초대를 수락할 수 있는 사람은 대상 길드의 소유자뿐입니다."
+        decline_unauthorized: "이 초대를 거절할 수 있는 사람은 대상 길드의 소유자뿐입니다."
+
+      index:
+        title: "대기 중인 초대"
+        subtitle: "%{alliance_name} 초대"
+        invite_guild: "길드 초대"
+        search_label: "공개 목록 길드 검색"
+        search_placeholder: "길드 이름 입력..."
+        search_hint: "검색은 길드 이름만 일치합니다. 공개 등록을 선택한 길드만 표시됩니다."
+        search_unauthorized: "이 페이지에서는 검색할 수 없습니다."
+        load_more_results: "결과 더 불러오기"
+        selected_guild: "초대 대상"
+        already_in_alliance_suffix: "이미 동맹에 있음(초대 불가)"
+        invite_restricted: "초대는 동맹장만 보낼 수 있습니다."
+        send_invite: "초대 보내기"
+        pending: "대기 중인 초대"
+        no_pending: "대기 중인 초대가 없습니다."
+        invited_by: "%{name} 님이 초대"
+
+    events:
+      created: "동맹 이벤트가 만들어졌습니다!"
+      updated: "이벤트가 수정되었습니다."
+      deleted: "이벤트가 삭제되었습니다."
+      rsvp_saved: "참가 응답이 저장되었습니다."
+      discord_rsvp:
+        errors:
+          link_required: "RSVP 전에 Discord 계정을 GuildSync에 연결해 주세요."
+          event_not_found: "동맹 이벤트를 찾을 수 없습니다."
+          invalid_status: "잘못된 참가 응답 상태입니다."
+          not_alliance_member: "RSVP하려면 활성 동맹 멤버여야 합니다."
+          save_failed: "참가 응답을 저장할 수 없습니다: %{error}"
+          unexpected: "동맹 참가 응답을 저장하는 중 오류가 발생했습니다."
+
+      errors:
+        not_found: "이벤트를 찾을 수 없습니다."
+        manage_unauthorized: "이벤트는 길드 소유자만 관리할 수 있습니다."
+        invalid_rsvp: "잘못된 참가 응답 상태입니다."
+
+      index:
+        title: "동맹 이벤트"
+        subtitle: "%{alliance_name} 이벤트"
+        create: "이벤트 만들기"
+        upcoming: "예정된 이벤트"
+        past: "지난 이벤트"
+        no_events: "이벤트가 없습니다. 만들어 보세요."
+        attending: "참석"
+        upcoming_label: "예정"
+
+      new:
+        title: "동맹 이벤트 만들기"
+
+      edit:
+        title: "이벤트 편집"
+
+      show:
+        back: "이벤트 목록으로"
+        minutes: "분"
+        your_rsvp: "내 참가 응답"
+        attending: "참석"
+        maybe: "미정"
+        declined: "불참"
+        participants: "참가자"
+        no_participants: "아직 참가 응답이 없습니다."
+        delete_confirm: "이 이벤트를 삭제할까요?"
+        status:
+          attending: "참석"
+          maybe: "미정"
+          declined: "불참"
+
+      form:
+        title: "이벤트 제목"
+        description: "설명"
+        scheduled_at: "날짜 및 시간"
+        duration: "진행 시간(분)"
+        duration_placeholder: "예: 60"
+        location: "장소 / 서버"
+        location_placeholder: "예: Discord 스테이지, 게임 서버 이름..."
+        create_button: "이벤트 만들기"
+        save_button: "이벤트 저장"
+        event_type: "이벤트 유형"
+        event_type_general: "일반"
+        max_participants: "최대 참가자(선택)"
+        squad_leader: "분대장(선택)"
+        squad_leader_placeholder: "선택 — 비우면 본인이 기본값"
+        role_categories_section: "Discord 신청 역할"
+        role_categories_hint: "Discord 공지에서 버튼으로 표시할 역할(길드 Discord 이벤트와 같은 개념)."
+    polls:
+      created: "동맹 투표가 만들어졌습니다!"
+      deleted: "투표가 삭제되었습니다."
+
+      errors:
+        not_found: "투표를 찾을 수 없습니다."
+        manage_unauthorized: "투표는 길드 소유자 또는 동맹 관리자로 지정된 사람만 만들 수 있습니다."
+        poll_closed: "이 투표는 종료되었습니다."
+        invalid_choice: "잘못된 투표 선택입니다."
+
+      index:
+        title: "동맹 투표"
+        subtitle: "%{alliance_name} 투표"
+        create: "투표 만들기"
+        no_polls: "아직 연합체 조사가 없습니다."
+        created_by: "%{name}님이 생성"
+        deadline: "마감:"
+        open: "진행 중"
+        closed: "종료"
+        anonymous: "익명"
+        maybe: "잘 모름"
+        voters_heading: "투표자"
+        view_vote: "투표"
+        view_results: "결과"
+        delete_confirm: "이 투표를 삭제할까요?"
+
+        "yes": "예"
+        "no": "아니요"
+      new:
+        title: "동맹 투표 만들기"
+
+      show:
+        back: "투표 목록으로"
+        deadline: "마감: %{date}"
+        anonymous: "익명"
+        open: "진행 중"
+        closed: "종료"
+        your_vote: "투표하기"
+        maybe: "잘 모름"
+        voters_heading: "투표자"
+
+        "yes": "예"
+        "no": "아니요"
+      form:
+        title: "투표 질문"
+        description: "설명"
+        deadline: "마감"
+        anonymous: "익명 투표(개별 선택 숨김)"
+        create_button: "투표 만들기"
+
+    loot_rolls:
+      created: "동맹 전리품 주사위가 만들어졌습니다!"
+      deleted: "주사위 굴림이 삭제되었습니다."
+      closed: "주사위 굴림이 마감되어 승자가 정해졌습니다."
+      entered: "%{roll} 이(가) 나왔습니다!"
+
+      errors:
+        not_found: "주사위 굴림을 찾을 수 없습니다."
+        manage_unauthorized: "주사위 굴림은 길드 소유자 또는 동맹 관리자로 지정된 사람만 관리할 수 있습니다."
+        already_closed: "이미 마감된 굴림입니다."
+        not_open: "이 전리품 주사위는 현재 열려 있지 않습니다."
+        already_entered: "이미 이 굴림에 참여했습니다."
+
+      index:
+        title: "동맹 전리품 주사위"
+        subtitle: "%{alliance_name} 굴림"
+        create: "주사위 만들기"
+        no_rolls: "아직 주사위 굴림이 없습니다."
+        range: "범위: %{min}–%{max}"
+        deadline: "마감:"
+        winner: "🏆 승자: %{name} (%{roll})"
+        open: "진행 중"
+        closed: "종료"
+        view: "굴림 보기"
+
+      new:
+        title: "동맹 전리품 주사위 만들기"
+
+      show:
+        back: "굴림 목록으로"
+        range: "굴림 범위: %{min}–%{max}"
+        deadline: "마감: %{date}"
+        open: "진행 중"
+        closed: "종료"
+        winner: "🏆 승자: %{name} (%{roll})"
+        enter: "참여하기"
+        your_roll: "내 숫자: %{roll}"
+        close: "마감 후 승자 결정"
+        close_confirm: "이 굴림을 마감하고 승자를 정할까요?"
+        entries: "참가"
+        no_entries: "아직 참가가 없습니다."
+        anonymous_entry: "익명"
+        entries_line:
+          zero: "참가 %{count}명"
+          one: "참가 %{count}명"
+          other: "참가 %{count}명"
+
+      form:
+        title: "주사위 제목"
+        description: "설명"
+        min_roll: "최소값"
+        max_roll: "최대값"
+        deadline: "마감(선택)"
+        deadline_hint: "비우면 마감 없음."
+        anonymous: "익명 굴림"
+        create_button: "주사위 만들기"
+
+    disband_votes:
+      vote_cast: "해체 찬반 투표가 기록되었습니다."
+      majority_disbanded: "GM 과반수가 해체에 찬성했습니다. 동맹이 해체되었습니다."
+
+      errors:
+        not_gm: "해체 표결은 길드 소유자만 할 수 있습니다."
+
+      index:
+        title: "해체 표결"
+        vote_tally: "현재 집계"
+        votes_to_disband: "해체 찬성 GM %{total}명 중 %{count}명"
+        threshold_note: "가결되려면 GM의 50% 초과가 해체에 찬성해야 합니다."
+        your_vote: "내 표"
+        vote_disband: "해체에 찬성"
+        vote_disband_confirm: "정말 이 동맹 해체에 찬성할까요?"
+        vote_keep: "동맹 유지"
+        current_vote: "현재 선택: %{vote}"
+        all_votes: "모든 GM 표"
+        no_votes_yet: "아직 표가 없습니다."
+        disband: "해체"
+        keep: "유지"
+
+    messages:
+      errors:
+        gm_only: "GM 채팅은 길드 소유자만 이용할 수 있습니다."
+        blank: "메시지를 비울 수 없습니다."
+
+      index:
+        gm_chat: "GM 채팅"
+        alliance_chat: "동맹 채팅"
+        switch_to_gm: "GM 채팅으로"
+        switch_to_all: "동맹 채팅으로"
+        gm_only_notice: "이 채널은 이 동맹의 길드 소유자에게만 보입니다."
+        no_messages: "아직 메시지가 없습니다. 인사해 보세요!"
+        you: "나"
+        send: "보내기"
+        placeholder: "메시지 입력..."
+        message_time_format: "%Y.%m.%d %H:%M"
+
+    join_requests:
+      created: "가입 요청이 **%{alliance_name}** 에 보내졌습니다."
+      accepted: "**%{guild_name}** 이(가) 동맹에 합류했습니다."
+      declined: "가입 요청이 거절되었습니다."
+
+      index:
+        title: "가입 요청"
+        subtitle: "**%{alliance_name}** 가입을 요청한 길드"
+        back: "동맹으로 돌아가기"
+        none: "대기 중인 가입 요청이 없습니다."
+
+      errors:
+        not_found: "가입 요청을 찾을 수 없습니다."
+        guild_not_found: "길드를 찾을 수 없습니다."
+        unauthorized: "해당 길드를 대신해 요청할 수 없습니다."
+        already_in_alliance: "이 길드는 이미 동맹에 있습니다."
+        alliance_inactive: "해당 동맹은 더 이상 활성 상태가 아닙니다."
+        requesting_already_in_alliance: "요청이 수락되기 전에 이 길드가 다른 동맹에 들어갔습니다."
+        max_guilds: "지금은 이 동맹이 더 많은 길드를 받을 수 없습니다."
+        pending_invite: "이 동맹과 길드에 대한 초대가 이미 대기 중입니다."
+        create_failed: "가입 요청을 만들 수 없습니다."
+        accept_failed: "가입 요청을 수락할 수 없습니다."
+        manage_unauthorized: "가입 요청은 동맹장, 길드 소유자, 동맹 오피서만 관리할 수 있습니다."
+
+    outgoing_join_requests:
+      new:
+        title: "동맹 가입 요청"
+        subtitle: "내 길드: %{guild_name}. 이미 동맹에 속한 목록 길드를 검색하세요."
+        back: "길드로 돌아가기"
+      status:
+        title: "가입 요청 상태"
+        subtitle: "**%{guild_name}** 에서 보낸 요청"
+        none: "이 길드에서 대기 중인 가입 요청이 없습니다."
+        pending: "대기 중"
+      search_unauthorized: "이 페이지에서는 검색할 수 없습니다."
+      not_in_alliance_suffix: "동맹 없음"
+
+    received_invites:
+      pending:
+        title: "대기 중인 동맹 초대"
+        subtitle: "**%{guild_name}** 에 온 초대"
+        none: "대기 중인 동맹 초대가 없습니다."
+
+    discord:
+      invite_embed:
+        title: "동맹 초대: %{alliance_name}"
+        body: "%{inviter} 님이 초대했습니다. GuildSync에서 수락 또는 거절하세요."
+      join_request_embed:
+        title: "가입 요청: %{guild_name}"
+        body: "%{guild_name} 이(가) **%{alliance_name}** 가입을 요청했습니다. GuildSync에서 확인하세요."
+      member_joined_embed:
+        title: "%{guild_name} 동맹 합류"
+        body: "**%{guild_name}** 이(가) **%{alliance_name}** 의 일원이 되었습니다."

@@ -1,0 +1,6 @@
+<%= turbo_stream.update "admin_errors_flash" do %>
+  <%= render "admin/errors/flash_banner", message: @admin_errors_message, variant: @admin_errors_flash_variant %>
+<% end %>
+<%= turbo_stream.replace "admin_errors_columns" do %>
+  <%= render "admin/errors/index_columns", unresolved: @unresolved, resolved: @resolved %>
+<% end %>

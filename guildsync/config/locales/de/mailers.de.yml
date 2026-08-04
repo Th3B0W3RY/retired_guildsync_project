@@ -1,0 +1,6 @@
+---
+de:
+  mailers:
+    trial_mailer:
+      trial_expiring:
+        subject: Ihr GuildSync-Testzeitraum endet bald

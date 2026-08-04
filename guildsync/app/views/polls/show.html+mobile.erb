@@ -1,0 +1,138 @@
+<div class="max-w-3xl mx-auto p-6">
+  <div class="mb-6">
+    <%= link_to t('polls.show.back_to_polls'), guild_polls_path(@guild), class: "text-theme-accent hover:text-theme-accent-hover mb-4 inline-block" %>
+    <h1 class="text-3xl font-bold text-theme-primary mb-2"><%= @poll.title %></h1>
+    <div class="flex items-center gap-4 text-sm text-theme-secondary">
+      <span><%= t('polls.show.created_by', name: @poll.creator.name_for_discord_embed) %></span>
+      <span>•</span>
+      <span><%= t('polls.show.deadline') %> <%= @poll.deadline.strftime("%B %d, %Y at %I:%M %p") %></span>
+      <span>•</span>
+      <span><%= @poll.total_votes %> <%= "vote".pluralize(@poll.total_votes) %></span>
+      <% if @poll.anonymous? %>
+        <span class="px-2 py-1 bg-blue-900/30 text-blue-400 rounded text-xs"><%= t('polls.index.anonymous') %></span>
+      <% end %>
+      <span class="px-3 py-1 rounded-full text-sm font-medium
+        <%= @poll.open? ? 'bg-green-900/30 text-green-500' : 'bg-gray-900/30 text-gray-500' %>">
+        <%= @poll.open? ? t('polls.index.open') : t('polls.index.closed') %>
+      </span>
+    </div>
+  </div>
+
+  <div class="bg-theme-secondary rounded-lg border border-theme-primary p-6 mb-6">
+    <% if @poll.description.present? %>
+      <div class="mb-6">
+        <h2 class="text-lg font-semibold text-theme-primary mb-2"><%= t('polls.show.description') %></h2>
+        <p class="text-theme-secondary whitespace-pre-wrap"><%= @poll.description %></p>
+      </div>
+    <% end %>
+
+    <% if @poll.open? %>
+      <div class="mb-6"
+           data-controller="poll-vote"
+           data-poll-vote-poll-id-value="<%= @poll.id %>"
+           data-poll-vote-vote-url-value="<%= vote_guild_poll_path(@guild, @poll) %>">
+        <h2 class="text-lg font-semibold text-theme-primary mb-4"><%= t('polls.show.cast_vote') %></h2>
+        <div class="flex w-full flex-col gap-3">
+          <button 
+            data-poll-vote-target="yesButton"
+            data-action="click->poll-vote#vote"
+            data-choice="0"
+            class="w-full px-6 py-3 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors font-semibold <%= 'ring-2 ring-green-400' if @current_user_vote&.choice == 'yes' %>">
+            <%= t('polls.show.yes') %>
+          </button>
+          <button 
+            data-poll-vote-target="noButton"
+            data-action="click->poll-vote#vote"
+            data-choice="1"
+            class="w-full px-6 py-3 bg-red-600 text-white rounded-lg hover:bg-red-700 transition-colors font-semibold <%= 'ring-2 ring-red-400' if @current_user_vote&.choice == 'no' %>">
+            <%= t('polls.show.no') %>
+          </button>
+          <button 
+            data-poll-vote-target="maybeButton"
+            data-action="click->poll-vote#vote"
+            data-choice="2"
+            class="w-full px-6 py-3 bg-yellow-600 text-white rounded-lg hover:bg-yellow-700 transition-colors font-semibold <%= 'ring-2 ring-yellow-400' if @current_user_vote&.choice == 'maybe' %>">
+            <%= t('polls.show.maybe') %>
+          </button>
+        </div>
+        <p class="text-xs text-theme-secondary mt-2"><%= t('polls.show.change_vote_hint') %></p>
+      </div>
+    <% end %>
+
+    <div class="mt-6">
+      <h2 class="text-lg font-semibold text-theme-primary mb-4"><%= t('polls.show.results') %></h2>
+      <% if @poll.total_votes > 0 %>
+        <div class="space-y-4">
+          <div data-vote-type="yes">
+            <div class="flex items-center justify-between mb-2">
+              <span class="text-theme-primary font-medium"><%= t('polls.show.yes') %></span>
+              <span class="text-theme-primary font-semibold"><span class="vote-count"><%= @vote_counts[:yes] %> <%= t('polls.show.votes') %></span> <span class="vote-percent">(<%= @vote_percentages[:yes] %>%)</span></span>
+            </div>
+            <div class="w-full bg-theme-primary rounded-full h-4">
+              <div class="bg-green-500 h-4 rounded-full transition-all duration-300 vote-bar" style="width: <%= @vote_percentages[:yes] %>%"></div>
+            </div>
+            <% unless @poll.anonymous? %>
+              <% yes_voters = @poll.poll_votes.where(choice: :yes).includes(:user) %>
+              <% if yes_voters.any? %>
+                <div class="mt-2 text-sm text-theme-secondary">
+                  <% yes_voters.each do |vote| %>
+                    <span class="inline-block bg-green-900/30 text-green-400 px-2 py-1 rounded mr-2 mb-1"><%= vote.user.display_name %></span>
+                  <% end %>
+                </div>
+              <% end %>
+            <% end %>
+          </div>
+          <div data-vote-type="no">
+            <div class="flex items-center justify-between mb-2">
+              <span class="text-theme-primary font-medium"><%= t('polls.show.no') %></span>
+              <span class="text-theme-primary font-semibold"><span class="vote-count"><%= @vote_counts[:no] %> <%= t('polls.show.votes') %></span> <span class="vote-percent">(<%= @vote_percentages[:no] %>%)</span></span>
+            </div>
+            <div class="w-full bg-theme-primary rounded-full h-4">
+              <div class="bg-red-500 h-4 rounded-full transition-all duration-300 vote-bar" style="width: <%= @vote_percentages[:no] %>%"></div>
+            </div>
+            <% unless @poll.anonymous? %>
+              <% no_voters = @poll.poll_votes.where(choice: :no).includes(:user) %>
+              <% if no_voters.any? %>
+                <div class="mt-2 text-sm text-theme-secondary">
+                  <% no_voters.each do |vote| %>
+                    <span class="inline-block bg-red-900/30 text-red-400 px-2 py-1 rounded mr-2 mb-1"><%= vote.user.name_for_discord_embed %></span>
+                  <% end %>
+                </div>
+              <% end %>
+            <% end %>
+          </div>
+          <div data-vote-type="maybe">
+            <div class="flex items-center justify-between mb-2">
+              <span class="text-theme-primary font-medium"><%= t('polls.show.maybe') %></span>
+              <span class="text-theme-primary font-semibold"><span class="vote-count"><%= @vote_counts[:maybe] %> <%= t('polls.show.votes') %></span> <span class="vote-percent">(<%= @vote_percentages[:maybe] %>%)</span></span>
+            </div>
+            <div class="w-full bg-theme-primary rounded-full h-4">
+              <div class="bg-yellow-500 h-4 rounded-full transition-all duration-300 vote-bar" style="width: <%= @vote_percentages[:maybe] %>%"></div>
+            </div>
+            <% unless @poll.anonymous? %>
+              <% maybe_voters = @poll.poll_votes.where(choice: :maybe).includes(:user) %>
+              <% if maybe_voters.any? %>
+                <div class="mt-2 text-sm text-theme-secondary">
+                  <% maybe_voters.each do |vote| %>
+                    <span class="inline-block bg-yellow-900/30 text-yellow-400 px-2 py-1 rounded mr-2 mb-1"><%= vote.user.name_for_discord_embed %></span>
+                  <% end %>
+                </div>
+              <% end %>
+            <% end %>
+          </div>
+        </div>
+      <% else %>
+        <p class="text-theme-secondary"><%= t('polls.show.no_votes') %></p>
+      <% end %>
+    </div>
+  </div>
+
+  <% if @poll.creator == current_user || @guild.owner == current_user || can_manage_guild_settings?(@guild) %>
+    <div class="mt-6 flex w-full flex-col gap-3">
+      <%= button_to t('polls.show.delete_poll'), guild_poll_path(@guild, @poll), method: :delete,
+          class: "px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 transition-colors font-semibold",
+          data: { confirm: t('polls.index.delete_confirm') } %>
+    </div>
+  <% end %>
+</div>
+

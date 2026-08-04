@@ -1,0 +1,145 @@
+de:
+  sessions:
+    new:
+      title: Anmelden
+      forgot_password: Haben Sie das Passwort vergessen?
+      resend_confirmation: Bestätigungs-E-Mail erneut senden
+      sign_in_with_discord: Mit Discord einloggen
+      sign_in_with_google: Mit Gmail einloggen
+      sign_in_with_microsoft: Mit Outlook einloggen
+      no_account: Haben Sie noch keinen Account?
+      create_account: Hier einen erstellen
+      discord_login_failed: 'Discord-Anmeldung fehlgeschlagen:'
+  registrations:
+    new:
+      title: Registrieren
+      have_account: Bereits ein Konto?
+      sign_in_here: Hier anmelden
+      signing_up_for: Beim Anmelden für
+      trial_after_mfa: Die Probzeit beginnt nach der MFA-Verifizierung.
+      username: Benutzername
+      username_hint: 3-30 Zeichen, Buchstaben, Zahlen und Unterstriche nur
+      password_hint: Mindestens 6 Zeichen
+      confirm_password: Passwort bestätigen
+      create_account_button: Konto erstellen
+      sign_up_with_discord: Registrieren Sie sich mit Discord.
+      discord_signup_failed: 'Discord Anmeldung fehlgeschlagen:'
+      popup_blocked: Popup wurde blockiert. Bitte erlauben Sie Popups für diese Website und versuchen Sie es erneut.
+    errors:
+      captcha_invalid: Sicherheitsüberprüfung fehlgeschlagen. Schließen Sie die Prüfung unten ab und versuchen Sie es erneut.
+      discord_captcha_required: Verwenden Sie die Schaltfläche „Mit Discord registrieren“ auf dieser Seite, nachdem Sie die Sicherheitsprüfung abgeschlossen haben.
+  confirmations:
+    new:
+      title: Bestätigungsanweisungen erneut senden
+      intro: Geben Sie Ihre E-Mail ein. Wir senden einen neuen Bestätigungslink.
+      submit: Anweisungen erneut senden
+      back_to_sign_in: Zurück zur Anmeldung
+    create:
+      already_registered: Diese E-Mail ist bereits registriert und bestätigt. Bitte versuchen Sie eine andere E-Mail oder melden Sie sich an.
+  passwords:
+    new:
+      title: Haben Sie Ihr Passwort vergessen?
+      instructions: Geben Sie bitte Ihre E-Mail-Adresse ein. Wir senden Ihnen Anweisungen für das Zurücksetzen Ihres Passworts.
+      send_instructions: Reset-Anweisungen senden
+      back_to_sign_in: Zurück zur Anmeldung
+    edit:
+      title: Passwort zurücksetzen
+      subtitle: Geben Sie unten Ihre neue Passwort
+      new_password: Neues Passwort
+      confirm_password: Passwort bestätigen
+      confirm_new_password: Neues Passwort bestätigen
+      password_hint: Mindestens 6 Zeichen
+      reset_password: Zurücksetzen des Passworts
+      back_to_sign_in: Zurück zur Anmeldung
+    create:
+      instructions_sent: Wenn ein Konto mit dieser E-Mail existiert, erhalten Sie Anweisungen zum Zurücksetzen des Passworts.
+      invalid_email: Ungültige E-Mail-Adresse.
+    update:
+      success: Ihr Passwort wurde geändert. Sie sind jetzt angemeldet.
+    account_recovery:
+      title: Kontowiederherstellung
+      page_intro: Wählen Sie, wie Sie wieder auf Ihr Konto zugreifen möchten.
+      email_section_title: Passwort per E-Mail zurücksetzen
+      email_section_intro: Wir senden einen Link an Ihre E-Mail-Adresse. Nutzen Sie ihn auf diesem Gerät, um ein neues Passwort festzulegen.
+      email_send_button: Link zum Zurücksetzen senden
+      email_link_hint: Haben Sie bereits eine E-Mail von uns? Öffnen Sie den Link in dieser Nachricht.
+      or_divider: oder
+      backup_section_title: Backup-Code verwenden
+      backup_section_intro: Wenn Sie Backup-Codes in den Kontoeinstellungen gespeichert haben, geben Sie unten Ihre E-Mail und einen Code ein.
+      backup_code_label: Backup-Code
+      backup_code_placeholder: XXXX-XXXX-XXXX-XXXX-XXXX-XXXX
+      backup_code_hint: Geben Sie einen Ihrer 24-stelligen Backup-Codes ein (Bindestriche optional)
+      verify_backup_code: Backup-Code verifizieren
+      contact_support: Support kontaktieren
+  backup_codes:
+    verify:
+      invalid_email_or_code: Ungültige E-Mail-Adresse oder ungültiger Backup-Code.
+      invalid_code: Ungültiger Backup-Code.
+      success: Backup-Code akzeptiert. Legen Sie unten ein neues Passwort fest.
+  recoveries:
+    edit:
+      title: Konto zurücksetzen
+      badge: Wiederherstellung mit Backup-Code
+      mfa_section: Multi-Faktor-Authentifizierung (MFA)
+      mfa_warning: Für Ihr Konto ist aktuell MFA aktiviert. Da Sie einen Backup-Code verwenden, können Sie MFA zurücksetzen.
+      reset_mfa_label: MFA zurücksetzen (deaktivieren und neu einrichten)
+      mfa_not_enabled: MFA ist für Ihr Konto nicht aktiviert.
+      submit: Änderungen speichern & Konto wiederherstellen
+      note: Nach der Wiederherstellung melden Sie sich mit Ihrem neuen Passwort an. Wenn Sie MFA zurücksetzen, können Sie es in den Kontoeinstellungen erneut einrichten.
+      new_password: Neues Passwort
+      confirm_password: Neues Passwort bestätigen
+    update:
+      success: Ihr Konto wurde wiederhergestellt. Bitte melden Sie sich mit Ihrem neuen Passwort an.
+    expired: "Die Wiederherstellungssitzung ist abgelaufen. Bitte starten Sie erneut."
+  mfa_setup:
+    show:
+      title: Aktivieren Mehrfaktorenmäßigung
+      subtitle: Den QR-Code mit Ihrer Auth-App scannen, um loszulegen.
+      instructions_title: Einstellungen anzeigen
+      step_1: Eine Authentifizierungs-App auf Ihrem Handy installieren (Google Authenticator, Authy, Microsoft Authenticator usw.).
+      step_2: Öffnen Sie die App und berühren Sie "Konto hinzufügen" oder den "+-Button"
+      step_3: Scannen Sie den QR-Code unten mit der Kamera ihres Handys oder dem Scanner der App.
+      step_4: Geben Sie den 6-stelligen Code aus Ihrer App um zu bestätigen.
+      manual_entry: 'QR-Code nicht scannbar? Geben Sie dieses Geheimnis manuell in Ihrer Authenticator-App ein:'
+      cant_scan: 'Kann nicht scannen? Tragen Sie diesen Code manuell in der App ein:'
+      code_label: Geben Sie den 6-stelligen Code von Ihrer Authenticator-App ein.
+      code_placeholder: '000000'
+      code_hint: Geben Sie den im Bildschirm Ihrer Authentifizierungs-App angezeigten 6-stelligen Code ein.
+      verify_button: Verifizieren und aktivieren Sie die MFA (nur für die Deaktivierung?)
+      recommended_apps: 'Empfohlene Authenticator-Apps:'
+      setup_unavailable: Wir konnten Ihren Einrichtungsschlüssel nicht erzeugen. Laden Sie die Seite neu oder versuchen Sie es später erneut. Wenn das Problem bleibt, kontaktieren Sie den Support.
+  mfa_verification:
+    show:
+      title: Identität bestätigen
+      subtitle: Geben Sie den 6-stelligen Code von Ihrer Authentifizierungs-App ein.
+      code_label: Authentifizierungscode
+      code_placeholder: '000000'
+      code_hint: Öffne die Authentifizierungs-App und gib den 6-stelligen Code ein.
+      verify_button: Überprüfen
+      trouble_text: Probleme beim Anmelden?
+      having_trouble: Haben Sie Schwierigkeiten?
+      contact_support: Support kontaktieren
+  profile_completion:
+    show:
+      title: Vollständiges Profil vervollständigen
+      subtitle: Bitte geben Sie Ihre Account-Details an, um fortzufahren.
+      email_label: E-Mail-Adresse
+      email_placeholder: Geben Sie Ihre E-Mail-Adresse ein
+      email_hint: Geben Sie eine gültige E-Mail-Adresse für Ihr Konto ein
+      username_hint: 3-30 Zeichen, Buchstaben, Zahlen und Unterstriche nur
+      username_placeholder: Geben Sie Ihren Benutzernamen ein.
+      password_hint: Wählen Sie ein sicheres Passwort (Mindestens 6 Zeichen)
+      confirm_password_hint: Bitte geben Sie Ihr Passwort erneut ein, um zu bestätigen.
+      password_confirmation_label: Passwort bestätigen
+      submit_button: Profil vervollständigen
+      complete_button: Einrichtung abschließen
+      username_label: Benutzername
+      password_label: Passwort
+      password_confirmation_hint: Bitte geben Sie Ihr Passwort erneut ein, um zu bestätigen.
+    update:
+      success: Profil vervollständigt. Richten Sie nun MFA ein.
+  mfa:
+    setup:
+      title: Einrichtung von MFA
+    verification:
+      title: Verifiziere MFA

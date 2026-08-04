@@ -1,0 +1,155 @@
+<div class="max-w-2xl mx-auto p-6">
+  <div class="mb-6">
+    <h1 class="text-3xl font-bold text-theme-primary mb-2"><%= t('polls.new.title') %></h1>
+    <p class="text-theme-secondary"><%= t('polls.new.subtitle', guild_name: @guild.name) %></p>
+  </div>
+
+  <%= form_with model: [@guild, @poll], local: true, class: "bg-theme-secondary rounded-lg border border-theme-primary p-6 space-y-6" do |f| %>
+    <% if @poll.errors.any? %>
+      <div class="bg-red-900/20 border border-red-500 rounded-lg p-4">
+        <ul class="list-disc list-inside text-red-400">
+          <% @poll.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+    <div>
+      <%= f.label :title, t('polls.new.poll_title'), class: "block text-sm font-medium text-theme-primary mb-2" %>
+      <%= f.text_field :title, class: "w-full px-4 py-2 bg-theme-primary border border-theme-secondary rounded-lg text-theme-primary", placeholder: t('polls.new.poll_title_placeholder'), required: true %>
+    </div>
+
+    <div>
+      <%= f.label :description, t('polls.new.description'), class: "block text-sm font-medium text-theme-primary mb-2" %>
+      <%= f.text_area :description, rows: 4, class: "w-full px-4 py-2 bg-theme-primary border border-theme-secondary rounded-lg text-theme-primary", placeholder: t('polls.new.description_placeholder'), required: true %>
+    </div>
+
+    <% if @synced_roles&.any? %>
+      <div>
+        <h3 class="text-lg font-semibold text-theme-primary mb-2"><%= t('polls.new.discord_roles_title') %></h3>
+        <p class="text-sm text-theme-secondary mb-2"><%= t('polls.new.discord_roles_hint') %></p>
+        
+        <div id="selected-roles-container" class="flex flex-wrap gap-2 mb-3 min-h-[2.5rem]">
+          <!-- Selected roles will appear here as chips -->
+        </div>
+        
+        <div class="space-y-2 max-h-48 overflow-y-scroll border border-theme-secondary rounded-lg p-3 bg-theme-primary role-selector-scroll">
+          <% @synced_roles.each do |role| %>
+            <label class="flex items-center justify-between p-2 rounded hover:bg-theme-secondary cursor-pointer transition-colors role-checkbox-label" data-role-id="<%= role.role_id %>" data-role-name="<%= role.role_name %>">
+              <div class="flex items-center gap-3">
+                <input 
+                  type="checkbox" 
+                  name="discord_role_mentions[]" 
+                  value="<%= role.role_id %>"
+                  class="role-checkbox w-5 h-5 rounded border-theme-secondary bg-theme-primary text-theme-accent focus:ring-theme-accent"
+                >
+                <span class="text-theme-primary"><%= role.role_name %></span>
+              </div>
+            </label>
+          <% end %>
+        </div>
+      </div>
+    <% end %>
+
+    <div>
+      <%= f.label :deadline, t('polls.new.deadline'), class: "block text-sm font-medium text-theme-primary mb-2" %>
+      <%= f.datetime_local_field :deadline, class: "w-full px-4 py-2 bg-theme-primary border border-theme-secondary rounded-lg text-theme-primary date-input-white-calendar", required: true, min: Time.current.strftime('%Y-%m-%dT%H:%M') %>
+      <p class="text-xs text-theme-secondary mt-1"><%= t('polls.new.deadline_hint') %></p>
+    </div>
+
+    <div>
+      <div class="flex items-center gap-3">
+        <%= f.check_box :anonymous, class: "w-4 h-4 text-theme-accent bg-theme-primary border-theme-secondary rounded focus:ring-theme-accent" %>
+        <%= f.label :anonymous, t('polls.new.anonymous_voting'), class: "text-sm font-medium text-theme-primary cursor-pointer" %>
+      </div>
+      <p class="text-xs text-theme-secondary mt-1"><%= t('polls.new.anonymous_hint') %></p>
+    </div>
+
+    <div class="flex gap-4">
+      <%= f.submit t('polls.new.create_button'), class: "px-6 py-3 bg-theme-accent text-white rounded-lg hover:bg-theme-accent-hover transition-colors font-semibold cursor-pointer" %>
+      <%= link_to t('common.buttons.cancel'), guild_polls_path(@guild), class: "px-6 py-3 bg-theme-secondary text-theme-primary rounded-lg hover:bg-theme-primary transition-colors font-semibold" %>
+    </div>
+  <% end %>
+
+  <style>
+    /* White calendar button for datetime input */
+    .date-input-white-calendar::-webkit-calendar-picker-indicator {
+      filter: invert(1);
+      cursor: pointer;
+    }
+    
+    .date-input-white-calendar::-moz-calendar-picker-indicator {
+      filter: invert(1);
+      cursor: pointer;
+    }
+    
+    .role-selector-scroll::-webkit-scrollbar {
+      width: 8px;
+    }
+    .role-selector-scroll::-webkit-scrollbar-track {
+      background: transparent;
+    }
+    .role-selector-scroll::-webkit-scrollbar-thumb {
+      background-color: rgba(156, 163, 175, 0.5);
+      border-radius: 4px;
+    }
+    .role-selector-scroll::-webkit-scrollbar-thumb:hover {
+      background-color: rgba(156, 163, 175, 0.7);
+    }
+  </style>
+  
+  <script>
+    (function() {
+      const container = document.getElementById('selected-roles-container');
+      const checkboxes = document.querySelectorAll('.role-checkbox');
+      
+      if (!container || checkboxes.length === 0) return;
+      
+      function updateSelectedRoles() {
+        container.innerHTML = '';
+        const selected = Array.from(checkboxes).filter(cb => cb.checked);
+        
+        if (selected.length === 0) {
+          container.classList.add('min-h-[2.5rem]');
+          return;
+        }
+        
+        container.classList.remove('min-h-[2.5rem]');
+        
+        selected.forEach(checkbox => {
+          const label = checkbox.closest('.role-checkbox-label');
+          const roleId = label.dataset.roleId;
+          const roleName = label.dataset.roleName;
+          
+          const chip = document.createElement('div');
+          chip.className = 'inline-flex items-center gap-2 px-3 py-1.5 bg-theme-accent text-white rounded-lg text-sm font-medium shadow-sm';
+          chip.innerHTML = `
+            <span>${roleName}</span>
+            <button 
+              type="button" 
+              class="ml-1 hover:bg-white/20 rounded p-0.5 transition-colors flex items-center justify-center"
+              onclick="const cb = document.querySelector('.role-checkbox[value=\\'${roleId}\\']'); if(cb) { cb.checked = false; updateSelectedRoles(); }"
+            >
+              <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                <path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path>
+              </svg>
+            </button>
+          `;
+          container.appendChild(chip);
+        });
+      }
+      
+      // Make updateSelectedRoles available globally for onclick
+      window.updateSelectedRoles = updateSelectedRoles;
+      
+      checkboxes.forEach(checkbox => {
+        checkbox.addEventListener('change', updateSelectedRoles);
+      });
+      
+      // Initial render
+      updateSelectedRoles();
+    })();
+  </script>
+</div>
+

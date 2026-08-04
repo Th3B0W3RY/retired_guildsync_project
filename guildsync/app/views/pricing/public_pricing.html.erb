@@ -1,0 +1,173 @@
+<% content_for :head do %>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<% end %>
+
+<%# Tone tokens: gradient shell, glass cards, periwinkle accents, gradient primary CTA. Historical prompt/reference assets live in guildsync_knowledge_base. %>
+<% glass_card = "rounded-2xl bg-[rgba(15,23,43,0.5)] shadow-[0px_25px_50px_-12px_rgba(0,0,0,0.25)] outline outline-1 outline-offset-[-1px] outline-[rgba(255,255,255,0.1)]" %>
+<% glass_panel = "rounded-lg bg-[rgba(29,41,61,0.5)] border border-[#314158]" %>
+<% primary_cta = "inline-flex items-center justify-center min-h-11 w-full rounded-lg bg-theme-brand-gradient text-white text-sm font-semibold hover:opacity-95 transition-opacity focus:outline-none focus-visible:ring-2 focus-visible:ring-white/40 focus-visible:ring-offset-2 focus-visible:ring-offset-[rgba(15,23,43,0.5)] px-4 py-3" %>
+<% ghost_cta = "inline-flex items-center justify-center min-h-11 w-full rounded-lg bg-[rgba(29,41,61,0.5)] border border-[#314158] text-[#7C86FF] text-sm font-semibold hover:bg-[rgba(29,41,61,0.65)] transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-[#7C86FF]/50 px-4 py-3" %>
+<% ghost_cta_hover_fill = "group-hover:border-transparent group-hover:bg-theme-brand-gradient group-hover:text-white group-hover:shadow-none" %>
+
+<div class="font-[family-name:Inter,ui-sans-serif,system-ui,sans-serif] space-y-10 pb-8">
+  <div class="text-center px-2">
+    <h1 class="text-4xl sm:text-5xl font-bold text-white mb-4 tracking-tight">
+      <%= t('pricing.public_pricing.title') %>
+    </h1>
+    <p class="text-[#90A1B9] text-lg sm:text-xl max-w-2xl mx-auto leading-relaxed">
+      <%= t('pricing.public_pricing.subtitle') %>
+    </p>
+  </div>
+
+  <% paid_plans = @plans.reject(&:free_tier?) %>
+  <% free_plan = @plans.find(&:free_tier?) %>
+
+  <% if paid_plans.empty? %>
+    <div class="text-center mt-12">
+      <p class="text-[#90A1B9] text-lg"><%= t('pricing.public_pricing.no_plans') %></p>
+    </div>
+  <% else %>
+    <% any_has_annual = paid_plans.any? { |p| p.effective_stripe_price_id_annual.present? } %>
+    <div data-controller="pricing-plans"
+         data-pricing-plans-checkout-path-value="<%= billing_checkout_path %>"
+         data-pricing-plans-loading-text-value="<%= t('pricing.upgrade.loading') %>"
+         data-pricing-plans-price-missing-text-value="<%= t('js.pricing.price_id_missing') %>"
+         data-pricing-plans-checkout-failed-text-value="<%= t('js.pricing.checkout_failed') %>">
+
+      <% if any_has_annual %>
+        <div class="flex flex-wrap items-center justify-center gap-3 sm:gap-4 mt-2 mb-2 max-w-6xl mx-auto">
+          <span class="text-sm font-medium text-white"><%= t('pricing.interval.monthly') %></span>
+          <button type="button"
+                  class="relative inline-flex h-7 w-14 flex-shrink-0 cursor-pointer rounded-full border-2 border-transparent bg-theme-secondary transition-colors focus:outline-none focus:ring-2 focus:ring-theme-accent focus:ring-offset-2"
+                  role="switch"
+                  aria-checked="false"
+                  data-interval="month"
+                  data-pricing-plans-target="intervalToggle">
+            <span class="pointer-events-none inline-block h-6 w-6 rounded-full bg-theme-accent shadow ring-2 ring-white/70 transition-transform duration-200 ease-out will-change-transform"
+                  data-pricing-plans-target="intervalThumb"></span>
+          </button>
+          <span class="text-sm font-medium text-[#90A1B9]"><%= t('pricing.interval.annual') %></span>
+          <span class="text-sm font-medium text-emerald-400"><%= t('pricing.interval.save_annual') %></span>
+        </div>
+      <% end %>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-6xl mx-auto <%= any_has_annual ? 'mt-8' : 'mt-4' %> md:items-stretch">
+        <% paid_plans.each_with_index do |plan, idx| %>
+          <% pub_has_monthly = plan.effective_stripe_price_id.present? %>
+          <% pub_has_annual = plan.effective_stripe_price_id_annual.present? %>
+          <%# No md:scale on popular — scaled + z-10 overlaps the next column so hover hits two cards. %>
+          <% popular_card = "#{glass_card} ring-2 ring-theme-accent shadow-[0_0_32px_-8px_rgba(124,134,255,0.35)] hover:ring-white/80 hover:shadow-[0_0_40px_-6px_rgba(124,134,255,0.45)]" %>
+          <%# Pointer hover only (no focus-within) — avoids two rings when a button keeps focus while hovering another card. %>
+          <% hover_card = "#{glass_card} hover:ring-2 hover:ring-white/75 hover:shadow-[0_0_32px_-8px_rgba(124,134,255,0.35)] md:hover:scale-[1.02] hover:z-10" %>
+          <% card_shell = plan.popular ? popular_card : hover_card %>
+          <div class="group pricing-plan-card <%= card_shell %> p-6 sm:p-7 flex flex-col transition-all duration-200"
+               data-plan-index="<%= idx %>"
+               data-pricing-plans-target="planCard">
+            <% if plan.popular %>
+              <div class="mb-4">
+                <span class="inline-block px-3 py-1 rounded-full bg-theme-brand-gradient text-white text-xs font-semibold uppercase tracking-wide">
+                  <%= t('pricing.public_pricing.most_popular') %>
+                </span>
+              </div>
+            <% end %>
+
+            <h3 class="text-2xl font-bold text-white mb-2"><%= plan.name %></h3>
+
+            <%# Outer nodes only get .hidden toggled by Stimulus — never mix `hidden` + inline-flex on one element (Tailwind display conflict). %>
+            <div class="mb-4 pricing-price-wrap">
+              <span class="price-monthly">
+                <span class="inline-flex flex-wrap items-baseline gap-x-1">
+                    <span class="text-4xl font-bold text-[#7C86FF] transition-colors group-hover:text-[#A5B4FC]"><%= plan.formatted_price %></span>
+                  <span class="text-[#90A1B9] text-lg">/<%= plan.period %></span>
+                </span>
+              </span>
+              <% if pub_has_annual && plan.effective_price_display_annual.present? %>
+                <span class="price-annual hidden">
+                  <span class="inline-flex flex-wrap items-baseline gap-x-1">
+                    <span class="text-4xl font-bold text-[#7C86FF] transition-colors group-hover:text-[#A5B4FC]"><%= plan.formatted_price_annual %></span>
+                    <span class="text-[#90A1B9] text-lg">/year</span>
+                  </span>
+                </span>
+              <% end %>
+            </div>
+
+            <p class="text-[#90A1B9] mb-4 text-sm leading-relaxed"><%= plan.description %></p>
+
+            <ul class="space-y-3 mb-8 flex-grow">
+              <% (plan.features || []).each do |feature| %>
+                <li class="flex items-start gap-2">
+                  <svg class="w-5 h-5 text-emerald-400 mr-0 mt-0.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                  </svg>
+                  <span class="text-[#90A1B9] text-sm leading-snug transition-colors group-hover:text-[#CAD5E2]"><%= feature %></span>
+                </li>
+              <% end %>
+            </ul>
+
+            <div class="cta-wrap mt-auto">
+              <% cta_link = plan.popular ? "#{primary_cta}" : "#{ghost_cta} #{ghost_cta_hover_fill} transition-all duration-200" %>
+              <% cta_btn = plan.popular ? "public-checkout-btn #{primary_cta} cursor-pointer" : "public-checkout-btn #{ghost_cta} #{ghost_cta_hover_fill} transition-all duration-200 cursor-pointer" %>
+              <% if user_signed_in? %>
+                <% pub_price_monthly = plan.effective_stripe_price_id %>
+                <% pub_price_annual = plan.effective_stripe_price_id_annual %>
+                <% if pub_price_monthly.present? %>
+                  <button type="button" class="<%= cta_btn %>" data-price-monthly="<%= pub_price_monthly %>" data-price-annual="<%= pub_price_annual || '' %>">
+                    <%= t('pricing.public_pricing.subscribe_now') %>
+                  </button>
+                <% else %>
+                  <%= link_to t('pricing.public_pricing.subscribe_now'), upgrade_pricing_path, class: cta_link %>
+                <% end %>
+              <% else %>
+                <%= link_to t('pricing.public_pricing.subscribe_now'), sign_up_path(plan_id: plan.id), class: cta_link %>
+              <% end %>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  <% end %>
+
+  <% if free_plan %>
+    <div class="max-w-4xl mx-auto <%= glass_card %> p-8 sm:p-10">
+      <div class="text-center">
+        <h3 class="text-2xl font-bold text-white mb-4">
+          <%= free_plan.name %> <%= t('pricing.public_pricing.plan_suffix') %>
+        </h3>
+        <div class="mb-4">
+          <span class="text-4xl font-bold text-[#7C86FF]"><%= free_plan.formatted_price %></span>
+        </div>
+        <p class="text-[#90A1B9] mb-4"><%= free_plan.description %></p>
+        <p class="text-[#90A1B9] text-lg mb-6 leading-relaxed">
+          <%= t('pricing.public_pricing.free_plan_intro') %>
+        </p>
+
+        <div class="<%= glass_panel %> p-6 sm:p-8 mt-4 text-left sm:text-center">
+          <h4 class="text-xl font-semibold text-white mb-4 text-center"><%= t('pricing.public_pricing.whats_included') %></h4>
+          <ul class="space-y-3 text-left max-w-md mx-auto">
+            <% (free_plan.features || []).each do |feature| %>
+              <li class="flex items-start gap-3">
+                <svg class="w-6 h-6 text-emerald-400 shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                </svg>
+                <span class="text-[#90A1B9] text-lg leading-snug"><%= feature %></span>
+              </li>
+            <% end %>
+          </ul>
+        </div>
+
+        <h4 class="text-xl font-semibold text-white mt-8 mb-2"><%= t('pricing.public_pricing.after_trial_title') %></h4>
+        <p class="text-[#90A1B9] text-lg leading-relaxed [&_strong]:text-[#7C86FF]">
+          <%= t('pricing.public_pricing.after_trial_paragraph_html').html_safe %>
+        </p>
+      </div>
+    </div>
+  <% end %>
+
+  <div class="text-center px-4">
+    <p class="text-[#90A1B9] text-lg">
+      <%= t('pricing.public_pricing.questions_contact', link: link_to(t('pricing.public_pricing.contact_us'), '#contact', class: "text-[#7C86FF] hover:text-[#9CA8FF] underline font-medium")).html_safe %>
+    </p>
+  </div>
+</div>

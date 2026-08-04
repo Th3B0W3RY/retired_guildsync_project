@@ -1,0 +1,106 @@
+<div id="error_settings_main" class="space-y-8">
+  <%# Settings form %>
+  <div class="bg-theme-card border border-theme-primary rounded-lg p-6 shadow-lg max-w-2xl">
+    <h2 class="text-xl font-semibold text-theme-primary mb-6"><%= t("admin.error_settings.show.settings_heading") %></h2>
+
+    <%= form_with url: admin_update_error_notification_settings_path, method: :patch, data: { turbo: true } do |f| %>
+      <div class="space-y-6">
+        <%# Cadence %>
+        <div>
+          <label for="error_batch_cadence_hours" class="block text-sm font-medium text-theme-secondary mb-1">
+            <%= t("admin.error_settings.show.cadence_label") %>
+          </label>
+          <%= f.number_field :error_batch_cadence_hours,
+                value: @cadence_hours,
+                min: SiteSetting::ERROR_BATCH_CADENCE_MIN,
+                max: SiteSetting::ERROR_BATCH_CADENCE_MAX,
+                id: "error_batch_cadence_hours",
+                class: "w-full rounded-lg border border-theme-primary bg-theme-secondary text-theme-primary px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500" %>
+          <p class="text-xs text-theme-secondary mt-1"><%= t("admin.error_settings.show.cadence_hint", min: SiteSetting::ERROR_BATCH_CADENCE_MIN, max: SiteSetting::ERROR_BATCH_CADENCE_MAX) %></p>
+        </div>
+
+        <%# Immediate notification severities %>
+        <div>
+          <p class="block text-sm font-medium text-theme-secondary mb-2">
+            <%= t("admin.error_settings.show.immediate_severities_label") %>
+          </p>
+          <div class="flex flex-wrap gap-4">
+            <% @all_severities.each do |sev| %>
+              <label class="flex items-center gap-2 cursor-pointer">
+                <%= check_box_tag "error_immediate_severities[]", sev, @immediate_severities.include?(sev),
+                      id: "immediate_sev_#{sev}",
+                      class: "rounded" %>
+                <span class="text-sm text-theme-primary capitalize"><%= sev %></span>
+              </label>
+            <% end %>
+          </div>
+          <p class="text-xs text-theme-secondary mt-2"><%= t("admin.error_settings.show.immediate_severities_hint") %></p>
+        </div>
+
+        <div class="flex items-center gap-4">
+          <%= f.submit t("admin.error_settings.show.save_settings"),
+                class: "px-5 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors font-semibold cursor-pointer" %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+
+  <%# Recent batch reports preview %>
+  <div class="bg-theme-card border border-theme-primary rounded-lg p-6 shadow-lg">
+    <div class="flex justify-between items-center mb-4 flex-wrap gap-3">
+      <h2 class="text-xl font-semibold text-theme-primary"><%= t("admin.error_settings.show.recent_reports_title") %></h2>
+      <div class="flex gap-3">
+        <%= button_to t("admin.error_settings.show.run_now_button"),
+              run_now_admin_error_batch_reports_path,
+              method: :post,
+              data: { turbo_confirm: t("admin.error_settings.show.run_now_confirm") },
+              class: "px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors font-semibold text-sm" %>
+        <%= link_to t("admin.error_settings.show.view_all_reports"), admin_error_batch_reports_path,
+              class: "px-4 py-2 bg-theme-secondary text-theme-primary rounded-lg hover:bg-theme-hover transition-colors text-sm",
+              data: { turbo_frame: "_top" } %>
+      </div>
+    </div>
+
+    <% if @recent_reports.any? %>
+      <div class="overflow-x-auto">
+        <table class="w-full text-sm text-theme-primary">
+          <thead>
+            <tr class="text-left text-theme-secondary border-b border-theme-primary">
+              <th class="pb-2 pr-4"><%= t("admin.error_batch_reports.index.col_period") %></th>
+              <th class="pb-2 pr-4"><%= t("admin.error_batch_reports.index.col_errors") %></th>
+              <th class="pb-2 pr-4"><%= t("admin.error_batch_reports.index.col_clusters") %></th>
+              <th class="pb-2 pr-4"><%= t("admin.error_batch_reports.index.col_triggered") %></th>
+              <th class="pb-2"><%= t("admin.error_batch_reports.index.col_delivered") %></th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-theme-primary">
+            <% @recent_reports.each do |report| %>
+              <tr class="hover:bg-theme-hover/30">
+                <td class="py-2 pr-4">
+                  <%= link_to admin_error_batch_report_path(report),
+                        class: "text-blue-400 hover:underline",
+                        data: { turbo_frame: "_top" } do %>
+                    <%= report.period_end.strftime("%Y-%m-%d %H:%M") %>
+                    <span class="text-theme-secondary text-xs">(<%=report.duration_hours%>h)</span>
+                  <% end %>
+                </td>
+                <td class="py-2 pr-4"><%= report.total_errors %></td>
+                <td class="py-2 pr-4"><%= report.unique_clusters %></td>
+                <td class="py-2 pr-4 text-theme-secondary text-xs truncate max-w-[12rem]"><%= report.triggered_by %></td>
+                <td class="py-2">
+                  <% if report.delivered? %>
+                    <span class="text-green-400"><%= t("admin.error_batch_reports.index.delivered_yes") %></span>
+                  <% else %>
+                    <span class="text-theme-secondary"><%= t("admin.error_batch_reports.index.delivered_no") %></span>
+                  <% end %>
+                </td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+    <% else %>
+      <p class="text-theme-secondary py-4"><%= t("admin.error_settings.show.no_reports") %></p>
+    <% end %>
+  </div>
+</div>

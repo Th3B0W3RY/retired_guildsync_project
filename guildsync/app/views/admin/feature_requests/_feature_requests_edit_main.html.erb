@@ -1,0 +1,30 @@
+<%= form_with model: @feature_request, url: admin_feature_request_path(@feature_request), method: :patch, local: true, data: { turbo: false } do |f| %>
+  <div class="space-y-4 max-w-2xl">
+    <div>
+      <%= f.label :title, t('roadmap.create_title_label'), class: "block text-theme-secondary font-medium mb-1" %>
+      <%= f.text_field :title, required: true, maxlength: 255, class: "w-full px-4 py-2 bg-theme-primary border border-theme-primary rounded-lg text-theme-primary" %>
+    </div>
+    <div>
+      <%= f.label :description, t('roadmap.create_description_label'), class: "block text-theme-secondary font-medium mb-1" %>
+      <%= f.text_area :description, required: true, rows: 4, class: "w-full px-4 py-2 bg-theme-primary border border-theme-primary rounded-lg text-theme-primary" %>
+    </div>
+    <div>
+      <%= f.label :status, class: "block text-theme-secondary font-medium mb-1" %>
+      <%= f.select :status, FeatureRequest::STATUSES.map { |s| [t("roadmap.columns.#{s}"), s] }, {}, class: "gs-native-select gs-native-select--field w-full px-4 bg-theme-primary border border-theme-primary rounded-lg text-theme-primary" %>
+    </div>
+    <div>
+      <%= f.label :admin_notes, t('roadmap.admin.admin_notes'), class: "block text-theme-secondary font-medium mb-1" %>
+      <%= f.text_area :admin_notes, rows: 2, class: "w-full px-4 py-2 bg-theme-primary border border-theme-primary rounded-lg text-theme-primary" %>
+    </div>
+    <div>
+      <%= f.label :release_note_url, t('roadmap.admin.release_note_url'), class: "block text-theme-secondary font-medium mb-1" %>
+      <%= f.url_field :release_note_url, class: "w-full px-4 py-2 bg-theme-primary border border-theme-primary rounded-lg text-theme-primary" %>
+    </div>
+    <div class="flex gap-2">
+      <%= f.submit t('common.buttons.save'), class: "px-4 py-2 bg-theme-accent text-white rounded-lg hover:bg-theme-accent-hover cursor-pointer" %>
+      <%= link_to t("common.buttons.cancel"), admin_feature_requests_path,
+            class: "px-4 py-2 bg-theme-secondary text-theme-primary rounded-lg hover:bg-theme-hover",
+            data: { turbo_frame: "_top" } %>
+    </div>
+  </div>
+<% end %>

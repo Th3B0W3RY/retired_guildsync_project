@@ -1,0 +1,22 @@
+<div class="w-full max-w-[560px] font-[family-name:Inter,ui-sans-serif,system-ui,sans-serif]" data-turbo="false">
+  <div class="rounded-2xl bg-[rgba(15,23,43,0.5)] shadow-[0px_25px_50px_-12px_rgba(0,0,0,0.25)] outline outline-1 outline-offset-[-1px] outline-[rgba(255,255,255,0.1)] pt-8 px-[33px] pb-8 flex flex-col gap-6">
+    <div class="text-center">
+      <h1 class="text-white text-2xl font-semibold leading-8"><%= t("account_creation.backup_code.title") %></h1>
+      <p class="mt-2 text-[#90A1B9] text-sm leading-5"><%= t("account_creation.backup_code.body") %></p>
+    </div>
+
+    <div class="rounded-xl border border-amber-500/40 bg-amber-500/10 p-5 text-center">
+      <p class="font-mono text-xl font-semibold tracking-widest text-amber-100"><%= @backup_code %></p>
+    </div>
+
+    <%= form_with url: create_account_backup_code_path, method: :post, local: true, data: { turbo: false }, class: "flex flex-col gap-5" do |f| %>
+      <label class="flex items-start gap-3 text-[#CAD5E2] text-sm">
+        <%= check_box_tag :backup_code_saved, "1", false, required: true, class: "mt-1 rounded border-[#314158] bg-[rgba(29,41,61,0.5)]" %>
+        <span><%= t("account_creation.backup_code.confirm_text") %></span>
+      </label>
+
+      <%= f.submit t("account_creation.backup_code.confirm"),
+          class: "w-full h-11 rounded-lg bg-theme-brand-gradient text-white text-sm font-medium leading-5 cursor-pointer border-0 shadow-none hover:opacity-95 transition-opacity" %>
+    <% end %>
+  </div>
+</div>

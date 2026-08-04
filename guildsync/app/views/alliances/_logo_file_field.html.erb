@@ -1,0 +1,23 @@
+<%# locals: f (form builder) %>
+<div data-controller="native-file-pick" class="space-y-2">
+  <%= f.file_field :logo,
+      class: "sr-only",
+      accept: "image/*",
+      data: {
+        native_file_pick_target: "input",
+        action: "change->native-file-pick#changed"
+      } %>
+  <div class="flex flex-wrap items-center gap-3">
+    <button type="button"
+            class="px-4 py-2 bg-theme-accent text-white rounded-lg hover:bg-theme-accent-hover transition-colors text-sm font-semibold cursor-pointer"
+            data-action="click->native-file-pick#pick">
+      <%= t("alliances.form.choose_logo_button") %>
+    </button>
+    <span class="text-sm text-theme-secondary"
+          data-native-file-pick-target="filename"
+          data-empty-text="<%= t("alliances.form.no_file_chosen") %>">
+      <%= t("alliances.form.no_file_chosen") %>
+    </span>
+  </div>
+  <p class="text-xs text-theme-secondary"><%= t("alliances.form.logo_hint") %></p>
+</div>

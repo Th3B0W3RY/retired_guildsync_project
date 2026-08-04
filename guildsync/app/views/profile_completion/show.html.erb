@@ -1,0 +1,69 @@
+<div class="max-w-2xl mx-auto">
+  <div class="text-center mb-8">
+    <h1 class="text-4xl font-bold text-theme-primary mb-4"><%= t('profile_completion.show.title') %></h1>
+    <p class="text-theme-secondary text-lg"><%= t('profile_completion.show.subtitle') %></p>
+  </div>
+
+  <div class="bg-theme-card border border-theme-primary rounded-lg shadow-lg p-8 space-y-6">
+    <% if @user.errors.any? %>
+      <div class="p-4 bg-red-900/50 border border-red-700 text-red-100 rounded-lg mb-4">
+        <ul class="list-disc list-inside">
+          <% @user.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+    <%= form_with model: @user, url: complete_profile_path, method: :patch, local: true, data: { turbo: false }, class: "space-y-6" do |f| %>
+      <div>
+        <%= f.label :email, t('profile_completion.show.email_label'), class: "block mb-2 text-theme-secondary font-medium" %>
+        <%= f.email_field :email, 
+            value: @user.email&.include?("@discord.guildsync.local") ? "" : @user.email,
+            required: true,
+            autofocus: true,
+            placeholder: t('profile_completion.show.email_placeholder'),
+            class: "w-full px-4 py-3 bg-theme-secondary border border-theme-primary rounded-lg text-theme-primary focus:outline-none focus:ring-2 focus:ring-theme-accent focus:border-transparent transition-all" %>
+        <p class="mt-2 text-sm text-theme-secondary"><%= t('profile_completion.show.email_hint') %></p>
+      </div>
+
+      <div>
+        <%= f.label :username, t('profile_completion.show.username_label'), class: "block mb-2 text-theme-secondary font-medium" %>
+        <%= f.text_field :username, 
+            value: @user.username.present? && !@user.username.match?(/^testuser\d+$/) ? @user.username : "",
+            required: true,
+            minlength: 3,
+            maxlength: 30,
+            pattern: "[a-zA-Z0-9_]+",
+            placeholder: t('profile_completion.show.username_placeholder'),
+            class: "w-full px-4 py-3 bg-theme-secondary border border-theme-primary rounded-lg text-theme-primary focus:outline-none focus:ring-2 focus:ring-theme-accent focus:border-transparent transition-all" %>
+        <p class="mt-2 text-sm text-theme-secondary"><%= t('profile_completion.show.username_hint') %></p>
+      </div>
+
+      <div>
+        <%= f.label :password, t('profile_completion.show.password_label'), class: "block mb-2 text-theme-secondary font-medium" %>
+        <%= f.password_field :password, 
+            required: true,
+            autocomplete: "new-password",
+            minlength: Devise.password_length.first,
+            class: "w-full px-4 py-3 bg-theme-secondary border border-theme-primary rounded-lg text-theme-primary focus:outline-none focus:ring-2 focus:ring-theme-accent focus:border-transparent transition-all" %>
+        <p class="mt-2 text-sm text-theme-secondary"><%= t('profile_completion.show.password_hint') %></p>
+      </div>
+
+      <div>
+        <%= f.label :password_confirmation, t('profile_completion.show.password_confirmation_label'), class: "block mb-2 text-theme-secondary font-medium" %>
+        <%= f.password_field :password_confirmation, 
+            required: true,
+            autocomplete: "new-password",
+            class: "w-full px-4 py-3 bg-theme-secondary border border-theme-primary rounded-lg text-theme-primary focus:outline-none focus:ring-2 focus:ring-theme-accent focus:border-transparent transition-all" %>
+        <p class="mt-2 text-sm text-theme-secondary"><%= t('profile_completion.show.password_confirmation_hint') %></p>
+      </div>
+
+      <div>
+        <%= f.submit t('profile_completion.show.complete_button'), 
+            class: "w-full px-4 py-3 bg-theme-accent text-white rounded-lg hover:bg-theme-accent-hover transition-colors cursor-pointer font-semibold text-lg shadow-lg" %>
+      </div>
+    <% end %>
+  </div>
+</div>
+

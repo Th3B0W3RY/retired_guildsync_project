@@ -1,0 +1,29 @@
+<% gt_new = "admin.guild_transfers.new" %>
+<div class="bg-theme-card border border-theme-primary rounded-lg p-6 shadow-lg">
+  <div class="mb-4">
+    <h2 class="text-xl font-semibold mb-2"><%= t("#{gt_new}.guild_with_name", name: @guild.name) %></h2>
+    <p class="text-theme-secondary"><%= t("#{gt_new}.current_owner", email: @guild.owner.email) %></p>
+  </div>
+
+  <%= form_with url: create_guild_transfer_admin_guild_transfers_path, method: :post do |f| %>
+    <%= f.hidden_field :guild_id, value: @guild.id %>
+    <%= hidden_field_tag :cancel_previous_owner_billing, "0" %>
+    <div class="space-y-4">
+      <div>
+        <%= f.label :new_owner_id, t("#{gt_new}.new_owner_label"), class: "block text-theme-secondary font-medium mb-2" %>
+        <%= f.collection_select :new_owner_id, @users, :id, :email, { prompt: t("#{gt_new}.new_owner_prompt") }, { class: "gs-native-select gs-native-select--field w-full px-4 bg-theme-secondary border border-theme-primary rounded-lg text-theme-primary" } %>
+      </div>
+      <div class="rounded-lg border border-theme-primary bg-theme-secondary/40 p-4 space-y-2">
+        <%= check_box_tag :cancel_previous_owner_billing, "1", false, id: "cancel_previous_owner_billing", class: "rounded border-theme-primary text-red-600 focus:ring-red-500" %>
+        <%= label_tag :cancel_previous_owner_billing, t("admin.guild_transfers.form.cancel_previous_owner_billing"), class: "text-theme-primary font-medium ml-2" %>
+        <p class="text-sm text-theme-secondary pl-7"><%= t("admin.guild_transfers.form.cancel_previous_owner_billing_hint") %></p>
+      </div>
+      <div class="flex gap-4">
+        <%= f.submit t("#{gt_new}.transfer_submit"), class: "px-6 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 transition-colors", data: { turbo_confirm: t("#{gt_new}.transfer_confirm") } %>
+        <%= link_to t("#{gt_new}.cancel"), admin_root_path,
+              class: "px-6 py-2 bg-theme-secondary text-theme-primary rounded-lg hover:bg-theme-hover transition-colors",
+              data: { turbo_frame: "_top" } %>
+      </div>
+    </div>
+  <% end %>
+</div>

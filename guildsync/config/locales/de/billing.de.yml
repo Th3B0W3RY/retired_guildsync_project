@@ -1,0 +1,106 @@
+de:
+  billing:
+    show:
+      title: Meine Rechnung
+      subtitle: Verwalten Sie Ihre Abonnenten und Bezahlinformationen
+      current_subscription: Aktuelles Abonnement
+      no_plan: Kein Plan
+      status_label: Status
+      trial_period_active: Testlaufzeit aktiv
+      trial_days_remaining_html: Sie haben <strong>%{days}</strong> verbleiben im Testzeitraum.
+      trial_ended: Ihr Testzeitraum ist abgelaufen.
+      trial_ends_on: 'Kostenloser Test endet am:'
+      started: Gestartet
+      expires: Verfällt
+      no_active_subscription: Sie haben keine aktive Abonnement.
+      view_plans: Ansichten Pläne
+      payment_management: Bezahlverwaltung
+      setup_payment_method: Zahlungsmethode einrichten
+      setup_payment_trial: Wählen Sie einen Plan unten aus, um die Bezahlung zu vereinbaren. Sie können Ihr abgelaufenes Trial-Abonnement erneut nutzen oder ein anderes Abonnement auswählen.
+      setup_payment_current: Wählen Sie unten einen Plan aus, um die Zahlung zu konfigurieren.
+      setup_payment_current_plan: Bezahlung für den aktuellen Plan vorbereiten
+      subscribe_to_plan: Beitreten zu %{plan}
+      setup_payment: Einrichtung von Zahlungen
+      manage_payment_methods: Verwaltung Ihrer Bezahlmethoden, Rechnungsinformationen und Rechnungen
+      need_help: Hilfe erfordern?
+      need_help_description: Haben Sie Fragen zu Ihrer Abrechnung oder Ihrem Abonnement? Unser Buchhaltungsteam ist hier, um Ihnen zu helfen.
+      contact_billing_team: Kontaktieren Sie unseren Rechnungsteam
+      contact_form_coming_soon: Kontaktformular wird bald verfügbar sein
+      js_loading: Laden...
+      js_manage_billing: Rechnungsverwaltung
+      js_setup_payment: Einrichtung von Zahlungen
+      billing_portal: Abrechnungsportal
+      switch_plan: Zu diesem Plan wechseln
+      confirm_plan_change: Zu diesem Plan wechseln? Heute kann eine anteilige Gebühr anfallen.
+      confirm_plan_change_with_amount: 'Geschätzter Betrag heute:'
+      proration_disclaimer: 'Planwechsel nutzen Stripe-Proration: Upgrades werden sofort in Rechnung gestellt; Downgrades schreiben Guthaben für spätere Rechnungen gut (keine Barerstattung).'
+      account_credit_html: Sie haben <strong>%{amount}</strong> Guthaben, das auf zukünftige Rechnungen angewendet wird.
+      subscription_actions_title: Abonnement kündigen oder fortsetzen
+      pending_cancel_html: Ihr Abonnement endet am <strong>%{date}</strong>. Danach fallen keine weiteren Gebühren an.
+      period_end_unknown: Ende der aktuellen Abrechnungsperiode
+      resume_subscription: Abonnement fortsetzen
+      refund_window_active: Sie befinden sich innerhalb von drei Tagen nach der ersten Zahlung. Eine Kündigung beendet das Abonnement sofort und erstattet berechtigte Zahlungen auf Ihre Zahlungsmethode.
+      cancel_no_refund: Eine Kündigung behält den Zugang bis zum Ende der aktuellen Abrechnungsperiode. Für bereits gezahlte Beträge gibt es keine Erstattung.
+      cancel_subscription: Abonnement kündigen
+      cancel_confirm: Möchten Sie Ihr Abonnement wirklich kündigen?
+  pricing:
+    interval:
+      monthly: Monatlich
+      annual: Jährlich
+      save_annual: 10 % sparen
+    public:
+      title: Preise
+    upgrade:
+      title: Deinen Plan upgraden
+      subtitle: Wählen Sie das perfekte Plan für Ihre Gilde-Verwaltung-Bedarf. Alle Pläne enthalten unsere Kernmerkmale.
+      most_popular: Am beliebtesten
+      trial_ends_in:
+        one: Ihre Probezeit endet in ein Tag.
+        other: Ihr kostenloses Trial läuft in %{count} Tagen ab
+      current_plan: Aktueller Plan
+      start_free_trial: Kostenlos testen
+      subscribe_now: Abonnieren Jetzt
+      switch_to_free_plan: Zu dem kostenlosen Plan wechseln.
+      trial_message: Sie befinden sich derzeit in der kostenlosen 14-tägigen Testversion. Fügen Sie eine Zahlungsmethode hinzu, um nach dem Ende des Trials weiterzumachen.
+      payment_required: Aufgrade zu einem kostenpflichtigen Plan erfordert eine Zahlsmethode. Es stehen keine weiteren kostenlosen Trials nach deiner Anfangsperiode zur Verfügung.
+      free_trial_box:
+        title: Kostenlose Testversion / eingeschränkter Modus
+        description: Neue Konten starten mit eingeschränkten Funktionen. Sie können bei Bedarf 14 Tage Basic testen oder Basis, Erweitert oder Elite per Checkout buchen.
+        features:
+        - 14-tägige Testversion für Basic (App oder Stripe-Checkout, wo aktiviert)
+        - 'Erweitert und Elite: Bezahlung per Abo — keine zweite Testphase'
+        - Keine Kreditkarte nötig, um vom kostenlosen Plan eine Basic-Testversion zu starten
+        - Jederzeit auf den kostenlosen Plan wechseln
+        - Nach der Testphase eingeschränkte Funktionen im kostenlosen Plan
+      free_user_mode_box:
+        title: Kostenloser Plan & freier Nutzermodus
+        description: 'Beim kostenlosen Plan oder nach Wechsel dorthin nach einer Testphase nutzen Sie den freien Nutzermodus. Das bedeutet:'
+        features:
+        - Sie behalten Zugriff auf eine Gilde und eine begrenzte Mitgliederzahl
+        - Kernfunktionen bleiben mit reduzierten Limits verfügbar
+        - Upgrade auf Basis, Erweitert oder Elite jederzeit möglich
+        - Ihre Daten bleiben erhalten bei Downgrade oder nach Ende der Testphase
+      questions_contact: Haben Sie Fragen? %{link} für weitere Information.
+      contact_us: Kontaktieren Sie uns
+      loading: Laden...
+    public_pricing:
+      title: Wählen Sie Ihren Plan
+      subtitle: Wählen Sie das perfekte Plan für Ihre Gilde-Verwaltung-Bedarf. Alle Pläne enthalten unsere Kernmerkmale.
+      no_plans: Keine Preispläne zurzeit nicht verfügbar
+      most_popular: Am beliebtesten
+      trial_included: 14-tägige Testversion für Basic (wo angeboten)
+      start_free_trial: Kostenlos testen
+      plan_suffix: Plan
+      whats_included: 'Was ist enthalten:'
+      free_plan_intro: Alle neuen Konten beginnen mit dem kostenlosen Plan (eingeschränkte Funktionen). Bei Berechtigung können Sie eine 14-tägige Basic-Testversion starten oder Basis, Erweitert oder Elite per Checkout buchen.
+      trial_info: Die 14-tägige Testversion gilt nur für Basic. Erweitert und Elite werden ohne App-Testversion per bezahltem Checkout gebucht. Nach Ende der Basic-Testversion können Sie beim kostenlosen Plan bleiben (eingeschränkt) oder ein Abo abschließen.
+      questions_contact: Haben Sie Fragen? %{link} für weitere Information.
+      contact_us: Kontaktieren Sie uns
+      after_trial_title: Was geschieht nach deiner Probezeit?
+      after_trial_paragraph_html: Nach Beendigung deines Free-Trial-Abo wirst du automatisch auf unseren <strong class="text-theme-accent">kostenlosen Basisplan</strong> umgestellt. Von hier aus kannst du das Angebot weiter verwenden oder dich jederzeit austauschen lassen, wieweit auch immer es dir passt.
+      free_plan_includes_title: 'Hier sind dieingeschlossen im kostenlosen Plan:'
+      free_plan_feature_1_guild: 1 Gilde
+      free_plan_feature_50_users: 50 Benutzer
+      free_plan_feature_events: Event-Planung und Terminkalender
+      free_plan_feature_members: Mitgliederverwaltung
+      subscribe_now: Abonnieren Jetzt

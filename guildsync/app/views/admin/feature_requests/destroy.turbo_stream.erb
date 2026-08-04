@@ -1,0 +1,9 @@
+<%= turbo_stream.remove "admin_feature_request_card_#{@destroyed_feature_request_id}" %>
+<%= turbo_stream.update "admin_feature_requests_flash" do %>
+  <p class="rounded-lg border border-emerald-500/30 bg-emerald-500/10 px-4 py-2 text-sm text-emerald-400"><%= @destroy_notice %></p>
+<% end %>
+<% if FeatureRequest.where(status: @destroyed_column_status).count.zero? %>
+  <%= turbo_stream.append "admin_roadmap_column_list_#{@destroyed_column_status}" do %>
+    <p id="admin_roadmap_empty_<%= @destroyed_column_status %>" class="text-theme-secondary text-sm italic"><%= t("roadmap.empty_column") %></p>
+  <% end %>
+<% end %>

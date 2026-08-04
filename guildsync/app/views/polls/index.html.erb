@@ -1,0 +1,101 @@
+<div class="max-w-4xl mx-auto p-6">
+  <div class="mb-6 flex items-center justify-between">
+    <div>
+      <h1 class="text-3xl font-bold text-theme-primary mb-2"><%= t('polls.index.title') %></h1>
+      <p class="text-theme-secondary"><%= t('polls.index.subtitle', guild_name: @guild.discord_server_display_name) %></p>
+    </div>
+    <% if @guild.owner == current_user || can_manage_guild_settings?(@guild) %>
+      <%= link_to t('polls.index.create_poll'), new_guild_poll_path(@guild), class: "px-6 py-3 bg-theme-accent text-white rounded-lg hover:bg-theme-accent-hover transition-colors font-semibold" %>
+    <% end %>
+  </div>
+
+  <% if @polls.any? %>
+    <div class="space-y-4">
+      <% @polls.each do |poll| %>
+        <div class="bg-theme-secondary rounded-lg border border-theme-primary p-6">
+          <div class="flex items-start justify-between mb-4">
+            <div class="flex-1">
+              <h3 class="text-xl font-semibold text-theme-primary mb-2">
+                <%= link_to poll.title, guild_poll_path(@guild, poll), class: "hover:text-theme-accent transition-colors" %>
+              </h3>
+              <% if poll.description.present? %>
+                <p class="text-theme-secondary mb-3 line-clamp-2"><%= truncate(poll.description, length: 150) %></p>
+              <% end %>
+              <div class="flex items-center gap-4 text-sm text-theme-secondary">
+                <span><%= t('polls.index.created_by', name: poll.creator.name_for_discord_embed) %></span>
+                <span>•</span>
+                <span><%= t('polls.index.deadline') %> <%= poll.deadline.strftime("%B %d, %Y at %I:%M %p") %></span>
+                <span>•</span>
+                <span><%= poll.total_votes %> <%= "vote".pluralize(poll.total_votes) %></span>
+                <% if poll.anonymous? %>
+                  <span class="px-2 py-1 bg-blue-900/30 text-blue-400 rounded text-xs"><%= t('polls.index.anonymous') %></span>
+                <% end %>
+              </div>
+            </div>
+            <div class="ml-4">
+              <span class="px-3 py-1 rounded-full text-sm font-medium
+                <%= poll.open? ? 'bg-green-900/30 text-green-500' : 'bg-gray-900/30 text-gray-500' %>">
+                <%= poll.open? ? t('polls.index.open') : t('polls.index.closed') %>
+              </span>
+            </div>
+          </div>
+
+          <% if poll.total_votes > 0 %>
+            <div class="mt-4 pt-4 border-t border-theme-primary">
+              <div class="grid grid-cols-3 gap-4">
+                <% percentages = poll.vote_percentages %>
+                <div>
+                  <div class="flex items-center justify-between mb-1">
+                    <span class="text-sm text-theme-secondary"><%= t('polls.index.yes') %></span>
+                    <span class="text-sm font-semibold text-theme-primary"><%= percentages[:yes] %>%</span>
+                  </div>
+                  <div class="w-full bg-theme-primary rounded-full h-2">
+                    <div class="bg-green-500 h-2 rounded-full" style="width: <%= percentages[:yes] %>%"></div>
+                  </div>
+                </div>
+                <div>
+                  <div class="flex items-center justify-between mb-1">
+                    <span class="text-sm text-theme-secondary"><%= t('polls.index.no') %></span>
+                    <span class="text-sm font-semibold text-theme-primary"><%= percentages[:no] %>%</span>
+                  </div>
+                  <div class="w-full bg-theme-primary rounded-full h-2">
+                    <div class="bg-red-500 h-2 rounded-full" style="width: <%= percentages[:no] %>%"></div>
+                  </div>
+                </div>
+                <div>
+                  <div class="flex items-center justify-between mb-1">
+                    <span class="text-sm text-theme-secondary"><%= t('polls.index.maybe') %></span>
+                    <span class="text-sm font-semibold text-theme-primary"><%= percentages[:maybe] %>%</span>
+                  </div>
+                  <div class="w-full bg-theme-primary rounded-full h-2">
+                    <div class="bg-yellow-500 h-2 rounded-full" style="width: <%= percentages[:maybe] %>%"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          <% end %>
+
+          <div class="mt-4 flex items-center gap-4">
+            <%= link_to poll.open? ? t('polls.index.view_vote') : t('polls.index.view_results'), 
+                url_for([@guild, poll]), 
+                class: "inline-block px-4 py-2 bg-theme-accent text-white rounded-lg hover:bg-theme-accent-hover transition-colors cursor-pointer" %>
+            <% if poll.creator == current_user || @guild.owner == current_user || can_manage_guild_settings?(@guild) %>
+              <%= button_to t('polls.index.delete'), guild_poll_path(@guild, poll), method: :delete,
+                  class: "px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 transition-colors text-sm",
+                  data: { confirm: t('polls.index.delete_confirm') } %>
+            <% end %>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  <% else %>
+    <div class="bg-theme-secondary rounded-lg border border-theme-primary p-8 text-center">
+      <p class="text-theme-secondary text-lg mb-4"><%= t('polls.index.no_polls') %></p>
+      <% if @guild.owner == current_user || can_manage_guild_settings?(@guild) %>
+        <%= link_to t('polls.index.create_first'), new_guild_poll_path(@guild), 
+            class: "inline-block px-6 py-3 bg-theme-accent text-white rounded-lg hover:bg-theme-accent-hover transition-colors font-semibold" %>
+      <% end %>
+    </div>
+  <% end %>
+</div>
+

@@ -1,0 +1,18 @@
+<% content_for :page_title, "#{t('user_activity.history_title')} — #{t('app_name')}" %>
+<% dash_font = "font-[family-name:Inter,ui-sans-serif,system-ui,sans-serif]" %>
+<% glass = "rounded-xl border border-white/10 bg-[rgba(15,23,43,0.5)] outline outline-1 outline-offset-[-1px] outline-white/10" %>
+
+<div class="<%= dash_font %> space-y-6">
+  <header class="space-y-2">
+    <%= link_to dashboard_path, class: "inline-flex items-center gap-1 text-sm font-medium text-[#7C86FF] hover:underline" do %>
+      <span aria-hidden="true">&larr;</span>
+      <span><%= t("user_activity.back_to_dashboard") %></span>
+    <% end %>
+    <h1 class="text-[32px] font-bold leading-10 tracking-tight text-white"><%= t("user_activity.history_title") %></h1>
+    <p class="text-sm leading-5 text-slate-400"><%= t("user_activity.history_subtitle") %></p>
+  </header>
+
+  <section class="<%= glass %> px-6 pb-6 pt-6">
+    <%= render partial: "home/recent_activity_list", locals: { activities: @activities } %>
+  </section>
+</div>

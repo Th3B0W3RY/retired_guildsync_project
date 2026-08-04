@@ -1,0 +1,26 @@
+zh:
+  alliance_members:
+    removed: "已将成员移出联盟。"
+    bulk_removed: "已将所选成员移出联盟。"
+    errors:
+      not_found: "找不到该成员。"
+      unauthorized: "您无权执行此操作。"
+      protected_target: "不能移除公会会长或自定义联盟管理员。"
+      tags_owner_only: "只有联盟创建者可以创建联盟标签。"
+    index:
+      title: "联盟成员"
+      subtitle: "%{alliance_name} 的全部成员（按公会分组）"
+      export_csv: "导出 CSV"
+      your_guild: "你的公会"
+      remove: "移除"
+      remove_confirm: "将 %{name} 移出此联盟？"
+      no_members: "该公会尚无成员。"
+    tags:
+      manage_title: "管理联盟标签"
+      name: "标签名称"
+      color: "标签颜色"
+      create: "创建标签"
+      created: "已创建联盟标签。"
+      assigned: "已分配标签。"
+      removed: "已移除标签。"
+      not_found: "找不到标签或成员。"

@@ -1,0 +1,8 @@
+<div class="max-w-3xl mx-auto px-4 py-8">
+  <h1 class="text-3xl font-bold text-theme-accent mb-2"><%= t("admin.database_backups.title") %></h1>
+  <p class="text-theme-secondary text-sm mb-6"><%= t("admin.database_backups.intro") %></p>
+
+  <%= turbo_frame_tag Admin::DatabaseBackupsController::DATABASE_BACKUPS_MAIN_FRAME do %>
+    <%= render "database_backups_main" %>
+  <% end %>
+</div>

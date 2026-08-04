@@ -1,0 +1,75 @@
+<% card_bg = "bg-[#252836] border border-[#2d3142] rounded-2xl" %>
+<% inner_muted = "bg-[#1a1d2e] border border-[#2d3142] rounded-xl" %>
+<% primary_cta = "inline-flex items-center justify-center px-4 py-2 rounded-lg bg-theme-brand-gradient text-white text-sm font-medium hover:opacity-95 transition-opacity" %>
+<% input_area = "w-full px-4 py-2 rounded-lg border border-[#314158] bg-[rgba(29,41,61,0.5)] text-white placeholder-[#90A1B9] text-sm focus:outline-none focus:ring-2 focus:ring-[#615FFF]" %>
+
+<div class="font-[family-name:Inter,ui-sans-serif,system-ui,sans-serif] flex w-full flex-col gap-6 pb-4" data-controller="roadmap roadmap-comments">
+  <div>
+    <%= link_to roadmap_path, class: "inline-flex items-center gap-1 text-sm font-medium text-[#7C86FF] hover:underline" do %>
+      <span aria-hidden="true">←</span> <%= t("roadmap.title") %>
+    <% end %>
+  </div>
+
+  <article class="<%= card_bg %> p-5 sm:p-6">
+    <div class="flex flex-col justify-between gap-4 sm:flex-row sm:items-start">
+      <div class="min-w-0 flex-1">
+        <h1 class="mb-2 text-2xl font-bold text-white"><%= @feature_request.title %></h1>
+        <div class="mb-3 flex flex-wrap items-center gap-3 text-sm text-[#90A1B9]">
+          <span class="rounded-md bg-[rgba(29,41,61,0.5)] px-2 py-0.5 text-xs font-medium text-white"><%= t("roadmap.columns.#{@feature_request.status}") %></span>
+          <span><%= t("roadmap.requested_by") %> <%= @feature_request.anonymized_requester_name %></span>
+          <span><%= l(@feature_request.created_at, format: :long) %></span>
+        </div>
+        <div class="prose prose-invert max-w-none whitespace-pre-wrap text-[#CAD5E2] prose-p:text-[#CAD5E2]"><%= @feature_request.description %></div>
+        <% if admin_user? && @feature_request.admin_notes.present? %>
+          <div class="mt-4 rounded-xl border border-[#2d3142] bg-[#1a1d2e] p-3">
+            <p class="mb-1 text-xs font-medium text-[#C27AFF]"><%= t("roadmap.admin.admin_notes") %></p>
+            <p class="whitespace-pre-wrap text-sm text-[#90A1B9]"><%= @feature_request.admin_notes %></p>
+          </div>
+        <% end %>
+      </div>
+      <div class="flex shrink-0 flex-wrap items-center gap-2">
+        <% if user_signed_in? %>
+          <button type="button" data-action="click->roadmap#vote" data-roadmap-size-param="lg" data-roadmap-id-param="<%= @feature_request.id %>" data-roadmap-count-param="<%= @feature_request.vote_count %>" data-roadmap-voted-param="<%= @feature_request.voted_by?(current_user) %>" class="vote-btn rounded px-4 py-2 text-sm font-medium <%= @feature_request.voted_by?(current_user) ? 'bg-theme-brand-gradient text-white' : 'bg-[rgba(29,41,61,0.5)] text-[#90A1B9] hover:text-white' %>">
+            ▲ <span class="vote-count"><%= @feature_request.vote_count %></span>
+          </button>
+        <% else %>
+          <span class="rounded-lg bg-[rgba(29,41,61,0.5)] px-4 py-2 text-sm text-[#90A1B9]">▲ <%= @feature_request.vote_count %></span>
+        <% end %>
+        <% if @feature_request.status == "finished" && @feature_request.release_note_url.present? %>
+          <%= link_to t("roadmap.release_notes_link"), @feature_request.release_note_url, target: "_blank", rel: "noopener noreferrer", class: "text-sm text-[#7C86FF] hover:underline" %>
+        <% end %>
+      </div>
+    </div>
+  </article>
+
+  <section class="<%= card_bg %> p-5 sm:p-6">
+    <h2 class="mb-4 text-xl font-semibold text-white">
+      <%= t("roadmap.comments.title") %>
+      (<span id="roadmap_comments_count"><%= @comments.size %></span>)
+    </h2>
+
+    <div id="roadmap_comments_list" class="mb-6 space-y-3" data-roadmap-comments-target="list">
+      <% if @comments.empty? %>
+        <p id="roadmap-comments-empty" class="text-sm italic text-[#90A1B9]"><%= t("roadmap.comments.empty_state") %></p>
+      <% else %>
+        <% @comments.each do |comment| %>
+          <%= render "roadmap/feature_request_comment", comment: comment, inner_muted: inner_muted %>
+        <% end %>
+      <% end %>
+    </div>
+
+    <% if user_signed_in? %>
+      <div id="roadmap_comment_moderation_notice" class="mb-3 min-h-0" aria-live="polite"></div>
+      <div id="roadmap_comment_form_errors" class="mb-2 min-h-0"></div>
+      <%= form_with url: roadmap_request_comments_path(@feature_request), method: :post, data: { roadmap_comments_target: "form" } do |f| %>
+        <div class="space-y-2">
+          <%= f.text_area :body, placeholder: t("roadmap.comments.add_placeholder"), rows: 3, class: input_area, data: { roadmap_comments_target: "body" }, maxlength: 5000 %>
+          <p class="hidden text-xs text-red-400" data-roadmap-comments-target="error"><%= t("roadmap.comments.empty") %></p>
+          <%= f.submit t("roadmap.comments.add_submit"), class: primary_cta, data: { roadmap_comments_target: "submitBtn" } %>
+        </div>
+      <% end %>
+    <% else %>
+      <p class="text-sm text-[#90A1B9]"><%= t("roadmap.comments.sign_in_required") %></p>
+    <% end %>
+  </section>
+</div>

@@ -1,0 +1,112 @@
+<%# Figma node 56:772 — RoadmapPage (MCP get_design_context) %>
+<% col_shell = "flex min-h-[94px] flex-col gap-2 rounded-xl border border-[rgba(255,255,255,0.05)] bg-[rgba(15,23,43,0.5)] p-[21px]" %>
+<% card_inner = "rounded-xl border border-[#2d3142] bg-[#1a1d2e] p-3 transition-colors hover:border-[#615FFF]/40" %>
+<% primary_cta = "inline-flex h-11 min-h-[44px] shrink-0 items-center justify-center rounded-lg bg-theme-brand-gradient px-4 text-base font-medium text-white hover:opacity-95 transition-opacity" %>
+<% secondary_cta = "inline-flex h-11 min-h-[44px] items-center justify-center rounded-lg border border-[#2d3142] px-4 text-sm font-medium text-white hover:bg-[rgba(29,41,61,0.5)] transition-colors" %>
+<% search_input = "h-11 min-h-[44px] w-full min-w-0 flex-1 rounded-lg border border-[#314158] bg-[rgba(29,41,61,0.5)] px-4 text-sm text-white placeholder:text-[#5A6477] focus:outline-none focus:ring-2 focus:ring-[#615FFF] focus:border-transparent" %>
+<% input_modal_class = "w-full min-h-11 rounded-lg border border-[#314158] bg-[rgba(29,41,61,0.5)] px-4 py-2 text-sm text-white placeholder-[#90A1B9] focus:outline-none focus:ring-2 focus:ring-[#615FFF]" %>
+<% modal_shell = "rounded-2xl border border-[#2d3142] bg-[#252836]" %>
+
+<div class="font-[family-name:Inter,ui-sans-serif,system-ui,sans-serif] mx-auto flex w-full max-w-[1200px] flex-col gap-8 pb-10 pt-2" data-controller="roadmap">
+
+  <%# Title block — Figma gap-[8px] %>
+  <header class="flex flex-col gap-2">
+    <h1 class="text-[36px] font-bold leading-[44px] tracking-tight text-white">
+      <%= t("roadmap.title") %>
+    </h1>
+    <p class="text-base leading-6 text-[#90A1B9]">
+      <%= t("roadmap.subtitle") %>
+    </p>
+  </header>
+
+  <div id="roadmap_create_status" class="min-h-0" data-roadmap-target="createStatus" aria-live="polite"></div>
+
+  <%# Search row — Figma 56:809 h-[44px] gap-[16px]; input + Search gap-[12px] %>
+  <div class="flex flex-col gap-4 lg:flex-row lg:items-center lg:gap-4">
+    <%= form_with url: roadmap_path, method: :get, local: true, class: "flex min-w-0 flex-1 flex-col gap-3 sm:flex-row sm:items-stretch sm:gap-3", data: { turbo: false } do |f| %>
+      <%= f.text_field :q, value: @search, placeholder: t("roadmap.search_placeholder"), class: search_input %>
+      <%= f.submit t("roadmap.search_submit"), class: "#{primary_cta} w-full sm:w-auto sm:min-w-[5.5rem]" %>
+    <% end %>
+    <div class="flex flex-wrap items-center gap-3 lg:shrink-0">
+      <% if @search.present? %>
+        <%= link_to t("roadmap.search_clear"), roadmap_path, class: "text-sm text-[#7C86FF] hover:underline" %>
+      <% end %>
+      <% if user_signed_in? %>
+        <button type="button" data-action="click->roadmap#openModal" class="<%= primary_cta %> w-full sm:w-auto">
+          <%= t("roadmap.create_button") %>
+        </button>
+      <% else %>
+        <%= link_to t("roadmap.create_button"), login_path, class: "#{primary_cta} w-full sm:w-auto", title: t("roadmap.sign_in_to_submit") %>
+      <% end %>
+    </div>
+  </div>
+
+  <%# Status tabs — directly below search/create row; Figma 56:817; active underline #7C86FF %>
+  <div class="flex flex-wrap gap-x-6 gap-y-2 border-b border-[rgba(255,255,255,0.05)]" role="tablist" aria-label="<%= t("roadmap.title") %>">
+    <% FeatureRequest::DISPLAY_COLUMNS.each do |status| %>
+      <% column_label = t("roadmap.columns.#{status}") %>
+      <button type="button"
+              role="tab"
+              data-roadmap-target="tab"
+              data-action="click->roadmap#showTab"
+              data-roadmap-status-param="<%= status %>"
+              data-status="<%= status %>"
+              class="shrink-0 border-b-2 border-transparent pb-3 text-base font-medium leading-5 text-[#90A1B9] transition-colors">
+        <%= column_label %>
+      </button>
+    <% end %>
+  </div>
+
+  <%# Columns — Figma 56:828; ~24px gap; glass cards %>
+  <div class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-5">
+    <% FeatureRequest::DISPLAY_COLUMNS.each do |status| %>
+      <% column_label = t("roadmap.columns.#{status}") %>
+      <div class="<%= col_shell %> lg:min-h-0"
+           data-roadmap-target="column"
+           data-status="<%= status %>">
+        <h2 class="text-base font-semibold leading-6 text-white"><%= column_label %></h2>
+        <div id="roadmap_column_list_<%= status %>" class="flex flex-1 flex-col gap-3">
+          <% (@by_status[status] || []).each do |fr| %>
+            <%= render "roadmap/index_card", fr: fr, card_inner: card_inner %>
+          <% end %>
+          <% if (@by_status[status] || []).empty? %>
+            <p id="roadmap_empty_<%= status %>" class="text-sm leading-5 text-[#90A1B9]"><%= t("roadmap.empty_column") %></p>
+          <% end %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+
+  <% unless user_signed_in? %>
+    <p class="text-center text-base leading-snug text-[#90A1B9]">
+      <%= t("roadmap.guest_footer_note") %>
+    </p>
+  <% end %>
+
+  <% if user_signed_in? %>
+    <div data-roadmap-target="modal" class="fixed inset-0 z-50 hidden items-center justify-center bg-black/60 p-4" role="dialog" aria-modal="true">
+      <div class="<%= modal_shell %> max-h-[90vh] w-full max-w-lg overflow-y-auto p-6 shadow-2xl">
+        <h2 class="mb-4 text-xl font-semibold text-white"><%= t("roadmap.create_modal_title") %></h2>
+        <%= form_with url: roadmap_requests_path, method: :post, data: { roadmap_target: "form" } do |f| %>
+          <%= hidden_field_tag :q, @search %>
+          <div id="roadmap_modal_form_errors" class="mb-4 min-h-0 text-sm text-red-400" data-roadmap-target="createError" role="alert"></div>
+          <div class="space-y-4">
+            <div>
+              <%= f.label :title, t("roadmap.create_title_label"), class: "mb-1 block text-sm font-medium text-[#90A1B9]" %>
+              <%= f.text_field :title, required: true, maxlength: 255, class: input_modal_class, name: "feature_request[title]", placeholder: t("roadmap.create_title_placeholder") %>
+            </div>
+            <div>
+              <%= f.label :description, t("roadmap.create_description_label"), class: "mb-1 block text-sm font-medium text-[#90A1B9]" %>
+              <%= f.text_area :description, required: true, rows: 4, minlength: 50, maxlength: 10000, class: "#{input_modal_class} min-h-[6rem]", name: "feature_request[description]", placeholder: t("roadmap.create_description_placeholder") %>
+              <p class="mt-1 text-xs text-[#90A1B9]"><%= t("roadmap.create_description_hint") %></p>
+            </div>
+          </div>
+          <div class="mt-6 flex flex-wrap gap-2">
+            <%= f.submit t("roadmap.create_submit"), class: primary_cta, data: { roadmap_target: "submitBtn" } %>
+            <button type="button" data-action="click->roadmap#closeModal" class="<%= secondary_cta %>"><%= t("common.buttons.cancel") %></button>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  <% end %>
+</div>

@@ -1,0 +1,16 @@
+<div class="space-y-6">
+  <div class="flex justify-between items-center">
+    <h1 class="text-3xl font-bold text-theme-accent"><%= t(".title", email: @user.email) %></h1>
+    <div class="flex gap-2">
+      <%= link_to t(".back_list"), admin_ocr_requests_path,
+            class: "px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors font-semibold",
+            data: { turbo_frame: "_top" } %>
+    </div>
+  </div>
+
+  <div id="admin_ocr_user_show_flash" class="min-h-0" aria-live="polite"></div>
+
+  <%= turbo_frame_tag Admin::OcrRequestsController::OCR_REQUESTS_SHOW_MAIN_FRAME do %>
+    <%= render "admin/ocr_requests/ocr_requests_show_main" %>
+  <% end %>
+</div>

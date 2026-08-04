@@ -1,0 +1,406 @@
+ru:
+  home:
+    landing:
+      title: Добро пожаловать в GuildSync
+      subtitle: Одно решение для управления вашими игровыми сообществами, мероприятиями и членами.
+      hero_kicker: Для лидеров гильдий, офицеров и активных сообществ
+      problem_title: От хаоса таблиц к операционной ясности
+      problem_subtitle: Объедините события, участников, заявки и процессы лута в одном месте, чтобы офицеры тратили меньше времени на админку и больше на лидерство.
+      outcome_1_title: Честные операции с лутом
+      outcome_1_desc: Единые правила, видимая история участия и меньше конфликтов.
+      outcome_2_title: Лучше координируйте события
+      outcome_2_desc: Планируйте события, получайте живую статистику регистраций, отслеживайте опоздания и видите покрытие классов/ролей в реальном времени.
+      outcome_3_title: Снизьте нагрузку на офицеров
+      outcome_3_desc: Контроль по ролям и журналы аудита делают процессы предсказуемыми.
+      trust:
+        no_card: Кредитная карта не требуется
+        setup: Быстрый старт для команд гильдии
+        security: Права по ролям + полные журналы активности
+      preview_title: Предпросмотр продукта
+      preview:
+        events_title: События
+        events_desc: Быстро создавайте события, отслеживайте посещаемость и тренды участия.
+        members_title: Участники
+        members_desc: Управляйте ролями, тегами, заявками и правами гильдии из одного центра.
+        loot_title: Лут + опросы
+        loot_desc: Проводите структурированные розыгрыши лута и опросы с прозрачной историей.
+        logs_title: Журналы активности
+        logs_desc: Фиксируйте действия руководства для подотчётности и контекста.
+      explore_pricing: Посмотреть тарифы
+      why_title: Почему выбирать GuildSync?
+      features_cta_hint: Нажмите на каждую карточку, чтобы узнать, что делают функции на самом деле.
+      features_section_subtitle: Откройте карточку для подробностей — удобно тем, кто сравнивает инструменты для гильдий.
+      feedback:
+        section_title: Отзывы пользователей
+        carousel_role: карусель
+        slide_role: слайд
+        keyboard_hint: Стрелками влево и вправо можно переключать отзывы.
+        announce_progress: Отзыв пользователя %{current} из %{total}
+        previous: Предыдущий отзыв
+        next: Следующий отзыв
+        pagination: Слайды отзывов
+        go_to_slide: Перейти к отзыву %{index}
+      compare_title: GuildSync против конкурентов
+      compare_old_title: Таблицы + только Discord
+      compare_old_1: Найти нужную таблицу (или создать новую)
+      compare_old_2: Вручную обновлять несколько вкладок и листов
+      compare_old_3: Просить офицеров обновлять данные и перепроверять правки
+      compare_new_title: Командный центр GuildSync
+      compare_new_1: Вошедшие офицеры быстро получают доступ к документам, рабочим процессам и структурированному админ-потоку
+      compare_new_2: Централизуйте данные участников, посещаемость и управление правами
+      compare_new_3: История гильдии, журнал активности и уведомления
+      footer_copyright: "© %{year} GuildSync. Все права защищены."
+      cta:
+        title: Готовы приступить?
+        description: Присоединяйтесь к тысячам игровых сообществ, уже использующих GuildSync.
+        button: Начать бесплатную пробу
+        button_hero: Начать бесплатно
+      feature_spotlight:
+        title: Что GuildSync действительно помогает вам вести
+        subtitle: 'Создано для реальных операций гильдии: от рекрутинга и документов до координации альянсов и модерации.'
+        documents_title: Документы гильдии
+        documents_desc: Делитесь SOP, билдами и гайдами через публичные ссылки или только внутренний доступ.
+        activity_title: Лента активности + логи
+        activity_desc: Отслеживайте действия руководства, изменения участников и операционную историю в одной ленте.
+        alliance_title: Система альянсов
+        alliance_desc: Координируйте события, опросы и розыгрыши лута альянса между гильдиями-партнерами.
+        recruit_title: Рекрутинг + заявки
+        recruit_desc: Ведите структурированный процесс заявок с заметками, сценариями принять/отклонить и последующими сообщениями.
+        ocr_title: ИИ-сканирование скриншотов экипировки
+        ocr_desc: Загружайте скриншоты, быстро извлекайте данные о сборке и держите статус экипировки участников актуальным.
+        roles_title: Пользовательские роли + цветные теги
+        roles_desc: Настройте детальные разрешения и назначайте предустановленные цветные теги для быстрой видимости состава.
+        warnings_title: Система предупреждений
+        warnings_desc: Ведите списки без предупреждений, с предупреждениями и заблокированных для процессов модерации.
+        messaging_title: Центр сообщений
+        messaging_desc: Помогайте ГМам и офицерам общаться с участниками напрямую из GuildSync.
+        analytics_title: Рейтинг + вовлеченность
+        analytics_desc: Выделяйте самых активных участников по посещаемости и трендам участия, чтобы поддерживать решения руководства.
+      compare:
+        feature: Особенность
+        competitor_1: Guild Manager
+        competitor_2: GuildSpire
+        competitor_3: Типичные решения для управления гильдиями
+        features:
+          rapid_user_feedback: Быстрая разработка на основе отзывов пользователей
+          unlimited_guilds: Неограниченное число гильдий
+          starter_basic_plan_value: Тариф Basic — нужные функции без входа только через премиум
+          multi_game_dashboard: Мульти-игровая панель гильдий
+          events_scheduling: События, RSVP и планирование
+          loot_rolls_distribution: Лут-роллы и честное распределение
+          recruitment_applications: Рекрутинг и заявки
+          discord_integration: Discord-бот и интеграция
+          member_analytics: Аналитика и сводки по участникам
+          audit_history: Долгосрочный аудит и история активности
+          guild_documents_storage: Документы гильдии и хранение файлов
+          polls_community_votes: Опросы и голосования сообщества
+          public_roadmap_voting: Публичный роадмап и голосование за функции
+          api_access: Доступ к API
+          export_data_backup: Экспорт и резервное копирование
+          advanced_analytics: Продвинутая аналитика
+          custom_automation: Автоматизация
+          realtime_tracking: Отслеживание в реальном времени
+          api_integration: API интеграция
+          mobile_apps: Мобильные приложения
+          priority_support: Приоритетная поддержка
+          custom_branding: Кастомное брендинг
+          member_onboarding: Приветствие новых участников
+          event_management: Управление мероприятиями
+          role_management: Управление ролями
+          export_backup: Экспорт & Резервное копирование
+          custom_role_system: Пользовательская система ролей
+      features_grid:
+        member_management:
+          title: Управление участниками
+          desc: Слежите за своими.guild members и организуйте их эффективно.
+        analytics_insights:
+          title: Аналитика и инсайты
+          desc: Детальная аналитика по активности участников и росту
+        automation_tools:
+          title: Автоматизационные инструменты
+          desc: Автоматизируйте Процессы и рутиновыe задachi
+        advanced_tracking:
+          title: Продвинутый отчет о членах
+          desc: Мониторинг активности участников в реальном времени
+        multi_guild:
+          title: Управление несколькими гильдиями
+          desc: Управлять неограниченным количеством гильдий с единого дашборда
+        custom_automation:
+          title: Автоматизация
+          desc: Создавайте персонализированные рабочие процессы иiggers
+        analytics_dashboard:
+          title: Аналитика Дашборд
+          desc: подробные инсайты и отчеты
+        role_management:
+          title: Управление ролями
+          desc: Продвинутая система назначения ролей
+        member_onboarding:
+          title: Приветствие новых участников
+          desc: Автоматизированный процесс приветствия и настройки
+        event_management:
+          title: Управление мероприятиями
+          desc: Запланировать и отслеживать гильдийные события
+        custom_notifications:
+          title: Оustom Уведомления
+          desc: Персонализированная система уведомлений
+        moderation_tools:
+          title: Инструменты модерации
+          desc: Продвинутые модерационные функции
+        api_integration:
+          title: API интеграция
+          desc: Полный доступ к API для разработчиков
+        export_backup:
+          title: Экспорт & Резервное копирование
+          desc: Экспорт данных и автоматические резервные копии
+        priority_support:
+          title: Приоритетная поддержка
+          desc: 24/7 высококвалифицированная команда поддержки
+        security_features:
+          title: Безопасностные функции
+          desc: Безопасность на корпоративном уровне
+        custom_branding:
+          title: Кастомное брендинг
+          desc: Whitelabel опции доступны
+        mobile_app:
+          title: Мобильное приложение
+          desc: iOS и Android приложения включены
+        unlimited_storage:
+          title: Неограниченное хранение
+          desc: Неограниченное хранение данных
+        custom_role_system:
+          title: Пользовательская система ролей
+          desc: Роли и права с учётом Discord, под структуру вашей гильдии
+      footer:
+        tagline: Оптимальный инструмент для управления сообществами Discord.
+        product: Продукт
+        features: Функции
+        pricing_link: Ценообразование
+        roadmap_link: Roadmap
+        support: Поддержка
+        documentation: Документация
+        contact: Контакт
+        disaster_recovery: Восстановление после сбоев и восстановление данных
+        status: Статус
+        legal: юрид.
+        privacy: Приватность
+        terms: Условия
+        security_link: Безопасность
+      features:
+        guild_management:
+          title: Управление гильдией
+          description: Организуйте и управляйте несколькими гильдиями с удобством. Отслеживайте членов, роли и разрешения в одном месте.
+        event_planning:
+          title: Планирование мероприятий
+          description: Расписание и управление мероприятиями с на автоматическом сборе данных RSVP, напоминаниями и управлением участниками.
+        member_analytics:
+          title: Аналитика по членам
+          description: Получите аналитику для вашего сообщества с помощью детализированных данных и аналитического надзора за активностью участников.
+        gear_checks:
+          title: Проверка оборудования
+          description: Отслеживать и подтверждать требования к оборудованию и снаряжению для членов в рамках мероприятий и активностей.
+        gear_records:
+          title: Учёт экипировки
+          description: Ведите полные записи об экипировке участников, её обновлениях и истории снаряжения.
+        member_tracking:
+          title: Следящий за участниками
+          description: Сохраняйте подробные записи о деятельности участников, их участию и вовлечению во всех активностях гильдии.
+        role_management:
+          title: Управление ролями
+          description: Назначать и управлять ролями с настраиваемыми разрешениями. Контролировать доступ и обязанности с лёгкостью.
+        communication_hub:
+          title: Коммуникационный центр
+          description: Централизованные инструменты коммуникации для объявлений, дискуссий и координации участников.
+        activity_logs:
+          title: Журналы деятельности
+          description: Полный мониторинг и регистрация активности для всех событий гильдии, действий участников и изменений системы.
+    dashboard:
+      title: Панель
+    index:
+      title: Добро пожаловать в GuildSync
+      subtitle: Ваша платформа для управления дружиной
+      signed_in_as: 'Вы вошли как:'
+      discord_label: Discord
+      quick_links: Быстрые ссылки
+      api_documentation: API документация
+      please_sign_in_html: Пожалуйста, %{sign_in_link} для продолжения.
+      sign_in: войти
+  homepage_features:
+    back_to_home: Назад ко всем функциям
+    empty_detail: Скоро здесь появится больше информации об этой функции.
+  sidebar:
+    navigation: Навигация
+    universal_actions: Универсальные действия
+    universal_menu: Универсальное меню
+    global_dashboard: Главная панель
+    connected_as: Подключено как %{username}
+    connected_as_heading: 'Подключено как:'
+    connected_as_aria: Подключено как %{username}
+    discord_not_connected_heading: Discord не подключён
+    discord_not_connected_hint: Подключите аккаунт Discord в настройках.
+    discord_username_fallback: Связанный аккаунт
+    apply_to_guild: Подать в Гильдию
+    view_guilds: Просмотр Гильдий
+    create_guild: Создать гильдию мастеров
+    my_applications: Мои приложения
+    archived_guilds: Архивные гильдии
+    feature_requests: Запросы функций
+    alliances_hub: Альянсы
+    my_guilds_owner: Мои гильдии (Владелец)
+    my_guilds_member: Мои Гильдии (Член)
+    contact_support: Связаться с поддержкой
+    guild_menu:
+      dashboard: Панель
+      message_center: Центр сообщений
+      members: Участники
+      review_applications: Просмотр заявок
+      guild_documents: Документы гильдии
+      invite_members: Пригласить участников
+      guild_polls: Опросы гильдии
+      guild_loot_rolls: Розыгрыши добычи гильдии
+      schedule_events: Расписание событий
+      schedule_guild_battle: Запланировать битву гильдии
+      members_gear: ИИ-сканер характеристик
+      file_storage: Хранение файлов
+      guild_analytics: 'Гильдия: Аналитика'
+      leaderboard: Таблица лидеров
+      my_warnings: Мои предупреждения
+      settings: Настройки
+      warnings: Предупреждения
+    alliance_menu:
+      pending_alliance_invites: Ожидающие приглашения в альянс
+      outgoing_join_request: Статус заявки
+      request_join_alliance: Заявка на вступление в альянс
+      join_requests: Заявки на вступление
+      create: Создать альянс
+      events: События альянса
+      polls: Опросы альянса
+      rolls: Броски альянса
+      chat: Чат альянса
+      gm_chat: Чат ГМ
+      settings: Настройки
+    discord:
+      connected: "%{server_name}"
+      bot_not_connected: Бот не подключен
+      connect_bot: Подключить бот к Discord-сообществу
+      discord_server: Сервер Discord
+  dashboard:
+    title: Панель
+    access_denied: Доступ запрещен
+    sign_in_required: Вы должны быть зарегистрированы для доступа кแดшборду.
+    your_guilds: Ваши Гильдии
+    no_guilds: Вы ещё не состоите в каких-либо гильдиях.
+    open: Открыть
+    quick_actions: Быстрые Действия
+    view_guilds: Мои гильдии
+    my_applications: Мои заявки
+    apply_to_guild: Подать заявку в гильдию
+    archived_guilds: Архивные гильдии
+    alliances: Альянсы
+    create_guild: Создать гильдию мастеров
+    invite_members: Пригласить участников
+    recent_activity: Последняя активность
+    activity_coming_soon: Лента активности предоставляется в скором времени…
+    activity_empty: Пока нет недавней активности. Посещайте гильдии и страницы, чтобы видеть ее здесь.
+    viewed_guild: Просмотрена гильдия %{name}
+    viewed_members: Участники – %{name}
+    viewed_invite_members: Пригласить участников – %{name}
+    viewed_settings: Настройки – %{name}
+    viewed_applications: Заявки – %{name}
+    viewed_schedule: Планировать события – %{name}
+    viewed_members_gear: ИИ-сканер характеристик – %{name}
+    join_discord_title: Присоединяйтесь к нашему Discord
+    join_discord_here: Присоединяйтесь к нашему Discord-сообществу здесь — общайтесь с командой и другими владельцами гильдий.
+    discord_iframe_title: Discord %{app_name}
+    discord_community_card_title: Сообщество GuildSync в Discord
+    members_online_heading: Участники онлайн
+    join_discord_cta_button: Присоединиться к Discord
+    discord_promo_online_example: 1 участник онлайн
+    pending_items: Мои ожидающие элементы
+    pending_applications: Ожидающие заявки
+    pending_invites: Приглашения
+    warning_queue: Очередь предупреждений
+    member_events_title: Предстоящие события
+    member_events_subtitle: Во всех гильдиях, где вы состоите
+    member_events_count_label: Всего предстоящих
+    member_events_empty: В ваших гильдиях нет предстоящих событий.
+    open_polls_title: Открытые опросы
+    open_polls_subtitle: Опросы в ваших гильдиях, которые еще открыты для голосования
+    open_polls_empty: В ваших гильдиях нет открытых опросов.
+    open_loot_title: Открытые розыгрыши лута
+    open_loot_subtitle: Розыгрыши лута в ваших гильдиях, которые еще открыты
+    open_loot_empty: В ваших гильдиях нет открытых розыгрышей лута.
+  user_activity:
+    view_activity: "Показать активность"
+    history_title: "История активности"
+    history_subtitle: "Ваши недавние страницы и действия в GuildSync."
+    back_to_dashboard: "Назад к панели"
+    signed_in_discord: "Вход выполнен через Discord"
+    signed_in_google: "Вход выполнен через Gmail"
+    signed_in_microsoft: "Вход выполнен через Outlook"
+  layouts:
+    application:
+      nav:
+        upgrade_plan: Обновите ваш план
+        pricing: Ценообразование
+        roadmap: Roadmap
+        my_billing: Подписка и оплата
+        welcome_user: Добро пожаловать, %{name}
+        profile_picture: Фотография профиля
+        sign_in: Войти
+        admin_session_label: Админ
+        back_to_member_dashboard: Вернуться к моей панели
+      dropdown:
+        account_settings: Настройки аккаунта
+        profile_settings: Настройки профиля
+        release_notes: Примечания к релизу
+        release_notes_instructions: Создайте аккаунт > нажмите Ресурсы > Статьи > Примечания к релизу
+        roadmap: Дорожная карта и запросы функций
+        version: Версия %{version}
+      search:
+        placeholder: Искать...
+        searching: Ищущий...
+        no_results: Нет результатов
+      beta_banner:
+        message: 'Бета-тест — присоединяйтесь к нашему сообществу в Discord:'
+        join_discord: Войти в Discord
+  activity_feed:
+    title: Лента активности для %{guild_name}
+    subtitle: Недавняя активность в этой гильдии. Логи хранятся 3 месяца.
+    back_to_dashboard: Назад к панели
+    search_placeholder: Искать действия...
+    filter_action_type: Тип действия
+    filter_member: Участник
+    all_actions: Все действия
+    all_members: Все участники
+    no_activity: Пока нет активности.
+    search_button: Поиск
+    access_denied: У вас нет прав на просмотр ленты активности.
+    when: Когда
+    who: Кто
+    action: Действие
+    details: Подробности
+    pagination_shown_total: "%{shown} из %{total} записей"
+    pagination_previous: "← Назад"
+    pagination_next: Далее →
+    export_csv: Экспорт CSV
+    export_csv_hint: Скачать все строки, соответствующие текущим фильтрам (метки времени UTC).
+  alliance_activity_feed:
+    title: Активность альянса — %{alliance_name}
+    subtitle: Действия по всему альянсу из гильдий-участников. Логи хранятся 60 дней.
+    back: Назад к альянсу
+    search_placeholder: Поиск...
+    filter_action_type: Тип действия
+    all_actions: Все действия
+    search_button: Поиск
+    when: Когда
+    guildsync_user: Пользователь GuildSync
+    action: Действие
+    details: Подробности
+    no_activity: Пока нет активности альянса.
+    pagination_shown_total: "%{shown} из %{total} записей"
+    pagination_previous: "← Назад"
+    pagination_next: Далее →
+    export_csv: Экспорт CSV (UTC)
+    export_local_csv: Экспорт CSV (местное время)
+    export_csv_hint: CSV, сгенерированный сервером, с метками времени UTC.
+    access_denied: Только владельцы гильдий в этом альянсе могут просматривать ленту активности альянса.

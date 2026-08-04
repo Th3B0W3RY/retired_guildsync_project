@@ -1,0 +1,25 @@
+<%# locals: (game:) %>
+<div id="admin_pending_game_row_<%= game.id %>" class="bg-theme-card border border-yellow-600 rounded-lg p-6 shadow-lg">
+  <div class="flex justify-between items-start mb-4">
+    <div class="flex-1">
+      <h3 class="text-xl font-semibold text-theme-primary mb-2"><%= game.name %></h3>
+      <% if game.description.present? %>
+        <p class="text-theme-secondary mb-2"><%= truncate(game.description, length: 200) %></p>
+      <% end %>
+      <div class="flex gap-4 text-sm text-theme-secondary">
+        <span><%= t("admin.games.pending.created_label") %>: <%= l(game.created_at, format: :long) %></span>
+        <span class="px-2 py-1 bg-yellow-900/50 border border-yellow-700 rounded text-yellow-400"><%= t("admin.games.pending.pending_badge") %></span>
+      </div>
+    </div>
+  </div>
+  <div class="flex gap-4">
+    <%= button_to t("admin.games.pending.approve"), approve_game_admin_game_path(game), method: :post,
+        class: "px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors" %>
+    <%= button_to t("admin.games.pending.deny"), deny_game_admin_game_path(game), method: :post,
+        class: "px-4 py-2 bg-orange-600 text-white rounded-lg hover:bg-orange-700 transition-colors",
+        data: { turbo_confirm: t("admin.games.pending.deny_confirm") } %>
+    <%= button_to t("admin.games.pending.reject_delete"), reject_game_admin_game_path(game), method: :delete,
+        class: "px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 transition-colors",
+        data: { turbo_confirm: t("admin.games.pending.reject_confirm") } %>
+  </div>
+</div>

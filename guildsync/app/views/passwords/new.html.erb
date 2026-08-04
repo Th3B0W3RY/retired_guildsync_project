@@ -1,0 +1,91 @@
+<div class="max-w-md mx-auto" id="account-recovery-page">
+  <h1 class="text-3xl font-bold text-theme-primary mb-4"><%= t("passwords.account_recovery.title") %></h1>
+  <p class="text-theme-secondary mb-8"><%= t("passwords.account_recovery.page_intro") %></p>
+
+  <%# --- Option A: reset via email (SMTP in production) --- %>
+  <section aria-labelledby="recovery-email-heading" class="space-y-4">
+    <h2 id="recovery-email-heading" class="text-xl font-semibold text-theme-primary">
+      <%= t("passwords.account_recovery.email_section_title") %>
+    </h2>
+    <p class="text-sm text-theme-secondary"><%= t("passwords.account_recovery.email_section_intro") %></p>
+    <%= form_with scope: :user, url: password_path, method: :post, local: true, data: { turbo: false }, class: "space-y-4 email-reset-form" do |f| %>
+      <div>
+        <%= f.label :email, t("common.labels.email"), class: "block mb-2 text-theme-secondary font-medium" %>
+        <%= f.email_field :email, required: true, autocomplete: "email", id: "password_reset_email",
+            class: "w-full px-4 py-3 bg-theme-secondary border border-theme-primary rounded-lg text-theme-primary focus:outline-none focus:ring-2 focus:ring-theme-accent focus:border-transparent transition-all" %>
+      </div>
+      <div>
+        <%= f.submit t("passwords.account_recovery.email_send_button"),
+            class: "w-full px-4 py-3 bg-theme-accent text-white rounded-lg hover:bg-theme-accent-hover transition-colors cursor-pointer font-semibold text-lg shadow-lg" %>
+      </div>
+    <% end %>
+    <p class="text-xs text-theme-secondary"><%= t("passwords.account_recovery.email_link_hint") %></p>
+  </section>
+
+  <div class="flex items-center gap-3 my-8" role="separator" aria-label="<%= t("passwords.account_recovery.or_divider") %>">
+    <div class="flex-1 border-t border-theme-primary"></div>
+    <span class="text-sm text-theme-secondary font-medium"><%= t("passwords.account_recovery.or_divider") %></span>
+    <div class="flex-1 border-t border-theme-primary"></div>
+  </div>
+
+  <%# --- Option B: backup code --- %>
+  <section aria-labelledby="recovery-backup-heading" class="space-y-4">
+    <h2 id="recovery-backup-heading" class="text-xl font-semibold text-theme-primary">
+      <%= t("passwords.account_recovery.backup_section_title") %>
+    </h2>
+    <p class="text-sm text-theme-secondary"><%= t("passwords.account_recovery.backup_section_intro") %></p>
+
+    <%= form_with url: verify_backup_codes_path, method: :post, local: true, data: { turbo: false }, class: "space-y-6 backup-code-form" do %>
+      <div>
+        <%= label_tag :email_backup, t("common.labels.email"), class: "block mb-2 text-theme-secondary font-medium" %>
+        <%= email_field_tag :email, nil, required: true, autocomplete: "email", id: "email_backup",
+            class: "w-full px-4 py-3 bg-theme-secondary border border-theme-primary rounded-lg text-theme-primary focus:outline-none focus:ring-2 focus:ring-theme-accent focus:border-transparent transition-all" %>
+      </div>
+      <div>
+        <%= label_tag :backup_code, t("passwords.account_recovery.backup_code_label"), class: "block mb-2 text-theme-secondary font-medium" %>
+        <%= text_field_tag :backup_code, nil,
+            placeholder: t("passwords.account_recovery.backup_code_placeholder"),
+            required: true,
+            class: "w-full px-4 py-3 bg-theme-secondary border border-theme-primary rounded-lg text-theme-primary font-mono text-lg tracking-widest focus:outline-none focus:ring-2 focus:ring-theme-accent focus:border-transparent transition-all backup-code-input",
+            maxlength: 35,
+            autocomplete: "one-time-code" %>
+        <p class="mt-1 text-sm text-theme-secondary"><%= t("passwords.account_recovery.backup_code_hint") %></p>
+      </div>
+      <div>
+        <%= submit_tag t("passwords.account_recovery.verify_backup_code"),
+            class: "w-full px-4 py-3 bg-amber-600 text-white rounded-lg hover:bg-amber-700 transition-colors cursor-pointer font-semibold text-lg shadow-lg" %>
+      </div>
+    <% end %>
+  </section>
+
+  <div class="p-4 bg-theme-secondary rounded-lg border border-theme-primary mt-8 text-center">
+    <%= link_to t("passwords.account_recovery.contact_support"),
+        release_notes_path,
+        target: "_blank",
+        rel: "noopener noreferrer",
+        class: "inline-flex items-center justify-center px-4 py-2 rounded-lg bg-theme-accent text-white hover:bg-theme-accent-hover font-medium transition-colors" %>
+  </div>
+
+  <div class="mt-8 pt-6 border-t border-theme-primary">
+    <p class="text-theme-secondary text-center">
+      <%= link_to t("passwords.new.back_to_sign_in"), login_path, class: "text-theme-accent hover:text-dark-accent-hover font-medium underline" %>
+    </p>
+  </div>
+</div>
+
+<script>
+(function() {
+  var codeInput = document.querySelector('.backup-code-input');
+  if (codeInput) {
+    codeInput.addEventListener('input', function() {
+      var v = this.value.replace(/[^A-Za-z0-9]/g, '').toUpperCase().slice(0, 24);
+      var formatted = '';
+      for (var i = 0; i < v.length; i++) {
+        if (i > 0 && i % 4 === 0) formatted += '-';
+        formatted += v[i];
+      }
+      this.value = formatted;
+    });
+  }
+})();
+</script>

@@ -1,0 +1,32 @@
+#!/usr/bin/env ruby
+# frozen_string_literal: true
+
+require "fileutils"
+
+def run(command)
+  system(command) || abort("\n== Command #{command} failed ==")
+end
+
+FileUtils.cd(__dir__ + "/..") do
+  pids = []
+
+  pids << spawn("npm run build -- --watch", out: File::NULL, err: File::NULL)
+  pids << spawn("bin/rails tailwindcss:watch", out: File::NULL, err: File::NULL)
+
+  shutdown = lambda do
+    pids.each do |pid|
+      Process.kill("TERM", pid)
+    rescue Errno::ESRCH
+      nil
+    end
+  end
+
+  trap("INT") { shutdown.call; exit }
+  trap("TERM") { shutdown.call; exit }
+
+  begin
+    run "bin/rails server"
+  ensure
+    shutdown.call
+  end
+end

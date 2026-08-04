@@ -1,0 +1,69 @@
+<div class="max-w-4xl mx-auto p-6">
+  <div class="mb-6 flex items-center justify-between">
+    <div>
+      <h1 class="text-3xl font-bold text-theme-primary mb-2"><%= t('alliances.events.index.title') %></h1>
+      <p class="text-theme-secondary"><%= t('alliances.events.index.subtitle', alliance_name: @alliance.name) %></p>
+    </div>
+    <div class="flex items-center gap-3">
+      <%= link_to "&larr; #{t('alliances.nav.back_to_alliance')}".html_safe, alliance_path(@alliance),
+          class: "text-sm text-theme-accent hover:text-theme-accent-hover" %>
+      <% if alliance_owner_in_active_guild?(@alliance) %>
+        <%= link_to t('alliances.events.index.create'), new_alliance_alliance_event_path(@alliance),
+            class: "px-6 py-3 bg-theme-accent text-white rounded-lg hover:bg-theme-accent-hover transition-colors font-semibold" %>
+      <% end %>
+    </div>
+  </div>
+
+  <% if @upcoming_events.any? %>
+    <h2 class="text-xl font-semibold text-theme-primary mb-3"><%= t('alliances.events.index.upcoming') %></h2>
+    <div class="space-y-4 mb-8">
+      <% @upcoming_events.each do |event| %>
+        <div class="bg-theme-secondary rounded-lg border border-theme-primary p-6">
+          <div class="flex items-start justify-between">
+            <div>
+              <h3 class="text-lg font-semibold text-theme-primary">
+                <%= link_to event.title, alliance_alliance_event_path(@alliance, event),
+                    class: "hover:text-theme-accent transition-colors" %>
+              </h3>
+              <div class="flex items-center gap-3 mt-1 text-sm text-theme-secondary">
+                <span><%= event.scheduled_at.strftime("%B %d, %Y at %I:%M %p") %></span>
+                <% if event.location.present? %>
+                  <span>&bull; <%= event.location %></span>
+                <% end %>
+                <span>&bull; <%= event.alliance_event_participations.where(status: :attending).count %> <%= t('alliances.events.index.attending') %></span>
+              </div>
+            </div>
+            <span class="px-3 py-1 rounded-full text-xs font-medium bg-green-900/30 text-green-400">
+              <%= t('alliances.events.index.upcoming_label') %>
+            </span>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  <% end %>
+
+  <% if @past_events.any? %>
+    <h2 class="text-xl font-semibold text-theme-primary mb-3"><%= t('alliances.events.index.past') %></h2>
+    <div class="space-y-4">
+      <% @past_events.each do |event| %>
+        <div class="bg-theme-secondary rounded-lg border border-theme-primary p-4 opacity-75">
+          <div class="flex items-center justify-between">
+            <div>
+              <h3 class="font-medium text-theme-primary">
+                <%= link_to event.title, alliance_alliance_event_path(@alliance, event),
+                    class: "hover:text-theme-accent transition-colors" %>
+              </h3>
+              <p class="text-sm text-theme-secondary"><%= event.scheduled_at.strftime("%B %d, %Y") %></p>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  <% end %>
+
+  <% if @upcoming_events.empty? && @past_events.empty? %>
+    <div class="bg-theme-secondary rounded-lg border border-theme-primary p-8 text-center">
+      <p class="text-theme-secondary text-lg"><%= t('alliances.events.index.no_events') %></p>
+    </div>
+  <% end %>
+</div>

@@ -1,0 +1,26 @@
+pt:
+  alliance_members:
+    removed: "Membro removido da aliança."
+    bulk_removed: "Os membros selecionados foram removidos da aliança."
+    errors:
+      not_found: "Membro não encontrado."
+      unauthorized: "Você não tem permissão para isso."
+      protected_target: "Você não pode remover donos de guilda ou gerentes personalizados da aliança."
+      tags_owner_only: "Apenas o criador da aliança pode criar etiquetas da aliança."
+    index:
+      title: "Membros da aliança"
+      subtitle: "Todos em %{alliance_name}, agrupados por guilda."
+      export_csv: "Exportar CSV"
+      your_guild: "Sua guilda"
+      remove: "Remover"
+      remove_confirm: "Remover %{name} desta aliança?"
+      no_members: "Ainda não há membros nesta guilda."
+    tags:
+      manage_title: "Gerir etiquetas da aliança"
+      name: "Nome da etiqueta"
+      color: "Cor da etiqueta"
+      create: "Criar etiqueta"
+      created: "Etiqueta da aliança criada."
+      assigned: "Etiqueta atribuída."
+      removed: "Etiqueta removida."
+      not_found: "Etiqueta ou membro não encontrado."

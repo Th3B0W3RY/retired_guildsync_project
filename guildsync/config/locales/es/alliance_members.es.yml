@@ -1,0 +1,26 @@
+es:
+  alliance_members:
+    removed: "Miembro eliminado de la alianza."
+    bulk_removed: "Se eliminaron a los miembros seleccionados de la alianza."
+    errors:
+      not_found: "No se encontró al miembro."
+      unauthorized: "No tienes permiso para hacer eso."
+      protected_target: "No puedes eliminar dueños del gremio ni gestores personalizados de la alianza."
+      tags_owner_only: "Solo el creador de la alianza puede crear etiquetas de alianza."
+    index:
+      title: "Miembros de la alianza"
+      subtitle: "Todos en %{alliance_name}, agrupados por gremio."
+      export_csv: "Exportar CSV"
+      your_guild: "Tu gremio"
+      remove: "Eliminar"
+      remove_confirm: "¿Eliminar a %{name} de esta alianza?"
+      no_members: "Aún no hay miembros en este gremio."
+    tags:
+      manage_title: "Gestionar etiquetas de alianza"
+      name: "Nombre de la etiqueta"
+      color: "Color de la etiqueta"
+      create: "Crear etiqueta"
+      created: "Etiqueta de alianza creada."
+      assigned: "Etiqueta asignada."
+      removed: "Etiqueta eliminada."
+      not_found: "No se encontró la etiqueta o el miembro."

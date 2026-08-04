@@ -1,0 +1,9 @@
+<div class="space-y-8 font-[family-name:Inter,ui-sans-serif,system-ui,sans-serif]">
+  <div class="flex items-center justify-between">
+    <h1 class="bg-gradient-to-r from-[#7C86FF] to-[#C27AFF] bg-clip-text text-3xl font-bold text-transparent"><%= t('admin.dashboard.title') %></h1>
+  </div>
+
+  <%= turbo_frame_tag Admin::DashboardController::DASHBOARD_INDEX_MAIN_FRAME do %>
+    <%= render "dashboard_main" %>
+  <% end %>
+</div>

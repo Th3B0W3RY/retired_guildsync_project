@@ -1,0 +1,6 @@
+<%= turbo_stream.replace "admin_feature_request_card_#{@feature_request.id}" do %>
+  <%= render "admin/feature_requests/feature_request_card", fr: @feature_request %>
+<% end %>
+<%= turbo_stream.update "admin_feature_requests_flash" do %>
+  <p class="rounded-lg border border-emerald-500/30 bg-emerald-500/10 px-4 py-2 text-sm text-emerald-400"><%= @pin_notice %></p>
+<% end %>

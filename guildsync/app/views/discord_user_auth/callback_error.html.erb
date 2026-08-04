@@ -1,0 +1,105 @@
+<div class="loading">
+  <div style="color: #ff4444; font-size: 64px; margin-bottom: 20px; text-align: center;">✗</div>
+  <h2 style="color: #ff4444; margin-bottom: 10px; text-align: center; font-size: 24px;"><%= t('discord_user_auth.callback_error.title') %></h2>
+  <p style="color: #cccccc; margin-bottom: 20px; text-align: center; font-size: 16px;">
+    <%= error || t('discord_user_auth.callback_error.default_message') %>
+  </p>
+  <p style="color: #888; font-size: 14px; text-align: center;"><%= t('discord_user_auth.callback_error.closing') %></p>
+</div>
+
+<script>
+  (function() {
+    'use strict';
+    
+    var messageSent = false;
+    var messageAttempts = 0;
+    var closeTimer = null;
+    var retryInterval = null;
+    
+    function sendErrorMessage() {
+      try {
+        var message = {
+          type: 'DISCORD_USER_AUTH_ERROR',
+          message: '<%= j(error || "Discord authentication failed.") %>'
+        };
+        
+        // Try sendToParent first (if available)
+        if (typeof window.sendToParent === 'function') {
+          try {
+            window.sendToParent('DISCORD_USER_AUTH_ERROR', message);
+            messageSent = true;
+          } catch (e) {
+            console.error('Error with sendToParent:', e);
+          }
+        }
+        
+        // Always try postMessage to opener (use wildcard origin for Discord redirects)
+        if (window.opener && !window.opener.closed) {
+          try {
+            window.opener.postMessage(message, '*');
+            messageSent = true;
+            console.log('Error message sent to opener:', message);
+          } catch (e) {
+            console.error('Error posting message to opener:', e);
+          }
+        } else {
+          console.warn('Window opener not available or closed');
+        }
+      } catch (e) {
+        console.error('Error sending error message to parent:', e);
+      }
+    }
+    
+    function closeWindow() {
+      try {
+        // Try closePopup first (if available)
+        if (typeof window.closePopup === 'function') {
+          window.closePopup();
+          return;
+        }
+        
+        // Fallback to window.close
+        window.close();
+      } catch (e) {
+        console.error('Error closing popup:', e);
+      }
+    }
+    
+    // Wait a bit for popup to fully load, then send error message
+    setTimeout(function() {
+      sendErrorMessage();
+      
+      // Retry sending message multiple times (parent might not be ready immediately)
+      if (!retryInterval) {
+        retryInterval = setInterval(function() {
+          messageAttempts++;
+          sendErrorMessage();
+          if (messageAttempts >= 10) {
+            clearInterval(retryInterval);
+            retryInterval = null;
+          }
+        }, 200);
+      }
+    }, 100);
+    
+    // Close after 3 seconds (give more time for message delivery)
+    closeTimer = setTimeout(function() {
+      if (retryInterval) {
+        clearInterval(retryInterval);
+      }
+      closeWindow();
+    }, 3000);
+    
+    // Cleanup on unload
+    window.addEventListener('beforeunload', function() {
+      if (closeTimer) {
+        clearTimeout(closeTimer);
+      }
+      if (retryInterval) {
+        clearInterval(retryInterval);
+      }
+      sendErrorMessage(); // Send one more time on unload
+    });
+  })();
+</script>
+

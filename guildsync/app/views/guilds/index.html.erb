@@ -1,0 +1,40 @@
+<div class="space-y-6">
+  <div>
+    <h1 class="text-4xl font-bold text-theme-primary mb-2"><%= t('guilds.index.title') %></h1>
+    <p class="text-theme-secondary text-lg"><%= t('guilds.index.subtitle') %></p>
+  </div>
+
+  <% if show_nav_create_guild?(current_user) %>
+    <div class="mb-6">
+      <%= link_to t('guilds.index.create_new_guild'), new_guild_path, data: { turbo: false },
+          class: "px-6 py-3 bg-theme-accent text-white rounded-lg hover:bg-theme-accent-hover transition-colors font-semibold text-lg" %>
+    </div>
+  <% end %>
+
+  <% if @guilds.any? %>
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <% @guilds.each do |guild| %>
+        <div class="p-6 bg-theme-secondary rounded-lg border border-theme-primary">
+          <div class="flex items-center gap-3 mb-2">
+            <% if guild.logo.attached? %>
+              <%= image_tag guild.logo, alt: "#{guild.name} logo", class: "w-12 h-12 object-cover rounded-lg border border-theme-primary flex-shrink-0" %>
+            <% end %>
+            <h3 class="text-2xl font-semibold text-theme-primary"><%= guild.name %></h3>
+          </div>
+          <p class="text-theme-secondary mb-4"><%= guild.description %></p>
+          <%= link_to t('guilds.index.view_guild'), guild_path(guild), 
+              class: "inline-block px-4 py-2 bg-theme-accent text-white rounded-lg hover:bg-theme-accent-hover transition-colors" %>
+        </div>
+      <% end %>
+    </div>
+  <% else %>
+    <div class="p-8 bg-theme-secondary rounded-lg border border-theme-primary text-center">
+      <p class="text-theme-secondary mb-4"><%= t('guilds.index.no_guilds') %></p>
+      <% if show_nav_create_guild?(current_user) %>
+        <%= link_to t('guilds.index.create_first_guild'), new_guild_path, data: { turbo: false },
+            class: "inline-block px-6 py-3 bg-theme-accent text-white rounded-lg hover:bg-theme-accent-hover transition-colors font-semibold" %>
+      <% end %>
+    </div>
+  <% end %>
+</div>
+

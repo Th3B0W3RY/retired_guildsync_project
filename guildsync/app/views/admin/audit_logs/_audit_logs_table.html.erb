@@ -1,0 +1,42 @@
+<div class="overflow-x-auto">
+  <table class="w-full">
+    <thead>
+      <tr class="border-b border-theme-primary">
+        <th class="text-left p-2"><%= t("admin.audit_logs.index.col_admin") %></th>
+        <th class="text-left p-2"><%= t("admin.audit_logs.index.col_action") %></th>
+        <th class="text-left p-2"><%= t("admin.audit_logs.index.col_controller") %></th>
+        <th class="text-left p-2"><%= t("admin.audit_logs.index.col_record") %></th>
+        <th class="text-left p-2"><%= t("admin.audit_logs.index.col_ip") %></th>
+        <th class="text-left p-2"><%= t("admin.audit_logs.index.col_time") %></th>
+        <th class="text-left p-2"><%= t("admin.audit_logs.index.col_links") %></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% if @audit_logs.any? %>
+        <% @audit_logs.each do |log| %>
+          <tr class="border-b border-theme-primary">
+            <td class="p-2"><%= log.admin_email %></td>
+            <td class="p-2"><%= log.action %></td>
+            <td class="p-2"><%= log.controller %></td>
+            <td class="p-2">
+              <% if log.record_type.present? %>
+                <%= t("admin.audit_logs.index.record_line", type: log.record_type, id: log.record_id) %>
+              <% else %>
+                <%= t("admin.audit_logs.index.record_na") %>
+              <% end %>
+            </td>
+            <td class="p-2"><%= log.ip_address %></td>
+            <td class="p-2"><%= l(log.created_at, format: :short) %></td>
+            <td class="p-2">
+              <%= link_to t("admin.audit_logs.index.view"), admin_audit_log_path(log), class: "text-blue-400 hover:text-blue-300", data: { turbo_frame: "_top" } %>
+            </td>
+          </tr>
+        <% end %>
+      <% else %>
+        <tr>
+          <td colspan="7" class="p-4 text-center text-theme-secondary"><%= t("admin.audit_logs.index.empty") %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

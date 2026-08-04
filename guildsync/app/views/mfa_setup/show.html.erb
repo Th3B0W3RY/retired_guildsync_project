@@ -1,0 +1,80 @@
+<div class="max-w-2xl mx-auto">
+  <div class="text-center mb-8">
+    <h1 class="text-4xl font-bold text-theme-primary mb-4"><%= t('mfa_setup.show.title') %></h1>
+    <p class="text-theme-secondary text-lg"><%= t('mfa_setup.show.subtitle') %></p>
+  </div>
+
+  <div class="bg-theme-card border border-theme-primary rounded-lg shadow-lg p-8 space-y-6">
+    <!-- Instructions -->
+    <div class="space-y-4">
+      <h2 class="text-2xl font-semibold text-theme-primary"><%= t('mfa_setup.show.instructions_title') %></h2>
+      <ol class="list-decimal list-inside space-y-2 text-theme-secondary">
+        <li><%= t('mfa_setup.show.step_1') %></li>
+        <li><%= t('mfa_setup.show.step_2') %></li>
+        <li><%= t('mfa_setup.show.step_3') %></li>
+        <li><%= t('mfa_setup.show.step_4') %></li>
+      </ol>
+    </div>
+
+    <!-- QR Code -->
+    <div class="flex flex-col items-center space-y-4 py-6">
+      <% if @user.otp_secret.blank? %>
+        <p class="text-sm text-theme-secondary text-center max-w-md"><%= t('mfa_setup.show.setup_unavailable') %></p>
+      <% else %>
+        <% if @qr_code.present? %>
+          <div class="bg-white p-4 rounded-lg border-2 border-theme-primary">
+            <%= raw @qr_code %>
+          </div>
+        <% end %>
+        <p class="text-sm text-theme-secondary text-center max-w-md">
+          <%= t('mfa_setup.show.manual_entry') %><br>
+          <code class="text-theme-accent font-mono text-lg font-bold"><%= @user.otp_secret.scan(/.{4}/).join(' ') %></code>
+        </p>
+      <% end %>
+    </div>
+
+    <!-- Verification Form -->
+    <% if @user.otp_secret.present? %>
+      <div class="border-t border-theme-primary pt-6">
+        <%= form_with url: verify_mfa_setup_path, method: :post, local: true, class: "space-y-6" do |f| %>
+          <div>
+            <%= f.label :code, t('mfa_setup.show.code_label'), class: "block mb-2 text-theme-secondary font-medium" %>
+            <%= f.text_field :code,
+                required: true,
+                autofocus: true,
+                maxlength: 6,
+                pattern: "[0-9]{6}",
+                placeholder: "000000",
+                class: "w-full px-4 py-3 bg-theme-secondary border border-theme-primary rounded-lg text-theme-primary text-center text-2xl tracking-widest focus:outline-none focus:ring-2 focus:ring-theme-accent focus:border-transparent transition-all" %>
+            <p class="mt-2 text-sm text-theme-secondary"><%= t('mfa_setup.show.code_hint') %></p>
+          </div>
+
+          <div>
+            <%= f.submit t('mfa_setup.show.verify_button'),
+                class: "w-full px-4 py-3 bg-theme-accent text-white rounded-lg hover:bg-theme-accent-hover transition-colors cursor-pointer font-semibold text-lg shadow-lg" %>
+          </div>
+        <% end %>
+      </div>
+    <% end %>
+
+    <!-- Supported Apps -->
+    <div class="border-t border-theme-primary pt-6">
+      <p class="text-sm text-theme-secondary mb-3"><%= t('mfa_setup.show.recommended_apps') %></p>
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+        <div class="text-center">
+          <p class="text-theme-primary font-medium">Google Authenticator</p>
+        </div>
+        <div class="text-center">
+          <p class="text-theme-primary font-medium">Authy</p>
+        </div>
+        <div class="text-center">
+          <p class="text-theme-primary font-medium">Microsoft Authenticator</p>
+        </div>
+        <div class="text-center">
+          <p class="text-theme-primary font-medium">1Password</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+

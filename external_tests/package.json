@@ -1,0 +1,60 @@
+{
+  "name": "guildsync-integration-tests",
+  "version": "1.0.0",
+  "description": "Integration tests for GuildSync Rails application using Playwright",
+  "main": "index.js",
+  "scripts": {
+    "test": "playwright test --project=chromium",
+    "test:with-server": "node scripts/run-tests-with-server.js --project=chromium",
+    "test:check-server": "node scripts/check-server.js",
+    "test:verify": "playwright test --project=chromium tests/integration/setup",
+    "test:verify:script": "node scripts/verify-setup.js",
+    "test:headed": "playwright test --project=chromium --headed",
+    "test:headed:with-server": "node scripts/run-tests-with-server.js --project=chromium --headed",
+    "test:debug": "playwright test --project=chromium --debug",
+    "test:ui": "playwright test --project=chromium --ui",
+    "test:report": "playwright show-report",
+    "test:summary": "node scripts/generate-failure-summary.mjs",
+    "test:quiet": "playwright test --project=chromium --reporter=line,html,json",
+    "seed:dev": "cd ../guildsync && RAILS_ENV=development bundle exec rails test_data:setup",
+    "seed:test": "cd ../guildsync && RAILS_ENV=test bundle exec rails test_data:setup",
+    "test:auth": "playwright test --project=chromium tests/integration/auth",
+    "test:auth:with-server": "node scripts/run-tests-with-server.js --project=chromium tests/integration/auth",
+    "test:subscriptions": "playwright test --project=chromium tests/integration/subscriptions",
+    "test:subscriptions:with-server": "node scripts/run-tests-with-server.js --project=chromium tests/integration/subscriptions",
+    "test:guilds": "playwright test --project=chromium tests/integration/guilds",
+    "test:guilds:with-server": "node scripts/run-tests-with-server.js --project=chromium tests/integration/guilds",
+    "test:members": "playwright test --project=chromium tests/integration/guild_members",
+    "test:members:with-server": "node scripts/run-tests-with-server.js --project=chromium tests/integration/guild_members",
+    "test:events": "playwright test --project=chromium tests/integration/events",
+    "test:events:with-server": "node scripts/run-tests-with-server.js --project=chromium tests/integration/events",
+    "test:api": "playwright test --project=chromium tests/integration/api",
+    "test:api:with-server": "node scripts/run-tests-with-server.js --project=chromium tests/integration/api",
+    "test:gear": "playwright test --project=chromium tests/integration/guilds/gear.spec.js",
+    "test:gear:with-server": "node scripts/run-tests-with-server.js --project=chromium tests/integration/guilds/gear.spec.js",
+    "test:message-center": "playwright test --project=chromium tests/integration/guilds/message_center.spec.js",
+    "test:message-center:with-server": "node scripts/run-tests-with-server.js --project=chromium tests/integration/guilds/message_center.spec.js",
+    "test:storage": "playwright test --project=chromium tests/integration/guilds/storage.spec.js",
+    "test:storage:with-server": "node scripts/run-tests-with-server.js --project=chromium tests/integration/guilds/storage.spec.js",
+    "test:member-stats": "playwright test --project=chromium tests/integration/guilds/member_stats.spec.js",
+    "test:member-stats:with-server": "node scripts/run-tests-with-server.js --project=chromium tests/integration/guilds/member_stats.spec.js",
+    "test:firefox": "playwright test --project=firefox",
+    "test:webkit": "playwright test --project=webkit",
+    "test:all-browsers": "playwright test"
+  },
+  "keywords": [
+    "playwright",
+    "integration-tests",
+    "rails",
+    "guild-manager"
+  ],
+  "author": "",
+  "license": "MIT",
+  "devDependencies": {
+    "@playwright/test": "^1.40.0"
+  },
+  "dependencies": {
+    "dotenv": "^16.3.1",
+    "speakeasy": "^2.0.0"
+  }
+}

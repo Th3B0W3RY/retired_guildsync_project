@@ -1,0 +1,12 @@
+<div class="space-y-6">
+  <div class="flex justify-between items-center">
+    <h1 class="text-3xl font-bold text-theme-accent"><%= t("roadmap.admin.release_notes.title") %></h1>
+    <%= link_to t("admin.dashboard.title"), admin_root_path,
+          class: "px-4 py-2 bg-theme-secondary text-theme-primary rounded-lg hover:bg-theme-hover",
+          data: { turbo_frame: "_top" } %>
+  </div>
+
+  <%= turbo_frame_tag Admin::SiteSettingsController::RELEASE_NOTES_MAIN_FRAME do %>
+    <%= render "release_notes_main" %>
+  <% end %>
+</div>

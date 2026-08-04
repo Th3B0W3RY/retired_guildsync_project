@@ -1,0 +1,19 @@
+<%# locals: (fr:) %>
+<div id="admin_feature_request_card_<%= fr.id %>" class="bg-theme-card border border-theme-primary rounded-lg p-3 cursor-grab active:cursor-grabbing" data-admin-roadmap-target="card" data-feature-id="<%= fr.id %>">
+  <div class="flex justify-between items-start gap-2">
+    <h3 class="font-medium text-theme-primary text-sm"><%= fr.title %></h3>
+    <% if fr.is_pinned %><span class="text-xs text-theme-accent">📌</span><% end %>
+  </div>
+  <p class="text-theme-secondary text-xs mt-1 line-clamp-2"><%= fr.description.truncate(100) %></p>
+  <p class="text-xs text-theme-secondary mt-1"><%= fr.anonymized_requester_name %> · ▲ <%= fr.vote_count %></p>
+  <div class="flex flex-wrap gap-1 mt-2">
+    <%= link_to t("roadmap.admin.edit"), edit_admin_feature_request_path(fr),
+          class: "text-xs text-theme-accent hover:underline",
+          data: { turbo_frame: "_top" } %>
+    <%= button_to t("roadmap.admin.pin"), pin_admin_feature_request_path(fr), method: :patch, class: "text-xs text-theme-accent hover:underline" %>
+    <%= form_with url: move_admin_feature_request_path(fr), method: :patch, class: "inline" do |f| %>
+      <%= f.select :status, FeatureRequest::STATUSES.map { |s| [t("roadmap.columns.#{s}"), s] }, {}, class: "gs-native-select gs-native-select--compact max-w-full pl-2 text-xs bg-theme-primary border border-theme-primary rounded", onchange: "this.form.submit()" %>
+    <% end %>
+    <%= button_to t("roadmap.admin.delete"), admin_feature_request_path(fr), method: :delete, class: "text-xs text-red-400 hover:underline", data: { turbo_confirm: t("roadmap.admin.delete_confirm") } %>
+  </div>
+</div>

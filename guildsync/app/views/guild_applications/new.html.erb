@@ -1,0 +1,195 @@
+<div class="max-w-4xl mx-auto p-6">
+  <div class="mb-6">
+    <h1 class="text-3xl font-bold text-theme-primary mb-2"><%= t('guild_applications.new.title') %></h1>
+    <p class="text-theme-secondary"><%= t('guild_applications.new.subtitle') %></p>
+  </div>
+
+  <%= form_with url: guild_applications_path, method: :post, local: true, class: "space-y-6", id: "guild-application-form" do |f| %>
+    <div class="bg-theme-secondary rounded-lg border border-theme-primary p-6">
+      <div class="mb-4">
+        <%= f.label :guild_id, t('guild_applications.new.select_guild'), class: "block text-sm font-medium text-theme-primary mb-2" %>
+        <div class="relative">
+          <% selected_guild_id = @application.guild_id.presence || @guild_id %>
+          <%= f.hidden_field :guild_id, id: "guild_application_guild_id", required: true, value: selected_guild_id %>
+          <input 
+            type="text" 
+            id="guild-search-input" 
+            placeholder="<%= t('guild_applications.new.search_placeholder') %>" 
+            autocomplete="off"
+            class="w-full px-4 py-2 bg-theme-primary border border-theme-secondary rounded-lg text-theme-primary focus:outline-none focus:ring-2 focus:ring-theme-accent"
+            <% if selected_guild_id && @guilds.find { |g| g.id == selected_guild_id.to_i } %>
+              value="<%= @guilds.find { |g| g.id == selected_guild_id.to_i }&.name %>"
+            <% end %>
+          />
+          <div id="guild-search-dropdown" class="absolute z-50 w-full mt-1 bg-theme-secondary border border-theme-primary rounded-lg shadow-lg max-h-60 overflow-y-auto" style="display: none;">
+            <!-- Results will be populated here -->
+          </div>
+        </div>
+        <p class="text-xs text-theme-secondary mt-1"><%= t('guild_applications.new.start_typing') %></p>
+      </div>
+
+      <div class="mb-4">
+        <%= f.label :discord_username, t('guild_applications.new.discord_username'), class: "block text-sm font-medium text-theme-primary mb-2" %>
+        <%= f.text_field :discord_username, value: @application.discord_username, class: "w-full px-4 py-2 bg-theme-primary border border-theme-secondary rounded-lg text-theme-primary", placeholder: t('guild_applications.new.discord_placeholder'), required: true %>
+      </div>
+
+      <div class="mb-4">
+        <%= f.label :message, t('guild_applications.new.message_label'), class: "block text-sm font-medium text-theme-primary mb-2" %>
+        <%= f.text_area :message, value: @application.message, rows: 4, class: "w-full px-4 py-2 bg-theme-primary border border-theme-secondary rounded-lg text-theme-primary", placeholder: t('guild_applications.new.message_placeholder') %>
+      </div>
+
+      <div class="mb-4">
+        <%= f.label :character_details, t('guild_applications.new.character_details_label'), class: "block text-sm font-medium text-theme-primary mb-2" %>
+        <%= f.text_area :character_details, value: @application.character_details, rows: 6, class: "w-full px-4 py-2 bg-theme-primary border border-theme-secondary rounded-lg text-theme-primary", placeholder: t('guild_applications.new.character_details_placeholder') %>
+        <p class="text-xs text-theme-secondary mt-1"><%= t('guild_applications.new.character_details_hint') %></p>
+      </div>
+
+      <div class="flex gap-4">
+        <%= f.submit t('guild_applications.new.submit'), class: "px-6 py-3 bg-theme-accent text-white rounded-lg hover:bg-theme-accent-hover transition-colors font-semibold cursor-pointer" %>
+        <%= link_to t('guild_applications.new.cancel'), guild_applications_path, class: "px-6 py-3 bg-theme-secondary text-theme-primary rounded-lg hover:bg-theme-primary transition-colors font-semibold" %>
+      </div>
+    </div>
+  <% end %>
+</div>
+
+<style>
+.autocomplete-option {
+  padding: 12px 16px;
+  cursor: pointer;
+  border-bottom: 1px solid #374151;
+}
+.autocomplete-option:last-child {
+  border-bottom: none;
+}
+.autocomplete-option:hover {
+  background: #1f2937;
+}
+</style>
+
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  const input = document.getElementById("guild-search-input");
+  const dropdown = document.getElementById("guild-search-dropdown");
+  const hiddenInput = document.getElementById("guild_application_guild_id");
+
+  if (!input || !dropdown || !hiddenInput) return;
+
+  let timer = null;
+
+  function appendGuildOption(g) {
+    const option = document.createElement("div");
+    option.classList.add("autocomplete-option");
+    const logoHtml = g.logo_url ? `<img src="${escapeHtml(g.logo_url)}" alt="${escapeHtml(g.name)} logo" class="w-6 h-6 object-cover rounded border border-theme-secondary flex-shrink-0 inline-block mr-2" />` : '';
+    option.innerHTML = `
+      <div class="flex items-center">
+        ${logoHtml}
+        <div>
+          <strong class="text-theme-primary">${escapeHtml(g.name)}</strong><br>
+          <small class="text-theme-secondary">Owner: ${escapeHtml(g.owner || "<%= j t('guild_applications.new.owner_unknown') %>")}</small>
+        </div>
+      </div>
+    `;
+    option.addEventListener("click", () => {
+      input.value = g.name;
+      hiddenInput.value = g.id;
+      dropdown.style.display = "none";
+    });
+    dropdown.appendChild(option);
+  }
+
+  function removeGuildLoadMore() {
+    const b = dropdown.querySelector("[data-guild-search-load-more]");
+    if (b) b.remove();
+  }
+
+  function fetchGuildSearchPage(query, page, append) {
+    fetch(`/guilds/search?q=${encodeURIComponent(query)}&page=${page}`)
+      .then(res => res.json())
+      .then(data => {
+        const rows = data.results || [];
+        const pag = data.pagination || { page: 1, total_pages: 1 };
+
+        if (!append) {
+          dropdown.innerHTML = "";
+          hiddenInput.value = "";
+        }
+
+        if (rows.length === 0 && !append) {
+          dropdown.innerHTML = '<div class="autocomplete-option text-theme-secondary"><%= j t('guild_applications.new.no_guilds_found') %></div>';
+          dropdown.style.display = "block";
+          return;
+        }
+
+        rows.forEach(appendGuildOption);
+        removeGuildLoadMore();
+
+        if (pag.total_pages > pag.page) {
+          const nextPage = pag.page + 1;
+          const loadBtn = document.createElement("button");
+          loadBtn.type = "button";
+          loadBtn.setAttribute("data-guild-search-load-more", "1");
+          loadBtn.className = "autocomplete-option w-full text-left text-sm text-theme-accent font-semibold";
+          loadBtn.textContent = "<%= j t('guild_applications.new.load_more_guilds') %>";
+          loadBtn.addEventListener("click", (e) => {
+            e.stopPropagation();
+            loadBtn.remove();
+            fetchGuildSearchPage(query, nextPage, true);
+          });
+          dropdown.appendChild(loadBtn);
+        }
+
+        dropdown.style.display = "block";
+      })
+      .catch(error => {
+        console.error("Search error:", error);
+        if (!append) {
+          dropdown.innerHTML = '<div class="autocomplete-option text-theme-secondary"><%= j t('guild_applications.new.error_searching') %></div>';
+          dropdown.style.display = "block";
+        }
+      });
+  }
+
+  input.addEventListener("input", () => {
+    const query = input.value.trim();
+
+    clearTimeout(timer);
+
+    if (query.length < 1) {
+      dropdown.innerHTML = "";
+      dropdown.style.display = "none";
+      hiddenInput.value = "";
+      return;
+    }
+
+    timer = setTimeout(() => fetchGuildSearchPage(query, 1, false), 200);
+  });
+
+  // Hide dropdown when clicking outside
+  document.addEventListener("click", (e) => {
+    if (!input.contains(e.target) && !dropdown.contains(e.target)) {
+      dropdown.style.display = "none";
+    }
+  });
+
+  // Prevent form submission if no guild is selected
+  const form = document.getElementById("guild-application-form");
+  if (form) {
+    form.addEventListener("submit", (e) => {
+      if (!hiddenInput.value || hiddenInput.value.trim() === "") {
+        e.preventDefault();
+        window.showToast('warning', "<%= j t('js.guild_applications.select_guild') %>");
+        input.focus();
+        return false;
+      }
+    });
+  }
+
+  // Helper function to escape HTML
+  function escapeHtml(text) {
+    const div = document.createElement("div");
+    div.textContent = text;
+    return div.innerHTML;
+  }
+});
+</script>
+

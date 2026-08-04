@@ -1,0 +1,62 @@
+<div class="loading">
+  <div style="color: #ff4444; font-size: 48px; margin-bottom: 20px;">✗</div>
+  <h2 style="color: #ff4444; margin-bottom: 10px;"><%= t('discord_connections.callback_error.title') %></h2>
+  <p style="color: #cccccc; margin-bottom: 20px;"><%= error %></p>
+  <p style="color: #888; font-size: 14px;"><%= t('discord_connections.callback_error.closing') %></p>
+</div>
+
+<script>
+  (function() {
+    'use strict';
+    
+    var messageSent = false;
+    var closeTimer = null;
+    
+    function sendErrorMessage() {
+      if (messageSent) return;
+      messageSent = true;
+      
+      try {
+        if (typeof window.sendToParent === 'function') {
+          window.sendToParent('DISCORD_OAUTH_ERROR', {
+            message: '<%= j(error) %>'
+          });
+        } else if (window.opener && !window.opener.closed) {
+          window.opener.postMessage({
+            type: 'DISCORD_OAUTH_ERROR',
+            message: '<%= j(error) %>'
+          }, window.location.origin);
+        }
+      } catch (e) {
+        console.error('Error sending error message to parent:', e);
+      }
+    }
+    
+    function closeWindow() {
+      try {
+        if (typeof window.closePopup === 'function') {
+          window.closePopup();
+        } else {
+          window.close();
+        }
+      } catch (e) {
+        console.error('Error closing popup:', e);
+      }
+    }
+    
+    // Send message immediately
+    sendErrorMessage();
+    
+    // Close after 3 seconds
+    closeTimer = setTimeout(function() {
+      closeWindow();
+    }, 3000);
+    
+    // Cleanup on unload
+    window.addEventListener('beforeunload', function() {
+      if (closeTimer) {
+        clearTimeout(closeTimer);
+      }
+    });
+  })();
+</script>

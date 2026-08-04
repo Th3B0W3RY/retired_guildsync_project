@@ -1,0 +1,44 @@
+es:
+  js:
+    common:
+      unknown_error: "Error desconocido"
+    admin:
+      dashboard:
+        delete_error: "Error: %{error}"
+    pricing:
+      price_id_missing: "El identificador de precio está ausente. Por favor, contacte el soporte."
+      checkout_failed: "No se pudo iniciar la compra. Por favor inténtelo de nuevo."
+    billing:
+      portal_failed: "No se pudo abrir el portal de facturación. Por favor, inténtelo de nuevo."
+      plan_change_failed: "No se pudo cambiar el plan. Inténtalo de nuevo."
+    guilds:
+      members:
+        select_member: "Por favor, seleccione al menos un miembro."
+        select_role: "Por favor, elige un rol."
+        select_user: "Por favor, seleccione un usuario primero."
+        security_token_missing: "Token de seguridad no encontrado. Por favor, actualice la página y inténtelo de nuevo."
+        invite_error: "Se produjo un error al invitar al usuario. Por favor, inténtelo de nuevo."
+      settings:
+        game_added: "¡Juego agregado con éxito!"
+        game_add_failed: "No se pudo agregar el juego: %{error}"
+        game_add_error: "Error al agregar juego: %{error}"
+        discord_role_sync:
+          section_title: "Sincronización de Roles en Discord"
+          missing_role: "Falta información del rol; actualice la página e inténtelo de nuevo."
+          generic_error: "Algo salió mal. Por favor, inténtelo de nuevo."
+      members_gear:
+        select_file: "Por favor, seleccione un archivo"
+        select_game: "Por favor, seleccione un juego"
+        upload_failed: "Carga fallida: %{error}"
+        session_expired: "Tu sesión ha caducado. Inicia sesión de nuevo e intenta subir otra vez."
+        requests_sent: "Se enviaron correctamente %{count} solicitudes de actualización de estadísticas"
+        requests_failed: "Falló el envío de solicitudes: %{error}"
+        request_failed: "Falló al enviar la petición: %{error}"
+    guild_applications:
+      select_guild: "Por favor seleccione un gremio de los resultados de la búsqueda."
+    guild_documents:
+      link_copied: "¡Enlace compartido copiado en el portapapeles!"
+    discord_connections:
+      connection_failed: "La conexión de Discord ha fallido: %{error}"
+      popup_blocked: "La ventana emergente fue bloqueada. Por favor, habilite las ventanas emergentes para este sitio y vuelva a intentarlo."
+      bot_auth_url_missing: "Error: La URL de autorización del bot está falta del ID del servidor. Por favor inténtelo seleccionando el servidor otra vez."

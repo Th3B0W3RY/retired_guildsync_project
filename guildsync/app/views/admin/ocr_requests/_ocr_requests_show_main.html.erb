@@ -1,0 +1,50 @@
+<%= render "admin/ocr_requests/ocr_user_summary_cards", user: @user %>
+<%= render "admin/ocr_requests/ocr_user_actions_panel", user: @user %>
+
+<% if defined?(@recent_ocr_requests) && @recent_ocr_requests.present? %>
+  <div class="bg-theme-card border border-theme-primary rounded-lg p-6 shadow-lg">
+    <h2 class="text-xl font-semibold mb-4"><%= t("admin.ocr_requests.show.recent_heading") %></h2>
+    <div class="overflow-x-auto">
+      <table class="w-full text-sm">
+        <thead>
+          <tr class="border-b border-theme-primary">
+            <th class="text-left p-2"><%= t("admin.ocr_requests.show.time") %></th>
+            <th class="text-left p-2"><%= t("admin.ocr_requests.show.initiated_by") %></th>
+            <th class="text-left p-2"><%= t("admin.ocr_requests.show.ip") %></th>
+            <th class="text-left p-2"><%= t("admin.ocr_requests.show.user_agent") %></th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @recent_ocr_requests.each do |req| %>
+            <tr class="border-b border-theme-primary">
+              <td class="p-2"><%= req.created_at.strftime("%Y-%m-%d %H:%M") %></td>
+              <td class="p-2">
+                <% if req.initiated_by %>
+                  <%= req.initiated_by.username.presence || req.initiated_by.email %>
+                <% else %>
+                  <%= t("admin.ocr_requests.show.initiated_by_same_as_billed") %>
+                <% end %>
+              </td>
+              <td class="p-2 font-mono"><%= req.ip_address.presence || t("admin.ocr_requests.index.not_available") %></td>
+              <td class="p-2 truncate max-w-[200px]" title="<%= req.user_agent %>"><%= req.user_agent.presence || t("admin.ocr_requests.index.not_available") %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+    <p class="mt-2 text-theme-secondary text-sm"><%= t("admin.ocr_requests.show.total_for_user", count: @user.ocr_requests.size) %></p>
+  </div>
+<% end %>
+
+<% if defined?(@recent_denials) && @recent_denials.present? %>
+  <div class="bg-theme-card border border-theme-primary rounded-lg p-6 shadow-lg">
+    <h2 class="text-xl font-semibold mb-4"><%= t("admin.ocr_requests.show.denials_heading") %></h2>
+    <ul class="space-y-2">
+      <% @recent_denials.each do |d| %>
+        <li class="text-sm border-b border-theme-primary pb-2"><%= t("admin.ocr_requests.show.denial_line", time: d.created_at.strftime("%Y-%m-%d %H:%M"), reason: d.reason, usage: d.current_usage, limit: d.limit, hard_stop: d.hard_stop) %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
+
+<%= render "admin/ocr_requests/ocr_user_usage_history", user: @user, usage_changes: @usage_changes %>

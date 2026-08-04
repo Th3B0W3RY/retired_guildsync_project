@@ -1,0 +1,26 @@
+it:
+  alliance_members:
+    removed: "Membro rimosso dall’alleanza."
+    bulk_removed: "I membri selezionati sono stati rimossi dall’alleanza."
+    errors:
+      not_found: "Membro non trovato."
+      unauthorized: "Non sei autorizzato a farlo."
+      protected_target: "Non puoi rimuovere i proprietari di gilda o i gestori personalizzati dell’alleanza."
+      tags_owner_only: "Solo il creatore dell’alleanza può creare tag di alleanza."
+    index:
+      title: "Membri dell’alleanza"
+      subtitle: "Tutti in %{alliance_name}, raggruppati per gilda."
+      export_csv: "Esporta CSV"
+      your_guild: "La tua gilda"
+      remove: "Rimuovi"
+      remove_confirm: "Rimuovere %{name} da questa alleanza?"
+      no_members: "Nessun membro in questa gilda."
+    tags:
+      manage_title: "Gestisci tag di alleanza"
+      name: "Nome tag"
+      color: "Colore tag"
+      create: "Crea tag"
+      created: "Tag di alleanza creato."
+      assigned: "Tag assegnato."
+      removed: "Tag rimosso."
+      not_found: "Tag o membro non trovato."

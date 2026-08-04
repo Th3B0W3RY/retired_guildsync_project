@@ -1,0 +1,135 @@
+<div class="max-w-5xl mx-auto p-6">
+  <div class="mb-6 flex flex-wrap items-center justify-between gap-4">
+    <div>
+      <h1 class="text-3xl font-bold text-theme-primary"><%= t("alliance_activity_feed.title", alliance_name: @alliance.name) %></h1>
+      <p class="text-theme-secondary mt-1"><%= t("alliance_activity_feed.subtitle") %></p>
+    </div>
+    <div class="flex flex-wrap items-center gap-3">
+      <%= link_to t("alliance_activity_feed.export_csv"),
+          alliance_activity_feed_export_path(alliance_id: @alliance.id, q: params[:q], action_type: params[:action_type]),
+          class: "px-4 py-2 bg-theme-secondary border border-theme-primary rounded-lg text-theme-primary hover:bg-theme-primary text-sm font-medium",
+          title: t("alliance_activity_feed.export_csv_hint") %>
+      <%= link_to t("alliance_activity_feed.export_local_csv"), "#",
+          id: "alliance-activity-local-csv",
+          class: "px-4 py-2 bg-theme-secondary border border-theme-primary rounded-lg text-theme-primary hover:bg-theme-primary text-sm font-medium",
+          data: {
+            export_url: alliance_activity_feed_export_json_path(alliance_id: @alliance.id, q: params[:q], action_type: params[:action_type])
+          } %>
+      <%= link_to t("alliance_activity_feed.back"), alliance_path(@alliance), class: "text-theme-accent hover:text-theme-accent-hover font-medium" %>
+    </div>
+  </div>
+
+  <%= form_with url: alliance_activity_feed_path(alliance_id: @alliance.id), method: :get, local: true, class: "mb-6 flex flex-wrap gap-3 items-end" do |f| %>
+    <div class="flex-1 min-w-[200px]">
+      <label for="q" class="block text-sm font-medium text-theme-secondary mb-1"><%= t("alliance_activity_feed.search_placeholder") %></label>
+      <input type="search" name="q" id="q" value="<%= params[:q] %>" placeholder="<%= t("alliance_activity_feed.search_placeholder") %>" class="w-full px-4 py-2 bg-theme-secondary border border-theme-primary rounded-lg text-theme-primary focus:outline-none focus:ring-2 focus:ring-theme-accent" />
+    </div>
+    <div class="min-w-[160px]">
+      <label for="action_type" class="block text-sm font-medium text-theme-secondary mb-1"><%= t("alliance_activity_feed.filter_action_type") %></label>
+      <select name="action_type" id="action_type" class="gs-native-select gs-native-select--field w-full px-4 bg-theme-secondary border border-theme-primary rounded-lg text-theme-primary focus:outline-none focus:ring-2 focus:ring-theme-accent">
+        <option value=""><%= t("alliance_activity_feed.all_actions") %></option>
+        <% @action_types.each do |type| %>
+          <option value="<%= type %>" <%= "selected" if params[:action_type] == type %>><%= type.to_s.humanize %></option>
+        <% end %>
+      </select>
+    </div>
+    <button type="submit" class="px-4 py-2 bg-theme-accent text-white rounded-lg hover:bg-theme-accent-hover font-medium"><%= t("alliance_activity_feed.search_button") %></button>
+  <% end %>
+
+  <div class="bg-theme-card border border-theme-primary rounded-lg overflow-hidden">
+    <% if @logs.any? %>
+      <div class="overflow-x-auto">
+        <table class="w-full text-left">
+          <thead class="bg-theme-secondary border-b border-theme-primary">
+            <tr>
+              <th class="px-4 py-3 text-sm font-semibold text-theme-primary"><%= t("alliance_activity_feed.when") %></th>
+              <th class="px-4 py-3 text-sm font-semibold text-theme-primary"><%= t("alliance_activity_feed.guildsync_user") %></th>
+              <th class="px-4 py-3 text-sm font-semibold text-theme-primary"><%= t("alliance_activity_feed.action") %></th>
+              <th class="px-4 py-3 text-sm font-semibold text-theme-primary"><%= t("alliance_activity_feed.details") %></th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-theme-primary">
+            <% @logs.each do |log| %>
+              <tr class="hover:bg-theme-secondary/50">
+                <td class="px-4 py-3 text-sm text-theme-secondary whitespace-nowrap">
+                  <time class="js-local-time" datetime="<%= log.created_at.utc.iso8601 %>" data-fallback="<%= l(log.created_at, format: :short) %>">
+                    <%= l(log.created_at, format: :short) %>
+                  </time>
+                </td>
+                <td class="px-4 py-3 text-sm text-theme-primary"><%= log.user ? log.user.username : "—" %></td>
+                <td class="px-4 py-3 text-sm text-theme-primary"><%= log.action_type.to_s.humanize %></td>
+                <td class="px-4 py-3 text-sm text-theme-primary"><%= log.description %></td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+      <% if @total_pages > 1 %>
+        <div class="px-4 py-3 border-t border-theme-primary flex items-center justify-between">
+          <span class="text-sm text-theme-secondary"><%= t("alliance_activity_feed.pagination_shown_total", shown: @logs.size, total: @total_count) %></span>
+          <div class="flex gap-2">
+            <% if @current_page > 1 %>
+              <%= link_to t("alliance_activity_feed.pagination_previous"), alliance_activity_feed_path(alliance_id: @alliance.id, page: @current_page - 1, q: params[:q], action_type: params[:action_type]), class: "px-3 py-1 bg-theme-secondary text-theme-primary rounded hover:bg-theme-primary text-sm" %>
+            <% end %>
+            <% if @current_page < @total_pages %>
+              <%= link_to t("alliance_activity_feed.pagination_next"), alliance_activity_feed_path(alliance_id: @alliance.id, page: @current_page + 1, q: params[:q], action_type: params[:action_type]), class: "px-3 py-1 bg-theme-secondary text-theme-primary rounded hover:bg-theme-primary text-sm" %>
+            <% end %>
+          </div>
+        </div>
+      <% end %>
+    <% else %>
+      <p class="px-6 py-8 text-theme-secondary text-center"><%= t("alliance_activity_feed.no_activity") %></p>
+    <% end %>
+  </div>
+</div>
+
+<script>
+(function() {
+  function localizeTimes() {
+    var nodes = document.querySelectorAll('.js-local-time');
+    if (!nodes.length || typeof Intl === 'undefined' || typeof Intl.DateTimeFormat === 'undefined') return;
+    var formatter = new Intl.DateTimeFormat(undefined, { month: 'short', day: '2-digit', hour: '2-digit', minute: '2-digit' });
+    nodes.forEach(function(node) {
+      var iso = node.getAttribute('datetime');
+      if (!iso) return;
+      var parsed = new Date(iso);
+      if (isNaN(parsed.getTime())) return;
+      node.textContent = formatter.format(parsed);
+      node.setAttribute('title', parsed.toLocaleString());
+    });
+  }
+  localizeTimes();
+
+  var localBtn = document.getElementById('alliance-activity-local-csv');
+  if (localBtn && localBtn.dataset.exportUrl) {
+    localBtn.addEventListener('click', function(e) {
+      e.preventDefault();
+      fetch(localBtn.dataset.exportUrl, { headers: { 'Accept': 'application/json' } })
+        .then(function(r) { return r.json(); })
+        .then(function(data) {
+          var rows = data.rows || [];
+          var header = ['time_local', 'guildsync_username', 'discord_username', 'discord_server_name', 'action', 'details'];
+          var fmt = new Intl.DateTimeFormat(undefined, { month: 'short', day: '2-digit', hour: '2-digit', minute: '2-digit' });
+          var lines = [header.join(',')];
+          rows.forEach(function(row) {
+            var t = row.created_at_utc ? new Date(row.created_at_utc) : null;
+            var localStr = t && !isNaN(t.getTime()) ? fmt.format(t) : '';
+            var esc = function(s) {
+              s = (s == null ? '' : String(s));
+              if (/[",\n]/.test(s)) return '"' + s.replace(/"/g, '""') + '"';
+              return s;
+            };
+            lines.push([localStr, row.guildsync_username, row.discord_username, row.discord_server_name, row.action, row.details].map(esc).join(','));
+          });
+          var blob = new Blob([lines.join('\n')], { type: 'text/csv;charset=utf-8' });
+          var a = document.createElement('a');
+          a.href = URL.createObjectURL(blob);
+          a.download = 'alliance-' + data.alliance_id + '-activity-local.csv';
+          a.click();
+          URL.revokeObjectURL(a.href);
+        })
+        .catch(function() { alert('Export failed'); });
+    });
+  }
+})();
+</script>

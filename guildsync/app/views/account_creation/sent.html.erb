@@ -1,0 +1,17 @@
+<div class="w-full max-w-[448px] font-[family-name:Inter,ui-sans-serif,system-ui,sans-serif]" data-turbo="false">
+  <div class="rounded-2xl bg-[rgba(15,23,43,0.5)] shadow-[0px_25px_50px_-12px_rgba(0,0,0,0.25)] outline outline-1 outline-offset-[-1px] outline-[rgba(255,255,255,0.1)] pt-8 px-[33px] pb-8 flex flex-col gap-6 text-center">
+    <h1 class="text-white text-2xl font-semibold leading-8"><%= t("account_creation.sent.title") %></h1>
+    <p class="text-[#90A1B9] text-sm leading-5"><%= t("account_creation.sent.body") %></p>
+    <p class="text-[#90A1B9] text-xs leading-5"><%= t("account_creation.sent.latest_link") %></p>
+
+    <%= form_with url: resend_create_account_verification_path, method: :post, local: true, data: { turbo: false }, class: "w-full flex flex-col gap-4" do |f| %>
+      <% if turnstile_enforced? %>
+        <div class="cf-turnstile" data-sitekey="<%= turnstile_site_key %>" data-theme="dark"></div>
+      <% end %>
+      <%= f.submit t("account_creation.sent.resend"),
+          class: "w-full h-11 rounded-lg bg-theme-brand-gradient text-white text-sm font-medium leading-5 cursor-pointer border-0 shadow-none hover:opacity-95 transition-opacity" %>
+    <% end %>
+
+    <%= link_to t("account_creation.sent.change_email"), create_account_path, class: "text-[#7C86FF] text-sm hover:opacity-90 transition-opacity" %>
+  </div>
+</div>

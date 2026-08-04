@@ -1,0 +1,42 @@
+<div class="space-y-6">
+  <div>
+    <h1 class="text-4xl font-bold text-theme-primary mb-2"><%= t('home.index.title') %></h1>
+    <p class="text-theme-secondary text-lg"><%= t('home.index.subtitle') %></p>
+  </div>
+
+  <% if user_signed_in? %>
+    <div class="mt-8 space-y-4">
+      <div class="p-4 bg-theme-secondary rounded-lg border border-theme-primary">
+        <h2 class="text-2xl font-semibold text-theme-primary mb-2"><%= t('home.index.signed_in_as') %></h2>
+        <p class="text-theme-accent text-xl font-medium"><%= current_user.display_name %></p>
+        <% if current_user.discord_username.present? %>
+          <p class="text-theme-secondary mt-2"><%= t('home.index.discord_label') %>: <span class="text-theme-primary"><%= clean_discord_username(current_user.discord_username) %></span></p>
+        <% end %>
+      </div>
+      
+      <div class="mt-6">
+        <h3 class="text-xl font-semibold text-theme-primary mb-4"><%= t('home.index.quick_links') %></h3>
+        <ul class="space-y-3">
+          <li>
+            <%= link_to '/api/v1/auth/me', 
+                class: "inline-block px-4 py-2 bg-theme-secondary text-theme-accent rounded-lg hover:bg-theme-hover hover:text-dark-accent-hover transition-colors border border-theme-primary" do %>
+              <%= t('home.index.api_documentation') %>
+            <% end %>
+          </li>
+          <li>
+<%= button_to t('common.buttons.sign_out'), sign_out_path, method: :delete,
+                form: { data: { turbo: false } },
+                class: "px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 transition-colors cursor-pointer font-medium" %>
+          </li>
+        </ul>
+      </div>
+    </div>
+  <% else %>
+    <div class="mt-8 p-4 bg-theme-secondary rounded-lg border border-theme-primary">
+      <p class="text-theme-secondary">
+        <%= t('home.index.please_sign_in_html', sign_in_link: link_to(t('home.index.sign_in'), login_path, class: "text-theme-accent hover:text-dark-accent-hover font-semibold underline")).html_safe %>
+      </p>
+    </div>
+  <% end %>
+</div>
+

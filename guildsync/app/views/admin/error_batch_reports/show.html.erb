@@ -1,0 +1,147 @@
+<% rd       = @report.report_data %>
+<% summary  = @report.summary %>
+<% clusters = @report.clusters %>
+
+<div class="space-y-6">
+  <div class="flex justify-between items-center flex-wrap gap-4">
+    <h1 class="text-3xl font-bold text-theme-accent"><%= t("admin.error_batch_reports.show.page_title") %></h1>
+    <%= link_to t("admin.error_batch_reports.show.back_to_list"), admin_error_batch_reports_path,
+          class: "px-4 py-2 bg-theme-secondary text-theme-primary rounded-lg hover:bg-theme-hover transition-colors",
+          data: { turbo_frame: "_top" } %>
+  </div>
+
+  <%# Report header metadata %>
+  <div class="bg-theme-card border border-theme-primary rounded-lg p-6 shadow-lg">
+    <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 text-sm">
+      <div>
+        <p class="text-theme-secondary text-xs mb-0.5"><%= t("admin.error_batch_reports.show.period_label") %></p>
+        <p class="text-theme-primary font-mono text-xs">
+          <%= @report.period_start.strftime("%Y-%m-%d %H:%M") %><br>→ <%= @report.period_end.strftime("%Y-%m-%d %H:%M") %>
+          <span class="text-theme-secondary">(<%=@report.duration_hours%>h)</span>
+        </p>
+      </div>
+      <div>
+        <p class="text-theme-secondary text-xs mb-0.5"><%= t("admin.error_batch_reports.show.total_errors") %></p>
+        <p class="text-2xl font-bold <%= @report.total_errors > 0 ? "text-red-400" : "text-theme-secondary" %>">
+          <%= @report.total_errors %>
+        </p>
+      </div>
+      <div>
+        <p class="text-theme-secondary text-xs mb-0.5"><%= t("admin.error_batch_reports.show.unique_clusters") %></p>
+        <p class="text-2xl font-bold text-theme-primary"><%= @report.unique_clusters %></p>
+      </div>
+      <div>
+        <p class="text-theme-secondary text-xs mb-0.5"><%= t("admin.error_batch_reports.show.triggered_by") %></p>
+        <p class="text-theme-primary text-xs break-all"><%= @report.triggered_by %></p>
+      </div>
+      <div>
+        <p class="text-theme-secondary text-xs mb-0.5"><%= t("admin.error_batch_reports.show.delivered_at") %></p>
+        <% if @report.delivered? %>
+          <p class="text-green-400 text-xs"><%= @report.delivered_at.strftime("%Y-%m-%d %H:%M") %></p>
+        <% else %>
+          <p class="text-theme-secondary text-xs"><%= t("admin.error_batch_reports.show.not_delivered") %></p>
+        <% end %>
+      </div>
+    </div>
+  </div>
+
+  <%# Summary breakdown %>
+  <% if summary.present? && @report.total_errors > 0 %>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <div class="bg-theme-card border border-theme-primary rounded-lg p-5 shadow">
+        <h3 class="text-base font-semibold text-theme-primary mb-3"><%= t("admin.error_batch_reports.show.by_severity") %></h3>
+        <dl class="space-y-1.5">
+          <% (summary["by_severity"] || {}).sort_by { |_, v| -v }.each do |sev, count| %>
+            <div class="flex justify-between text-sm">
+              <dt class="text-theme-secondary capitalize"><%= sev %></dt>
+              <dd class="text-theme-primary font-semibold"><%= count %></dd>
+            </div>
+          <% end %>
+        </dl>
+      </div>
+      <div class="bg-theme-card border border-theme-primary rounded-lg p-5 shadow">
+        <h3 class="text-base font-semibold text-theme-primary mb-3"><%= t("admin.error_batch_reports.show.by_class") %></h3>
+        <dl class="space-y-1.5">
+          <% (summary["by_class"] || {}).sort_by { |_, v| -v }.first(10).each do |klass, count| %>
+            <div class="flex justify-between gap-4 text-sm">
+              <dt class="text-theme-secondary font-mono truncate"><%= klass %></dt>
+              <dd class="text-theme-primary font-semibold shrink-0"><%= count %></dd>
+            </div>
+          <% end %>
+        </dl>
+      </div>
+    </div>
+  <% end %>
+
+  <%# Cluster table %>
+  <div class="bg-theme-card border border-theme-primary rounded-lg shadow-lg overflow-hidden">
+    <div class="px-6 py-4 border-b border-theme-primary">
+      <h2 class="text-xl font-semibold text-theme-primary"><%= t("admin.error_batch_reports.show.clusters_heading") %></h2>
+    </div>
+
+    <% if clusters.any? %>
+      <div class="overflow-x-auto">
+        <table class="w-full text-sm text-theme-primary">
+          <thead class="bg-theme-secondary/20 text-theme-secondary text-xs">
+            <tr class="text-left">
+              <th class="px-4 py-3"><%= t("admin.error_batch_reports.show.col_trend") %></th>
+              <th class="px-4 py-3"><%= t("admin.error_batch_reports.show.col_type") %></th>
+              <th class="px-4 py-3 text-right"><%= t("admin.error_batch_reports.show.col_count") %></th>
+              <th class="px-4 py-3"><%= t("admin.error_batch_reports.show.col_severities") %></th>
+              <th class="px-4 py-3"><%= t("admin.error_batch_reports.show.col_window") %></th>
+              <th class="px-4 py-3"><%= t("admin.error_batch_reports.show.col_actions") %></th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-theme-primary/50">
+            <% clusters.each do |cluster| %>
+              <% trend = cluster["trend"].to_s %>
+              <tr class="hover:bg-theme-hover/10">
+                <td class="px-4 py-3 shrink-0">
+                  <% case trend
+                     when "new" %>
+                    <span class="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-blue-500/20 text-blue-400"><%= t("admin.error_batch_reports.show.trend_new") %></span>
+                  <% when "increasing" %>
+                    <span class="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-red-500/20 text-red-400"><%= t("admin.error_batch_reports.show.trend_increasing") %></span>
+                  <% when "decreasing" %>
+                    <span class="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-green-500/20 text-green-400"><%= t("admin.error_batch_reports.show.trend_decreasing") %></span>
+                  <% else %>
+                    <span class="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-theme-secondary/30 text-theme-secondary"><%= t("admin.error_batch_reports.show.trend_stable") %></span>
+                  <% end %>
+                </td>
+                <td class="px-4 py-3 max-w-sm">
+                  <div class="font-mono text-xs text-theme-accent truncate" title="<%= cluster["error_class"] %>">
+                    <%= cluster["error_class"] %>
+                  </div>
+                  <div class="text-theme-secondary text-xs mt-0.5 line-clamp-2">
+                    <%= cluster["sample_message"].to_s.truncate(140) %>
+                  </div>
+                </td>
+                <td class="px-4 py-3 text-right font-bold text-theme-primary"><%= cluster["count"] %></td>
+                <td class="px-4 py-3 text-xs text-theme-secondary">
+                  <% (cluster["severities"] || {}).sort_by { |_, v| -v }.each do |sev, cnt| %>
+                    <span class="capitalize"><%= sev %>: <%= cnt %></span><br>
+                  <% end %>
+                </td>
+                <td class="px-4 py-3 text-xs text-theme-secondary font-mono whitespace-nowrap">
+                  <%= cluster["first_seen_at"].to_s.first(16).tr("T", " ") %><br>
+                  → <%= cluster["last_seen_at"].to_s.first(16).tr("T", " ") %>
+                </td>
+                <td class="px-4 py-3">
+                  <% ids = Array(cluster["error_ids"]) %>
+                  <% if ids.any? %>
+                    <%= link_to t("admin.error_batch_reports.show.view_errors", count: ids.size),
+                          admin_error_path(ids.first),
+                          class: "text-blue-400 hover:underline text-xs whitespace-nowrap",
+                          data: { turbo_frame: "_top" } %>
+                  <% end %>
+                </td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+    <% else %>
+      <p class="px-6 py-8 text-theme-secondary"><%= t("admin.error_batch_reports.show.no_clusters") %></p>
+    <% end %>
+  </div>
+</div>

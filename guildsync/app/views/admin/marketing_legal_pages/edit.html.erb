@@ -1,0 +1,70 @@
+<div class="max-w-4xl mx-auto px-4 py-10">
+  <div class="flex items-start justify-between gap-4 mb-8">
+    <div>
+      <h1 class="text-3xl font-bold text-theme-accent">Edit <%= @marketing_legal_page.title %></h1>
+      <p class="mt-2 text-theme-secondary">
+        This page renders publicly from the homepage footer and persists in the production database.
+      </p>
+    </div>
+    <%= link_to "Back to footer settings", admin_homepage_footer_settings_path,
+          class: "inline-flex items-center justify-center rounded-lg border border-theme-primary px-4 py-2 text-sm text-theme-secondary hover:bg-theme-hover",
+          data: { turbo_frame: "_top" } %>
+  </div>
+
+  <% public_path = case @marketing_legal_page.kind
+     when "privacy" then privacy_policy_path
+     when "terms" then terms_of_service_path
+     when "security" then security_page_path
+     else disaster_recovery_page_path
+     end %>
+
+  <%= form_with model: [:admin, @marketing_legal_page], class: "space-y-6" do |f| %>
+    <div>
+      <%= f.label :title, class: "block text-sm font-medium text-theme-secondary mb-2" %>
+      <%= f.text_field :title, required: true, class: "w-full rounded-lg border border-theme-primary bg-theme-primary px-4 py-3 text-theme-primary" %>
+    </div>
+
+    <div
+      data-controller="editor"
+      data-editor-output-format-value="html"
+      class="mb-4"
+    >
+      <%= f.label :body, class: "block text-sm font-medium text-theme-secondary mb-2" %>
+      <div class="bg-theme-secondary border border-theme-primary rounded-lg p-2 mb-2">
+        <div class="flex flex-wrap gap-2">
+          <button type="button" data-editor-prevent-blur data-action="editor#bold" class="px-3 py-1 bg-theme-card hover:bg-theme-hover border border-theme-primary rounded text-theme-primary text-sm font-bold">B</button>
+          <button type="button" data-editor-prevent-blur data-action="editor#italic" class="px-3 py-1 bg-theme-card hover:bg-theme-hover border border-theme-primary rounded text-theme-primary text-sm italic">I</button>
+          <button type="button" data-editor-prevent-blur data-action="editor#underline" class="px-3 py-1 bg-theme-card hover:bg-theme-hover border border-theme-primary rounded text-theme-primary text-sm underline">U</button>
+          <button type="button" data-editor-prevent-blur data-action="editor#heading1" class="px-3 py-1 bg-theme-card hover:bg-theme-hover border border-theme-primary rounded text-theme-primary text-sm">H1</button>
+          <button type="button" data-editor-prevent-blur data-action="editor#heading2" class="px-3 py-1 bg-theme-card hover:bg-theme-hover border border-theme-primary rounded text-theme-primary text-sm">H2</button>
+          <button type="button" data-editor-prevent-blur data-action="editor#bulletList" class="px-3 py-1 bg-theme-card hover:bg-theme-hover border border-theme-primary rounded text-theme-primary text-sm">• List</button>
+          <button type="button" data-editor-prevent-blur data-action="editor#orderedList" class="px-3 py-1 bg-theme-card hover:bg-theme-hover border border-theme-primary rounded text-theme-primary text-sm">1. List</button>
+          <button type="button" data-editor-prevent-blur data-action="editor#addLink" class="px-3 py-1 bg-theme-card hover:bg-theme-hover border border-theme-primary rounded text-theme-primary text-sm">🔗 Link</button>
+          <button type="button" data-editor-prevent-blur data-action="editor#toggleSource" class="px-3 py-1 bg-theme-card hover:bg-theme-hover border border-theme-primary rounded text-theme-primary text-sm">&lt;/&gt; HTML</button>
+        </div>
+      </div>
+      <div
+        data-editor-target="editor"
+        class="min-h-[24rem] bg-theme-secondary border border-theme-primary rounded-lg p-4 text-theme-primary focus-within:ring-2 focus-within:ring-theme-accent prose prose-invert max-w-none"
+        style="cursor: text; outline: none; overflow-y: auto;"
+      ></div>
+      <textarea
+        data-editor-target="source"
+        class="hidden mt-2 w-full min-h-[220px] bg-theme-secondary border border-theme-primary rounded-lg p-4 text-theme-primary font-mono text-sm"
+        spellcheck="false"
+        aria-label="HTML source"
+      ></textarea>
+      <%= f.hidden_field :body, data: { editor_target: "input" }, value: @marketing_legal_page.body.to_s %>
+    </div>
+
+    <div class="flex flex-wrap gap-3">
+      <%= f.submit "Save legal page",
+            class: "inline-flex items-center justify-center rounded-lg bg-theme-brand-gradient px-5 py-2.5 text-sm font-semibold text-white hover:opacity-95" %>
+      <%= link_to "View public page",
+            public_path,
+            target: "_blank",
+            rel: "noopener",
+            class: "inline-flex items-center justify-center rounded-lg border border-theme-primary px-5 py-2.5 text-sm text-theme-secondary hover:bg-theme-hover" %>
+    </div>
+  <% end %>
+</div>

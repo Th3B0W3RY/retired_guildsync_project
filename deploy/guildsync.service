@@ -1,0 +1,20 @@
+[Unit]
+Description=GuildSync Puma (Rails)
+After=network.target
+
+[Service]
+Type=simple
+User=deploy
+Group=deploy
+WorkingDirectory=/var/www/guildsync/guildsync
+Environment=RAILS_ENV=production
+Environment=RACK_ENV=production
+Environment=PORT=3000
+# Leading "-" = unit still loads if file is missing (first boot before .env exists).
+EnvironmentFile=-/var/www/guildsync/guildsync/.env
+ExecStart=/home/deploy/.rbenv/bin/rbenv exec bundle exec puma -C config/puma.rb
+Restart=on-failure
+RestartSec=5
+
+[Install]
+WantedBy=multi-user.target

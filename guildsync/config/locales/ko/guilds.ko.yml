@@ -1,0 +1,822 @@
+ko:
+  guilds:
+    index:
+      title: 내 길드
+      subtitle: 게임 커뮤니티를 관리하세요
+      create_new_guild: 새 길드 생성
+      view_guild: 길드 보기
+      no_guilds: 아직 가입한 길드가 없습니다.
+      create_first_guild: 첫 길드 만들기
+    new:
+      title: 길드 생성
+      subtitle: 나만의 게임 커뮤니티를 시작하세요
+      guild_name: 길드 이름
+      create_button: 길드 생성
+      recruiting_name_warning: 이 이름은 공개 모집 목록에서 숨기는 용어와 일치합니다. 길드는 처음에 공개 목록에 표시되지 않습니다. 권한이 있으면 길드 설정에서 표시 여부를 변경할 수 있습니다.
+      games:
+        label: 게임
+        required: 필수
+        help_text: 길드에서 플레이하는 게임을 최소 1개 선택하세요. 나중에 설정에서 더 추가할 수 있습니다.
+        search_placeholder: 게임 검색...
+        featured_games: 추천 게임
+        no_games: 아직 사용 가능한 게임이 없습니다. 위 검색창을 사용하거나 아래에서 사용자 지정 게임을 추가하세요.
+        pending_approval: 승인 대기 중
+        select_primary: 기본 게임을 선택하세요 (길드가 중점적으로 플레이하는 메인 게임).
+        select_one_error: 게임을 최소 1개 선택하세요.
+        select_primary_error: 선택한 게임 중에서 기본 게임을 선택하세요.
+        primary_must_be_selected: 기본 게임은 선택한 게임 중 하나여야 합니다.
+        approve_pending_html: <strong>대기 중 게임 승인 방법:</strong> %{link}(으)로 이동하여 대기 중 게임의 "활성화 전환"을 클릭해 활성화하세요.
+        games_management: 게임 관리
+        select_button: 선택
+      custom_game:
+        add_link: 게임을 찾을 수 없나요? 여기서 추가하세요
+        label: 게임 이름
+        placeholder: 게임 이름 입력...
+        add_button: 게임 추가
+        no_similar: 유사한 게임을 찾지 못했습니다. "%{name}"을(를) 생성하려면 "게임 추가"를 클릭하세요. 철자를 다시 확인해주세요.
+        already_exists: '"%{name}" 게임이 이미 존재합니다. 위 목록에서 선택해주세요.'
+        search_error: 게임 검색 중 오류가 발생했습니다. 다시 시도해주세요.
+        js_no_similar_found: 유사한 게임을 찾지 못했습니다. "%{query}"을(를) 생성하려면 "게임 추가"를 클릭하세요. 철자를 다시 확인해주세요.
+        js_game_exists: '"%{name}" 게임이 이미 존재합니다. 위 목록에서 선택해주세요.'
+        js_search_error: 게임 검색 중 오류가 발생했습니다. 다시 시도해주세요.
+        js_adding: 추가 중...
+        js_server_error: 서버 오류입니다. 페이지를 새로고침한 후 다시 시도해주세요.
+        pending_admin_approval: 관리자 승인 대기 중
+        js_game_added_success: 게임이 성공적으로 추가되었습니다! 관리자 승인 후 사용 가능합니다.
+        js_failed_add: '게임 추가 실패: '
+        js_error_adding: '게임 추가 중 오류: '
+      modal:
+        title: 게임 추가 확인
+        confirm_text: "%{name}을(를) 새 게임으로 추가하시겠습니까?"
+        warning: 철자가 정확한지 확인해주세요. 게임은 대기 상태로 생성되며 관리자 승인이 필요합니다.
+        yes_add: 예, 게임 추가
+      pending_admin_info: '대기 중 게임을 승인하려면: 게임 관리로 이동하여 대기 중 게임의 "활성화 전환"을 클릭해 활성화하세요.'
+    show:
+      guild_information: 길드 정보
+      quick_actions: 빠른 작업
+      invite_members: 멤버 초대
+      schedule_event: 이벤트 일정 등록
+      about: 소개
+      no_description: 아직 설명이 없습니다.
+      discord_public_invite: 공개 Discord 초대
+      join_discord: Discord 참가
+      discord_invite_missing: 공개 초대 링크를 추가하면 멤버가 한 번의 클릭으로 Discord 서버를 열 수 있습니다.
+      discord_invite_none: 이 길드는 공개 Discord 초대 링크를 게시하지 않았습니다.
+    settings:
+      title: 길드 설정
+      subtitle: 길드 설정과 환경을 관리하세요.
+      guild_profile:
+        title: 길드 프로필
+        description: 설명과 선택적 공개 Discord 초대는 모든 멤버의 길드 대시보드에 표시됩니다.
+        description_label: 설명
+        discord_invite_label: 공개 Discord 초대 URL
+        discord_invite_hint: '선택 사항. Discord 초대 링크를 붙여넣으세요(예: https://discord.gg/…). 대시보드를 볼 수 있는 사람에게 표시됩니다.'
+        save_button: 프로필 저장
+      logo:
+        title: 길드 로고
+        description: 길드 로고를 업로드하세요. 로고는 앱 전체에서 길드 이름 옆에 표시됩니다.
+        recommended: '권장 크기:'
+        dimensions_info: '256x256 픽셀 (정사각형 형식 권장). 지원 형식: JPG, PNG, GIF, WebP.'
+        current_logo: '현재 로고:'
+        note: '참고:'
+        click_update: '"로고 업데이트"를 클릭해 새 파일을 선택하고 저장하세요.'
+        update_button: 로고 업데이트
+        delete_button: 로고 삭제
+        delete_confirm: 길드 로고를 삭제하시겠습니까?
+        save_button: 로고 저장
+      application_messages:
+        title: 지원 메시지
+        description: 지원자가 합격 또는 거절될 때 보낼 메시지를 사용자 지정합니다. 비워두면 기본 메시지가 사용됩니다.
+        accept_label: 합격 메시지
+        accept_default_message: 축하합니다! %{guild_name} 길드에 합격하셨습니다!
+        accept_hint: '지원자가 합격했을 때 전송되는 메시지입니다. %{guild_name}을 사용해 길드 이름을 포함할 수 있습니다. 기본값: "%{default_message}"'
+        reject_label: 거절 메시지
+        reject_default_message: 죄송하지만 현재는 우리 길드와 잘 맞지 않습니다. 원하시면 나중에 다시 지원해주세요.
+        reject_hint: '지원자가 거절되었을 때 전송되는 메시지입니다. 기본값: "%{default_message}"'
+        save_button: 메시지 저장
+      discord_channels:
+        title: Discord 채널 설정
+        description: 콘텐츠 유형별 알림을 받을 Discord 채널을 선택하세요.
+        events_channel: 이벤트 채널
+        events_hint: Discord 이벤트가 게시될 채널을 선택하세요.
+        battles_channel: 길드 배틀 채널
+        battles_hint: 길드 배틀 알림이 게시될 채널을 선택하세요.
+        gear_channel: 멤버 장비 채널
+        gear_hint: 멤버 장비 업데이트가 게시될 채널을 선택하세요.
+        polls_channel: 길드 투표 채널
+        polls_hint: 길드 투표가 게시될 채널을 선택하세요.
+        loot_channel: 루팅 주사위 채널
+        loot_hint: 루팅 주사위가 게시될 채널을 선택하세요. 루팅 주사위에는 필수입니다.
+        select_channel: 채널 선택...
+        save_button: 채널 설정 저장
+        unable_to_load: 채널을 불러올 수 없음
+        load_error: Discord 채널을 불러오지 못했습니다. Discord 봇 연결을 확인해주세요.
+        alliance_section_title: 동맹 채널(길드 간)
+        alliance_section_description: '연결된 GuildSync 봇을 사용해 동맹 초대, 이벤트, 투표, 전리품 롤이 게시될 채널을 선택하세요. 일부 채널만 설정된 경우, 초대 알림은 다음 순서로 처음 설정된 채널로 대체됩니다: 초대, 이벤트, 투표, 전리품.'
+        alliance_invites_channel: 동맹 초대 및 요청
+        alliance_invites_hint: 내 길드가 동맹에 초대되거나 다른 길드가 내 동맹 가입을 요청할 때의 알림입니다.
+        alliance_events_channel: 동맹 이벤트
+        alliance_events_hint: 동맹 전체 이벤트가 생성되면 서식이 적용된 메시지를 게시합니다.
+        alliance_polls_channel: 동맹 투표
+        alliance_polls_hint: 동맹 전체 투표가 생성되면 서식이 적용된 메시지를 게시합니다.
+        alliance_loot_channel: 동맹 전리품 롤
+        alliance_loot_hint: 동맹 전체 전리품 롤이 생성되면 서식이 적용된 메시지를 게시합니다.
+      discord_bot:
+        not_connected: 봇이 연결되지 않음
+        not_connected_authorize: GuildSync 봇이 Discord 서버에 연결되어 있지 않습니다. 봇을 인증해주세요.
+        not_connected_connect: 채널 설정 전에 GuildSync 봇을 Discord 서버에 연결해주세요.
+        authorize_button: 봇 인증
+        connect_button: 길드 Discord에 봇 연결
+      role_sync:
+        title: Discord 역할 동기화
+        description: 데이터베이스에 동기화할 Discord 역할을 관리합니다. 동기화된 역할은 30분마다 자동으로 새로고침됩니다.
+        sync_all: 모든 역할 동기화
+        remove_all: 모든 동기화 제거
+        refresh: 역할 새로고침
+        loading: 역할 불러오는 중...
+        role_name: 역할 이름
+        role_id: 역할 ID
+        sync_status: 동기화 상태
+        action: 작업
+        click_refresh: '"역할 새로고침"을 클릭해 Discord 역할을 불러오세요'
+      games:
+        title: 게임
+        description: 길드에서 플레이하는 게임을 관리하세요. 최소 1개의 게임이 필요합니다.
+        no_games: 현재 사용 가능한 게임이 없습니다. 게임 추가를 위해 관리자에게 문의하세요.
+        required_note: 최소 1개의 게임을 선택해야 합니다
+        update_button: 게임 업데이트
+        cant_find: 게임을 찾을 수 없나요? 여기서 추가하세요
+        game_name_label: 게임 이름
+        enter_game_name: 게임 이름 입력...
+        pending_approval: 관리자 승인 대기 중
+        primary_label: 기본
+        add_game_button: 게임 추가
+        pending_approval_short: 승인 대기 중
+        pending_admin_approval: 관리자 승인 대기 중
+        js_no_similar_found: 유사한 게임을 찾지 못했습니다. "%{query}"을(를) 생성하려면 "게임 추가"를 클릭하세요. 철자를 다시 확인해주세요.
+        js_game_exists: '"%{name}" 게임이 이미 존재합니다. 위 목록에서 선택해주세요.'
+        js_search_error: 게임 검색 중 오류가 발생했습니다. 다시 시도해주세요.
+        js_confirm_add: '"%{name}"을(를) 새 게임으로 추가하시겠습니까? 철자가 정확한지 확인해주세요.'
+        js_adding: 추가 중...
+        js_server_error: 서버 오류입니다. 페이지를 새로고침한 후 다시 시도해주세요.
+      permissions:
+        title: 역할 권한
+        description: 역할, 지원서, 길드 설정을 관리할 수 있는 Discord 역할을 최대 4개까지 선택하세요. 각 권한을 활성화하려면 체크박스를 선택하세요.
+        role_n: 역할 %{n}
+        select_discord_role: Discord 역할 선택
+        none: 없음
+        can_manage_roles: 역할 관리 가능
+        can_manage_applications: 지원서 관리 가능
+        can_manage_guild_settings: 길드 설정 관리 가능
+        can_kick_members: 멤버 추방 가능
+        can_invite_alliance_guilds: 동맹 길드를 초대할 수 있음
+        can_kick_alliance_guilds: 동맹 길드를 추방할 수 있음
+        can_manage_tags: 태그를 관리할 수 있음
+        can_manage_warnings: 경고를 관리할 수 있음
+        can_manage_documents: 문서를 관리할 수 있음
+        can_manage_files: 파일을 관리할 수 있음
+        can_manage_events: 이벤트를 관리할 수 있음
+        can_manage_polls: 투표를 관리할 수 있음
+        can_manage_loot_rolls: 전리품 롤을 관리할 수 있음
+        can_manage_discord_channels: Discord 채널을 관리할 수 있음
+        can_view_activity_feed: 활동 피드를 볼 수 있음
+        can_export_members_csv: 멤버 CSV를 내보낼 수 있음
+        can_use_message_center: 메시지 센터를 사용할 수 있음
+        can_manage_gear_requests: 장비 요청을 관리할 수 있음
+        can_edit_gear_scanned_stats: 스캔한 장비 스탯을 편집할 수 있음
+        save_button: 권한 저장
+        default_role:
+          title: 신규 멤버 기본 역할
+          description: 새 멤버가 길드에 가입할 때 자동으로 할당될 Discord 역할을 선택하세요.
+          label: 기본 역할
+          save_button: 기본 역할 저장
+      visibility:
+        title: 길드 공개 설정
+        description: 길드가 공개 목록에 표시될지 제어합니다. 비공개 길드는 기존 멤버만 찾을 수 있습니다.
+        toggle_label: 이 길드를 공개 목록에 표시
+        toggle_hint: 체크 해제 시 이 길드는 사용 가능한 길드 목록이나 검색 결과에 표시되지 않습니다. 기존 멤버와 신청자는 영향을 받지 않습니다.
+        save_button: 공개 설정 저장
+      react_roles:
+        title: 반응 역할
+        description: 최대 3개의 이모지-역할 매핑을 설정합니다. Discord 채널에 서식이 적용된 메시지를 게시하면, 사용자가 이모지로 반응해 해당 역할을 받고 반응을 제거하면 역할도 사라집니다.
+        channel_label: 채널(서식 메시지 게시 위치)
+        select_channel: 채널 선택...
+        slot_title: 반응 역할 %{n}
+        role_label: Discord 역할
+        select_role: 역할 선택...
+        emoji_label: 이모지
+        select_emoji: 이모지 선택...
+        emoji_hint: 표준 Unicode 이모지와 사용자 지정 서버 이모지를 지원합니다.
+        server_emojis: 서버 이모지
+        standard_emojis: 표준 이모지
+        loading_emojis: 로딩 중...
+        save_button: 반응 역할 저장
+        deploy_button: Discord에 게시
+        remove_button: Discord에서 제거
+        remove_confirm: Discord에서 반응 역할용 서식 메시지를 삭제합니다. 계속할까요?
+      back_to_dashboard: 대시보드로 돌아가기
+    members:
+      title: 길드 멤버
+      subtitle: 모든 길드 멤버를 조회하고 관리하세요.
+      select_all: 전체 선택
+      deselect_all: 전체 선택 해제
+      select_role: 역할 선택...
+      update_selected: 선택 항목 업데이트
+      search_placeholder: 사용자명 또는 Discord로 사용자 검색...
+      invite_user: 사용자 초대
+      export_csv: CSV 내보내기
+      kick_selected: 선택 멤버 추방
+      discord_verified: Discord 인증됨
+      discord_not_connected: 연결되지 않음
+      role_none: 없음
+      owner: 소유자
+      kick: 추방
+      kick_confirm: "%{username}을(를) 추방하시겠습니까? 이 작업은 되돌릴 수 없습니다."
+      kick_final_confirm: '최종 확인: 정말로 %{username}을(를) 길드에서 제거하시겠습니까?'
+      bulk_kick_confirm: "%{count}명의 멤버를 추방하시겠습니까? 이 작업은 되돌릴 수 없습니다."
+      bulk_kick_final: '최종 확인: 정말로 %{count}명의 멤버를 길드에서 제거하시겠습니까?'
+      no_roles_synced: 동기화된 역할이 없습니다
+      no_users_found: 사용자를 찾을 수 없습니다
+      search_load_more: 사용자 더 불러오기
+      js_error_searching_users: 사용자 검색 중 오류
+      js_inviting: 초대 중...
+      select_at_least_one: 멤버를 최소 한 명 선택하세요.
+      select_a_role: 역할을 선택하세요.
+      select_user_first: 먼저 사용자를 선택하세요.
+      back_to_dashboard: 대시보드로 돌아가기
+      tags:
+        manage_title: 길드 태그 관리
+        name: 태그 이름
+        color: 태그 색
+        create: 태그 만들기
+        filter_label: 태그로 정렬 / 필터
+        filter_all: 모든 태그
+        filter_untagged: 태그 없는 멤버
+        clear_filter: 지우기
+    members_gear:
+      title: "%{guild_name} AI 장비 스캐너"
+      pending_request_officer_banner: "%{requester}님이 장비 스크린샷 업데이트를 요청했습니다. 준비되면 아래에서 업로드하세요."
+      filter_by_game: '게임별 필터:'
+      all_games: 모든 게임
+      no_games_configured: 이 길드에는 설정된 게임이 없습니다. 길드 설정에서 게임을 추가해주세요.
+      gear_status_overview: 장비 상태 개요
+      request_missing_gear: 누락 장비 업데이트 요청 (%{count})
+      request_outdated_gear: 오래된 장비 업데이트 요청 (%{count})
+      request_all_missing_outdated: 누락/오래된 장비 전체 요청 (%{count})
+      total_members: 전체 멤버
+      missing_gear: 누락 장비
+      outdated_gear: 오래된 장비
+      up_to_date: 최신 상태
+      pending_gear_requests:
+        one: 장비 요청 1건 대기 중
+        other: 장비 요청 %{count}건 대기 중
+      view_pending_requests: 대기 요청 보기
+      filter_all: 전체
+      filter_missing: 누락
+      filter_outdated: 오래됨
+      filter_up_to_date: 최신
+      request_updates_from_missing_outdated: 누락/오래된 장비에 업데이트 요청
+      th_avatar: 아바타
+      th_member: 멤버
+      th_last_updated: 최근 업데이트
+      th_status: 상태
+      th_key_stats: 주요 스탯
+      th_actions: 작업
+      ago: 전
+      never: 없음
+      view_gear: 장비 보기
+      view_stats: 스탯 보기
+      pending_request: 요청 대기 중
+      request_update: 업데이트 요청
+      view_image: 이미지
+      screenshot_unavailable: 해당 스탯 스크린샷을 사용할 수 없습니다. 보관 기간이 지났거나 업로드가 없을 수 있습니다.
+      no_members_with_status: "%{status} 상태의 멤버를 찾을 수 없습니다"
+      no_members_found: 멤버를 찾을 수 없습니다
+      your_gear_screenshot: 내 장비 스크린샷
+      last_updated: 최근 업데이트
+      select_game: '게임 선택:'
+      select_game_prompt: "-- 게임 선택 --"
+      choose_file: 파일 선택
+      upload_screenshot: 스크린샷 업로드
+      parsed_data_preview: '파싱된 데이터 미리보기:'
+      upload_preview_heading: 추출된 스탯 미리보기
+      upload_preview_truncated: "… 외 %{count}개"
+      back_to_dashboard: 대시보드로 돌아가기
+      gear_details: 장비 상세
+      js_processing: 처리 중...
+      js_processing_message: 이미지를 처리하고 장비 데이터를 추출하는 중입니다... 잠시만 기다려주세요.
+      js_upload_success: 성공! 이미지 처리 및 장비 데이터 추출이 완료되었습니다. 페이지를 다시 불러오는 중...
+      upload_success_notice: 스크린샷이 업로드되었습니다. 최신 스탯이 업데이트되었습니다.
+      js_loading_gear: 장비 데이터 불러오는 중...
+      js_no_gear_data: 사용 가능한 장비 데이터가 없습니다
+      js_error_loading_gear: '장비 데이터 로드 오류: '
+      js_confirm_bulk_all: 누락되었거나 오래된 장비를 가진 모든 멤버에게 장비 업데이트 요청을 보내시겠습니까?
+      js_confirm_bulk_status: "%{status} 장비 상태의 모든 멤버에게 장비 업데이트 요청을 보내시겠습니까?"
+      js_confirm_request_user: "%{name}에게 스탯 업데이트 요청을 보내시겠습니까?"
+      stats_hidden: "—"
+    member_stats:
+      back_to_scanner: AI 스탯 스캐너로 돌아가기
+      title: "%{name}의 스탯"
+      guild_context: "%{guild_name}"
+      last_updated: 마지막 업데이트
+      extracted_heading: 추출된 스탯
+      stat_count:
+        one: 스탯 1개
+        other: 스탯 %{count}개
+      empty_title: 아직 스냅샷이 없습니다
+      empty_body: 이 멤버는 아직 스탯 화면 스크린샷을 업로드하지 않았습니다.
+      partial_title: 마지막 스냅샷에 스탯이 없습니다
+      partial_body: 스크린샷은 저장되었지만 이름/값 쌍을 추출하지 못했습니다.
+      member_not_found: 멤버를 찾을 수 없습니다.
+      unnamed_stat: 스탯
+      unparsed_label: 값
+      remove_stat: 이 스탯 삭제
+      undo_stat: 이 스탯 복원
+      edit_stat: 편집
+      save_stat: 저장
+      cancel_edit: 취소
+      stat_saved: 저장되었습니다.
+      stat_name_label: 스탯 이름
+      stat_value_label: 스탯 값
+      api_error: 스탯을 업데이트할 수 없습니다. 페이지를 새로고침한 뒤 다시 시도하세요.
+      cannot_view_other_member_stats: 이 길드에서는 본인 장비 스탯만 볼 수 있습니다.
+      modify_own_gear_only: 본인 장비만 수정할 수 있습니다.
+      cannot_edit_scanned_stats: 추출된 스탯은 길드장이거나 스캔 장비 스탯 편집 권한이 있는 역할만 변경할 수 있습니다. 일반 멤버는 본인 스캔 결과를 편집할 수 없습니다.
+    analytics:
+      title: "%{guild_name} 분석"
+      subtitle: 길드의 상세 분석과 인사이트를 확인하세요.
+      back_to_dashboard: 대시보드로 돌아가기
+    activity_feed:
+      title: "%{guild_name} 활동 피드"
+      subtitle: 이 길드의 최근 활동입니다. 로그는 3개월 동안 보관됩니다.
+      back_to_dashboard: 대시보드로 돌아가기
+    review_applications:
+      title: "%{name} 지원서 검토"
+      subtitle: 길드에 대한 대기 중 지원서를 검토하고 관리하세요.
+      invited_members: 초대된 멤버
+      invited_by: '초대한 사람:'
+      invited: '초대됨:'
+      discord_verified: Discord 인증됨
+      dismiss: 숨기기
+      dismiss_confirm: 이 초대를 목록에서 숨기시겠습니까?
+      pending_applications: 대기 중 지원서
+      discord_not_connected: 'Discord: 연결되지 않음'
+      applied: '지원일:'
+      message_label: '메시지:'
+      accept: 수락
+      accept_confirm: 이 지원서를 수락하고 멤버를 길드에 추가하시겠습니까?
+      reject: 거절
+      reject_confirm: 이 지원서를 거절하시겠습니까?
+      message_applicant: 지원자에게 메시지
+      message: 메시지
+      enter_message_placeholder: 메시지를 입력하세요...
+      send: 보내기
+      cancel: 취소
+      no_pending: 현재 대기 중인 지원서가 없습니다.
+      back_to_dashboard: 대시보드로 돌아가기
+    invite_members:
+      title: "%{name}에 멤버 초대"
+      subtitle: 길드 가입 초대를 보내고 대기 중 지원서를 검토하세요.
+      pending_applications: 대기 중 지원서
+      discord_server_unknown: 알 수 없음
+      discord_server_not_available: 'Discord 서버: 사용 불가'
+      applied: '지원일:'
+      message_label: '메시지:'
+      character_details: '캐릭터 정보:'
+      accept: 수락
+      accept_confirm: 이 지원서를 수락하고 멤버를 길드에 추가하시겠습니까?
+      reject: 거절
+      reject_confirm: 이 지원서를 거절하시겠습니까?
+      message_applicant: 지원자에게 메시지
+      message: 메시지
+      enter_message_placeholder: 메시지를 입력하세요...
+      send: 보내기
+      cancel: 취소
+      back_to_dashboard: 대시보드로 돌아가기
+    schedule_events:
+      title: "%{name} 이벤트 일정"
+      subtitle: 길드를 위한 Discord 이벤트를 생성하고 관리하세요.
+      create_new_event: 새 Discord 이벤트 생성
+      create_event: 이벤트 생성
+      recent_events: 최근 이벤트
+      signups: '신청:'
+      view: 보기
+      delete: 삭제
+      delete_confirm: 정말 삭제하시겠습니까?
+      bot_not_connected: 봇이 연결되지 않음
+      discord_server_not_selected: Discord 서버가 선택되지 않음
+      bot_not_connected_message: GuildSync 봇이 Discord 서버에 연결되어 있지 않습니다. 봇을 인증해주세요.
+      select_server_message: Discord 계정은 연결되어 있지만, GuildSync 봇을 연결할 Discord 서버를 선택해야 합니다.
+      connect_bot_message: 이벤트를 생성하기 전에 GuildSync 봇을 Discord 서버에 연결해주세요.
+      authorize_bot: 봇 인증
+      select_discord_server: Discord 서버 선택
+      connect_bot_to_guild: 길드 Discord에 봇 연결
+      back_to_dashboard: 대시보드로 돌아가기
+    schedule_guild_battle:
+      title: "%{name} 길드 배틀 일정"
+      subtitle: 길드 간 배틀을 구성하고 일정을 관리하세요.
+      management_title: 길드 배틀 관리
+      management_desc: 다른 길드에 도전하고, 도전에 응답하며, 배틀을 조율하세요.
+      view_all_battles: 모든 배틀 보기
+      challenge_another_guild: 다른 길드에 도전
+      notifications: 알림
+      back_to_dashboard: 대시보드로 돌아가기
+    connect_discord:
+      title: 길드 Discord에 봇 연결
+      subtitle: 이벤트 관리 및 알림을 위해 GuildSync 봇을 연결할 Discord 서버를 선택하세요.
+      connected:
+        title: Discord 연결됨
+        connected_to: '연결 대상:'
+      channel_config:
+        title: 채널 설정
+        subtitle: 각 콘텐츠 유형을 받을 Discord 채널을 선택하세요.
+        events_channel:
+          label: 이벤트 채널
+          placeholder: 채널 선택...
+          hint: 이벤트 공지가 게시될 채널
+        guild_battles_channel:
+          label: 길드 배틀 채널
+          placeholder: 채널 선택...
+          hint: 길드 배틀 공지가 게시될 채널
+        gear_channel:
+          label: 장비 채널
+          placeholder: 채널 선택...
+          hint: 멤버 장비 업로드가 게시될 채널
+        save_button: 채널 설정 저장
+      select_server:
+        title: Discord 서버 선택
+        already_connected: Discord 계정이 연결되어 있습니다. GuildSync 봇을 연결할 Discord 서버를 선택하세요. 서버 관리자 권한이 필요합니다.
+        not_connected: 먼저 Discord 계정을 연결하세요(1회 설정). 그다음 GuildSync 봇을 연결할 Discord 서버를 선택하세요. 서버 관리자 권한이 필요합니다.
+        select_button: Discord 서버 선택
+        connect_button: Discord 계정 연결
+      back_to_dashboard: 대시보드로 돌아가기
+      popup_blocked: 팝업이 차단되었습니다. 이 사이트의 팝업을 허용한 후 다시 시도하세요.
+      connection_failed: 'Discord 연결 실패: %{error}'
+  guild_archives:
+    alerts:
+      archived_unavailable: 이 길드는 보관되어 있어 접근할 수 없습니다.
+      archived_success: "'%{guild_name}' 길드를 보관했습니다. 1년 후 영구 삭제할 수 있습니다."
+      unarchived_success: "'%{guild_name}' 길드를 복원했습니다."
+      unarchive_plan_limit: 활성 길드 한도에 도달해 이 길드를 복원할 수 없습니다. 다른 활성 길드를 먼저 보관하거나 삭제하세요.
+      purge_not_ready: 아직 영구 삭제할 수 없습니다. 보관 상태로 최소 1년이 지나야 합니다.
+      purged_success: "'%{guild_name}' 길드를 영구 삭제했습니다."
+      not_found: 보관된 길드를 찾을 수 없습니다.
+      name_confirmation_mismatch: 길드 이름이 일치하지 않습니다. 정확히 입력하세요.
+    index:
+      title: 보관된 길드
+      subtitle: 보관된 길드는 활성 길드 한도에 포함되지 않습니다. 1년 후 자동으로 삭제됩니다.
+      recovery_note_label: 데이터 복구 안내
+      long_recovery_hint: 삭제된 기록은 최대 6개월간 보관됩니다. 이 기간이 지나면 영구적으로 삭제됩니다. 해당 기간 내에 데이터가 남아 있고 복구를 요청하려면 지원팀에 문의하세요.
+      empty: 보관된 길드가 없습니다.
+      archived_on: '보관일: %{date}'
+      auto_delete_on: '자동 삭제일: %{date}'
+      unarchive_button: 길드 복원
+      permanent_delete_button: 영구 삭제
+      permanent_delete_confirm: "%{guild_name} 길드를 영구 삭제할까요? 되돌릴 수 없습니다."
+    settings:
+      title: 위험 구역
+      warning: 보관하면 모든 사람의 이 길드 접근이 비활성화됩니다. 데이터는 1년간 보관된 뒤 영구 삭제됩니다.
+      type_name_hint: '보관하려면 길드 이름을 정확히 입력하세요: %{guild_name}'
+      confirmation_label: 길드 이름 확인
+      archive_button: 길드 보관
+      archive_confirm_prompt: "%{guild_name} 길드를 보관할까요? 더 이상 접근할 수 없습니다."
+  polls:
+    index:
+      title: 길드 투표
+      subtitle: "%{guild_name}의 투표를 확인하고 참여하세요"
+      create_poll: 투표 생성
+      created_by: "%{name}님이 생성"
+      deadline: '마감일:'
+      vote_count: "%{count}표"
+      vote_count_plural: "%{count}표"
+      anonymous: 익명
+      open: 진행 중
+      closed: 종료됨
+      'yes': 예
+      'no': 아니요
+      maybe: 보류
+      view_vote: 보기 및 투표
+      view_results: 결과 보기
+      delete: 삭제
+      delete_confirm: 이 투표를 삭제하시겠습니까? 이 작업은 되돌릴 수 없습니다.
+      no_polls: 아직 투표가 없습니다.
+      create_first: 첫 투표 만들기
+    new:
+      title: 새 투표 생성
+      subtitle: "%{guild_name}용 투표를 생성하세요"
+      poll_title: 투표 제목
+      poll_title_placeholder: 투표 제목 입력
+      description: 설명
+      description_placeholder: 투표 설명 입력
+      discord_roles_title: 멘션할 Discord 역할 (@)
+      discord_roles_hint: 투표 게시 시 멘션할 Discord 역할을 하나 이상 선택하세요.
+      deadline: 마감일
+      deadline_hint: 투표는 이 날짜와 시간에 마감됩니다.
+      anonymous_voting: 익명 투표
+      anonymous_hint: 활성화하면 결과에서 투표자 신원이 숨겨집니다.
+      create_button: 투표 생성
+    show:
+      back_to_polls: "← 투표로 돌아가기"
+      created_by: "%{name}님이 생성"
+      deadline: '마감일:'
+      description: 설명
+      cast_vote: 투표하기
+      'yes': "✅ 예"
+      'no': "❌ 아니요"
+      maybe: "\U0001F914 보류"
+      change_vote_hint: 마감 전에는 언제든지 투표를 변경할 수 있습니다.
+      results: 결과
+      votes: 표
+      no_votes: 아직 투표가 없습니다. 첫 투표자가 되어보세요!
+      delete_poll: 투표 삭제
+  loot_rolls:
+    index:
+      title: 길드 루팅 주사위
+      subtitle: "%{guild_name}의 루팅 주사위를 확인하고 참여하세요"
+      create_loot_roll: 루팅 주사위 생성
+      created_by: "%{name}님이 생성"
+      range: '범위:'
+      roll_count: "%{count}회 굴림"
+      roll_count_plural: "%{count}회 굴림"
+      deadline: '마감일:'
+      open: 진행 중
+      closed: 종료됨
+      highest_roll: '최고 주사위:'
+      winner: '승자:'
+      view_roll: 보기 및 굴리기
+      view_results: 결과 보기
+      delete: 삭제
+      delete_confirm: 이 루팅 주사위를 삭제하시겠습니까? 이 작업은 되돌릴 수 없습니다.
+      no_loot_rolls: 아직 루팅 주사위가 없습니다.
+      create_first: 첫 루팅 주사위 만들기
+    show:
+      back_to_loot_rolls: "← 루팅 주사위로 돌아가기"
+      created_by: "%{name}님이 생성"
+      range: '범위: %{min} - %{max}'
+      roll_count:
+        one: 회 굴림
+        other: 회 굴림
+      deadline: 마감일
+      open: 진행 중
+      closed: 종료됨
+      description: 설명
+      time_remaining: 남은 시간
+      calculating: 계산 중...
+      expired: 만료됨
+      tie_detected: 동점 감지!
+      are_tied_at: 점으로 동점입니다
+      tied_reroll_hint: 동점인 사용자는 Discord 버튼으로 다시 굴려야 합니다.
+      winner: 승자!
+      with_roll_of: 점으로
+      leaderboard: 리더보드
+      tied: 동점
+      force_reroll: 강제 재굴림
+      force_reroll_confirm: 이 작업은 %{name}님의 굴림을 무효화하고 다시 굴릴 수 있게 합니다. 계속하시겠습니까?
+      no_rolls_yet: 아직 굴림이 없습니다. Discord 버튼으로 굴려보세요!
+      close_loot_roll: 루팅 주사위 마감
+      close_confirm: 이 루팅 주사위를 조기 마감하시겠습니까? 승자가 결정됩니다.
+      delete_loot_roll: 루팅 주사위 삭제
+      delete_confirm: 이 루팅 주사위를 삭제하시겠습니까? 이 작업은 되돌릴 수 없습니다.
+    new:
+      title: 새 루팅 주사위 생성
+      subtitle: "%{guild_name}용 루팅 주사위를 생성하세요"
+      loot_title: 제목
+      loot_title_placeholder: 루팅 주사위 제목 입력
+      description: 설명 (선택)
+      description_placeholder: 설명 입력 (선택)
+      min_roll: 최소 주사위 값
+      max_roll: 최대 주사위 값
+      allowed_roles_title: 허용 역할 (선택)
+      allowed_roles_hint: 참여 가능한 Discord 역할을 선택하세요. 비워두면 모두 허용됩니다.
+      deadline: 마감일 (선택)
+      deadline_hint: 루팅 주사위는 이 시간에 자동으로 마감됩니다. 마감 없이 진행하려면 비워두세요.
+      auto_post_title: Discord 자동 게시
+      auto_post_hint: 이 루팅 주사위는 설정된 루팅 주사위 채널에 자동으로 게시됩니다.
+      create_button: 생성
+  guild_applications:
+    index:
+      title: 내 지원서
+      subtitle: 길드 지원서를 확인하고 추적하세요.
+      apply_to_guild: 길드 지원
+      guild_invitations: 길드 초대
+      invited_by: '초대한 사람:'
+      invited: '초대일:'
+      pending: 대기 중
+      accept_invitation: 초대 수락
+      decline: 거절
+      applied: '지원일:'
+      your_message: '내 메시지:'
+      view_guild: 길드 보기
+      no_applications: 아직 지원서가 없습니다. 길드에 지원해 시작해보세요!
+    new:
+      title: 길드 지원
+      subtitle: 길드 가입 지원서를 제출하세요.
+      select_guild: 길드 선택
+      search_placeholder: 이름으로 길드 검색...
+      start_typing: 길드를 검색하려면 입력을 시작하세요...
+      discord_username: Discord 사용자명
+      discord_placeholder: 내Discord#1234
+      message_label: 메시지 (선택)
+      message_placeholder: 가입하고 싶은 이유를 길드에 알려주세요...
+      character_details_label: 캐릭터 정보 (선택)
+      character_details_placeholder: 캐릭터 스탯, 플레이 게임, 캐릭터명, 레벨, 클래스, 장비 등 정보를 입력하세요...
+      character_details_hint: 캐릭터, 스탯, 게임 및 기타 관련 정보를 공유해주세요.
+      submit: 지원서 제출
+      cancel: 취소
+      no_guilds_found: 길드를 찾을 수 없습니다
+      load_more_guilds: 로드 더 길즈
+      owner_unknown: 알 수 없음
+      error_searching: 길드 검색 중 오류
+    create:
+      guild_not_available: 해당 길드는 목록에 없거나 보관되었거나 지원을 받지 않습니다.
+  guild_battles:
+    index:
+      title: "%{name}의 길드 배틀"
+      subtitle: 길드 간 배틀 도전과 응답을 관리하세요.
+      challenge_another_guild: 다른 길드에 도전
+      your_guild_battles: 내 길드 배틀
+      you_challenged: 당신이 %{name}에 도전했습니다
+      challenged_you: "%{name}이(가) 당신에게 도전했습니다"
+      scheduled: '일정:'
+      location: '장소:'
+      max_participants: '최대 참가자:'
+      view_details: 상세 보기
+      delete: 삭제
+      delete_confirm: 이 길드 배틀을 삭제하시겠습니까? 이 작업은 되돌릴 수 없습니다.
+      empty: 아직 길드 배틀이 없습니다. 다른 길드에 도전해 시작해보세요!
+    new:
+      title: 다른 길드에 도전
+      subtitle: 도전할 길드를 선택하고 배틀 세부 정보를 설정하세요.
+      battle_details: 배틀 상세
+      select_guild_to_challenge: 도전할 길드 선택
+      search_placeholder: 이름, 설명 또는 소유자로 길드 검색...
+      search_hint: 길드를 검색하려면 입력을 시작하세요...
+      scheduled_date_time: 예정 일시
+      location: 장소
+      location_placeholder: 배틀 장소 입력
+      max_participants: 최대 참가자
+      optional: 선택
+      notes: 메모
+      notes_placeholder: 추가 배틀 세부사항 또는 요구사항...
+      role_categories: 역할 카테고리
+      role_categories_hint: 사용자가 신청할 수 있는 역할을 선택하세요. 선택된 모든 역할은 Discord 신청에서 사용 가능합니다.
+      role_dps: DPS
+      role_tank: 탱커
+      role_healer: 힐러
+      role_ranged: 원거리
+      send_challenge: 도전 보내기
+      cancel: 취소
+      owner_label: 소유자
+      search_error: 길드 검색 중 오류
+    show:
+      title: 길드 배틀 상세
+      subtitle: 길드 배틀 도전
+      battle_details: 배틀 상세
+      status: 상태
+      scheduled: 일정
+      location: 장소
+      max_participants: 최대 참가자
+      notes: 메모
+      respond_to_challenge: 도전에 응답
+      scheduled_date_time: 예정 일시
+      accept: 수락
+      request_changes: 변경 요청
+      decline: 거절
+      communication: 커뮤니케이션
+      communication_visit_html: 메시지를 보내거나 대화 스레드를 보려면 %{link}를 방문하세요.
+      notifications_page: 알림 페이지
+      communication_discord: GuildSync Discord 봇을 통해서도 직접 메시지를 보낼 수 있습니다.
+      cancellation_requested: 취소 요청됨
+      cancellation_by_challenger: 도전자 측에서 이 배틀 취소를 요청했습니다.
+      cancellation_by_defender: 수비자 측에서 이 배틀 취소를 요청했습니다.
+      cancellation_waiting: 이 배틀 취소를 요청했습니다. 다른 소유자의 응답을 기다리는 중입니다.
+      accept_cancellation: 취소 수락
+      accept_cancellation_confirm: 수락하면 이 배틀이 취소되고 삭제됩니다. 계속하시겠습니까?
+      decline_cancellation: 취소 거절
+      back_to_guild_battles: 길드 배틀로 돌아가기
+      request_cancellation: 취소 요청
+      request_cancellation_confirm: 취소 요청을 보냅니다. 다른 소유자의 동의가 필요합니다. 계속하시겠습니까?
+      delete_battle: 배틀 삭제
+      delete_battle_confirm: 이 길드 배틀을 영구 삭제하시겠습니까? 이 작업은 되돌릴 수 없으며 관련 Discord 이벤트도 모두 삭제됩니다. 다른 소유자에게 알림이 전송됩니다.
+    notifications:
+      title: 길드 배틀 알림
+      subtitle: 도전, 메시지 및 배틀 커뮤니케이션을 관리하세요.
+      back_to_battle_home: "← 길드 배틀 홈으로 돌아가기"
+      pending_incoming: 수신 대기 중 도전
+      pending_outgoing: 발신 대기 중 도전
+      accepted_battles: 수락된 배틀
+      declined_battles: 거절된 배틀
+      reschedule_requests: 일정 변경 요청
+      cancelled_battles: 취소된 배틀
+      empty: 아직 길드 배틀 알림이 없습니다. 다른 길드에 도전해 시작해보세요!
+    battle_notification_card:
+      you_challenged: 당신이 %{name}에 도전했습니다
+      challenged_you: "%{name}이(가) 당신에게 도전했습니다"
+      scheduled: '일정:'
+      location: '장소:'
+      max_participants: '최대 참가자:'
+      notes: '메모:'
+      messages: 메시지
+      no_messages: 아직 메시지가 없습니다. 대화를 시작해보세요!
+      message_placeholder: 메시지 입력...
+      send: 보내기
+      view_details: 상세 보기
+      accept: 수락
+      decline: 거절
+  guild_documents:
+    index:
+      title: 길드 문서
+      subtitle: "%{guild_name} 문서를 관리하고 공유하세요"
+      new_folder: 새 폴더
+      new_document: 새 문서
+      create_document: 문서 생성
+      folder_name: 폴더 이름
+      folder_name_placeholder: 폴더 이름
+      color: 색상
+      create_folder: 폴더 생성
+      documents_count: 문서
+      edit: 편집
+      delete_folder_confirm: 정말 삭제하시겠습니까? 이 폴더의 모든 문서는 '폴더 없음'으로 이동됩니다.
+      delete: 삭제
+      by_author: 작성자 %{author}
+      visibility_public: 공개
+      visibility_private: 비공개
+      visibility_unlisted: 미등록
+      share: 공유
+      no_documents_in_folder: 이 폴더에 문서가 없습니다
+      no_folder: 폴더 없음
+      no_documents_yet: 아직 문서가 없습니다
+      create_first_hint: 첫 문서 또는 폴더를 만들어 시작하세요.
+      edit_folder_title: 폴더 편집
+      cancel: 취소
+      update_folder: 폴더 업데이트
+    new:
+      title: 새 문서
+      subtitle: "%{guild_name}용 새 문서를 생성하세요"
+      fix_errors: '다음 오류를 수정해주세요:'
+      document_title_placeholder: 문서 제목
+      visibility_private: 비공개 - 길드 멤버만
+      visibility_public: 공개 - 링크가 있는 누구나
+      visibility_unlisted: 미등록 - 색인되지는 않지만 링크로 열람 가능
+      folder_optional: 폴더 (선택)
+      no_folder: 폴더 없음
+      content: 내용
+      cancel: 취소
+      create_document: 문서 생성
+    toolbar:
+      image: 이미지 업로드
+    edit:
+      title: 문서 편집
+      subtitle: "%{guild_name} 문서를 편집하세요"
+      fix_errors: '다음 오류를 수정해주세요:'
+      document_title_placeholder: 문서 제목
+      visibility_private: 비공개 - 길드 멤버만
+      visibility_public: 공개 - 링크가 있는 누구나
+      visibility_unlisted: 미등록 - 색인되지는 않지만 링크로 열람 가능
+      folder_optional: 폴더 (선택)
+      no_folder: 폴더 없음
+      content: 내용
+      cancel: 취소
+      update_document: 문서 업데이트
+  guild_warnings:
+    title: 길드 경고 센터
+    subtitle: 멤버에게 보낸 경고를 추적하고 상태 목록을 정리합니다.
+    send_title: 경고 보내기
+    send_description: 멤버가 Discord를 연결한 경우 GuildSync 봇을 통해 Discord DM을 보냅니다.
+    member_label: 길드 멤버
+    select_member: 멤버 선택
+    reason_label: 경고 사유
+    send_button: 경고 보내기
+    warning_count: '경고: %{count}/%{limit}'
+    empty_column: 이 목록에 멤버가 없습니다.
+    save_lists_button: 목록 저장
+    back_to_guild: 길드 대시보드로 돌아가기
+    columns:
+      no_warnings: 경고 없음
+      warned: 경고 대상 목록
+      banned: 차단 목록
+    alerts:
+      access_denied: 이 길드의 경고를 관리할 권한이 없습니다.
+      member_not_found: 길드 멤버를 찾을 수 없습니다.
+      protected_member: 길드 소유자나 경고 관리자에게는 경고를 보내거나 재분류할 수 없습니다.
+      reason_required: 경고 사유는 필수입니다.
+      warning_sent: "%{user}에게 경고를 보냈습니다."
+      warning_failed: '경고를 보낼 수 없습니다: %{error}'
+      lists_updated: 경고 목록이 업데이트되었습니다.
+      list_update_failed: '경고 목록을 업데이트할 수 없습니다: %{error}'
+    discord:
+      warning_dm: |-
+        **%{guild_name}**에서 경고를 받았습니다.
+        사유: %{reason}
+        경고: %{warning_count}/%{warning_limit}
+    my_status:
+      title: 내 경고 상태
+      subtitle: 이 길드에서 기록된 공식 경고입니다.
+      access_denied: 이 페이지를 보려면 이 길드의 멤버여야 합니다.
+      none_title: 기록된 경고 없음
+      none_body: 이 길드에서 활성 경고 기록이 없습니다.
+      state_label: 상태
+      count_label: 경고 수
+      last_reason: 최근 사유
+      last_at: 마지막 경고
+      discord_note: GuildSync에서 Discord가 연결되어 있으면 새 경고가 발행될 때 봇 DM도 받을 수 있습니다.

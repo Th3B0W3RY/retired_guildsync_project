@@ -1,0 +1,41 @@
+# Guilds CRUD
+
+**Last updated:** 2026-05-19 (**`guilds_spec`** **`GET /guilds/new`** **`support_center_url`** — **306**; **`events_bot_integration_spec`** **`GET …/discord_events/:id`** **`support_center_url`** — **305**; **`GET …/discord_events/new`** **`support_center_url`** — **304**; **`guild_member_management_spec`** **`GET …/members/invite`** **`support_center_url`** — **299**; **`GET …/review_applications`** — **298**; **`GET …/members`** — **297**; archive specs + retention; **`guild_archives_spec`** **`GET /guild_archives`** **`support_center_url`** — **296**; **`guild_visibility_spec`** **`GET …/settings`** **`support_center_url`** — **295**; **`events_bot_integration_spec`** **`GET …/events/schedule`** **`support_center_url`** — **291**; **`guild_show_spec`** **`support_center_url`** — **277**; **`guilds_spec`** **`GET /guilds`** — **280**; **Related** spine)
+
+**Controller:** `guildsync/app/controllers/guilds_controller.rb` — **`index`** (**`GET /guilds`**, **`my_guilds_path`** — signed-in guild list), **`new`** / **`create`** (create-guild form **`GET /guilds/new`**, **`new_guild_path`**), `show` (guild home / “dashboard”), `settings`, `update`, archive, members, etc. **`support_center_url`** in member chrome on **`index`** — **`guilds_spec`** **changelog 280**; on **`new`** — **changelog 306**.
+
+**Public guild search (`GET /guilds/search`):** JSON autocomplete for apply-to-guild and similar UIs — **`Guild.discoverable_for_applications`** (**`publicly_listed`** + **`not_archived`**), same as **`MemberDashboardController`** / **`GuildApplicationsController`**. **`guild_visibility_spec`** covers private vs public vs archived rows.
+
+**Guild home (`GET /guilds/:id`):** `app/views/guilds/show.html.erb` — **About** (description with `guilds.show.no_description` fallback), **public Discord invite** (`guilds.discord_invite_url`, link + owner hint to settings when empty), **quick actions** grid that mirrors main sidebar entries using the same `plan_allows?` / `can_*` checks (invite, schedule, members, polls, loot rolls, message center, documents, activity feed, members gear, applications, warnings, leaderboard, Discord connection, settings). Signed-in layout / sidebar **`support_center_url`** is present in the same member app chrome as **`GET /dashboard`** (**`guild_show_spec`** **changelog 277**).
+
+**Members list (`GET /guilds/:id/members`):** `GuildsController#members` — tags filter, pagination, Discord role display. Member chrome **`support_center_url`** — **`guild_member_management_spec`** **changelog 297**.
+
+**Review applications (`GET /guilds/:id/applications` → `review_applications`):** Pending invites + applications for officers with **`can_manage_applications?`**. Member chrome **`support_center_url`** — **`guild_member_management_spec`** **changelog 298**.
+
+**Discord scheduled events (`GET /guilds/:id/events/schedule`):** `GuildsController#schedule_events` — owner-only page to create Discord scheduled events (bot API); **`spec/requests/events_bot_integration_spec.rb`** asserts **`support_center_url`** in member chrome (default + custom **`SiteSetting`**, desktop + **`:mobile`** — **changelog 291**).
+
+**Discord event creation form (`GET /guilds/:id/discord_events/new`):** `DiscordEventsController#new` — full create-event flow when user Discord, bot in guild, and events channel are configured; same spec file asserts **`support_center_url`** in member chrome — **changelog 304**.
+
+**Guild settings (`GET /guilds/:id/settings`):** Owner (or role with manage-settings) settings hub; visibility + profile sections. **`spec/requests/guild_visibility_spec.rb`** asserts **`support_center_url`** in member chrome (default + custom **`SiteSetting`**, desktop + **`:mobile`**) — **changelog 295**.
+
+**Editable profile (owners / manage-settings role):** Partial `app/views/guilds/_guild_profile_settings.html.erb` — description + `discord_invite_url`, rendered from `settings.html.erb` and `settings.html+mobile.erb`. Persisted through existing `update` + `guild_params`.
+
+**Model:** `Guild` validates `discord_invite_url` **allow_blank**, max length **512**, format **`https?://` + non-whitespace** (rejects `ftp:` etc.).
+
+**i18n:** `guilds.show.*` (about, Discord copy), `guilds.settings.guild_profile.*` — **10 locales** under each language’s main YAML (`en`, `de`, `es`, `fr`, `it`, `ja`, `ko`, `pt`, `ru`, `zh`).
+
+**Archive / purge:** `POST /guilds/:id/archive` (`GuildsController#archive`) — name confirmation, then `Guild#archive!` sets **`archived_at`** and **`scheduled_purge_at`** to **`Time.current + Guild::ARCHIVE_RETENTION_PERIOD`** (**1 year** in code). **`GuildArchivesController`** — **`GET /guild_archives`** index (owner’s archived guilds only); member chrome **`support_center_url`** — **`guild_archives_spec`** **changelog 296**. The index **`subtitle`** (**`guild_archives.index.subtitle`**) describes this **one-year in-app retention** only. A separate amber **support recovery note** (**`guild_archives.index.long_recovery_hint`**) describes an **approx. six‑month retention window for deleted records** handled via support—not the same timeline as **`ARCHIVE_RETENTION_PERIOD`**. **`unarchive`**, **`destroy`** (permanent delete only when **`eligible_for_purge?`** — `scheduled_purge_at <= Time.current`). **`set_archived_guild`** scopes to **`current_user.owned_guilds.archived`**; other users get **`guild_archives.alerts.not_found`**. **`PurgeArchivedGuildsJob`** (ActiveJob) runs **`Guild#purge!`** for all **`purge_ready`** guilds; **daily ~5 AM** enqueue from **`config/initializers/sidekiq.rb`** when the **Sidekiq server** process is up.
+
+**Specs:** `spec/requests/guilds_spec.rb` — **`GET /guilds`** **`support_center_url`** — **changelog 280**; **`GET /guilds/new`** — **306**; `spec/requests/guild_show_spec.rb` (quick actions, invite link, profile PATCH, **`support_center_url`** default + custom + **`:mobile`** — **changelog 277**); **`spec/requests/events_bot_integration_spec.rb`** — **`GET …/events/schedule`** **`support_center_url`** — **changelog 291**; **`GET …/discord_events/new`** — **304**; **`GET …/discord_events/:id`** — **305**; **`spec/requests/guild_visibility_spec.rb`** — **`GET …/settings`** **`support_center_url`** — **changelog 295**. **`spec/requests/guild_member_management_spec.rb`** — **`GET …/members`** **`support_center_url`** — **changelog 297**; **`GET …/review_applications`** — **298**; **`GET …/members/invite`** — **299** (tags / pagination / kick / role examples in same file). **`spec/requests/guild_archives_spec.rb`** — **`GET /guild_archives`** **`support_center_url`** — **changelog 296**; archive confirmation, archived guild redirects (show, message center), index, unarchive plan limit, purge before/after retention; **access isolation** (non-owner member cannot archive; stranger cannot archive / unarchive / purge); **authentication** (signed-out → **`login_path`**).
+
+**Related UX:** Sidebar label **`sidebar.guild_menu.members_gear`** is **AI Gear Scanner** (localized); see [sidebar_navigation.md](sidebar_navigation.md) (**mega #219**). Flash toast defaults live in **`SiteSetting`** + **`toast_controller.js`**.
+
+## Related
+
+- [sidebar_navigation.md](sidebar_navigation.md) (**mega #219**) — guild submenu mirrors **`plan_allows?`** / **`can_*`** used on **`guilds#show`** quick actions.
+- [plan_entitlements.md](plan_entitlements.md) — tier gates for surfaced features.
+- [guild_invites.md](guild_invites.md) — invite links / applications overlap with guild settings flows.
+- [data_model_core.md](../overall/data_model_core.md) (**mega #209**) — **`Guild`** lifecycle and associations.
+- [background_jobs.md](../overall/background_jobs.md) (**mega #212**) — **`PurgeArchivedGuildsJob`** / Sidekiq enqueue note.
+- [authorization.md](../overall/authorization.md) (**mega #211**) — membership + policy layers.
+- [request_specs_and_gates.md](../overall/request_specs_and_gates.md) — **`guilds_spec`** (**`GET /guilds`**, **280**; **`GET /guilds/new`**, **306**), **`guild_show_spec`**, **`guild_archives_spec`**, **`events_bot_integration_spec`** (**`GET …/events/schedule`**, **changelog 291**; **`GET …/discord_events/new`**, **304**; **`GET …/discord_events/:id`**, **305**) rows.

@@ -1,0 +1,2 @@
+class DiscordTokenExpiredError < StandardError
+end

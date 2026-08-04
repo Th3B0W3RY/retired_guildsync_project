@@ -1,0 +1,12 @@
+<%= turbo_stream.update "admin_ocr_user_show_flash" do %>
+  <%= render "admin/ocr_requests/ocr_flash_banner", message: @admin_ocr_notice, variant: :notice %>
+<% end %>
+<%= turbo_stream.replace "admin_ocr_user_summary_cards" do %>
+  <%= render "admin/ocr_requests/ocr_user_summary_cards", user: @user %>
+<% end %>
+<%= turbo_stream.replace "admin_ocr_user_actions_panel" do %>
+  <%= render "admin/ocr_requests/ocr_user_actions_panel", user: @user %>
+<% end %>
+<%= turbo_stream.replace "admin_ocr_user_usage_history" do %>
+  <%= render "admin/ocr_requests/ocr_user_usage_history", user: @user, usage_changes: @usage_changes %>
+<% end %>

@@ -1,0 +1,18 @@
+<div id="admin_release_notes_flash" class="min-h-0" aria-live="polite"></div>
+
+<div id="admin_release_notes_form_wrap">
+  <%= render "release_notes_form", release_notes_url: @release_notes_url %>
+</div>
+
+<div class="bg-theme-card border border-theme-primary rounded-lg p-6 shadow-lg max-w-2xl">
+  <h2 class="text-lg font-semibold text-theme-primary mb-2"><%= t("roadmap.admin.release_notes.where_used_title") %></h2>
+  <ul class="list-disc list-inside text-sm text-theme-secondary space-y-1">
+    <li><%= t("roadmap.admin.release_notes.used_signed_in_menus") %></li>
+    <li><%= t("roadmap.admin.release_notes.used_member_sidebar") %></li>
+    <li><%= t("roadmap.admin.release_notes.used_billing_and_pricing") %></li>
+    <li><%= t("roadmap.admin.release_notes.used_app_routes") %></li>
+    <li><%= t("roadmap.admin.release_notes.used_global_search") %></li>
+    <li><%= t("roadmap.admin.release_notes.used_roadmap_per_feature_urls") %></li>
+    <li><%= t("roadmap.admin.release_notes.used_logged_out_other_setting") %></li>
+  </ul>
+</div>

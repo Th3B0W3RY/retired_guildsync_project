@@ -1,0 +1,591 @@
+<div class="max-w-6xl mx-auto p-6">
+  <h1 class="text-3xl font-bold text-theme-primary mb-6">
+    <%= t('guilds.members_gear.title', guild_name: @guild.name) %>
+  </h1>
+
+  <% if @my_pending_gear_request %>
+    <div class="mb-6 p-4 rounded-lg border border-amber-600/60 bg-amber-900/40 text-amber-100" role="status">
+      <%= t("guilds.members_gear.pending_request_officer_banner", requester: @my_pending_gear_request.requester.display_name) %>
+    </div>
+  <% end %>
+
+  <% if @guild.games.empty? %>
+    <div class="mb-4 p-3 bg-yellow-900/50 border border-yellow-700 text-yellow-200 rounded">
+      <%= t('guilds.members_gear.no_games_configured') %>
+    </div>
+  <% end %>
+  
+  <!-- Stat status summary (for managers) -->
+  <% if can_manage_gear_requests?(@guild) && @gear_stats %>
+    <div class="bg-theme-secondary rounded-lg p-6 mb-6 border-2 border-theme-primary">
+      <div class="flex items-center justify-between mb-4">
+        <h2 class="text-2xl font-bold text-theme-primary"><%= t('guilds.members_gear.gear_status_overview') %></h2>
+        <div class="flex gap-3">
+          <button id="bulk-request-missing-btn" 
+                  class="px-4 py-2 bg-red-600 text-white rounded hover:bg-red-700 font-semibold"
+                  data-status="missing"
+                  <%= 'disabled' if @gear_stats[:missing].to_i == 0 %>>
+            <%= t('guilds.members_gear.request_missing_gear', count: @gear_stats[:missing] || 0) %>
+          </button>
+          <button id="bulk-request-outdated-btn" 
+                  class="px-4 py-2 bg-yellow-600 text-white rounded hover:bg-yellow-700 font-semibold"
+                  data-status="outdated"
+                  <%= 'disabled' if @gear_stats[:outdated].to_i == 0 %>>
+            <%= t('guilds.members_gear.request_outdated_gear', count: @gear_stats[:outdated] || 0) %>
+          </button>
+          <button id="bulk-request-all-btn" 
+                  class="px-4 py-2 bg-theme-accent text-white rounded hover:bg-theme-accent-hover font-semibold"
+                  data-status="all"
+                  <%= 'disabled' if (@gear_stats[:missing].to_i + @gear_stats[:outdated].to_i) == 0 %>>
+            <%= t('guilds.members_gear.request_all_missing_outdated', count: (@gear_stats[:missing] || 0) + (@gear_stats[:outdated] || 0)) %>
+          </button>
+        </div>
+      </div>
+      
+      <div class="grid grid-cols-4 gap-4">
+        <div class="bg-theme-primary rounded-lg p-4 text-center">
+          <div class="text-3xl font-bold text-white"><%= @gear_stats[:total_members] || 0 %></div>
+          <div class="text-sm text-theme-secondary mt-1"><%= t('guilds.members_gear.total_members') %></div>
+        </div>
+        <div class="bg-red-900/50 border-2 border-red-700 rounded-lg p-4 text-center">
+          <div class="text-3xl font-bold text-red-200"><%= @gear_stats[:missing] || 0 %></div>
+          <div class="text-sm text-red-300 mt-1"><%= t('guilds.members_gear.missing_gear') %></div>
+        </div>
+        <div class="bg-yellow-900/50 border-2 border-yellow-700 rounded-lg p-4 text-center">
+          <div class="text-3xl font-bold text-yellow-200"><%= @gear_stats[:outdated] || 0 %></div>
+          <div class="text-sm text-yellow-300 mt-1"><%= t('guilds.members_gear.outdated_gear') %></div>
+        </div>
+        <div class="bg-green-900/50 border-2 border-green-700 rounded-lg p-4 text-center">
+          <div class="text-3xl font-bold text-green-200"><%= @gear_stats[:up_to_date] || 0 %></div>
+          <div class="text-sm text-green-300 mt-1"><%= t('guilds.members_gear.up_to_date') %></div>
+        </div>
+      </div>
+      
+      <% if @gear_stats && @gear_stats[:pending_requests].to_i > 0 %>
+        <div class="mt-4 p-3 bg-blue-900/50 border border-blue-700 rounded-lg">
+          <div class="flex items-center justify-between">
+            <div class="flex items-center gap-2">
+              <span class="text-blue-200 font-semibold">
+                ⏳ <%= t('guilds.members_gear.pending_gear_requests', count: @gear_stats[:pending_requests]) %>
+              </span>
+            </div>
+            <button id="view-pending-requests-btn" 
+                    class="text-sm px-3 py-1 bg-blue-700 text-white rounded hover:bg-blue-600">
+              <%= t('guilds.members_gear.view_pending_requests') %>
+            </button>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  <% end %>
+  
+  <!-- Filters and Bulk Actions -->
+  <div class="mb-6 flex items-center justify-between">
+    <div class="flex gap-2">
+      <%= link_to t('guilds.members_gear.filter_all'), guild_members_gear_path(@guild, status: 'all'), 
+          class: "px-4 py-2 rounded #{params[:status] != 'missing' && params[:status] != 'outdated' && params[:status] != 'up_to_date' ? 'bg-theme-accent text-white' : 'bg-theme-secondary text-theme-primary'}" %>
+      <%= link_to t('guilds.members_gear.filter_missing'), guild_members_gear_path(@guild, status: 'missing'), 
+          class: "px-4 py-2 rounded #{params[:status] == 'missing' ? 'bg-theme-accent text-white' : 'bg-theme-secondary text-theme-primary'}" %>
+      <%= link_to t('guilds.members_gear.filter_outdated'), guild_members_gear_path(@guild, status: 'outdated'), 
+          class: "px-4 py-2 rounded #{params[:status] == 'outdated' ? 'bg-theme-accent text-white' : 'bg-theme-secondary text-theme-primary'}" %>
+      <%= link_to t('guilds.members_gear.filter_up_to_date'), guild_members_gear_path(@guild, status: 'up_to_date'), 
+          class: "px-4 py-2 rounded #{params[:status] == 'up_to_date' ? 'bg-theme-accent text-white' : 'bg-theme-secondary text-theme-primary'}" %>
+    </div>
+    
+    <% if can_manage_gear_requests?(@guild) && !params[:status].in?(['missing', 'outdated']) %>
+      <button id="bulk-request-btn" class="px-4 py-2 bg-theme-accent text-white rounded hover:bg-theme-accent-hover">
+        <%= t('guilds.members_gear.request_updates_from_missing_outdated') %>
+      </button>
+    <% end %>
+  </div>
+  
+  <!-- Members Table -->
+  <div class="bg-theme-secondary rounded-lg overflow-hidden mb-6">
+    <table class="w-full">
+      <thead class="bg-theme-primary text-white">
+        <tr>
+          <th class="px-4 py-3 text-left"><%= t("guilds.members_gear.th_avatar") %></th>
+          <th class="px-4 py-3 text-left"><%= t("guilds.members_gear.th_member") %></th>
+          <th class="px-4 py-3 text-left"><%= t("guilds.members_gear.th_last_updated") %></th>
+          <th class="px-4 py-3 text-left"><%= t("guilds.members_gear.th_status") %></th>
+          <th class="px-4 py-3 text-left"><%= t("guilds.members_gear.th_key_stats") %></th>
+          <th class="px-4 py-3 text-left"><%= t("guilds.members_gear.th_actions") %></th>
+        </tr>
+      </thead>
+      <tbody>
+        <% if @members_with_gear.any? %>
+          <% @members_with_gear.each do |member_data| %>
+            <tr class="border-b border-theme-primary">
+              <td class="px-4 py-3">
+                <% if member_data[:member].avatar.attached? %>
+                  <%= image_tag url_for(member_data[:member].avatar), 
+                      class: "w-10 h-10 rounded-full" %>
+                <% else %>
+                  <div class="w-10 h-10 rounded-full bg-theme-primary flex items-center justify-center text-white font-semibold">
+                    <%= member_data[:member].display_name.first.upcase %>
+                  </div>
+                <% end %>
+              </td>
+              <td class="px-4 py-3"><%= member_data[:member].display_name %></td>
+              <td class="px-4 py-3">
+                <%= member_data[:last_updated] ? "#{time_ago_in_words(member_data[:last_updated])} #{t("guilds.members_gear.ago")}" : t("guilds.members_gear.never") %>
+              </td>
+              <td class="px-4 py-3">
+                <span class="px-2 py-1 rounded text-sm <%= status_badge_class_helper(member_data[:status]) %>">
+                  <%= member_data[:status].humanize %>
+                </span>
+              </td>
+              <td class="px-4 py-3">
+                <% if can_view_member_gear_stats?(@guild, member_data[:member]) %>
+                  <% if member_data[:key_stats].any? %>
+                    <div class="text-sm">
+                      <% member_data[:key_stats].each do |key, value| %>
+                        <div><strong><%= key %>:</strong> <%= value %></div>
+                      <% end %>
+                    </div>
+                  <% else %>
+                    <span class="text-theme-secondary">-</span>
+                  <% end %>
+                <% else %>
+                  <span class="text-theme-secondary"><%= t("guilds.members_gear.stats_hidden") %></span>
+                <% end %>
+              </td>
+              <td class="px-4 py-3">
+                <div class="flex flex-wrap gap-2">
+                  <% if can_view_member_gear_stats?(@guild, member_data[:member]) %>
+                    <%= link_to t("guilds.members_gear.view_stats"),
+                        guild_member_stats_path(@guild, user_id: member_data[:member].id),
+                        class: "px-3 py-1 bg-theme-accent text-white rounded text-sm hover:bg-theme-accent-hover text-center" %>
+                  <% end %>
+                  <% if can_manage_gear_requests?(@guild) %>
+                    <% 
+                      has_pending_request = @members_with_pending_requests.include?(member_data[:member])
+                      button_class = has_pending_request ? 
+                        "px-3 py-1 bg-blue-600 text-white rounded text-sm hover:bg-blue-700" :
+                        "px-3 py-1 bg-yellow-600 text-white rounded text-sm hover:bg-yellow-700"
+                      button_text = has_pending_request ? t("guilds.members_gear.pending_request") : t("guilds.members_gear.request_update")
+                    %>
+                    <button class="request-update-btn <%= button_class %>"
+                            data-user-id="<%= member_data[:member].id %>"
+                            <%= 'disabled' if has_pending_request %>>
+                      <%= button_text %>
+                    </button>
+                  <% end %>
+                  <% if can_view_member_gear_stats?(@guild, member_data[:member]) && member_data[:snapshot]&.reference_screenshot_available? %>
+                    <%= link_to t("guilds.members_gear.view_image"),
+                        guild_gear_screenshot_path(@guild, member_data[:member]),
+                        target: "_blank",
+                        rel: "noopener noreferrer",
+                        class: "px-3 py-1 bg-slate-600 text-white rounded text-sm hover:bg-slate-700 text-center" %>
+                  <% end %>
+                </div>
+              </td>
+            </tr>
+          <% end %>
+        <% else %>
+          <tr>
+            <td colspan="6" class="px-4 py-8 text-center text-theme-secondary">
+              <% if @status_filter.present? && @status_filter != 'all' %>
+                <%= t('guilds.members_gear.no_members_with_status', status: @status_filter.humanize) %>
+              <% else %>
+                <%= t('guilds.members_gear.no_members_found') %>
+              <% end %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+  
+  <!-- Current User Upload Panel -->
+  <div class="bg-theme-secondary rounded-lg p-6">
+    <h2 class="text-xl font-bold text-theme-primary mb-4"><%= t('guilds.members_gear.your_gear_screenshot') %></h2>
+    
+    <% if @current_user_snapshot %>
+      <div class="mb-4">
+        <p class="text-theme-secondary">
+          <%= t('guilds.members_gear.last_updated') %>: <%= time_ago_in_words(@current_user_snapshot.last_activity_at) %> <%= t('guilds.members_gear.ago') %>
+        </p>
+        <% if @current_user_snapshot.validation_warning.present? %>
+          <div class="mt-2 p-3 bg-yellow-100 border border-yellow-400 text-yellow-800 rounded">
+            <%= @current_user_snapshot.validation_warning %>
+          </div>
+        <% end %>
+      </div>
+    <% end %>
+    
+    <%# Azure Image Analysis: 4MB (API 3.2) or 20MB (API 4.0). Default 0.8MB so uploads work with nginx 1MB. Set GEAR_UPLOAD_MAX_MB=4 (or 10) + nginx client_max_body_size 12M for larger uploads. %>
+    <form id="gear-upload-form" enctype="multipart/form-data" data-turbo="false" data-max-upload-bytes="<%= (ENV['GEAR_UPLOAD_MAX_MB'].presence || '0.8').to_f * 1024 * 1024 %>">
+      <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
+      
+      <% if @guild.games.any? %>
+        <%= hidden_field_tag :game_id, (@guild.primary_game || @guild.games.first).id %>
+      <% else %>
+        <div class="mb-4 p-3 bg-yellow-100 border border-yellow-400 text-yellow-800 rounded">
+          <%= t("guilds.members_gear.no_games_configured") %>
+        </div>
+      <% end %>
+      
+      <div class="mb-4">
+        <label for="screenshot-input" class="inline-block px-4 py-2 bg-theme-accent text-white rounded hover:bg-theme-accent-hover cursor-pointer">
+          <%= t("guilds.members_gear.choose_file") %>
+        </label>
+        <input type="file" id="screenshot-input" accept="image/*" class="hidden" required>
+        <span id="file-name" class="ml-2 text-theme-primary"></span>
+      </div>
+      <button type="submit" class="px-4 py-2 bg-theme-accent text-white rounded hover:bg-theme-accent-hover" <%= 'disabled' if @guild.games.empty? %>>
+        <%= t("guilds.members_gear.upload_screenshot") %>
+      </button>
+    </form>
+    
+    <div id="upload-preview" class="mt-4 hidden">
+      <h3 class="font-bold mb-2 text-theme-primary"><%= t("guilds.members_gear.upload_preview_heading") %></h3>
+      <ul id="parsed-stat-preview" class="bg-theme-primary/40 border border-theme-primary/50 rounded-lg p-4 text-sm space-y-2 max-h-64 overflow-y-auto"></ul>
+    </div>
+  </div>
+  
+  <%= link_to t('guilds.members_gear.back_to_dashboard'), guild_path(@guild), class: "text-theme-accent hover:text-theme-accent-hover mt-6 inline-block" %>
+</div>
+
+<script>
+  function showPendingGearValidationWarning() {
+    var pendingWarn = sessionStorage.getItem('gsGearValidationWarning');
+    if (!pendingWarn) return;
+
+    sessionStorage.removeItem('gsGearValidationWarning');
+
+    if (typeof window.showToast === 'function') {
+      window.showToast('warning', pendingWarn);
+    } else {
+      window.alert(pendingWarn);
+    }
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', showPendingGearValidationWarning);
+  } else {
+    showPendingGearValidationWarning();
+  }
+  // Azure supports 4MB (API 3.2) or 20MB (API 4.0). Default 800KB so uploads work with nginx 1MB. Set GEAR_UPLOAD_MAX_MB=4 or 10 and nginx client_max_body_size 12M for larger uploads.
+  const formEl = document.getElementById('gear-upload-form');
+  const GEAR_UPLOAD_MAX_BYTES = formEl && formEl.dataset.maxUploadBytes ? parseInt(formEl.dataset.maxUploadBytes, 10) : 800 * 1024;
+  const GEAR_UPLOAD_MAX_DIMENSION = GEAR_UPLOAD_MAX_BYTES <= 1024 * 1024 ? 1600 : 1920;
+
+  function compressImageForUpload(file) {
+    return new Promise((resolve) => {
+      if (!file || typeof file.size !== 'number') {
+        resolve(file);
+        return;
+      }
+      if (!file.type || !file.type.match(/^image\/(png|jpeg|jpg|webp|gif|bmp)$/i)) {
+        resolve(file);
+        return;
+      }
+      if (file.size <= GEAR_UPLOAD_MAX_BYTES) {
+        resolve(file);
+        return;
+      }
+      const img = document.createElement('img');
+      const url = URL.createObjectURL(file);
+      img.onload = function() {
+        URL.revokeObjectURL(url);
+        try {
+          const w = img.naturalWidth;
+          const h = img.naturalHeight;
+          if (!w || !h) {
+            resolve(file);
+            return;
+          }
+          let dw = w, dh = h;
+          if (w > GEAR_UPLOAD_MAX_DIMENSION || h > GEAR_UPLOAD_MAX_DIMENSION) {
+            if (w >= h) {
+              dw = GEAR_UPLOAD_MAX_DIMENSION;
+              dh = Math.round(h * (GEAR_UPLOAD_MAX_DIMENSION / w));
+            } else {
+              dh = GEAR_UPLOAD_MAX_DIMENSION;
+              dw = Math.round(w * (GEAR_UPLOAD_MAX_DIMENSION / h));
+            }
+          }
+          const canvas = document.createElement('canvas');
+          canvas.width = dw;
+          canvas.height = dh;
+          const ctx = canvas.getContext('2d');
+          if (!ctx) {
+            resolve(file);
+            return;
+          }
+          ctx.drawImage(img, 0, 0, dw, dh);
+          let quality = 0.82;
+          const tryBlob = (q) => {
+            canvas.toBlob(function(blob) {
+              if (!blob || typeof blob.size !== 'number') {
+                resolve(file);
+                return;
+              }
+              if (blob.size <= GEAR_UPLOAD_MAX_BYTES || q <= 0.5) {
+                const name = (file.name && String(file.name).replace(/\.[^.]+$/i, '')) || 'screenshot';
+                const out = new File([blob], name + '.jpg', { type: 'image/jpeg' });
+                resolve(out);
+                return;
+              }
+              tryBlob(Math.max(0.5, q - 0.12));
+            }, 'image/jpeg', q);
+          };
+          tryBlob(quality);
+        } catch (err) {
+          resolve(file);
+        }
+      };
+      img.onerror = function() {
+        URL.revokeObjectURL(url);
+        resolve(file);
+      };
+      img.src = url;
+    });
+  }
+
+  // File input label click handler
+  const fileInput = document.getElementById('screenshot-input');
+  const fileName = document.getElementById('file-name');
+  if (fileInput && fileName) {
+    fileInput.addEventListener('change', (e) => {
+      if (e.target.files && e.target.files.length > 0) {
+        fileName.textContent = e.target.files[0].name;
+      } else {
+        fileName.textContent = '';
+      }
+    });
+  }
+  
+  // Upload form handler: delegate to document so it works with Turbo; form has data-turbo="false" so submit reaches us
+  document.addEventListener('submit', async function(e) {
+    if (e.target.id !== 'gear-upload-form') return;
+    e.preventDefault();
+    e.stopPropagation();
+    const form = e.target;
+
+    const formData = new FormData();
+    const fileInput = document.getElementById('screenshot-input');
+    if (!fileInput.files || fileInput.files.length === 0) {
+      window.showToast('warning', '<%= j t('js.guilds.members_gear.select_file') %>');
+      return;
+    }
+    const rawFile = fileInput.files[0];
+    let fileToUpload = await compressImageForUpload(rawFile);
+    if (!fileToUpload || !(fileToUpload instanceof Blob)) {
+      fileToUpload = rawFile;
+    }
+    if (fileToUpload.size > GEAR_UPLOAD_MAX_BYTES) {
+      var maxMB = (GEAR_UPLOAD_MAX_BYTES / (1024 * 1024)).toFixed(1);
+      window.showToast('error', 'Image is too large (max ' + (GEAR_UPLOAD_MAX_BYTES < 1024 * 1024 ? Math.round(GEAR_UPLOAD_MAX_BYTES / 1024) + 'KB' : maxMB + 'MB') + '). Please choose a smaller image or resize it.');
+      return;
+    }
+    formData.append('screenshot', fileToUpload);
+    formData.append('authenticity_token', document.querySelector('[name="authenticity_token"]').value);
+
+    const gameIdInput = document.querySelector('[name="game_id"]');
+    if (gameIdInput && gameIdInput.value) {
+      formData.append('game_id', gameIdInput.value);
+    }
+    
+    // Show processing message
+    const uploadButton = form.querySelector('button[type="submit"]');
+    const originalButtonText = uploadButton ? uploadButton.textContent : '';
+    if (uploadButton) {
+      uploadButton.disabled = true;
+      uploadButton.textContent = '<%= j t('guilds.members_gear.js_processing') %>';
+    }
+    
+    // Show processing message to user
+    const processingMessage = document.createElement('div');
+    processingMessage.id = 'upload-processing-message';
+    processingMessage.className = 'mt-4 p-3 bg-blue-500 text-white rounded';
+    processingMessage.textContent = '<%= j t('guilds.members_gear.js_processing_message') %>';
+    form.parentNode.insertBefore(processingMessage, form.nextSibling);
+    
+    try {
+      const response = await fetch('<%= guild_gear_upload_path(@guild) %>', {
+        method: 'POST',
+        body: formData,
+        credentials: 'same-origin',
+        headers: {
+          'Accept': 'application/json',
+          'X-CSRF-Token': document.querySelector('meta[name="csrf-token"]')?.getAttribute('content') || document.querySelector('[name="authenticity_token"]')?.value || ''
+        }
+      });
+      
+      const contentType = response.headers.get('content-type');
+      let data = null;
+
+      if (contentType && contentType.includes('application/json')) {
+        data = await response.json();
+      }
+
+      if (response.status === 401 || response.status === 403) {
+        processingMessage.remove();
+        if (uploadButton) {
+          uploadButton.disabled = false;
+          uploadButton.textContent = originalButtonText;
+        }
+        const authMsg = (data && data.error) ? data.error : '<%= j t('js.guilds.members_gear.session_expired') %>';
+        window.showToast('error', authMsg);
+        return;
+      }
+
+      if (!data) {
+        const text = await response.text();
+        throw new Error(`Server returned ${response.status}: ${text.substring(0, 200)}`);
+      }
+      
+      if (data.success) {
+        processingMessage.remove();
+        if (uploadButton) {
+          uploadButton.disabled = false;
+          uploadButton.textContent = originalButtonText;
+        }
+        const fileInputReset = document.getElementById('screenshot-input');
+        const fileNameReset = document.getElementById('file-name');
+        if (fileInputReset) fileInputReset.value = '';
+        if (fileNameReset) fileNameReset.textContent = '';
+
+        if (data.snapshot && data.snapshot.validation_warning) {
+          sessionStorage.setItem('gsGearValidationWarning', data.snapshot.validation_warning);
+        }
+
+        const statsExtracted = (typeof data.stats_extracted === 'boolean')
+          ? data.stats_extracted
+          : !!(data.snapshot && data.snapshot.data && Object.keys(data.snapshot.data).length > 0);
+
+        // Full navigation so server flash → toast host shows upload success (see members_gear#gear_upload_success).
+        const nextUrl = new URL('<%= guild_members_gear_path(@guild) %>', window.location.origin);
+        new URLSearchParams(window.location.search).forEach(function(v, k) { nextUrl.searchParams.set(k, v); });
+        // Only flag a clean success when stats were extracted; otherwise the saved screenshot has
+        // no stats and the validation warning (set above) is shown instead of "uploaded successfully".
+        if (statsExtracted) {
+          nextUrl.searchParams.set('gear_upload_success', '1');
+        } else {
+          nextUrl.searchParams.delete('gear_upload_success');
+        }
+        window.location.href = nextUrl.pathname + nextUrl.search;
+      } else {
+        processingMessage.remove();
+        if (uploadButton) {
+          uploadButton.disabled = false;
+          uploadButton.textContent = originalButtonText;
+        }
+        window.showToast('error', '<%= j t('js.guilds.members_gear.upload_failed', error: '') %>'.replace('%{error}', '') + (data.error || data.details || '<%= j t('js.common.unknown_error') %>'));
+      }
+    } catch (error) {
+      processingMessage.remove();
+      if (uploadButton) {
+        uploadButton.disabled = false;
+        uploadButton.textContent = originalButtonText;
+      }
+      window.showToast('error', '<%= j t('js.guilds.members_gear.upload_failed', error: '') %>'.replace('%{error}', '') + error.message);
+    }
+    });
+  
+  // Bulk request buttons (for managers)
+  <% if can_manage_gear_requests?(@guild) %>
+    document.getElementById('bulk-request-missing-btn')?.addEventListener('click', async () => {
+      await handleBulkRequest('missing');
+    });
+    
+    document.getElementById('bulk-request-outdated-btn')?.addEventListener('click', async () => {
+      await handleBulkRequest('outdated');
+    });
+    
+    document.getElementById('bulk-request-all-btn')?.addEventListener('click', async () => {
+      await handleBulkRequest('all');
+    });
+    
+    document.getElementById('view-pending-requests-btn')?.addEventListener('click', () => {
+      // Filter table to show only members with pending requests
+      const pendingUserIds = <%= (@members_with_pending_requests || []).map(&:id).to_json %>;
+      document.querySelectorAll('tbody tr').forEach(row => {
+        const requestBtn = row.querySelector('.request-update-btn');
+        if (!requestBtn) {
+          row.style.display = 'none';
+          return;
+        }
+        const userId = parseInt(requestBtn.dataset.userId);
+        if (userId && pendingUserIds.includes(userId)) {
+          row.style.display = '';
+          row.classList.add('bg-blue-900/20');
+        } else {
+          row.style.display = 'none';
+        }
+      });
+    });
+    
+    async function handleBulkRequest(status) {
+      const confirmMsg = status === 'all' 
+        ? '<%= j t('guilds.members_gear.js_confirm_bulk_all') %>'
+        : '<%= j t('guilds.members_gear.js_confirm_bulk_status', status: '') %>'.replace('%{status}', status);
+      if (!confirm(confirmMsg)) {
+        return;
+      }
+      
+      try {
+        const response = await fetch('<%= guild_gear_request_bulk_path(@guild) %>', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'X-CSRF-Token': document.querySelector('meta[name="csrf-token"]')?.getAttribute('content') || document.querySelector('[name="authenticity_token"]')?.value || ''
+          },
+          body: JSON.stringify({ status: status })
+        });
+        
+        const data = await response.json();
+        
+        if (data.success) {
+          window.showToast('success', '<%= j t('js.guilds.members_gear.requests_sent', count: '') %>'.replace('%{count}', data.count || 0));
+          window.location.reload();
+        } else {
+          window.showToast('error', '<%= j t('js.guilds.members_gear.requests_failed', error: '') %>'.replace('%{error}', '') + (data.error || '<%= j t('js.common.unknown_error') %>'));
+        }
+      } catch (error) {
+        window.showToast('error', '<%= j t('js.admin.dashboard.delete_error', error: '') %>'.replace('%{error}', '') + error.message);
+      }
+    }
+  <% end %>
+  
+  // Individual request update buttons
+  document.querySelectorAll('.request-update-btn').forEach(btn => {
+    btn.addEventListener('click', async () => {
+      if (btn.disabled) return;
+      
+      const userId = btn.dataset.userId;
+      const userName = btn.closest('tr').querySelector('td:nth-child(2)').textContent.trim();
+      
+      if (!confirm('<%= j t('guilds.members_gear.js_confirm_request_user', name: '') %>'.replace('%{name}', userName))) {
+        return;
+      }
+      
+      try {
+        const response = await fetch('<%= guild_gear_request_path(@guild) %>', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'X-CSRF-Token': document.querySelector('meta[name="csrf-token"]')?.getAttribute('content') || document.querySelector('[name="authenticity_token"]')?.value || ''
+          },
+          body: JSON.stringify({ user_id: userId })
+        });
+        
+        const data = await response.json();
+        
+        if (data.success) {
+          btn.textContent = '<%= j t('guilds.members_gear.pending_request') %>';
+          btn.classList.remove('bg-yellow-600', 'hover:bg-yellow-700');
+          btn.classList.add('bg-blue-600', 'hover:bg-blue-700');
+          btn.disabled = true;
+        } else {
+          window.showToast('error', '<%= j t('js.guilds.members_gear.request_failed', error: '') %>'.replace('%{error}', '') + (data.error || '<%= j t('js.common.unknown_error') %>'));
+        }
+      } catch (error) {
+        window.showToast('error', '<%= j t('js.admin.dashboard.delete_error', error: '') %>'.replace('%{error}', '') + error.message);
+      }
+    });
+  });
+  
+</script>

@@ -1,0 +1,42 @@
+<div class="mx-auto max-w-2xl p-6 font-[family-name:Inter,ui-sans-serif,system-ui,sans-serif]">
+  <div class="mb-6">
+    <h1 class="mb-2 text-3xl font-bold text-white"><%= t("guild_warnings.my_status.title") %></h1>
+    <p class="text-[#90A1B9]"><%= @guild.name %> — <%= t("guild_warnings.my_status.subtitle") %></p>
+  </div>
+
+  <div class="space-y-4 rounded-xl border border-white/10 bg-[rgba(15,23,43,0.5)] p-6 shadow-lg">
+    <% if @status.blank? || @status.no_warnings? %>
+      <p class="text-lg font-medium text-white"><%= t("guild_warnings.my_status.none_title") %></p>
+      <p class="text-[#90A1B9]"><%= t("guild_warnings.my_status.none_body") %></p>
+    <% else %>
+      <dl class="space-y-3">
+        <div>
+          <dt class="text-sm text-[#90A1B9]"><%= t("guild_warnings.my_status.state_label") %></dt>
+          <dd class="font-medium text-white"><%= @status.state.humanize %></dd>
+        </div>
+        <div>
+          <dt class="text-sm text-[#90A1B9]"><%= t("guild_warnings.my_status.count_label") %></dt>
+          <dd class="font-medium text-white"><%= @status.warning_count %> / <%= GuildMemberWarningStatus::WARNING_LIMIT %></dd>
+        </div>
+        <% if @status.last_warning_reason.present? %>
+          <div>
+            <dt class="text-sm text-[#90A1B9]"><%= t("guild_warnings.my_status.last_reason") %></dt>
+            <dd class="text-white"><%= @status.last_warning_reason %></dd>
+          </div>
+        <% end %>
+        <% if @status.last_warned_at.present? %>
+          <div>
+            <dt class="text-sm text-[#90A1B9]"><%= t("guild_warnings.my_status.last_at") %></dt>
+            <dd class="text-white"><%= l(@status.last_warned_at, format: :long) %></dd>
+          </div>
+        <% end %>
+      </dl>
+    <% end %>
+
+    <p class="border-t border-white/10 pt-4 text-sm text-[#90A1B9]"><%= t("guild_warnings.my_status.discord_note") %></p>
+  </div>
+
+  <div class="mt-6">
+    <%= link_to t("guild_warnings.back_to_guild"), guild_path(@guild), class: "text-[#7C86FF] hover:underline" %>
+  </div>
+</div>

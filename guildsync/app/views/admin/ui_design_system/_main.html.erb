@@ -1,0 +1,62 @@
+<div class="space-y-8">
+  <div class="rounded-xl border border-amber-500/30 bg-amber-950/20 p-4">
+    <h2 class="text-lg font-semibold text-amber-200"><%= t("admin.ui_design_system.source_of_truth_title") %></h2>
+    <p class="mt-1 text-sm text-theme-secondary"><%= t("admin.ui_design_system.source_of_truth_body") %></p>
+  </div>
+
+  <% ui_design_system_sections.each do |section| %>
+    <section class="rounded-xl border border-theme-primary bg-theme-card p-6 shadow-lg space-y-4">
+      <header>
+        <h2 class="text-xl font-semibold text-theme-primary"><%= section[:title] %></h2>
+        <p class="text-sm text-theme-secondary"><%= section[:description] %></p>
+      </header>
+
+      <% if section[:type] == :swatches %>
+        <div class="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-4">
+          <% section[:tokens].each do |token| %>
+            <div class="rounded-lg border border-theme-primary overflow-hidden">
+              <div class="h-16" style="background: <%= token[:value] %>"></div>
+              <div class="space-y-1 p-3 text-xs">
+                <p class="font-semibold text-theme-primary"><%= token[:name] %></p>
+                <code class="block text-theme-secondary"><%= token[:value] %></code>
+                <% if token[:usage].present? %><p class="text-theme-secondary"><%= token[:usage] %></p><% end %>
+              </div>
+            </div>
+          <% end %>
+        </div>
+      <% elsif section[:type] == :rows %>
+        <div class="overflow-hidden rounded-lg border border-theme-primary">
+          <table class="min-w-full text-left text-sm">
+            <thead class="bg-theme-secondary/50 text-theme-secondary">
+              <tr>
+                <th class="px-3 py-2 font-medium">Token/Pattern</th>
+                <th class="px-3 py-2 font-medium">Implementation</th>
+                <th class="px-3 py-2 font-medium">Current usage</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-theme-primary">
+              <% section[:tokens].each do |token| %>
+                <tr>
+                  <td class="px-3 py-2 text-theme-primary"><%= token[:name] %></td>
+                  <td class="px-3 py-2"><code class="text-xs text-theme-secondary"><%= token[:value] %></code></td>
+                  <td class="px-3 py-2 text-theme-secondary"><%= token[:usage] %></td>
+                </tr>
+              <% end %>
+            </tbody>
+          </table>
+        </div>
+      <% elsif section[:type] == :buttons %>
+        <div class="flex flex-wrap gap-3">
+          <% section[:tokens].each do |token| %>
+            <button type="button" class="<%= token[:value] %>"><%= token[:name] %></button>
+          <% end %>
+        </div>
+        <div class="space-y-2">
+          <% section[:tokens].each do |token| %>
+            <code class="block text-xs text-theme-secondary"><%= token[:name] %>: <%= token[:value] %></code>
+          <% end %>
+        </div>
+      <% end %>
+    </section>
+  <% end %>
+</div>

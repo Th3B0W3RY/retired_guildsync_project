@@ -1,0 +1,11 @@
+<div class="space-y-6">
+  <h1 class="text-3xl font-bold text-theme-accent"><%= t("admin.system_monitoring.show.page_title") %></h1>
+  <p class="text-theme-secondary text-sm max-w-3xl">
+    <%= t("admin.system_monitoring.show.intro") %>
+  </p>
+  <%= link_to t("admin.system_monitoring.show.back_to_dashboard"), admin_root_path, class: "inline-flex px-4 py-2 bg-theme-secondary text-theme-primary rounded-lg hover:bg-theme-hover transition-colors font-semibold" %>
+
+  <%= turbo_frame_tag Admin::SystemMonitoringController::SYSTEM_MONITORING_MAIN_FRAME do %>
+    <%= render "system_monitoring_main" %>
+  <% end %>
+</div>

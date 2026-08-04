@@ -1,0 +1,36 @@
+<%# locals: table (LandingCompare::TablePresenter), card_bg (String) %>
+<div class="<%= card_bg %> overflow-hidden">
+  <div class="overflow-x-auto">
+    <table class="w-full text-left">
+      <thead>
+        <tr class="border-b border-[#2d3142]">
+          <th class="px-6 py-5 text-white text-lg font-bold border-r border-[#2d3142] w-1/3"><%= table.feature_column_label %></th>
+          <th class="px-6 py-5 bg-[#1a1d2e] border-r border-[#2d3142] w-1/3">
+            <% if table.show_guildsync_badge %>
+              <div class="flex items-center gap-2">
+                <span class="w-6 h-6 rounded-md bg-gradient-to-br from-[#615FFF] to-[#9810FA] flex items-center justify-center text-white text-[10px] font-bold">GS</span>
+                <span class="text-white text-lg font-bold"><%= table.guildsync_column_label %></span>
+              </div>
+            <% else %>
+              <span class="text-white text-lg font-bold"><%= table.guildsync_column_label %></span>
+            <% end %>
+          </th>
+          <th class="px-6 py-5 text-[#b9bbbe] text-lg font-semibold w-1/3"><%= table.competitor_column_label %></th>
+        </tr>
+      </thead>
+      <tbody>
+        <% table.rows.each do |row| %>
+          <tr class="border-b border-[#2d3142] last:border-b-0">
+            <td class="px-6 py-5 text-white text-base font-medium border-r border-[#2d3142] break-words"><%= row.feature_label %></td>
+            <td class="px-6 py-5 bg-[#1a1d2e] border-r border-[#2d3142] text-center">
+              <%= render "home/landing_compare_cell", included: row.guildsync_included %>
+            </td>
+            <td class="px-6 py-5 text-center">
+              <%= render "home/landing_compare_cell", included: row.competitor_included %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>

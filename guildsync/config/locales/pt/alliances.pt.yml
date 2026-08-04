@@ -1,0 +1,399 @@
+pt:
+  # ============================================================================
+  # ALLIANCES FEATURE
+  # ============================================================================
+  alliances:
+    created: "Aliança criada com sucesso!"
+    updated: "Configurações da aliança salvas."
+    disbanded: "A aliança foi dissolvida."
+    left: "Você saiu da aliança."
+    guild_kicked: "A guilda foi removida da aliança."
+
+    errors:
+      join_requires_paid_plan: "É necessária uma assinatura ou período de teste ativo num plano pago. Plano gratuito e assinaturas ou testes expirados não são elegíveis."
+      plan_required_for_alliance_hub: "É necessário um plano pago para abrir o hub de Alianças, a menos que você já seja membro de uma aliança no GuildSync. Peça ao seu GM para sincronizar você ou faça upgrade do plano."
+      not_found: "Aliança não encontrada."
+      not_member: "Você não é membro desta aliança."
+      not_leader: "Somente o líder da aliança pode fazer isso."
+      kick_unauthorized: "Somente donos de guilda ou gerentes personalizados da aliança podem remover guildas."
+      no_eligible_guild: "Você não está elegível para criar uma aliança com suas filiações atuais de guilda."
+      plan_required: "Seu plano atual não permite criar alianças. Faça upgrade."
+      disband_unauthorized: "Você não está autorizado a dissolver esta aliança."
+      leave_unauthorized: "Somente donos de guilda podem sair de uma aliança."
+      leader_cannot_leave: "A guilda fundadora não pode sair da aliança. Dissolva-a em vez disso."
+      guild_not_found: "Guilda não encontrada."
+      cannot_kick_leader_guild: "Você não pode remover a guilda fundadora da aliança."
+      conflicting_alliance_membership: "Não podes pertencer a guildas de mais de uma aliança ao mesmo tempo."
+    index:
+      title: "Aliança"
+      open_alliance: "Abrir aliança"
+      invite_from: "Convidado por %{name}"
+      accept: "Aceitar"
+      decline: "Recusar"
+      request_join_hint: "Procure uma guilda listada que já esteja em uma aliança, escolha sua guilda e solicite entrar nessa aliança."
+      search_label: "Buscar guildas"
+      search_placeholder: "Digite o nome de uma guilda..."
+      search_select_target: "Guilda alvo (deve estar em uma aliança)"
+      submit_join_request: "Enviar pedido de entrada"
+      searching: "Buscando..."
+      no_results: "Nenhuma guilda encontrada."
+      load_more_results: "Carregar mais resultados"
+
+    roles:
+      leader_guild: "Guilda fundadora"
+    new:
+      title: "Criar uma aliança"
+      subtitle: "Reúna várias guildas sob um mesmo estandarte."
+
+    edit:
+      title: "Configurações da aliança"
+      back: "Voltar à aliança"
+      danger_zone: "Zona de perigo"
+      disband: "Dissolver aliança"
+      disband_confirm: "Tem certeza de que deseja dissolver esta aliança? Isso não pode ser desfeito."
+
+    form:
+      name: "Nome da aliança"
+      name_placeholder: "Digite o nome da aliança..."
+      description: "Descrição"
+      description_placeholder: "Descreva sua aliança..."
+      logo: "Logo da aliança"
+      choose_logo_button: "Escolher imagem"
+      no_file_chosen: "Nenhum arquivo escolhido"
+      logo_hint: "Opcional. Recomendado: imagem quadrada, pelo menos 256×256 px."
+      logo_replace_hint: "Envie um novo arquivo para substituir o logo atual."
+      creating_for: "Criando aliança para:"
+      size_info: "Alianças podem incluir de 1 a 20 guildas. Comece com a sua guilda e convide outras."
+      create_button: "Criar aliança"
+      save_button: "Salvar alterações"
+
+    show:
+      guilds: "Guildas participantes"
+      guilds_count:
+        one: "1 guilda"
+        other: "%{count} guildas"
+      leader: "Liderada por %{name}"
+      edit: "Editar"
+      leave: "Sair da aliança"
+      leave_confirm: "Tem certeza de que deseja sair desta aliança?"
+      invite_guild: "Convidar uma guilda"
+      kick_guild: "Expulsar"
+      kick_guild_confirm: "Remover %{name} da aliança?"
+      members_preview: "Membros"
+      view_all_members: "Ver todos os membros"
+      more_members:
+        one: "e mais 1 membro..."
+        other: "e mais %{count} membros..."
+
+    nav:
+      members: "Membros"
+      events: "Eventos da aliança"
+      polls: "Enquetes da aliança"
+      rolls: "Sorteios da aliança"
+      chat: "Chat da aliança"
+      activity_feed: "Feed de atividades"
+      gm_chat: "Chat dos GMs"
+      invites: "Convites pendentes"
+      join_requests: "Pedidos de entrada"
+      disband_vote: "Votação de dissolução"
+      back_to_alliance: "Voltar à aliança"
+
+    invites:
+      sent: "Convite enviado para %{guild_name}."
+      accepted: "Você entrou em %{alliance_name}!"
+      declined: "Convite recusado."
+
+      errors:
+        not_found: "Convite não encontrado."
+        guild_not_found: "Guilda não encontrada. Busque pelo nome e selecione uma guilda listada publicamente."
+        already_in_alliance: "Essa guilda já faz parte desta aliança."
+        already_invited: "Essa guilda já tem um convite pendente."
+        pending_join_request: "Essa guilda já tem um pedido de entrada pendente para esta aliança."
+        max_guilds: "Esta aliança atingiu o máximo de 20 guildas."
+        invite_unauthorized: "Somente donos de guilda ou gerentes personalizados da aliança podem convidar guildas."
+        accept_unauthorized: "Somente o dono da guilda de destino pode aceitar este convite."
+        decline_unauthorized: "Somente o dono da guilda de destino pode recusar este convite."
+
+      index:
+        title: "Convites pendentes"
+        subtitle: "Convites para %{alliance_name}"
+        invite_guild: "Convidar uma guilda"
+        search_label: "Buscar guildas listadas publicamente"
+        search_placeholder: "Digite o nome de uma guilda..."
+        search_hint: "A busca corresponde apenas ao nome da guilda. Só aparecem guildas que optaram por listagem pública."
+        search_unauthorized: "Você não pode buscar nesta página."
+        load_more_results: "Carregar mais resultados"
+        selected_guild: "Convidando"
+        already_in_alliance_suffix: "já em uma aliança (convite indisponível)"
+        invite_restricted: "Somente o líder da aliança pode enviar convites."
+        send_invite: "Enviar convite"
+        pending: "Convites pendentes"
+        no_pending: "Nenhum convite pendente."
+        invited_by: "Convidado por %{name}"
+
+    events:
+      created: "Evento da aliança criado!"
+      updated: "Evento atualizado."
+      deleted: "Evento excluído."
+      rsvp_saved: "Sua confirmação de presença foi salva."
+      discord_rsvp:
+        errors:
+          link_required: "Conecte sua conta Discord ao GuildSync antes de confirmar presença."
+          event_not_found: "Evento da aliança não encontrado."
+          invalid_status: "Status de RSVP inválido."
+          not_alliance_member: "Você precisa ser um membro ativo da aliança para confirmar presença."
+          save_failed: "Não foi possível salvar o RSVP: %{error}"
+          unexpected: "Ocorreu um erro ao salvar seu RSVP da aliança."
+
+      errors:
+        not_found: "Evento não encontrado."
+        manage_unauthorized: "Somente donos de guilda podem gerenciar eventos."
+        invalid_rsvp: "Status de RSVP inválido."
+
+      index:
+        title: "Eventos da aliança"
+        subtitle: "Eventos de %{alliance_name}"
+        create: "Criar evento"
+        upcoming: "Próximos eventos"
+        past: "Eventos passados"
+        no_events: "Ainda não há eventos. Crie um para começar."
+        attending: "confirmados"
+        upcoming_label: "Em breve"
+
+      new:
+        title: "Criar evento da aliança"
+
+      edit:
+        title: "Editar evento"
+
+      show:
+        back: "Voltar aos eventos"
+        minutes: "min"
+        your_rsvp: "Seu RSVP"
+        attending: "Vou"
+        maybe: "Talvez"
+        declined: "Não vou"
+        participants: "Participantes"
+        no_participants: "Ainda não há RSVPs."
+        delete_confirm: "Excluir este evento?"
+        status:
+          attending: "Vou"
+          maybe: "Talvez"
+          declined: "Não vou"
+
+      form:
+        title: "Título do evento"
+        description: "Descrição"
+        scheduled_at: "Data e hora"
+        duration: "Duração (minutos)"
+        duration_placeholder: "ex. 60"
+        location: "Local / servidor"
+        location_placeholder: "ex. Palco Discord, nome do servidor do jogo..."
+        create_button: "Criar evento"
+        save_button: "Salvar evento"
+        event_type: "Tipo de evento"
+        event_type_general: "Geral"
+        max_participants: "Máx. de participantes (opcional)"
+        squad_leader: "Líder do esquadrão (opcional)"
+        squad_leader_placeholder: "Opcional — por padrão será você se vazio"
+        role_categories_section: "Cargos Discord para inscrição"
+        role_categories_hint: "Quais cargos aparecem como botões no anúncio do Discord (mesma ideia dos eventos Discord da guilda)."
+    polls:
+      created: "Enquete da aliança criada!"
+      deleted: "Enquete excluída."
+
+      errors:
+        not_found: "Enquete não encontrada."
+        manage_unauthorized: "Somente donos de guilda ou gerentes personalizados da aliança podem criar enquetes."
+        poll_closed: "Esta enquete está encerrada."
+        invalid_choice: "Opção de voto inválida."
+
+      index:
+        title: "Enquetes da aliança"
+        subtitle: "Enquetes de %{alliance_name}"
+        create: "Criar enquete"
+        no_polls: "Nenhuma pesquisa de aliança ainda."
+        created_by: "Criado por %{name}"
+        deadline: "Prazo:"
+        open: "Aberta"
+        closed: "Encerrada"
+        anonymous: "Anônima"
+        maybe: "Talvez"
+        voters_heading: "Votantes"
+        view_vote: "Votar"
+        view_results: "Resultados"
+        delete_confirm: "Excluir esta enquete?"
+
+        "yes": "Sim"
+        "no": "Não"
+      new:
+        title: "Criar enquete da aliança"
+
+      show:
+        back: "Voltar às enquetes"
+        deadline: "Prazo: %{date}"
+        anonymous: "Anônima"
+        open: "Aberta"
+        closed: "Encerrada"
+        your_vote: "Registre seu voto"
+        maybe: "Talvez"
+        voters_heading: "Votantes"
+
+        "yes": "Sim"
+        "no": "Não"
+      form:
+        title: "Pergunta da enquete"
+        description: "Descrição"
+        deadline: "Prazo"
+        anonymous: "Votação anônima (ocultar votos individuais)"
+        create_button: "Criar enquete"
+
+    loot_rolls:
+      created: "Sorteio de loot da aliança criado!"
+      deleted: "Sorteio excluído."
+      closed: "Sorteio encerrado e vencedor definido."
+      entered: "Você tirou %{roll}!"
+
+      errors:
+        not_found: "Sorteio não encontrado."
+        manage_unauthorized: "Somente donos de guilda ou gerentes personalizados da aliança podem gerenciar sorteios."
+        already_closed: "Este sorteio já está encerrado."
+        not_open: "Este sorteio de loot não está aberto no momento."
+        already_entered: "Você já participou deste sorteio."
+
+      index:
+        title: "Sorteios de loot da aliança"
+        subtitle: "Sorteios de %{alliance_name}"
+        create: "Criar sorteio"
+        no_rolls: "Ainda não há sorteios de loot."
+        range: "Intervalo: %{min}–%{max}"
+        deadline: "Prazo:"
+        winner: "🏆 Vencedor: %{name} (tirou %{roll})"
+        open: "Aberto"
+        closed: "Encerrado"
+        view: "Ver sorteio"
+
+      new:
+        title: "Criar sorteio de loot da aliança"
+
+      show:
+        back: "Voltar aos sorteios"
+        range: "Intervalo do sorteio: %{min}–%{max}"
+        deadline: "Prazo: %{date}"
+        open: "Aberto"
+        closed: "Encerrado"
+        winner: "🏆 Vencedor: %{name} (tirou %{roll})"
+        enter: "Participar do sorteio"
+        your_roll: "Seu número: %{roll}"
+        close: "Encerrar e escolher vencedor"
+        close_confirm: "Encerrar este sorteio e definir o vencedor?"
+        entries: "Participações"
+        no_entries: "Ainda não há participações."
+        anonymous_entry: "Anônima"
+        entries_line:
+          zero: "%{count} participações"
+          one: "%{count} participação"
+          other: "%{count} participações"
+
+      form:
+        title: "Título do sorteio"
+        description: "Descrição"
+        min_roll: "Valor mínimo"
+        max_roll: "Valor máximo"
+        deadline: "Prazo (opcional)"
+        deadline_hint: "Deixe em branco para sem prazo."
+        anonymous: "Sorteios anônimos"
+        create_button: "Criar sorteio"
+
+    disband_votes:
+      vote_cast: "Seu voto de dissolução foi registrado."
+      majority_disbanded: "A maioria dos GMs votou para dissolver. A aliança foi dissolvida."
+
+      errors:
+        not_gm: "Somente donos de guilda podem votar para dissolver."
+
+      index:
+        title: "Votação de dissolução"
+        vote_tally: "Apuração atual"
+        votes_to_disband: "%{count} de %{total} GMs votaram para dissolver"
+        threshold_note: "Mais de 50% dos GMs devem votar para dissolver para a votação passar."
+        your_vote: "Seu voto"
+        vote_disband: "Votar para dissolver"
+        vote_disband_confirm: "Tem certeza de que deseja votar para dissolver esta aliança?"
+        vote_keep: "Votar para manter a aliança"
+        current_vote: "Seu voto atual: %{vote}"
+        all_votes: "Todos os votos dos GMs"
+        no_votes_yet: "Ainda não há votos."
+        disband: "Dissolver"
+        keep: "Manter"
+
+    messages:
+      errors:
+        gm_only: "Somente donos de guilda podem acessar o Chat dos GMs."
+        blank: "A mensagem não pode estar vazia."
+
+      index:
+        gm_chat: "Chat dos GMs"
+        alliance_chat: "Chat da aliança"
+        switch_to_gm: "Ir para o chat dos GMs"
+        switch_to_all: "Ir para o chat da aliança"
+        gm_only_notice: "Este canal só é visível para donos de guilda nesta aliança."
+        no_messages: "Ainda não há mensagens. Diga oi!"
+        you: "Você"
+        send: "Enviar"
+        placeholder: "Digite uma mensagem..."
+        message_time_format: "%d/%m/%Y, %H:%M"
+
+    join_requests:
+      created: "Pedido de entrada enviado para **%{alliance_name}**."
+      accepted: "**%{guild_name}** entrou na aliança."
+      declined: "Pedido de entrada recusado."
+
+      index:
+        title: "Pedidos de entrada"
+        subtitle: "Guildas pedindo para entrar em **%{alliance_name}**."
+        back: "Voltar à aliança"
+        none: "Nenhum pedido de entrada pendente."
+
+      errors:
+        not_found: "Pedido de entrada não encontrado."
+        guild_not_found: "Guilda não encontrada."
+        unauthorized: "Você não pode solicitar em nome dessa guilda."
+        already_in_alliance: "Essa guilda já está em uma aliança."
+        alliance_inactive: "Essa aliança não está mais ativa."
+        requesting_already_in_alliance: "Essa guilda entrou em outra aliança antes que este pedido pudesse ser aceito."
+        max_guilds: "Esta aliança não pode aceitar mais guildas no momento."
+        pending_invite: "Já existe um convite pendente para esta aliança e guilda."
+        create_failed: "Não foi possível criar o pedido de entrada."
+        accept_failed: "Não foi possível aceitar o pedido de entrada."
+        manage_unauthorized: "Somente líderes da aliança, donos de guilda ou oficiais podem gerenciar pedidos de entrada."
+
+    outgoing_join_requests:
+      new:
+        title: "Pedir para entrar em uma aliança"
+        subtitle: "Sua guilda: %{guild_name}. Procure uma guilda listada que já esteja em uma aliança."
+        back: "Voltar à guilda"
+      status:
+        title: "Status do pedido de entrada"
+        subtitle: "Pedidos enviados de **%{guild_name}**."
+        none: "Nenhum pedido de entrada pendente desta guilda."
+        pending: "Pendente"
+      search_unauthorized: "Você não pode buscar nesta página."
+      not_in_alliance_suffix: "não está em uma aliança"
+
+    received_invites:
+      pending:
+        title: "Convites de aliança pendentes"
+        subtitle: "Convites para **%{guild_name}**."
+        none: "Nenhum convite de aliança pendente."
+
+    discord:
+      invite_embed:
+        title: "Convite de aliança: %{alliance_name}"
+        body: "Convidado por %{inviter}. Abra o GuildSync para aceitar ou recusar."
+      join_request_embed:
+        title: "Pedido de entrada: %{guild_name}"
+        body: "%{guild_name} pediu para entrar em **%{alliance_name}**. Revise no GuildSync."
+      member_joined_embed:
+        title: "%{guild_name} entrou na aliança"
+        body: "**%{guild_name}** agora faz parte de **%{alliance_name}**."

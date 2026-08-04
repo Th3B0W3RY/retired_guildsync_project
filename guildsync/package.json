@@ -1,0 +1,33 @@
+{
+  "name": "guildsync",
+  "private": true,
+  "version": "0.0.0",
+  "scripts": {
+    "build": "esbuild app/javascript/application.js --bundle --sourcemap --outfile=app/assets/builds/application.js --format=esm",
+    "build:css": "bundle exec rails tailwindcss:build"
+  },
+  "dependencies": {
+    "@azure-rest/ai-vision-image-analysis": "^1.0.0-beta.3",
+    "@azure/core-auth": "^1.10.1",
+    "@hotwired/stimulus": "^3.2.2",
+    "@hotwired/turbo-rails": "^8.0.23",
+    "@rails/actiontext": "^8.0.2",
+    "@tiptap/core": "^2.27.2",
+    "@tiptap/extension-image": "^2.27.2",
+    "@tiptap/extension-link": "^2.27.2",
+    "@tiptap/extension-underline": "^2.27.2",
+    "@tiptap/pm": "^2.27.2",
+    "@tiptap/starter-kit": "^2.27.2",
+    "chart.js": "^4.4.1",
+    "prosemirror-commands": "^1.7.1",
+    "prosemirror-keymap": "^1.2.3",
+    "prosemirror-model": "^1.25.4",
+    "prosemirror-state": "^1.4.4",
+    "prosemirror-transform": "^1.10.5",
+    "prosemirror-view": "^1.41.4",
+    "trix": "^2.1.7"
+  },
+  "devDependencies": {
+    "esbuild": "^0.27.1"
+  }
+}

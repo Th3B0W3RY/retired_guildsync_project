@@ -1,0 +1,76 @@
+<div class="space-y-6">
+  <div class="flex justify-between items-center flex-wrap gap-4">
+    <h1 class="text-3xl font-bold text-theme-accent"><%= t("admin.error_batch_reports.index.page_title") %></h1>
+    <div class="flex gap-3 flex-wrap">
+      <%= button_to t("admin.error_batch_reports.index.run_now"),
+            run_now_admin_error_batch_reports_path,
+            method: :post,
+            data: { turbo_confirm: t("admin.error_batch_reports.index.run_now_confirm") },
+            class: "px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors font-semibold" %>
+      <%= link_to t("admin.error_batch_reports.index.settings_link"), admin_error_notification_settings_path,
+            class: "px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors font-semibold",
+            data: { turbo_frame: "_top" } %>
+      <%= link_to t("admin.error_batch_reports.index.back_dashboard"), admin_root_path,
+            class: "px-4 py-2 bg-theme-secondary text-theme-primary rounded-lg hover:bg-theme-hover transition-colors",
+            data: { turbo_frame: "_top" } %>
+    </div>
+  </div>
+
+  <div id="admin_error_batch_reports_flash" class="min-h-0" aria-live="polite"></div>
+
+  <% if @reports.any? %>
+    <div class="bg-theme-card border border-theme-primary rounded-lg shadow-lg overflow-hidden">
+      <div class="overflow-x-auto">
+        <table class="w-full text-sm text-theme-primary">
+          <thead class="border-b border-theme-primary bg-theme-secondary/30">
+            <tr class="text-left text-theme-secondary">
+              <th class="px-4 py-3"><%= t("admin.error_batch_reports.index.col_period") %></th>
+              <th class="px-4 py-3"><%= t("admin.error_batch_reports.index.col_errors") %></th>
+              <th class="px-4 py-3"><%= t("admin.error_batch_reports.index.col_clusters") %></th>
+              <th class="px-4 py-3"><%= t("admin.error_batch_reports.index.col_triggered") %></th>
+              <th class="px-4 py-3"><%= t("admin.error_batch_reports.index.col_delivered") %></th>
+              <th class="px-4 py-3"><%= t("admin.error_batch_reports.index.col_actions") %></th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-theme-primary">
+            <% @reports.each do |report| %>
+              <tr class="hover:bg-theme-hover/20">
+                <td class="px-4 py-3">
+                  <div class="font-mono text-xs text-theme-secondary">
+                    <%= report.period_start.strftime("%Y-%m-%d %H:%M") %> →
+                  </div>
+                  <div class="font-mono text-xs">
+                    <%= report.period_end.strftime("%Y-%m-%d %H:%M") %>
+                    <span class="text-theme-secondary">(<%=report.duration_hours%>h)</span>
+                  </div>
+                </td>
+                <td class="px-4 py-3 font-semibold <%= report.total_errors > 0 ? "text-red-400" : "text-theme-secondary" %>">
+                  <%= report.total_errors %>
+                </td>
+                <td class="px-4 py-3"><%= report.unique_clusters %></td>
+                <td class="px-4 py-3 text-theme-secondary text-xs truncate max-w-[10rem]"><%= report.triggered_by %></td>
+                <td class="px-4 py-3">
+                  <% if report.delivered? %>
+                    <span class="text-green-400 text-xs"><%= t("admin.error_batch_reports.index.delivered_yes") %></span>
+                    <div class="text-theme-secondary text-xs"><%= report.delivered_at.strftime("%H:%M") %></div>
+                  <% else %>
+                    <span class="text-theme-secondary text-xs"><%= t("admin.error_batch_reports.index.delivered_no") %></span>
+                  <% end %>
+                </td>
+                <td class="px-4 py-3">
+                  <%= link_to t("admin.error_batch_reports.index.view"), admin_error_batch_report_path(report),
+                        class: "text-blue-400 hover:underline text-sm",
+                        data: { turbo_frame: "_top" } %>
+                </td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  <% else %>
+    <div class="bg-theme-card border border-theme-primary rounded-lg p-8 text-center">
+      <p class="text-theme-secondary"><%= t("admin.error_batch_reports.index.empty") %></p>
+    </div>
+  <% end %>
+</div>

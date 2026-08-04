@@ -1,0 +1,84 @@
+<%# locals: (feedbacks:) %>
+<% return if feedbacks.blank? %>
+
+<section
+  class="px-4 pt-12 sm:pt-14 pb-10 sm:pb-12"
+  data-controller="landing-feedback-carousel"
+  data-landing-feedback-carousel-interval-value="<%= SiteSetting.landing_feedback_carousel_interval_ms %>"
+  data-landing-feedback-carousel-announce-template-value="<%= t("home.landing.feedback.announce_progress") %>"
+  role="region"
+  aria-roledescription="<%= t('home.landing.feedback.carousel_role') %>"
+  aria-label="<%= t('home.landing.feedback.section_title') %>"
+  tabindex="0"
+>
+  <div class="max-w-[1200px] mx-auto">
+    <h2 class="text-white text-2xl sm:text-3xl font-bold leading-tight tracking-tight text-center mb-8">
+      <%= t("home.landing.feedback.section_title") %>
+    </h2>
+
+    <div class="max-w-2xl mx-auto w-full">
+      <div class="relative overflow-hidden rounded-2xl border border-[#2d3142] bg-gradient-to-b from-[#1e2230]/95 to-[#141824]/95 py-8 sm:py-10 min-h-[8.5rem] sm:min-h-[9.5rem] flex flex-col justify-center shadow-[0_0_0_1px_rgba(97,95,255,0.06),0_24px_48px_-12px_rgba(0,0,0,0.45)]">
+        <div class="pointer-events-none absolute inset-y-4 sm:inset-y-5 left-0 z-[1] w-8 sm:w-10 bg-gradient-to-r from-[#0b0e14] to-transparent opacity-90" aria-hidden="true"></div>
+        <div class="pointer-events-none absolute inset-y-4 sm:inset-y-5 right-0 z-[1] w-8 sm:w-10 bg-gradient-to-l from-[#0b0e14] to-transparent opacity-90" aria-hidden="true"></div>
+        <div
+          class="relative z-0 flex will-change-transform motion-reduce:transition-none transition-transform duration-[800ms] [transition-timing-function:cubic-bezier(0.33,0.04,0.15,0.99)]"
+          data-landing-feedback-carousel-target="track"
+        >
+          <% feedbacks.each do |feedback| %>
+            <article
+              class="landing-feedback-slide min-w-full shrink-0 px-4 sm:px-8 md:px-12"
+              data-landing-feedback-carousel-target="slide"
+              role="group"
+              aria-roledescription="<%= t('home.landing.feedback.slide_role') %>"
+            >
+              <div class="landing-feedback-card max-w-3xl mx-auto text-center text-[#E8EDF5] text-base sm:text-lg leading-relaxed [&_.trix-content]:text-left [&_.trix-content]:text-[#CAD5E2] [&_.trix-content]:text-base sm:[&_.trix-content]:text-lg [&_.trix-content_a]:text-[#C27AFF] [&_.trix-content_a]:underline [&_.trix-content_ul]:list-disc [&_.trix-content_ul]:pl-5 [&_.trix-content_ol]:list-decimal [&_.trix-content_ol]:pl-5">
+                <%= feedback.body %>
+              </div>
+            </article>
+          <% end %>
+        </div>
+      </div>
+
+      <% if feedbacks.size > 1 %>
+      <div class="mt-5 flex flex-wrap items-center justify-center gap-4">
+        <div class="flex items-center gap-2">
+          <button
+            type="button"
+            class="inline-flex h-9 w-9 items-center justify-center rounded-full border border-[#2d3142] bg-[#171a24] text-[#CAD5E2] transition-colors hover:bg-[#232838] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#615FFF]"
+            data-action="click->landing-feedback-carousel#previous"
+            aria-label="<%= t('home.landing.feedback.previous') %>"
+          >
+            <span aria-hidden="true">←</span>
+          </button>
+
+          <button
+            type="button"
+            class="inline-flex h-9 w-9 items-center justify-center rounded-full border border-[#2d3142] bg-[#171a24] text-[#CAD5E2] transition-colors hover:bg-[#232838] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#615FFF]"
+            data-action="click->landing-feedback-carousel#next"
+            aria-label="<%= t('home.landing.feedback.next') %>"
+          >
+            <span aria-hidden="true">→</span>
+          </button>
+        </div>
+
+        <div class="flex items-center gap-2" aria-label="<%= t('home.landing.feedback.pagination') %>">
+          <% feedbacks.each_with_index do |_feedback, idx| %>
+            <button
+              type="button"
+              class="h-2.5 w-2.5 rounded-full bg-[#4B5568] transition-all duration-200"
+              data-landing-feedback-carousel-target="dot"
+              data-action="click->landing-feedback-carousel#goTo"
+              data-index="<%= idx %>"
+              aria-label="<%= t('home.landing.feedback.go_to_slide', index: idx + 1) %>"
+            ></button>
+          <% end %>
+        </div>
+      </div>
+      <% end %>
+    </div>
+
+    <p class="sr-only" aria-live="polite" data-landing-feedback-carousel-target="live">
+      <%= t("home.landing.feedback.keyboard_hint") %>
+    </p>
+  </div>
+</section>

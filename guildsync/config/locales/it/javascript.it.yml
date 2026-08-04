@@ -1,0 +1,44 @@
+it:
+  js:
+    common:
+      unknown_error: "Errore sconosciuto"
+    admin:
+      dashboard:
+        delete_error: "Errore: %{error}"
+    pricing:
+      price_id_missing: "Codice di prezzo mancante. Si prega di contattare il supporto."
+      checkout_failed: "Impossibile iniziare il checkout. Si prega di tentare nuovamente."
+    billing:
+      portal_failed: "Impossibile aprire il portale di facturazione. Si prega di riprovare."
+      plan_change_failed: "Impossibile cambiare piano. Riprova."
+    guilds:
+      members:
+        select_member: "Si prega di selezionare almeno un membro."
+        select_role: "Si prega di selezionare un ruolo."
+        select_user: "Si prega di selezionare un utente per primo."
+        security_token_missing: "Token di sicurezza non trovato. Si prega di aggiornare la pagina e tentare nuovamente."
+        invite_error: "Si è verificato un errore durante l'invito dell'utente. Si prega di riprovare."
+      settings:
+        game_added: "Il gioco è stato aggiunto con successo!"
+        game_add_failed: "Fallito l'aggiungere del gioco: %{error}"
+        game_add_error: "Errore durante l'aggiungere del gioco: %{error}"
+        discord_role_sync:
+          section_title: "Discord: sincronizzazione automatica"
+          missing_role: "Informazioni sul ruolo mancanti; aggiorna la pagina e riprova."
+          generic_error: "Si è verificato un errore. Riprova."
+      members_gear:
+        select_file: "Seleziona un file"
+        select_game: "Per favore scegli un gioco"
+        upload_failed: "Caricamento fallito: %{error}"
+        session_expired: "La sessione è scaduta. Accedi di nuovo e riprova il caricamento."
+        requests_sent: "Inviate con successo %{count} richieste di aggiornamento statistiche"
+        requests_failed: "Fallito l'invio delle richieste: %{error}"
+        request_failed: "Impossibile inviare la richiesta: %{error}"
+    guild_applications:
+      select_guild: "Si prega di selezionare una gilda dai risultati della ricerca."
+    guild_documents:
+      link_copied: "Condividere il collegamento copiato negli appunti!"
+    discord_connections:
+      connection_failed: "Connessione Discord fallita: %{error}"
+      popup_blocked: "Il popup è stato bloccato. Per favore, abilita i popup per questo sito e riprova."
+      bot_auth_url_missing: "Errore: L'URL di autorizzazione del bot è mancante il codice identificativo (ID) del server. Si prega di tentare di selezionare nuovamente il server."

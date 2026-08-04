@@ -1,0 +1,147 @@
+pt:
+  activerecord:
+    models:
+      user: "Usuário"
+      guild: "Gilda"
+      game: "Jogo"
+      event: "Evento"
+      poll: "Enquete"
+      guild_document: "Documento da Guilda"
+      guild_member: "Membro"
+      guild_application: "Aplicação"
+      loot_roll: "Saque Rolar"
+    attributes:
+      user:
+        email: "Email"
+        password: "Senha"
+        display_name: "Nome de Exibição"
+      guild:
+        name: "Nome"
+        description: "Descrição"
+      game:
+        name: "Nome"
+        description: "Descrição"
+    errors:
+      models:
+        landing_user_feedback:
+          attributes:
+            base:
+              entry_limit_reached: "No máximo %{max} feedbacks na página inicial. Elimine um para adicionar outro."
+        homepage_feature_card:
+          attributes:
+            icon_key:
+              invalid_fontawesome_icon: "não está no catálogo sincronizado do Font Awesome Free. Execute a sincronização ou escolha outro ícone."
+        user:
+          attributes:
+            username:
+              invalid_format: "pode conter apenas letras, números e underlines"
+        guild:
+          attributes:
+            name:
+              already_owned: "Você já tem um clã com esse nome"
+            base:
+              subscription_required: "Você deve ter uma assinatura ativa para criar uma gilda."
+              guild_limit_reached: "Você alcançou o número máximo de guildas (%{max_guilds}) para o seu plano %{plan_name}"
+        guild_member:
+          attributes:
+            user_id:
+              already_member: "Já é um membro desta guilda"
+            base:
+              member_limit_reached: "A Guilda alcançou o número máximo de membros (%{max_members}) para o plano %{plan_name}"
+        guild_discord_setting:
+          attributes:
+            discord_guild_id:
+              already_connected: "Este servidor do Discord já está conectado a outro gremio."
+            guild_id:
+              one_connection_only: "A guilda pode ter apenas uma conexão com o Discord."
+        feature_request:
+          attributes:
+            description:
+              too_short: "deve ter pelo menos 50 caracteres para outros entenderem o pedido"
+        poll_vote:
+          attributes:
+            user_id:
+              one_vote_only: "Você pode votar apenas uma vez por enquete."
+            base:
+              user_or_discord_required: "É necessário uma conta de usuário ou um identificador do Discord."
+        loot_roll:
+          attributes:
+            max_roll:
+              must_be_greater: "deve ser maior que o rolamento mínimo"
+        loot_roll_entry:
+          attributes:
+            discord_user_id:
+              already_rolled: "Você já rolou."
+            roll_value:
+              out_of_bounds: "deve estar entre %{min} e %{max}"
+            base:
+              loot_roll_closed: "Este rolo de loot está fechado."
+        guild_battle:
+          attributes:
+            defender_guild_id:
+              same_as_challenger: "não pode ser da mesma gângue que o desafiador"
+        gear_snapshot:
+          attributes:
+            data:
+              blank: "não pode estar em branco"
+            screenshot:
+              must_be_attached: "deve ser anexado"
+        gear_upload_request:
+          attributes:
+            requester:
+              no_permission: "não tem permissão para solicitar atualizações de equipamento"
+        guild_application:
+          attributes:
+            user_id:
+              already_applied: "Você já se inscreveu nesta guilda"
+        guild_invite:
+          attributes:
+            user_id:
+              already_invited: "já foi convidado(a) para essa guild"
+              already_member: "Já é um membro desta guilda"
+        discord_event_signup:
+          attributes:
+            discord_user_id:
+              one_role_per_event: "Você pode se inscrever apenas em um cargo por evento"
+        discord_event_participation:
+          attributes:
+            discord_user_id:
+              already_signed_up: "já participou deste evento"
+        event_participation:
+          attributes:
+            user_id:
+              already_responded: "Já respondeu a este evento"
+            base:
+              user_or_discord_required: "É necessário uma conta de usuário ou um identificador do Discord."
+        discord_connection:
+          attributes:
+            guild_id:
+              one_connection_only: "A guilda pode ter apenas uma conexão com o Discord."
+        subscription:
+          attributes:
+            expires_at:
+              must_be_after_started: "deve ser posterior à data de início"
+        guild_game:
+          attributes:
+            primary:
+              only_one_allowed: "Apenas um jogo principal permitido por guilda"
+
+        alliance_poll_vote:
+          attributes:
+            base:
+              user_or_discord_required: "É necessário uma conta de usuário ou um identificador do Discord."
+        alliance_event_participation:
+          attributes:
+            base:
+              user_or_discord_required: "É necessário uma conta de usuário ou um identificador do Discord."
+        alliance_loot_roll_entry:
+          attributes:
+            base:
+              user_or_discord_required: "É necessário uma conta de usuário ou um identificador do Discord."
+  ocr:
+    messages:
+      limit_reached: "Esgotou todos os pedidos OCR deste período de faturação. O plano %{plan_name} permite %{limit} pedidos por mês. Contacte o suporte."
+      hard_locked: "O acesso OCR foi temporariamente suspenso. Contacte o suporte."
+      trial_expired: "Esgotou os pedidos OCR da avaliação gratuita. Subscreva um plano para continuar a usar OCR."
+      free_blocked: "Esgotou todos os pedidos OCR gratuitos. Subscreva um plano para desbloquear mais."
+      ip_abuse: "Foi detetada atividade OCR invulgar na sua rede. Contacte o suporte se não esperava isto."

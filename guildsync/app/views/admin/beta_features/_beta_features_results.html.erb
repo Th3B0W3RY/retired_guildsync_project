@@ -1,0 +1,40 @@
+<% if @q.blank? %>
+  <p class="text-xs text-theme-secondary mb-3"><%= t("admin.beta_features.show_recent", count: @per_page) %></p>
+<% end %>
+
+<div class="bg-theme-card border border-theme-primary rounded-lg overflow-hidden">
+  <div class="overflow-x-auto">
+    <table class="w-full text-left text-sm">
+      <thead class="bg-theme-secondary border-b border-theme-primary">
+        <tr>
+          <th class="px-4 py-3 font-semibold text-theme-primary"><%= t("admin.beta_features.col_id") %></th>
+          <th class="px-4 py-3 font-semibold text-theme-primary"><%= t("admin.beta_features.col_username") %></th>
+          <th class="px-4 py-3 font-semibold text-theme-primary"><%= t("admin.beta_features.col_email") %></th>
+          <th class="px-4 py-3 font-semibold text-theme-primary"><%= t("admin.beta_features.col_enabled") %></th>
+          <th class="px-4 py-3 font-semibold text-theme-primary"></th>
+        </tr>
+      </thead>
+      <tbody class="divide-y divide-theme-primary">
+        <% @users.each do |user| %>
+          <%= render "admin/beta_features/user_row", user: user %>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+  <% if @users.empty? %>
+    <p class="px-6 py-8 text-center text-theme-secondary"><%= t("admin.beta_features.empty") %></p>
+  <% end %>
+</div>
+
+<% if @total_pages > 1 %>
+  <div class="flex gap-2 items-center text-sm text-theme-secondary mt-4">
+    <% frame = Admin::BetaFeaturesController::BETA_FEATURES_RESULTS_FRAME %>
+    <% if @current_page > 1 %>
+      <%= link_to t("admin.beta_features.pagination_prev"), admin_beta_features_path(q: @q, page: @current_page - 1), class: "text-theme-accent", data: { turbo_frame: frame } %>
+    <% end %>
+    <span><%= t("admin.beta_features.pagination_page", current: @current_page, total: @total_pages) %></span>
+    <% if @current_page < @total_pages %>
+      <%= link_to t("admin.beta_features.pagination_next"), admin_beta_features_path(q: @q, page: @current_page + 1), class: "text-theme-accent", data: { turbo_frame: frame } %>
+    <% end %>
+  </div>
+<% end %>

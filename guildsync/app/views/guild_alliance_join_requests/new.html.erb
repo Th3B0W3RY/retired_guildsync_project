@@ -1,0 +1,12 @@
+<div class="max-w-3xl mx-auto p-6 space-y-6">
+  <div>
+    <%= link_to t("alliances.outgoing_join_requests.new.back"), guild_path(@guild), class: "text-sm text-theme-accent hover:text-theme-accent-hover mb-4 inline-block" %>
+    <h1 class="text-3xl font-bold text-theme-primary mb-2"><%= t("alliances.outgoing_join_requests.new.title") %></h1>
+    <p class="text-theme-secondary"><%= t("alliances.outgoing_join_requests.new.subtitle", guild_name: @guild.name) %></p>
+  </div>
+
+  <div class="bg-theme-secondary rounded-lg border border-theme-primary p-6">
+    <p class="text-sm text-theme-secondary mb-4"><%= t("alliances.index.request_join_hint") %></p>
+    <%= render "shared/alliance_join_request_search_form", guild: @guild %>
+  </div>
+</div>

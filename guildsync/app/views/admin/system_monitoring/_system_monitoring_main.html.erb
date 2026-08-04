@@ -1,0 +1,60 @@
+<div class="space-y-6"
+     data-controller="admin-system-monitoring"
+     data-admin-system-monitoring-url-value="<%= admin_system_monitoring_metrics_path(format: :json) %>"
+     data-admin-system-monitoring-i18n-value="<%= ERB::Util.html_escape(admin_system_monitoring_stimulus_i18n.to_json) %>">
+  <div class="flex flex-col gap-3 sm:flex-row sm:justify-end sm:items-center">
+    <div class="flex flex-wrap items-center gap-2">
+      <span class="text-theme-secondary text-sm" data-admin-system-monitoring-target="lastUpdated">—</span>
+      <button type="button"
+              data-admin-system-monitoring-target="refreshBtn"
+              data-action="click->admin-system-monitoring#refresh"
+              class="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors font-semibold disabled:opacity-50 disabled:cursor-not-allowed">
+        <%= t("admin.system_monitoring.show.refresh") %>
+      </button>
+    </div>
+  </div>
+
+  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4" id="metrics-cards">
+    <div class="bg-theme-card border border-theme-primary rounded-lg p-4 shadow">
+      <h3 class="font-semibold text-theme-accent mb-2"><%= t("admin.system_monitoring.show.cards.memory") %></h3>
+      <div data-admin-system-monitoring-target="memoryContent" class="text-theme-secondary text-sm break-words min-h-[1.25rem]"><%= t("admin.system_monitoring.js.click_refresh_to_load") %></div>
+    </div>
+    <div class="bg-theme-card border border-theme-primary rounded-lg p-4 shadow">
+      <h3 class="font-semibold text-theme-accent mb-2"><%= t("admin.system_monitoring.show.cards.cpu") %></h3>
+      <div data-admin-system-monitoring-target="cpuContent" class="text-theme-secondary text-sm break-words min-h-[1.25rem]"><%= t("admin.system_monitoring.js.click_refresh_to_load") %></div>
+    </div>
+    <div class="bg-theme-card border border-theme-primary rounded-lg p-4 shadow">
+      <h3 class="font-semibold text-theme-accent mb-2"><%= t("admin.system_monitoring.show.cards.disk") %></h3>
+      <div data-admin-system-monitoring-target="diskContent" class="text-theme-secondary text-sm break-words min-h-[1.25rem]"><%= t("admin.system_monitoring.js.click_refresh_to_load") %></div>
+    </div>
+    <div class="bg-theme-card border border-theme-primary rounded-lg p-4 shadow">
+      <h3 class="font-semibold text-theme-accent mb-2"><%= t("admin.system_monitoring.show.cards.sidekiq") %></h3>
+      <div data-admin-system-monitoring-target="sidekiqContent" class="text-theme-secondary text-sm break-words min-h-[1.25rem]"><%= t("admin.system_monitoring.js.click_refresh_to_load") %></div>
+    </div>
+    <div class="bg-theme-card border border-theme-primary rounded-lg p-4 shadow">
+      <h3 class="font-semibold text-theme-accent mb-2"><%= t("admin.system_monitoring.show.cards.puma") %></h3>
+      <div data-admin-system-monitoring-target="pumaContent" class="text-theme-secondary text-sm break-words min-h-[1.25rem]"><%= t("admin.system_monitoring.js.click_refresh_to_load") %></div>
+    </div>
+    <div class="bg-theme-card border border-theme-primary rounded-lg p-4 shadow">
+      <h3 class="font-semibold text-theme-accent mb-2"><%= t("admin.system_monitoring.show.cards.database") %></h3>
+      <div data-admin-system-monitoring-target="databaseContent" class="text-theme-secondary text-sm break-words min-h-[1.25rem]"><%= t("admin.system_monitoring.js.click_refresh_to_load") %></div>
+    </div>
+  </div>
+
+  <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+    <div class="bg-theme-card border border-theme-primary rounded-lg p-4 shadow flex flex-col min-h-0">
+      <h3 class="font-semibold text-theme-accent mb-1"><%= t("admin.system_monitoring.show.chart_memory_title") %></h3>
+      <p class="text-theme-secondary text-xs mb-2"><%= t("admin.system_monitoring.show.chart_memory_subtitle") %></p>
+      <div class="relative h-52 w-full min-h-[13rem] max-h-[13rem] shrink-0">
+        <canvas data-admin-system-monitoring-target="memoryCanvas" class="!h-full !w-full" aria-label="<%= t("admin.system_monitoring.show.chart_memory_aria") %>"></canvas>
+      </div>
+    </div>
+    <div class="bg-theme-card border border-theme-primary rounded-lg p-4 shadow flex flex-col min-h-0">
+      <h3 class="font-semibold text-theme-accent mb-1"><%= t("admin.system_monitoring.show.chart_load_title") %></h3>
+      <p class="text-theme-secondary text-xs mb-2"><%= t("admin.system_monitoring.show.chart_load_subtitle") %></p>
+      <div class="relative h-52 w-full min-h-[13rem] max-h-[13rem] shrink-0">
+        <canvas data-admin-system-monitoring-target="loadCanvas" class="!h-full !w-full" aria-label="<%= t("admin.system_monitoring.show.chart_load_aria") %>"></canvas>
+      </div>
+    </div>
+  </div>
+</div>

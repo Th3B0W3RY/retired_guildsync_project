@@ -1,0 +1,139 @@
+es:
+  settings:
+    account:
+      title: Configuración de la cuenta
+      subtitle: Gestiona la seguridad y preferencias de tu cuenta
+      password:
+        title: Cambiar contraseña
+        description: Actualiza la contraseña de tu cuenta
+        button: Cambiar contraseña
+      discord:
+        title: Cuenta de Discord
+        connected_as: Conectado como %{username}
+        not_connected: Cuenta de Discord no conectada.
+        disconnect: Eliminar conexión de Discord
+        disconnect_confirm: "¿Seguro que quieres desconectar tu cuenta de Discord? Se eliminará la conexión y tendrás que volver a conectarte para usar las funciones de Discord."
+        switch_to_mfa_first: Cambia primero al inicio de sesión MFA para desconectar Discord
+        connect: Conectar cuenta de Discord
+      auth_method:
+        title: Método de autenticación
+        description: Elige cómo iniciar sesión en tu cuenta.
+        mfa:
+          title: Inicio de sesión MFA
+          description: Usa contraseña y autenticación multifactor
+          button: Usar MFA
+          button_active: Usando MFA
+        discord:
+          title: Inicio de sesión con Discord
+          description: Inicia sesión con tu cuenta de Discord
+          button: Usar Discord
+          button_active: Usando Discord
+          connect_first: Conecta primero la cuenta de Discord
+        google:
+          title: Inicio de sesión con Gmail
+          description: Inicias sesión con Google usando la cuenta de Gmail o Google Workspace vinculada.
+          active: Usando Gmail
+        microsoft:
+          title: Inicio de sesión con Outlook
+          description: Inicias sesión con Microsoft usando tu cuenta personal (Outlook, Hotmail, etc.).
+          active: Usando Outlook
+        mfa_backup_warning: Considera configurar MFA como método de respaldo.
+        discord_connect_warning: Conectar Discord puede facilitar el inicio de sesión y añadir funciones.
+      language:
+        title: Idioma
+        description: Elige tu idioma. El valor predeterminado es inglés para cuentas con sesión iniciada (al cerrar sesión puede seguir aplicándose el idioma del navegador salvo que elijas uno en el menú).
+        label: Idioma preferido
+        auto_detect: Predeterminado (inglés)
+        save: Guardar idioma
+        updated: Preferencia de idioma actualizada.
+        invalid: Selección de idioma no válida.
+      mfa:
+        title: Autenticación multifactor (MFA)
+        enabled: MFA está activado.
+        not_enabled: MFA no está configurado. Configúralo para proteger tu cuenta.
+        manage: Administrar MFA
+        setup: Configurar MFA
+      backup_codes:
+        title: Código de respaldo
+        description: Tu código de respaldo te permite restablecer la contraseña y recuperar la cuenta si pierdes el acceso a MFA.
+        warning: "Guarda este código de forma segura: ¡puede omitir tu contraseña y MFA!"
+        current: Tu código de respaldo actual
+        no_codes: No tienes un código de respaldo activo.
+        regenerate_button: Regenerar código de respaldo
+        regenerate_confirm: Regenerar invalidará tu código actual y te enviaremos uno nuevo por correo. ¿Continuar?
+        regenerate_description: Puedes regenerar tu código de respaldo como máximo cada 3 meses. El nuevo código se enviará a tu correo verificado.
+        regenerated_notice: Te enviamos tu nuevo código de respaldo a tu correo verificado.
+        cooldown_active: Puedes volver a generar tu código de respaldo el %{date}.
+        verify_email_first: Verifica tu correo antes de regenerar el código de respaldo.
+        how_it_works: Cómo funciona tu código de respaldo
+        bullet_length: El código tiene 24 caracteres (letras y números).
+        bullet_single_use: El código es de un solo uso — tras usarlo deja de ser válido.
+        bullet_use_case: Usa tu código de respaldo si olvidas la contraseña O pierdes el acceso a MFA.
+        bullet_store_offline: Guárdalo sin conexión (impreso o gestor de contraseñas) — ¡no lo volveremos a mostrar!
+        bullet_regenerate: Al regenerar se invalida el código anterior y te enviamos uno nuevo por correo.
+      delete_account:
+        title: Eliminar cuenta
+        intro: Puedes cerrar esta cuenta de forma permanente y eliminar los datos asociados de GuildSync. Tras nuestro plazo de conservación es irreversible; antes, operaciones puede que restauren ciertos datos según nuestras políticas de soporte.
+        privacy_link: Política de privacidad
+        support_link: Contactar con soporte
+        primary_cta: Quiero eliminar mi cuenta
+        code_label: Código de verificación por correo
+        code_hint: Introduce el código de un solo uso de tu correo (letras y números).
+        resend_wait: Puedes solicitar otro código en %{seconds} segundos.
+        continue_button: Continuar para eliminar la cuenta
+        modal_title: "¿Seguro que quieres eliminar tu cuenta?"
+        modal_body: Se cerrará tu cuenta y cerrarás sesión. Tras el plazo de conservación esto no se puede deshacer.
+        modal_cancel: Cancelar
+        modal_confirm: Sí, eliminar mi cuenta
+        blocked:
+          generic: La eliminación de la cuenta está bloqueada hasta resolver lo siguiente.
+          already_closed: Esta cuenta ya está cerrada.
+          purge_in_progress: La eliminación ya está en curso.
+          alliance_leader: Abandona o disuelve primero las alianzas que lideras.
+          owned_guild_has_members: Resuelve las hermandades de las que eres dueño y que aún tienen otros miembros activos (transfiere la titularidad, elimina miembros o disuelve la hermandad).
+    profile:
+      title: Configuración del perfil
+      subtitle: Personaliza tu perfil
+      email_verification:
+        required_notice: Añade y verifica una dirección de correo real en esta página para seguir usando GuildSync.
+        banner_title: Verifica tu correo
+        banner_body: Tu cuenta usa un correo provisional o sin verificar. Indica una dirección real abajo y confirma el enlace que enviaremos.
+        invalid_link: Ese enlace de verificación no es válido o ha caducado. Solicita un nuevo correo abajo.
+        success_notice: Tu correo electrónico está verificado.
+        update_failed: No pudimos actualizar tu correo. Inténtalo de nuevo o solicita un nuevo enlace de verificación.
+      avatar:
+        title: Avatar del perfil
+        change: Cambiar avatar
+        upload: Subir avatar
+        remove: Eliminar avatar
+        remove_confirm: "¿Seguro que quieres eliminar tu avatar?"
+        updated_notice: Avatar actualizado correctamente.
+        removed_notice: Avatar eliminado correctamente.
+      username:
+        title: Nombre de usuario
+        current: "Nombre de usuario actual:"
+        label: Nuevo nombre de usuario
+        hint: "De 3 a 30 caracteres: letras, números y guiones bajos."
+        save: Guardar nombre de usuario
+        updated_notice: Nombre de usuario actualizado.
+        update_failed: No se pudo actualizar el nombre de usuario.
+      email:
+        title: Dirección de correo electrónico
+        current: "Correo electrónico:"
+        verified_badge: Verificado
+        unverified_badge: Sin verificar — indica un correo real abajo
+        label: Correo a verificar
+        placeholder: tu@ejemplo.com
+        send_verification: Enviar correo de verificación
+        verification_sent_notice: Revisa tu bandeja de entrada para el enlace de confirmación.
+        pending_notice: Se envió un enlace de confirmación a %{email}.
+        taken: Esa dirección de correo ya está en uso.
+        mailer:
+          subject: Verifica tu dirección de correo de GuildSync
+          heading: Verifica tu dirección de correo
+          greeting: Hola,
+          body: Solicitaste verificar esta dirección de correo para tu perfil de GuildSync. Usa el botón siguiente para completar la verificación.
+          cta: Verificar dirección de correo
+          expires: Este enlace caduca en 24 horas.
+          fallback: "Si el botón no funciona, copia y pega esta URL en tu navegador:"
+          ignore: Si no solicitaste esta verificación de correo, puedes ignorar este mensaje.

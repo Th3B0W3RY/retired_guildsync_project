@@ -1,0 +1,74 @@
+<div class="max-w-3xl mx-auto p-6">
+  <div class="mb-4">
+    <%= link_to "&larr; #{t('alliances.events.show.back')}".html_safe, alliance_alliance_events_path(@alliance),
+        class: "text-sm text-theme-accent hover:text-theme-accent-hover" %>
+  </div>
+
+  <div class="bg-theme-secondary rounded-lg border border-theme-primary p-6 mb-6">
+    <div class="flex items-start justify-between">
+      <div>
+        <h1 class="text-3xl font-bold text-theme-primary mb-2"><%= @event.title %></h1>
+        <div class="flex items-center gap-4 text-sm text-theme-secondary">
+          <span><%= @event.scheduled_at.strftime("%B %d, %Y at %I:%M %p") %></span>
+          <% if @event.duration.present? %>
+            <span>&bull; <%= @event.duration %> <%= t('alliances.events.show.minutes') %></span>
+          <% end %>
+          <% if @event.location.present? %>
+            <span>&bull; <%= @event.location %></span>
+          <% end %>
+        </div>
+        <% if @event.description.present? %>
+          <p class="mt-4 text-theme-secondary"><%= @event.description %></p>
+        <% end %>
+      </div>
+      <% if alliance_owner_in_active_guild?(@alliance) %>
+        <div class="flex gap-2">
+          <%= link_to t('common.buttons.edit'), edit_alliance_alliance_event_path(@alliance, @event),
+              class: "px-4 py-2 bg-theme-accent text-white rounded-lg hover:bg-theme-accent-hover transition-colors text-sm" %>
+          <%= button_to t('common.buttons.delete'), alliance_alliance_event_path(@alliance, @event), method: :delete,
+              class: "px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 transition-colors text-sm",
+              data: { confirm: t('alliances.events.show.delete_confirm') } %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+
+  <!-- RSVP -->
+  <div class="bg-theme-secondary rounded-lg border border-theme-primary p-6 mb-6">
+    <h2 class="text-lg font-semibold text-theme-primary mb-4"><%= t('alliances.events.show.your_rsvp') %></h2>
+    <div class="flex gap-3">
+      <%= button_to t('alliances.events.show.attending'), rsvp_alliance_alliance_event_path(@alliance, @event),
+          params: { status: "attending" }, method: :post,
+          class: "px-4 py-2 rounded-lg font-medium transition-colors #{@my_participation&.attending? ? 'bg-green-600 text-white' : 'bg-theme-primary text-theme-secondary hover:text-theme-accent'}" %>
+      <%= button_to t('alliances.events.show.maybe'), rsvp_alliance_alliance_event_path(@alliance, @event),
+          params: { status: "maybe" }, method: :post,
+          class: "px-4 py-2 rounded-lg font-medium transition-colors #{@my_participation&.maybe? ? 'bg-yellow-600 text-white' : 'bg-theme-primary text-theme-secondary hover:text-theme-accent'}" %>
+      <%= button_to t('alliances.events.show.declined'), rsvp_alliance_alliance_event_path(@alliance, @event),
+          params: { status: "declined" }, method: :post,
+          class: "px-4 py-2 rounded-lg font-medium transition-colors #{@my_participation&.declined? ? 'bg-red-600 text-white' : 'bg-theme-primary text-theme-secondary hover:text-theme-accent'}" %>
+    </div>
+  </div>
+
+  <!-- Participant List -->
+  <div class="bg-theme-secondary rounded-lg border border-theme-primary p-6">
+    <h2 class="text-lg font-semibold text-theme-primary mb-4">
+      <%= t('alliances.events.show.participants') %>
+      (<%= @participants.where(status: :attending).count %> <%= t('alliances.events.show.attending') %>)
+    </h2>
+    <% if @participants.any? %>
+      <div class="space-y-2">
+        <% @participants.each do |p| %>
+          <div class="flex items-center justify-between py-2 border-b border-theme-primary last:border-0">
+            <span class="text-theme-primary text-sm"><%= p.user.display_name %></span>
+            <span class="text-xs px-2 py-0.5 rounded
+              <%= p.attending? ? 'bg-green-900/30 text-green-400' : p.maybe? ? 'bg-yellow-900/30 text-yellow-400' : 'bg-red-900/30 text-red-400' %>">
+              <%= t("alliances.events.show.status.#{p.status}") %>
+            </span>
+          </div>
+        <% end %>
+      </div>
+    <% else %>
+      <p class="text-theme-secondary"><%= t('alliances.events.show.no_participants') %></p>
+    <% end %>
+  </div>
+</div>

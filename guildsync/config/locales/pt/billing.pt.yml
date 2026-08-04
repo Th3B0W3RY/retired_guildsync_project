@@ -1,0 +1,106 @@
+pt:
+  billing:
+    show:
+      title: Meu Faturamento
+      subtitle: Gerencie sua assinatura e informações de pagamento
+      current_subscription: Assinatura Atual
+      no_plan: sem plano
+      status_label: 'Situação:'
+      trial_period_active: Período de Teste Ativo
+      trial_days_remaining_html: Você tem <strong>%{days}</strong> restantes no seu período de teste.
+      trial_ended: Seu período de avaliação terminou.
+      trial_ends_on: 'O trial termina em:'
+      started: Iniciado
+      expires: Expira
+      no_active_subscription: Você não tem uma assinatura ativa.
+      view_plans: Ver Planos
+      payment_management: Gestão de Pagamentos
+      setup_payment_method: Configurar Método de Pagamento
+      setup_payment_trial: Selecione um plano abaixo para configurar o pagamento. Você pode se inscrever no seu plano atual de avaliação ou escolher um plano diferente.
+      setup_payment_current: Selecione um plano abaixo para configurar o pagamento.
+      setup_payment_current_plan: Configurar Pagamento do Plano Atual
+      subscribe_to_plan: Assine o %{plan}
+      setup_payment: Configurar Pagamento
+      manage_payment_methods: Gerencie seus meios de pagamento, informações de faturamento e faturas
+      need_help: Precisa de ajuda?
+      need_help_description: Tem dúvidas sobre sua fatura ou assinatura? Nossa equipe de fatura está aqui para ajudar.
+      contact_billing_team: Contate nossa equipe de cobrança
+      contact_form_coming_soon: O formulário de contato está chegando em breve.
+      js_loading: Carregando...
+      js_manage_billing: Gerenciar Faturamento
+      js_setup_payment: Configurar Pagamento
+      billing_portal: Portal de faturação
+      switch_plan: Mudar para este plano
+      confirm_plan_change: Mudar para este plano? Pode haver uma cobrança proporcional hoje.
+      confirm_plan_change_with_amount: 'Montante estimado a pagar hoje:'
+      proration_disclaimer: 'As mudanças de plano usam o rateio da Stripe: upgrades são faturados de imediato; downgrades geram crédito para faturas futuras (sem reembolso em dinheiro).'
+      account_credit_html: Tem <strong>%{amount}</strong> de crédito que será aplicado a faturas futuras.
+      subscription_actions_title: Cancelar ou retomar subscrição
+      pending_cancel_html: A sua subscrição está agendada para terminar a <strong>%{date}</strong>. Não haverá mais cobranças após essa data.
+      period_end_unknown: o fim do período de faturação atual
+      resume_subscription: Retomar subscrição
+      refund_window_active: Está dentro de três dias após o primeiro pagamento. Cancelar agora termina a subscrição de imediato e reembolsa pagamentos elegíveis para o seu método de pagamento.
+      cancel_no_refund: Cancelar mantém o acesso até ao fim do período de faturação atual. Não há reembolso por valores já pagos.
+      cancel_subscription: Cancelar subscrição
+      cancel_confirm: Tem a certeza de que quer cancelar a subscrição?
+  pricing:
+    interval:
+      monthly: Mensal
+      annual: Anual
+      save_annual: Poupe 10%
+    public:
+      title: Preços
+    upgrade:
+      title: Melhore seu Plano
+      subtitle: Escolha o plano perfeito para suas necessidades de administração da guilda. Todos os planos incluem nossas principais características.
+      most_popular: Mais Populares
+      trial_ends_in:
+        one: Seu trial termina em 1 dia
+        other: Seu teste termina em %{count} dias
+      current_plan: Plano atual
+      start_free_trial: Iniciar Teste Grátis
+      subscribe_now: Assine Agora
+      switch_to_free_plan: Alterar para Plano Grátis
+      trial_message: Você está atualmente no seu período de teste gratuito de 14 dias. Adicione um método de pagamento para continuar após o fim do seu período de teste.
+      payment_required: A atualização para um plano pago requer um método de pagamento. Não há testes adicionais disponíveis após o seu teste inicial.
+      questions_contact: Perguntas? %{link} para mais informações.
+      free_trial_box:
+        title: Teste gratuito / modo limitado
+        description: Contas novas começam no plano gratuito (funcionalidades limitadas). Pode iniciar um teste Básico de 14 dias se for elegível, ou subscrever Básico, Avançado ou Elite com pagamento.
+        features:
+        - Teste de 14 dias no Básico (app ou Stripe quando ativo)
+        - 'Avançado e Elite: subscrição paga — sem segundo teste'
+        - Sem cartão para iniciar o teste Básico a partir do plano gratuito
+        - Mudança para o plano gratuito a qualquer momento
+        - Funcionalidades limitadas no plano gratuito após o teste
+      free_user_mode_box:
+        title: Plano gratuito e modo de utilizador gratuito
+        description: 'No plano gratuito ou após mudar para ele quando termina um teste, está em modo de utilizador gratuito. Isto significa:'
+        features:
+        - Mantém acesso a uma guilda e a um número limitado de membros
+        - As funcionalidades principais continuam disponíveis com limites reduzidos
+        - Pode subir para Básico, Avançado ou Elite a qualquer altura
+        - Os seus dados são preservados se descer de plano ou quando um teste termina
+      contact_us: Contate-nos
+      loading: Carregando...
+    public_pricing:
+      title: Escolha Seu Plano
+      subtitle: Escolha o plano perfeito para suas necessidades de administração da guilda. Todos os planos incluem nossas principais características.
+      no_plans: Sem planos de preços disponíveis no momento.
+      most_popular: Mais Populares
+      trial_included: Teste de 14 dias no Básico (quando disponível)
+      start_free_trial: Iniciar Teste Grátis
+      subscribe_now: Assine Agora
+      plan_suffix: Plano
+      whats_included: 'O que está incluído:'
+      free_plan_intro: Todas as contas novas começam no plano gratuito (funcionalidades limitadas). Pode iniciar um teste Básico de 14 dias se for elegível, ou subscrever Básico, Avançado ou Elite no checkout.
+      trial_info: O teste de 14 dias aplica-se apenas ao Básico. Avançado e Elite usam checkout pago sem teste na app. Após o teste Básico pode ficar em Gratuito (limitado) ou subscrever.
+      questions_contact: Perguntas? %{link} para mais informações.
+      contact_us: Contate-nos
+      after_trial_title: O que acontece após seu teste?
+      after_trial_paragraph_html: Depois que seu período de avaliação terminar, você será redirecionado automaticamente ao nosso <strong class="text-theme-accent">Plano Grátis</strong>, que você pode continuar a usar ou atualizar para um plano diferente conforme desejar.
+      free_plan_includes_title: 'Confira o que o Plano Gratuito inclui:'
+      free_plan_feature_1_guild: 1 guilda
+      free_plan_feature_50_users: 50 usuários
+      free_plan_feature_events: Planejamento e agendamento de eventos
+      free_plan_feature_members: Gestão de membros

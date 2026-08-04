@@ -1,0 +1,399 @@
+fr:
+  # ============================================================================
+  # ALLIANCES FEATURE
+  # ============================================================================
+  alliances:
+    created: "Alliance créée avec succès !"
+    updated: "Paramètres de l'alliance enregistrés."
+    disbanded: "L'alliance a été dissoute."
+    left: "Tu as quitté l'alliance."
+    guild_kicked: "La guilde a été retirée de l'alliance."
+
+    errors:
+      join_requires_paid_plan: "Un abonnement ou un essai actif sur une offre payante est requis. L'offre gratuite ainsi que les abonnements ou essais expirés ne sont pas éligibles."
+      plan_required_for_alliance_hub: "Un forfait payant est requis pour ouvrir le hub Alliances, sauf si tu es déjà membre d'une alliance sur GuildSync. Demande à ton GM de te synchroniser ou passe à un forfait supérieur."
+      not_found: "Alliance introuvable."
+      not_member: "Tu n'es pas membre de cette alliance."
+      not_leader: "Seul le chef de l'alliance peut faire ça."
+      kick_unauthorized: "Seuls les propriétaires de guilde ou les gestionnaires d'alliance dédiés peuvent retirer des guildes."
+      no_eligible_guild: "Tu ne remplis pas les conditions pour créer une alliance avec tes adhésions actuelles de guilde."
+      plan_required: "Ton forfait actuel ne permet pas de créer des alliances. Passe à un niveau supérieur."
+      disband_unauthorized: "Tu n'es pas autorisé à dissoudre cette alliance."
+      leave_unauthorized: "Seuls les propriétaires de guilde peuvent quitter une alliance."
+      leader_cannot_leave: "La guilde fondatrice ne peut pas quitter l'alliance. Dissous-la plutôt."
+      guild_not_found: "Guilde introuvable."
+      cannot_kick_leader_guild: "Tu ne peux pas retirer la guilde fondatrice de l'alliance."
+      conflicting_alliance_membership: "Vous ne pouvez pas rejoindre des guildes appartenant à plus d'une alliance en même temps."
+    index:
+      title: "Alliance"
+      open_alliance: "Ouvrir l'alliance"
+      invite_from: "Invité par %{name}"
+      accept: "Accepter"
+      decline: "Refuser"
+      request_join_hint: "Cherche une guilde répertoriée déjà dans une alliance, choisis ta guilde, puis demande à rejoindre cette alliance."
+      search_label: "Rechercher des guildes"
+      search_placeholder: "Saisis un nom de guilde..."
+      search_select_target: "Guilde cible (doit être dans une alliance)"
+      submit_join_request: "Envoyer la demande"
+      searching: "Recherche..."
+      no_results: "Aucune guilde trouvée."
+      load_more_results: "Charger plus de résultats"
+
+    roles:
+      leader_guild: "Guilde fondatrice"
+    new:
+      title: "Créer une alliance"
+      subtitle: "Rassemble plusieurs guildes sous une même bannière."
+
+    edit:
+      title: "Paramètres de l'alliance"
+      back: "Retour à l'alliance"
+      danger_zone: "Zone de danger"
+      disband: "Dissoudre l'alliance"
+      disband_confirm: "Es-tu sûr de vouloir dissoudre cette alliance ? Cette action est irréversible."
+
+    form:
+      name: "Nom de l'alliance"
+      name_placeholder: "Saisis le nom de l'alliance..."
+      description: "Description"
+      description_placeholder: "Décris ton alliance..."
+      logo: "Logo de l'alliance"
+      choose_logo_button: "Choisir une image"
+      no_file_chosen: "Aucun fichier choisi"
+      logo_hint: "Optionnel. Recommandé : image carrée, au moins 256×256 px."
+      logo_replace_hint: "Téléverse un nouveau fichier pour remplacer le logo actuel."
+      creating_for: "Création d'alliance pour :"
+      size_info: "Les alliances peuvent inclure de 1 à 20 guildes. Commence par la tienne, puis invite les autres."
+      create_button: "Créer l'alliance"
+      save_button: "Enregistrer les modifications"
+
+    show:
+      guilds: "Guildes membres"
+      guilds_count:
+        one: "1 guilde"
+        other: "%{count} guildes"
+      leader: "Dirigée par %{name}"
+      edit: "Modifier"
+      leave: "Quitter l'alliance"
+      leave_confirm: "Es-tu sûr de vouloir quitter cette alliance ?"
+      invite_guild: "Inviter une guilde"
+      kick_guild: "Expulser"
+      kick_guild_confirm: "Retirer %{name} de l'alliance ?"
+      members_preview: "Membres"
+      view_all_members: "Voir tous les membres"
+      more_members:
+        one: "et 1 autre membre..."
+        other: "et %{count} autres membres..."
+
+    nav:
+      members: "Membres"
+      events: "Événements d'alliance"
+      polls: "Sondages d'alliance"
+      rolls: "Tirages d'alliance"
+      chat: "Discussion d'alliance"
+      activity_feed: "Fil d'activité"
+      gm_chat: "Discussion GM"
+      invites: "Invitations en attente"
+      join_requests: "Demandes d'adhésion"
+      disband_vote: "Vote de dissolution"
+      back_to_alliance: "Retour à l'alliance"
+
+    invites:
+      sent: "Invitation envoyée à %{guild_name}."
+      accepted: "Tu as rejoint %{alliance_name} !"
+      declined: "Invitation refusée."
+
+      errors:
+        not_found: "Invitation introuvable."
+        guild_not_found: "Guilde introuvable. Recherche par nom et sélectionne une guilde listée publiquement."
+        already_in_alliance: "Cette guilde fait déjà partie de cette alliance."
+        already_invited: "Cette guilde a déjà une invitation en attente."
+        pending_join_request: "Cette guilde a déjà une demande d'adhésion en attente pour cette alliance."
+        max_guilds: "Cette alliance a atteint le maximum de 20 guildes."
+        invite_unauthorized: "Seuls les propriétaires de guilde ou les gestionnaires d'alliance peuvent inviter des guildes."
+        accept_unauthorized: "Seul le propriétaire de la guilde cible peut accepter cette invitation."
+        decline_unauthorized: "Seul le propriétaire de la guilde cible peut refuser cette invitation."
+
+      index:
+        title: "Invitations en attente"
+        subtitle: "Invitations pour %{alliance_name}"
+        invite_guild: "Inviter une guilde"
+        search_label: "Rechercher des guildes listées publiquement"
+        search_placeholder: "Saisis un nom de guilde..."
+        search_hint: "La recherche porte uniquement sur le nom de guilde. Seules les guildes ayant opté pour le répertoire public apparaissent ici."
+        search_unauthorized: "Tu ne peux pas rechercher depuis cette page."
+        load_more_results: "Charger plus de résultats"
+        selected_guild: "Invitation à"
+        already_in_alliance_suffix: "déjà dans une alliance (invitation impossible)"
+        invite_restricted: "Seul le chef de l'alliance peut envoyer des invitations."
+        send_invite: "Envoyer l'invitation"
+        pending: "Invitations en attente"
+        no_pending: "Aucune invitation en attente."
+        invited_by: "Invité par %{name}"
+
+    events:
+      created: "Événement d'alliance créé !"
+      updated: "Événement mis à jour."
+      deleted: "Événement supprimé."
+      rsvp_saved: "Ta confirmation de présence a été enregistrée."
+      discord_rsvp:
+        errors:
+          link_required: "Connecte ton compte Discord à GuildSync avant de confirmer ta présence."
+          event_not_found: "Événement d'alliance introuvable."
+          invalid_status: "Statut de confirmation invalide."
+          not_alliance_member: "Tu dois être un membre actif de l'alliance pour confirmer."
+          save_failed: "Impossible d'enregistrer la confirmation : %{error}"
+          unexpected: "Une erreur s'est produite lors de l'enregistrement de la confirmation."
+
+      errors:
+        not_found: "Événement introuvable."
+        manage_unauthorized: "Seuls les propriétaires de guilde peuvent gérer les événements."
+        invalid_rsvp: "Statut de confirmation invalide."
+
+      index:
+        title: "Événements d'alliance"
+        subtitle: "Événements pour %{alliance_name}"
+        create: "Créer un événement"
+        upcoming: "Événements à venir"
+        past: "Événements passés"
+        no_events: "Pas encore d'événements. Crée-en un pour commencer."
+        attending: "présents"
+        upcoming_label: "À venir"
+
+      new:
+        title: "Créer un événement d'alliance"
+
+      edit:
+        title: "Modifier l'événement"
+
+      show:
+        back: "Retour aux événements"
+        minutes: "min"
+        your_rsvp: "Ta confirmation"
+        attending: "Présent"
+        maybe: "Peut-être"
+        declined: "Absent"
+        participants: "Participants"
+        no_participants: "Pas encore de confirmations."
+        delete_confirm: "Supprimer cet événement ?"
+        status:
+          attending: "Présent"
+          maybe: "Peut-être"
+          declined: "Absent"
+
+      form:
+        title: "Titre de l'événement"
+        description: "Description"
+        scheduled_at: "Date et heure"
+        duration: "Durée (minutes)"
+        duration_placeholder: "ex. 60"
+        location: "Lieu / serveur"
+        location_placeholder: "ex. scène Discord, nom du serveur de jeu..."
+        create_button: "Créer l'événement"
+        save_button: "Enregistrer l'événement"
+        event_type: "Type d'événement"
+        event_type_general: "Général"
+        max_participants: "Participants max (facultatif)"
+        squad_leader: "Chef d'escouade (facultatif)"
+        squad_leader_placeholder: "Facultatif — par défaut toi si vide"
+        role_categories_section: "Rôles d'inscription Discord"
+        role_categories_hint: "Quels rôles apparaissent comme boutons sur l'annonce Discord (même principe que pour les événements de guilde)."
+    polls:
+      created: "Sondage d'alliance créé !"
+      deleted: "Sondage supprimé."
+
+      errors:
+        not_found: "Sondage introuvable."
+        manage_unauthorized: "Seuls les propriétaires de guilde ou les gestionnaires d'alliance peuvent créer des sondages."
+        poll_closed: "Ce sondage est fermé."
+        invalid_choice: "Choix de vote invalide."
+
+      index:
+        title: "Sondages d'alliance"
+        subtitle: "Sondages pour %{alliance_name}"
+        create: "Créer un sondage"
+        no_polls: "Aucune sondage d'alliance pour l'instant."
+        created_by: "Créé par %{name}"
+        deadline: "Date limite :"
+        open: "Ouvert"
+        closed: "Fermé"
+        anonymous: "Anonyme"
+        maybe: "Peut-être"
+        voters_heading: "Votants"
+        view_vote: "Voter"
+        view_results: "Résultats"
+        delete_confirm: "Supprimer ce sondage ?"
+
+        "yes": "Oui"
+        "no": "Non"
+      new:
+        title: "Créer un sondage d'alliance"
+
+      show:
+        back: "Retour aux sondages"
+        deadline: "Date limite : %{date}"
+        anonymous: "Anonyme"
+        open: "Ouvert"
+        closed: "Fermé"
+        your_vote: "Exprimer ton vote"
+        maybe: "Peut-être"
+        voters_heading: "Votants"
+
+        "yes": "Oui"
+        "no": "Non"
+      form:
+        title: "Question du sondage"
+        description: "Description"
+        deadline: "Date limite"
+        anonymous: "Vote anonyme (masquer les votes individuels)"
+        create_button: "Créer le sondage"
+
+    loot_rolls:
+      created: "Tirage de butin d'alliance créé !"
+      deleted: "Tirage supprimé."
+      closed: "Tirage fermé et gagnant déterminé."
+      entered: "Tu as obtenu %{roll} !"
+
+      errors:
+        not_found: "Tirage introuvable."
+        manage_unauthorized: "Seuls les propriétaires de guilde ou les gestionnaires d'alliance peuvent gérer les tirages."
+        already_closed: "Ce tirage est déjà fermé."
+        not_open: "Ce tirage de butin n'est pas ouvert pour le moment."
+        already_entered: "Tu as déjà participé à ce tirage."
+
+      index:
+        title: "Tirages de butin d'alliance"
+        subtitle: "Tirages pour %{alliance_name}"
+        create: "Créer un tirage"
+        no_rolls: "Pas encore de tirages."
+        range: "Plage : %{min}–%{max}"
+        deadline: "Date limite :"
+        winner: "🏆 Gagnant : %{name} (jet : %{roll})"
+        open: "Ouvert"
+        closed: "Fermé"
+        view: "Voir le tirage"
+
+      new:
+        title: "Créer un tirage de butin d'alliance"
+
+      show:
+        back: "Retour aux tirages"
+        range: "Plage de jet : %{min}–%{max}"
+        deadline: "Date limite : %{date}"
+        open: "Ouvert"
+        closed: "Fermé"
+        winner: "🏆 Gagnant : %{name} (jet : %{roll})"
+        enter: "Participer au tirage"
+        your_roll: "Ton jet : %{roll}"
+        close: "Fermer et choisir le gagnant"
+        close_confirm: "Fermer ce tirage et déterminer le gagnant ?"
+        entries: "Participations"
+        no_entries: "Pas encore de participations."
+        anonymous_entry: "Anonyme"
+        entries_line:
+          zero: "%{count} participations"
+          one: "%{count} participation"
+          other: "%{count} participations"
+
+      form:
+        title: "Titre du tirage"
+        description: "Description"
+        min_roll: "Jet minimum"
+        max_roll: "Jet maximum"
+        deadline: "Date limite (facultatif)"
+        deadline_hint: "Laisse vide pour aucune date limite."
+        anonymous: "Tirages anonymes"
+        create_button: "Créer le tirage"
+
+    disband_votes:
+      vote_cast: "Ton vote pour dissoudre a été enregistré."
+      majority_disbanded: "Une majorité de GMs a voté la dissolution. L'alliance a été dissoute."
+
+      errors:
+        not_gm: "Seuls les propriétaires de guilde peuvent voter pour dissoudre."
+
+      index:
+        title: "Vote de dissolution"
+        vote_tally: "Score actuel"
+        votes_to_disband: "%{count} sur %{total} GMs ont voté pour dissoudre"
+        threshold_note: "Plus de 50 % des GMs doivent voter pour dissoudre pour que le vote soit validé."
+        your_vote: "Ton vote"
+        vote_disband: "Voter pour dissoudre"
+        vote_disband_confirm: "Es-tu sûr de vouloir voter pour dissoudre cette alliance ?"
+        vote_keep: "Voter pour conserver l'alliance"
+        current_vote: "Ton vote actuel : %{vote}"
+        all_votes: "Tous les votes des GM"
+        no_votes_yet: "Aucun vote pour l'instant."
+        disband: "Dissoudre"
+        keep: "Conserver"
+
+    messages:
+      errors:
+        gm_only: "Seuls les propriétaires de guilde peuvent accéder au chat GM."
+        blank: "Le message ne peut pas être vide."
+
+      index:
+        gm_chat: "Chat GM"
+        alliance_chat: "Discussion d'alliance"
+        switch_to_gm: "Aller au chat GM"
+        switch_to_all: "Aller à la discussion d'alliance"
+        gm_only_notice: "Ce canal n'est visible que pour les propriétaires de guilde de cette alliance."
+        no_messages: "Pas encore de messages. Dis bonjour !"
+        you: "Toi"
+        send: "Envoyer"
+        placeholder: "Écris un message..."
+        message_time_format: "%d/%m/%Y %H:%M"
+
+    join_requests:
+      created: "Demande d'adhésion envoyée à **%{alliance_name}**."
+      accepted: "**%{guild_name}** a rejoint l'alliance."
+      declined: "Demande d'adhésion refusée."
+
+      index:
+        title: "Demandes d'adhésion"
+        subtitle: "Guildes qui demandent à rejoindre **%{alliance_name}**."
+        back: "Retour à l'alliance"
+        none: "Aucune demande en attente."
+
+      errors:
+        not_found: "Demande d'adhésion introuvable."
+        guild_not_found: "Guilde introuvable."
+        unauthorized: "Tu n'es pas autorisé à faire une demande pour cette guilde."
+        already_in_alliance: "Cette guilde est déjà dans une alliance."
+        alliance_inactive: "Cette alliance n'est plus active."
+        requesting_already_in_alliance: "Cette guilde a rejoint une autre alliance avant que cette demande ne soit acceptée."
+        max_guilds: "Cette alliance ne peut pas accueillir d'autres guildes pour le moment."
+        pending_invite: "Il existe déjà une invitation en attente pour cette alliance et cette guilde."
+        create_failed: "Impossible de créer la demande."
+        accept_failed: "Impossible d'accepter la demande."
+        manage_unauthorized: "Seuls les chefs d'alliance, propriétaires de guilde ou officiers peuvent gérer les demandes."
+
+    outgoing_join_requests:
+      new:
+        title: "Demander à rejoindre une alliance"
+        subtitle: "Ta guilde : %{guild_name}. Cherche une guilde répertoriée déjà dans une alliance."
+        back: "Retour à la guilde"
+      status:
+        title: "État des demandes d'adhésion"
+        subtitle: "Demandes sortantes depuis **%{guild_name}**."
+        none: "Aucune demande en attente depuis cette guilde."
+        pending: "En attente"
+      search_unauthorized: "Tu ne peux pas rechercher depuis cette page."
+      not_in_alliance_suffix: "pas dans une alliance"
+
+    received_invites:
+      pending:
+        title: "Invitations d'alliance en attente"
+        subtitle: "Invitations pour **%{guild_name}**."
+        none: "Aucune invitation d'alliance en attente."
+
+    discord:
+      invite_embed:
+        title: "Invitation d'alliance : %{alliance_name}"
+        body: "Invité par %{inviter}. Ouvre GuildSync pour accepter ou refuser."
+      join_request_embed:
+        title: "Demande d'adhésion : %{guild_name}"
+        body: "%{guild_name} a demandé à rejoindre **%{alliance_name}**. Vérifie sur GuildSync."
+      member_joined_embed:
+        title: "%{guild_name} a rejoint l'alliance"
+        body: "**%{guild_name}** fait désormais partie de **%{alliance_name}**."

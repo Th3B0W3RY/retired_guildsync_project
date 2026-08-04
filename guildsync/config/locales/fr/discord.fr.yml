@@ -1,0 +1,355 @@
+fr:
+  discord_connections:
+    auto_authorize_bot:
+      title: Ouverture de la connexion du bot...
+      please_authorize: Veuillez autoriser le bot à rejoindre le serveur "%{server_name}"
+    show:
+      title: Se connecter le Bot à la Guilde Discord
+      subtitle_connected: Votre compte Discord est déjà connecté. Sélectionnez un serveur Discord (où vous êtes propriétaire ou administrateur) pour connecter le robot GuildSync à des fins de gestion d'événements et d'informations.
+      subtitle_not_connected: Tout d'abord, connectez votre compte Discord (configuration unique). Ensuite, sélectionnez un serveur Discord (où vous êtes propriétaire ou administrateur) pour connecter le bot GuildSync. Après avoir sélectionné un serveur, vous autoriserez le bot GuildSync à rejoindre ce serveur.
+      server_not_selected:
+        title: Serveur Discord non sélectionné
+        message: Veuillez sélectionner un serveur Discord pour publier des événements.
+        select_button: Sélectionner un serveur Discord
+      server_selected:
+        title: Serveur Discord sélectionné
+        server_label: 'Serveur:'
+        connected: Connecté
+      bot_connected:
+        title: GuildSync Bot est connecté
+      configuration_error:
+        title: Erreur de configuration
+      bot_authorization:
+        title: Autorisation du bot réquise
+        message: Cliquez ci-dessous pour autoriser le bot GuildSync à rejoindre votre serveur Discord "%{server_name}".
+        authorize_button: Autoriser le bot GuildSync
+        authorize_hint: Cliquez sur le bouton ci-dessus pour autoriser le bot GuildSync à rejoindre votre serveur Discord "%{server_name}". La fenêtre modale se fermera automatiquement après l'autorisation.
+      reconnect_button: Se reconnecter / Changer de compte
+      disconnect_button: Se déconnecter de Discord
+      disconnect_confirm: Êtes-vous sûr de vouloir déconnecter Discord de ce serveur ?
+      connection_invalid:
+        title: Connection non valide
+        message: Votre connexion Discord n'est plus valable. Veuillez reconnecter.
+        last_connected: 'Dernière connexion le :'
+      reconnect_discord: Se reconnecter Discord
+      delete_connection: Supprimer la connexion
+      delete_confirm: Êtes-vous sûr que vous souhaitez supprimer cette connexion Discord non valable ?
+      bot_not_connected:
+        title: Bot non connecté
+        message: Le GuildSync bot n'est pas connecté à un serveur Discord pour cette guilde.
+      connect_section:
+        title: Connecter le bot au serveur Discord
+        already_connected: Votre compte Discord est déjà connecté. Sélectionnez le serveur Discord que vous souhaitez connecter au bot GuildSync. Vous devez être propriétaire ou administrateur du serveur.
+        not_connected: Tout d'abord, connectez votre compte Discord (configuration unique). Ensuite, choisissez le serveur Discord auquel vous souhaitez connecter le bot GuildSync. Vous devez être propriétaire ou administrateur du serveur. Après avoir sélectionné un serveur, vous autoriserez le bot GuildSync à y rejoindre.
+        select_server: Sélectionner un serveur Discord
+        connect_and_select: Se connecter à un compte Discord & Choisir le serveur
+      back_to_dashboard: Retour au tableau de bord
+      popup_blocked: La popup a été bloquée. Veuillez autoriser les popups pour ce site et réessayer.
+    select_server:
+      title: Sélectionner un serveur Discord
+      subtitle: Choisir le serveur Discord à connecter au bot GuildSync. Après avoir sélectionné un serveur, vous autoriserez le bot GuildSync à rejoindre celui-ci.
+      header: Serveur Discord
+      header_subtitle: Sélectionnez un serveur où vous êtes propriétaire ou administrateur pour connecter le bot GuildSync.
+      role_owner: Propriétaire
+      role_admin: Administrateur
+      empty_title: Aucun serveur Discord trouvé
+      empty_message: Il faut que vous soyez propriétaire ou administrateur d'au moins un serveur Discord pour connecter le bot.
+      go_back: Revenir
+      back_to_dashboard: Retour au tableau de bord
+    callback_success:
+      title: Connecté avec succès !
+      message: Le serveur Discord a été connecté avec succès.
+      closing: Cette fenêtre se fermarrera automatiquement dans 1 seconde...
+    callback_error:
+      title: Échec de la connexion
+      closing: Cette fenêtre se fermera automatiquement dans 3 secondes...
+  discord_user_auth:
+    callback_success:
+      title: Authentification Discord réussie
+      closing: Réussite ! Fermeture de la fenêtre...
+    callback_error:
+      title: Erreur
+      default_message: L’authentification Discord a échoué.
+      closing: Cette fenêtre se fermera automatiquement dans 2 secondes...
+  discord_events:
+    new:
+      title: Créer un événement Discord pour %{guild_name}
+      subtitle: Créer un nouvel événement qui sera publié sur Discord pour que tous les utilisateurs puissent voir et s'inscrire.
+      channel_configured:
+        title: Channel des Événements Configuré
+        message: Les événements seront publiés dans le canal configuré dans les Paramètres.
+      event_details: Détails de l'événement
+      event_type:
+        label: Type d'Événement
+        pvp: JcJ
+        guild_scrim: Guilde Scrim
+        gvg: GcG
+        regular_scrim: Entraînement régulier
+        pve_event: Joueur contre Environnement
+        world_boss: Patron du Monde
+        guild_questing_time: Temps de quête de guilde
+        custom: Personnalisez
+      custom_event_type:
+        label: Nom du type d'événement personnalisé
+        placeholder: Entrez votre nom de type d'événement personnalisé
+        hint: Entrez un nom pour votre type d'événement personnalisé.
+      event_title:
+        label: Titre de l'événement
+        placeholder: Entrez le titre de l'événement
+      discord_roles:
+        title: Rôles Discord à @
+        subtitle: Sélectionnez une ou plusieurs rôles Discord à mentionner lors de la publication de l'événement.
+      description:
+        label: Description
+        placeholder: Entrez la description de l'événement
+      date:
+        label: Date
+      time:
+        label: Temps
+        hour: Heure
+        minute: Minutes
+        ampm: du matin/de l'après-midi
+        timezone_detecting: Détection de votre fuseau horaire...
+        timezone_label: 'Fuseau horaire : %{timezone}'
+        timezone_default: 'Fuseau horaire : UTC (par défaut)'
+        incomplete_error: Veuillez sélectionner un horaire complet (heure, minute et AM/PM)
+      max_participants:
+        label: Nombre maximal de participants (Facultatif)
+      squad_leader:
+        label: Chef d'escouade (Optionnel)
+        placeholder: Entrez le nom du chef d'équipe
+      location:
+        label: Emplacement (Optionnel)
+        placeholder: Entrez l'emplacement de l'événement
+      role_categories:
+        label: Catégories de Rôles
+        hint: Sélectionnez les rôles pour lesquels les utilisateurs peuvent s'inscrire. Tous les rôles sélectionnés seront disponibles pour l'inscription sur Discord.
+        dps: DPS
+        tank: Tanque
+        healer: Guérisseur
+        ranged: Distance
+      create_button: Créer un événement
+      back_to_events: Retour aux Événements
+    show:
+      signups_by_role: Inscriptions par rôle
+      no_signups: Pas d'inscriptions encore
+      status:
+        on_time: À l'heure
+        tentative: Tentatif
+        late: En retard
+        absent: Absent
+      back_to_events: Retour aux Événements
+      delete_event: Supprimer l'événement
+      delete_confirm: Êtes-vous certain de vouloir supprimer cet événement ?
+  discord:
+    connections:
+      title: Discord Connexions
+      select_server: Sélectionner le serveur
+      callback_success: Connecté avec succès !
+      callback_error: La connexion a échoué
+    oauth:
+      authorize: Autoriser
+      select_server: Sélectionnez un serveur Discord
+    interactions:
+      account_or_membership_required: Crée un compte GuildSync sur https://guild-sync.net ou assure-toi d'avoir rejoint cette alliance et/ou cette guilde.
+    webhooks:
+      invalid_signature: Signature invalide
+      unknown_interaction_type: Type d'interaction inconnu
+      invalid_request_format: Format de requête invalide
+      request_processing_error: Une erreur s'est produite lors du traitement de ta requête. Réessaie.
+      missing_custom_id: 'Interaction invalide : custom_id manquant'
+      missing_user: 'Interaction invalide : utilisateur manquant'
+      invalid_event_signup_format: Format d'inscription à l'événement invalide
+      invalid_alliance_signup_format: Format d'inscription à l'alliance invalide
+      invalid_alliance_status_format: Format de statut d'alliance invalide
+      invalid_status_update_format: Format de mise à jour du statut invalide
+      event_not_found: Événement introuvable
+      unknown_modal: Modale inconnue
+      signup_usage: 'Utilisation : /signup role:<dps|tank|healer|ranged> [event:<event_id>]'
+      signup_event_not_found: Événement introuvable. Indique l'ID de l'événement ou utilise cette commande en réponse à un message d'événement.
+      invalid_command_structure: Structure de commande invalide.
+      missing_interaction_token: Jeton d'interaction manquant.
+      gear_upload_error: Une erreur s'est produite lors du traitement de ton envoi. Réessaie.
+      unknown_gear_subcommand: Sous-commande d'équipement inconnue
+      gear_command_error: Une erreur s'est produite lors du traitement de ta commande.
+      missing_token_or_application_id: Jeton d'interaction ou ID d'application manquant
+      fallback_member_name: Membre
+      rsvp:
+        invalid_role: Rôle invalide
+        followup_error: 'Erreur : %{message}'
+        try_again_short: Une erreur s’est produite. Réessaie.
+        attendance_prompt: 'Tu as choisi **%{role}**. Choisis ton statut de présence :'
+        button_on_time: "✅ À l’heure"
+        button_late: "⏰ En retard"
+        button_absent: "❌ Absent"
+        button_remove: Retirer
+        removed_from_signup: "✅ Retiré de l’inscription à l’événement"
+        signup_not_found: Inscription introuvable
+        invalid_status_hint: 'Statut invalide. Valides : À l’heure, En retard, Absent'
+        status_updated: "✅ Mis à jour : **%{role}** - **%{status}**"
+        status_labels:
+          on_time: À l’heure
+          late: En retard
+          absent: Absent
+      alliance_rsvp:
+        attendance_prompt: Tu as choisi **%{role}**. Comment seras-tu présent ?
+        wrong_account_button: Ce bouton de statut ne correspond pas à ton compte.
+        status_updated: "✅ Statut d’événement d’alliance mis à jour : **%{role}** - **%{status}**"
+      event_embed:
+        squad_leader: "**\U0001F464 Chef d’escouade**"
+        location: "**\U0001F4CD Lieu**"
+        event_type: "**\U0001F4C5 Type**"
+        total: "**\U0001F465 Total**"
+        general_type: Général
+        none_markdown: "```Aucun```"
+        none_display: "**Aucun**"
+        status_separator: "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+        status_heading: "**STATUT**"
+        late: "**⏰ En retard**"
+        absent: "**❌ Absent**"
+        scheduled_label: "**⏰ Prévu :** %{timestamp}"
+        default_description: Rejoins-nous pour cet événement !
+        title: "\U0001F3AF %{title}"
+        footer: Événement GuildSync • Clique sur les boutons ci-dessous pour t’inscrire
+        signup_prompt: "**\U0001F3AF Inscriptions à l’événement** — Clique sur les boutons ci-dessous pour t’inscrire :"
+      legacy_event_details:
+        scheduled_block: |
+          **Prévu :** %{date_stamp}
+          %{time_stamp}
+        duration_line: "**Durée :** %{minutes} minutes\n"
+        location_line: "**Lieu :** %{value}\n"
+        squad_leader_line: "**Chef d’escouade :** %{value}\n"
+        participants_line: "**Participants :** %{count}\n"
+    commands:
+      help:
+        title: GuildSync — Aide
+        description: Les commandes slash disponibles dépendent de ton rôle GuildSync. Essaye /poll, /event, /loot, /invite, /member, /application, /docs, /guild, /alliance, /leaderboard et /profile — les détails sont dans les options de chaque commande sur Discord.
+      errors:
+        server_only: Cette commande doit être utilisée sur un serveur Discord, pas en MP.
+        guild_not_linked: Ce serveur Discord n'est pas lié à une guilde GuildSync. Demande à un officier de le connecter dans les paramètres de guilde.
+        user_not_linked: Ton compte Discord n'est pas lié à un compte GuildSync. Va sur guild-sync.net pour t'inscrire ou lier ton compte.
+        not_a_member: Tu n'es pas membre actif de cette guilde sur GuildSync.
+        officer_required: Tu dois avoir le rang officier ou supérieur pour utiliser cette commande.
+        owner_required: Seul le propriétaire de la guilde peut utiliser cette commande.
+        no_plan: Le propriétaire de la guilde n'a pas d'abonnement GuildSync actif.
+        plan_limit: Ton forfait %{plan} a atteint la limite de %{limit} %{feature}. Passe à un forfait supérieur sur guild-sync.net.
+        unknown_subcommand: Sous-commande inconnue. Consulte /help pour la liste des commandes.
+        not_implemented: Cette commande n'est pas encore implémentée. Reviens bientôt !
+        generic: Une erreur s'est produite. Réessaie ou contacte le support.
+      poll:
+        no_channel: Le salon des sondages n'est pas configuré. Demande à un officier de le définir sur guild-sync.net.
+        missing_fields: Indique une question et au moins deux options (option_a et option_b).
+        created: Sondage **"%{title}"** créé et publié dans le salon des sondages.
+        none_active: Il n'y a pas de sondage actif dans cette guilde pour l'instant.
+        not_found: Sondage introuvable. Utilise /poll list pour voir les sondages disponibles.
+        list_title: "%{guild} — Sondages actifs"
+      loot:
+        no_channel: Le salon des loot rolls n'est pas configuré. Demande à un officier de le définir sur guild-sync.net.
+        missing_item: Indique un nom d'objet.
+        invalid_range: Le maximum du jet doit être supérieur au minimum.
+        created: Loot roll pour **%{item}** créé et publié dans le salon des loot rolls.
+        none_active: Il n'y a pas de loot roll ouvert dans cette guilde pour l'instant.
+        not_found: Loot roll introuvable. Utilise /loot list pour voir les jets disponibles.
+        already_closed: Ce loot roll est déjà clos.
+        closed_winner: "Loot roll **\"%{item}\"** clos. Gagnant : **%{winner}** avec **%{roll}** ! \U0001F3C6"
+        closed_no_entries: Loot roll **"%{item}"** clos. Aucune participation.
+        list_title: "%{guild} — Loot rolls ouverts"
+      datetime:
+        invalid_month: Mois invalide. Choisis un mois dans la liste.
+        invalid_day: Jour invalide. %{month} n'a que %{max} jours.
+        invalid_time: Heure invalide. Choisis une heure (1-12), des minutes et AM/PM valides.
+        in_the_past: Cette date et heure sont dans le passé. Choisis un moment futur.
+        parse_error: 'Impossible d''analyser la date : %{detail}'
+      event:
+        no_channel: Le salon des événements n'est pas configuré. Demande à un officier de le définir sur guild-sync.net.
+        not_connected: Ce serveur n'est pas connecté à Discord. Demande à un officier de terminer la configuration.
+        missing_title: Indique un titre d'événement.
+        duplicate: Un événement **"%{title}"** existe déjà à cette date.
+        created: Événement **"%{title}"** créé et publié dans le salon des événements.
+        none_upcoming: Aucun événement à venir dans cette guilde.
+        not_found: Événement introuvable. Utilise /event list pour voir le planning.
+        cancelled: Événement **"%{title}"** annulé et retiré de Discord.
+        list_title: "%{guild} — Événements à venir"
+      invite:
+        no_user: Mentionne un utilisateur Discord à inviter.
+        self_invite: Tu ne peux pas t'inviter toi-même.
+        already_member: Cet utilisateur est déjà membre actif de cette guilde.
+        sent: Invitation envoyée en MP Discord à <@%{discord_user_id}>. Le lien est valide 7 jours.
+        dm_disabled: MP impossible — l'utilisateur a peut-être désactivé les messages privés. Demande-lui d'autoriser les MP des membres du serveur.
+        dm_intro: "**%{inviter}** t'a invité à rejoindre **%{guild}** sur GuildSync !"
+        dm_link: |-
+          Clique sur le lien ci-dessous pour accepter :
+          %{url}
+        dm_expiry: _Ce lien expire dans 7 jours._
+      member:
+        not_found: Membre introuvable dans cette guilde.
+        kicked: "**%{username}** a été retiré de la guilde."
+        role_updated: 'Le rôle de **%{username}** a été mis à jour : **%{role}**.'
+        none: Aucun membre trouvé.
+        list_title: "%{guild} — Membres"
+        info_title: Profil de %{username}
+        cannot_kick_owner: Tu ne peux pas expulser le propriétaire de la guilde.
+        cannot_demote_owner: Tu ne peux pas modifier le rôle du propriétaire.
+      guild:
+        info_title: "%{name} — Infos guilde"
+        settings_title: "%{name} — Paramètres"
+        channels_title: "%{name} — Salons Discord"
+        not_connected: Cette guilde n'est liée à aucun serveur Discord.
+        channel_not_set: Non configuré
+      application:
+        none_pending: Aucune candidature en attente.
+        not_found: Candidature introuvable. Utilise /application list pour les candidatures en attente.
+        accepted: Candidature acceptée. **%{username}** a été ajouté à la guilde.
+        rejected: Candidature de **%{username}** refusée.
+        list_title: "%{guild} — Candidatures en attente"
+        view_title: Candidature n°%{id}
+        already_processed: Cette candidature a déjà été traitée.
+      docs:
+        none: Aucun document trouvé.
+        not_found: Document introuvable. Utilise /docs list pour la liste.
+        list_title: "%{guild} — Documents"
+        preview_footer: Aperçu tronqué. Document complet sur guild-sync.net
+        search_none: Aucun document ne correspond à « %{query} ».
+      leaderboard:
+        title: "%{guild} — Classement participation aux événements"
+        none: Pas encore de données. Inscris-toi aux événements !
+        footer: Top 10 des membres par ponctualité aux événements
+      activity:
+        title: "%{guild} — Activité récente"
+        none: Aucune activité récente.
+      profile:
+        title: Profil GuildSync de %{username}
+        not_found: Cet utilisateur n'est pas lié à GuildSync ou n'est pas membre de la guilde.
+      alliance:
+        not_in_alliance: La guilde de ce serveur Discord n'est pas encore dans une alliance GuildSync.
+        info_title: "%{name}"
+        no_description: Aucune description.
+        field_guilds: Guildes membres
+        field_hub: Gère les invitations et les demandes d'adhésion sur le web.
+        use_hub: Utilise /alliance hub pour la page des alliances.
+        hub_message: 'Ouvrir les alliances GuildSync : %{url}'
+        requests_unauthorized: Seuls les leaders d'alliance, propriétaires de guilde ou officiers d'alliance peuvent voir les demandes.
+        no_pending_requests: Aucune demande d'adhésion en attente pour cette alliance.
+        requests_body: |-
+          **%{count}** demande(s) en attente :
+          %{list}
+
+          À traiter sur le web : %{url}
+  discord_oauth:
+    select_server:
+      title: Sélectionner un serveur Discord
+      subtitle: Choisir lequel du serveur Discord %{name} vous voulez-vous connecter.
+      owner: Propriétaire
+      member: Membre
+      no_servers: Aucun serveur Discord trouvé.
+      no_servers_hint: Veuillez vous assurer que vous êtes membre d'au moins un serveur Discord.
+      try_again: Réessayer
+  discord_onboarding:
+    dm_message: |-
+      Merci de participer ! Créez un compte GuildSync pour gérer les activités de votre guilde, suivre votre historique de butin et participer pleinement à votre guilde.
+
+      Inscription : %{signup_url}
+    dm_failed: Impossible d'envoyer le message de bienvenue à l'utilisateur Discord.
+    vote_recorded_unregistered: Vote enregistré ! Créez un compte GuildSync pour toutes les fonctionnalités.
+    roll_recorded_unregistered: Lancer enregistré ! Créez un compte GuildSync pour toutes les fonctionnalités.
+    rsvp_recorded_unregistered: Participation enregistrée ! Créez un compte GuildSync pour toutes les fonctionnalités.

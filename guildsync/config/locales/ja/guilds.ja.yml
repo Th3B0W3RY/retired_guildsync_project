@@ -1,0 +1,822 @@
+ja:
+  guilds:
+    index:
+      title: 自分のギルド
+      subtitle: ゲームコミュニティを管理
+      create_new_guild: 新しいギルドを作成
+      view_guild: ギルドを見る
+      no_guilds: まだどのギルドにも参加していません。
+      create_first_guild: 最初のギルドを作成
+    new:
+      title: ギルドを作成
+      subtitle: あなたのゲームコミュニティを始めましょう
+      guild_name: ギルド名
+      create_button: ギルド作成
+      recruiting_name_warning: この名前は公開の募集ディレクトリから非表示にしている語句に該当します。ギルドは最初は公開リストに表示されません。権限があればギルド設定で表示設定を変更できます。
+      games:
+        label: ゲーム
+        required: 必須
+        help_text: ギルドでプレイするゲームを少なくとも1つ選択してください。設定で後から追加できます。
+        search_placeholder: ゲームを検索...
+        featured_games: 注目ゲーム
+        no_games: 利用可能なゲームがありません。上の検索バーを使うか、下でカスタムゲームを追加してください。
+        pending_approval: 承認待ち
+        select_primary: メインで扱うプライマリゲームを選択してください。
+        select_one_error: 少なくとも1つのゲームを選択してください。
+        select_primary_error: 選択したゲームの中からプライマリゲームを選択してください。
+        primary_must_be_selected: プライマリゲームは選択したゲームのいずれかである必要があります。
+        approve_pending_html: "<strong>承認待ちゲームを承認するには:</strong> %{link} に移動し、対象ゲームの「有効化切替」をクリックして有効化してください。"
+        games_management: ゲーム管理
+        select_button: 選択
+      custom_game:
+        add_link: ゲームが見つかりませんか？ ここから追加
+        label: ゲーム名
+        placeholder: ゲーム名を入力...
+        add_button: ゲームを追加
+        no_similar: 類似するゲームが見つかりません。「ゲームを追加」をクリックして "%{name}" を作成します。スペルを確認してください。
+        already_exists: ゲーム "%{name}" はすでに存在します。上の一覧から選択してください。
+        search_error: ゲーム検索中にエラーが発生しました。もう一度お試しください。
+        js_no_similar_found: 類似するゲームが見つかりません。「ゲームを追加」をクリックして "%{query}" を作成します。スペルを確認してください。
+        js_game_exists: ゲーム "%{name}" はすでに存在します。上の一覧から選択してください。
+        js_search_error: ゲーム検索中にエラーが発生しました。もう一度お試しください。
+        js_adding: 追加中...
+        js_server_error: サーバーエラーです。ページを更新してもう一度お試しください。
+        pending_admin_approval: 管理者承認待ち
+        js_game_added_success: ゲームを追加しました！ 管理者承認後に利用可能になります。
+        js_failed_add: 'ゲームの追加に失敗しました: '
+        js_error_adding: 'ゲーム追加エラー: '
+      modal:
+        title: ゲーム追加の確認
+        confirm_text: "%{name} を新しいゲームとして追加してよろしいですか？"
+        warning: スペルが正しいことを確認してください。このゲームは承認待ちで作成され、管理者承認が必要です。
+        yes_add: はい、ゲームを追加
+      pending_admin_info: 承認待ちゲームを承認するには、ゲーム管理に移動し、対象ゲームの「有効化切替」をクリックして有効化してください。
+    show:
+      guild_information: ギルド情報
+      quick_actions: クイックアクション
+      invite_members: メンバーを招待
+      schedule_event: イベントを作成
+      about: 概要
+      no_description: まだ説明がありません。
+      discord_public_invite: 公開Discord招待
+      join_discord: Discordに参加
+      discord_invite_missing: 公開招待リンクを追加すると、メンバーがワンクリックでDiscordサーバーを開けます。
+      discord_invite_none: このギルドは公開のDiscord招待リンクを掲載していません。
+    settings:
+      title: ギルド設定
+      subtitle: ギルド設定と各種オプションを管理します。
+      guild_profile:
+        title: ギルドプロフィール
+        description: 説明と任意の公開Discord招待は、全メンバー向けギルドダッシュボードに表示されます。
+        description_label: 説明
+        discord_invite_label: 公開Discord招待URL
+        discord_invite_hint: '任意。Discordの招待リンクを貼り付け（例: https://discord.gg/…）。ダッシュボードを見られる人に表示されます。'
+        save_button: プロフィールを保存
+      logo:
+        title: ギルドロゴ
+        description: ギルドロゴをアップロードします。ロゴはアプリ全体でギルド名の横に表示されます。
+        recommended: '推奨サイズ:'
+        dimensions_info: '256x256ピクセル（正方形推奨）。対応形式: JPG, PNG, GIF, WebP。'
+        current_logo: '現在のロゴ:'
+        note: '注意:'
+        click_update: "「ロゴを更新」をクリックして新しいファイルを選択し、保存してください。"
+        update_button: ロゴを更新
+        delete_button: ロゴを削除
+        delete_confirm: ギルドロゴを削除してもよろしいですか？
+        save_button: ロゴを保存
+      application_messages:
+        title: 申請メッセージ
+        description: 申請を承認または却下した際に応募者へ送るメッセージをカスタマイズします。未入力の場合は既定メッセージが使われます。
+        accept_label: 承認メッセージ
+        accept_default_message: おめでとうございます！あなたは %{guild_name} に承認されました！
+        accept_hint: '承認時に送信されるメッセージ。%{guild_name} を使うとギルド名を含められます。既定: "%{default_message}"'
+        reject_label: 却下メッセージ
+        reject_default_message: 申し訳ありませんが、今回はギルドの方針に合致しませんでした。よろしければ後日あらためてご応募ください。
+        reject_hint: '却下時に送信されるメッセージ。既定: "%{default_message}"'
+        save_button: メッセージを保存
+      discord_channels:
+        title: Discordチャンネル設定
+        description: コンテンツ種別ごとに通知を送るDiscordチャンネルを選択します。
+        events_channel: イベントチャンネル
+        events_hint: Discordイベントを投稿するチャンネルを選択してください。
+        battles_channel: ギルドバトルチャンネル
+        battles_hint: ギルドバトル通知を投稿するチャンネルを選択してください。
+        gear_channel: メンバー装備チャンネル
+        gear_hint: メンバー装備更新を投稿するチャンネルを選択してください。
+        polls_channel: ギルド投票チャンネル
+        polls_hint: ギルド投票を投稿するチャンネルを選択してください。
+        loot_channel: ルートロールチャンネル
+        loot_hint: ルートロールを投稿するチャンネルを選択してください。ルートロールには必須です。
+        select_channel: チャンネルを選択...
+        save_button: チャンネル設定を保存
+        unable_to_load: チャンネルを読み込めません
+        load_error: Discordチャンネルの読み込みに失敗しました。Discord Bot接続を確認してください。
+        alliance_section_title: アライアンスチャンネル（ギルド横断）
+        alliance_section_description: '接続済みのGuildSyncボットを使って、アライアンス招待・イベント・投票・ルートロールの投稿先を選択します。一部のみ設定されている場合、招待通知は次の順で最初に設定済みのチャンネルへフォールバックします: 招待、イベント、投票、ルート。'
+        alliance_invites_channel: アライアンス招待と参加リクエスト
+        alliance_invites_hint: あなたのギルドがアライアンスに招待されたとき、または他ギルドがあなたのアライアンスへの参加を申請したときの通知です。
+        alliance_events_channel: アライアンスイベント
+        alliance_events_hint: アライアンス全体のイベントが作成されたときに埋め込みメッセージを投稿します。
+        alliance_polls_channel: アライアンス投票
+        alliance_polls_hint: アライアンス全体の投票が作成されたときに埋め込みメッセージを投稿します。
+        alliance_loot_channel: アライアンスルートロール
+        alliance_loot_hint: アライアンス全体のルートロールが作成されたときに埋め込みメッセージを投稿します。
+      discord_bot:
+        not_connected: Bot未接続
+        not_connected_authorize: GuildSync BotはDiscordサーバーに接続されていません。Botを認可してください。
+        not_connected_connect: チャンネル設定の前にGuildSync BotをDiscordサーバーへ接続してください。
+        authorize_button: Botを認可
+        connect_button: BotをギルドDiscordに接続
+      role_sync:
+        title: Discordロール同期
+        description: データベースへ同期するDiscordロールを管理します。同期ロールは30分ごとに自動更新されます。
+        sync_all: すべてのロールを同期
+        remove_all: すべての同期を解除
+        refresh: ロールを更新
+        loading: ロールを読み込み中...
+        role_name: ロール名
+        role_id: ロールID
+        sync_status: 同期状態
+        action: 操作
+        click_refresh: "「ロールを更新」をクリックしてDiscordロールを読み込みます"
+      games:
+        title: ゲーム
+        description: ギルドでプレイするゲームを管理します。最低1つのゲームが必要です。
+        no_games: 現在利用可能なゲームがありません。追加については管理者に連絡してください。
+        required_note: 少なくとも1つのゲームを選択する必要があります
+        update_button: ゲームを更新
+        cant_find: ゲームが見つかりませんか？ ここから追加
+        game_name_label: ゲーム名
+        enter_game_name: ゲーム名を入力...
+        pending_approval: 管理者承認待ち
+        primary_label: メイン
+        add_game_button: ゲームを追加
+        pending_approval_short: 承認待ち
+        pending_admin_approval: 管理者承認待ち
+        js_no_similar_found: 類似するゲームが見つかりません。「ゲームを追加」をクリックして "%{query}" を作成します。スペルを確認してください。
+        js_game_exists: ゲーム "%{name}" はすでに存在します。上の一覧から選択してください。
+        js_search_error: ゲーム検索中にエラーが発生しました。もう一度お試しください。
+        js_confirm_add: '"%{name}" を新しいゲームとして追加してよろしいですか？ スペルを確認してください。'
+        js_adding: 追加中...
+        js_server_error: サーバーエラーです。ページを更新してもう一度お試しください。
+      permissions:
+        title: ロール権限
+        description: ロール管理、申請管理、ギルド設定管理の権限を持てるDiscordロールを最大4つ選択します。チェックで各権限を有効化できます。
+        role_n: ロール %{n}
+        select_discord_role: Discordロールを選択
+        none: なし
+        can_manage_roles: ロール管理可
+        can_manage_applications: 申請管理可
+        can_manage_guild_settings: ギルド設定管理可
+        can_kick_members: メンバー追放可
+        can_invite_alliance_guilds: アライアンスにギルドを招待できる
+        can_kick_alliance_guilds: アライアンスからギルドを除外できる
+        can_manage_tags: タグを管理できる
+        can_manage_warnings: 警告を管理できる
+        can_manage_documents: ドキュメントを管理できる
+        can_manage_files: ファイルを管理できる
+        can_manage_events: イベントを管理できる
+        can_manage_polls: 投票を管理できる
+        can_manage_loot_rolls: ルートロールを管理できる
+        can_manage_discord_channels: Discordチャンネルを管理できる
+        can_view_activity_feed: アクティビティフィードを閲覧できる
+        can_export_members_csv: メンバーCSVをエクスポートできる
+        can_use_message_center: メッセージセンターを利用できる
+        can_manage_gear_requests: 装備更新リクエストを管理できる
+        can_edit_gear_scanned_stats: スキャンした装備ステータスを編集できる
+        save_button: 権限を保存
+        default_role:
+          title: 新規メンバーのデフォルトロール
+          description: ギルド参加時に新規メンバーへ自動付与するDiscordロールを選択します。
+          label: デフォルトロール
+          save_button: デフォルトロールを保存
+      visibility:
+        title: ギルド公開設定
+        description: ギルドを公開一覧に表示するかどうかを設定します。非公開ギルドは既存メンバーのみが見つけられます。
+        toggle_label: このギルドを公開一覧に表示する
+        toggle_hint: オフの場合、このギルドは利用可能ギルド一覧や検索結果に表示されません。既存メンバーと申請者には影響しません。
+        save_button: 公開設定を保存
+      react_roles:
+        title: リアクションロール
+        description: 最大3件の「絵文字→ロール」対応を設定します。Discordチャンネルに埋め込みメッセージを投稿し、ユーザーが絵文字でリアクションすると対応ロールが付与され、リアクションを外すとロールも外れます。
+        channel_label: チャンネル（埋め込みメッセージの投稿先）
+        select_channel: チャンネルを選択...
+        slot_title: リアクションロール %{n}
+        role_label: Discordロール
+        select_role: ロールを選択...
+        emoji_label: 絵文字
+        select_emoji: 絵文字を選択...
+        emoji_hint: 標準Unicode絵文字とサーバー独自絵文字に対応しています。
+        server_emojis: サーバー絵文字
+        standard_emojis: 標準絵文字
+        loading_emojis: 読み込み中...
+        save_button: リアクションロールを保存
+        deploy_button: Discordへ投稿
+        remove_button: Discordから削除
+        remove_confirm: Discordのリアクションロール用埋め込みメッセージを削除します。よろしいですか？
+      back_to_dashboard: ダッシュボードに戻る
+    members:
+      title: ギルドメンバー
+      subtitle: ギルドメンバーを表示・管理します。
+      select_all: すべて選択
+      deselect_all: 選択解除
+      select_role: ロールを選択...
+      update_selected: 選択項目を更新
+      search_placeholder: ユーザー名またはDiscordで検索...
+      invite_user: ユーザーを招待
+      export_csv: CSVをエクスポート
+      kick_selected: 選択メンバーを追放
+      discord_verified: Discord認証済み
+      discord_not_connected: 未接続
+      role_none: なし
+      owner: オーナー
+      kick: 追放
+      kick_confirm: "%{username} を追放してもよろしいですか？この操作は取り消せません。"
+      kick_final_confirm: '最終確認: %{username} をギルドから本当に削除しますか？'
+      bulk_kick_confirm: "%{count} 人のメンバーを追放してもよろしいですか？この操作は取り消せません。"
+      bulk_kick_final: '最終確認: %{count} 人のメンバーをギルドから本当に削除しますか？'
+      no_roles_synced: 同期済みロールはありません
+      no_users_found: ユーザーが見つかりません
+      search_load_more: ユーザーをもっとロード
+      js_error_searching_users: ユーザー検索エラー
+      js_inviting: 招待中...
+      select_at_least_one: 少なくとも1人のメンバーを選択してください。
+      select_a_role: ロールを選択してください。
+      select_user_first: 先にユーザーを選択してください。
+      back_to_dashboard: ダッシュボードに戻る
+      tags:
+        manage_title: ギルドタグを管理
+        name: タグ名
+        color: タグの色
+        create: タグを作成
+        filter_label: タグで並べ替え / 絞り込み
+        filter_all: すべてのタグ
+        filter_untagged: タグなしのメンバー
+        clear_filter: 解除
+    members_gear:
+      title: "%{guild_name} のAI装備スキャナー"
+      pending_request_officer_banner: "%{requester}さんが装備のスクリーンショットの更新を求めています。準備ができたら下からアップロードしてください。"
+      filter_by_game: 'ゲームで絞り込み:'
+      all_games: すべてのゲーム
+      no_games_configured: このギルドにはゲームが設定されていません。ギルド設定で追加してください。
+      gear_status_overview: 装備ステータス概要
+      request_missing_gear: 不足装備の更新依頼 (%{count})
+      request_outdated_gear: 旧装備の更新依頼 (%{count})
+      request_all_missing_outdated: 不足/旧装備すべてに更新依頼 (%{count})
+      total_members: 総メンバー数
+      missing_gear: 不足装備
+      outdated_gear: 旧装備
+      up_to_date: 最新
+      pending_gear_requests:
+        one: 保留中の装備更新依頼 1件
+        other: 保留中の装備更新依頼 %{count} 件
+      view_pending_requests: 保留中の依頼を見る
+      filter_all: すべて
+      filter_missing: 不足
+      filter_outdated: 旧装備
+      filter_up_to_date: 最新
+      request_updates_from_missing_outdated: 不足/旧装備に更新依頼
+      th_avatar: アバター
+      th_member: メンバー
+      th_last_updated: 最終更新
+      th_status: ステータス
+      th_key_stats: 主要ステータス
+      th_actions: 操作
+      ago: 前
+      never: なし
+      view_gear: 装備を見る
+      view_stats: ステータスを見る
+      pending_request: 依頼中
+      request_update: 更新依頼
+      view_image: 画像
+      screenshot_unavailable: そのステータス画像は利用できません。保存期間が過ぎたか、アップロードがありません。
+      no_members_with_status: ステータス %{status} のメンバーが見つかりません
+      no_members_found: メンバーが見つかりません
+      your_gear_screenshot: あなたの装備スクリーンショット
+      last_updated: 最終更新
+      select_game: 'ゲームを選択:'
+      select_game_prompt: "-- ゲームを選択 --"
+      choose_file: ファイルを選択
+      upload_screenshot: スクリーンショットをアップロード
+      parsed_data_preview: '解析データプレビュー:'
+      upload_preview_heading: 抽出ステータスのプレビュー
+      upload_preview_truncated: "…他 %{count} 件"
+      back_to_dashboard: ダッシュボードに戻る
+      gear_details: 装備詳細
+      js_processing: 処理中...
+      js_processing_message: 画像を処理して装備データを抽出中です... 少し時間がかかる場合があります。
+      js_upload_success: 成功！画像を処理し装備データを抽出しました。ページを再読み込みします...
+      upload_success_notice: スクリーンショットをアップロードしました。最新のステータスを更新しました。
+      js_loading_gear: 装備データを読み込み中...
+      js_no_gear_data: 装備データがありません
+      js_error_loading_gear: '装備データ読み込みエラー: '
+      js_confirm_bulk_all: 不足または旧装備のメンバー全員に装備更新依頼を送信しますか？
+      js_confirm_bulk_status: "%{status} 装備のメンバー全員に装備更新依頼を送信しますか？"
+      js_confirm_request_user: "%{name} にステータス更新依頼を送信しますか？"
+      stats_hidden: "—"
+    member_stats:
+      back_to_scanner: AIステータススキャナーに戻る
+      title: "%{name} のステータス"
+      guild_context: "%{guild_name}"
+      last_updated: 最終更新
+      extracted_heading: 抽出されたステータス
+      stat_count:
+        one: 1 件のステータス
+        other: "%{count} 件のステータス"
+      empty_title: スナップショットはまだありません
+      empty_body: このメンバーはまだステータス画面のスクリーンショットをアップロードしていません。
+      partial_title: 最新スナップショットにステータスがありません
+      partial_body: スクリーンショットは保存されましたが、ラベルと値の組を抽出できませんでした。
+      member_not_found: メンバーが見つかりません。
+      unnamed_stat: ステータス
+      unparsed_label: 値
+      remove_stat: このステータスを削除
+      undo_stat: このステータスを元に戻す
+      edit_stat: 編集
+      save_stat: 保存
+      cancel_edit: キャンセル
+      stat_saved: 保存しました。
+      stat_name_label: ステータス名
+      stat_value_label: ステータス値
+      api_error: ステータスを更新できませんでした。ページを更新して再試行してください。
+      cannot_view_other_member_stats: このギルドでは自分の装備ステータスのみ表示できます。
+      modify_own_gear_only: 自分の装備のみ変更できます。
+      cannot_edit_scanned_stats: 抽出されたステータスを変更できるのはギルドリーダー、またはスキャンした装備ステータスの編集権限を持つロールのみです。メンバーは自分のスキャン結果を編集できません。
+    analytics:
+      title: "%{guild_name} の分析"
+      subtitle: ギルドの詳細な分析とインサイトを表示します。
+      back_to_dashboard: ダッシュボードに戻る
+    activity_feed:
+      title: "%{guild_name} のアクティビティフィード"
+      subtitle: このギルドの最近のアクティビティです。ログは3か月保持されます。
+      back_to_dashboard: ダッシュボードに戻る
+    review_applications:
+      title: "%{name} の申請を確認"
+      subtitle: ギルドへの保留中申請を確認・管理します。
+      invited_members: 招待済みメンバー
+      invited_by: '招待者:'
+      invited: '招待日:'
+      discord_verified: Discord認証済み
+      dismiss: 非表示
+      dismiss_confirm: この招待を表示から除外しますか？
+      pending_applications: 保留中の申請
+      discord_not_connected: 'Discord: 未接続'
+      applied: '申請日:'
+      message_label: 'メッセージ:'
+      accept: 承認
+      accept_confirm: この申請を承認してメンバーをギルドに追加しますか？
+      reject: 却下
+      reject_confirm: この申請を却下しますか？
+      message_applicant: 応募者にメッセージ
+      message: メッセージ
+      enter_message_placeholder: メッセージを入力...
+      send: 送信
+      cancel: キャンセル
+      no_pending: 現在、保留中の申請はありません。
+      back_to_dashboard: ダッシュボードに戻る
+    invite_members:
+      title: "%{name} にメンバーを招待"
+      subtitle: ギルドへの招待を送信し、保留中申請を確認します。
+      pending_applications: 保留中の申請
+      discord_server_unknown: 不明
+      discord_server_not_available: 'Discordサーバー: 利用不可'
+      applied: '申請日:'
+      message_label: 'メッセージ:'
+      character_details: 'キャラクター詳細:'
+      accept: 承認
+      accept_confirm: この申請を承認してメンバーをギルドに追加しますか？
+      reject: 却下
+      reject_confirm: この申請を却下しますか？
+      message_applicant: 応募者にメッセージ
+      message: メッセージ
+      enter_message_placeholder: メッセージを入力...
+      send: 送信
+      cancel: キャンセル
+      back_to_dashboard: ダッシュボードに戻る
+    schedule_events:
+      title: "%{name} のイベントを作成"
+      subtitle: ギルド向けDiscordイベントを作成・管理します。
+      create_new_event: 新しいDiscordイベントを作成
+      create_event: イベントを作成
+      recent_events: 最近のイベント
+      signups: '参加登録:'
+      view: 表示
+      delete: 削除
+      delete_confirm: よろしいですか？
+      bot_not_connected: Bot未接続
+      discord_server_not_selected: Discordサーバー未選択
+      bot_not_connected_message: GuildSync BotはDiscordサーバーに接続されていません。Botを認可してください。
+      select_server_message: Discordアカウントは接続済みですが、GuildSync Botを接続するDiscordサーバーを選択する必要があります。
+      connect_bot_message: イベントを作成する前にGuildSync BotをDiscordサーバーに接続してください。
+      authorize_bot: Botを認可
+      select_discord_server: Discordサーバーを選択
+      connect_bot_to_guild: BotをギルドDiscordに接続
+      back_to_dashboard: ダッシュボードに戻る
+    schedule_guild_battle:
+      title: "%{name} のギルドバトルを予定"
+      subtitle: ギルド間バトルを企画・予定します。
+      management_title: ギルドバトル管理
+      management_desc: 他ギルドへ挑戦し、挑戦に応答し、バトルを調整します。
+      view_all_battles: すべてのバトルを見る
+      challenge_another_guild: 他ギルドに挑戦
+      notifications: 通知
+      back_to_dashboard: ダッシュボードに戻る
+    connect_discord:
+      title: BotをギルドDiscordに接続
+      subtitle: イベント管理と通知のため、GuildSync Botを接続するDiscordサーバーを選択してください。
+      connected:
+        title: Discord接続済み
+        connected_to: '接続先:'
+      channel_config:
+        title: チャンネル設定
+        subtitle: コンテンツ種別ごとに受信するDiscordチャンネルを選択してください。
+        events_channel:
+          label: イベントチャンネル
+          placeholder: チャンネルを選択...
+          hint: イベント告知が投稿されるチャンネル
+        guild_battles_channel:
+          label: ギルドバトルチャンネル
+          placeholder: チャンネルを選択...
+          hint: ギルドバトル告知が投稿されるチャンネル
+        gear_channel:
+          label: 装備チャンネル
+          placeholder: チャンネルを選択...
+          hint: メンバー装備アップロードが投稿されるチャンネル
+        save_button: チャンネル設定を保存
+      select_server:
+        title: Discordサーバーを選択
+        already_connected: Discordアカウントは接続済みです。GuildSync Botを接続するDiscordサーバーを選択してください。サーバー管理者権限が必要です。
+        not_connected: まずDiscordアカウントを接続（初回のみ）し、その後GuildSync Botを接続するDiscordサーバーを選択してください。サーバー管理者権限が必要です。
+        select_button: Discordサーバーを選択
+        connect_button: Discordアカウントを接続
+      back_to_dashboard: ダッシュボードに戻る
+      popup_blocked: ポップアップがブロックされました。このサイトでポップアップを許可して、もう一度お試しください。
+      connection_failed: 'Discord接続に失敗しました: %{error}'
+  guild_archives:
+    alerts:
+      archived_unavailable: このギルドはアーカイブ済みのためアクセスできません。
+      archived_success: "「%{guild_name}」をアーカイブしました。1 年後に完全削除できます。"
+      unarchived_success: "「%{guild_name}」を復元しました。"
+      unarchive_plan_limit: アクティブなギルド数の上限に達しているため復元できません。先に別のギルドをアーカイブするか削除してください。
+      purge_not_ready: まだ完全削除できません。アーカイブから最低 1 年経過する必要があります。
+      purged_success: "「%{guild_name}」を完全に削除しました。"
+      not_found: アーカイブされたギルドが見つかりません。
+      name_confirmation_mismatch: ギルド名が一致しません。正確に入力してください。
+    index:
+      title: アーカイブされたギルド
+      subtitle: アーカイブされたギルドはアクティブ枠に含まれません。1 年後に自動削除されます。
+      recovery_note_label: データ復旧に関する情報
+      long_recovery_hint: 削除されたレコードは最大6か月間保持されます。その期間を過ぎると完全に削除されます。この期間内にあり復旧を希望する場合は、サポートにお問い合わせください。
+      empty: アーカイブされたギルドはありません。
+      archived_on: 'アーカイブ日: %{date}'
+      auto_delete_on: '自動削除日: %{date}'
+      unarchive_button: ギルドを復元
+      permanent_delete_button: 完全に削除
+      permanent_delete_confirm: "%{guild_name} を完全に削除しますか？元に戻せません。"
+    settings:
+      title: 危険ゾーン
+      warning: アーカイブすると全員がこのギルドにアクセスできなくなります。データは 1 年間保持された後、完全削除されます。
+      type_name_hint: 'アーカイブするにはギルド名を正確に入力: %{guild_name}'
+      confirmation_label: ギルド名の確認
+      archive_button: ギルドをアーカイブ
+      archive_confirm_prompt: "%{guild_name} をアーカイブしますか？このギルドは利用できなくなります。"
+  polls:
+    index:
+      title: ギルド投票
+      subtitle: "%{guild_name} の投票を表示して参加します"
+      create_poll: 投票を作成
+      created_by: '作成者: %{name}'
+      deadline: '締切:'
+      vote_count: "%{count} 票"
+      vote_count_plural: "%{count} 票"
+      anonymous: 匿名
+      open: 公開
+      closed: 終了
+      'yes': はい
+      'no': いいえ
+      maybe: 未定
+      view_vote: 表示して投票
+      view_results: 結果を見る
+      delete: 削除
+      delete_confirm: この投票を削除してもよろしいですか？この操作は取り消せません。
+      no_polls: まだ投票はありません。
+      create_first: 最初の投票を作成
+    new:
+      title: 新しい投票を作成
+      subtitle: "%{guild_name} の投票を作成"
+      poll_title: 投票タイトル
+      poll_title_placeholder: 投票タイトルを入力
+      description: 説明
+      description_placeholder: 説明を入力
+      discord_roles_title: メンションするDiscordロール
+      discord_roles_hint: 投票投稿時にメンションするDiscordロールを1つ以上選択してください。
+      deadline: 締切
+      deadline_hint: この日時で投票を締め切ります。
+      anonymous_voting: 匿名投票
+      anonymous_hint: 有効にすると、結果で投票者情報が非表示になります。
+      create_button: 投票を作成
+    show:
+      back_to_polls: "← 投票に戻る"
+      created_by: '作成者: %{name}'
+      deadline: '締切:'
+      description: 説明
+      cast_vote: 投票する
+      'yes': "✅ はい"
+      'no': "❌ いいえ"
+      maybe: "\U0001F914 未定"
+      change_vote_hint: 締切前であれば、いつでも投票を変更できます。
+      results: 結果
+      votes: 票
+      no_votes: まだ投票がありません。最初の1票を投じましょう！
+      delete_poll: 投票を削除
+  loot_rolls:
+    index:
+      title: ギルドルートロール
+      subtitle: "%{guild_name} のルートロールを表示して参加します"
+      create_loot_roll: ルートロールを作成
+      created_by: '作成者: %{name}'
+      range: '範囲:'
+      roll_count: "%{count} ロール"
+      roll_count_plural: "%{count} ロール"
+      deadline: '締切:'
+      open: 公開
+      closed: 終了
+      highest_roll: '最高ロール:'
+      winner: '勝者:'
+      view_roll: 表示してロール
+      view_results: 結果を見る
+      delete: 削除
+      delete_confirm: このルートロールを削除してもよろしいですか？この操作は取り消せません。
+      no_loot_rolls: まだルートロールはありません。
+      create_first: 最初のルートロールを作成
+    show:
+      back_to_loot_rolls: "← ルートロールに戻る"
+      created_by: '作成者: %{name}'
+      range: '範囲: %{min} - %{max}'
+      roll_count:
+        one: ロール
+        other: ロール
+      deadline: 締切
+      open: 公開
+      closed: 終了
+      description: 説明
+      time_remaining: 残り時間
+      calculating: 計算中...
+      expired: 期限切れ
+      tie_detected: 同点を検出！
+      are_tied_at: が同点
+      tied_reroll_hint: 同点ユーザーはDiscordボタンから再ロールしてください。
+      winner: 勝者！
+      with_roll_of: ロール値
+      leaderboard: ランキング
+      tied: 同点
+      force_reroll: 再ロールを強制
+      force_reroll_confirm: "%{name} のロールを無効化し、再ロール可能にします。続行しますか？"
+      no_rolls_yet: まだロールがありません。Discordボタンからロールしてください！
+      close_loot_roll: ルートロールを締切
+      close_confirm: このルートロールを早期締切してもよろしいですか？勝者が決定されます。
+      delete_loot_roll: ルートロールを削除
+      delete_confirm: このルートロールを削除してもよろしいですか？この操作は取り消せません。
+    new:
+      title: 新しいルートロールを作成
+      subtitle: "%{guild_name} のルートロールを作成"
+      loot_title: タイトル
+      loot_title_placeholder: ルートロールのタイトルを入力
+      description: 説明（任意）
+      description_placeholder: 説明を入力（任意）
+      min_roll: 最小ロール
+      max_roll: 最大ロール
+      allowed_roles_title: 参加可能ロール（任意）
+      allowed_roles_hint: 参加可能なDiscordロールを選択します。未選択なら全員参加可能です。
+      deadline: 締切（任意）
+      deadline_hint: この時刻で自動締切されます。未入力の場合は締切なしです。
+      auto_post_title: Discordへ自動投稿
+      auto_post_hint: このルートロールは設定済みのルートロールチャンネルへ自動投稿されます。
+      create_button: 作成
+  guild_applications:
+    index:
+      title: 自分の申請
+      subtitle: ギルド申請の状況を確認します。
+      apply_to_guild: ギルドに申請
+      guild_invitations: ギルド招待
+      invited_by: '招待者:'
+      invited: '招待日:'
+      pending: 保留中
+      accept_invitation: 招待を承認
+      decline: 辞退
+      applied: '申請日:'
+      your_message: 'あなたのメッセージ:'
+      view_guild: ギルドを見る
+      no_applications: まだ申請はありません。ギルドに申請して始めましょう！
+    new:
+      title: ギルドに申請
+      subtitle: ギルド参加申請を送信します。
+      select_guild: ギルドを選択
+      search_placeholder: ギルド名で検索...
+      start_typing: 入力してギルドを検索...
+      discord_username: Discordユーザー名
+      discord_placeholder: あなたのDiscord#1234
+      message_label: メッセージ（任意）
+      message_placeholder: 参加したい理由を記入してください...
+      character_details_label: キャラクター詳細（任意）
+      character_details_placeholder: キャラクター名、レベル、クラス、装備、プレイゲームなどを記入してください...
+      character_details_hint: キャラクターやステータス、プレイゲームなど、関連情報を記入してください。
+      submit: 申請を送信
+      cancel: キャンセル
+      no_guilds_found: ギルドが見つかりません
+      load_more_guilds: もっとギルズを読み込む
+      owner_unknown: 不明
+      error_searching: ギルド検索エラー
+    create:
+      guild_not_available: そのギルドは掲載されていない、アーカイブ済み、または申請を受け付けていません。
+  guild_battles:
+    index:
+      title: "%{name} のギルドバトル"
+      subtitle: ギルド間バトルの挑戦と応答を管理します。
+      challenge_another_guild: 他ギルドに挑戦
+      your_guild_battles: あなたのギルドバトル
+      you_challenged: あなたが %{name} に挑戦
+      challenged_you: "%{name} があなたに挑戦"
+      scheduled: '予定:'
+      location: '場所:'
+      max_participants: '最大参加人数:'
+      view_details: 詳細を見る
+      delete: 削除
+      delete_confirm: このギルドバトルを削除してもよろしいですか？この操作は取り消せません。
+      empty: まだギルドバトルはありません。他ギルドへの挑戦から始めましょう！
+    new:
+      title: 他ギルドに挑戦
+      subtitle: 挑戦先ギルドを選択し、バトル詳細を設定します。
+      battle_details: バトル詳細
+      select_guild_to_challenge: 挑戦先ギルドを選択
+      search_placeholder: ギルド名・説明・オーナーで検索...
+      search_hint: 入力してギルドを検索...
+      scheduled_date_time: 予定日時
+      location: 場所
+      location_placeholder: バトル場所を入力
+      max_participants: 最大参加人数
+      optional: 任意
+      notes: メモ
+      notes_placeholder: 追加のバトル情報や条件...
+      role_categories: ロールカテゴリ
+      role_categories_hint: 参加登録可能なロールを選択してください。選択したロールはすべてDiscordで登録可能になります。
+      role_dps: DPS
+      role_tank: タンク
+      role_healer: ヒーラー
+      role_ranged: 遠距離
+      send_challenge: 挑戦を送信
+      cancel: キャンセル
+      owner_label: オーナー
+      search_error: ギルド検索エラー
+    show:
+      title: ギルドバトル詳細
+      subtitle: ギルドバトル挑戦
+      battle_details: バトル詳細
+      status: ステータス
+      scheduled: 予定
+      location: 場所
+      max_participants: 最大参加人数
+      notes: メモ
+      respond_to_challenge: 挑戦に応答
+      scheduled_date_time: 予定日時
+      accept: 承認
+      request_changes: 変更を依頼
+      decline: 辞退
+      communication: 連絡
+      communication_visit_html: メッセージ送信またはスレッド閲覧は %{link} を開いてください。
+      notifications_page: 通知ページ
+      communication_discord: GuildSync Discord Bot経由で直接メッセージを送ることもできます。
+      cancellation_requested: キャンセル依頼
+      cancellation_by_challenger: 挑戦側がこのバトルのキャンセルを依頼しています。
+      cancellation_by_defender: 防衛側がこのバトルのキャンセルを依頼しています。
+      cancellation_waiting: あなたはこのバトルのキャンセルを依頼しました。相手オーナーの応答待ちです。
+      accept_cancellation: キャンセルを承認
+      accept_cancellation_confirm: 承認するとこのバトルはキャンセルされ削除されます。よろしいですか？
+      decline_cancellation: キャンセルを拒否
+      back_to_guild_battles: ギルドバトルに戻る
+      request_cancellation: キャンセルを依頼
+      request_cancellation_confirm: キャンセル依頼を送信します。相手オーナーの同意が必要です。続行しますか？
+      delete_battle: バトルを削除
+      delete_battle_confirm: このギルドバトルを完全に削除してもよろしいですか？この操作は取り消せず、関連するDiscordイベントも削除されます。相手オーナーには通知されます。
+    notifications:
+      title: ギルドバトル通知
+      subtitle: 挑戦、メッセージ、バトル連絡を管理します。
+      back_to_battle_home: "← ギルドバトルホームへ戻る"
+      pending_incoming: 受信中の保留挑戦
+      pending_outgoing: 送信中の保留挑戦
+      accepted_battles: 承認済みバトル
+      declined_battles: 辞退済みバトル
+      reschedule_requests: 再調整依頼
+      cancelled_battles: キャンセル済みバトル
+      empty: まだギルドバトル通知はありません。他ギルドへの挑戦から始めましょう！
+    battle_notification_card:
+      you_challenged: あなたが %{name} に挑戦
+      challenged_you: "%{name} があなたに挑戦"
+      scheduled: '予定:'
+      location: '場所:'
+      max_participants: '最大参加人数:'
+      notes: 'メモ:'
+      messages: メッセージ
+      no_messages: まだメッセージはありません。会話を始めましょう！
+      message_placeholder: メッセージを入力...
+      send: 送信
+      view_details: 詳細を見る
+      accept: 承認
+      decline: 辞退
+  guild_documents:
+    index:
+      title: ギルドドキュメント
+      subtitle: "%{guild_name} のドキュメントを管理・共有します"
+      new_folder: 新しいフォルダ
+      new_document: 新しいドキュメント
+      create_document: ドキュメントを作成
+      folder_name: フォルダ名
+      folder_name_placeholder: フォルダ名
+      color: 色
+      create_folder: フォルダを作成
+      documents_count: 件のドキュメント
+      edit: 編集
+      delete_folder_confirm: よろしいですか？このフォルダ内の全ドキュメントは「フォルダなし」へ移動されます。
+      delete: 削除
+      by_author: '作成者: %{author}'
+      visibility_public: 公開
+      visibility_private: 非公開
+      visibility_unlisted: 限定公開
+      share: 共有
+      no_documents_in_folder: このフォルダにドキュメントはありません
+      no_folder: フォルダなし
+      no_documents_yet: まだドキュメントはありません
+      create_first_hint: 最初のドキュメントまたはフォルダを作成して始めましょう。
+      edit_folder_title: フォルダを編集
+      cancel: キャンセル
+      update_folder: フォルダを更新
+    new:
+      title: 新しいドキュメント
+      subtitle: "%{guild_name} の新しいドキュメントを作成"
+      fix_errors: '以下のエラーを修正してください:'
+      document_title_placeholder: ドキュメントタイトル
+      visibility_private: 非公開 - ギルドメンバーのみ
+      visibility_public: 公開 - リンクを知っている人は誰でも
+      visibility_unlisted: 限定公開 - インデックスされないがリンクで閲覧可能
+      folder_optional: フォルダ（任意）
+      no_folder: フォルダなし
+      content: 内容
+      cancel: キャンセル
+      create_document: ドキュメントを作成
+    toolbar:
+      image: 画像をアップロード
+    edit:
+      title: ドキュメントを編集
+      subtitle: "%{guild_name} のドキュメントを編集"
+      fix_errors: '以下のエラーを修正してください:'
+      document_title_placeholder: ドキュメントタイトル
+      visibility_private: 非公開 - ギルドメンバーのみ
+      visibility_public: 公開 - リンクを知っている人は誰でも
+      visibility_unlisted: 限定公開 - インデックスされないがリンクで閲覧可能
+      folder_optional: フォルダ（任意）
+      no_folder: フォルダなし
+      content: 内容
+      cancel: キャンセル
+      update_document: ドキュメントを更新
+  guild_warnings:
+    title: ギルド警告センター
+    subtitle: メンバーへの警告を追跡し、ステータスリストを整理します。
+    send_title: 警告を送信
+    send_description: メンバーがDiscordを連携している場合、GuildSyncボットからDiscordのDMを送信します。
+    member_label: ギルドメンバー
+    select_member: メンバーを選択
+    reason_label: 警告の理由
+    send_button: 警告を送信
+    warning_count: '警告: %{count}/%{limit}'
+    empty_column: このリストにメンバーはいません。
+    save_lists_button: リストを保存
+    back_to_guild: ギルドダッシュボードに戻る
+    columns:
+      no_warnings: 警告なし
+      warned: 警告済みリスト
+      banned: 禁止リスト
+    alerts:
+      access_denied: このギルドの警告を管理する権限がありません。
+      member_not_found: ギルドメンバーが見つかりません。
+      protected_member: ギルドオーナーや警告管理者には警告を送ったり再分類したりできません。
+      reason_required: 警告の理由は必須です。
+      warning_sent: "%{user} に警告を送信しました。"
+      warning_failed: '警告を送信できませんでした: %{error}'
+      lists_updated: 警告リストを更新しました。
+      list_update_failed: '警告リストを更新できませんでした: %{error}'
+    discord:
+      warning_dm: |-
+        **%{guild_name}** で警告を受けました。
+        理由: %{reason}
+        警告: %{warning_count}/%{warning_limit}
+    my_status:
+      title: あなたの警告ステータス
+      subtitle: このギルドであなたに記録された公式の警告です。
+      access_denied: このページを表示するにはこのギルドのメンバーである必要があります。
+      none_title: 記録された警告はありません
+      none_body: このギルドで有効な警告の記録はありません。
+      state_label: 状態
+      count_label: 警告の数
+      last_reason: 直近の理由
+      last_at: 最終警告日時
+      discord_note: GuildSyncでDiscordが連携されていれば、新しい警告が発行されたときにボットからDMも届きます。

@@ -1,0 +1,68 @@
+<%# Figma 64:1900 pending row (#CAD5E2 / white); 64:1910 open polls & loot cards %>
+<% glass = "rounded-xl border border-white/5 bg-slate-900/50 outline outline-1 outline-offset-[-1px] outline-white/5" %>
+<% event_row = "rounded-lg border border-[#2d3142] bg-[#1a1d2e] p-3 flex justify-between items-center gap-3 text-sm" %>
+
+<section class="grid grid-cols-1 gap-6 lg:grid-cols-2">
+  <div class="<%= glass %> p-6 flex flex-col min-h-[11rem]">
+    <h2 class="text-xl font-semibold text-white mb-4"><%= t("dashboard.pending_items") %></h2>
+    <div class="space-y-3 text-sm flex-1">
+      <div class="flex items-center justify-between gap-4">
+        <span class="text-slate-300"><%= t("dashboard.pending_applications") %></span>
+        <span class="text-sm font-semibold text-white tabular-nums shrink-0"><%= @pending_items[:applications] %></span>
+      </div>
+      <div class="flex items-center justify-between gap-4">
+        <span class="text-slate-300"><%= t("dashboard.pending_invites") %></span>
+        <span class="text-sm font-semibold text-white tabular-nums shrink-0"><%= @pending_items[:invites] %></span>
+      </div>
+      <div class="flex items-center justify-between gap-4">
+        <span class="text-slate-300"><%= t("dashboard.warning_queue") %></span>
+        <span class="text-sm font-semibold text-white tabular-nums shrink-0"><%= @pending_items[:warnings] %></span>
+      </div>
+    </div>
+  </div>
+  <div class="<%= glass %> p-6 flex flex-col min-h-[11rem]">
+    <h2 class="text-xl font-semibold text-white mb-1"><%= t("dashboard.member_events_title") %></h2>
+    <p class="mb-4 text-sm text-slate-400"><%= t("dashboard.member_events_subtitle") %></p>
+    <div class="mt-auto">
+      <p class="mb-2 text-sm text-slate-400">
+        <%= t("dashboard.member_events_count_label") %>:
+        <span class="font-semibold text-white tabular-nums text-lg"><%= @member_activity[:upcoming_events_count] %></span>
+      </p>
+      <% if @member_activity[:upcoming_events_preview].any? %>
+        <ul class="space-y-2 text-sm">
+          <% @member_activity[:upcoming_events_preview].each do |event| %>
+            <li class="<%= event_row %>">
+              <span class="text-white truncate min-w-0"><%= event.title %></span>
+              <span class="shrink-0 tabular-nums text-slate-400"><%= l(event.scheduled_at, format: :short) rescue event.scheduled_at.strftime("%b %d, %H:%M") %></span>
+            </li>
+          <% end %>
+        </ul>
+      <% else %>
+        <p class="text-sm text-slate-400"><%= t("dashboard.member_events_empty") %></p>
+      <% end %>
+    </div>
+  </div>
+</section>
+
+<section class="grid grid-cols-1 gap-6 lg:grid-cols-2">
+  <div class="<%= glass %> p-6 flex flex-col min-h-[15rem]">
+    <h2 class="text-[20px] font-semibold leading-7 text-white"><%= t("dashboard.open_polls_title") %></h2>
+    <p class="mt-1 text-sm leading-5 text-slate-400"><%= t("dashboard.open_polls_subtitle") %></p>
+    <div class="flex flex-1 flex-col items-center justify-center min-h-[120px] py-2">
+      <p class="text-5xl font-bold leading-[56px] text-indigo-400 tabular-nums"><%= @member_activity[:open_polls_count] %></p>
+      <% if @member_activity[:open_polls_count].zero? %>
+        <p class="mt-2 text-center text-sm text-slate-400"><%= t("dashboard.open_polls_empty") %></p>
+      <% end %>
+    </div>
+  </div>
+  <div class="<%= glass %> p-6 flex flex-col min-h-[15rem]">
+    <h2 class="text-[20px] font-semibold leading-7 text-white"><%= t("dashboard.open_loot_title") %></h2>
+    <p class="mt-1 text-sm leading-5 text-slate-400"><%= t("dashboard.open_loot_subtitle") %></p>
+    <div class="flex flex-1 flex-col items-center justify-center min-h-[120px] py-2">
+      <p class="text-5xl font-bold leading-[56px] text-indigo-400 tabular-nums"><%= @member_activity[:open_loot_rolls_count] %></p>
+      <% if @member_activity[:open_loot_rolls_count].zero? %>
+        <p class="mt-2 text-center text-sm text-slate-400"><%= t("dashboard.open_loot_empty") %></p>
+      <% end %>
+    </div>
+  </div>
+</section>

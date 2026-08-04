@@ -1,0 +1,3 @@
+<%= turbo_stream.update "admin_user_show_flash" do %>
+  <%= render "admin/users/compliance_flash_banner", message: @admin_trial_message, variant: :alert %>
+<% end %>

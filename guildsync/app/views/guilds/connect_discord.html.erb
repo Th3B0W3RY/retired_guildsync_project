@@ -1,0 +1,204 @@
+<div class="max-w-4xl mx-auto p-6">
+  <div class="mb-6">
+    <h1 class="text-3xl font-bold text-theme-primary mb-2"><%= t('guilds.connect_discord.title') %></h1>
+    <p class="text-theme-secondary"><%= t('guilds.connect_discord.subtitle') %></p>
+  </div>
+
+  <% if @guild.guild_discord_setting&.connected? %>
+    <div class="bg-green-900/20 border border-green-500 rounded-lg p-4 mb-6">
+      <div class="flex items-center gap-3">
+        <svg class="w-6 h-6 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+        </svg>
+        <div>
+          <h3 class="text-lg font-semibold text-green-500"><%= t('guilds.connect_discord.connected.title') %></h3>
+          <p class="text-theme-secondary"><%= t('guilds.connect_discord.connected.connected_to') %> <span class="text-theme-primary"><%= @guild.guild_discord_setting.discord_guild_name %></span></p>
+        </div>
+      </div>
+    </div>
+
+    <div class="bg-theme-secondary rounded-lg border border-theme-primary p-6 mb-6">
+      <h2 class="text-xl font-semibold text-theme-primary mb-4"><%= t('guilds.connect_discord.channel_config.title') %></h2>
+      <p class="text-theme-secondary mb-4"><%= t('guilds.connect_discord.channel_config.subtitle') %></p>
+      
+      <div id="discord-channels-config" class="space-y-4">
+        <div>
+          <label class="block text-sm font-medium text-theme-primary mb-2"><%= t('guilds.connect_discord.channel_config.events_channel.label') %></label>
+          <select id="events-channel" class="gs-native-select gs-native-select--field w-full px-4 bg-theme-primary border border-theme-secondary rounded-lg text-theme-primary">
+            <option value=""><%= t('guilds.connect_discord.channel_config.events_channel.placeholder') %></option>
+          </select>
+          <p class="text-xs text-theme-secondary mt-1"><%= t('guilds.connect_discord.channel_config.events_channel.hint') %></p>
+        </div>
+
+        <div>
+          <label class="block text-sm font-medium text-theme-primary mb-2"><%= t('guilds.connect_discord.channel_config.gear_channel.label') %></label>
+          <select id="gear-channel" class="gs-native-select gs-native-select--field w-full px-4 bg-theme-primary border border-theme-secondary rounded-lg text-theme-primary">
+            <option value=""><%= t('guilds.connect_discord.channel_config.gear_channel.placeholder') %></option>
+          </select>
+          <p class="text-xs text-theme-secondary mt-1"><%= t('guilds.connect_discord.channel_config.gear_channel.hint') %></p>
+        </div>
+
+        <button id="save-channels" class="px-6 py-2 bg-theme-accent text-white rounded-lg hover:bg-theme-accent-hover transition-colors font-semibold">
+          <%= t('guilds.connect_discord.channel_config.save_button') %>
+        </button>
+      </div>
+    </div>
+  <% else %>
+    <div class="bg-theme-secondary rounded-lg border border-theme-primary p-6 mb-6">
+      <h2 class="text-xl font-semibold text-theme-primary mb-4"><%= t('guilds.connect_discord.select_server.title') %></h2>
+      <p class="text-theme-secondary mb-6">
+        <% if current_user.discord_connected? %>
+          <%= t('guilds.connect_discord.select_server.already_connected') %>
+        <% else %>
+          <%= t('guilds.connect_discord.select_server.not_connected') %>
+        <% end %>
+      </p>
+
+      <button id="connect-discord-btn" 
+              data-guild-id="<%= @guild.id %>"
+              class="inline-flex items-center gap-2 px-6 py-3 bg-[#5865F2] text-white rounded-lg hover:bg-[#4752C4] transition-colors font-semibold cursor-pointer">
+        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+          <path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515a.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0a12.64 12.64 0 0 0-.617-1.25a.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057a19.9 19.9 0 0 0 5.993 3.03a.078.078 0 0 0 .084-.028a14.09 14.09 0 0 0 1.226-1.994a.076.076 0 0 0-.041-.106a13.107 13.107 0 0 1-1.872-.892a.077.077 0 0 1-.008-.128a10.2 10.2 0 0 0 .372-.292a.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127a12.299 12.299 0 0 1-1.873.892a.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028a19.839 19.839 0 0 0 6.002-3.03a.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419c0-1.333.956-2.419 2.157-2.419c1.21 0 2.176 1.096 2.157 2.42c0 1.333-.956 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419c0-1.333.955-2.419 2.157-2.419c1.21 0 2.176 1.096 2.157 2.42c0 1.333-.946 2.418-2.157 2.418z"/>
+        </svg>
+        <% if current_user.discord_connected? %>
+          <%= t('guilds.connect_discord.select_server.select_button') %>
+        <% else %>
+          <%= t('guilds.connect_discord.select_server.connect_button') %>
+        <% end %>
+      </button>
+    </div>
+  <% end %>
+
+  <div class="mt-6">
+    <%= link_to t('guilds.connect_discord.back_to_dashboard'), guild_path(@guild), class: "text-theme-accent hover:text-theme-accent-hover" %>
+  </div>
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const guildId = <%= @guild.id %>;
+    const saveButton = document.getElementById('save-channels');
+    const eventsChannel = document.getElementById('events-channel');
+    const gearChannel = document.getElementById('gear-channel');
+    const connectBtn = document.getElementById('connect-discord-btn');
+
+    // Handle Discord OAuth popup
+    if (connectBtn) {
+      connectBtn.addEventListener('click', function() {
+        // Build the authorize URL with query parameters
+        const authUrl = '<%= discord_authorize_path %>?guild_id=<%= @guild.id %>&popup=true';
+        const width = 600;
+        const height = 700;
+        const left = (screen.width - width) / 2;
+        const top = (screen.height - height) / 2;
+        
+        const popup = window.open(
+          authUrl,
+          'Discord OAuth',
+          `width=${width},height=${height},left=${left},top=${top},toolbar=no,location=no,status=no,menubar=no,scrollbars=yes,resizable=yes`
+        );
+
+        // Check if popup was blocked
+        if (!popup || popup.closed || typeof popup.closed == 'undefined') {
+          window.showToast('warning', '<%= j t('guilds.connect_discord.popup_blocked') %>');
+          return;
+        }
+
+        // Listen for messages from the popup
+        const messageListener = function(event) {
+          // Verify origin for security
+          if (event.origin !== window.location.origin) {
+            return;
+          }
+
+          if (event.data.type === 'DISCORD_OAUTH_SUCCESS') {
+            // Close popup
+            if (popup) {
+              popup.close();
+            }
+            
+            // Reload the page to show updated connection status
+            window.location.reload();
+          } else if (event.data.type === 'DISCORD_OAUTH_ERROR') {
+            // Close popup
+            if (popup) {
+              popup.close();
+            }
+            
+            // Show error message
+            window.showToast('error', '<%= j t('guilds.connect_discord.connection_failed', error: '').gsub('%{error}', '') %>' + (event.data.message || 'Unknown error'));
+          }
+          
+          // Remove listener after handling
+          window.removeEventListener('message', messageListener);
+        };
+
+        window.addEventListener('message', messageListener);
+
+        // Check if popup was closed manually
+        const checkClosed = setInterval(function() {
+          if (popup.closed) {
+            clearInterval(checkClosed);
+            window.removeEventListener('message', messageListener);
+          }
+        }, 500);
+      });
+    }
+
+    // Load channels if Discord is connected
+    <% if @guild.guild_discord_setting&.connected? && @channels %>
+      <% @channels.each do |channel| %>
+        [eventsChannel, guildBattlesChannel, gearChannel].forEach(select => {
+          const option = document.createElement('option');
+          option.value = '<%= channel['id'] %>';
+          option.textContent = '# <%= channel['name'] %>';
+          select.appendChild(option);
+        });
+      <% end %>
+
+      // Set current values if they exist
+      <% if @guild.guild_discord_setting.events_channel_id.present? %>
+        eventsChannel.value = '<%= @guild.guild_discord_setting.events_channel_id %>';
+      <% end %>
+      <% if @guild.guild_discord_setting.gear_channel_id.present? %>
+        gearChannel.value = '<%= @guild.guild_discord_setting.gear_channel_id %>';
+      <% end %>
+
+      // Save channels
+      if (saveButton) {
+        saveButton.addEventListener('click', function() {
+          const form = document.createElement('form');
+          form.method = 'POST';
+          form.action = '<%= guild_update_discord_channels_path(@guild) %>';
+          
+          const csrfToken = document.createElement('input');
+          csrfToken.type = 'hidden';
+          csrfToken.name = 'authenticity_token';
+          csrfToken.value = document.querySelector('meta[name="csrf-token"]').content;
+          form.appendChild(csrfToken);
+          
+          const methodInput = document.createElement('input');
+          methodInput.type = 'hidden';
+          methodInput.name = '_method';
+          methodInput.value = 'PATCH';
+          form.appendChild(methodInput);
+          
+          const eventsInput = document.createElement('input');
+          eventsInput.type = 'hidden';
+          eventsInput.name = 'events_channel_id';
+          eventsInput.value = eventsChannel.value;
+          form.appendChild(eventsInput);
+          
+          const gearInput = document.createElement('input');
+          gearInput.type = 'hidden';
+          gearInput.name = 'gear_channel_id';
+          gearInput.value = gearChannel.value;
+          form.appendChild(gearInput);
+          
+          document.body.appendChild(form);
+          form.submit();
+        });
+      }
+    <% end %>
+  });
+</script>

@@ -1,0 +1,60 @@
+# Feature flags per pricing plan name (case-insensitive match in PlanEntitlementService).
+# Beta: Elite plan OR users.beta_features_enabled (checked in service).
+---
+free:
+  alliance_hub: false
+  discord_role_sync: false
+  ai_gear_scanner: false
+  guild_documents: false
+  file_storage: false
+  activity_feed: false
+  warnings: false
+  message_center: false
+  member_leaderboard: true
+  polls: true
+  events: true
+  loot_rolls: true
+  settings: true
+basic:
+  alliance_hub: true
+  discord_role_sync: true
+  ai_gear_scanner: false
+  guild_documents: false
+  file_storage: false
+  activity_feed: true
+  warnings: true
+  message_center: true
+  member_leaderboard: true
+  polls: true
+  events: true
+  loot_rolls: true
+  settings: true
+upgraded:
+  alliance_hub: true
+  discord_role_sync: true
+  ai_gear_scanner: true
+  guild_documents: true
+  file_storage: true
+  activity_feed: true
+  warnings: true
+  message_center: true
+  member_leaderboard: true
+  polls: true
+  events: true
+  loot_rolls: true
+  settings: true
+elite:
+  alliance_hub: true
+  discord_role_sync: true
+  ai_gear_scanner: true
+  guild_documents: true
+  file_storage: true
+  activity_feed: true
+  warnings: true
+  message_center: true
+  member_leaderboard: true
+  polls: true
+  events: true
+  loot_rolls: true
+  settings: true
+  beta_features: true

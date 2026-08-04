@@ -1,0 +1,40 @@
+<div class="bg-theme-card border border-theme-primary rounded-lg p-6 shadow-lg">
+  <div class="space-y-4">
+    <div>
+      <strong class="text-theme-secondary"><%= t("admin.audit_logs.show.admin_label") %></strong>
+      <span class="text-theme-primary"><%= @audit_log.admin_email %></span>
+    </div>
+    <div>
+      <strong class="text-theme-secondary"><%= t("admin.audit_logs.show.action_label") %></strong>
+      <span class="text-theme-primary"><%= @audit_log.action %></span>
+    </div>
+    <div>
+      <strong class="text-theme-secondary"><%= t("admin.audit_logs.show.controller_label") %></strong>
+      <span class="text-theme-primary"><%= @audit_log.controller %></span>
+    </div>
+    <% if @audit_log.record_type.present? %>
+      <div>
+        <strong class="text-theme-secondary"><%= t("admin.audit_logs.show.record_label") %></strong>
+        <span class="text-theme-primary"><%= t("admin.audit_logs.index.record_line", type: @audit_log.record_type, id: @audit_log.record_id) %></span>
+      </div>
+    <% end %>
+    <div>
+      <strong class="text-theme-secondary"><%= t("admin.audit_logs.show.ip_label") %></strong>
+      <span class="text-theme-primary"><%= @audit_log.ip_address %></span>
+    </div>
+    <div>
+      <strong class="text-theme-secondary"><%= t("admin.audit_logs.show.user_agent_label") %></strong>
+      <span class="text-theme-primary"><%= @audit_log.user_agent %></span>
+    </div>
+    <div>
+      <strong class="text-theme-secondary"><%= t("admin.audit_logs.show.time_label") %></strong>
+      <span class="text-theme-primary"><%= l(@audit_log.created_at, format: :long) %></span>
+    </div>
+    <% if @audit_log.changes_data.present? %>
+      <div>
+        <strong class="text-theme-secondary"><%= t("admin.audit_logs.show.changes_label") %></strong>
+        <pre class="mt-2 p-4 bg-theme-secondary rounded-lg text-theme-primary overflow-x-auto"><%= JSON.pretty_generate(JSON.parse(@audit_log.changes_data)) rescue @audit_log.changes_data %></pre>
+      </div>
+    <% end %>
+  </div>
+</div>

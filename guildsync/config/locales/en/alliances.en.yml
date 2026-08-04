@@ -1,0 +1,399 @@
+en:
+  # ============================================================================
+  # ALLIANCES FEATURE
+  # ============================================================================
+  alliances:
+    created: "Alliance created successfully!"
+    updated: "Alliance settings saved."
+    disbanded: "The alliance has been disbanded."
+    left: "You have left the alliance."
+    guild_kicked: "Guild has been removed from the alliance."
+
+    errors:
+      join_requires_paid_plan: "You need an active subscription or trial on a paid plan. The Free plan and expired subscriptions or trials are not eligible."
+      plan_required_for_alliance_hub: "A paid plan is required to open the Alliances hub unless you are already a member of an alliance on GuildSync. Ask your GM to sync you, or upgrade your plan."
+      not_found: "Alliance not found."
+      not_member: "You are not a member of this alliance."
+      not_leader: "Only the Alliance Leader can do that."
+      kick_unauthorized: "Only guild owners or custom alliance managers can remove guilds."
+      no_eligible_guild: "You are not eligible to create an alliance from your current guild memberships."
+      plan_required: "Your current plan does not support creating alliances. Please upgrade."
+      disband_unauthorized: "You are not authorized to disband this alliance."
+      leave_unauthorized: "Only guild owners can leave an alliance."
+      leader_cannot_leave: "The founding guild cannot leave the alliance. Disband it instead."
+      guild_not_found: "Guild not found."
+      cannot_kick_leader_guild: "You cannot remove the founding guild from the alliance."
+      conflicting_alliance_membership: "You cannot join guilds in more than one alliance at the same time."
+    index:
+      title: "Alliance"
+      open_alliance: "Open Alliance"
+      invite_from: "Invited by %{name}"
+      accept: "Accept"
+      decline: "Decline"
+      request_join_hint: "Search for a listed guild that is already in an alliance, pick your guild, then request to join that alliance."
+      search_label: "Search guilds"
+      search_placeholder: "Type a guild name..."
+      search_select_target: "Target guild (must be in an alliance)"
+      submit_join_request: "Send join request"
+      searching: "Searching..."
+      no_results: "No guilds found."
+      load_more_results: "Load more results"
+
+    roles:
+      leader_guild: "Founding Guild"
+    new:
+      title: "Create an Alliance"
+      subtitle: "Bring multiple guilds together under one banner."
+
+    edit:
+      title: "Alliance Settings"
+      back: "Back to Alliance"
+      danger_zone: "Danger Zone"
+      disband: "Disband Alliance"
+      disband_confirm: "Are you sure you want to disband this alliance? This cannot be undone."
+
+    form:
+      name: "Alliance Name"
+      name_placeholder: "Enter alliance name..."
+      description: "Description"
+      description_placeholder: "Describe your alliance..."
+      logo: "Alliance Logo"
+      choose_logo_button: "Choose image"
+      no_file_chosen: "No file chosen"
+      logo_hint: "Optional. Recommended: square image, at least 256×256 px."
+      logo_replace_hint: "Upload a new file to replace the current logo."
+      creating_for: "Creating alliance for:"
+      size_info: "Alliances can include 1 to 20 guilds. Start with your guild, then invite others."
+      create_button: "Create Alliance"
+      save_button: "Save Changes"
+
+    show:
+      guilds: "Member Guilds"
+      guilds_count:
+        one: "1 guild"
+        other: "%{count} guilds"
+      leader: "Led by %{name}"
+      edit: "Edit"
+      leave: "Leave Alliance"
+      leave_confirm: "Are you sure you want to leave this alliance?"
+      invite_guild: "Invite a Guild"
+      kick_guild: "Kick"
+      kick_guild_confirm: "Remove %{name} from the alliance?"
+      members_preview: "Members"
+      view_all_members: "View all members"
+      more_members:
+        one: "and 1 more member..."
+        other: "and %{count} more members..."
+
+    nav:
+      members: "Members"
+      events: "Alliance Events"
+      polls: "Alliance Polls"
+      rolls: "Alliance Rolls"
+      chat: "Alliance Chat"
+      activity_feed: "Activity feed"
+      gm_chat: "GM Chat"
+      invites: "Pending Invites"
+      join_requests: "Join requests"
+      disband_vote: "Disband Vote"
+      back_to_alliance: "Back to Alliance"
+
+    invites:
+      sent: "Invitation sent to %{guild_name}."
+      accepted: "You have joined %{alliance_name}!"
+      declined: "Invitation declined."
+
+      errors:
+        not_found: "Invitation not found."
+        guild_not_found: "Guild not found. Search by name and select a publicly listed guild."
+        already_in_alliance: "That guild is already part of this alliance."
+        already_invited: "That guild already has a pending invitation."
+        pending_join_request: "That guild already has a pending join request for this alliance."
+        max_guilds: "This alliance has reached the maximum of 20 guilds."
+        invite_unauthorized: "Only guild owners or custom alliance managers can invite guilds."
+        accept_unauthorized: "Only the target guild's owner can accept this invitation."
+        decline_unauthorized: "Only the target guild's owner can decline this invitation."
+
+      index:
+        title: "Pending Invitations"
+        subtitle: "Invitations for %{alliance_name}"
+        invite_guild: "Invite a Guild"
+        search_label: "Search publicly listed guilds"
+        search_placeholder: "Type a guild name..."
+        search_hint: "Search matches guild name only. Only guilds that opted into public listing appear here."
+        search_unauthorized: "You cannot search from this page."
+        load_more_results: "Load more results"
+        selected_guild: "Inviting"
+        already_in_alliance_suffix: "already in an alliance (invite unavailable)"
+        invite_restricted: "Only the alliance leader can send invitations."
+        send_invite: "Send Invite"
+        pending: "Pending Invitations"
+        no_pending: "No pending invitations."
+        invited_by: "Invited by %{name}"
+
+    events:
+      created: "Alliance event created!"
+      updated: "Event updated."
+      deleted: "Event deleted."
+      rsvp_saved: "Your RSVP has been saved."
+      discord_rsvp:
+        errors:
+          link_required: "Please connect your Discord account to GuildSync before RSVPing."
+          event_not_found: "Alliance event not found."
+          invalid_status: "Invalid RSVP status."
+          not_alliance_member: "You must be an active alliance member to RSVP."
+          save_failed: "Could not save RSVP: %{error}"
+          unexpected: "An error occurred while saving your alliance RSVP."
+
+      errors:
+        not_found: "Event not found."
+        manage_unauthorized: "Only guild owners can manage events."
+        invalid_rsvp: "Invalid RSVP status."
+
+      index:
+        title: "Alliance Events"
+        subtitle: "Events for %{alliance_name}"
+        create: "Create Event"
+        upcoming: "Upcoming Events"
+        past: "Past Events"
+        no_events: "No events yet. Create one to get started."
+        attending: "attending"
+        upcoming_label: "Upcoming"
+
+      new:
+        title: "Create Alliance Event"
+
+      edit:
+        title: "Edit Event"
+
+      show:
+        back: "Back to Events"
+        minutes: "min"
+        your_rsvp: "Your RSVP"
+        attending: "Attending"
+        maybe: "Maybe"
+        declined: "Declined"
+        participants: "Participants"
+        no_participants: "No RSVPs yet."
+        delete_confirm: "Delete this event?"
+        status:
+          attending: "Attending"
+          maybe: "Maybe"
+          declined: "Declined"
+
+      form:
+        title: "Event Title"
+        description: "Description"
+        scheduled_at: "Date & Time"
+        duration: "Duration (minutes)"
+        duration_placeholder: "e.g. 60"
+        location: "Location / Server"
+        location_placeholder: "e.g. Discord Stage, Game Server Name..."
+        create_button: "Create Event"
+        save_button: "Save Event"
+        event_type: "Event type"
+        event_type_general: "General"
+        max_participants: "Max participants (optional)"
+        squad_leader: "Squad leader (optional)"
+        squad_leader_placeholder: "Optional — defaults to you if blank"
+        role_categories_section: "Discord signup roles"
+        role_categories_hint: "Which roles appear as buttons on the Discord announcement (same idea as guild Discord events)."
+    polls:
+      created: "Alliance poll created!"
+      deleted: "Poll deleted."
+
+      errors:
+        not_found: "Poll not found."
+        manage_unauthorized: "Only guild owners or custom alliance managers can create polls."
+        poll_closed: "This poll has closed."
+        invalid_choice: "Invalid vote choice."
+
+      index:
+        title: "Alliance Polls"
+        subtitle: "Polls for %{alliance_name}"
+        create: "Create Poll"
+        no_polls: "No alliance polls yet."
+        created_by: "Created by %{name}"
+        deadline: "Deadline:"
+        open: "Open"
+        closed: "Closed"
+        anonymous: "Anonymous"
+        maybe: "Maybe"
+        voters_heading: "Voters"
+        view_vote: "Vote"
+        view_results: "Results"
+        delete_confirm: "Delete this poll?"
+
+        "yes": "Yes"
+        "no": "No"
+      new:
+        title: "Create Alliance Poll"
+
+      show:
+        back: "Back to Polls"
+        deadline: "Deadline: %{date}"
+        anonymous: "Anonymous"
+        open: "Open"
+        closed: "Closed"
+        your_vote: "Cast Your Vote"
+        maybe: "Maybe"
+        voters_heading: "Voters"
+
+        "yes": "Yes"
+        "no": "No"
+      form:
+        title: "Poll Question"
+        description: "Description"
+        deadline: "Deadline"
+        anonymous: "Anonymous voting (hide individual votes)"
+        create_button: "Create Poll"
+
+    loot_rolls:
+      created: "Alliance loot roll created!"
+      deleted: "Loot roll deleted."
+      closed: "Loot roll closed and winner determined."
+      entered: "You rolled %{roll}!"
+
+      errors:
+        not_found: "Loot roll not found."
+        manage_unauthorized: "Only guild owners or custom alliance managers can manage loot rolls."
+        already_closed: "This roll is already closed."
+        not_open: "This loot roll is not currently open."
+        already_entered: "You have already entered this roll."
+
+      index:
+        title: "Alliance Loot Rolls"
+        subtitle: "Rolls for %{alliance_name}"
+        create: "Create Loot Roll"
+        no_rolls: "No loot rolls yet."
+        range: "Range: %{min}–%{max}"
+        deadline: "Deadline:"
+        winner: "🏆 Winner: %{name} (rolled %{roll})"
+        open: "Open"
+        closed: "Closed"
+        view: "View Roll"
+
+      new:
+        title: "Create Alliance Loot Roll"
+
+      show:
+        back: "Back to Rolls"
+        range: "Roll range: %{min}–%{max}"
+        deadline: "Deadline: %{date}"
+        open: "Open"
+        closed: "Closed"
+        winner: "🏆 Winner: %{name} (rolled %{roll})"
+        enter: "Enter Roll"
+        your_roll: "Your Roll: %{roll}"
+        close: "Close & Pick Winner"
+        close_confirm: "Close this roll and determine the winner?"
+        entries: "Entries"
+        no_entries: "No entries yet."
+        anonymous_entry: "Anonymous"
+        entries_line:
+          zero: "%{count} entries"
+          one: "%{count} entry"
+          other: "%{count} entries"
+
+      form:
+        title: "Loot Roll Title"
+        description: "Description"
+        min_roll: "Minimum Roll"
+        max_roll: "Maximum Roll"
+        deadline: "Deadline (optional)"
+        deadline_hint: "Leave blank for no deadline."
+        anonymous: "Anonymous rolls"
+        create_button: "Create Roll"
+
+    disband_votes:
+      vote_cast: "Your disband vote has been recorded."
+      majority_disbanded: "A majority of GMs voted to disband. The alliance has been dissolved."
+
+      errors:
+        not_gm: "Only guild owners can vote to disband."
+
+      index:
+        title: "Disband Vote"
+        vote_tally: "Current Vote Tally"
+        votes_to_disband: "%{count} of %{total} GMs voted to disband"
+        threshold_note: "More than 50% of GMs must vote to disband for the vote to pass."
+        your_vote: "Your Vote"
+        vote_disband: "Vote to Disband"
+        vote_disband_confirm: "Are you sure you want to vote to disband this alliance?"
+        vote_keep: "Vote to Keep Alliance"
+        current_vote: "Your current vote: %{vote}"
+        all_votes: "All GM Votes"
+        no_votes_yet: "No votes have been cast yet."
+        disband: "Disband"
+        keep: "Keep"
+
+    messages:
+      errors:
+        gm_only: "Only guild owners can access GM Chat."
+        blank: "Message cannot be empty."
+
+      index:
+        gm_chat: "GM Chat"
+        alliance_chat: "Alliance Chat"
+        switch_to_gm: "Switch to GM Chat"
+        switch_to_all: "Switch to Alliance Chat"
+        gm_only_notice: "This channel is only visible to guild owners in this alliance."
+        no_messages: "No messages yet. Say hello!"
+        you: "You"
+        send: "Send"
+        placeholder: "Type a message..."
+        message_time_format: "%b %d at %I:%M %p"
+
+    join_requests:
+      created: "Join request sent to **%{alliance_name}**."
+      accepted: "**%{guild_name}** has joined the alliance."
+      declined: "Join request declined."
+
+      index:
+        title: "Join requests"
+        subtitle: "Guilds requesting to join **%{alliance_name}**."
+        back: "Back to alliance"
+        none: "No pending join requests."
+
+      errors:
+        not_found: "Join request not found."
+        guild_not_found: "Guild not found."
+        unauthorized: "You are not allowed to request on behalf of that guild."
+        already_in_alliance: "That guild is already in an alliance."
+        alliance_inactive: "That alliance is no longer active."
+        requesting_already_in_alliance: "That guild joined another alliance before this request could be accepted."
+        max_guilds: "This alliance cannot accept more guilds right now."
+        pending_invite: "There is already a pending invite for this alliance and guild."
+        create_failed: "Could not create join request."
+        accept_failed: "Could not accept the join request."
+        manage_unauthorized: "Only alliance leaders, guild owners, or alliance officers can manage join requests."
+
+    outgoing_join_requests:
+      new:
+        title: "Request to join an alliance"
+        subtitle: "Your guild: %{guild_name}. Search for a listed guild that is already in an alliance."
+        back: "Back to guild"
+      status:
+        title: "Join request status"
+        subtitle: "Outgoing requests from **%{guild_name}**."
+        none: "No pending join requests from this guild."
+        pending: "Pending"
+      search_unauthorized: "You cannot search from this page."
+      not_in_alliance_suffix: "not in an alliance"
+
+    received_invites:
+      pending:
+        title: "Pending alliance invites"
+        subtitle: "Invitations for **%{guild_name}**."
+        none: "No pending alliance invites."
+
+    discord:
+      invite_embed:
+        title: "Alliance invite: %{alliance_name}"
+        body: "Invited by %{inviter}. Open GuildSync to accept or decline."
+      join_request_embed:
+        title: "Join request: %{guild_name}"
+        body: "%{guild_name} requested to join **%{alliance_name}**. Review on GuildSync."
+      member_joined_embed:
+        title: "%{guild_name} joined the alliance"
+        body: "**%{guild_name}** is now part of **%{alliance_name}**."

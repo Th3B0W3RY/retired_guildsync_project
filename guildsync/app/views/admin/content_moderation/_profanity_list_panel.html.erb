@@ -1,0 +1,60 @@
+<% cm = "admin.content_moderation.index" %>
+<div class="bg-theme-card border border-theme-primary rounded-lg p-6 shadow-lg space-y-6">
+  <h2 class="text-xl font-semibold text-theme-primary"><%= t("#{cm}.profanity_heading") %></h2>
+  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 text-theme-primary">
+    <div class="p-4 bg-theme-background rounded border border-theme-primary">
+      <div class="text-sm text-theme-secondary"><%= t("#{cm}.total_active_words") %></div>
+      <div class="text-2xl font-bold"><%= @blocked_words_count %></div>
+    </div>
+    <div class="p-4 bg-theme-background rounded border border-theme-primary">
+      <div class="text-sm text-theme-secondary"><%= t("#{cm}.last_updated_label") %></div>
+      <div class="text-lg">
+        <% if @last_profanity_run %>
+          <%= t("#{cm}.last_updated_value", time: time_ago_in_words(@last_profanity_run.created_at)) %>
+        <% else %>
+          <%= t("#{cm}.last_updated_never") %>
+        <% end %>
+      </div>
+    </div>
+    <div class="p-4 bg-theme-background rounded border border-theme-primary">
+      <div class="text-sm text-theme-secondary"><%= t("#{cm}.status_label") %></div>
+      <div class="text-lg"><%= t("#{cm}.health_status.#{@profanity_health[:status]}", default: @profanity_health[:status].to_s.humanize) %></div>
+    </div>
+  </div>
+  <div class="flex flex-wrap gap-2">
+    <%= button_to t("#{cm}.trigger_profanity"), trigger_profanity_update_admin_content_moderation_index_path(format: :turbo_stream), method: :post, class: "px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700" %>
+    <%= link_to t("#{cm}.view_blocked_words"), admin_content_moderation_index_path(tab: "blocked_words"),
+          class: "px-4 py-2 bg-theme-secondary text-theme-primary rounded hover:bg-theme-hover",
+          data: { turbo_frame: Admin::ContentModerationController::CONTENT_MODERATION_INDEX_MAIN_FRAME } %>
+  </div>
+  <div>
+    <h3 class="font-medium text-theme-secondary mb-2"><%= t("#{cm}.recent_updates") %></h3>
+    <% if @profanity_logs.any? %>
+      <table class="w-full text-sm text-theme-primary border border-theme-primary">
+        <thead><tr class="bg-theme-background"><th class="text-left p-2"><%= t("#{cm}.table_date") %></th><th class="text-left p-2"><%= t("#{cm}.table_added") %></th><th class="text-left p-2"><%= t("#{cm}.table_removed") %></th><th class="text-left p-2"><%= t("#{cm}.table_total") %></th></tr></thead>
+        <tbody>
+          <% @profanity_logs.each do |log| %>
+            <tr class="border-t border-theme-primary">
+              <td class="p-2"><%= l(log.created_at, format: :short) %></td>
+              <td><%= log.new_words_added %></td>
+              <td><%= log.words_removed %></td>
+              <td><%= log.total_words %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    <% else %>
+      <p class="text-theme-secondary"><%= t("#{cm}.no_profanity_updates", button: t("#{cm}.trigger_profanity")) %></p>
+    <% end %>
+  </div>
+  <% if @last_profanity_run&.sources_checked.present? %>
+    <div>
+      <h3 class="font-medium text-theme-secondary mb-2"><%= t("#{cm}.source_health_heading") %></h3>
+      <ul class="space-y-1 text-theme-primary">
+        <% Array(@last_profanity_run.sources_checked).each do |s| %>
+          <li><%= s["status"] == "success" ? "✅" : "⚠️" %> <%= s["name"] %>: <%= s["count"] || s["status"] %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+</div>

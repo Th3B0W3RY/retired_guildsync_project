@@ -1,0 +1,72 @@
+<% qa_pri = "block px-4 py-2 bg-theme-accent text-white rounded-lg hover:bg-theme-accent-hover transition-colors text-center" %>
+<% qa_sec = "block px-4 py-2 bg-theme-secondary text-theme-accent rounded-lg hover:bg-theme-hover transition-colors text-center border border-theme-primary" %>
+
+<div class="space-y-6">
+  <div>
+    <div class="flex items-center gap-4 mb-2">
+      <% if @guild.logo.attached? %>
+        <%= image_tag @guild.logo, alt: "#{@guild.name} logo", class: "w-16 h-16 object-cover rounded-lg border border-theme-primary flex-shrink-0" %>
+      <% end %>
+      <h1 class="text-4xl font-bold text-theme-primary"><%= @guild.name %></h1>
+    </div>
+
+    <div class="mt-4 space-y-2">
+      <h2 class="text-sm font-semibold uppercase tracking-wide text-theme-secondary"><%= t("guilds.show.about") %></h2>
+      <p class="text-theme-secondary text-lg"><%= @guild.description.presence || t("guilds.show.no_description") %></p>
+    </div>
+
+    <div class="mt-4 rounded-lg border border-theme-primary bg-theme-secondary/40 p-4">
+      <h2 class="text-sm font-semibold uppercase tracking-wide text-theme-secondary mb-2"><%= t("guilds.show.discord_public_invite") %></h2>
+      <% if @guild.discord_invite_url.present? %>
+        <%= link_to t("guilds.show.join_discord"), @guild.discord_invite_url, target: "_blank", rel: "noopener noreferrer", class: "inline-flex items-center justify-center rounded-lg bg-[#5865F2] px-4 py-2 text-sm font-semibold text-white hover:bg-[#4752C4] transition-colors" %>
+      <% elsif can_manage_guild_settings?(@guild) %>
+        <p class="text-sm text-theme-secondary"><%= t("guilds.show.discord_invite_missing") %></p>
+        <%= link_to t("guilds.settings.title"), guild_settings_path(@guild), class: "mt-2 inline-block text-sm font-medium text-theme-accent hover:underline" %>
+      <% else %>
+        <p class="text-sm text-theme-secondary"><%= t("guilds.show.discord_invite_none") %></p>
+      <% end %>
+    </div>
+  </div>
+
+  <div class="grid grid-cols-1 gap-6 lg:grid-cols-2">
+    <div class="p-6 bg-theme-secondary rounded-lg border border-theme-primary">
+      <h2 class="text-2xl font-semibold text-theme-primary mb-4"><%= t("guilds.show.guild_information") %></h2>
+      <p class="text-theme-secondary"><%= t("common.labels.owner") %>: <span class="text-theme-primary"><%= @guild.owner.display_name %></span></p>
+      <p class="text-theme-secondary mt-2"><%= t("common.labels.members") %>: <span class="text-theme-primary"><%= @guild.guild_members.count %></span></p>
+    </div>
+
+    <div class="p-6 bg-theme-secondary rounded-lg border border-theme-primary">
+      <h2 class="text-2xl font-semibold text-theme-primary mb-4"><%= t("guilds.show.quick_actions") %></h2>
+      <div class="grid grid-cols-1 gap-3 sm:grid-cols-2">
+        <%= link_to t("sidebar.guild_menu.invite_members"), guild_invite_members_path(@guild), class: qa_pri %>
+        <%= link_to t("sidebar.guild_menu.schedule_events"), guild_schedule_events_path(@guild), class: qa_sec %>
+        <%= link_to t("sidebar.guild_menu.members"), guild_members_list_path(@guild), class: qa_sec %>
+        <%= link_to t("sidebar.guild_menu.guild_polls"), guild_polls_path(@guild), class: qa_sec %>
+        <%= link_to t("sidebar.guild_menu.guild_loot_rolls"), guild_loot_rolls_path(@guild), class: qa_sec %>
+        <% if plan_allows?(:message_center) %>
+          <%= link_to t("sidebar.guild_menu.message_center"), guild_message_center_path(@guild), class: qa_sec %>
+        <% end %>
+        <% if can_manage_documents?(@guild) && plan_allows?(:guild_documents) %>
+          <%= link_to t("sidebar.guild_menu.guild_documents"), guild_documents_path(@guild), class: qa_sec %>
+        <% end %>
+        <% if plan_allows?(:activity_feed) && can_view_activity_feed?(@guild) %>
+          <%= link_to t("sidebar.guild_menu.guild_analytics"), guild_activity_feed_path(@guild), class: qa_sec %>
+        <% end %>
+        <% if guild_ai_stat_scanner_entitled?(@guild) %>
+          <%= link_to t("sidebar.guild_menu.members_gear"), guild_members_gear_path(@guild), class: qa_sec %>
+        <% end %>
+        <% if can_manage_applications?(@guild) %>
+          <%= link_to t("sidebar.guild_menu.review_applications"), guild_review_applications_path(@guild), class: qa_sec %>
+        <% end %>
+        <% if plan_allows?(:warnings) && can_manage_warnings?(@guild) %>
+          <%= link_to t("sidebar.guild_menu.warnings"), guild_warnings_path(@guild), class: qa_sec %>
+        <% end %>
+        <%= link_to t("sidebar.guild_menu.leaderboard"), leaderboard_path, class: qa_sec %>
+        <%= link_to t("sidebar.discord.connect_bot"), guild_discord_connection_path(@guild), class: qa_sec %>
+        <% if can_manage_guild_settings?(@guild) %>
+          <%= link_to t("sidebar.guild_menu.settings"), guild_settings_path(@guild), class: qa_pri %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

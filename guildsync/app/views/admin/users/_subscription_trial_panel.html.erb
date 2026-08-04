@@ -1,0 +1,83 @@
+<%# locals: (user:, current_subscription:, pricing_plans:) %>
+<% su = "admin.users.show" %>
+<div id="admin_user_subscription_trial_panel" class="bg-theme-card border border-theme-primary rounded-lg p-6 shadow-lg">
+  <h2 class="text-xl font-semibold mb-4"><%= t("#{su}.current_subscription_heading") %></h2>
+  <% if current_subscription %>
+    <div class="space-y-2 mb-4">
+      <div><strong class="text-theme-secondary"><%= t("#{su}.plan_label") %></strong> <span class="text-theme-primary"><%= current_subscription.pricing_plan.name %></span></div>
+      <div><strong class="text-theme-secondary"><%= t("#{su}.status_label") %></strong>
+        <span class="text-theme-primary">
+          <%= t("#{su}.subscription_status.#{current_subscription.status}", default: current_subscription.status.to_s.humanize) %>
+          <% if current_subscription.in_trial? %>
+            <span class="text-yellow-400"><%= t("#{su}.trial_badge") %></span>
+          <% end %>
+        </span>
+      </div>
+      <% if current_subscription.trial_ends_at %>
+        <div><strong class="text-theme-secondary"><%= t("#{su}.trial_ends_label") %></strong> <span class="text-theme-primary"><%= l(current_subscription.trial_ends_at, format: :long) %></span></div>
+      <% end %>
+      <div><strong class="text-theme-secondary"><%= t("#{su}.started_label") %></strong> <span class="text-theme-primary"><%= l(current_subscription.started_at, format: :long) %></span></div>
+    </div>
+  <% else %>
+    <p class="text-theme-secondary mb-4"><%= t("#{su}.no_subscription") %></p>
+  <% end %>
+
+  <h3 class="text-lg font-semibold mb-4 mt-6"><%= t("#{su}.trial_management_heading") %></h3>
+
+  <div class="space-y-4">
+    <div class="bg-theme-secondary rounded-lg p-4">
+      <h4 class="font-semibold text-theme-primary mb-3"><%= t("#{su}.quick_extend_heading") %></h4>
+      <div class="flex gap-4 flex-wrap">
+        <%= button_to t("#{su}.extend_1_week"), update_trial_admin_user_path(user), method: :patch,
+            params: { action_type: "extend_1_week" },
+            class: "px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors",
+            data: { disable_with: false } %>
+        <%= button_to t("#{su}.extend_2_weeks"), update_trial_admin_user_path(user), method: :patch,
+            params: { action_type: "extend_2_weeks" },
+            class: "px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors",
+            data: { disable_with: false } %>
+        <%= button_to t("#{su}.extend_1_month"), update_trial_admin_user_path(user), method: :patch,
+            params: { action_type: "extend_1_month" },
+            class: "px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors",
+            data: { disable_with: false } %>
+      </div>
+    </div>
+
+    <div class="bg-theme-secondary rounded-lg p-4">
+      <h4 class="font-semibold text-theme-primary mb-3"><%= t("#{su}.custom_date_heading") %></h4>
+      <%= form_with url: update_trial_admin_user_path(user), method: :patch, class: "flex gap-4 items-end" do |f| %>
+        <%= f.hidden_field :action_type, value: "extend_custom" %>
+        <div class="flex-1">
+          <%= f.label :custom_date, t("#{su}.custom_date_label"), class: "block text-theme-secondary font-medium mb-2" %>
+          <%= f.date_field :custom_date, min: Date.today, required: true,
+              class: "w-full px-4 py-2 bg-theme-primary border border-theme-secondary rounded-lg text-theme-primary focus:outline-none focus:ring-2 focus:ring-theme-accent" %>
+        </div>
+        <%= f.submit t("#{su}.extend_to_date_submit"), class: "px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors", data: { disable_with: false } %>
+      <% end %>
+    </div>
+
+    <div class="bg-theme-secondary rounded-lg p-4">
+      <h4 class="font-semibold text-theme-primary mb-3"><%= t("#{su}.other_actions_heading") %></h4>
+      <div class="flex gap-4 flex-wrap">
+        <%= button_to t("#{su}.remove_trial"), update_trial_admin_user_path(user), method: :patch,
+            params: { action_type: "remove" },
+            class: "px-4 py-2 bg-orange-600 text-white rounded-lg hover:bg-orange-700 transition-colors",
+            data: { turbo_confirm: t("#{su}.remove_trial_confirm"), disable_with: false } %>
+      </div>
+    </div>
+
+    <div class="bg-theme-secondary rounded-lg p-4">
+      <h4 class="font-semibold text-theme-primary mb-3"><%= t("#{su}.add_new_trial_heading") %></h4>
+      <%= form_with url: update_trial_admin_user_path(user), method: :patch, class: "flex gap-4 items-end" do |f| %>
+        <%= f.hidden_field :action_type, value: "add" %>
+        <div class="flex-1">
+          <%= f.label :plan_id, t("#{su}.select_plan_label"), class: "block text-theme-secondary font-medium mb-2" %>
+          <%= f.select :plan_id, options_from_collection_for_select(pricing_plans, :id, :name),
+              { prompt: t("#{su}.plan_prompt") },
+              { required: true, class: "gs-native-select gs-native-select--field w-full px-4 bg-theme-primary border border-theme-secondary rounded-lg text-theme-primary focus:outline-none focus:ring-2 focus:ring-theme-accent" } %>
+        </div>
+        <%= f.submit t("#{su}.add_trial_submit"), class: "px-6 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors", data: { disable_with: false } %>
+      <% end %>
+    </div>
+  </div>
+</div>

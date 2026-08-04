@@ -1,0 +1,28 @@
+# GuildSync — Nginx site, phase 1 (HTTP only)
+#
+# Use this before Let's Encrypt certificates exist: `nginx -t` succeeds because
+# there is no `listen 443` block referencing missing `/etc/letsencrypt/...` files.
+#
+# After certs are issued (`certbot certonly --webroot ...`), replace with the full
+# config: deploy/guildsync-nginx (see deploy/provision.sh).
+#
+# Obtain certificates (non-interactive example; requires DNS → this host :80):
+#   sudo certbot certonly --webroot -w /var/www/certbot \
+#     --non-interactive --agree-tos -m you@example.com \
+#     -d guild-sync.net -d www.guild-sync.net
+
+server {
+    listen 80;
+    listen [::]:80;
+    server_name guild-sync.net www.guild-sync.net;
+
+    # HTTP-01 challenges (renewals) — must not redirect before this
+    location ^~ /.well-known/acme-challenge/ {
+        root /var/www/certbot;
+        default_type "text/plain";
+    }
+
+    location / {
+        return 301 https://guild-sync.net$request_uri;
+    }
+}

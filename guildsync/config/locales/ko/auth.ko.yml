@@ -1,0 +1,145 @@
+ko:
+  sessions:
+    new:
+      title: 로그인
+      forgot_password: 비밀번호를 잊으셨나요?
+      resend_confirmation: 확인 이메일 다시 보내기
+      sign_in_with_discord: Discord로 로그인
+      sign_in_with_google: Gmail로 로그인
+      sign_in_with_microsoft: Outlook으로 로그인
+      no_account: 계정이 없으신가요?
+      create_account: 여기서 계정 만들기
+      discord_login_failed: 'Discord 로그인 실패:'
+  registrations:
+    new:
+      title: 회원가입
+      have_account: 이미 계정이 있으신가요?
+      sign_in_here: 여기서 로그인
+      signing_up_for: '가입 대상:'
+      trial_after_mfa: MFA 인증 후 체험이 시작됩니다
+      username: 사용자명
+      username_hint: 3~30자, 영문/숫자/밑줄(_)만 사용 가능
+      password_hint: 최소 6자
+      confirm_password: 비밀번호 확인
+      create_account_button: 계정 생성
+      sign_up_with_discord: Discord로 가입
+      discord_signup_failed: 'Discord 가입 실패:'
+      popup_blocked: 팝업이 차단되었습니다. 이 사이트의 팝업을 허용한 후 다시 시도하세요.
+    errors:
+      captcha_invalid: 보안 확인에 실패했습니다. 아래 확인을 완료한 뒤 다시 시도해 주세요.
+      discord_captcha_required: 보안 확인을 완료한 후 이 페이지의 «Discord로 가입» 버튼을 사용하세요.
+  confirmations:
+    new:
+      title: 확인 안내 다시 보내기
+      intro: 이메일을 입력하시면 새 확인 링크를 보내 드립니다.
+      submit: 안내 다시 보내기
+      back_to_sign_in: 로그인으로 돌아가기
+    create:
+      already_registered: 이 이메일은 이미 등록되어 확인되었습니다. 다른 이메일을 사용하거나 로그인하세요.
+  passwords:
+    new:
+      title: 비밀번호를 잊으셨나요?
+      instructions: 이메일을 입력하면 비밀번호 재설정 방법을 보내드립니다.
+      send_instructions: 재설정 안내 보내기
+      back_to_sign_in: 로그인으로 돌아가기
+    edit:
+      title: 비밀번호 재설정
+      subtitle: 아래에 새 비밀번호를 입력하세요.
+      new_password: 새 비밀번호
+      confirm_password: 비밀번호 확인
+      confirm_new_password: 새 비밀번호 확인
+      password_hint: 최소 6자
+      reset_password: 비밀번호 재설정
+      back_to_sign_in: 로그인으로 돌아가기
+    create:
+      instructions_sent: 해당 이메일의 계정이 있으면 비밀번호 재설정 안내를 보내드립니다.
+      invalid_email: 이메일 주소가 올바르지 않습니다.
+    update:
+      success: 비밀번호가 변경되었습니다. 로그인되었습니다.
+    account_recovery:
+      title: 계정 복구
+      page_intro: 계정에 다시 접속하는 방법을 선택하세요.
+      email_section_title: 이메일로 비밀번호 재설정
+      email_section_intro: 이메일로 링크를 보내 드립니다. 이 기기에서 열어 새 비밀번호를 설정하세요.
+      email_send_button: 재설정 링크 보내기
+      email_link_hint: 이미 메일을 받으셨나요? 그 메일의 링크를 여세요.
+      or_divider: 또는
+      backup_section_title: 백업 코드 사용
+      backup_section_intro: 계정 설정에 백업 코드를 저장했다면 아래에 이메일과 코드를 입력하세요.
+      backup_code_label: 백업 코드
+      backup_code_placeholder: XXXX-XXXX-XXXX-XXXX-XXXX-XXXX
+      backup_code_hint: 24자리 백업 코드 중 하나를 입력하세요 (하이픈 선택 사항)
+      verify_backup_code: 백업 코드 확인
+      contact_support: 고객 지원 문의
+  backup_codes:
+    verify:
+      invalid_email_or_code: 이메일 또는 백업 코드가 올바르지 않습니다.
+      invalid_code: 백업 코드가 올바르지 않습니다.
+      success: 백업 코드가 확인되었습니다. 아래에서 새 비밀번호를 설정하세요.
+  recoveries:
+    edit:
+      title: 계정 재설정
+      badge: 백업 코드로 복구 중
+      new_password: 새 비밀번호
+      confirm_password: 새 비밀번호 확인
+      mfa_section: 다단계 인증 (MFA)
+      mfa_warning: 현재 계정에 MFA가 활성화되어 있습니다. 백업 코드를 사용 중이므로 MFA를 재설정할 수 있습니다.
+      reset_mfa_label: MFA 재설정(비활성화 후 재구성 허용)
+      mfa_not_enabled: 계정에 MFA가 활성화되어 있지 않습니다.
+      submit: 변경 사항 저장 및 계정 복구
+      note: 복구 후 새 비밀번호로 로그인해야 합니다. MFA를 재설정한 경우 계정 설정에서 다시 설정할 수 있습니다.
+    update:
+      success: 계정이 복구되었습니다. 새 비밀번호로 로그인하세요.
+    expired: 복구 세션이 만료되었습니다. 다시 시작하세요.
+  mfa_setup:
+    show:
+      title: 다단계 인증(MFA) 활성화
+      subtitle: 시작하려면 인증 앱으로 QR 코드를 스캔하세요
+      instructions_title: 설정 안내
+      step_1: 휴대폰에 인증 앱을 설치하세요 (Google Authenticator, Authy, Microsoft Authenticator 등)
+      step_2: 앱을 열고 "계정 추가" 또는 "+" 버튼을 누르세요
+      step_3: 휴대폰 카메라 또는 앱 스캐너로 아래 QR 코드를 스캔하세요
+      step_4: 인증을 위해 앱의 6자리 코드를 입력하세요
+      manual_entry: 'QR 코드를 스캔할 수 없나요? 인증 앱에 아래 비밀 키를 직접 입력하세요:'
+      cant_scan: '스캔할 수 없나요? 앱에 아래 코드를 수동으로 입력하세요:'
+      code_label: 인증 앱의 6자리 코드를 입력하세요
+      code_placeholder: '000000'
+      code_hint: 인증 앱에 표시된 6자리 코드를 입력하세요
+      verify_button: 인증하고 MFA 활성화
+      recommended_apps: '권장 인증 앱:'
+      setup_unavailable: 설정 키를 만들 수 없습니다. 페이지를 새로 고치거나 잠시 후 다시 시도하세요. 계속되면 고객 지원에 문의하세요.
+  mfa_verification:
+    show:
+      title: 본인 인증
+      subtitle: 인증 앱의 6자리 코드를 입력하세요
+      code_label: 인증 코드
+      code_placeholder: '000000'
+      code_hint: 인증 앱을 열고 6자리 코드를 입력하세요
+      verify_button: 인증
+      trouble_text: 로그인에 문제가 있나요?
+      having_trouble: 문제가 있나요?
+      contact_support: 고객 지원 문의
+  profile_completion:
+    show:
+      title: 프로필 완성
+      subtitle: 계속하려면 계정 정보를 입력해주세요
+      email_label: 이메일 주소
+      email_placeholder: 이메일 주소를 입력하세요
+      email_hint: 계정에 사용할 유효한 이메일 주소를 입력하세요
+      username_label: 사용자명
+      username_hint: 3~30자, 영문/숫자/밑줄(_)만 사용 가능
+      username_placeholder: 사용자명을 입력하세요
+      password_label: 비밀번호
+      password_hint: 안전한 비밀번호를 선택하세요 (최소 6자)
+      password_confirmation_label: 비밀번호 확인
+      password_confirmation_hint: 확인을 위해 비밀번호를 다시 입력하세요
+      confirm_password_hint: 확인을 위해 비밀번호를 다시 입력하세요
+      submit_button: 프로필 완성
+      complete_button: 설정 완료
+    update:
+      success: 프로필이 완료되었습니다. 이제 MFA를 설정하세요.
+  mfa:
+    setup:
+      title: MFA 설정
+    verification:
+      title: MFA 인증

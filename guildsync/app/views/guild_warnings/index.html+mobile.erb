@@ -1,0 +1,60 @@
+<div class="mx-auto max-w-4xl p-3 sm:p-4">
+  <div class="mb-4">
+    <h1 class="text-2xl font-bold text-theme-primary mb-1"><%= t("guild_warnings.title") %></h1>
+    <p class="text-theme-secondary text-sm"><%= @guild.name %></p>
+  </div>
+
+  <div class="bg-theme-secondary rounded-lg border border-theme-primary p-4 mb-4">
+    <h2 class="text-lg font-semibold text-theme-primary mb-2"><%= t("guild_warnings.send_title") %></h2>
+    <%= form_with url: guild_warnings_create_path(@guild), method: :post, local: true, class: "space-y-3" do |f| %>
+      <div>
+        <%= label_tag :user_id, t("guild_warnings.member_label"), class: "block text-sm font-medium text-theme-primary mb-1" %>
+        <%= select_tag :user_id,
+          options_for_select(@warnable_members.map { |m| [m.user.display_name, m.user_id] }),
+          prompt: t("guild_warnings.select_member"),
+          class: "gs-native-select gs-native-select--field w-full px-3 bg-theme-primary border border-theme-secondary rounded-lg text-theme-primary text-sm" %>
+      </div>
+      <div>
+        <%= label_tag :reason, t("guild_warnings.reason_label"), class: "block text-sm font-medium text-theme-primary mb-1" %>
+        <%= text_area_tag :reason, nil, rows: 3, class: "w-full px-3 py-2 bg-theme-primary border border-theme-secondary rounded-lg text-theme-primary text-sm", maxlength: 500 %>
+      </div>
+      <%= f.submit t("guild_warnings.send_button"), class: "w-full px-4 py-2 bg-theme-accent text-white rounded-lg hover:bg-theme-accent-hover transition-colors font-semibold text-sm cursor-pointer" %>
+    <% end %>
+  </div>
+
+  <%= form_with url: guild_warnings_update_lists_path(@guild), method: :patch, local: true, class: "space-y-4" do %>
+    <% [
+      [t("guild_warnings.columns.no_warnings"), @no_warning_members, "no_warnings"],
+      [t("guild_warnings.columns.warned"), @warned_members, "warned"],
+      [t("guild_warnings.columns.banned"), @banned_members, "banned"]
+    ].each do |title, members, bucket| %>
+      <div class="bg-theme-secondary rounded-lg border border-theme-primary p-4">
+        <h3 class="text-base font-semibold text-theme-primary mb-2"><%= title %> (<%= members.size %>)</h3>
+        <div class="space-y-2">
+          <% members.each do |member| %>
+            <% warning_status = @warning_statuses_by_user_id[member.user_id] %>
+            <div class="bg-theme-primary rounded-lg border border-theme-secondary p-3">
+              <p class="text-theme-primary font-medium text-sm"><%= member.user.display_name %></p>
+              <p class="text-xs text-theme-secondary mb-2">
+                <%= t("guild_warnings.warning_count", count: warning_status&.warning_count.to_i, limit: GuildMemberWarningStatus::WARNING_LIMIT) %>
+              </p>
+              <%= select_tag "warning_states[#{member.user_id}]",
+                options_for_select([
+                  [t("guild_warnings.columns.no_warnings"), "no_warnings"],
+                  [t("guild_warnings.columns.warned"), "warned"],
+                  [t("guild_warnings.columns.banned"), "banned"]
+                ], bucket),
+                class: "gs-native-select gs-native-select--field w-full px-3 bg-theme-secondary border border-theme-primary rounded-lg text-theme-primary text-sm" %>
+            </div>
+          <% end %>
+          <% if members.empty? %>
+            <p class="text-theme-secondary text-sm"><%= t("guild_warnings.empty_column") %></p>
+          <% end %>
+        </div>
+      </div>
+    <% end %>
+
+    <%= submit_tag t("guild_warnings.save_lists_button"), class: "w-full px-4 py-2 bg-theme-accent text-white rounded-lg hover:bg-theme-accent-hover transition-colors font-semibold text-sm cursor-pointer" %>
+    <%= link_to t("guild_warnings.back_to_guild"), guild_path(@guild), class: "block text-center px-4 py-2 bg-theme-secondary text-theme-primary rounded-lg hover:bg-theme-primary transition-colors font-semibold text-sm" %>
+  <% end %>
+</div>

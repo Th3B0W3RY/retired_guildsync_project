@@ -1,0 +1,145 @@
+pt:
+  sessions:
+    new:
+      title: Entrar
+      forgot_password: Esqueceu sua senha?
+      resend_confirmation: Reenviar e-mail de confirmação
+      sign_in_with_discord: Entrar com Discord
+      sign_in_with_google: Entrar com Gmail
+      sign_in_with_microsoft: Entrar com Outlook
+      no_account: Ainda não tem uma conta?
+      create_account: Crie um aqui
+      discord_login_failed: 'Falha ao fazer login no Discord:'
+  registrations:
+    new:
+      title: Cadastrar-se
+      have_account: Já tem uma conta?
+      sign_in_here: Entrar aqui
+      signing_up_for: 'Cadastrando-se por:'
+      trial_after_mfa: O período de teste começará após a verificação do MFA
+      username: Nome de usuário
+      username_hint: 3-30 caracteres, letras, números e underscores apenas
+      password_hint: Mínimo 6 caracteres
+      confirm_password: Confirmar Senha
+      create_account_button: Criar Conta
+      sign_up_with_discord: Se inscreva com o Discord
+      discord_signup_failed: 'Cadastro em Discord falhou:'
+      popup_blocked: O pop-up foi bloqueado. Por favor, permita os pop-ups para este site e tente novamente.
+    errors:
+      captcha_invalid: Falha na verificação de segurança. Conclua a verificação abaixo e tente novamente.
+      discord_captcha_required: Use o botão «Se inscreva com o Discord» nesta página após concluir a verificação de segurança.
+  confirmations:
+    new:
+      title: Reenviar instruções de confirmação
+      intro: Digite seu e-mail e enviaremos um novo link de confirmação.
+      submit: Reenviar instruções
+      back_to_sign_in: Voltar ao início de sessão
+    create:
+      already_registered: Este e-mail já está cadastrado e confirmado. Tente outro e-mail ou inicie sessão.
+  passwords:
+    new:
+      title: Esqueceu sua senha?
+      instructions: Insira seu e-mail e enviaremos instruções para redefinir sua senha.
+      send_instructions: Enviar instruções de redefinição
+      back_to_sign_in: Voltar para Fazer Login
+    edit:
+      title: Redefina Sua Senha
+      subtitle: 'Informe sua nova senha:'
+      new_password: Nova Senha
+      confirm_password: Confirmar Senha
+      confirm_new_password: Confirme a Nova Senha
+      password_hint: Mínimo 6 caracteres
+      reset_password: Redefinir Senha
+      back_to_sign_in: Voltar para Fazer Login
+    create:
+      instructions_sent: Se existir uma conta com esse e-mail, você receberá instruções para redefinir a senha.
+      invalid_email: Endereço de e-mail inválido.
+    update:
+      success: Sua senha foi alterada com sucesso. Você está conectado.
+    account_recovery:
+      title: Recuperação de conta
+      page_intro: Escolha como voltar à sua conta.
+      email_section_title: Redefinir senha por e-mail
+      email_section_intro: Enviaremos um link para o seu e-mail. Abra-o neste dispositivo para definir uma nova senha.
+      email_send_button: Enviar link de redefinição
+      email_link_hint: Já recebeu um e-mail nosso? Abra o link de redefinição nessa mensagem.
+      or_divider: ou
+      backup_section_title: Usar um código de backup
+      backup_section_intro: Se você salvou códigos de backup nas Configurações da conta, digite seu e-mail e um código abaixo.
+      backup_code_label: Código de backup
+      backup_code_placeholder: XXXX-XXXX-XXXX-XXXX-XXXX-XXXX
+      backup_code_hint: Digite um dos seus códigos de backup de 24 caracteres (hífens opcionais)
+      verify_backup_code: Verificar código de backup
+      contact_support: Contato com suporte
+  backup_codes:
+    verify:
+      invalid_email_or_code: E-mail ou código de backup inválido.
+      invalid_code: Código de backup inválido.
+      success: Código de backup aceito. Defina uma nova senha abaixo.
+  recoveries:
+    edit:
+      title: Redefinir sua conta
+      badge: Recuperando com código de backup
+      new_password: Nova Senha
+      confirm_password: Confirme a Nova Senha
+      mfa_section: Autenticação multifator (MFA)
+      mfa_warning: Sua conta está com MFA habilitada no momento. Como você está usando um código de backup, pode optar por redefinir a MFA.
+      reset_mfa_label: Redefinir MFA (desativar e permitir nova configuração)
+      mfa_not_enabled: A MFA não está habilitada na sua conta.
+      submit: Salvar alterações e recuperar conta
+      note: Após a recuperação, você precisará entrar com sua nova senha. Se redefinir a MFA, poderá configurá-la novamente em Configurações da conta.
+    update:
+      success: Sua conta foi recuperada. Faça login com sua nova senha.
+    expired: A sessão de recuperação expirou. Comece novamente.
+  mfa_setup:
+    show:
+      title: Habilitar Autenticação M multifatorial
+      subtitle: Escaneie o código QR com seu app de autenticação para começar.
+      instructions_title: Instruções de Configuração
+      step_1: Instale um aplicativo de autenticação no seu telefone (Autenticador Google, Authy, Autenticador Microsoft, entre outros)
+      step_2: Abra o aplicativo e toque em 'Adicionar conta' ou no ícone de +
+      step_3: Escaneie o código QR abaixo com a câmera do seu celular ou o scanner do aplicativo.
+      step_4: Insira o código de 6 dígitos do seu aplicativo para verificar
+      manual_entry: 'Não consegue ler o código QR? Introduza este segredo manualmente na sua aplicação de autenticação:'
+      cant_scan: 'Não consegue escanear? Insira este código manualmente no seu aplicativo:'
+      code_label: Digite o código de 6 dígitos do seu aplicativo de autenticação.
+      code_placeholder: '000000'
+      code_hint: Insira o código de 6 dígitos exibido no seu app de autenticação.
+      verify_button: Verificar e Habilitar MFA
+      recommended_apps: 'Aplicativos de autenticação recomendados:'
+      setup_unavailable: Não foi possível gerar sua chave de configuração. Atualize a página ou tente novamente em instantes. Se persistir, entre em contato com o suporte.
+  mfa_verification:
+    show:
+      title: Verifique sua identidade.
+      subtitle: Digite o código de 6 dígitos do seu aplicativo de autenticação
+      code_label: Código de Autenticação
+      code_placeholder: '000000'
+      code_hint: Abra seu aplicativo de autenticação e insira o código de seis dígitos
+      verify_button: Verificar
+      trouble_text: Problemas a iniciar sessão?
+      having_trouble: Está tendo problemas?
+      contact_support: Contate o suporte
+  profile_completion:
+    show:
+      title: Finalize seu Perfil
+      subtitle: Por favor forneça seus detalhes da conta para continuar
+      email_label: Endereço de E-mail
+      email_placeholder: Insira seu endereço de e-mail
+      email_hint: Por favor insira uma endereco de e-mail válido para sua conta
+      username_label: Nome de usuário
+      username_hint: 3-30 caracteres, letras, números e underscores apenas
+      username_placeholder: Digite seu nome de usuário
+      password_label: Senha
+      password_hint: Escolha uma senha segura ( mínimo 6 caracteres)
+      password_confirmation_label: Confirmação de senha
+      password_confirmation_hint: Reinserir sua senha para confirmar
+      confirm_password_hint: Reinserir sua senha para confirmar
+      submit_button: Completa o Perfil
+      complete_button: Concluir configuração
+    update:
+      success: Perfil concluído. Agora configure MFA.
+  mfa:
+    setup:
+      title: Configurar MFA
+    verification:
+      title: Verificar MFA

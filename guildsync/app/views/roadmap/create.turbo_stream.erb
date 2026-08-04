@@ -1,0 +1,26 @@
+<% card_inner = "rounded-xl border border-[#2d3142] bg-[#1a1d2e] p-3 transition-colors hover:border-[#615FFF]/40" %>
+<% if @roadmap_stream_append_card %>
+  <%= turbo_stream.append "roadmap_column_list_#{@feature_request.status}" do %>
+    <%= render "roadmap/index_card", fr: @feature_request, card_inner: card_inner %>
+  <% end %>
+  <%= turbo_stream.remove "roadmap_empty_#{@feature_request.status}" %>
+<% end %>
+
+<% if @feature_request.visible? && @roadmap_stream_append_card %>
+  <%= turbo_stream.update "roadmap_create_status" do %>
+    <p class="rounded-lg border border-emerald-500/30 bg-emerald-500/10 px-4 py-3 text-sm text-emerald-400"><%= t("roadmap.create.success") %></p>
+  <% end %>
+<% elsif @feature_request.visible? %>
+  <%= turbo_stream.update "roadmap_create_status" do %>
+    <div class="rounded-lg border border-emerald-500/30 bg-emerald-500/10 px-4 py-3">
+      <p class="text-sm text-emerald-400"><%= t("roadmap.create.success") %></p>
+      <p class="mt-1 text-xs text-[#90A1B9]"><%= t("roadmap.create.filtered_board_hint") %></p>
+    </div>
+  <% end %>
+<% else %>
+  <%= turbo_stream.update "roadmap_create_status" do %>
+    <p class="rounded-lg border border-amber-500/30 bg-amber-500/10 px-4 py-3 text-sm text-amber-400"><%= t("roadmap.create.sent_for_review") %></p>
+  <% end %>
+<% end %>
+
+<%= turbo_stream.update "roadmap_modal_form_errors", "" %>

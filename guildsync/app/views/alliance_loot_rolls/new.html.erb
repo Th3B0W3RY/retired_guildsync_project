@@ -1,0 +1,55 @@
+<div class="max-w-2xl mx-auto p-6">
+  <div class="mb-6">
+    <h1 class="text-3xl font-bold text-theme-primary mb-2"><%= t('alliances.loot_rolls.new.title') %></h1>
+    <p class="text-theme-secondary"><%= @alliance.name %></p>
+  </div>
+
+  <%= form_with model: [ @alliance, @loot_roll ], local: true, class: "bg-theme-secondary rounded-lg border border-theme-primary p-6 space-y-6" do |f| %>
+    <% if @loot_roll.errors.any? %>
+      <div class="bg-red-900/20 border border-red-500 rounded-lg p-4">
+        <ul class="list-disc list-inside text-red-400">
+          <% @loot_roll.errors.full_messages.each do |msg| %><li><%= msg %></li><% end %>
+        </ul>
+      </div>
+    <% end %>
+
+    <div>
+      <%= f.label :title, t('alliances.loot_rolls.form.title'), class: "block text-sm font-medium text-theme-primary mb-2" %>
+      <%= f.text_field :title, required: true, class: "w-full px-4 py-2 bg-theme-primary border border-theme-secondary rounded-lg text-theme-primary" %>
+    </div>
+
+    <div>
+      <%= f.label :description, t('alliances.loot_rolls.form.description'), class: "block text-sm font-medium text-theme-primary mb-2" %>
+      <%= f.text_area :description, rows: 3, class: "w-full px-4 py-2 bg-theme-primary border border-theme-secondary rounded-lg text-theme-primary" %>
+    </div>
+
+    <div class="grid grid-cols-2 gap-4">
+      <div>
+        <%= f.label :min_roll, t('alliances.loot_rolls.form.min_roll'), class: "block text-sm font-medium text-theme-primary mb-2" %>
+        <%= f.number_field :min_roll, min: 1, required: true, class: "w-full px-4 py-2 bg-theme-primary border border-theme-secondary rounded-lg text-theme-primary" %>
+      </div>
+      <div>
+        <%= f.label :max_roll, t('alliances.loot_rolls.form.max_roll'), class: "block text-sm font-medium text-theme-primary mb-2" %>
+        <%= f.number_field :max_roll, min: 2, required: true, class: "w-full px-4 py-2 bg-theme-primary border border-theme-secondary rounded-lg text-theme-primary" %>
+      </div>
+    </div>
+
+    <div>
+      <%= f.label :deadline_at, t('alliances.loot_rolls.form.deadline'), class: "block text-sm font-medium text-theme-primary mb-2" %>
+      <%= f.datetime_local_field :deadline_at, class: "w-full px-4 py-2 bg-theme-primary border border-theme-secondary rounded-lg text-theme-primary date-input-white-calendar" %>
+      <p class="text-xs text-theme-secondary mt-1"><%= t('alliances.loot_rolls.form.deadline_hint') %></p>
+    </div>
+
+    <div class="flex items-center gap-3">
+      <%= f.check_box :anonymous, class: "w-4 h-4 text-theme-accent bg-theme-primary border-theme-secondary rounded" %>
+      <%= f.label :anonymous, t('alliances.loot_rolls.form.anonymous'), class: "text-sm font-medium text-theme-primary cursor-pointer" %>
+    </div>
+
+    <div class="flex gap-4">
+      <%= f.submit t('alliances.loot_rolls.form.create_button'), class: "px-6 py-3 bg-theme-accent text-white rounded-lg hover:bg-theme-accent-hover transition-colors font-semibold cursor-pointer" %>
+      <%= link_to t('common.buttons.cancel'), alliance_alliance_loot_rolls_path(@alliance), class: "px-6 py-3 bg-theme-secondary text-theme-primary rounded-lg hover:bg-theme-primary transition-colors font-semibold" %>
+    </div>
+  <% end %>
+
+  <style>.date-input-white-calendar::-webkit-calendar-picker-indicator { filter: invert(1); cursor: pointer; }</style>
+</div>

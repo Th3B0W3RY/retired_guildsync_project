@@ -1,0 +1,6 @@
+---
+zh:
+  mailers:
+    trial_mailer:
+      trial_expiring:
+        subject: 您的 GuildSync 试用期即将结束

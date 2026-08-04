@@ -1,0 +1,828 @@
+ru:
+  guilds:
+    index:
+      title: Мои Гильдии
+      subtitle: Управляй своими игровыми сообществами
+      create_new_guild: Создать новую гильдию
+      view_guild: Просмотр Гильдии
+      no_guilds: Вы пока не присоединились ни к одной гильдии.
+      create_first_guild: Создай свою первую гильдию
+    new:
+      title: Создать гильдию
+      subtitle: Создайте своё игровое сообщество
+      guild_name: Имя гильдии
+      create_button: Создать гильдию мастеров
+      recruiting_name_warning: Это имя совпадает с терминами, которые мы скрываем из публичного каталога рекрутинга. Гильдия изначально не будет в публичных списках; при необходимости видимость можно изменить в настройках гильдии, если ваша роль это позволяет.
+      games:
+        label: Игры
+        required: обязательное
+        help_text: Выберите как минимум одну игру, в которую ваша гильдия играет. Вы можете добавить больше позже в настройках.
+        search_placeholder: Поиск по игре...
+        featured_games: Игры на главной
+        no_games: Игры в данный момент недоступны. Используйте строку поиска выше или добавьте игру вручную ниже.
+        pending_approval: Ждет утверждения
+        select_primary: Выберите свою основную игру (основная игра, на которую ваша гильдия сосредоточена).
+        select_one_error: Пожалуйста, выберите как минимум одну игру.
+        select_primary_error: Пожалуйста, выберите основную игру из выбранных игр.
+        primary_must_be_selected: Основная игра должна быть одной из выбранных игр.
+        approve_pending_html: "<strong>Для утверждения ожидающих игр:</strong> Перейдите по %{link} и нажмите «Переключить на активный» для любой ожидающей игры, чтобы активировать её."
+        games_management: Управление играми
+        select_button: Выбрать
+      custom_game:
+        add_link: Не можете найти свою игру? Добавьте его здесь.
+        label: Имя игры
+        placeholder: Введите название игры...
+        add_button: Добавить игру
+        no_similar: Нет похожих игр. Щелкните «Добавить игру», чтобы создать «%{name}». Убедитесь, пожалуйста, в правильности написания.
+        already_exists: Игра "%{name}" уже существует. Пожалуйста, выберите его из списка выше.
+        search_error: Ошибка при поиске игр. Пожалуйста, попробуйте снова.
+        js_no_similar_found: Похожих игр не найдено. Нажмите «Добавить игру», чтобы создать "%{query}". Пожалуйста, проверьте правописание.
+        js_game_exists: Игра "%{name}" уже существует. Пожалуйста, выберите его из списка выше.
+        js_search_error: Ошибка при поиске игр. Пожалуйста, попробуйте снова.
+        js_adding: Добавление...
+        js_server_error: Ошибка сервера. Обновите страницу и попробуйте снова.
+        pending_admin_approval: Ожидание утверждения администратором
+        js_game_added_success: Игра добавлена успешно! Она будет доступна после утверждения администратором.
+        js_failed_add: 'Не удалось добавить игру: '
+        js_error_adding: 'Ошибка добавления игры: '
+      modal:
+        title: Подтвердить добавление игры
+        confirm_text: Вы уверены, что хотите добавить %{name} как новую игру?
+        warning: Пожалуйста, проверьте правильность написания. Игра будет создана как ожидая и потребует утверждения администратора.
+        yes_add: Да, Добавить Игра
+      pending_admin_info: 'Для утверждения ожидающих игр: Перейдите в Управление играми и нажмите «Переключить активность» на любой ожидающей игре для её активации.'
+    show:
+      guild_information: Информация о гильдии
+      quick_actions: Быстрые Действия
+      invite_members: Пригласить участников
+      schedule_event: Расписание события
+      about: О гильдии
+      no_description: Описание пока не добавлено.
+      discord_public_invite: Публичное приглашение в Discord
+      join_discord: Перейти в Discord
+      discord_invite_missing: Добавьте публичную ссылку-приглашение, чтобы участники открывали сервер Discord в один клик.
+      discord_invite_none: У этой гильдии нет опубликованной ссылки-приглашения в Discord.
+    settings:
+      title: Настройки гильдии
+      subtitle: Управление настройками и предпочтениями вашей гильдии.
+      guild_profile:
+        title: Профиль гильдии
+        description: Описание и необязательная публичная ссылка Discord отображаются на панели гильдии для всех участников.
+        description_label: Описание
+        discord_invite_label: URL публичного приглашения Discord
+        discord_invite_hint: Необязательно. Вставьте ссылку-приглашение Discord (например https://discord.gg/…). Видна тем, кто видит панель.
+        save_button: Сохранить профиль
+      logo:
+        title: Гильдия Лого
+        description: Загрузите логотип для вашей гильдии. Логотип появится возле вашего названия гильдии в различных частях приложения.
+        recommended: 'Рекомендуемые размеры:'
+        dimensions_info: '256 на 256 пикселей (квадратный формат рекомендуется). Поддерживаемые форматы: JPG, PNG, GIF, WebP.'
+        current_logo: 'Текущий логотип:'
+        note: 'Примечание:'
+        click_update: Нажмите «Обновить логотип» для выбора нового файла и сохранения его.
+        update_button: Обновить Логотип
+        delete_button: Удалить логотип
+        delete_confirm: Вы уверены, что хотите удалить логотип гильдии?
+        save_button: Сохранить Логотип
+      application_messages:
+        title: Сообщения по заявкам
+        description: Настройте сообщения, отправляемые кандидатам, когда они принимаются или отклоняются. Если оставить пустым, будут использоваться стандартные сообщения.
+        accept_label: Принять
+        accept_default_message: Поздравляем! Ты принят в гильдию %{guild_name}!
+        accept_hint: 'Сообщение, отправляемое при принятии кандидата. Используйте %{guild_name}, чтобы указать название гильдии. По умолчанию: "%{default_message}"'
+        reject_label: Сообщение об отклонении
+        reject_default_message: Извините, вы не подходящий кандидат для нашей гильдии, но вы можете подать заявку снова позже.
+        reject_hint: 'Сообщение, отправляемое при отклонении кандидата. По умолчанию: "%{default_message}"'
+        save_button: Сохранить сообщения
+      discord_channels:
+        title: Конфигурация Discord Каналов
+        description: Выберите, какие Discord-каналы должны получать уведомления для различных типов контента.
+        events_channel: Канал событий
+        events_hint: Выберите канал, где будут публиковаться события Discord.
+        battles_channel: Канал битв гильдии
+        battles_hint: Выберите канал, где будут размещаться уведомления о битвах гильдии.
+        gear_channel: Канал экипировки участников
+        gear_hint: Выберите канал, куда будут публиковаться обновления экипировки участников.
+        polls_channel: Канал опросов гильдии
+        polls_hint: Выберите канал, где будут размещаться голосования гильдии.
+        loot_channel: Канал розыгрышей добычи
+        loot_hint: Выберите канал, где будут размещены результаты добычи. Это необходимо для добычи.
+        select_channel: Выберите канал...
+        save_button: Сохранить настройки канала
+        unable_to_load: Невозможно загрузить каналы
+        load_error: Не удалось загрузить каналы Discord. Пожалуйста, проверьте соединение вашего бота Discord.
+        alliance_section_title: Каналы альянса (межгильдейские)
+        alliance_section_description: 'Выберите, куда публиковать приглашения в альянс, события, опросы и розыгрыши лута через подключенного бота GuildSync. Если настроены не все каналы, уведомления о приглашениях будут отправляться в первый доступный канал в таком порядке: Приглашения, События, Опросы, Лут.'
+        alliance_invites_channel: Приглашения и заявки альянса
+        alliance_invites_hint: Уведомления, когда вашу гильдию приглашают в альянс или когда другая гильдия просит присоединиться к вашему.
+        alliance_events_channel: События альянса
+        alliance_events_hint: Публикуется встраиваемое сообщение при создании события для всего альянса.
+        alliance_polls_channel: Опросы альянса
+        alliance_polls_hint: Публикуется встраиваемое сообщение при создании опроса для всего альянса.
+        alliance_loot_channel: Розыгрыши лута альянса
+        alliance_loot_hint: Публикуется встраиваемое сообщение при создании розыгрыша лута для всего альянса.
+      discord_bot:
+        not_connected: Бот не подключен
+        not_connected_authorize: Бот GuildSync не подключён к серверу Discord. Пожалуйста, авторизируйте бота.
+        not_connected_connect: Пожалуйста, подключите бота GuildSync к Discord-серверу перед настройкой каналов.
+        authorize_button: Авторизовать Бот
+        connect_button: Подключить бот к Discord-сообществу
+      role_sync:
+        title: Синхронизация ролей в Discord
+        description: Управляйте тем, какие роли Discord синхронизируются с базой данных. Синхронизированные роли автоматически обновляются каждые 30 минут.
+        sync_all: Синхронизировать все роли
+        remove_all: Удалить все синхронизации
+        refresh: Обновить Роли
+        loading: Загрузка ролей...
+        role_name: Название роли
+        role_id: Роль ID
+        sync_status: Статус синхронизации
+        action: Действие
+        click_refresh: Нажмите "Обновить роли" для обновления ролей в Discord.
+      games:
+        title: Игры
+        description: Управляйте теми играми, которые ваша гильдия играет. По крайней мере одна игра обязательна.
+        no_games: Игры в данный момент недоступны. Пожалуйста, свяжитесь с администратором для добавления игр.
+        required_note: Необходимо выбрать хотя бы одну игру
+        update_button: Обновить Игры
+        cant_find: Не можете найти свою игру? Добавьте его здесь.
+        game_name_label: Имя игры
+        enter_game_name: Введите название игры...
+        pending_approval: Ожидание утверждения администратором
+        primary_label: Основной
+        add_game_button: Добавить игру
+        pending_approval_short: Ждет утверждения
+        pending_admin_approval: Ожидание утверждения администратором
+        js_no_similar_found: Похожих игр не найдено. Нажмите «Добавить игру», чтобы создать "%{query}". Пожалуйста, проверьте правописание.
+        js_game_exists: Игра "%{name}" уже существует. Пожалуйста, выберите его из списка выше.
+        js_search_error: Ошибка при поиске игр. Пожалуйста, попробуйте снова.
+        js_confirm_add: Вы уверены, что вы хотите добавить "%{name}" как новую игру? Пожалуйста, убедитесь, что название написано правильно.
+        js_adding: Добавление...
+        js_server_error: Ошибка сервера. Обновите страницу и попробуйте снова.
+      permissions:
+        title: Роли и разрешения
+        description: Выберите до четырех ролей в Discord, которые могут управлять ролями, приложениями и настройками гильдии. Проверьте соответствующие клетки, чтобы активировать каждое разрешение.
+        role_n: Роль %{n}
+        select_discord_role: Выберите Дискорд Роль
+        none: Ничего
+        can_manage_roles: Может управлять ролями
+        can_manage_applications: Может управлять приложениями
+        can_manage_guild_settings: Может управлять настройками гильдии
+        can_kick_members: Может Выгонять Членов
+        can_invite_alliance_guilds: Может приглашать гильдии в альянс
+        can_kick_alliance_guilds: Может исключать гильдии из альянса
+        can_manage_tags: Может управлять тегами
+        can_manage_warnings: Может управлять предупреждениями
+        can_manage_documents: Может управлять документами
+        can_manage_files: Может управлять файлами
+        can_manage_events: Может управлять событиями
+        can_manage_polls: Может управлять опросами
+        can_manage_loot_rolls: Может управлять розыгрышами лута
+        can_manage_discord_channels: Может управлять каналами Discord
+        can_view_activity_feed: Может просматривать ленту активности
+        can_export_members_csv: Может экспортировать CSV участников
+        can_use_message_center: Может использовать центр сообщений
+        can_manage_gear_requests: Может управлять запросами экипировки
+        can_edit_gear_scanned_stats: Может редактировать отсканированные характеристики снаряжения
+        save_button: Сохранить разрешения
+        default_role:
+          title: Роль по умолчанию для новых участников
+          description: Выберите роль на сервере, которая будет автоматически назначена всем новым участникам при вступлении в гильдию.
+          label: роль по умолчанию
+          save_button: Сохранить по умолчанию Роль
+      visibility:
+        title: Видимость гильдии
+        description: Управляйте тем, отображается ли ваша гильдия в публичных списках. Приватные гильдии могут находить только текущие участники.
+        toggle_label: Показывать эту гильдию в публичных списках
+        toggle_hint: Если отключено, ваша гильдия не будет отображаться в списке доступных гильдий и в результатах поиска. Текущие участники и кандидаты не затрагиваются.
+        save_button: Сохранить видимость
+      react_roles:
+        title: Роли по реакции
+        description: 'Настройте до 3 соответствий эмодзи-роль. Опубликуйте встраиваемое сообщение в канале Discord: пользователи реагируют эмодзи, чтобы получить соответствующую роль, и теряют ее при удалении реакции.'
+        channel_label: Канал (куда будет опубликовано встраиваемое сообщение)
+        select_channel: Выберите канал...
+        slot_title: Роль по реакции %{n}
+        role_label: Роль Discord
+        select_role: Выберите роль...
+        emoji_label: Эмодзи
+        select_emoji: Выберите эмодзи...
+        emoji_hint: Поддерживаются стандартные Unicode-эмодзи и пользовательские серверные эмодзи.
+        server_emojis: Эмодзи сервера
+        standard_emojis: Стандартные эмодзи
+        loading_emojis: Загрузка...
+        save_button: Сохранить роли по реакции
+        deploy_button: Опубликовать в Discord
+        remove_button: Удалить из Discord
+        remove_confirm: Это удалит встраиваемое сообщение с ролями по реакции из Discord. Вы уверены?
+      back_to_dashboard: Вернуться к панели
+    members:
+      title: Члены гильдии
+      subtitle: Просмотреть и управлять всеми участниками гильдии.
+      select_all: Выбрать всех
+      deselect_all: Отменить выделение всех
+      select_role: Выберите роль...
+      update_selected: Обновить выделенные
+      search_placeholder: Поиск пользователя по имени или по Discord'у...
+      invite_user: Пригласить пользователя
+      export_csv: Экспорт CSV
+      kick_selected: Кикнуть выделенных
+      discord_verified: С верификацией Discord
+      discord_not_connected: Не подключено
+      role_none: Ничего
+      owner: Владелец
+      kick: Кик
+      kick_confirm: Вы уверены, что хотите удалить %{username}? Это действие нельзя отменить.
+      kick_final_confirm: 'Последнее подтверждение: Вы абсолютно уверены, что хотите удалить %{username} из гильдии?'
+      bulk_kick_confirm: Вы уверены, что вы хотите выгнать %{count} член(а/ов)? Это действие нельзя отменить.
+      bulk_kick_final: 'Последнее подтверждение: Вы абсолютно уверены, что хотите удалить %{count} член(а/ев) из гильдии?'
+      no_roles_synced: Нет синхронизированных ролей
+      no_users_found: Пользователей не найдено
+      search_load_more: Загрузить больше пользователей
+      js_error_searching_users: Ошибка поиска пользователей
+      js_inviting: Идите сюда...
+      select_at_least_one: Пожалуйста, выберите хотя бы одного участника.
+      select_a_role: Выберите, пожалуйста, роль.
+      select_user_first: Пожалуйста, сначала выберите пользователя.
+      back_to_dashboard: Вернуться к панели
+      tags:
+        manage_title: Управление тегами гильдии
+        name: Название тега
+        color: Цвет тега
+        create: Создать тег
+        filter_label: Сортировка / фильтр по тегу
+        filter_all: Все теги
+        filter_untagged: Участники без тега
+        clear_filter: Сбросить
+    members_gear:
+      title: Сканер снаряжения ИИ для %{guild_name}
+      pending_request_officer_banner: "%{requester} просит вас обновить скриншот снаряжения. Загрузите его ниже, когда будете готовы."
+      filter_by_game: 'Фильтровать по игре:'
+      all_games: Все игры
+      no_games_configured: Игры в этой гильдии не настроены. Пожалуйста добавьте игры в настройках гильдии.
+      gear_status_overview: Обзор состояния оборудования
+      request_missing_gear: Запросить отсутствующее снаряжение (%{count})
+      request_outdated_gear: Запросить устаревшее снаряжение (%{count})
+      request_all_missing_outdated: Запросить все отсутствующие/устаревшие (%{count})
+      total_members: Общее количество членов
+      missing_gear: Отсутствующее снаряжение
+      outdated_gear: Устаревшее оборудование
+      up_to_date: современное
+      pending_gear_requests:
+        one: 1 ожидающий запрос по экипировке
+        other: "%{count} ожидающих запросов по экипировке"
+        few: "%{count} ожидающих запроса по экипировке"
+        many: "%{count} ожидающих запросов по экипировке"
+      view_pending_requests: Просмотр ожидающих запросов
+      filter_all: Всё
+      filter_missing: Отсутствующие
+      filter_outdated: устаревший
+      filter_up_to_date: АКТУАЛЬНОЕ
+      request_updates_from_missing_outdated: Запросить обновления для устаревших и отсутствующих.
+      th_avatar: Аватар
+      th_member: Член
+      th_last_updated: Последнее обновление
+      th_status: Статус
+      th_key_stats: Ключевые статы
+      th_actions: Действия
+      ago: назад
+      never: Никогда
+      view_gear: Смотреть снаряжение
+      view_stats: Показать статы
+      pending_request: Запрос в ожидании
+      request_update: Обновить запрос
+      view_image: Изображение
+      screenshot_unavailable: Этот скриншот статистики больше недоступен. Срок хранения мог истечь или загрузки не было.
+      no_members_with_status: 'Нет членов с статусом: %{status}'
+      no_members_found: Нет участников
+      your_gear_screenshot: Ваши скриншоты оружия и брони
+      last_updated: Обновлено последним
+      select_game: 'Выберите игру:'
+      select_game_prompt: "-- Выберите игру --"
+      choose_file: Выберите файл
+      upload_screenshot: Загрузить Снимок экрана
+      parsed_data_preview: 'Предварительный просмотр обработанных данных:'
+      upload_preview_heading: Предпросмотр извлечённых значений
+      upload_preview_truncated: "… и ещё %{count}"
+      back_to_dashboard: Вернуться к панели
+      gear_details: Детали передачи
+      js_processing: Обработка...
+      js_processing_message: Обработка изображения и извлечение данных о снаряжении... Это может занять некоторое время.
+      js_upload_success: Успех! Изображение обработано, данные о снаряжении извлечены. Перезагрузка страницы...
+      upload_success_notice: Скриншот успешно загружен. Последние характеристики обновлены.
+      js_loading_gear: Загрузка данных о снаряжении...
+      js_no_gear_data: Нет данных о снаряжении
+      js_error_loading_gear: 'Ошибка загрузки данных о гире '
+      js_confirm_bulk_all: Отправить запросы на обновление снаряжения всем участникам, у которых оно отсутствует или устарело?
+      js_confirm_bulk_status: Отправить запросы на обновление снаряжения всем участникам со снаряжением %{status}?
+      js_confirm_request_user: Отправить запрос на обновление статистики для %{name}?
+      stats_hidden: "—"
+    member_stats:
+      back_to_scanner: Назад к ИИ-сканеру характеристик
+      title: 'Статы: %{name}'
+      guild_context: "%{guild_name}"
+      last_updated: Последнее обновление
+      extracted_heading: Извлечённые значения
+      stat_count:
+        one: "%{count} параметр"
+        other: "%{count} параметров"
+        few: "%{count} параметра"
+        many: "%{count} параметров"
+      empty_title: Снимков пока нет
+      empty_body: Участник ещё не загрузил скриншот со статами.
+      partial_title: В последнем снимке нет распознанных статов
+      partial_body: Скриншот сохранён, но пары «название — значение» извлечь не удалось.
+      member_not_found: Участник не найден.
+      unnamed_stat: Стата
+      unparsed_label: Значение
+      remove_stat: Удалить эту характеристику
+      undo_stat: Восстановить эту характеристику
+      edit_stat: Изменить
+      save_stat: Сохранить
+      cancel_edit: Отмена
+      stat_saved: Показатель сохранён.
+      stat_name_label: Название показателя
+      stat_value_label: Значение показателя
+      api_error: Не удалось обновить характеристики. Обновите страницу и попробуйте снова.
+      cannot_view_other_member_stats: В этой гильдии вы можете просматривать только свои характеристики снаряжения.
+      modify_own_gear_only: Вы можете изменять только своё снаряжение.
+      cannot_edit_scanned_stats: Изменять извлечённые значения могут только глава гильдии или роль с правом редактирования отсканированных характеристик. Участники не могут править результаты собственного сканирования.
+    analytics:
+      title: Аналитика для %{guild_name}
+      subtitle: Просмотреть подробные аналитические данные и инсайты для вашей гильдии.
+      back_to_dashboard: Вернуться к панели
+    activity_feed:
+      title: Лента активности для %{guild_name}
+      subtitle: Недавняя активность в этой гильдии. Логи хранятся 3 месяца.
+      back_to_dashboard: Вернуться к панели
+    review_applications:
+      title: Просмотр заявок для %{name}
+      subtitle: Просматривать и управлять оставшимися заявками в вашей гильдии.
+      invited_members: Приглашенные члены
+      invited_by: 'Приглашен пользователем:'
+      invited: 'Приглашен:'
+      discord_verified: С верификацией Discord
+      dismiss: отклонить
+      dismiss_confirm: Из вашей видимости?
+      pending_applications: Ожидающие рассмотрения
+      discord_not_connected: 'Discord: Не подключено'
+      applied: 'Применён:'
+      message_label: 'Сообщение:'
+      accept: Принять
+      accept_confirm: Принять это заявление и добавить участника в гильдию?
+      reject: Отклонить
+      reject_confirm: Отклонить эту заявку?
+      message_applicant: Сообщение соискателю
+      message: Сообщение
+      enter_message_placeholder: Введите ваше сообщение...
+      send: Отправить
+      cancel: Отмена
+      no_pending: Нет ожидающих заявок на данный момент.
+      back_to_dashboard: Вернуться к панели
+    invite_members:
+      title: Пригласить членов в %{name}
+      subtitle: Отправляйте приглашения для вступления в вашу гильдию и проверяйте ожидающие заявки.
+      pending_applications: Ожидающие рассмотрения
+      discord_server_unknown: Неизвестный
+      discord_server_not_available: 'Сервер Discord: Не доступен'
+      applied: 'Применён:'
+      message_label: 'Сообщение:'
+      character_details: 'Детали персонажа:'
+      accept: Принять
+      accept_confirm: Принять это заявление и добавить участника в гильдию?
+      reject: Отклонить
+      reject_confirm: Отклонить эту заявку?
+      message_applicant: Сообщение соискателю
+      message: Сообщение
+      enter_message_placeholder: Введите ваше сообщение...
+      send: Отправить
+      cancel: Отмена
+      back_to_dashboard: Вернуться к панели
+    schedule_events:
+      title: Расписание событий для %{name}
+      subtitle: Создавайте и управляйте мероприятиями в Discord для вашего сервера.
+      create_new_event: Создать новый дискорд-событие
+      create_event: Создать Событие
+      recent_events: Недавние события
+      signups: 'Регистрации:'
+      view: Просмотр
+      delete: Удалить
+      delete_confirm: Вы уверены?
+      bot_not_connected: Бот не подключен
+      discord_server_not_selected: Discord сервер не выбран
+      bot_not_connected_message: Бот GuildSync не подключён к серверу Discord. Пожалуйста, авторизируйте бота.
+      select_server_message: Ваш аккаунт Discord подключен, но вы должны выбрать сервер Discord для подключения бота GuildSync.
+      connect_bot_message: Пожалуйста, подключите бота GuildSync к Discord-серверу до создания событий.
+      authorize_bot: Авторизовать Бот
+      select_discord_server: Выберите сервер Discord
+      connect_bot_to_guild: Подключить бот к Discord-сообществу
+      back_to_dashboard: Вернуться к панели
+    schedule_guild_battle:
+      title: Запланировать гильдейскую битву для %{name}
+      subtitle: Организуйте и запланируйте сражения между гильдиями.
+      management_title: Управление гильдейским сражением
+      management_desc: Вызовывать другие гильдии, реагировать на вызовы и координировать битвы.
+      view_all_battles: Просмотреть все битвы
+      challenge_another_guild: Вызов другой гильдии
+      notifications: Уведомления
+      back_to_dashboard: Вернуться к панели
+    connect_discord:
+      title: Подключить бот к Discord-сообществу
+      subtitle: Выберите сервер Discord для подключения бота GuildSync для управления событиями и уведомлений.
+      connected:
+        title: Discord Подключено
+        connected_to: 'Соединён с:'
+      channel_config:
+        title: Настройка канала
+        subtitle: Выберите, какие Discord-каналы должны получать разные виды контента.
+        events_channel:
+          label: Канал событий
+          placeholder: Выберите канал...
+          hint: Канал, где будут размещаться уведомления о событиях
+        guild_battles_channel:
+          label: Гильдия Битв Канал
+          placeholder: Выберите канал...
+          hint: Канал, где будут размещены уведомления о боях гильдий
+        gear_channel:
+          label: Настройки Канала
+          placeholder: Выберите канал...
+          hint: Канал, на котором будут публиковаться загруженные материалы участников
+        save_button: Сохранить конфигурацию канала
+      select_server:
+        title: Выберите сервер Discord
+        already_connected: Ваш аккаунт Discord подключен. Выберите сервер Discord, на который вы хотите подключить бота GuildSync. Вы должны быть администратором этого сервера.
+        not_connected: Сначала подключите свою учетную запись Discord (один раз на все время). Затем выберите сервер Discord, на который вы хотите подключить бота GuildSync. Вы должны быть администратором сервера.
+        select_button: Выберите сервер Discord
+        connect_button: Подключить аккаунт Discord
+      back_to_dashboard: Вернуться к панели
+      popup_blocked: Вспомогательное окно было блокировано. Пожалуйста, разрешите вспомогательные окна для этого сайта и попробуйте снова.
+      connection_failed: 'Соединение с Discord не удалось: %{error}'
+  guild_archives:
+    alerts:
+      archived_unavailable: Эта гильдия в архиве и недоступна.
+      archived_success: "«%{guild_name}» отправлена в архив. Полное удаление возможно через год."
+      unarchived_success: "«%{guild_name}» восстановлена."
+      unarchive_plan_limit: 'Нельзя восстановить гильдию: достигнут лимит активных гильдий. Сначала архивируйте или удалите другую активную гильдию.'
+      purge_not_ready: Эту гильдию пока нельзя удалить окончательно. Она должна находиться в архиве не менее года.
+      purged_success: "«%{guild_name}» удалена безвозвратно."
+      not_found: Архивная гильдия не найдена.
+      name_confirmation_mismatch: Название гильдии не совпало. Введите точное название.
+    index:
+      title: Архив гильдий
+      subtitle: Архивные гильдии не учитываются в лимите активных. Они автоматически удаляются через год.
+      recovery_note_label: Сведения о восстановлении данных
+      long_recovery_hint: Удалённые записи мы храним не более шести месяцев; после этого они удаляются безвозвратно. Если ваши записи ещё в этом окне и вы хотите восстановление, обратитесь в поддержку.
+      empty: У вас нет архивных гильдий.
+      archived_on: 'В архиве с: %{date}'
+      auto_delete_on: 'Дата автоудаления: %{date}'
+      unarchive_button: Восстановить гильдию
+      permanent_delete_button: Удалить навсегда
+      permanent_delete_confirm: Удалить навсегда %{guild_name}? Это действие нельзя отменить.
+    settings:
+      title: Опасная зона
+      warning: Архивация отключает доступ к гильдии для всех. Данные хранятся год, затем гильдия удаляется навсегда.
+      type_name_hint: 'Введите точное название гильдии для архивации: %{guild_name}'
+      confirmation_label: Подтверждение названия гильдии
+      archive_button: В архив
+      archive_confirm_prompt: Отправить %{guild_name} в архив? Гильдия станет недоступна.
+  polls:
+    index:
+      title: Опросы гильдии
+      subtitle: Просмотреть и участвовать в опросах для %{guild_name}
+      create_poll: Создать опрос
+      created_by: Создано пользователем %{name}
+      deadline: 'Дедлайн:'
+      vote_count: "%{count} голос"
+      vote_count_plural: "%{count} голоса"
+      anonymous: Анонимный
+      open: Открыть
+      closed: Закрытый
+      'yes': Да
+      'no': Нет
+      maybe: Возможно
+      view_vote: Просмотр & Голосование
+      view_results: Просмотреть результаты
+      delete: Удалить
+      delete_confirm: Вы уверены, что хотите удалить этот опрос? Это действие нельзя отменить.
+      no_polls: Опросов пока нет.
+      create_first: Создать первую
+    new:
+      title: Создать новый опрос
+      subtitle: Создать опрос для %{guild_name}
+      poll_title: 'Опрос: Заголовок'
+      poll_title_placeholder: Введите имя опроса
+      description: Описание
+      description_placeholder: Введите описание опроса
+      discord_roles_title: Роли в Discord для упоминания@
+      discord_roles_hint: Выберите одну или несколько ролей на Discord для упоминания при публикации опроса.
+      deadline: Срок сдачи
+      deadline_hint: Опрос будет закрыт в этот день и время.
+      anonymous_voting: Анонимное голосование
+      anonymous_hint: Если включено, личности голосовавших будут скрыты в результатах.
+      create_button: Создать опрос
+    show:
+      back_to_polls: "← Вернуться к опросам"
+      created_by: Создано пользователем %{name}
+      deadline: 'Дедлайн:'
+      description: Описание
+      cast_vote: Проголосуйте
+      'yes': "✅ Да"
+      'no': "❌ Нет"
+      maybe: "\U0001F914 Возможно"
+      change_vote_hint: Вы можете изменить голос в любой момент до наступления дедлайна.
+      results: Результаты
+      votes: голосов
+      no_votes: Голосов пока нет. Станьте первым, кто проголосует!
+      delete_poll: Удалить опрос
+  loot_rolls:
+    index:
+      title: Розыгрыши добычи гильдии
+      subtitle: Просмотреть и вступить в лутовые рулетки для %{guild_name}
+      create_loot_roll: Создать жетон прокрутки
+      created_by: Создано пользователем %{name}
+      range: 'Диапазон:'
+      roll_count: "%{count} ролл"
+      roll_count_plural: "%{count} роллов"
+      deadline: 'Дедлайн:'
+      open: Открыть
+      closed: Закрытый
+      highest_roll: 'Самый высокий бросок:'
+      winner: 'Победитель:'
+      view_roll: Просмотр результата
+      view_results: Просмотреть результаты
+      delete: Удалить
+      delete_confirm: Вы уверены, что хотите удалить этот лут-ролл? Это действие нельзя отменить.
+      no_loot_rolls: Нет лут-роллов пока
+      create_first: Создать первый лут-ролл
+    show:
+      back_to_loot_rolls: "← Вернуться к механизму роллирования лута"
+      created_by: Создано пользователем %{name}
+      range: 'Диапазон: %{min} - %{max}'
+      roll_count:
+        one: бросок
+        other: броска
+        few: броска
+        many: бросков
+      deadline: Срок сдачи
+      open: Открыть
+      closed: Закрытый
+      description: Описание
+      time_remaining: Оставшееся время
+      calculating: Вычисление...
+      expired: Истекло
+      tie_detected: Обнаружена ничья!
+      are_tied_at: 'имеют одинаковый результат:'
+      tied_reroll_hint: При ничьей участникам нужно перебросить кубик через кнопку в Discord.
+      winner: Победитель!
+      with_roll_of: с результатом броска
+      leaderboard: Таблица лидеров
+      tied: НИЧЬЯ
+      force_reroll: Обязать перекатиться
+      force_reroll_confirm: Это сделает недействительным бросок %{name} и даст возможность перебросить. Продолжить?
+      no_rolls_yet: Нет бросков ещё. Используйте кнопку Discord для броска!
+      close_loot_roll: Закрыть Ролл добычи
+      close_confirm: Вы уверены, что вы хотите закрыть этот лут-ролл заранее? Победитель будет определен.
+      delete_loot_roll: Удалить Лут Ролл
+      delete_confirm: Вы уверены, что хотите удалить этот лут-ролл? Это действие нельзя отменить.
+    new:
+      title: Создать новый лут Рол
+      subtitle: Создать жеребьевку за лут для %{guild_name}
+      loot_title: Название
+      loot_title_placeholder: Введите название розыгрыша добычи
+      description: Описание (необязательно)
+      description_placeholder: Введите описание (необязательно)
+      min_roll: Минимальный бросок
+      max_roll: Максимальная попытка
+      allowed_roles_title: Допустимые роли (Необязательно)
+      allowed_roles_hint: Выберите, какие роли Discord могут участвовать. Оставьте пустым для разрешения всем.
+      deadline: Срок (опциональный)
+      deadline_hint: Розыгрыш автоматически закроется в указанное время. Оставьте пустым, если срок не нужен.
+      auto_post_title: Автопостинг в Discord
+      auto_post_hint: Этот лут-ролл будет автоматически опубликован в вашем настрошенном канале лут-роллов.
+      create_button: Создать
+  guild_applications:
+    index:
+      title: Мои приложения
+      subtitle: Просмотреть и отслеживать ваши гильдийские заявки.
+      apply_to_guild: Подать в Гильдию
+      guild_invitations: Приглашения в гильдию
+      invited_by: 'Приглашен пользователем:'
+      invited: 'Приглашен:'
+      pending: Ожидание
+      accept_invitation: Принять Приглашение
+      decline: Отклонить
+      applied: 'Применён:'
+      your_message: 'Ваше сообщение:'
+      view_guild: Просмотр Гильдии
+      no_applications: Нет заявок пока что. Подайте заявку в гильдию, чтобы начать!
+    new:
+      title: Подать в Гильдию
+      subtitle: Подайте заявку на вступление в гильдию.
+      select_guild: Выберите Гильдию
+      search_placeholder: Поиск гильдии по названию...
+      start_typing: Начните печатать для поиска гильдий...
+      discord_username: Никнейм Discord
+      discord_placeholder: ВашDiscord#1234
+      message_label: Сообщение (Необязательно)
+      message_placeholder: Расскажите гильдии, почему вы хотите присоединиться...
+      character_details_label: Детали персонажа (необязательный)
+      character_details_placeholder: Укажите характеристики своего персонажа, какую игру вы играете, имя персонажа, уровень, класс, оружие и броня, и т.д...
+      character_details_hint: Поделитесь информацией о вашем персонаже, его статистике, игре и любой другой релевантной информации.
+      submit: Подать заявку
+      cancel: Отмена
+      no_guilds_found: Гильдии не найдены
+      load_more_guilds: Загрузить больше гильдий
+      owner_unknown: Неизвестный
+      error_searching: Ошибка поиска гильдий
+    create:
+      guild_not_available: Эта гильдия не в списке, архивирована или не принимает заявки.
+  guild_battles:
+    index:
+      title: Гильдийские сражения для %{name}
+      subtitle: Управляйте межгильдейскими боями и ответами на вызовы.
+      challenge_another_guild: Вызов другой гильдии
+      your_guild_battles: Ваши Гильдийские Битвы
+      you_challenged: 'Вы бросили вызов: %{name}'
+      challenged_you: "%{name} бросил(а) вам вызов"
+      scheduled: 'Запланировано:'
+      location: 'Локация:'
+      max_participants: 'Максимум участников:'
+      view_details: Просмотреть детали
+      delete: Удалить
+      delete_confirm: Вы уверены, что хотите удалить эту гильдейскую битву? Это действие нельзя отменить.
+      empty: Гильдийных битв еще нет. Попробуйте вызвать другую гильдию, чтобы начать!
+    new:
+      title: Вызов другой гильдии
+      subtitle: Выберите гильдию для вызова и укажите детали боя.
+      battle_details: Детали боя
+      select_guild_to_challenge: Выберите гильдию для вызова на бой
+      search_placeholder: Поиск гильдии по названию, описанию или владельцу...
+      search_hint: Начните печатать для поиска гильдий...
+      scheduled_date_time: Запланированная дата и время
+      location: Расположение
+      location_placeholder: Введите локацию битвы
+      max_participants: Максимальное количество участников
+      optional: Необязательно
+      notes: Примечания
+      notes_placeholder: Дополнительные детали сражения или требования...
+      role_categories: Ролевые категории
+      role_categories_hint: Выберите роли, на которые пользователи смогут записаться. Все выбранные роли будут доступны для записи в Discord.
+      role_dps: ДПС
+      role_tank: Танк
+      role_healer: Хил
+      role_ranged: Дальний бой
+      send_challenge: Отправить вызов
+      cancel: Отмена
+      owner_label: Владелец
+      search_error: Ошибка поиска гильдий
+    show:
+      title: Детали Гильдийского Боя
+      subtitle: Гильдийская битва. Вызов.
+      battle_details: Детали боя
+      status: Статус
+      scheduled: Запланировано
+      location: Место проведения
+      max_participants: Максимальное количество участников
+      notes: Примечания
+      respond_to_challenge: Ответить на вызов
+      scheduled_date_time: Запланированная дата и время
+      accept: Принять
+      request_changes: Запросить изменения
+      decline: Отклонить
+      communication: Связь
+      communication_visit_html: Для отправки сообщений или просмотра переписки, пожалуйста посетите %{link}.
+      notifications_page: Страница уведомлений
+      communication_discord: Вы также можете отправлять сообщения напрямую через бот GuildSync на Discord.
+      cancellation_requested: Отзыв запрос
+      cancellation_by_challenger: Заявивший вызов запросил отмену данного боя.
+      cancellation_by_defender: Защитник подал запрос на отмену этого боя.
+      cancellation_waiting: Вы подали запрос на отмену этой битвы. Ждем ответа от другого владельца.
+      accept_cancellation: Принять отмену
+      accept_cancellation_confirm: Принятие отменит и удалит эту битву. Вы уверены?
+      decline_cancellation: Отмена отказа
+      back_to_guild_battles: Назад в Гильдийские битвы
+      request_cancellation: Запрос отмены
+      request_cancellation_confirm: Это запросит отмену. Другой владелец должен согласиться. Продолжить?
+      delete_battle: Удалить Бой
+      delete_battle_confirm: Вы уверены, что хотите навсегда удалить эту гильдейскую битву? Это действие нельзя отменить; будут удалены все связанные события в Discord. Другой владелец получит уведомление.
+    notifications:
+      title: Уведомления о войнах гильдий
+      subtitle: Управлять вызовами, сообщениями и баттл-связью.
+      back_to_battle_home: "← Назад к Гильдеевой битве"
+      pending_incoming: Ожидаемые входящие вызовы
+      pending_outgoing: Ожидаемые выйды на бой
+      accepted_battles: Принятые Битвы
+      declined_battles: Отклоненные битвы
+      reschedule_requests: Запросы на перенос
+      cancelled_battles: Отменённые сражения
+      empty: Уведомлений о бандитских сражениях пока нет. Побудьте к следующему вызову!
+    battle_notification_card:
+      you_challenged: 'Вы бросили вызов: %{name}'
+      challenged_you: "%{name} бросил(а) вам вызов"
+      scheduled: 'Запланировано:'
+      location: 'Локация:'
+      max_participants: 'Максимум участников:'
+      notes: 'Примечания:'
+      messages: Сообщения
+      no_messages: Нет сообщений ещё. Начните диалог!
+      message_placeholder: Напишите сообщение...
+      send: Отправить
+      view_details: Просмотреть детали
+      accept: Принять
+      decline: Отклонить
+  guild_documents:
+    index:
+      title: Документы гильдии
+      subtitle: Управлять и делиться документами для %{guild_name}
+      new_folder: Новая папка
+      new_document: Новый документ
+      create_document: Создать документ
+      folder_name: Имя папки
+      folder_name_placeholder: Название папки
+      color: Цвет
+      create_folder: Создать папку
+      documents_count: документы
+      edit: Редактировать
+      delete_folder_confirm: Вы уверены? Это переместит все документы в этой папке в 'Нет папки'.
+      delete: Удалить
+      by_author: Автор %{author}
+      visibility_public: публичный
+      visibility_private: Сокрытый
+      visibility_unlisted: Скрыто
+      share: Поделиться
+      no_documents_in_folder: В этой папке нет документов
+      no_folder: Нет папки
+      no_documents_yet: Нет документов ещё
+      create_first_hint: Создайте ваше первое документа или папка чтобы начать.
+      edit_folder_title: Редактировать папку
+      cancel: Отмена
+      update_folder: Обновить папку
+    new:
+      title: Новый документ
+      subtitle: Создать новый документ для %{guild_name}
+      fix_errors: 'Пожалуйста, исправьте указанные ниже ошибки:'
+      document_title_placeholder: Название документа
+      visibility_private: Приватный - Только участники гильдии
+      visibility_public: Публичный - Кто угодно с ссылкой
+      visibility_unlisted: Не индексируемый - Не индексируется, но доступно по ссылке
+      folder_optional: Папка (необязательно)
+      no_folder: Нет папки
+      content: Содержание
+      cancel: Отмена
+      create_document: Создать документ
+    toolbar:
+      image: Загрузить изображение
+    edit:
+      title: Редактировать документ
+      subtitle: Редактировать документ для %{guild_name}
+      fix_errors: 'Пожалуйста, исправьте указанные ниже ошибки:'
+      document_title_placeholder: Название документа
+      visibility_private: Приватный - Только участники гильдии
+      visibility_public: Публичный - Кто угодно с ссылкой
+      visibility_unlisted: Не индексируемый - Не индексируется, но доступно по ссылке
+      folder_optional: Папка (необязательно)
+      no_folder: Нет папки
+      content: Содержание
+      cancel: Отмена
+      update_document: Обновление документа
+  guild_warnings:
+    title: Центр предупреждений гильдии
+    subtitle: Отслеживайте предупреждения участникам и ведите списки статусов.
+    send_title: Отправить предупреждение
+    send_description: Отправляет личное сообщение в Discord через бота GuildSync, если у участника привязан Discord.
+    member_label: Участник гильдии
+    select_member: Выбрать участника
+    reason_label: Причина предупреждения
+    send_button: Отправить предупреждение
+    warning_count: 'Предупреждений: %{count}/%{limit}'
+    empty_column: В этом списке нет участников.
+    save_lists_button: Сохранить списки
+    back_to_guild: Назад к панели гильдии
+    columns:
+      no_warnings: Без предупреждений
+      warned: Список предупреждённых
+      banned: Список заблокированных
+    alerts:
+      access_denied: У вас нет прав управлять предупреждениями в этой гильдии.
+      member_not_found: Участник гильдии не найден.
+      protected_member: Нельзя выдавать предупреждения или менять статус владельцу гильдии или менеджерам предупреждений.
+      reason_required: Нужна причина предупреждения.
+      warning_sent: Предупреждение отправлено пользователю %{user}.
+      warning_failed: 'Не удалось отправить предупреждение: %{error}'
+      lists_updated: Списки предупреждений обновлены.
+      list_update_failed: 'Не удалось обновить списки предупреждений: %{error}'
+    discord:
+      warning_dm: |-
+        Вы получили предупреждение в **%{guild_name}**.
+        Причина: %{reason}
+        Предупреждений: %{warning_count}/%{warning_limit}
+    my_status:
+      title: Ваш статус предупреждений
+      subtitle: Официальные предупреждения, записанные для вас в этой гильдии.
+      access_denied: Вы должны быть участником этой гильдии, чтобы видеть эту страницу.
+      none_title: Нет предупреждений
+      none_body: У вас нет активной записи о предупреждениях в этой гильдии.
+      state_label: Статус
+      count_label: Число предупреждений
+      last_reason: Последняя причина
+      last_at: Последнее предупреждение
+      discord_note: Если ваш Discord привязан в GuildSync, вы также должны получить личное сообщение от бота при новом предупреждении.

@@ -1,0 +1,3 @@
+<%= turbo_stream.update "admin_ocr_user_show_flash" do %>
+  <%= render "admin/ocr_requests/ocr_flash_banner", message: @admin_ocr_alert, variant: :alert %>
+<% end %>

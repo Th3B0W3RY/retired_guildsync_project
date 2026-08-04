@@ -1,0 +1,406 @@
+es:
+  home:
+    landing:
+      title: Bienvenidos a GuildSync
+      subtitle: La plataforma todo-en-un-uno para la gestión de tus comunidades de juego, eventos y miembros.
+      explore_pricing: Ver precios
+      hero_kicker: Pensado para líderes de gremio, oficiales y comunidades activas
+      problem_title: Del caos de las hojas de cálculo a la claridad operativa
+      problem_subtitle: Unifica eventos, miembros, solicitudes y flujos de botín en un solo lugar para que tus oficiales dediquen menos tiempo al admin y más al liderazgo.
+      outcome_1_title: Operaciones de botín justas
+      outcome_1_desc: Reglas coherentes, historial de participación visible y menos conflictos.
+      outcome_2_title: Coordina mejor los eventos
+      outcome_2_desc: Programa eventos, obtén recuentos de inscripción en vivo, sigue llegadas tarde y revisa cobertura de clases/roles en tiempo real.
+      outcome_3_title: Reduce la carga de los oficiales
+      outcome_3_desc: Controles basados en roles y registros de auditoría mantienen los flujos predecibles.
+      trust:
+        no_card: No se requiere tarjeta de crédito
+        setup: Configuración rápida para equipos de gremio
+        security: Permisos por rol + registros de actividad completos
+      preview_title: Vista previa del producto
+      preview:
+        events_title: Eventos
+        events_desc: Crea eventos rápido, sigue asistencia y tendencias de participación.
+        members_title: Miembros
+        members_desc: Gestiona roles, etiquetas, solicitudes y permisos a nivel de gremio desde un solo centro.
+        loot_title: Botín + encuestas
+        loot_desc: Realiza tiradas de botín y encuestas estructuradas con registros transparentes.
+        logs_title: Registros de actividad
+        logs_desc: Registra acciones de liderazgo para rendición de cuentas y contexto histórico.
+      compare_title: GuildSync frente a la competencia
+      compare_old_title: Hoja de cálculo + solo Discord
+      compare_old_1: Encontrar la hoja correcta (o empezar una nueva)
+      compare_old_2: Actualizar varias pestañas y hojas a mano
+      compare_old_3: Pedir a los oficiales que actualicen y revisen los cambios
+      compare_new_title: Centro de mando GuildSync
+      compare_new_1: Los oficiales con sesión iniciada acceden rápido a documentos, flujos de trabajo y administración estructurada
+      compare_new_2: Centraliza datos de miembros, asistencia y gestión de permisos
+      compare_new_3: Historial de hermandad, registro de actividad y flujos de notificaciones
+      footer_copyright: "© %{year} GuildSync. Todos los derechos reservados."
+      cta:
+        title: "¿Listo para empezar?"
+        description: Únete a miles de comunidades de juegos que ya están utilizando GuildSync.
+        button: Iniciar Prueba Gratis
+        button_hero: Empieza Gratis
+      feature_spotlight:
+        title: Lo que GuildSync realmente te ayuda a gestionar
+        subtitle: 'Diseñado para operaciones reales de gremio: desde reclutamiento y documentos hasta coordinación de alianzas y moderación.'
+        documents_title: Documentos de gremio
+        documents_desc: Comparte SOPs, builds y guías con enlaces públicos o acceso interno.
+        activity_title: Feed de actividad + registros
+        activity_desc: Sigue acciones de liderazgo, cambios de miembros e historial operativo en una sola línea de tiempo.
+        alliance_title: Sistema de alianzas
+        alliance_desc: Coordina eventos, encuestas y tiradas de botín de alianza entre gremios asociados.
+        recruit_title: Reclutamiento + solicitudes
+        recruit_desc: Ejecuta un proceso de solicitud estructurado con notas, flujos de aceptar/rechazar y seguimiento.
+        ocr_title: Escaneo con IA de capturas de equipo
+        ocr_desc: Sube capturas, extrae datos de equipamiento rápidamente y mantén actualizado el estado de equipo de miembros.
+        roles_title: Roles personalizados + etiquetas de color
+        roles_desc: Configura permisos granulares y asigna etiquetas de color predefinidas para visibilidad rápida del roster.
+        warnings_title: Sistema de advertencias
+        warnings_desc: Mantén listas de sin advertencias, advertidos y bloqueados para flujos de moderación.
+        messaging_title: Centro de mensajes
+        messaging_desc: Ayuda a GMs y oficiales a comunicarse con miembros directamente desde GuildSync.
+        analytics_title: Clasificación + participación
+        analytics_desc: Destaca a los miembros más activos por asistencia y tendencias de participación para apoyar decisiones de liderazgo.
+      features:
+        guild_management:
+          title: Gestión de Gremios
+          description: Organiza y gestiona múltiples gremios con facilidad. Rastrea miembros, roles y permisos en un solo lugar.
+        event_planning:
+          title: Planificación de Eventos
+          description: Programar y gestionar eventos con seguimiento de RSVP, recordatorios y gestión de participantes.
+        member_analytics:
+          title: Análisis de Miembros
+          description: Obtenga Insights Detallados Sobre La Actividad De Sus Miembros Y Analice Cómo Se Desarrolla Su Comunidad.
+        gear_checks:
+          title: Revisar el Equipo
+          description: Rastrea y verifica el equipo de los miembros y los requisitos del material para eventos y actividades.
+        gear_records:
+          title: Registro de Equipo
+          description: Mantenga registros detallados de la equipación del miembro, las actualizaciones y el historial de equipos.
+        member_tracking:
+          title: Seguimiento de miembros
+          description: Mantenga registros detallados de la actividad, participación y compromiso de los miembros en todas las actividades de la hermandad.
+        role_management:
+          title: Gestión de Roles
+          description: Asignar y administrar roles con permisos personalizados. Controlar el acceso y las responsabilidades de manera sencilla.
+        communication_hub:
+          title: Centro de Comunicación
+          description: Herramientas de comunicación centralizada para anuncios, discusiones y coordinación de miembros.
+        activity_logs:
+          title: Registro de actividades
+          description: Tracking detallado de actividades y registro para todos los eventos de la hermandad, las acciones de los miembros y los cambios del sistema.
+      why_title: "¿Por qué elegir GuildSync?"
+      features_cta_hint: Haz clic en cada tarjeta para ver qué hacen realmente las funciones.
+      features_section_subtitle: 'Abre cualquier tarjeta para ver el detalle: ideal para quienes comparan herramientas de gremio.'
+      feedback:
+        section_title: Comentarios de usuarios
+        carousel_role: carrusel
+        slide_role: diapositiva
+        keyboard_hint: Usa las flechas izquierda y derecha para moverte entre los testimonios.
+        announce_progress: Opiniones de usuarios %{current} de %{total}
+        previous: Opinión anterior
+        next: Opinión siguiente
+        pagination: Diapositivas de opiniones
+        go_to_slide: Ir a la opinión %{index}
+      compare:
+        feature: Característica
+        competitor_1: Guild Manager
+        competitor_2: GuildSpire
+        competitor_3: Soluciones típicas de gestión de gremios
+        features:
+          rapid_user_feedback: Desarrollo rápido basado en feedback de usuarios
+          unlimited_guilds: Gremios ilimitados
+          starter_basic_plan_value: Plan Basic — funciones esenciales sin empezar solo en premium
+          multi_game_dashboard: Panel multi-juego para gremios
+          events_scheduling: Eventos, RSVPs y planificación
+          loot_rolls_distribution: Tiradas de botín y reparto justo
+          recruitment_applications: Reclutamiento y solicitudes
+          discord_integration: Bot e integración con Discord
+          member_analytics: Análisis e información de miembros
+          audit_history: Historial de auditoría y actividad a largo plazo
+          guild_documents_storage: Documentos del gremio y almacenamiento
+          polls_community_votes: Encuestas y votos de la comunidad
+          public_roadmap_voting: Hoja de ruta pública y votación de funciones
+          api_access: Acceso API
+          export_data_backup: Exportación y copia de seguridad
+          advanced_analytics: Análisis avanzado
+          custom_automation: Automación Personalizada
+          realtime_tracking: Seguimiento en tiempo real
+          api_integration: Integración de API
+          mobile_apps: Aplicaciones móviles
+          priority_support: Soporte de Prioridad
+          custom_branding: Personalización de la Marca
+          member_onboarding: Incorporación de miembros
+          event_management: Gestión de Eventos
+          role_management: Gestión de Roles
+          export_backup: Exportar & Respaldar
+          custom_role_system: Sistema de roles personalizado
+      features_grid:
+        member_management:
+          title: Gestión de Miembros
+          desc: Rastrear y organizar a tus miembros del gremio de manera eficiente.
+        analytics_insights:
+          title: Análisis & Conocimientos
+          desc: Analítica detallada sobre la actividad y el crecimiento de los miembros
+        automation_tools:
+          title: Herramientas de Automatización
+          desc: Automatizar tareas rutinarias y flujos de trabajo
+        advanced_tracking:
+          title: Seguimiento avanzado de miembros
+          desc: Monitoreo en tiempo real de la actividad del miembro
+        multi_guild:
+          title: Gestión de múltiples gremios
+          desc: Gestionar gremios ilimitados desde un solo panel
+        custom_automation:
+          title: Automación Personalizada
+          desc: Crear flujos de trabajo y desencadenantes personalizados
+        analytics_dashboard:
+          title: Panel de Analytics
+          desc: Detalladas visiones e informes
+        role_management:
+          title: Gestión de Roles
+          desc: Sistema avanzado de asignación de roles
+        member_onboarding:
+          title: Incorporación de miembros
+          desc: Flujo de bienvenida y configuración automatizado
+        event_management:
+          title: Gestión de Eventos
+          desc: Programar y realizar un seguimiento de los eventos de la hermandad
+        custom_notifications:
+          title: Notificaciones personalizadas
+          desc: Sistema de alertas personalizado
+        moderation_tools:
+          title: Herramientas de Moderación
+          desc: Características avanzadas de moderación
+        api_integration:
+          title: Integración de API
+          desc: Acceso total de la API para los desarrolladores
+        export_backup:
+          title: Exportar & Respaldar
+          desc: Exportación de datos y copias de seguridad automáticas
+        priority_support:
+          title: Soporte de Prioridad
+          desc: 24/7 soporte especializado disponible las 24 horas del día, los 7 días de la semana
+        security_features:
+          title: Características de Seguridad
+          desc: Seguridad de nivel empresarial
+        custom_branding:
+          title: Personalización de la Marca
+          desc: Opciones de etiquetado blanco disponibles
+        mobile_app:
+          title: Aplicación móvil
+          desc: iOS y aplicaciones de Android incluidas
+        unlimited_storage:
+          title: Almacenamiento ilimitado
+          desc: Sin límites en el almacenamiento de datos
+        custom_role_system:
+          title: Sistema de roles personalizado
+          desc: Roles y permisos conscientes de Discord adaptados a la estructura de tu hermandad
+      footer:
+        tagline: La plataforma definitiva para la gestión de comunidades en Discord.
+        product: Producto
+        features: Características
+        pricing_link: Precios
+        roadmap_link: Roadmap
+        support: Soporte
+        documentation: Documentación
+        contact: Contacto
+        disaster_recovery: Recuperación ante desastres y de datos
+        status: Estado
+        legal: Legal
+        privacy: Privacidad
+        terms: Términos
+        security_link: Seguridad
+    dashboard:
+      title: Panel de control
+    index:
+      title: Bienvenidos a GuildSync
+      subtitle: Tu plataforma de gestión de gremios
+      signed_in_as: 'Estás autenticado como:'
+      discord_label: Discord
+      quick_links: Enlaces rápidos
+      api_documentation: Documentación de la API
+      please_sign_in_html: Por favor %{sign_in_link} para continuar.
+      sign_in: iniciar sesión
+  homepage_features:
+    back_to_home: Volver a todas las funciones
+    empty_detail: Pronto habrá más información sobre esta función aquí.
+  sidebar:
+    navigation: "Navegación"
+    universal_actions: "Acciones universales"
+    universal_menu: "Menú universal"
+    connected_as: "Conectado como %{username}"
+    connected_as_heading: "Conectado como:"
+    connected_as_aria: "Conectado como %{username}"
+    discord_not_connected_heading: "Discord no conectado"
+    discord_not_connected_hint: "Conecta tu cuenta de Discord en Ajustes."
+    discord_username_fallback: "Cuenta vinculada"
+    apply_to_guild: "Aplicar a la Guilda"
+    global_dashboard: "Panel global"
+    view_guilds: "Ver Gremios"
+    create_guild: "Crear Gremio"
+    my_applications: "Mis aplicaciones"
+    archived_guilds: "Gremios archivados"
+    feature_requests: "Solicitudes de Funciones"
+    alliances_hub: "Alianzas"
+    my_guilds_owner: "Mis Gremios (Propietario)"
+    my_guilds_member: "Mis Gremios (Miembro)"
+    contact_support: "Contactar con Soporte"
+    guild_menu:
+      dashboard: Panel de control
+      message_center: Centro de mensajes
+      members: Miembros
+      review_applications: Revisar Solicitudes
+      guild_documents: Documentos de Guilda
+      invite_members: Invitar Miembros
+      guild_polls: Encuestas del Gremio
+      guild_loot_rolls: Gremio Rollo de Botín
+      schedule_events: Programar Eventos
+      schedule_guild_battle: Programar Batalla del Gremio
+      members_gear: Escáner de estadísticas IA
+      file_storage: Almacenamiento de archivo
+      guild_analytics: Análisis del gremio
+      leaderboard: Clasificación
+      my_warnings: Mis advertencias
+      settings: Configuración
+      warnings: Advertencias
+    discord:
+      connected: "%{server_name}"
+      bot_not_connected: No Conectado
+      connect_bot: Conectar el bot con el servidor de Discord
+      discord_server: Discord Servidor
+    alliance_menu:
+      pending_alliance_invites: Invitaciones de alianza pendientes
+      outgoing_join_request: Estado de la solicitud
+      request_join_alliance: Solicitar unirse a una alianza
+      join_requests: Solicitudes de ingreso
+      create: Crear una alianza
+      events: Eventos de alianza
+      polls: Encuestas de alianza
+      rolls: Tiradas de alianza
+      chat: Chat de alianza
+      gm_chat: Chat de GM
+      settings: Configuración
+  dashboard:
+    title: Panel de control
+    access_denied: Acceso Denegado
+    sign_in_required: Debe iniciarse en sesión para acceder al dashboard.
+    your_guilds: Tus Gremios
+    no_guilds: No perteneces a ningún gremio todavía.
+    open: Abrir
+    quick_actions: Acciones rápidas
+    view_guilds: Ver gremios
+    my_applications: Mis solicitudes
+    apply_to_guild: Solicitar unirse a un gremio
+    archived_guilds: Gremios archivados
+    alliances: Alianzas
+    create_guild: Crear Gremio
+    invite_members: Invitar Miembros
+    recent_activity: Actividad reciente
+    activity_coming_soon: El feed de actividad está por venir…
+    activity_empty: Aún no hay actividad reciente. Visita gremios y páginas para verla aquí.
+    viewed_guild: Gremio visto %{name}
+    viewed_members: Miembros – %{name}
+    viewed_invite_members: Invitar miembros – %{name}
+    viewed_settings: Configuración – %{name}
+    viewed_applications: Solicitudes – %{name}
+    viewed_schedule: Programar eventos – %{name}
+    viewed_members_gear: Escáner de estadísticas IA – %{name}
+    join_discord_title: Únete a nuestro Discord
+    join_discord_here: 'Únete aquí a nuestra comunidad de Discord: chatea con el equipo y con otros dueños de gremios.'
+    discord_iframe_title: Discord de %{app_name}
+    discord_community_card_title: Discord de la comunidad GuildSync
+    members_online_heading: Miembros en línea
+    join_discord_cta_button: Unirse a Discord
+    discord_promo_online_example: 1 miembro en línea
+    pending_items: Mis elementos pendientes
+    pending_applications: Solicitudes pendientes
+    warning_queue: Cola de advertencias
+    member_events_title: Próximos eventos
+    member_events_subtitle: En los gremios donde eres miembro
+    member_events_count_label: Total próximos
+    member_events_empty: No hay próximos eventos en tus gremios.
+    open_polls_title: Encuestas abiertas
+    open_polls_subtitle: Encuestas de tus gremios que siguen abiertas para votar
+    open_polls_empty: No hay encuestas abiertas en tus gremios.
+    open_loot_title: Tiradas de botín abiertas
+    open_loot_subtitle: Tiradas de botín de tus gremios que siguen abiertas
+    open_loot_empty: No hay tiradas de botín abiertas en tus gremios.
+    pending_invites: Invitaciones pendientes
+  user_activity:
+    view_activity: "Ver actividad"
+    history_title: "Historial de actividad"
+    history_subtitle: "Tus páginas y acciones recientes en GuildSync."
+    back_to_dashboard: "Volver al panel"
+    signed_in_discord: "Sesión iniciada con Discord"
+    signed_in_google: "Sesión iniciada con Gmail"
+    signed_in_microsoft: "Sesión iniciada con Outlook"
+  layouts:
+    application:
+      nav:
+        upgrade_plan: Actualiza tu Plan
+        pricing: Precios
+        roadmap: Roadmap
+        my_billing: Mi Facturación
+        welcome_user: "¡Bienvenido(a), %{name}!"
+        profile_picture: Foto de perfil
+        sign_in: Iniciar Sesión
+        admin_session_label: Admin
+        back_to_member_dashboard: Volver a mi panel
+      dropdown:
+        account_settings: Configuración de la cuenta
+        profile_settings: Configuración del perfil
+        release_notes: Notas de lanzamiento
+        release_notes_instructions: Cree una cuenta > haga clic en Recursos > Artículos > Notas de lanzamiento
+        roadmap: Hoja de ruta y solicitudes de funciones
+        version: Versión %{version}
+      search:
+        placeholder: Buscar...
+        searching: Buscando...
+        no_results: No se encontraron resultados
+      beta_banner:
+        message: 'En prueba beta — únete a nuestra comunidad en Discord:'
+        join_discord: Unirse a Discord
+  activity_feed:
+    title: Feed de actividad para %{guild_name}
+    subtitle: Actividad reciente en este gremio. Los registros se conservan durante 3 meses.
+    back_to_dashboard: Volver al panel
+    search_placeholder: Buscar acciones...
+    filter_action_type: Tipo de acción
+    filter_member: Miembro
+    all_actions: Todas las acciones
+    all_members: Todos los miembros
+    no_activity: Aún no hay actividad.
+    search_button: Buscar
+    access_denied: No tienes permiso para ver el feed de actividad.
+    when: Cuándo
+    who: Quién
+    action: Acción
+    details: Detalles
+    pagination_shown_total: "%{shown} de %{total} entradas"
+    pagination_previous: "← Anterior"
+    pagination_next: Siguiente →
+    export_csv: Exportar CSV
+    export_csv_hint: Descargar todas las filas que coincidan con los filtros actuales (marcas de tiempo UTC).
+  alliance_activity_feed:
+    title: Actividad de la alianza — %{alliance_name}
+    subtitle: Acciones de toda la alianza desde los gremios miembros. Los registros se conservan durante 60 días.
+    back: Volver a la alianza
+    search_placeholder: Buscar...
+    filter_action_type: Tipo de acción
+    all_actions: Todas las acciones
+    search_button: Buscar
+    when: Cuándo
+    guildsync_user: Usuario de GuildSync
+    action: Acción
+    details: Detalles
+    no_activity: Aún no hay actividad de alianza.
+    pagination_shown_total: "%{shown} de %{total} entradas"
+    pagination_previous: "← Anterior"
+    pagination_next: Siguiente →
+    export_csv: Exportar CSV (UTC)
+    export_local_csv: Exportar CSV (hora local)
+    export_csv_hint: CSV generado por el servidor con marcas de tiempo UTC.
+    access_denied: Solo los propietarios de gremio de esta alianza pueden ver el feed de actividad de la alianza.

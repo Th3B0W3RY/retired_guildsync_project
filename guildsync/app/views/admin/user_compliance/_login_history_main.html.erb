@@ -1,0 +1,32 @@
+<div class="bg-theme-card border border-theme-primary rounded-lg p-6 shadow-lg">
+  <div class="overflow-x-auto">
+    <table class="w-full">
+      <thead>
+        <tr class="border-b border-theme-primary">
+          <th class="text-left p-2"><%= t("admin.user_compliance.login_history.col_login_at") %></th>
+          <th class="text-left p-2"><%= t("admin.user_compliance.login_history.col_logout_at") %></th>
+          <th class="text-left p-2"><%= t("admin.user_compliance.login_history.col_ip") %></th>
+          <th class="text-left p-2"><%= t("admin.user_compliance.login_history.col_user_agent") %></th>
+          <th class="text-left p-2"><%= t("admin.user_compliance.login_history.col_status") %></th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @login_histories.each do |history| %>
+          <tr class="border-b border-theme-primary">
+            <td class="p-2"><%= l(history.login_at, format: :long) %></td>
+            <td class="p-2"><%= history.logout_at.present? ? l(history.logout_at, format: :long) : t("admin.user_compliance.login_history.logout_pending") %></td>
+            <td class="p-2"><%= history.ip_address %></td>
+            <td class="p-2"><%= truncate(history.user_agent, length: 50) %></td>
+            <td class="p-2">
+              <% if history.active? %>
+                <span class="text-green-400"><%= t("admin.user_compliance.login_history.row_active") %></span>
+              <% else %>
+                <span class="text-theme-secondary"><%= t("admin.user_compliance.login_history.row_closed") %></span>
+              <% end %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>

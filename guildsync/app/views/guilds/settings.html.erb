@@ -1,0 +1,901 @@
+<div class="max-w-4xl mx-auto p-6"
+     data-controller="submit-scroll-restore"
+     data-submit-scroll-restore-key-value="gs:guild-settings:<%= @guild.id %>">
+  <div class="mb-6">
+    <h1 class="text-3xl font-bold text-theme-primary mb-2"><%= t('guilds.settings.title') %> - <%= @guild.name %></h1>
+    <p class="text-theme-secondary"><%= t('guilds.settings.subtitle') %></p>
+  </div>
+
+  <% @discord_setting = @guild.guild_discord_setting %>
+  <% @channels ||= [] %>
+  
+  <!-- Guild Logo Upload -->
+  <% if can_manage_guild_settings?(@guild) %>
+  <div class="bg-theme-secondary rounded-lg border border-theme-primary p-6 mb-6">
+    <h2 class="text-xl font-semibold text-theme-primary mb-4"><%= t('guilds.settings.logo.title') %></h2>
+    <p class="text-theme-secondary mb-6"><%= t('guilds.settings.logo.description') %></p>
+
+    <%= form_with model: @guild, url: update_guild_path(@guild), method: :patch, local: true, multipart: true, class: "space-y-6", id: "logo-form" do |f| %>
+      <div class="flex items-start gap-6">
+        <% if @guild.logo.attached? %>
+          <div class="flex-shrink-0">
+            <%= image_tag @guild.logo, alt: "#{@guild.name} logo", class: "w-24 h-24 object-cover rounded-lg border border-theme-primary" %>
+          </div>
+        <% end %>
+        <div class="flex-1">
+          <%= f.file_field :logo, accept: "image/*", class: "w-full px-4 py-2 bg-theme-primary border border-theme-secondary rounded-lg text-theme-primary file:mr-4 file:py-2 file:px-4 file:rounded-lg file:border-0 file:text-sm file:font-semibold file:bg-theme-accent file:text-white hover:file:bg-theme-accent-hover file:cursor-pointer", required: !@guild.logo.attached?, id: "logo-file-input", style: (@guild.logo.attached? ? "display: none;" : "") %>
+          <p class="text-xs text-theme-secondary mt-2"><strong><%= t('guilds.settings.logo.recommended') %></strong> <%= t('guilds.settings.logo.dimensions_info') %></p>
+          <% if @guild.logo.attached? %>
+            <p class="text-xs text-theme-secondary mt-1"><%= t('guilds.settings.logo.current_logo') %> <%= @guild.logo.filename %></p>
+            <p class="text-xs text-theme-secondary mt-2"><strong><%= t('guilds.settings.logo.note') %></strong> <%= t('guilds.settings.logo.click_update') %></p>
+          <% end %>
+        </div>
+      </div>
+
+      <div class="flex gap-4">
+        <% if @guild.logo.attached? %>
+          <button type="button" id="update-logo-btn" class="px-6 py-3 bg-theme-accent text-white rounded-lg hover:bg-theme-accent-hover transition-colors font-semibold cursor-pointer"><%= t('guilds.settings.logo.update_button') %></button>
+          <%= button_to t('guilds.settings.logo.delete_button'), update_guild_path(@guild), method: :patch, params: { commit: "Delete Logo" }, class: "px-6 py-3 bg-red-600 text-white rounded-lg hover:bg-red-700 transition-colors font-semibold cursor-pointer", data: { confirm: t('guilds.settings.logo.delete_confirm') } %>
+        <% else %>
+          <%= f.submit t('guilds.settings.logo.save_button'), class: "px-6 py-3 bg-theme-accent text-white rounded-lg hover:bg-theme-accent-hover transition-colors font-semibold cursor-pointer" %>
+        <% end %>
+      </div>
+    <% end %>
+
+    <% if @guild.logo.attached? %>
+      <script>
+        (function() {
+          const updateLogoBtn = document.getElementById('update-logo-btn');
+          const logoFileInput = document.getElementById('logo-file-input');
+          const logoForm = document.getElementById('logo-form');
+          
+          if (updateLogoBtn && logoFileInput && logoForm) {
+            // When "Update Logo" button is clicked, trigger file input
+            updateLogoBtn.addEventListener('click', function() {
+              logoFileInput.click();
+            });
+            
+            // When a file is selected, automatically submit the form
+            logoFileInput.addEventListener('change', function() {
+              if (this.files && this.files.length > 0) {
+                // Create a hidden input to indicate this is an "Update Logo" action
+                const commitInput = document.createElement('input');
+                commitInput.type = 'hidden';
+                commitInput.name = 'commit';
+                commitInput.value = 'Update Logo';
+                logoForm.appendChild(commitInput);
+                
+                // requestSubmit() fires "submit" listeners (e.g. scroll restore); submit() does not
+                if (typeof logoForm.requestSubmit === "function") logoForm.requestSubmit()
+                else logoForm.submit()
+              }
+            });
+          }
+        })();
+      </script>
+    <% end %>
+  </div>
+  <% end %>
+
+  <!-- Guild Visibility -->
+  <% if can_manage_guild_settings?(@guild) %>
+  <div class="bg-theme-secondary rounded-lg border border-theme-primary p-6 mb-6">
+    <h2 class="text-xl font-semibold text-theme-primary mb-2"><%= t('guilds.settings.visibility.title') %></h2>
+    <p class="text-theme-secondary mb-6"><%= t('guilds.settings.visibility.description') %></p>
+
+    <%= form_with model: @guild, url: update_guild_path(@guild), method: :patch, local: true, class: "space-y-4" do |f| %>
+      <div class="flex items-center gap-3">
+        <%= f.check_box :publicly_listed,
+              class: "h-5 w-5 rounded border-theme-secondary bg-theme-primary text-theme-accent focus:ring-theme-accent cursor-pointer",
+              id: "guild_publicly_listed",
+              "aria-describedby": "guild_publicly_listed_hint" %>
+        <%= f.label :publicly_listed, t('guilds.settings.visibility.toggle_label'),
+              class: "text-sm font-medium text-theme-primary cursor-pointer", for: "guild_publicly_listed" %>
+      </div>
+      <p id="guild_publicly_listed_hint" class="text-xs text-theme-secondary"><%= t('guilds.settings.visibility.toggle_hint') %></p>
+
+      <div>
+        <%= f.submit t('guilds.settings.visibility.save_button'),
+              class: "px-6 py-2 bg-theme-accent text-white rounded-lg hover:bg-theme-accent-hover transition-colors font-semibold text-sm cursor-pointer" %>
+      </div>
+    <% end %>
+  </div>
+  <% end %>
+
+  <% if can_manage_guild_settings?(@guild) %>
+    <%= render "guilds/guild_profile_settings", guild: @guild %>
+  <% end %>
+
+  <!-- Application Messages -->
+  <% if can_manage_applications?(@guild) %>
+  <div class="bg-theme-secondary rounded-lg border border-theme-primary p-6 mb-6">
+    <h2 class="text-xl font-semibold text-theme-primary mb-4"><%= t('guilds.settings.application_messages.title') %></h2>
+    <p class="text-theme-secondary mb-6"><%= t('guilds.settings.application_messages.description') %></p>
+
+    <%= form_with model: @guild, url: update_guild_path(@guild), method: :patch, local: true, class: "space-y-6" do |f| %>
+      <div>
+        <%= f.label :accept_message, t('guilds.settings.application_messages.accept_label'), class: "block text-sm font-medium text-theme-primary mb-2" %>
+        <p class="text-xs text-theme-secondary mb-2"><%= t('guilds.settings.application_messages.accept_hint', guild_name: '%{guild_name}', default_message: t('guilds.settings.application_messages.accept_default_message', guild_name: '%{guild_name}')) %></p>
+        <%= f.text_area :accept_message, rows: 3, class: "w-full px-4 py-2 bg-theme-primary border border-theme-secondary rounded-lg text-theme-primary", placeholder: t('guilds.settings.application_messages.accept_default_message', guild_name: @guild.name) %>
+      </div>
+
+      <div>
+        <%= f.label :reject_message, t('guilds.settings.application_messages.reject_label'), class: "block text-sm font-medium text-theme-primary mb-2" %>
+        <p class="text-xs text-theme-secondary mb-2"><%= t('guilds.settings.application_messages.reject_hint', default_message: t('guilds.settings.application_messages.reject_default_message')) %></p>
+        <%= f.text_area :reject_message, rows: 3, class: "w-full px-4 py-2 bg-theme-primary border border-theme-secondary rounded-lg text-theme-primary", placeholder: t('guilds.settings.application_messages.reject_default_message') %>
+      </div>
+
+      <div class="flex gap-4">
+        <%= f.submit t('guilds.settings.application_messages.save_button'), class: "px-6 py-3 bg-theme-accent text-white rounded-lg hover:bg-theme-accent-hover transition-colors font-semibold cursor-pointer" %>
+        <%= link_to t('common.buttons.cancel'), guild_path(@guild), class: "px-6 py-3 bg-theme-secondary text-theme-primary rounded-lg hover:bg-theme-primary transition-colors font-semibold" %>
+      </div>
+    <% end %>
+  </div>
+  <% end %>
+  
+  <!-- Discord Channel Configuration: always show section when Discord is connected so Events Channel etc. are visible -->
+  <% if can_manage_guild_settings?(@guild) && (@discord_setting&.connected? || @discord_guild_id.present?) %>
+    <div class="bg-theme-secondary rounded-lg border border-theme-primary p-6 mb-6">
+      <h2 class="text-xl font-semibold text-theme-primary mb-4"><%= t('guilds.settings.discord_channels.title') %></h2>
+      <p class="text-theme-secondary mb-6"><%= t('guilds.settings.discord_channels.description') %></p>
+
+      <% if @channels.present? %>
+      <%= form_with url: guild_update_discord_channels_path(@guild), method: :patch, local: true, class: "space-y-6" do |f| %>
+        <div>
+          <%= f.label :events_channel_id, t('guilds.settings.discord_channels.events_channel'), class: "block text-sm font-medium text-theme-primary mb-2" %>
+          <p class="text-xs text-theme-secondary mb-2"><%= t('guilds.settings.discord_channels.events_hint') %></p>
+          <%= f.select :events_channel_id,
+              options_for_select(@channels.map { |c| [c["name"], c["id"]] }, @discord_setting.events_channel_id),
+              { prompt: t('guilds.settings.discord_channels.select_channel') },
+              { class: "gs-native-select gs-native-select--field w-full px-4 bg-theme-primary border border-theme-secondary rounded-lg text-theme-primary" } %>
+        </div>
+
+        <div>
+          <%= f.label :gear_channel_id, t('guilds.settings.discord_channels.gear_channel'), class: "block text-sm font-medium text-theme-primary mb-2" %>
+          <p class="text-xs text-theme-secondary mb-2"><%= t('guilds.settings.discord_channels.gear_hint') %></p>
+          <%= f.select :gear_channel_id,
+              options_for_select(@channels.map { |c| [c["name"], c["id"]] }, @discord_setting.gear_channel_id),
+              { prompt: t('guilds.settings.discord_channels.select_channel') },
+              { class: "gs-native-select gs-native-select--field w-full px-4 bg-theme-primary border border-theme-secondary rounded-lg text-theme-primary" } %>
+        </div>
+
+        <div>
+          <label for="polls_channel_id" class="block text-sm font-medium text-theme-primary mb-2"><%= t('guilds.settings.discord_channels.polls_channel') %></label>
+          <p class="text-xs text-theme-secondary mb-2"><%= t('guilds.settings.discord_channels.polls_hint') %></p>
+          <%= select_tag :polls_channel_id,
+              options_for_select(@channels.map { |c| [c["name"], c["id"]] }, @discord_setting.polls_channel_id),
+              { prompt: t('guilds.settings.discord_channels.select_channel'), class: "gs-native-select gs-native-select--field w-full px-4 bg-theme-primary border border-theme-secondary rounded-lg text-theme-primary" } %>
+        </div>
+
+        <div>
+          <label for="loot_rolls_channel_id" class="block text-sm font-medium text-theme-primary mb-2"><%= t('guilds.settings.discord_channels.loot_channel') %></label>
+          <p class="text-xs text-theme-secondary mb-2"><%= t('guilds.settings.discord_channels.loot_hint') %></p>
+          <%= select_tag :loot_rolls_channel_id,
+              options_for_select(@channels.map { |c| [c["name"], c["id"]] }, @discord_setting.loot_rolls_channel_id),
+              { prompt: t('guilds.settings.discord_channels.select_channel'), class: "gs-native-select gs-native-select--field w-full px-4 bg-theme-primary border border-theme-secondary rounded-lg text-theme-primary" } %>
+        </div>
+
+        <div class="pt-4 border-t border-theme-secondary">
+          <h3 class="text-lg font-semibold text-theme-primary mb-2"><%= t('guilds.settings.discord_channels.alliance_section_title') %></h3>
+          <p class="text-xs text-theme-secondary mb-4"><%= t('guilds.settings.discord_channels.alliance_section_description') %></p>
+
+          <%= label_tag :alliance_invites_channel_id, t('guilds.settings.discord_channels.alliance_invites_channel'), class: "block text-sm font-medium text-theme-primary mb-2" %>
+          <p class="text-xs text-theme-secondary mb-2"><%= t('guilds.settings.discord_channels.alliance_invites_hint') %></p>
+          <%= select_tag :alliance_invites_channel_id,
+              options_for_select(@channels.map { |c| [c["name"], c["id"]] }, @discord_setting.alliance_invites_channel_id),
+              { prompt: t('guilds.settings.discord_channels.select_channel'), class: "gs-native-select gs-native-select--field w-full px-4 bg-theme-primary border border-theme-secondary rounded-lg text-theme-primary mb-4" } %>
+
+          <%= label_tag :alliance_events_channel_id, t('guilds.settings.discord_channels.alliance_events_channel'), class: "block text-sm font-medium text-theme-primary mb-2" %>
+          <p class="text-xs text-theme-secondary mb-2"><%= t('guilds.settings.discord_channels.alliance_events_hint') %></p>
+          <%= select_tag :alliance_events_channel_id,
+              options_for_select(@channels.map { |c| [c["name"], c["id"]] }, @discord_setting.alliance_events_channel_id),
+              { prompt: t('guilds.settings.discord_channels.select_channel'), class: "gs-native-select gs-native-select--field w-full px-4 bg-theme-primary border border-theme-secondary rounded-lg text-theme-primary mb-4" } %>
+
+          <%= label_tag :alliance_polls_channel_id, t('guilds.settings.discord_channels.alliance_polls_channel'), class: "block text-sm font-medium text-theme-primary mb-2" %>
+          <p class="text-xs text-theme-secondary mb-2"><%= t('guilds.settings.discord_channels.alliance_polls_hint') %></p>
+          <%= select_tag :alliance_polls_channel_id,
+              options_for_select(@channels.map { |c| [c["name"], c["id"]] }, @discord_setting.alliance_polls_channel_id),
+              { prompt: t('guilds.settings.discord_channels.select_channel'), class: "gs-native-select gs-native-select--field w-full px-4 bg-theme-primary border border-theme-secondary rounded-lg text-theme-primary mb-4" } %>
+
+          <%= label_tag :alliance_loot_rolls_channel_id, t('guilds.settings.discord_channels.alliance_loot_channel'), class: "block text-sm font-medium text-theme-primary mb-2" %>
+          <p class="text-xs text-theme-secondary mb-2"><%= t('guilds.settings.discord_channels.alliance_loot_hint') %></p>
+          <%= select_tag :alliance_loot_rolls_channel_id,
+              options_for_select(@channels.map { |c| [c["name"], c["id"]] }, @discord_setting.alliance_loot_rolls_channel_id),
+              { prompt: t('guilds.settings.discord_channels.select_channel'), class: "gs-native-select gs-native-select--field w-full px-4 bg-theme-primary border border-theme-secondary rounded-lg text-theme-primary" } %>
+        </div>
+
+        <div class="flex gap-4">
+          <%= f.submit t('guilds.settings.discord_channels.save_button'), class: "px-6 py-3 bg-theme-accent text-white rounded-lg hover:bg-theme-accent-hover transition-colors font-semibold cursor-pointer" %>
+          <%= link_to t('common.buttons.cancel'), guild_path(@guild), class: "px-6 py-3 bg-theme-secondary text-theme-primary rounded-lg hover:bg-theme-primary transition-colors font-semibold" %>
+        </div>
+      <% end %>
+      <% elsif @bot_connected && @channels.empty? %>
+    <div class="bg-yellow-900/20 border border-yellow-500 rounded-lg p-4 mb-4">
+      <div class="flex items-center gap-3">
+        <svg class="w-6 h-6 text-yellow-500 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path>
+        </svg>
+        <div>
+          <h3 class="text-lg font-semibold text-yellow-500"><%= t('guilds.settings.discord_channels.unable_to_load') %></h3>
+          <p class="text-theme-secondary">
+            <% if @channel_error.present? %>
+              <%= @channel_error %>
+            <% else %>
+              <%= t('guilds.settings.discord_channels.load_error') %>
+            <% end %>
+          </p>
+          <p class="text-theme-secondary text-sm mt-2">
+            <%= link_to "Refresh page", guild_settings_path(@guild), class: "text-theme-accent hover:text-theme-accent-hover underline" %>
+          </p>
+        </div>
+      </div>
+    </div>
+  <% elsif !@bot_connected %>
+    <div class="bg-yellow-900/20 border border-yellow-500 rounded-lg p-4 mb-6">
+      <div class="flex items-center gap-3">
+        <svg class="w-6 h-6 text-yellow-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path>
+        </svg>
+        <div>
+          <h3 class="text-lg font-semibold text-yellow-500"><%= t('guilds.settings.discord_bot.not_connected') %></h3>
+          <p class="text-theme-secondary">
+            <% if @discord_guild_id.present? %>
+              <%= t('guilds.settings.discord_bot.not_connected_authorize') %>
+            <% else %>
+              <%= t('guilds.settings.discord_bot.not_connected_connect') %>
+            <% end %>
+          </p>
+        </div>
+      </div>
+      <div class="mt-4">
+        <%= link_to @discord_guild_id.present? ? t('guilds.settings.discord_bot.authorize_button') : t('guilds.settings.discord_bot.connect_button'), guild_discord_connection_path(@guild), class: "inline-flex items-center gap-2 px-4 py-2 bg-[#5865F2] text-white rounded-lg hover:bg-[#4752C4] transition-colors font-semibold" %>
+      </div>
+    </div>
+  <% end %>
+    </div>
+  <% end %>
+
+  <!-- Discord Role Syncing -->
+  <% if can_manage_roles?(@guild) %>
+  <% if @discord_setting&.connected? && @bot_connected %>
+    <%# min-h-[28rem] reserves space for the async /discord_roles XHR injected
+        rows so the Games card below cannot reflow downward after initial paint. %>
+    <div class="bg-theme-secondary rounded-lg border border-theme-primary p-6 mb-6 min-h-[28rem]" data-controller="discord-role-sync" data-discord-role-sync-guild-id-value="<%= @guild.id %>" data-discord-role-sync-i18n-value="<%= ERB::Util.html_escape({ missing_role: t("js.guilds.settings.discord_role_sync.missing_role"), generic_error: t("js.guilds.settings.discord_role_sync.generic_error") }.to_json) %>">
+      <h2 class="text-xl font-semibold text-theme-primary mb-4"><%= t('guilds.settings.role_sync.title') %></h2>
+      <p class="text-theme-secondary mb-6"><%= t('guilds.settings.role_sync.description') %></p>
+
+      <div class="mb-4 flex gap-3">
+        <button 
+          type="button"
+          data-action="click->discord-role-sync#syncAll"
+          class="px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors font-semibold text-sm"
+        >
+          <%= t('guilds.settings.role_sync.sync_all') %>
+        </button>
+        <button 
+          type="button"
+          data-action="click->discord-role-sync#removeAllSyncs"
+          class="px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 transition-colors font-semibold text-sm"
+        >
+          <%= t('guilds.settings.role_sync.remove_all') %>
+        </button>
+        <button 
+          type="button"
+          data-action="click->discord-role-sync#refreshRoles"
+          class="px-4 py-2 bg-theme-accent text-white rounded-lg hover:bg-theme-accent-hover transition-colors font-semibold text-sm"
+        >
+          <%= t('guilds.settings.role_sync.refresh') %>
+        </button>
+      </div>
+
+      <div data-discord-role-sync-target="loading" class="hidden mb-4">
+        <p class="text-theme-secondary"><%= t('guilds.settings.role_sync.loading') %></p>
+      </div>
+
+      <div data-discord-role-sync-target="error" class="hidden mb-4">
+        <p class="text-red-500"></p>
+      </div>
+
+      <div class="overflow-x-auto">
+        <table class="w-full border-collapse">
+          <thead>
+            <tr class="border-b border-theme-primary">
+              <th class="text-left py-3 px-4 text-sm font-semibold text-theme-primary"><%= t('guilds.settings.role_sync.role_name') %></th>
+              <th class="text-left py-3 px-4 text-sm font-semibold text-theme-primary hidden md:table-cell"><%= t('guilds.settings.role_sync.role_id') %></th>
+              <th class="text-center py-3 px-4 text-sm font-semibold text-theme-primary"><%= t('guilds.settings.role_sync.sync_status') %></th>
+              <th class="text-center py-3 px-4 text-sm font-semibold text-theme-primary"><%= t('guilds.settings.role_sync.action') %></th>
+            </tr>
+          </thead>
+          <tbody data-discord-role-sync-target="rolesTable">
+            <tr>
+              <td colspan="4" class="py-8 text-center text-theme-secondary"><%= t('guilds.settings.role_sync.click_refresh') %></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  <% end %>
+  <% end %>
+
+  <!-- Games Management -->
+  <% if can_manage_guild_settings?(@guild) %>
+    <%= render "guilds/games_form" %>
+  <% end %>
+
+  <!-- Permission Settings -->
+  <% if can_manage_guild_settings?(@guild) %>
+  <% if @discord_setting&.connected? %>
+    <div class="bg-theme-secondary rounded-lg border border-theme-primary p-6 mb-6">
+      <h2 class="text-xl font-semibold text-theme-primary mb-4"><%= t('guilds.settings.permissions.title') %></h2>
+      <p class="text-theme-secondary mb-6"><%= t('guilds.settings.permissions.description') %></p>
+
+      <%= form_with model: @guild, url: update_guild_path(@guild), method: :patch, local: true, class: "space-y-6" do |f| %>
+        <div class="guild-permission-checkbox-grid grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          <!-- Role 1 -->
+          <div class="space-y-4">
+            <h3 class="text-lg font-semibold text-theme-primary"><%= t('guilds.settings.permissions.role_n', n: 1) %></h3>
+            <div>
+              <%= f.label :permission_role_1_id, t('guilds.settings.permissions.select_discord_role'), class: "block text-sm font-medium text-theme-primary mb-2" %>
+              <%= f.select :permission_role_1_id,
+                  options_for_select([[t('guilds.settings.permissions.none'), ""]] + @synced_roles.map { |r| [r.role_name, r.role_id] }, @guild.permission_role_1_id),
+                  {},
+                  { class: "gs-native-select gs-native-select--field w-full px-4 bg-theme-primary border border-theme-secondary rounded-lg text-theme-primary" } %>
+            </div>
+            <div class="space-y-2">
+              <label class="flex items-center gap-2">
+                <%= f.check_box :role_1_can_manage_roles, class: "w-4 h-4" %>
+                <span class="text-theme-primary"><%= t('guilds.settings.permissions.can_manage_roles') %></span>
+              </label>
+              <label class="flex items-center gap-2">
+                <%= f.check_box :role_1_can_manage_applications, class: "w-4 h-4" %>
+                <span class="text-theme-primary"><%= t('guilds.settings.permissions.can_manage_applications') %></span>
+              </label>
+              <label class="flex items-center gap-2">
+                <%= f.check_box :role_1_can_manage_guild_settings, class: "w-4 h-4" %>
+                <span class="text-theme-primary"><%= t('guilds.settings.permissions.can_manage_guild_settings') %></span>
+              </label>
+              <label class="flex items-center gap-2">
+                <%= f.check_box :role_1_can_kick_members, class: "w-4 h-4" %>
+                <span class="text-theme-primary"><%= t('guilds.settings.permissions.can_kick_members') %></span>
+              </label>
+              <label class="flex items-center gap-2">
+                <%= f.check_box :role_1_can_invite_alliance_guilds, class: "w-4 h-4" %>
+                <span class="text-theme-primary"><%= t('guilds.settings.permissions.can_invite_alliance_guilds', default: 'Can Invite Alliance Guilds') %></span>
+              </label>
+              <label class="flex items-center gap-2">
+                <%= f.check_box :role_1_can_kick_alliance_guilds, class: "w-4 h-4" %>
+                <span class="text-theme-primary"><%= t('guilds.settings.permissions.can_kick_alliance_guilds', default: 'Can Kick Alliance Guilds') %></span>
+              </label>
+              <label class="flex items-center gap-2">
+                <%= f.check_box :role_1_can_manage_tags, class: "w-4 h-4" %>
+                <span class="text-theme-primary"><%= t('guilds.settings.permissions.can_manage_tags', default: 'Can Manage Tags') %></span>
+              </label>
+              <label class="flex items-center gap-2">
+                <%= f.check_box :role_1_can_manage_warnings, class: "w-4 h-4" %>
+                <span class="text-theme-primary"><%= t('guilds.settings.permissions.can_manage_warnings') %></span>
+              </label>
+              <label class="flex items-center gap-2">
+                <%= f.check_box :role_1_can_manage_documents, class: "w-4 h-4" %>
+                <span class="text-theme-primary"><%= t('guilds.settings.permissions.can_manage_documents', default: 'Can Manage Documents') %></span>
+              </label>
+              <label class="flex items-center gap-2">
+                <%= f.check_box :role_1_can_manage_files, class: "w-4 h-4" %>
+                <span class="text-theme-primary"><%= t('guilds.settings.permissions.can_manage_files', default: 'Can Manage Files') %></span>
+              </label>
+              <label class="flex items-center gap-2">
+                <%= f.check_box :role_1_can_manage_events, class: "w-4 h-4" %>
+                <span class="text-theme-primary"><%= t('guilds.settings.permissions.can_manage_events', default: 'Can Manage Events') %></span>
+              </label>
+              <label class="flex items-center gap-2">
+                <%= f.check_box :role_1_can_manage_polls, class: "w-4 h-4" %>
+                <span class="text-theme-primary"><%= t('guilds.settings.permissions.can_manage_polls', default: 'Can Manage Polls') %></span>
+              </label>
+              <label class="flex items-center gap-2">
+                <%= f.check_box :role_1_can_manage_loot_rolls, class: "w-4 h-4" %>
+                <span class="text-theme-primary"><%= t('guilds.settings.permissions.can_manage_loot_rolls', default: 'Can Manage Loot Rolls') %></span>
+              </label>
+              <label class="flex items-center gap-2">
+                <%= f.check_box :role_1_can_manage_discord_channels, class: "w-4 h-4" %>
+                <span class="text-theme-primary"><%= t('guilds.settings.permissions.can_manage_discord_channels', default: 'Can Manage Discord Channels') %></span>
+              </label>
+              <label class="flex items-center gap-2">
+                <%= f.check_box :role_1_can_view_activity_feed, class: "w-4 h-4" %>
+                <span class="text-theme-primary"><%= t('guilds.settings.permissions.can_view_activity_feed', default: 'Can View Activity Feed') %></span>
+              </label>
+              <label class="flex items-center gap-2">
+                <%= f.check_box :role_1_can_export_members_csv, class: "w-4 h-4" %>
+                <span class="text-theme-primary"><%= t('guilds.settings.permissions.can_export_members_csv', default: 'Can Export Members CSV') %></span>
+              </label>
+              <label class="flex items-center gap-2">
+                <%= f.check_box :role_1_can_use_message_center, class: "w-4 h-4" %>
+                <span class="text-theme-primary"><%= t('guilds.settings.permissions.can_use_message_center', default: 'Can Use Message Center') %></span>
+              </label>
+              <label class="flex items-center gap-2">
+                <%= f.check_box :role_1_can_manage_gear_requests, class: "w-4 h-4" %>
+                <span class="text-theme-primary"><%= t('guilds.settings.permissions.can_manage_gear_requests', default: 'Can Manage Gear Requests') %></span>
+              </label>
+              <label class="flex items-center gap-2">
+                <%= f.check_box :role_1_can_edit_gear_scanned_stats, class: "w-4 h-4" %>
+                <span class="text-theme-primary"><%= t('guilds.settings.permissions.can_edit_gear_scanned_stats', default: 'Can Edit Scanned Gear Stats') %></span>
+              </label>
+            </div>
+          </div>
+
+          <!-- Role 2 -->
+          <div class="space-y-4">
+            <h3 class="text-lg font-semibold text-theme-primary"><%= t('guilds.settings.permissions.role_n', n: 2) %></h3>
+            <div>
+              <%= f.label :permission_role_2_id, t('guilds.settings.permissions.select_discord_role'), class: "block text-sm font-medium text-theme-primary mb-2" %>
+              <%= f.select :permission_role_2_id,
+                  options_for_select([[t('guilds.settings.permissions.none'), ""]] + @synced_roles.map { |r| [r.role_name, r.role_id] }, @guild.permission_role_2_id),
+                  {},
+                  { class: "gs-native-select gs-native-select--field w-full px-4 bg-theme-primary border border-theme-secondary rounded-lg text-theme-primary" } %>
+            </div>
+            <div class="space-y-2">
+              <label class="flex items-center gap-2">
+                <%= f.check_box :role_2_can_manage_roles, class: "w-4 h-4" %>
+                <span class="text-theme-primary"><%= t('guilds.settings.permissions.can_manage_roles') %></span>
+              </label>
+              <label class="flex items-center gap-2">
+                <%= f.check_box :role_2_can_manage_applications, class: "w-4 h-4" %>
+                <span class="text-theme-primary"><%= t('guilds.settings.permissions.can_manage_applications') %></span>
+              </label>
+              <label class="flex items-center gap-2">
+                <%= f.check_box :role_2_can_manage_guild_settings, class: "w-4 h-4" %>
+                <span class="text-theme-primary"><%= t('guilds.settings.permissions.can_manage_guild_settings') %></span>
+              </label>
+              <label class="flex items-center gap-2">
+                <%= f.check_box :role_2_can_kick_members, class: "w-4 h-4" %>
+                <span class="text-theme-primary"><%= t('guilds.settings.permissions.can_kick_members') %></span>
+              </label>
+              <label class="flex items-center gap-2">
+                <%= f.check_box :role_2_can_invite_alliance_guilds, class: "w-4 h-4" %>
+                <span class="text-theme-primary"><%= t('guilds.settings.permissions.can_invite_alliance_guilds', default: 'Can Invite Alliance Guilds') %></span>
+              </label>
+              <label class="flex items-center gap-2">
+                <%= f.check_box :role_2_can_kick_alliance_guilds, class: "w-4 h-4" %>
+                <span class="text-theme-primary"><%= t('guilds.settings.permissions.can_kick_alliance_guilds', default: 'Can Kick Alliance Guilds') %></span>
+              </label>
+              <label class="flex items-center gap-2">
+                <%= f.check_box :role_2_can_manage_tags, class: "w-4 h-4" %>
+                <span class="text-theme-primary"><%= t('guilds.settings.permissions.can_manage_tags', default: 'Can Manage Tags') %></span>
+              </label>
+              <label class="flex items-center gap-2">
+                <%= f.check_box :role_2_can_manage_warnings, class: "w-4 h-4" %>
+                <span class="text-theme-primary"><%= t('guilds.settings.permissions.can_manage_warnings') %></span>
+              </label>
+              <label class="flex items-center gap-2">
+                <%= f.check_box :role_2_can_manage_documents, class: "w-4 h-4" %>
+                <span class="text-theme-primary"><%= t('guilds.settings.permissions.can_manage_documents', default: 'Can Manage Documents') %></span>
+              </label>
+              <label class="flex items-center gap-2">
+                <%= f.check_box :role_2_can_manage_files, class: "w-4 h-4" %>
+                <span class="text-theme-primary"><%= t('guilds.settings.permissions.can_manage_files', default: 'Can Manage Files') %></span>
+              </label>
+              <label class="flex items-center gap-2">
+                <%= f.check_box :role_2_can_manage_events, class: "w-4 h-4" %>
+                <span class="text-theme-primary"><%= t('guilds.settings.permissions.can_manage_events', default: 'Can Manage Events') %></span>
+              </label>
+              <label class="flex items-center gap-2">
+                <%= f.check_box :role_2_can_manage_polls, class: "w-4 h-4" %>
+                <span class="text-theme-primary"><%= t('guilds.settings.permissions.can_manage_polls', default: 'Can Manage Polls') %></span>
+              </label>
+              <label class="flex items-center gap-2">
+                <%= f.check_box :role_2_can_manage_loot_rolls, class: "w-4 h-4" %>
+                <span class="text-theme-primary"><%= t('guilds.settings.permissions.can_manage_loot_rolls', default: 'Can Manage Loot Rolls') %></span>
+              </label>
+              <label class="flex items-center gap-2">
+                <%= f.check_box :role_2_can_manage_discord_channels, class: "w-4 h-4" %>
+                <span class="text-theme-primary"><%= t('guilds.settings.permissions.can_manage_discord_channels', default: 'Can Manage Discord Channels') %></span>
+              </label>
+              <label class="flex items-center gap-2">
+                <%= f.check_box :role_2_can_view_activity_feed, class: "w-4 h-4" %>
+                <span class="text-theme-primary"><%= t('guilds.settings.permissions.can_view_activity_feed', default: 'Can View Activity Feed') %></span>
+              </label>
+              <label class="flex items-center gap-2">
+                <%= f.check_box :role_2_can_export_members_csv, class: "w-4 h-4" %>
+                <span class="text-theme-primary"><%= t('guilds.settings.permissions.can_export_members_csv', default: 'Can Export Members CSV') %></span>
+              </label>
+              <label class="flex items-center gap-2">
+                <%= f.check_box :role_2_can_use_message_center, class: "w-4 h-4" %>
+                <span class="text-theme-primary"><%= t('guilds.settings.permissions.can_use_message_center', default: 'Can Use Message Center') %></span>
+              </label>
+              <label class="flex items-center gap-2">
+                <%= f.check_box :role_2_can_manage_gear_requests, class: "w-4 h-4" %>
+                <span class="text-theme-primary"><%= t('guilds.settings.permissions.can_manage_gear_requests', default: 'Can Manage Gear Requests') %></span>
+              </label>
+              <label class="flex items-center gap-2">
+                <%= f.check_box :role_2_can_edit_gear_scanned_stats, class: "w-4 h-4" %>
+                <span class="text-theme-primary"><%= t('guilds.settings.permissions.can_edit_gear_scanned_stats', default: 'Can Edit Scanned Gear Stats') %></span>
+              </label>
+            </div>
+          </div>
+
+          <!-- Role 3 -->
+          <div class="space-y-4">
+            <h3 class="text-lg font-semibold text-theme-primary"><%= t('guilds.settings.permissions.role_n', n: 3) %></h3>
+            <div>
+              <%= f.label :permission_role_3_id, t('guilds.settings.permissions.select_discord_role'), class: "block text-sm font-medium text-theme-primary mb-2" %>
+              <%= f.select :permission_role_3_id,
+                  options_for_select([[t('guilds.settings.permissions.none'), ""]] + @synced_roles.map { |r| [r.role_name, r.role_id] }, @guild.permission_role_3_id),
+                  {},
+                  { class: "gs-native-select gs-native-select--field w-full px-4 bg-theme-primary border border-theme-secondary rounded-lg text-theme-primary" } %>
+            </div>
+            <div class="space-y-2">
+              <label class="flex items-center gap-2">
+                <%= f.check_box :role_3_can_manage_roles, class: "w-4 h-4" %>
+                <span class="text-theme-primary"><%= t('guilds.settings.permissions.can_manage_roles') %></span>
+              </label>
+              <label class="flex items-center gap-2">
+                <%= f.check_box :role_3_can_manage_applications, class: "w-4 h-4" %>
+                <span class="text-theme-primary"><%= t('guilds.settings.permissions.can_manage_applications') %></span>
+              </label>
+              <label class="flex items-center gap-2">
+                <%= f.check_box :role_3_can_manage_guild_settings, class: "w-4 h-4" %>
+                <span class="text-theme-primary"><%= t('guilds.settings.permissions.can_manage_guild_settings') %></span>
+              </label>
+              <label class="flex items-center gap-2">
+                <%= f.check_box :role_3_can_kick_members, class: "w-4 h-4" %>
+                <span class="text-theme-primary"><%= t('guilds.settings.permissions.can_kick_members') %></span>
+              </label>
+              <label class="flex items-center gap-2">
+                <%= f.check_box :role_3_can_invite_alliance_guilds, class: "w-4 h-4" %>
+                <span class="text-theme-primary"><%= t('guilds.settings.permissions.can_invite_alliance_guilds', default: 'Can Invite Alliance Guilds') %></span>
+              </label>
+              <label class="flex items-center gap-2">
+                <%= f.check_box :role_3_can_kick_alliance_guilds, class: "w-4 h-4" %>
+                <span class="text-theme-primary"><%= t('guilds.settings.permissions.can_kick_alliance_guilds', default: 'Can Kick Alliance Guilds') %></span>
+              </label>
+              <label class="flex items-center gap-2">
+                <%= f.check_box :role_3_can_manage_tags, class: "w-4 h-4" %>
+                <span class="text-theme-primary"><%= t('guilds.settings.permissions.can_manage_tags', default: 'Can Manage Tags') %></span>
+              </label>
+              <label class="flex items-center gap-2">
+                <%= f.check_box :role_3_can_manage_warnings, class: "w-4 h-4" %>
+                <span class="text-theme-primary"><%= t('guilds.settings.permissions.can_manage_warnings') %></span>
+              </label>
+              <label class="flex items-center gap-2">
+                <%= f.check_box :role_3_can_manage_documents, class: "w-4 h-4" %>
+                <span class="text-theme-primary"><%= t('guilds.settings.permissions.can_manage_documents', default: 'Can Manage Documents') %></span>
+              </label>
+              <label class="flex items-center gap-2">
+                <%= f.check_box :role_3_can_manage_files, class: "w-4 h-4" %>
+                <span class="text-theme-primary"><%= t('guilds.settings.permissions.can_manage_files', default: 'Can Manage Files') %></span>
+              </label>
+              <label class="flex items-center gap-2">
+                <%= f.check_box :role_3_can_manage_events, class: "w-4 h-4" %>
+                <span class="text-theme-primary"><%= t('guilds.settings.permissions.can_manage_events', default: 'Can Manage Events') %></span>
+              </label>
+              <label class="flex items-center gap-2">
+                <%= f.check_box :role_3_can_manage_polls, class: "w-4 h-4" %>
+                <span class="text-theme-primary"><%= t('guilds.settings.permissions.can_manage_polls', default: 'Can Manage Polls') %></span>
+              </label>
+              <label class="flex items-center gap-2">
+                <%= f.check_box :role_3_can_manage_loot_rolls, class: "w-4 h-4" %>
+                <span class="text-theme-primary"><%= t('guilds.settings.permissions.can_manage_loot_rolls', default: 'Can Manage Loot Rolls') %></span>
+              </label>
+              <label class="flex items-center gap-2">
+                <%= f.check_box :role_3_can_manage_discord_channels, class: "w-4 h-4" %>
+                <span class="text-theme-primary"><%= t('guilds.settings.permissions.can_manage_discord_channels', default: 'Can Manage Discord Channels') %></span>
+              </label>
+              <label class="flex items-center gap-2">
+                <%= f.check_box :role_3_can_view_activity_feed, class: "w-4 h-4" %>
+                <span class="text-theme-primary"><%= t('guilds.settings.permissions.can_view_activity_feed', default: 'Can View Activity Feed') %></span>
+              </label>
+              <label class="flex items-center gap-2">
+                <%= f.check_box :role_3_can_export_members_csv, class: "w-4 h-4" %>
+                <span class="text-theme-primary"><%= t('guilds.settings.permissions.can_export_members_csv', default: 'Can Export Members CSV') %></span>
+              </label>
+              <label class="flex items-center gap-2">
+                <%= f.check_box :role_3_can_use_message_center, class: "w-4 h-4" %>
+                <span class="text-theme-primary"><%= t('guilds.settings.permissions.can_use_message_center', default: 'Can Use Message Center') %></span>
+              </label>
+              <label class="flex items-center gap-2">
+                <%= f.check_box :role_3_can_manage_gear_requests, class: "w-4 h-4" %>
+                <span class="text-theme-primary"><%= t('guilds.settings.permissions.can_manage_gear_requests', default: 'Can Manage Gear Requests') %></span>
+              </label>
+              <label class="flex items-center gap-2">
+                <%= f.check_box :role_3_can_edit_gear_scanned_stats, class: "w-4 h-4" %>
+                <span class="text-theme-primary"><%= t('guilds.settings.permissions.can_edit_gear_scanned_stats', default: 'Can Edit Scanned Gear Stats') %></span>
+              </label>
+            </div>
+          </div>
+
+          <!-- Role 4 -->
+          <div class="space-y-4">
+            <h3 class="text-lg font-semibold text-theme-primary"><%= t('guilds.settings.permissions.role_n', n: 4) %></h3>
+            <div>
+              <%= f.label :permission_role_4_id, t('guilds.settings.permissions.select_discord_role'), class: "block text-sm font-medium text-theme-primary mb-2" %>
+              <%= f.select :permission_role_4_id,
+                  options_for_select([[t('guilds.settings.permissions.none'), ""]] + @synced_roles.map { |r| [r.role_name, r.role_id] }, @guild.permission_role_4_id),
+                  {},
+                  { class: "gs-native-select gs-native-select--field w-full px-4 bg-theme-primary border border-theme-secondary rounded-lg text-theme-primary" } %>
+            </div>
+            <div class="space-y-2">
+              <label class="flex items-center gap-2">
+                <%= f.check_box :role_4_can_manage_roles, class: "w-4 h-4" %>
+                <span class="text-theme-primary"><%= t('guilds.settings.permissions.can_manage_roles') %></span>
+              </label>
+              <label class="flex items-center gap-2">
+                <%= f.check_box :role_4_can_manage_applications, class: "w-4 h-4" %>
+                <span class="text-theme-primary"><%= t('guilds.settings.permissions.can_manage_applications') %></span>
+              </label>
+              <label class="flex items-center gap-2">
+                <%= f.check_box :role_4_can_manage_guild_settings, class: "w-4 h-4" %>
+                <span class="text-theme-primary"><%= t('guilds.settings.permissions.can_manage_guild_settings') %></span>
+              </label>
+              <label class="flex items-center gap-2">
+                <%= f.check_box :role_4_can_kick_members, class: "w-4 h-4" %>
+                <span class="text-theme-primary"><%= t('guilds.settings.permissions.can_kick_members') %></span>
+              </label>
+              <label class="flex items-center gap-2">
+                <%= f.check_box :role_4_can_invite_alliance_guilds, class: "w-4 h-4" %>
+                <span class="text-theme-primary"><%= t('guilds.settings.permissions.can_invite_alliance_guilds', default: 'Can Invite Alliance Guilds') %></span>
+              </label>
+              <label class="flex items-center gap-2">
+                <%= f.check_box :role_4_can_kick_alliance_guilds, class: "w-4 h-4" %>
+                <span class="text-theme-primary"><%= t('guilds.settings.permissions.can_kick_alliance_guilds', default: 'Can Kick Alliance Guilds') %></span>
+              </label>
+              <label class="flex items-center gap-2">
+                <%= f.check_box :role_4_can_manage_tags, class: "w-4 h-4" %>
+                <span class="text-theme-primary"><%= t('guilds.settings.permissions.can_manage_tags', default: 'Can Manage Tags') %></span>
+              </label>
+              <label class="flex items-center gap-2">
+                <%= f.check_box :role_4_can_manage_warnings, class: "w-4 h-4" %>
+                <span class="text-theme-primary"><%= t('guilds.settings.permissions.can_manage_warnings') %></span>
+              </label>
+              <label class="flex items-center gap-2">
+                <%= f.check_box :role_4_can_manage_documents, class: "w-4 h-4" %>
+                <span class="text-theme-primary"><%= t('guilds.settings.permissions.can_manage_documents', default: 'Can Manage Documents') %></span>
+              </label>
+              <label class="flex items-center gap-2">
+                <%= f.check_box :role_4_can_manage_files, class: "w-4 h-4" %>
+                <span class="text-theme-primary"><%= t('guilds.settings.permissions.can_manage_files', default: 'Can Manage Files') %></span>
+              </label>
+              <label class="flex items-center gap-2">
+                <%= f.check_box :role_4_can_manage_events, class: "w-4 h-4" %>
+                <span class="text-theme-primary"><%= t('guilds.settings.permissions.can_manage_events', default: 'Can Manage Events') %></span>
+              </label>
+              <label class="flex items-center gap-2">
+                <%= f.check_box :role_4_can_manage_polls, class: "w-4 h-4" %>
+                <span class="text-theme-primary"><%= t('guilds.settings.permissions.can_manage_polls', default: 'Can Manage Polls') %></span>
+              </label>
+              <label class="flex items-center gap-2">
+                <%= f.check_box :role_4_can_manage_loot_rolls, class: "w-4 h-4" %>
+                <span class="text-theme-primary"><%= t('guilds.settings.permissions.can_manage_loot_rolls', default: 'Can Manage Loot Rolls') %></span>
+              </label>
+              <label class="flex items-center gap-2">
+                <%= f.check_box :role_4_can_manage_discord_channels, class: "w-4 h-4" %>
+                <span class="text-theme-primary"><%= t('guilds.settings.permissions.can_manage_discord_channels', default: 'Can Manage Discord Channels') %></span>
+              </label>
+              <label class="flex items-center gap-2">
+                <%= f.check_box :role_4_can_view_activity_feed, class: "w-4 h-4" %>
+                <span class="text-theme-primary"><%= t('guilds.settings.permissions.can_view_activity_feed', default: 'Can View Activity Feed') %></span>
+              </label>
+              <label class="flex items-center gap-2">
+                <%= f.check_box :role_4_can_export_members_csv, class: "w-4 h-4" %>
+                <span class="text-theme-primary"><%= t('guilds.settings.permissions.can_export_members_csv', default: 'Can Export Members CSV') %></span>
+              </label>
+              <label class="flex items-center gap-2">
+                <%= f.check_box :role_4_can_use_message_center, class: "w-4 h-4" %>
+                <span class="text-theme-primary"><%= t('guilds.settings.permissions.can_use_message_center', default: 'Can Use Message Center') %></span>
+              </label>
+              <label class="flex items-center gap-2">
+                <%= f.check_box :role_4_can_manage_gear_requests, class: "w-4 h-4" %>
+                <span class="text-theme-primary"><%= t('guilds.settings.permissions.can_manage_gear_requests', default: 'Can Manage Gear Requests') %></span>
+              </label>
+              <label class="flex items-center gap-2">
+                <%= f.check_box :role_4_can_edit_gear_scanned_stats, class: "w-4 h-4" %>
+                <span class="text-theme-primary"><%= t('guilds.settings.permissions.can_edit_gear_scanned_stats', default: 'Can Edit Scanned Gear Stats') %></span>
+              </label>
+            </div>
+          </div>
+        </div>
+
+        <div class="flex gap-4">
+          <%= f.submit t('guilds.settings.permissions.save_button'), class: "px-6 py-3 bg-theme-accent text-white rounded-lg hover:bg-theme-accent-hover transition-colors font-semibold cursor-pointer" %>
+          <%= link_to t('common.buttons.cancel'), guild_path(@guild), class: "px-6 py-3 bg-theme-secondary text-theme-primary rounded-lg hover:bg-theme-primary transition-colors font-semibold" %>
+        </div>
+      <% end %>
+
+      <!-- Default Role Setting -->
+      <%= form_with model: @guild, url: update_guild_path(@guild), method: :patch, local: true, class: "mt-6 space-y-4" do |f| %>
+        <h3 class="text-lg font-semibold text-theme-primary"><%= t('guilds.settings.permissions.default_role.title') %></h3>
+        <p class="text-sm text-theme-secondary mb-4"><%= t('guilds.settings.permissions.default_role.description') %></p>
+        <div>
+          <%= f.label :default_role_id, t('guilds.settings.permissions.default_role.label'), class: "block text-sm font-medium text-theme-primary mb-2" %>
+          <%= f.select :default_role_id,
+              options_for_select([[t('guilds.settings.permissions.none'), ""]] + @synced_roles.map { |r| [r.role_name, r.role_id] }, @guild.default_role_id),
+              {},
+              { class: "gs-native-select gs-native-select--field w-full px-4 bg-theme-primary border border-theme-secondary rounded-lg text-theme-primary" } %>
+        </div>
+        <div class="flex gap-4">
+          <%= f.submit t('guilds.settings.permissions.default_role.save_button'), class: "px-6 py-3 bg-theme-accent text-white rounded-lg hover:bg-theme-accent-hover transition-colors font-semibold cursor-pointer" %>
+          <%= link_to t('common.buttons.cancel'), guild_path(@guild), class: "px-6 py-3 bg-theme-secondary text-theme-primary rounded-lg hover:bg-theme-primary transition-colors font-semibold" %>
+        </div>
+      <% end %>
+    </div>
+  <% end %>
+  <% end %>
+
+  <!-- React Roles Configuration -->
+  <% if can_manage_guild_settings?(@guild) && @discord_setting&.connected? && @bot_connected %>
+    <div class="bg-theme-secondary rounded-lg border border-theme-primary p-6 mb-6"
+         data-controller="react-roles"
+         data-react-roles-guild-id-value="<%= @guild.id %>"
+         data-react-roles-emojis-url-value="<%= guild_react_roles_emojis_path(@guild) %>">
+
+      <h2 class="text-xl font-semibold text-theme-primary mb-2"><%= t('guilds.settings.react_roles.title') %></h2>
+      <p class="text-theme-secondary mb-6"><%= t('guilds.settings.react_roles.description') %></p>
+
+      <%# Channel selector %>
+      <div class="mb-6">
+        <label class="block text-sm font-medium text-theme-primary mb-2">
+          <%= t('guilds.settings.react_roles.channel_label') %>
+        </label>
+        <% current_channel_id = @react_roles.first&.channel_id %>
+        <select name="react_roles_channel_id"
+                data-react-roles-target="channelSelect"
+                class="gs-native-select gs-native-select--field w-full md:w-1/2 px-4 bg-theme-primary border border-theme-secondary rounded-lg text-theme-primary">
+          <option value=""><%= t('guilds.settings.react_roles.select_channel') %></option>
+          <% @channels.each do |channel| %>
+            <option value="<%= channel["id"] %>" <%= "selected" if channel["id"] == current_channel_id %>>
+              #<%= channel["name"] %>
+            </option>
+          <% end %>
+        </select>
+      </div>
+
+      <%# 3 React Role slots %>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
+        <% (1..3).each do |position| %>
+          <% rr = @react_roles.find { |r| r.position == position } %>
+          <div class="bg-theme-primary rounded-lg border border-theme-secondary p-4 space-y-4"
+               data-react-roles-target="slot"
+               data-position="<%= position %>">
+
+            <h3 class="font-semibold text-theme-primary">
+              <%= t('guilds.settings.react_roles.slot_title', n: position) %>
+            </h3>
+
+            <%# Role dropdown %>
+            <div>
+              <label class="block text-sm font-medium text-theme-primary mb-1">
+                <%= t('guilds.settings.react_roles.role_label') %>
+              </label>
+              <select data-react-roles-target="roleSelect"
+                      class="gs-native-select gs-native-select--field w-full px-3 bg-theme-secondary border border-theme-primary rounded-lg text-theme-primary text-sm">
+                <option value=""><%= t('guilds.settings.react_roles.select_role') %></option>
+                <% @synced_roles.each do |role| %>
+                  <option value="<%= role.role_id %>"
+                          data-role-name="<%= role.role_name %>"
+                          <%= "selected" if role.role_id == rr&.role_id %>>
+                    <%= role.role_name %>
+                  </option>
+                <% end %>
+              </select>
+            </div>
+
+            <%# Emoji selector %>
+            <div>
+              <label class="block text-sm font-medium text-theme-primary mb-1">
+                <%= t('guilds.settings.react_roles.emoji_label') %>
+              </label>
+              <div class="relative">
+                <button type="button"
+                        data-action="click->react-roles#togglePicker"
+                        data-react-roles-target="emojiButton"
+                        class="w-full flex items-center gap-2 px-3 py-2 bg-theme-secondary border border-theme-primary rounded-lg text-theme-primary text-sm hover:border-theme-accent transition-colors">
+                  <span data-react-roles-target="emojiDisplay" class="text-xl">
+                    <%= rr&.display_emoji || "➕" %>
+                  </span>
+                  <span data-react-roles-target="emojiLabel" class="text-theme-secondary">
+                    <%= rr ? rr.emoji_name : t('guilds.settings.react_roles.select_emoji') %>
+                  </span>
+                </button>
+
+                <%# Hidden fields storing selected emoji metadata %>
+                <input type="hidden" data-react-roles-target="emojiName"  value="<%= rr&.emoji_name %>">
+                <input type="hidden" data-react-roles-target="emojiId"    value="<%= rr&.emoji_id %>">
+                <input type="hidden" data-react-roles-target="emojiCustom" value="<%= rr&.is_custom_emoji? ? "1" : "0" %>">
+
+                <%# Emoji picker dropdown (hidden until toggled) %>
+                <div data-react-roles-target="picker"
+                     class="hidden absolute z-50 top-full left-0 mt-1 w-72 bg-theme-primary border border-theme-secondary rounded-lg shadow-xl p-3">
+
+                  <%# Custom server emojis (loaded dynamically via JS) %>
+                  <div class="mb-3">
+                    <p class="text-xs font-semibold text-theme-secondary mb-2 uppercase tracking-wide">
+                      <%= t('guilds.settings.react_roles.server_emojis') %>
+                    </p>
+                    <div data-react-roles-target="customEmojis"
+                         class="flex flex-wrap gap-1 min-h-6">
+                      <span class="text-xs text-theme-secondary"><%= t('guilds.settings.react_roles.loading_emojis') %></span>
+                    </div>
+                  </div>
+
+                  <%# Standard unicode emojis – curated common set %>
+                  <div>
+                    <p class="text-xs font-semibold text-theme-secondary mb-2 uppercase tracking-wide">
+                      <%= t('guilds.settings.react_roles.standard_emojis') %>
+                    </p>
+                    <div class="flex flex-wrap gap-1 max-h-36 overflow-y-auto"
+                         data-react-roles-target="unicodeEmojis">
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <p class="text-xs text-theme-secondary mt-1"><%= t('guilds.settings.react_roles.emoji_hint') %></p>
+            </div>
+          </div>
+        <% end %>
+      </div>
+
+      <%# Action buttons %>
+      <div class="flex flex-wrap gap-3">
+        <button type="button"
+                data-action="click->react-roles#save"
+                class="px-6 py-2 bg-theme-accent text-white rounded-lg hover:bg-theme-accent-hover transition-colors font-semibold text-sm">
+          <%= t('guilds.settings.react_roles.save_button') %>
+        </button>
+
+        <%= button_to t('guilds.settings.react_roles.deploy_button'),
+              guild_react_roles_deploy_path(@guild),
+              method: :post,
+              class: "px-6 py-2 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 transition-colors font-semibold text-sm",
+              data: { turbo: false } %>
+
+        <% if @react_roles.any? %>
+          <%= button_to t('guilds.settings.react_roles.remove_button'),
+                guild_react_roles_destroy_path(@guild),
+                method: :delete,
+                class: "px-6 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 transition-colors font-semibold text-sm",
+                data: { turbo: false, confirm: t('guilds.settings.react_roles.remove_confirm') } %>
+        <% end %>
+
+        <%= link_to t('common.buttons.cancel'), guild_settings_path(@guild),
+              class: "px-6 py-2 bg-theme-secondary text-theme-primary rounded-lg hover:bg-theme-primary transition-colors font-semibold text-sm" %>
+      </div>
+
+      <%# Flash-style save feedback rendered by Stimulus %>
+      <div data-react-roles-target="feedback" class="hidden mt-3 text-sm font-medium"></div>
+
+      <%# Bot role position notice %>
+      <div class="mt-4 flex items-start gap-2 rounded-lg border border-yellow-400/30 bg-yellow-400/10 px-4 py-3 text-sm text-yellow-300">
+        <svg xmlns="http://www.w3.org/2000/svg" class="mt-0.5 h-4 w-4 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v2m0 4h.01M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z" />
+        </svg>
+        <span>
+          For role assignment to work, the <strong>GuildSync</strong> bot must be positioned at the very top of your server's role hierarchy in Discord. Roles above the bot cannot be assigned or removed.
+        </span>
+      </div>
+    </div>
+  <% end %>
+
+  <% if @guild.owner_id == current_user.id %>
+    <div class="bg-red-950/20 rounded-lg border border-red-500 p-6 mb-6">
+      <h2 class="text-xl font-semibold text-red-300 mb-2"><%= t("guild_archives.settings.title") %></h2>
+      <p class="text-sm text-red-200 mb-4"><%= t("guild_archives.settings.warning") %></p>
+      <p class="text-sm text-theme-secondary mb-4"><%= t("guild_archives.settings.type_name_hint", guild_name: @guild.name) %></p>
+
+      <%= form_with url: archive_guild_path(@guild), method: :post, local: true, class: "space-y-4" do |f| %>
+        <div>
+          <%= f.label :guild_name_confirmation, t("guild_archives.settings.confirmation_label"), class: "block text-sm font-medium text-theme-primary mb-2" %>
+          <%= f.text_field :guild_name_confirmation,
+                           class: "w-full md:w-96 px-4 py-2 bg-theme-primary border border-theme-secondary rounded-lg text-theme-primary",
+                           placeholder: @guild.name,
+                           autocomplete: "off" %>
+        </div>
+        <div>
+          <%= f.submit t("guild_archives.settings.archive_button"),
+                       data: { confirm: t("guild_archives.settings.archive_confirm_prompt", guild_name: @guild.name) },
+                       class: "px-6 py-3 bg-red-600 text-white rounded-lg hover:bg-red-700 transition-colors font-semibold cursor-pointer" %>
+        </div>
+      <% end %>
+    </div>
+  <% end %>
+
+  <div class="mt-6">
+    <%= link_to t('guilds.settings.back_to_dashboard'), guild_path(@guild), class: "text-theme-accent hover:text-theme-accent-hover" %>
+  </div>
+</div>

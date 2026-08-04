@@ -1,0 +1,106 @@
+zh:
+  billing:
+    show:
+      title: 我的账单
+      subtitle: 管理您的订阅和支付信息
+      current_subscription: 当前订阅
+      no_plan: 无方案
+      status_label: 状态：
+      trial_period_active: 试用期有效
+      trial_days_remaining_html: 您的试用期还剩 <strong>%{days}</strong> 天。
+      trial_ended: 您的试用期已结束。
+      trial_ends_on: 试用结束于：
+      started: 开始时间
+      expires: 到期时间
+      no_active_subscription: 您当前没有有效订阅。
+      view_plans: 查看方案
+      payment_management: 支付管理
+      setup_payment_method: 设置支付方式
+      setup_payment_trial: 请在下方选择一个方案以设置支付。您可以订阅当前试用方案或选择其他方案。
+      setup_payment_current: 请在下方选择一个方案以设置支付。
+      setup_payment_current_plan: 为当前方案设置支付
+      subscribe_to_plan: 订阅 %{plan}
+      setup_payment: 设置支付
+      manage_payment_methods: 管理您的支付方式、账单信息和发票
+      need_help: 需要帮助？
+      need_help_description: 对账单或订阅有疑问？我们的账单团队可为您提供帮助。
+      contact_billing_team: 联系我们的账单团队
+      contact_form_coming_soon: 联系表单即将上线
+      js_loading: 加载中...
+      js_manage_billing: 管理账单
+      js_setup_payment: 设置支付
+      billing_portal: 账单门户
+      switch_plan: 切换到此方案
+      confirm_plan_change: 切换到此方案？今天可能会收取按比例计算的费用。
+      confirm_plan_change_with_amount: 今日预计应付金额：
+      proration_disclaimer: 更改方案使用 Stripe 按比例计费：升级立即出账；降级将记入账户余额供后续账单抵扣（非现金退款）。
+      account_credit_html: 您有 <strong>%{amount}</strong> 账户余额将用于未来账单。
+      subscription_actions_title: 取消或恢复订阅
+      pending_cancel_html: 您的订阅计划于 <strong>%{date}</strong> 结束，之后不会再扣款。
+      period_end_unknown: 当前计费周期结束时
+      resume_subscription: 恢复订阅
+      refund_window_active: 您处于首次付款后三天内。现在取消将立即终止订阅，并将符合规则的款项退回您的付款方式。
+      cancel_no_refund: 取消后仍可访问至当前计费周期结束。已支付费用不予退款。
+      cancel_subscription: 取消订阅
+      cancel_confirm: 确定要取消订阅吗？
+  pricing:
+    interval:
+      monthly: 按月
+      annual: 按年
+      save_annual: 节省 10%
+    public:
+      title: 定价
+    upgrade:
+      title: 升级您的方案
+      subtitle: 为您的公会管理需求选择最合适的方案。所有方案均包含核心功能。
+      most_popular: 最受欢迎
+      trial_ends_in:
+        one: 您的试用将在 1 天后结束
+        other: 您的试用将在 %{count} 天后结束
+      current_plan: 当前方案
+      start_free_trial: 开始免费试用
+      subscribe_now: 立即订阅
+      switch_to_free_plan: 切换到免费方案
+      trial_message: 您当前处于 14 天免费试用期。请添加支付方式，以便试用结束后继续使用。
+      payment_required: 升级到付费方案需要支付方式。初次试用结束后不再提供额外试用。
+      questions_contact: 有问题？查看 %{link} 获取更多信息。
+      free_trial_box:
+        title: 免费试用 / 受限模式
+        description: 新账户从免费方案开始（功能受限）。符合条件时可开启基础版 14 天试用，或通过付费结账订阅基础版、进阶版或精英版。
+        features:
+        - 基础版 14 天试用（应用内或已启用的 Stripe 结账）
+        - 进阶版与精英版：仅付费订阅，无第二次试用
+        - 从免费方案开始基础版试用无需绑卡
+        - 随时可降级到免费方案
+        - 试用结束后免费方案功能受限
+      free_user_mode_box:
+        title: 免费方案与免费用户模式
+        description: 当您使用免费方案或在试用结束后切换到免费方案时，即处于免费用户模式。这意味着：
+        features:
+        - 仍可访问一个公会及有限数量的成员
+        - 核心功能在较低上限内可用
+        - 可随时升级到基础版、进阶版或精英版
+        - 降级或试用结束时您的数据会被保留
+      contact_us: 联系我们
+      loading: 加载中...
+    public_pricing:
+      title: 选择您的方案
+      subtitle: 为您的公会管理需求选择最合适的方案。所有方案均包含核心功能。
+      no_plans: 当前暂无可用定价方案。
+      most_popular: 最受欢迎
+      trial_included: 基础版 14 天试用（如提供）
+      start_free_trial: 开始免费试用
+      subscribe_now: 立即订阅
+      plan_suffix: 方案
+      whats_included: 包含内容：
+      free_plan_intro: 所有新账户从免费方案开始（功能受限）。符合条件可开启基础版 14 天试用，或通过结账订阅基础版、进阶版或精英版。
+      trial_info: 14 天试用仅适用于基础版。进阶版与精英版为应用内无试用的付费结账。基础版试用结束后可留在免费方案（受限）或订阅。
+      questions_contact: 有问题？查看 %{link} 获取更多信息。
+      contact_us: 联系我们
+      after_trial_title: 试用结束后会怎样？
+      after_trial_paragraph_html: 试用结束后，您将默认切换到我们的<strong class="text-theme-accent">免费方案</strong>，您可以继续使用，或在任何时候按需升级。
+      free_plan_includes_title: 免费方案包含：
+      free_plan_feature_1_guild: 1 个公会
+      free_plan_feature_50_users: 50 名用户
+      free_plan_feature_events: 活动规划与排期
+      free_plan_feature_members: 成员管理

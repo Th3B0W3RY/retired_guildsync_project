@@ -1,0 +1,100 @@
+<div class="space-y-6">
+  <div>
+    <h1 class="text-4xl font-bold text-theme-primary mb-2"><%= t('settings.profile.title') %></h1>
+    <p class="text-theme-secondary text-lg"><%= t('settings.profile.subtitle') %></p>
+  </div>
+
+  <% if @requires_real_email %>
+    <div class="rounded-lg border border-amber-500/50 bg-amber-500/10 p-4 text-amber-100" role="alert" aria-live="polite">
+      <h2 class="text-lg font-semibold text-amber-50 mb-1"><%= t("settings.profile.email_verification.banner_title") %></h2>
+      <p class="text-sm text-amber-100/90"><%= t("settings.profile.email_verification.banner_body") %></p>
+    </div>
+  <% end %>
+
+  <div class="space-y-6">
+    <!-- Avatar Section -->
+    <div class="bg-theme-secondary rounded-lg border border-theme-primary p-6">
+      <h2 class="text-2xl font-semibold text-theme-primary mb-4"><%= t('settings.profile.avatar.title') %></h2>
+      <div class="flex items-center gap-6 mb-4">
+        <div>
+          <% if current_user.avatar.attached? %>
+            <%= image_tag current_user.avatar, 
+                class: "w-24 h-24 rounded-full border-2 border-theme-primary shadow-lg object-cover",
+                alt: "Profile picture" %>
+          <% else %>
+            <div class="w-24 h-24 rounded-full bg-slate-700 border-2 border-theme-primary shadow-lg flex items-center justify-center">
+              <svg class="w-12 h-12 text-slate-400" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
+              </svg>
+            </div>
+          <% end %>
+        </div>
+        <div>
+          <%= form_with url: update_avatar_path, method: :patch, multipart: true, class: "inline-block", data: { turbo: false } do |f| %>
+            <%= f.file_field "user[avatar]", 
+                accept: "image/*", 
+                class: "hidden",
+                id: "avatar-upload-input",
+                onchange: "this.form.submit()" %>
+            <label for="avatar-upload-input" 
+                   class="inline-block px-4 py-2 bg-theme-accent text-white rounded-lg hover:bg-theme-accent-hover transition-colors cursor-pointer">
+              <%= current_user.avatar.attached? ? t('settings.profile.avatar.change') : t('settings.profile.avatar.upload') %>
+            </label>
+          <% end %>
+          <% if current_user.avatar.attached? %>
+            <%= button_to remove_avatar_path, method: :delete,
+                class: "mt-2 px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 transition-colors cursor-pointer",
+                data: { confirm: t('settings.profile.avatar.remove_confirm') } do %>
+              <%= t('settings.profile.avatar.remove') %>
+            <% end %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+
+    <!-- Username Section -->
+    <div class="bg-theme-secondary rounded-lg border border-theme-primary p-6">
+      <h2 class="text-2xl font-semibold text-theme-primary mb-4"><%= t('settings.profile.username.title') %></h2>
+      <p class="text-theme-secondary mb-4"><%= t('settings.profile.username.current') %> <span class="text-theme-primary font-semibold"><%= current_user.username %></span></p>
+      <%= form_with url: profile_settings_username_path, method: :patch, scope: :user, class: "space-y-4 max-w-md" do |f| %>
+        <div>
+          <%= f.label :username, t("settings.profile.username.label"), class: "block text-sm font-medium text-theme-secondary mb-1" %>
+          <%= f.text_field :username, value: current_user.username, class: "w-full px-3 py-2 rounded-lg border border-theme-primary bg-theme-card text-theme-primary", autocomplete: "username", aria: { describedby: "username-hint" } %>
+          <p id="username-hint" class="text-xs text-theme-secondary mt-1"><%= t("settings.profile.username.hint") %></p>
+        </div>
+        <%= f.submit t("settings.profile.username.save"), class: "px-4 py-2 bg-theme-accent text-white rounded-lg hover:bg-theme-accent-hover transition-colors cursor-pointer" %>
+      <% end %>
+    </div>
+
+    <!-- Email Section -->
+    <div class="bg-theme-secondary rounded-lg border border-theme-primary p-6">
+      <h2 class="text-2xl font-semibold text-theme-primary mb-4"><%= t('settings.profile.email.title') %></h2>
+      <p class="text-theme-secondary mb-2">
+        <%= t('settings.profile.email.current') %>
+        <span class="text-theme-primary font-semibold"><%= current_user.email %></span>
+      </p>
+      <p class="text-sm mb-4 <%= current_user.verified_real_email? ? 'text-emerald-400' : 'text-amber-200' %>">
+        <%= current_user.verified_real_email? ? t("settings.profile.email.verified_badge") : t("settings.profile.email.unverified_badge") %>
+      </p>
+
+      <% if @pending_email_verification %>
+        <p class="text-sm text-theme-secondary mb-4" role="status">
+          <%= t("settings.profile.email.pending_notice", email: @pending_email_verification.email) %>
+        </p>
+      <% end %>
+
+      <% unless current_user.verified_real_email? %>
+        <%= form_with url: profile_settings_email_verification_path, method: :post, class: "space-y-4 max-w-md" do %>
+          <div>
+            <label for="profile-email-input" class="block text-sm font-medium text-theme-secondary mb-1"><%= t("settings.profile.email.label") %></label>
+            <input type="email" name="email" id="profile-email-input" required
+              class="w-full px-3 py-2 rounded-lg border border-theme-primary bg-theme-card text-theme-primary"
+              placeholder="<%= t('settings.profile.email.placeholder') %>"
+              autocomplete="email" />
+          </div>
+          <%= submit_tag t("settings.profile.email.send_verification"), class: "px-4 py-2 bg-theme-accent text-white rounded-lg hover:bg-theme-accent-hover transition-colors cursor-pointer" %>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
+</div>

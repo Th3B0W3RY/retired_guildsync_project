@@ -1,0 +1,31 @@
+development:
+  adapter: postgresql
+  encoding: unicode
+  database: <%= ENV.fetch("DATABASE_NAME", "guildsync_development") %>
+  username: <%= ENV["DATABASE_USER"] %>
+  password: <%= ENV["DATABASE_PASSWORD"] %>
+  host: <%= ENV["DATABASE_HOST"] %>
+  port: <%= ENV.fetch("DATABASE_PORT", 5432) %>
+  pool: 5
+
+test:
+  adapter: postgresql
+  encoding: unicode
+  database: <%= ENV.fetch("TEST_DATABASE_NAME", ENV.fetch("DATABASE_NAME", "guildsync_development")).gsub("_development", "_test") %>
+  username: <%= ENV["TEST_DATABASE_USER"] || ENV["DATABASE_USER"] %>
+  password: <%= ENV["TEST_DATABASE_PASSWORD"] || ENV["DATABASE_PASSWORD"] %>
+  host: <%= ENV["TEST_DATABASE_HOST"] || ENV["DATABASE_HOST"] %>
+  port: <%= ENV["TEST_DATABASE_PORT"] || ENV.fetch("DATABASE_PORT", 5432) %>
+  pool: 5
+
+production:
+  adapter: postgresql
+  encoding: unicode
+  database: <%= ENV.fetch("DATABASE_NAME", "guildsync") %>
+  username: <%= ENV["DATABASE_USER"] %>
+  password: <%= ENV["DATABASE_PASSWORD"] %>
+  host: <%= ENV["DATABASE_HOST"] %>
+  port: <%= ENV.fetch("DATABASE_PORT", 5432) %>
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS", 5).to_i %>
+  timeout: 5000
+  sslmode: <%= ENV.fetch("DATABASE_SSLMODE", "require") %>

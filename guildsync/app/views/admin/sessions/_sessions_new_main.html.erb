@@ -1,0 +1,34 @@
+<div class="max-w-md mx-auto mt-12">
+  <h1 class="text-3xl font-bold text-theme-primary mb-8 text-center"><%= t("admin.sessions.login_heading") %></h1>
+
+  <% if flash[:alert].present? %>
+    <div class="mb-6 rounded-lg border border-red-500/40 bg-red-500/10 px-4 py-3 text-sm text-red-200" role="alert">
+      <%= flash[:alert] %>
+    </div>
+  <% end %>
+
+  <%= form_with url: admin_login_path, method: :post, local: true, class: "space-y-6", data: { turbo: false } do |f| %>
+    <div>
+      <%= f.label :email, t("admin.sessions.email_label"), class: "block mb-2 text-theme-secondary font-medium" %>
+      <%= f.email_field :email, required: true, autofocus: true,
+          class: "w-full px-4 py-3 bg-theme-secondary border border-theme-primary rounded-lg text-theme-primary focus:outline-none focus:ring-2 focus:ring-theme-accent focus:border-transparent transition-all" %>
+    </div>
+
+    <div>
+      <%= f.label :password, t("admin.sessions.password_label"), class: "block mb-2 text-theme-secondary font-medium" %>
+      <%= f.password_field :password, required: true,
+          class: "w-full px-4 py-3 bg-theme-secondary border border-theme-primary rounded-lg text-theme-primary focus:outline-none focus:ring-2 focus:ring-theme-accent focus:border-transparent transition-all" %>
+    </div>
+
+    <div class="space-y-3">
+      <%= f.submit t("admin.sessions.submit"),
+          class: "w-full px-4 py-3 bg-theme-accent text-white rounded-lg hover:bg-theme-accent-hover transition-colors cursor-pointer font-semibold text-lg shadow-lg" %>
+    </div>
+  <% end %>
+
+  <div class="mt-8 pt-6 border-t border-theme-primary">
+    <p class="text-theme-secondary text-center text-sm">
+      <%= t("admin.sessions.secure_notice") %>
+    </p>
+  </div>
+</div>

@@ -1,0 +1,90 @@
+<div class="max-w-4xl mx-auto p-6">
+  <div class="mb-6 flex items-center justify-between">
+    <div>
+      <h1 class="text-3xl font-bold text-theme-primary mb-2"><%= t('alliance_members.index.title') %></h1>
+      <p class="text-theme-secondary"><%= t('alliance_members.index.subtitle', alliance_name: @alliance.name) %></p>
+    </div>
+    <%= link_to "&larr; #{t('alliances.nav.back_to_alliance')}".html_safe, alliance_path(@alliance),
+        class: "text-sm text-theme-accent hover:text-theme-accent-hover" %>
+  </div>
+  <div class="mb-6">
+    <%= link_to t('alliance_members.index.export_csv'), alliance_alliance_members_path(@alliance, format: :csv), class: "inline-flex items-center gap-2 px-4 py-2 bg-theme-secondary text-theme-primary border border-theme-primary rounded-lg hover:bg-theme-primary transition-colors font-semibold text-sm" %>
+  </div>
+
+  <% @guilds_in_alliance.each do |ag| %>
+    <div class="bg-theme-secondary rounded-lg border border-theme-primary p-6 mb-4">
+      <div class="flex items-center justify-between mb-4">
+        <h2 class="text-xl font-semibold text-theme-primary">
+          <%= ag.guild.name %>
+          <% if ag.guild == @alliance.leader_guild %>
+            <span class="ml-2 px-2 py-0.5 bg-yellow-500/20 text-yellow-400 rounded text-xs font-medium"><%= t('alliances.roles.leader_guild') %></span>
+          <% end %>
+        </h2>
+        <% member_guild_ids = alliance_active_member_guilds(@alliance, current_user).map(&:id) %>
+        <% if member_guild_ids.include?(ag.guild.id) %>
+          <p class="text-xs text-theme-secondary"><%= t('alliance_members.index.your_guild') %></p>
+        <% end %>
+      </div>
+
+      <% guild_members = @alliance_members.select { |am| am.guild_id == ag.guild.id } %>
+      <% if guild_members.any? %>
+        <div class="space-y-2">
+          <% guild_members.each do |am| %>
+            <div class="flex items-center justify-between py-2 px-3 rounded-lg bg-theme-primary">
+              <div class="flex items-center gap-3">
+                <span class="text-theme-primary"><%= am.user.display_name %></span>
+                <span class="px-2 py-0.5 rounded text-xs font-medium
+                  <%= am.gm? ? 'bg-yellow-500/20 text-yellow-400' : am.officer? ? 'bg-blue-500/20 text-blue-400' : 'bg-gray-500/20 text-gray-400' %>">
+                  <%= am.role_label %>
+                </span>
+              </div>
+              <div class="flex flex-wrap items-center gap-2">
+                <% am.alliance_tags.order(:name).each do |tag| %>
+                  <span class="px-2 py-0.5 text-xs rounded-full text-white" style="background-color: <%= tag.color %>;"><%= tag.name %></span>
+                <% end %>
+              </div>
+              <% can_remove = can_kick_alliance_actions?(@alliance) && am.user != current_user && !am.gm? %>
+              <% if can_remove && !am.gm? %>
+                <%= button_to t('alliance_members.index.remove'), remove_alliance_alliance_members_path(@alliance),
+                    params: { user_id: am.user_id }, method: :delete,
+                    class: "px-3 py-1 bg-red-600 text-white rounded text-xs hover:bg-red-700 transition-colors",
+                    data: { confirm: t('alliance_members.index.remove_confirm', name: am.user.display_name) } %>
+              <% end %>
+              <% if @can_manage_alliance_member_tags && @alliance_tags.any? %>
+                <div class="flex flex-wrap gap-2">
+                  <% @alliance_tags.each do |tag| %>
+                    <% assigned = am.alliance_tags.include?(tag) %>
+                    <% if assigned %>
+                      <%= button_to "x #{tag.name}", remove_tag_alliance_alliance_members_path(@alliance), method: :delete, params: { member_id: am.id, tag_id: tag.id }, class: "px-2 py-1 text-xs rounded border border-theme-primary text-theme-primary" %>
+                    <% else %>
+                      <%= button_to "+ #{tag.name}", assign_tag_alliance_alliance_members_path(@alliance), method: :post, params: { member_id: am.id, tag_id: tag.id }, class: "px-2 py-1 text-xs rounded border border-theme-primary text-theme-primary" %>
+                    <% end %>
+                  <% end %>
+                </div>
+              <% end %>
+            </div>
+          <% end %>
+        </div>
+      <% else %>
+        <p class="text-theme-secondary text-sm"><%= t('alliance_members.index.no_members') %></p>
+      <% end %>
+    </div>
+  <% end %>
+
+  <% if @alliance.leader_user_id == current_user.id %>
+    <div class="mt-8 bg-theme-secondary rounded-lg border border-theme-primary p-6">
+      <h2 class="text-lg font-semibold text-theme-primary mb-3"><%= t('alliance_members.tags.manage_title', default: 'Manage Alliance Tags') %></h2>
+      <%= form_with url: create_tag_alliance_alliance_members_path(@alliance), method: :post, local: true, class: "flex flex-wrap gap-3 items-end" do %>
+        <div>
+          <label class="block text-xs text-theme-secondary mb-1"><%= t('alliance_members.tags.name') %></label>
+          <%= text_field_tag :name, nil, required: true, maxlength: 40, class: "px-3 py-2 bg-theme-primary border border-theme-secondary rounded-lg text-theme-primary text-sm" %>
+        </div>
+        <div>
+          <label class="block text-xs text-theme-secondary mb-1"><%= t('alliance_members.tags.color') %></label>
+          <%= color_field_tag :color, "#6366f1", class: "h-10 w-16 bg-theme-primary border border-theme-secondary rounded-lg" %>
+        </div>
+        <%= submit_tag t('alliance_members.tags.create'), class: "px-4 py-2 bg-theme-accent text-white rounded-lg hover:bg-theme-accent-hover text-sm font-semibold cursor-pointer" %>
+      <% end %>
+    </div>
+  <% end %>
+</div>

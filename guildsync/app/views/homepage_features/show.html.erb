@@ -1,0 +1,38 @@
+<% content_for :page_title, "#{strip_tags(@homepage_feature_card.title).squish} — #{t('app_name')}" %>
+<% content_for :head do %>
+  <% og_title = "#{strip_tags(@homepage_feature_card.title).squish} — #{t('app_name')}" %>
+  <% og_desc = @homepage_feature_card.description.truncate(200) %>
+  <% og_page_url = homepage_feature_url(@homepage_feature_card.slug) %>
+  <% og_image = image_url("favicon/apple-touch-icon-1024x1024.png") %>
+  <%= tag.meta name: "description", content: @homepage_feature_card.description.truncate(160) %>
+  <%= tag.meta property: "og:type", content: "website" %>
+  <%= tag.meta property: "og:url", content: og_page_url %>
+  <%= tag.meta property: "og:title", content: og_title %>
+  <%= tag.meta property: "og:description", content: og_desc %>
+  <%= tag.meta property: "og:image", content: og_image %>
+  <%= tag.meta name: "twitter:card", content: "summary" %>
+  <%= tag.meta name: "twitter:title", content: og_title %>
+  <%= tag.meta name: "twitter:description", content: og_desc %>
+  <%= tag.meta name: "twitter:image", content: og_image %>
+  <%= tag.link rel: "canonical", href: og_page_url %>
+<% end %>
+
+<div class="w-full max-w-[1200px] mx-auto px-4 py-12 sm:py-16 font-[family-name:Inter,ui-sans-serif,system-ui,sans-serif]">
+  <%= link_to root_path(anchor: "features"), class: "text-sm text-[#90A1B9] hover:text-white mb-10 inline-flex items-center gap-2 transition-colors" do %>
+    <span aria-hidden="true">←</span>
+    <%= t("homepage_features.back_to_home") %>
+  <% end %>
+
+  <h1 class="text-white text-3xl sm:text-4xl font-bold tracking-tight mb-4"><%= @homepage_feature_card.title %></h1>
+  <% if @homepage_feature_card.description.present? %>
+    <p class="text-[#90A1B9] text-lg leading-relaxed max-w-3xl mb-10"><%= @homepage_feature_card.description %></p>
+  <% end %>
+
+  <div class="text-[#CAD5E2] text-base leading-relaxed [&_a]:text-[#C27AFF] [&_a]:underline [&_img]:max-w-full [&_img]:rounded-xl [&_.attachment]:my-4">
+    <% if @homepage_feature_card.detail_body_present? %>
+      <%= @homepage_feature_card.body %>
+    <% else %>
+      <p class="text-[#90A1B9]"><%= t("homepage_features.empty_detail") %></p>
+    <% end %>
+  </div>
+</div>

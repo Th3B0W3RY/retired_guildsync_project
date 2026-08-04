@@ -1,0 +1,47 @@
+<div class="max-w-4xl mx-auto p-6">
+  <div class="mb-6">
+    <h1 class="text-3xl font-bold text-theme-primary mb-2"><%= @document.title %></h1>
+    <p class="text-theme-secondary">
+      <%= @guild.name %> • 
+      Updated <%= time_ago_in_words(@document.updated_at) %> ago
+    </p>
+  </div>
+
+  <div class="mb-4 flex items-center justify-between">
+    <div>
+      <% case @document.visibility %>
+      <% when "public_doc" %>
+        <span class="px-3 py-1 text-sm font-semibold rounded-full bg-green-600 text-white">Public Document</span>
+      <% when "unlisted_doc" %>
+        <span class="px-3 py-1 text-sm font-semibold rounded-full bg-yellow-600 text-white">Unlisted Document</span>
+      <% when "private_doc" %>
+        <span class="px-3 py-1 text-sm font-semibold rounded-full bg-red-600 text-white">Private Document</span>
+      <% end %>
+    </div>
+    <button onclick="copyShareLink()" class="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors">
+      Copy Share Link
+    </button>
+  </div>
+
+  <div class="bg-theme-card border border-theme-primary rounded-lg p-6">
+    <div
+      data-controller="document-renderer"
+      data-document-renderer-content-value="<%= (@document.content || { type: "doc", content: [] }).to_json %>"
+      class="prose prose-invert max-w-none"
+    >
+      <!-- Content will be rendered by Stimulus controller -->
+    </div>
+  </div>
+</div>
+
+<script>
+function copyShareLink() {
+  const url = window.location.href;
+  navigator.clipboard.writeText(url).then(function() {
+    window.showToast('success', '<%= j t('js.guild_documents.link_copied') %>');
+  }, function(err) {
+    console.error('Failed to copy:', err);
+  });
+}
+</script>
+

@@ -1,0 +1,120 @@
+<% glass = "rounded-xl border border-white/10 bg-[rgba(15,23,43,0.5)] p-6 shadow-lg" %>
+<% nav_pill = "rounded-lg border border-white/10 bg-[rgba(15,23,43,0.35)] px-4 py-2 text-sm text-[#CAD5E2] transition-colors hover:border-[#7C86FF]/30 hover:text-white" %>
+<% inner_row = "flex items-center justify-between rounded-lg bg-[rgba(2,6,24,0.45)] p-3" %>
+<% btn_edit = "rounded-lg bg-theme-brand-gradient px-4 py-2 text-sm font-medium text-white transition-opacity hover:opacity-95" %>
+
+<div class="mx-auto max-w-5xl p-6 font-[family-name:Inter,ui-sans-serif,system-ui,sans-serif]">
+  <div class="<%= glass %> mb-6">
+    <div class="flex items-start justify-between">
+      <div class="flex items-center gap-4">
+        <% if @alliance.logo.attached? %>
+          <%= image_tag @alliance.logo, class: "h-16 w-16 rounded-full border-2 border-[#7C86FF]/50 object-cover" %>
+        <% else %>
+          <div class="flex h-16 w-16 items-center justify-center rounded-full bg-[#4F39F6]/20">
+            <svg class="h-8 w-8 text-[#7C86FF]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z"></path>
+            </svg>
+          </div>
+        <% end %>
+        <div>
+          <h1 class="text-3xl font-bold text-white"><%= @alliance.name %></h1>
+          <p class="mt-1 text-[#90A1B9]"><%= @alliance.description %></p>
+          <p class="mt-1 text-xs text-[#90A1B9]">
+            <%= t('alliances.show.guilds_count', count: @alliance.active_guild_count) %> &bull;
+            <%= t('alliances.show.leader', name: @alliance.leader_user.display_name) %>
+          </p>
+        </div>
+      </div>
+      <div class="flex items-center gap-2">
+        <% if @alliance.leader_user == current_user %>
+          <%= link_to t('alliances.show.edit'), edit_alliance_path(@alliance), class: btn_edit %>
+        <% end %>
+        <% my_guild = current_user.owned_guilds.find { |g| @alliance.active_guild_ids.include?(g.id) } %>
+        <% if my_guild && @alliance.leader_guild != my_guild %>
+          <%= button_to t('alliances.show.leave'), leave_alliance_path(@alliance), method: :post,
+              class: "rounded-lg bg-red-600 px-4 py-2 text-sm text-white transition-colors hover:bg-red-700",
+              data: { confirm: t('alliances.show.leave_confirm') } %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+
+  <div class="mb-6 flex flex-wrap gap-2">
+    <%= link_to t('alliances.nav.members'), alliance_alliance_members_path(@alliance), class: nav_pill %>
+    <%= link_to t('alliances.nav.events'), alliance_alliance_events_path(@alliance), class: nav_pill %>
+    <%= link_to t('alliances.nav.polls'), alliance_alliance_polls_path(@alliance), class: nav_pill %>
+    <%= link_to t('alliances.nav.rolls'), alliance_alliance_loot_rolls_path(@alliance), class: nav_pill %>
+    <%= link_to t('alliances.nav.chat'), alliance_alliance_messages_path(@alliance), class: nav_pill %>
+    <% if alliance_owner_in_active_guild?(@alliance) %>
+      <%= link_to t('alliances.nav.activity_feed'), alliance_activity_feed_path(alliance_id: @alliance.id), class: nav_pill %>
+    <% end %>
+    <% can_manage_join_requests = can_manage_alliance_actions?(@alliance) %>
+    <% if can_manage_join_requests %>
+      <%= link_to t("alliances.nav.join_requests"), alliance_alliance_join_requests_path(@alliance), class: nav_pill %>
+    <% end %>
+    <% if current_user.owned_guilds.any? { |g| @alliance.active_guild_ids.include?(g.id) } %>
+      <%= link_to t('alliances.nav.gm_chat'), alliance_alliance_messages_path(@alliance, type: "gm"),
+          class: "rounded-lg border border-yellow-500/30 bg-yellow-900/30 px-4 py-2 text-sm text-yellow-300 transition-colors hover:text-yellow-200" %>
+      <% if can_manage_alliance_actions?(@alliance) %>
+        <%= link_to t('alliances.nav.invites'), alliance_alliance_invites_path(@alliance), class: nav_pill %>
+      <% end %>
+      <%= link_to t('alliances.nav.disband_vote'), alliance_alliance_disband_votes_path(@alliance),
+          class: "rounded-lg border border-red-500/30 bg-red-900/20 px-4 py-2 text-sm text-red-300 transition-colors hover:text-red-200" %>
+    <% end %>
+  </div>
+
+  <div class="grid grid-cols-1 gap-6 lg:grid-cols-2">
+    <div class="<%= glass %>">
+      <div class="mb-4 flex items-center justify-between">
+        <h2 class="text-xl font-semibold text-white"><%= t('alliances.show.guilds') %></h2>
+        <% if can_manage_alliance_actions?(@alliance) %>
+          <%= link_to t('alliances.show.invite_guild'), alliance_alliance_invites_path(@alliance),
+              class: "text-sm text-[#7C86FF] hover:underline" %>
+        <% end %>
+      </div>
+      <div class="space-y-3">
+        <% @alliance_guild.each do |ag| %>
+          <div class="<%= inner_row %>">
+            <div>
+              <span class="font-medium text-white"><%= ag.guild.name %></span>
+              <% if ag.guild == @alliance.leader_guild %>
+                <span class="ml-2 rounded bg-yellow-500/20 px-2 py-0.5 text-xs font-medium text-yellow-300"><%= t('alliances.roles.leader_guild') %></span>
+              <% end %>
+            </div>
+            <% if can_manage_alliance_actions?(@alliance) && ag.guild != @alliance.leader_guild %>
+              <%= button_to t('alliances.show.kick_guild'), kick_guild_alliance_path(@alliance),
+                  params: { guild_id: ag.guild.id }, method: :post,
+                  class: "rounded bg-red-600 px-3 py-1 text-xs text-white transition-colors hover:bg-red-700",
+                  data: { confirm: t('alliances.show.kick_guild_confirm', name: ag.guild.name) } %>
+            <% end %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+
+    <div class="<%= glass %>">
+      <div class="mb-4 flex items-center justify-between">
+        <h2 class="text-xl font-semibold text-white"><%= t('alliances.show.members_preview') %></h2>
+        <%= link_to t('alliances.show.view_all_members'), alliance_alliance_members_path(@alliance),
+            class: "text-sm text-[#7C86FF] hover:underline" %>
+      </div>
+      <div class="space-y-2">
+        <% @alliance_members.first(8).each do |am| %>
+          <div class="flex items-center justify-between border-b border-white/10 py-2 last:border-0">
+            <div class="flex items-center gap-2">
+              <span class="text-sm text-white"><%= am.user.display_name %></span>
+              <span class="text-xs text-[#90A1B9]">(<%= am.guild.name %>)</span>
+            </div>
+            <span class="rounded px-2 py-0.5 text-xs font-medium
+              <%= am.gm? ? 'bg-yellow-500/20 text-yellow-300' : am.officer? ? 'bg-blue-500/20 text-blue-300' : 'bg-white/5 text-[#90A1B9]' %>">
+              <%= am.role_label %>
+            </span>
+          </div>
+        <% end %>
+        <% if @alliance_members.count > 8 %>
+          <p class="pt-2 text-sm text-[#90A1B9]"><%= t('alliances.show.more_members', count: @alliance_members.count - 8) %></p>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

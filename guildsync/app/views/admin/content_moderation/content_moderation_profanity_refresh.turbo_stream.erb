@@ -1,0 +1,10 @@
+<%= turbo_stream.update "admin_content_moderation_flash" do %>
+  <%= render "admin/content_moderation/flash_banner",
+      message: @content_moderation_flash_message,
+      variant: @content_moderation_flash_variant %>
+<% end %>
+<%= turbo_stream.replace "admin_content_moderation_profanity_wrap" do %>
+  <div id="admin_content_moderation_profanity_wrap">
+    <%= render "admin/content_moderation/profanity_list_panel" %>
+  </div>
+<% end %>

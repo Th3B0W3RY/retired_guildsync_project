@@ -1,0 +1,15 @@
+<%# Required local: toast_inset_main_column (boolean). When true, band matches ml-72 main column (w-72 sidebar). %>
+<%
+  inset = toast_inset_main_column ? "left-72 right-0" : "left-0 right-0"
+%>
+<div id="toast-host"
+     data-controller="toast"
+     data-toast-default-ms-value="<%= flash_toast_duration_ms %>"
+     class="pointer-events-none fixed <%= inset %> top-20 z-[9999999] flex flex-col items-center gap-2 px-4 [&>*]:pointer-events-auto">
+  <% { notice: "success", alert: "error", warning: "warning", info: "info" }.each do |key, type| %>
+    <% msg = flash[key].presence %>
+    <% if msg %>
+      <div data-flash-type="<%= type %>" data-flash-message="<%= html_escape(msg) %>" class="hidden"></div>
+    <% end %>
+  <% end %>
+</div>

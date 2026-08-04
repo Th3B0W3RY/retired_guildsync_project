@@ -1,0 +1,176 @@
+<!-- Delegated handlers for Create Guild "Add Game" and modal - in layout so they always run. -->
+<script>
+(function() {
+  window.__guildSyncPendingSuggestName = null;
+  var addingLabel = '<%= j t('guilds.new.custom_game.js_adding') %>';
+  var addButtonLabel = '<%= j t('guilds.new.custom_game.add_button') %>';
+  var successMsg = '<%= j t('guilds.new.custom_game.js_game_added_success') %>';
+  var primaryLabel = '<%= j t('common.labels.primary') %>';
+  var pendingApproval = '<%= j t('guilds.new.custom_game.pending_admin_approval') %>';
+
+  function hideModal() {
+    var m = document.getElementById('game-confirmation-modal');
+    if (m) m.classList.add('hidden');
+    window.__guildSyncPendingSuggestName = null;
+  }
+
+  document.addEventListener('click', function(e) {
+    if (!e.target || !e.target.closest) return;
+
+    if (e.target.closest('#cancel-custom-game-btn')) {
+      e.preventDefault();
+      e.stopPropagation();
+      var details = document.getElementById('custom-game-details');
+      var input = document.getElementById('custom-game-input');
+      var suggestEl = document.getElementById('game-suggestions');
+      var errorEl = document.getElementById('game-suggest-error');
+      var confirmBtn = document.getElementById('confirm-add-game-btn');
+      if (details) details.removeAttribute('open');
+      if (input) input.value = '';
+      if (suggestEl) suggestEl.classList.add('hidden');
+      if (errorEl) errorEl.classList.add('hidden');
+      if (confirmBtn) { confirmBtn.disabled = true; confirmBtn.textContent = addButtonLabel; }
+      window.__guildSyncPendingSuggestName = null;
+      return;
+    }
+
+    if (e.target.closest('#confirm-add-game-btn') || e.target.closest('#confirm-add-game-btn-wrap')) {
+      var input = document.getElementById('custom-game-input');
+      if (!input) return;
+      var name = input.value.trim();
+      if (name.length < 2) return;
+      e.preventDefault();
+      e.stopPropagation();
+      window.__guildSyncPendingSuggestName = name;
+      var modal = document.getElementById('game-confirmation-modal');
+      var modalName = document.getElementById('modal-game-name');
+      if (modal) modal.classList.remove('hidden');
+      if (modalName) modalName.textContent = '"' + name + '"';
+      return;
+    }
+
+    if (e.target.closest('#close-game-modal') || e.target.closest('#cancel-game-modal-btn')) {
+      e.preventDefault();
+      hideModal();
+      return;
+    }
+
+    if (e.target.id === 'game-confirmation-modal') {
+      e.preventDefault();
+      hideModal();
+      return;
+    }
+
+    if (e.target.closest('#confirm-game-modal-btn')) {
+      e.preventDefault();
+      var nameToSuggest = window.__guildSyncPendingSuggestName;
+      if (!nameToSuggest) return;
+      hideModal();
+      var confirmBtn = document.getElementById('confirm-add-game-btn');
+      var details = document.getElementById('custom-game-details');
+      var customInput = document.getElementById('custom-game-input');
+      var gameSuggestions = document.getElementById('game-suggestions');
+      var gameSuggestError = document.getElementById('game-suggest-error');
+      if (confirmBtn) { confirmBtn.disabled = true; confirmBtn.textContent = addingLabel; }
+      window.__guildSyncPendingSuggestName = null;
+      fetch('/games/suggest', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'X-CSRF-Token': document.querySelector('meta[name="csrf-token"]')?.content || ''
+        },
+        body: JSON.stringify({ name: nameToSuggest })
+      }).then(function(response) {
+        if (!response.ok) {
+          return response.json().catch(function() { return {}; }).then(function(data) {
+            throw new Error(data.error || 'Failed to create game');
+          });
+        }
+        return response.json();
+      }).then(function(data) {
+        if (!data.success) {
+          throw new Error(data.error || 'Unknown error');
+        }
+        var gameId = data.game.id;
+        var gameName = data.game.name;
+        var gamesContainer = document.getElementById('featured-games-list');
+        var form = document.querySelector('form');
+        if (!gamesContainer) return;
+        var newLabel = document.createElement('label');
+        newLabel.className = 'flex items-center space-x-3 cursor-pointer hover:bg-theme-hover p-2 rounded';
+        newLabel.setAttribute('data-game-id', gameId);
+        var newCheckbox = document.createElement('input');
+        newCheckbox.type = 'checkbox';
+        newCheckbox.name = 'guild[game_ids][]';
+        newCheckbox.value = gameId;
+        newCheckbox.className = 'w-4 h-4 text-theme-accent border-theme-primary rounded focus:ring-theme-accent';
+        newCheckbox.required = true;
+        newCheckbox.setAttribute('data-game-id', gameId);
+        newCheckbox.id = 'guild_game_ids_' + gameId;
+        newCheckbox.checked = true;
+        var gameInfoDiv = document.createElement('div');
+        gameInfoDiv.className = 'flex-1';
+        var gameNameDiv = document.createElement('div');
+        gameNameDiv.className = 'font-medium text-theme-primary';
+        gameNameDiv.textContent = gameName;
+        var pendingDiv = document.createElement('div');
+        pendingDiv.className = 'text-xs text-yellow-400';
+        pendingDiv.textContent = pendingApproval;
+        gameInfoDiv.appendChild(gameNameDiv);
+        gameInfoDiv.appendChild(pendingDiv);
+        var newRadio = document.createElement('input');
+        newRadio.type = 'radio';
+        newRadio.name = 'guild[primary_game_id]';
+        newRadio.value = gameId;
+        newRadio.className = 'w-4 h-4 text-theme-accent border-theme-primary focus:ring-theme-accent';
+        newRadio.setAttribute('data-primary-for', gameId);
+        newRadio.id = 'guild_primary_game_id_' + gameId;
+        if (!document.querySelector('input[name="guild[primary_game_id]"]:checked')) {
+          newRadio.checked = true;
+        }
+        var primarySpan = document.createElement('span');
+        primarySpan.className = 'text-sm text-theme-secondary';
+        primarySpan.textContent = primaryLabel;
+        newLabel.appendChild(newCheckbox);
+        newLabel.appendChild(gameInfoDiv);
+        newLabel.appendChild(newRadio);
+        newLabel.appendChild(primarySpan);
+        if (gamesContainer.firstChild) {
+          gamesContainer.insertBefore(newLabel, gamesContainer.firstChild);
+        } else {
+          gamesContainer.appendChild(newLabel);
+        }
+        if (form) {
+          newCheckbox.removeAttribute('required');
+          setTimeout(function() { newCheckbox.setAttribute('required', 'required'); }, 0);
+        }
+        if (details) details.removeAttribute('open');
+        if (customInput) customInput.value = '';
+        if (gameSuggestions) gameSuggestions.classList.add('hidden');
+        if (gameSuggestError) {
+          gameSuggestError.classList.remove('hidden');
+          gameSuggestError.className = 'mt-2 p-2 bg-green-900/50 border border-green-700 text-green-200 rounded text-sm';
+          gameSuggestError.textContent = (data.game && data.game.message) || successMsg;
+        }
+        if (confirmBtn) { confirmBtn.disabled = true; confirmBtn.textContent = addButtonLabel; }
+        newLabel.scrollIntoView({ behavior: 'smooth', block: 'start', inline: 'nearest' });
+      }).catch(function(err) {
+        if (gameSuggestError) {
+          gameSuggestError.classList.remove('hidden');
+          gameSuggestError.className = 'mt-2 p-2 bg-red-900/50 border border-red-700 text-red-200 rounded text-sm';
+          gameSuggestError.textContent = (err && err.message) || '<%= j t('guilds.new.custom_game.js_error_adding') %>';
+        }
+        if (confirmBtn) { confirmBtn.disabled = false; confirmBtn.textContent = addButtonLabel; }
+      });
+      return;
+    }
+  });
+
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') {
+      var m = document.getElementById('game-confirmation-modal');
+      if (m && !m.classList.contains('hidden')) hideModal();
+    }
+  });
+})();
+</script>

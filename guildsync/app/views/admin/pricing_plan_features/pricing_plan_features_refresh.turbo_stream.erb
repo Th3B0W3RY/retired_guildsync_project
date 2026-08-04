@@ -1,0 +1,8 @@
+<%= turbo_stream.update "admin_pricing_plan_features_flash" do %>
+  <%= render "admin/errors/flash_banner", message: @admin_pricing_plan_features_message, variant: @admin_pricing_plan_features_variant %>
+<% end %>
+<%= turbo_stream.replace "admin_pricing_plan_features_form_wrap" do %>
+  <div id="admin_pricing_plan_features_form_wrap">
+    <%= render "form", plans: @plans %>
+  </div>
+<% end %>

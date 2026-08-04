@@ -1,0 +1,41 @@
+---
+version: 1
+homepage_feature_cards:
+  - slug: member_management
+    title: Spec Snapshot Title
+    description: Spec snapshot description for request spec.
+    icon_key: member_management
+    position: 0
+    visible: true
+    body_html: "<p>Spec snapshot rich body.</p>"
+landing_comparison_tables:
+  - position: 0
+    feature_column_label: Feature
+    guildsync_column_label: GuildSync
+    competitor_column_label: Guild Manager
+    show_guildsync_badge: true
+    rows:
+      - position: 0
+        feature_label: Spec Compare Row Alpha
+        guildsync_included: true
+        competitor_included: false
+  - position: 1
+    feature_column_label: Feature
+    guildsync_column_label: GuildSync
+    competitor_column_label: GuildSpire
+    show_guildsync_badge: true
+    rows:
+      - position: 0
+        feature_label: Spec Compare Row Alpha
+        guildsync_included: true
+        competitor_included: false
+  - position: 2
+    feature_column_label: Feature
+    guildsync_column_label: GuildSync
+    competitor_column_label: Typical Guild Manager Solutions
+    show_guildsync_badge: true
+    rows:
+      - position: 0
+        feature_label: Spec Compare Row Alpha
+        guildsync_included: true
+        competitor_included: false

@@ -1,0 +1,254 @@
+<div class="max-w-3xl mx-auto p-6"
+     data-controller="alliance-chat"
+     data-alliance-chat-alliance-id-value="<%= @alliance.id %>"
+     data-alliance-chat-message-type-value="<%= @message_type == :gm_only ? "gm_only" : "all_members" %>">
+  <div class="mb-4 flex items-center justify-between">
+    <div>
+      <h1 class="text-2xl font-bold text-theme-primary">
+        <%= @message_type == :gm_only ? t('alliances.messages.index.gm_chat') : t('alliances.messages.index.alliance_chat') %>
+      </h1>
+      <p class="text-theme-secondary text-sm"><%= @alliance.name %></p>
+    </div>
+    <div class="flex items-center gap-2">
+      <% if @can_see_gm_chat %>
+        <% if @message_type == :gm_only %>
+          <%= link_to t('alliances.messages.index.switch_to_all'), alliance_alliance_messages_path(@alliance),
+              class: "text-sm text-theme-accent hover:text-theme-accent-hover" %>
+        <% else %>
+          <%= link_to t('alliances.messages.index.switch_to_gm'), alliance_alliance_messages_path(@alliance, type: "gm"),
+              class: "text-sm text-yellow-400 hover:text-yellow-300" %>
+        <% end %>
+      <% end %>
+      <%= link_to "&larr; #{t('alliances.nav.back_to_alliance')}".html_safe, alliance_path(@alliance),
+          class: "text-sm text-theme-secondary hover:text-theme-accent ml-4" %>
+    </div>
+  </div>
+
+  <% if @message_type == :gm_only %>
+    <div class="mb-4 flex items-center gap-2 rounded-lg border border-yellow-400/30 bg-yellow-400/10 px-4 py-2 text-sm text-yellow-300">
+      <svg class="w-4 h-4 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z" />
+      </svg>
+      <span><%= t('alliances.messages.index.gm_only_notice') %></span>
+    </div>
+  <% end %>
+
+  <!-- Message Thread -->
+  <div class="bg-theme-secondary rounded-lg border border-theme-primary p-4 mb-4" style="min-height: 400px; max-height: 60vh; overflow-y: auto;" id="chat-messages">
+    <% msg_time_fmt = t("alliances.messages.index.message_time_format") %>
+    <% if @messages.any? %>
+      <% @messages.each do |msg| %>
+        <% display_time = l(msg.created_at, format: msg_time_fmt) %>
+        <div class="mb-4 <%= msg.sender == current_user ? 'text-right' : 'text-left' %>">
+          <div class="inline-block max-w-[75%]">
+            <div class="text-xs text-theme-secondary mb-1">
+              <%= msg.sender == current_user ? t('alliances.messages.index.you') : msg.sender.display_name %>
+              &bull;
+              <time class="js-local-time"
+                    datetime="<%= msg.created_at.utc.iso8601 %>"
+                    data-fallback="<%= display_time %>">
+                <%= display_time %>
+              </time>
+            </div>
+            <div class="px-4 py-2 rounded-2xl text-sm
+              <%= msg.sender == current_user ? 'bg-theme-accent text-white rounded-tr-none' : 'bg-theme-primary text-theme-primary rounded-tl-none' %>">
+              <%= h(msg.content) %>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    <% else %>
+      <div class="flex items-center justify-center h-48" data-chat-empty-state>
+        <p class="text-theme-secondary"><%= t('alliances.messages.index.no_messages') %></p>
+      </div>
+    <% end %>
+  </div>
+
+  <!-- Compose -->
+  <div class="bg-theme-secondary rounded-lg border border-theme-primary p-4">
+    <form id="chat-form" class="flex gap-3">
+      <%= hidden_field_tag :alliance_message_message_type, @message_type %>
+      <input type="text" id="chat-input"
+        placeholder="<%= t('alliances.messages.index.placeholder') %>"
+        class="flex-1 px-4 py-2 bg-theme-primary border border-theme-secondary rounded-lg text-theme-primary focus:outline-none focus:border-theme-accent"
+        maxlength="4000" required autocomplete="off" />
+      <button type="submit"
+        class="px-6 py-2 bg-theme-accent text-white rounded-lg hover:bg-theme-accent-hover transition-colors font-semibold">
+        <%= t('alliances.messages.index.send') %>
+      </button>
+    </form>
+  </div>
+</div>
+
+<script>
+(function() {
+  const form    = document.getElementById('chat-form');
+  const input   = document.getElementById('chat-input');
+  const thread  = document.getElementById('chat-messages');
+  const token   = document.querySelector('meta[name="csrf-token"]').content;
+  const url     = '<%= alliance_alliance_messages_path(@alliance) %>';
+  const mtype   = '<%= @message_type %>';
+  const pageLocale = "<%= j(I18n.locale.to_s) %>";
+  const currentUserId = <%= current_user.id %>;
+  const youLabel = "<%= j(t('alliances.messages.index.you')) %>";
+  <% poll_path = @message_type == :gm_only ? alliance_alliance_messages_path(@alliance, format: :json, type: "gm") : alliance_alliance_messages_path(@alliance, format: :json) %>
+  const pollUrlBase = "<%= poll_path %>";
+  let lastMessageId = <%= @messages.last&.id.to_i %>;
+
+  // Auto-scroll to bottom
+  thread.scrollTop = thread.scrollHeight;
+  localizeTimes();
+
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const content = input.value.trim();
+    if (!content) return;
+
+    const res = await fetch(url, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'X-CSRF-Token': token },
+      body: JSON.stringify({ alliance_message: { content }, message_type: mtype })
+    });
+
+    if (res.ok) {
+      const payload = await res.json();
+      input.value = '';
+      removeChatEmptyState();
+      const row = appendMessageRow(payload);
+      lastMessageId = Math.max(lastMessageId, Number(payload.id) || 0);
+      thread.scrollTop = thread.scrollHeight;
+      localizeTimesIn(row.querySelectorAll('.js-local-time'));
+      return;
+    }
+  });
+
+  function removeChatEmptyState() {
+    const empty = thread.querySelector('[data-chat-empty-state]');
+    if (empty) empty.remove();
+  }
+
+  function appendMessageRow(payload) {
+    const mine = Number(payload.sender_id) === Number(currentUserId);
+    const row = document.createElement('div');
+    row.className = 'mb-4 ' + (mine ? 'text-right' : 'text-left');
+
+    const wrap = document.createElement('div');
+    wrap.className = 'inline-block max-w-[75%]';
+
+    const meta = document.createElement('div');
+    meta.className = 'text-xs text-theme-secondary mb-1';
+    const nameSpan = document.createElement('span');
+    nameSpan.textContent = mine ? youLabel : (payload.sender || '');
+    meta.appendChild(nameSpan);
+    meta.appendChild(document.createTextNode(' \u2022 '));
+
+    const timeEl = document.createElement('time');
+    timeEl.className = 'js-local-time';
+    timeEl.setAttribute('datetime', payload.created_at);
+    timeEl.textContent = payload.display_time || '';
+    meta.appendChild(timeEl);
+
+    const bubble = document.createElement('div');
+    bubble.className = 'px-4 py-2 rounded-2xl text-sm ' +
+      (mine ? 'bg-theme-accent text-white rounded-tr-none' : 'bg-theme-primary text-theme-primary rounded-tl-none');
+    bubble.textContent = payload.content || '';
+
+    wrap.appendChild(meta);
+    wrap.appendChild(bubble);
+    row.appendChild(wrap);
+    thread.appendChild(row);
+    return row;
+  }
+
+  function localizeTimes() {
+    localizeTimesIn(thread.querySelectorAll('.js-local-time'));
+  }
+
+  function localizeTimesIn(nodes) {
+    if (!nodes.length || typeof Intl === 'undefined' || typeof Intl.DateTimeFormat === 'undefined') return;
+
+    const options = {
+      month: 'short',
+      day: '2-digit',
+      hour: '2-digit',
+      minute: '2-digit'
+    };
+
+    let formatter;
+    try {
+      formatter = new Intl.DateTimeFormat(pageLocale, options);
+    } catch (e) {
+      formatter = new Intl.DateTimeFormat(undefined, options);
+    }
+
+    nodes.forEach((node) => {
+      const iso = node.getAttribute('datetime');
+      if (!iso) return;
+      const parsed = new Date(iso);
+      if (Number.isNaN(parsed.getTime())) return;
+      node.textContent = formatter.format(parsed);
+      try {
+        node.setAttribute('title', parsed.toLocaleString(pageLocale));
+      } catch (e) {
+        node.setAttribute('title', parsed.toLocaleString());
+      }
+    });
+  }
+
+  async function pollNewMessages() {
+    if (document.hidden) return;
+    try {
+      const sep = pollUrlBase.includes("?") ? "&" : "?";
+      const res = await fetch(`${pollUrlBase}${sep}since_id=${encodeURIComponent(lastMessageId)}`, {
+        headers: { Accept: "application/json" },
+        credentials: "same-origin"
+      });
+      if (!res.ok) return;
+      const data = await res.json();
+      if (!data.messages || !data.messages.length) return;
+      removeChatEmptyState();
+      let maxId = lastMessageId;
+      data.messages.forEach((payload) => {
+        const row = appendMessageRow(payload);
+        localizeTimesIn(row.querySelectorAll(".js-local-time"));
+        maxId = Math.max(maxId, Number(payload.id) || 0);
+      });
+      lastMessageId = maxId;
+      thread.scrollTop = thread.scrollHeight;
+    } catch (e) {}
+  }
+
+  const POLL_MS_FALLBACK = 5000;
+  const POLL_MS_WITH_CABLE = 30000;
+  let pollTimer = null;
+
+  function startPollInterval(ms) {
+    if (pollTimer) clearInterval(pollTimer);
+    pollTimer = setInterval(pollNewMessages, ms);
+  }
+
+  startPollInterval(POLL_MS_FALLBACK);
+
+  document.addEventListener("alliance-chat:connected", function onAllianceChatCableConnected() {
+    startPollInterval(POLL_MS_WITH_CABLE);
+  });
+  document.addEventListener("alliance-chat:disconnected", function onAllianceChatCableDisconnected() {
+    startPollInterval(POLL_MS_FALLBACK);
+  });
+
+  window.addEventListener("pagehide", () => {
+    if (pollTimer) clearInterval(pollTimer);
+  });
+
+  document.addEventListener("alliance-chat:message", function onAllianceChatCable(ev) {
+    const payload = ev.detail && ev.detail.message;
+    if (!payload || payload.id == null) return;
+    if (Number(payload.id) <= lastMessageId) return;
+    removeChatEmptyState();
+    const row = appendMessageRow(payload);
+    lastMessageId = Math.max(lastMessageId, Number(payload.id) || 0);
+    localizeTimesIn(row.querySelectorAll(".js-local-time"));
+    thread.scrollTop = thread.scrollHeight;
+  });
+})();
+</script>

@@ -1,0 +1,145 @@
+<%# locals: guild (Guild) — fixed requesting guild; posts to POST /alliances/:id/alliance_join_requests %>
+<div class="space-y-4" data-testid="alliance-join-request-search-form">
+  <div>
+    <label class="block text-sm font-medium text-theme-primary mb-1"><%= t("alliances.index.search_label") %></label>
+    <input type="search" id="alliance-guild-search" autocomplete="off"
+      placeholder="<%= t("alliances.index.search_placeholder") %>"
+      class="w-full px-4 py-2 bg-theme-primary border border-theme-secondary rounded-lg text-theme-primary" />
+    <p id="alliance-search-status" class="text-xs text-theme-secondary mt-1 hidden"></p>
+    <ul id="alliance-search-results" class="mt-2 space-y-1 hidden"></ul>
+  </div>
+
+  <%= form_with url: "#", method: :post, local: true, id: "alliance-join-request-form", class: "space-y-4" do |f| %>
+    <%= hidden_field_tag :requesting_guild_id, guild.id, id: "join-request-guild-id" %>
+    <p class="text-sm text-theme-secondary" id="join-request-target-label"></p>
+    <%= f.submit t("alliances.index.submit_join_request"), id: "join-request-submit", disabled: true, class: "px-6 py-3 bg-theme-accent text-white rounded-lg font-semibold disabled:opacity-50 disabled:cursor-not-allowed" %>
+  <% end %>
+</div>
+
+<script>
+  (function() {
+    const guildId = "<%= guild.id %>";
+    const searchUrl = "<%= alliances_guild_search_path %>";
+    const input = document.getElementById('alliance-guild-search');
+    const resultsEl = document.getElementById('alliance-search-results');
+    const statusEl = document.getElementById('alliance-search-status');
+    let selectedAllianceId = '';
+    const targetLabel = document.getElementById('join-request-target-label');
+    const submitBtn = document.getElementById('join-request-submit');
+    const form = document.getElementById('alliance-join-request-form');
+    let searchTimer;
+
+    function setAlliance(allianceId, label) {
+      selectedAllianceId = allianceId || '';
+      targetLabel.textContent = label || '';
+      syncSubmit();
+    }
+
+    function syncSubmit() {
+      submitBtn.disabled = !selectedAllianceId;
+    }
+
+    function appendAllianceResultRow(row) {
+      const li = document.createElement('li');
+      if (!row.alliance_id) {
+        li.textContent = row.name + ' — <%= j t("alliances.outgoing_join_requests.not_in_alliance_suffix") %>';
+        li.className = 'text-theme-secondary text-sm px-2 py-1';
+        resultsEl.appendChild(li);
+        return;
+      }
+      const btn = document.createElement('button');
+      btn.type = 'button';
+      btn.className = 'w-full text-left px-3 py-2 rounded-lg hover:bg-theme-primary text-theme-primary text-sm';
+      btn.textContent = row.name + ' — ' + (row.alliance_name || 'Alliance');
+      btn.addEventListener('click', function() {
+        setAlliance(row.alliance_id, '<%= j t("alliances.index.search_select_target") %>: ' + row.name + ' (' + (row.alliance_name || '') + ')');
+        resultsEl.classList.add('hidden');
+        input.value = row.name;
+      });
+      li.appendChild(btn);
+      resultsEl.appendChild(li);
+    }
+
+    function removeAllianceLoadMore() {
+      const b = resultsEl.querySelector('[data-alliance-search-load-more]');
+      if (b && b.parentNode) b.parentNode.remove();
+    }
+
+    function fetchAllianceSearchPage(q, page, append) {
+      statusEl.textContent = '<%= j t("alliances.index.searching") %>';
+      statusEl.classList.remove('hidden');
+      fetch(searchUrl + '?guild_id=' + encodeURIComponent(guildId) + '&q=' + encodeURIComponent(q) + '&page=' + page, { headers: { 'Accept': 'application/json' } })
+        .then(function(r) {
+          if (!r.ok) {
+            statusEl.textContent = '<%= j t("alliances.outgoing_join_requests.search_unauthorized") %>';
+            statusEl.classList.remove('hidden');
+            return null;
+          }
+          return r.json();
+        })
+        .then(function(data) {
+          if (!data) return;
+          statusEl.classList.add('hidden');
+          const rows = data.results || [];
+          const pag = data.pagination || { page: 1, total_pages: 1 };
+
+          if (!append) {
+            resultsEl.innerHTML = '';
+          }
+
+          if (!rows.length && !append) {
+            statusEl.textContent = '<%= j t("alliances.index.no_results") %>';
+            statusEl.classList.remove('hidden');
+            return;
+          }
+
+          rows.forEach(appendAllianceResultRow);
+          removeAllianceLoadMore();
+
+          if (pag.total_pages > pag.page) {
+            const nextPage = pag.page + 1;
+            const li = document.createElement('li');
+            const loadBtn = document.createElement('button');
+            loadBtn.type = 'button';
+            loadBtn.setAttribute('data-alliance-search-load-more', '1');
+            loadBtn.className = 'w-full text-left px-3 py-2 rounded-lg text-theme-accent text-sm font-semibold';
+            loadBtn.textContent = '<%= j t("alliances.index.load_more_results") %>';
+            loadBtn.addEventListener('click', function(e) {
+              e.preventDefault();
+              li.remove();
+              fetchAllianceSearchPage(q, nextPage, true);
+            });
+            li.appendChild(loadBtn);
+            resultsEl.appendChild(li);
+          }
+
+          resultsEl.classList.remove('hidden');
+        })
+        .catch(function() {
+          statusEl.classList.add('hidden');
+        });
+    }
+
+    input.addEventListener('input', function() {
+      const q = input.value.trim();
+      clearTimeout(searchTimer);
+      resultsEl.classList.add('hidden');
+      setAlliance('', '');
+      if (q.length < 2) return;
+
+      searchTimer = setTimeout(function() {
+        fetchAllianceSearchPage(q, 1, false);
+      }, 300);
+    });
+
+    form.addEventListener('submit', function(e) {
+      if (!selectedAllianceId) {
+        e.preventDefault();
+        return;
+      }
+      form.action = '/alliances/' + encodeURIComponent(selectedAllianceId) + '/alliance_join_requests';
+    });
+
+    syncSubmit();
+  })();
+</script>

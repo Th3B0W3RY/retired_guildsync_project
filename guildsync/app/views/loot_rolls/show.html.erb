@@ -1,0 +1,198 @@
+<% can_manage_lr = @loot_roll.creator == current_user || @guild.owner == current_user || can_manage_guild_settings?(@guild) %>
+<% loot_roll_live_labels = {
+  winner: t("loot_rolls.show.winner"),
+  with_roll_of: t("loot_rolls.show.with_roll_of"),
+  tie_detected: t("loot_rolls.show.tie_detected"),
+  are_tied_at: t("loot_rolls.show.are_tied_at"),
+  tied_reroll_hint: t("loot_rolls.show.tied_reroll_hint"),
+  tied: t("loot_rolls.show.tied"),
+  no_rolls_yet: t("loot_rolls.show.no_rolls_yet"),
+  force_reroll: t("loot_rolls.show.force_reroll"),
+  force_reroll_confirm: t("loot_rolls.show.force_reroll_confirm", name: "___NAME___"),
+  roll_word_zero: t("loot_rolls.show.roll_count", count: 0),
+  roll_word_one: t("loot_rolls.show.roll_count", count: 1),
+  roll_word_other: t("loot_rolls.show.roll_count", count: 2),
+  open: t("loot_rolls.show.open"),
+  closed: t("loot_rolls.show.closed")
+} %>
+<div class="max-w-3xl mx-auto p-6"
+     data-controller="loot-roll"
+     data-loot-roll-loot-roll-id-value="<%= @loot_roll.id %>"
+     data-loot-roll-can-manage-value="<%= can_manage_lr.to_json %>"
+     data-loot-roll-force-reroll-url-value="<%= force_reroll_guild_loot_roll_path(@guild, @loot_roll) %>"
+     data-loot-roll-labels-value="<%= ERB::Util.html_escape(loot_roll_live_labels.to_json) %>">
+  <div class="mb-6">
+    <%= link_to t('loot_rolls.show.back_to_loot_rolls'), guild_loot_rolls_path(@guild), class: "text-theme-accent hover:text-theme-accent-hover mb-4 inline-block" %>
+    <h1 class="text-3xl font-bold text-theme-primary mb-2"><%= @loot_roll.title %></h1>
+    <div class="flex items-center gap-4 text-sm text-theme-secondary flex-wrap">
+      <span><%= t('loot_rolls.show.created_by', name: @loot_roll.creator.name_for_discord_embed) %></span>
+      <span>•</span>
+      <span><%= t('loot_rolls.show.range', min: @loot_roll.min_roll, max: @loot_roll.max_roll) %></span>
+      <span>•</span>
+      <span data-loot-roll-target="totalEntriesLine"><%= @loot_roll.total_entries %> <%= t('loot_rolls.show.roll_count', count: @loot_roll.total_entries) %></span>
+      <% if @loot_roll.deadline_at.present? %>
+        <span>•</span>
+        <span><%= t('loot_rolls.show.deadline') %>: <%= @loot_roll.deadline_at.strftime("%B %d, %Y at %I:%M %p") %></span>
+      <% end %>
+      <span class="px-3 py-1 rounded-full text-sm font-medium
+        <%= @loot_roll.currently_open? ? 'bg-green-900/30 text-green-500' : 'bg-gray-900/30 text-gray-500' %>"
+        data-loot-roll-target="statusBadge">
+        <%= @loot_roll.currently_open? ? t('loot_rolls.show.open') : t('loot_rolls.show.closed') %>
+      </span>
+    </div>
+  </div>
+
+  <div class="bg-theme-secondary rounded-lg border border-theme-primary p-6 mb-6">
+    <% if @loot_roll.description.present? %>
+      <div class="mb-6">
+        <h2 class="text-lg font-semibold text-theme-primary mb-2"><%= t('loot_rolls.show.description') %></h2>
+        <p class="text-theme-secondary whitespace-pre-wrap"><%= @loot_roll.description %></p>
+      </div>
+    <% end %>
+
+    <% if @loot_roll.deadline_at.present? && @loot_roll.currently_open? %>
+      <div class="mb-6 p-4 bg-theme-primary rounded-lg">
+        <div class="flex items-center gap-2 text-theme-primary">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+          </svg>
+          <span class="font-medium"><%= t('loot_rolls.show.time_remaining') %>:</span>
+          <span id="countdown" data-deadline="<%= @loot_roll.deadline_at.iso8601 %>" class="font-bold text-theme-accent" data-calculating="<%= t('loot_rolls.show.calculating') %>" data-expired="<%= t('loot_rolls.show.expired') %>">
+            <%= t('loot_rolls.show.calculating') %>
+          </span>
+        </div>
+      </div>
+    <% end %>
+
+    <div data-loot-roll-target="outcomePanel">
+      <% if @loot_roll.has_tie? %>
+        <div class="mb-6 p-4 bg-orange-900/20 border border-orange-500 rounded-lg">
+          <div class="flex items-center gap-3">
+            <svg class="w-8 h-8 text-orange-500" fill="currentColor" viewBox="0 0 20 20">
+              <path fill-rule="evenodd" d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z" clip-rule="evenodd"></path>
+            </svg>
+            <div>
+              <h3 class="text-lg font-bold text-orange-500"><%= t('loot_rolls.show.tie_detected') %></h3>
+              <p class="text-theme-primary">
+                <% tied_entries = @entries.select { |e| e.roll_value == @loot_roll.highest_roll } %>
+                <span class="font-semibold">
+                  <%= tied_entries.map { |e| e.display_name }.join(", ") %>
+                </span>
+                <%= t('loot_rolls.show.are_tied_at') %> <span class="font-bold text-xl"><%= @loot_roll.highest_roll %></span>
+              </p>
+              <p class="text-sm text-theme-secondary mt-1"><%= t('loot_rolls.show.tied_reroll_hint') %></p>
+            </div>
+          </div>
+        </div>
+      <% elsif @winner.present? %>
+        <div class="mb-6 p-4 bg-yellow-900/20 border border-yellow-500 rounded-lg">
+          <div class="flex items-center gap-3">
+            <svg class="w-8 h-8 text-yellow-500" fill="currentColor" viewBox="0 0 20 20">
+              <path fill-rule="evenodd" d="M5 2a2 2 0 00-2 2v14l3.5-2 3.5 2 3.5-2 3.5 2V4a2 2 0 00-2-2H5zm4.707 5.707a1 1 0 00-1.414-1.414l-3 3a1 1 0 000 1.414l3 3a1 1 0 001.414-1.414L8.414 11H12a1 1 0 100-2H8.414l1.293-1.293z" clip-rule="evenodd"></path>
+            </svg>
+            <div>
+              <h3 class="text-lg font-bold text-yellow-500"><%= t('loot_rolls.show.winner') %></h3>
+              <p class="text-theme-primary">
+                <span class="font-semibold"><%= @winner.display_name %></span>
+                <%= t('loot_rolls.show.with_roll_of') %> <span class="font-bold text-xl"><%= @winner.roll_value %></span>
+              </p>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </div>
+
+    <div class="mt-6">
+      <h2 class="text-lg font-semibold text-theme-primary mb-4"><%= t('loot_rolls.show.leaderboard') %></h2>
+      <div data-loot-roll-target="entriesRegion">
+        <% if @entries.any? %>
+          <div class="space-y-2">
+            <% highest_roll = @loot_roll.highest_roll %>
+            <% @entries.each_with_index do |entry, index| %>
+              <% is_tied = @loot_roll.has_tie? && entry.roll_value == highest_roll %>
+              <% is_winner = entry.id == @loot_roll.winner_entry_id %>
+              <div class="flex items-center justify-between p-3 rounded-lg <%= is_winner ? 'bg-yellow-900/20 border border-yellow-500' : is_tied ? 'bg-orange-900/20 border border-orange-500' : 'bg-theme-primary' %>">
+                <div class="flex items-center gap-3">
+                  <span class="w-8 h-8 flex items-center justify-center rounded-full <%= is_tied ? 'bg-orange-500 text-white' : index == 0 ? 'bg-yellow-500 text-black' : index == 1 ? 'bg-gray-400 text-black' : index == 2 ? 'bg-amber-700 text-white' : 'bg-theme-secondary text-theme-primary' %> font-bold">
+                    <%= is_tied ? '⚠️' : index + 1 %>
+                  </span>
+                  <span class="text-theme-primary font-medium">
+                    <%= entry.display_name %>
+                    <% if is_tied %>
+                      <span class="ml-2 px-2 py-0.5 bg-orange-500 text-white text-xs rounded"><%= t('loot_rolls.show.tied') %></span>
+                    <% end %>
+                  </span>
+                </div>
+                <div class="flex items-center gap-4">
+                  <span class="text-2xl font-bold <%= is_winner ? 'text-yellow-500' : is_tied ? 'text-orange-500' : 'text-theme-accent' %>">
+                    <%= entry.roll_value %>
+                  </span>
+                  <% if can_manage_lr && !entry.is_reroll && !@loot_roll.has_tie? %>
+                    <% confirm_message = t('loot_rolls.show.force_reroll_confirm', name: entry.display_name) %>
+                    <%= button_to t('loot_rolls.show.force_reroll'), force_reroll_guild_loot_roll_path(@guild, @loot_roll, entry_id: entry.id),
+                        method: :post,
+                        class: "px-3 py-1 bg-orange-600 text-white rounded text-sm hover:bg-orange-700 transition-colors",
+                        data: { confirm: confirm_message } %>
+                  <% end %>
+                </div>
+              </div>
+            <% end %>
+          </div>
+        <% else %>
+          <p class="text-theme-secondary"><%= t('loot_rolls.show.no_rolls_yet') %></p>
+        <% end %>
+      </div>
+    </div>
+  </div>
+
+  <% if can_manage_lr %>
+    <div class="flex gap-4 mt-6">
+      <% if @loot_roll.currently_open? %>
+        <%= button_to t('loot_rolls.show.close_loot_roll'), close_guild_loot_roll_path(@guild, @loot_roll), 
+            method: :post,
+            class: "px-4 py-2 bg-yellow-600 text-white rounded-lg hover:bg-yellow-700 transition-colors font-semibold",
+            data: { confirm: t('loot_rolls.show.close_confirm') } %>
+      <% end %>
+      <%= button_to t('loot_rolls.show.delete_loot_roll'), guild_loot_roll_path(@guild, @loot_roll), method: :delete,
+          class: "px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 transition-colors font-semibold",
+          data: { confirm: t('loot_rolls.show.delete_confirm') } %>
+    </div>
+  <% end %>
+</div>
+
+<script>
+  // Countdown timer
+  (function() {
+    const countdownEl = document.getElementById('countdown');
+    if (!countdownEl) return;
+    
+    const deadline = new Date(countdownEl.dataset.deadline);
+    
+    function updateCountdown() {
+      const now = new Date();
+      const diff = deadline - now;
+      
+      if (diff <= 0) {
+        countdownEl.textContent = countdownEl.dataset.expired || 'Expired';
+        countdownEl.classList.remove('text-theme-accent');
+        countdownEl.classList.add('text-red-500');
+        return;
+      }
+      
+      const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+      
+      let text = '';
+      if (days > 0) text += days + 'd ';
+      if (hours > 0 || days > 0) text += hours + 'h ';
+      text += minutes + 'm ' + seconds + 's';
+      
+      countdownEl.textContent = text;
+    }
+    
+    updateCountdown();
+    setInterval(updateCountdown, 1000);
+  })();
+</script>

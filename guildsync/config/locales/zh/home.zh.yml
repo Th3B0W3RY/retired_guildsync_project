@@ -1,0 +1,406 @@
+zh:
+  home:
+    landing:
+      title: 欢迎来到 GuildSync
+      subtitle: 一体化平台，助您管理游戏社区、活动和成员。
+      hero_kicker: 为真正的公会运营而生
+      problem_title: 还在用零散工具管理公会？
+      problem_subtitle: GuildSync 将招募、活动、沟通与治理统一到一个工作流中。
+      outcome_1_title: 减少手工协作成本
+      outcome_1_desc: 把分散在聊天、表格和截图中的流程集中管理，降低重复沟通。
+      outcome_2_title: 让活动组织可视化
+      outcome_2_desc: 安排活动、获取实时报名人数、跟踪迟到情况，并实时查看职业/角色覆盖情况。
+      outcome_3_title: 提升成员参与与留存
+      outcome_3_desc: 通过清晰流程、即时反馈和透明记录，帮助管理层持续提升参与度。
+      trust:
+        no_card: 无需信用卡
+        setup: 快速上手
+        security: 安全可靠
+      preview_title: 功能预览
+      preview:
+        events_title: 活动管理
+        events_desc: 创建活动、查看报名与出勤状态。
+        members_title: 成员管理
+        members_desc: 集中查看成员信息、角色与状态。
+        loot_title: 战利品与投票
+        loot_desc: 以透明记录进行结构化掷骰与投票。
+        logs_title: 操作日志
+        logs_desc: 完整记录关键操作，便于追溯。
+      explore_pricing: 查看价格
+      why_title: 为什么选择GuildSync？
+      features_cta_hint: 点击每张卡片，了解各项功能具体做什么。
+      features_section_subtitle: 打开任意卡片查看完整说明，适合正在比较公会工具的访客。
+      feedback:
+        section_title: 用户反馈
+        carousel_role: 轮播
+        slide_role: 幻灯片
+        keyboard_hint: 使用左右方向键在反馈之间切换。
+        announce_progress: 用户反馈 %{current} / %{total}
+        previous: 上一条用户反馈
+        next: 下一条用户反馈
+        pagination: 用户反馈幻灯片
+        go_to_slide: 转到第 %{index} 条用户反馈
+      compare_title: GuildSync 与竞争对手
+      compare_old_title: 表格 + 仅 Discord
+      compare_old_1: 找到正确的表格（或新建一个）
+      compare_old_2: 手动更新多个标签页和工作表
+      compare_old_3: 需要官员更新并二次核对
+      compare_new_title: GuildSync 指挥中心
+      compare_new_1: 已登录官员可快速访问文档、工作流与结构化后台流程
+      compare_new_2: 集中管理成员数据、出勤记录与权限
+      compare_new_3: 公会历史、活动日志与通知流程
+      footer_copyright: "© %{year} GuildSync. 保留所有权利。"
+      cta:
+        title: 准备开始了吗？
+        description: 加入数千个已在使用 GuildSync 的游戏社区。
+        button: 开始免费试用
+        button_hero: 免费开始
+      feature_spotlight:
+        title: GuildSync 真正能帮你管理什么
+        subtitle: 为真实公会运营打造：从招募与文档管理，到联盟协作与社区治理。
+        documents_title: 公会文档
+        documents_desc: 通过公开链接或仅内部访问共享 SOP、配装和指南。
+        activity_title: 活动动态 + 日志
+        activity_desc: 在一条时间线上追踪管理操作、成员变更和运营历史。
+        alliance_title: 联盟系统
+        alliance_desc: 在合作公会之间协调联盟活动、投票和战利品掷骰。
+        recruit_title: 招募 + 申请
+        recruit_desc: 通过备注、接受/拒绝流程和后续沟通，运行结构化申请流程。
+        ocr_title: AI 装备截图识别
+        ocr_desc: 上传截图，快速提取配装数据，并保持成员装备状态最新。
+        roles_title: 自定义角色 + 彩色标签
+        roles_desc: 配置细粒度权限并分配预设彩色标签，快速提升名册可视性。
+        warnings_title: 警告系统
+        warnings_desc: 维护无警告、已警告和已封禁名单，以支持治理流程。
+        messaging_title: 消息中心
+        messaging_desc: 帮助会长和官员直接在 GuildSync 中与成员沟通。
+        analytics_title: 排行榜 + 参与度
+        analytics_desc: 根据出勤和参与趋势识别高活跃成员，辅助管理决策。
+      compare:
+        feature: 功能
+        competitor_1: Guild Manager
+        competitor_2: GuildSpire
+        competitor_3: 典型的公会管理方案
+        features:
+          rapid_user_feedback: 基于用户反馈的快速开发
+          unlimited_guilds: 无限公会
+          starter_basic_plan_value: Basic 方案 — 核心功能，不必从高价档位起步
+          multi_game_dashboard: 多游戏公会总览
+          events_scheduling: 活动、报名与日程
+          loot_rolls_distribution: 战利品掷点与公平分配
+          recruitment_applications: 招募与申请
+          discord_integration: Discord 机器人与集成
+          member_analytics: 成员分析与洞察
+          audit_history: 长期审计与活动记录
+          guild_documents_storage: 公会文档与文件存储
+          polls_community_votes: 投票与社区表决
+          public_roadmap_voting: 公开路线图与功能投票
+          api_access: API 访问
+          export_data_backup: 导出与备份
+          advanced_analytics: 高级分析
+          custom_automation: 自定义自动化
+          realtime_tracking: 实时跟踪
+          api_integration: API集成
+          mobile_apps: 移动应用
+          priority_support: 优先支持
+          custom_branding: 自定义品牌
+          member_onboarding: 入会流程
+          event_management: 活动管理
+          role_management: 角色管理
+          export_backup: 导出 & 备份
+          custom_role_system: 自定义角色体系
+      features_grid:
+        member_management:
+          title: 会员管理
+          desc: 高效管理并追踪您的公会成员
+        analytics_insights:
+          title: 数据分析与洞察力
+          desc: 详细的分析数据，涵盖会员活跃度和增长情况。
+        automation_tools:
+          title: 自动化工具
+          desc: 自动化常规任务和工作流程
+        advanced_tracking:
+          title: 高级会员追踪
+          desc: 实时成员活动监控
+        multi_guild:
+          title: 多公会管理
+          desc: 从一个控制面板管理无限公会。
+        custom_automation:
+          title: 自定义自动化
+          desc: 创建自定义工作流和触发器
+        analytics_dashboard:
+          title: 数据看板
+          desc: 详细的分析和报告
+        role_management:
+          title: 角色管理
+          desc: 高级角色分配系统
+        member_onboarding:
+          title: 入会流程
+          desc: 自动化欢迎和设置流程
+        event_management:
+          title: 活动管理
+          desc: 安排并追踪公会活动
+        custom_notifications:
+          title: 自定义通知
+          desc: 个性化提醒系统
+        moderation_tools:
+          title: 内容管理工具
+          desc: 高级的管理功能
+        api_integration:
+          title: API集成
+          desc: 为开发者提供全面的 API 访问权限
+        export_backup:
+          title: 导出 & 备份
+          desc: 数据导出和自动备份
+        priority_support:
+          title: 优先支持
+          desc: 全天候 dedicated 支持 团队
+        security_features:
+          title: 安全功能
+          desc: 企业级安全
+        custom_branding:
+          title: 自定义品牌
+          desc: 白标选项可用
+        mobile_app:
+          title: 移动应用
+          desc: 包含 iOS 和 安卓 应用程序
+        unlimited_storage:
+          title: 无限存储
+          desc: 无限制的数据存储空间
+        custom_role_system:
+          title: 自定义角色体系
+          desc: 与 Discord 联动的角色与权限，贴合你公会的实际架构
+      footer:
+        tagline: 终极的Discord社区公会管理平台
+        product: 产品
+        features: 功能
+        pricing_link: 定价
+        roadmap_link: 路线图
+        support: 支持
+        documentation: 文档
+        contact: 联系我们
+        disaster_recovery: 灾难恢复与数据恢复
+        status: 状态
+        legal: 法律
+        privacy: 隐私
+        terms: 条款
+        security_link: 安全
+      features:
+        guild_management:
+          title: 公会管理
+          description: 轻松组织和管理多个公会。在一个地方追踪成员、角色与权限。
+        event_planning:
+          title: 活动规划
+          description: 通过报名追踪、提醒和参与者管理来安排并管理活动。
+        member_analytics:
+          title: 成员分析
+          description: 通过详细分析与成员活动追踪，深入了解您的社区。
+        gear_checks:
+          title: 装备检查
+          description: 追踪并验证成员在活动中的装备与装备要求。
+        gear_records:
+          title: 装备记录
+          description: 维护成员装备、升级与装备历史的完整记录。
+        member_tracking:
+          title: 成员追踪
+          description: 详细记录成员在所有公会活动中的活跃度、参与度与投入度。
+        role_management:
+          title: 角色管理
+          description: 使用自定义权限分配和管理角色，轻松控制访问与职责。
+        communication_hub:
+          title: 沟通中心
+          description: 集中化沟通工具，用于公告、讨论与成员协调。
+        activity_logs:
+          title: 活动日志
+          description: 全面追踪并记录所有公会活动、成员行为与系统变更。
+    dashboard:
+      title: 仪表盘
+    index:
+      title: 欢迎来到 GuildSync
+      subtitle: 您的公会管理平台
+      signed_in_as: 您当前登录为：
+      discord_label: Discord
+      quick_links: 快捷链接
+      api_documentation: API 文档
+      please_sign_in_html: 请先%{sign_in_link}以继续。
+      sign_in: 登录
+  homepage_features:
+    back_to_home: 返回所有功能
+    empty_detail: 此功能的更多说明即将补充。
+  sidebar:
+    navigation: 导航
+    universal_actions: 通用操作
+    universal_menu: 通用菜单
+    global_dashboard: 全局仪表盘
+    connected_as: 已连接为 %{username}
+    connected_as_heading: 已连接为：
+    connected_as_aria: 已连接为 %{username}
+    discord_not_connected_heading: Discord 未连接
+    discord_not_connected_hint: 在设置中连接 Discord 账户。
+    discord_username_fallback: 已关联账号
+    apply_to_guild: 申请加入公会
+    view_guilds: 查看公会
+    create_guild: 创建公会
+    my_applications: 我的申请
+    archived_guilds: 已归档公会
+    feature_requests: 功能请求
+    alliances_hub: 联盟
+    my_guilds_owner: 我的公会（会长）
+    my_guilds_member: 我的公会（成员）
+    contact_support: 联系支持
+    guild_menu:
+      dashboard: 仪表盘
+      message_center: 消息中心
+      members: 成员
+      review_applications: 审核申请
+      guild_documents: 公会文档
+      invite_members: 邀请成员
+      guild_polls: 公会投票
+      guild_loot_rolls: 公会战利品掷骰
+      schedule_events: 安排活动
+      schedule_guild_battle: 安排公会战
+      members_gear: AI 属性扫描
+      file_storage: 文件存储
+      guild_analytics: 公会分析
+      leaderboard: 排行榜
+      my_warnings: 我的警告
+      settings: 设置
+      warnings: 警告
+    alliance_menu:
+      pending_alliance_invites: 待处理的联盟邀请
+      outgoing_join_request: 入盟申请状态
+      request_join_alliance: 申请加入联盟
+      join_requests: 入盟申请
+      create: 创建联盟
+      events: 联盟活动
+      polls: 联盟投票
+      rolls: 联盟战利品掷骰
+      chat: 联盟聊天
+      gm_chat: GM 聊天
+      settings: 设置
+    discord:
+      connected: "%{server_name}"
+      bot_not_connected: 机器人未连接
+      connect_bot: 将机器人连接到公会 Discord
+      discord_server: Discord 服务器
+  dashboard:
+    title: 仪表盘
+    access_denied: 访问被拒绝
+    sign_in_required: 您必须登录后才能访问仪表盘。
+    your_guilds: 您的公会
+    no_guilds: 您尚未加入任何公会。
+    open: 打开
+    quick_actions: 快捷操作
+    view_guilds: 查看公会
+    my_applications: 我的申请
+    apply_to_guild: 申请加入公会
+    archived_guilds: 已归档公会
+    alliances: 联盟
+    create_guild: 创建公会
+    invite_members: 邀请成员
+    recent_activity: 近期活动
+    activity_coming_soon: 活动动态即将上线…
+    activity_empty: 暂时没有近期活动。访问公会和页面后将会显示在这里。
+    viewed_guild: 已查看公会 %{name}
+    viewed_members: 成员 – %{name}
+    viewed_invite_members: 邀请成员 – %{name}
+    viewed_settings: 设置 – %{name}
+    viewed_applications: 申请 – %{name}
+    viewed_schedule: 安排活动 – %{name}
+    viewed_members_gear: AI 属性扫描 – %{name}
+    join_discord_title: 加入我们的 Discord
+    join_discord_here: 点击这里加入我们的 Discord 社区——与团队和其他公会所有者交流。
+    discord_iframe_title: "%{app_name} Discord"
+    discord_community_card_title: GuildSync 社区 Discord
+    members_online_heading: 在线成员
+    join_discord_cta_button: 加入 Discord
+    discord_promo_online_example: 1 位成员在线
+    pending_items: 我的待处理事项
+    pending_applications: 待处理申请
+    pending_invites: 待处理邀请
+    warning_queue: 警告队列
+    member_events_title: 即将到来的活动
+    member_events_subtitle: 来自你所属的所有公会
+    member_events_count_label: 即将到来总数
+    member_events_empty: 你的公会中没有即将到来的活动。
+    open_polls_title: 开放中的投票
+    open_polls_subtitle: 你所在公会中仍可投票的投票
+    open_polls_empty: 你的公会中没有开放中的投票。
+    open_loot_title: 开放中的战利品掷骰
+    open_loot_subtitle: 你所在公会中仍开放的战利品掷骰
+    open_loot_empty: 你的公会中没有开放中的战利品掷骰。
+  user_activity:
+    view_activity: "查看活动"
+    history_title: "活动历史"
+    history_subtitle: "您在 GuildSync 上的最近页面和操作。"
+    back_to_dashboard: "返回仪表板"
+    signed_in_discord: "已通过 Discord 登录"
+    signed_in_google: "已通过 Gmail 登录"
+    signed_in_microsoft: "已通过 Outlook 登录"
+  layouts:
+    application:
+      nav:
+        upgrade_plan: 升级您的方案
+        pricing: 定价
+        roadmap: 路线图
+        my_billing: 我的账单
+        welcome_user: 欢迎，%{name}
+        profile_picture: 头像
+        sign_in: 登录
+        admin_session_label: 管理员
+        back_to_member_dashboard: 返回我的控制台
+      dropdown:
+        account_settings: 账户设置
+        profile_settings: 个人资料设置
+        release_notes: 发布说明
+        release_notes_instructions: 创建帐户 > 点击资源 > 文章 > 发布说明
+        roadmap: 路线图与功能请求
+        version: 版本 %{version}
+      search:
+        placeholder: 搜索...
+        searching: 搜索中...
+        no_results: 未找到结果
+      beta_banner:
+        message: 当前为公测 — 加入我们的 Discord 社区：
+        join_discord: 加入 Discord
+  activity_feed:
+    title: "%{guild_name} 的活动动态"
+    subtitle: 该公会的近期活动。日志保留 3 个月。
+    back_to_dashboard: 返回仪表盘
+    search_placeholder: 搜索操作...
+    filter_action_type: 操作类型
+    filter_member: 成员
+    all_actions: 所有操作
+    all_members: 所有成员
+    no_activity: 暂无活动。
+    search_button: 搜索
+    access_denied: 您没有权限查看活动动态。
+    when: 时间
+    who: 谁
+    action: 操作
+    details: 详情
+    pagination_shown_total: 共 %{total} 条，显示 %{shown} 条
+    pagination_previous: "← 上一页"
+    pagination_next: 下一页 →
+    export_csv: 导出 CSV
+    export_csv_hint: 下载与当前筛选条件匹配的所有行（UTC 时间戳）。
+  alliance_activity_feed:
+    title: 联盟活动 — %{alliance_name}
+    subtitle: 来自成员公会的全联盟活动。日志保留 60 天。
+    back: 返回联盟
+    search_placeholder: 搜索...
+    filter_action_type: 操作类型
+    all_actions: 所有操作
+    search_button: 搜索
+    when: 时间
+    guildsync_user: GuildSync 用户
+    action: 操作
+    details: 详情
+    no_activity: 暂无联盟活动。
+    pagination_shown_total: 共 %{total} 条，显示 %{shown} 条
+    pagination_previous: "← 上一页"
+    pagination_next: 下一页 →
+    export_csv: 导出 CSV（UTC）
+    export_local_csv: 导出 CSV（本地时间）
+    export_csv_hint: 由服务器生成的 CSV，带 UTC 时间戳。
+    access_denied: 只有该联盟中的公会会长可以查看联盟活动动态。

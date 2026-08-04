@@ -1,0 +1,87 @@
+<div class="space-y-8">
+  <div class="flex items-center justify-between gap-4">
+    <div>
+      <h1 class="text-3xl font-bold text-theme-accent"><%= t("admin.soft_deleted_records.index.page_title") %></h1>
+      <p class="mt-2 max-w-3xl text-sm leading-relaxed text-theme-secondary"><%= t("admin.soft_deleted_records.index.subtitle") %></p>
+      <p class="mt-2 max-w-3xl text-sm font-medium text-theme-primary"><%= t("admin.soft_deleted_records.index.retention_hint", months: (SoftDeletable::RETENTION_PERIOD / 1.month).to_i) %></p>
+    </div>
+    <%= link_to t("admin.soft_deleted_records.index.back_to_dashboard"), admin_root_path, class: "px-4 py-2 bg-theme-secondary text-theme-primary rounded-lg hover:bg-theme-hover transition-colors" %>
+  </div>
+
+  <div class="bg-theme-card border border-theme-primary rounded-lg p-6 shadow-lg">
+    <%= form_with url: admin_soft_deleted_records_path, method: :get, local: true, class: "flex flex-wrap items-end gap-4" do |f| %>
+      <div class="min-w-[18rem] flex-1">
+        <%= f.label :q, t("admin.soft_deleted_records.index.search_label"), class: "mb-2 block text-sm font-medium text-theme-secondary" %>
+        <%= f.text_field :q, value: @query, placeholder: t("admin.soft_deleted_records.index.search_placeholder"), class: "w-full rounded-lg border border-theme-primary bg-theme-secondary px-4 py-2 text-theme-primary focus:outline-none focus:ring-2 focus:ring-theme-accent" %>
+      </div>
+
+      <div class="min-w-[14rem]">
+        <%= f.label :record_filter, t("admin.soft_deleted_records.index.record_type_label"), class: "mb-2 block text-sm font-medium text-theme-secondary" %>
+        <%= f.select :record_filter, options_for_select([[t("admin.soft_deleted_records.index.all_record_types"), ""]] + @record_type_options, @record_filter), {}, class: "gs-native-select gs-native-select--field w-full rounded-lg border border-theme-primary bg-theme-secondary px-4 text-theme-primary focus:outline-none focus:ring-2 focus:ring-theme-accent" %>
+      </div>
+
+      <%= f.submit t("admin.soft_deleted_records.index.search_submit"), class: "px-6 py-2 bg-theme-accent text-white rounded-lg hover:bg-theme-accent-hover transition-colors" %>
+      <% if @query.present? || @record_filter.present? %>
+        <%= link_to t("admin.soft_deleted_records.index.clear"), admin_soft_deleted_records_path, class: "px-6 py-2 bg-theme-secondary text-theme-primary rounded-lg hover:bg-theme-hover transition-colors" %>
+      <% end %>
+    <% end %>
+  </div>
+
+  <div class="bg-theme-card border border-theme-primary rounded-lg shadow-lg overflow-hidden">
+    <div class="border-b border-theme-primary px-6 py-4">
+      <h2 class="text-lg font-semibold text-theme-primary"><%= t("admin.soft_deleted_records.index.results_heading", count: @records.size) %></h2>
+    </div>
+
+    <% if @records.any? %>
+      <div class="divide-y divide-theme-primary">
+        <% @records.each do |record| %>
+          <div class="flex flex-col gap-4 px-6 py-5 lg:flex-row lg:items-start lg:justify-between">
+            <div class="space-y-2">
+              <div class="flex flex-wrap items-center gap-2">
+                <span class="rounded-full border border-theme-primary px-2.5 py-1 text-xs font-semibold uppercase tracking-[0.24em] text-theme-secondary"><%= record.class.model_name.human %></span>
+                <% if record.soft_delete_container_name.present? %>
+                  <span class="text-sm text-theme-secondary"><%= t("admin.soft_deleted_records.index.container_label", name: record.soft_delete_container_name) %></span>
+                <% end %>
+              </div>
+
+              <div class="text-lg font-semibold text-theme-primary"><%= record.soft_delete_display_name %></div>
+
+              <div class="flex flex-wrap gap-x-5 gap-y-1 text-sm text-theme-secondary">
+                <span><%= t("admin.soft_deleted_records.index.deleted_at_label", time: l(record.deleted_at, format: :long)) %></span>
+                <% if record.soft_delete_owner_name.present? %>
+                  <span><%= t("admin.soft_deleted_records.index.owner_label", owner: record.soft_delete_owner_name) %></span>
+                <% end %>
+                <span><%= t("admin.soft_deleted_records.index.record_id_label", id: record.id) %></span>
+              </div>
+            </div>
+
+            <div class="flex flex-wrap gap-3">
+              <%= button_to t("admin.soft_deleted_records.index.restore"), restore_admin_soft_deleted_record_path(record.id), method: :patch, params: { q: @query, record_filter: @record_filter, record_type: record.class.name }, class: "px-4 py-2 rounded-lg bg-theme-accent text-white hover:bg-theme-accent-hover transition-colors font-semibold" %>
+              <%= form_with url: purge_admin_soft_deleted_record_path(record.id), method: :delete, local: true, class: "min-w-[20rem] space-y-2 rounded-lg border border-red-500/40 bg-red-950/30 p-3" do |f| %>
+                <%= hidden_field_tag :q, @query %>
+                <%= hidden_field_tag :record_filter, @record_filter %>
+                <%= hidden_field_tag :record_type, record.class.name %>
+
+                <div>
+                  <%= label_tag :purge_confirmation, t("admin.soft_deleted_records.index.purge_confirmation_label", label: record.soft_delete_display_name), class: "mb-1 block text-xs font-medium text-theme-secondary" %>
+                  <%= text_field_tag :purge_confirmation, nil, required: true, placeholder: t("admin.soft_deleted_records.index.purge_confirmation_placeholder"), class: "w-full rounded-lg border border-theme-primary bg-theme-secondary px-3 py-2 text-sm text-theme-primary focus:outline-none focus:ring-2 focus:ring-red-500" %>
+                </div>
+
+                <div>
+                  <%= label_tag :purge_reason, t("admin.soft_deleted_records.index.purge_reason_label"), class: "mb-1 block text-xs font-medium text-theme-secondary" %>
+                  <%= text_field_tag :purge_reason, nil, required: true, minlength: 8, placeholder: t("admin.soft_deleted_records.index.purge_reason_placeholder"), class: "w-full rounded-lg border border-theme-primary bg-theme-secondary px-3 py-2 text-sm text-theme-primary focus:outline-none focus:ring-2 focus:ring-red-500" %>
+                </div>
+
+                <%= f.submit t("admin.soft_deleted_records.index.purge"), class: "w-full px-4 py-2 rounded-lg bg-red-600 text-white hover:bg-red-700 transition-colors font-semibold", data: { turbo_confirm: t("admin.soft_deleted_records.index.purge_confirm", label: record.soft_delete_display_name) } %>
+              <% end %>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    <% else %>
+      <div class="px-6 py-10 text-sm text-theme-secondary">
+        <%= t("admin.soft_deleted_records.index.empty_state") %>
+      </div>
+    <% end %>
+  </div>
+</div>

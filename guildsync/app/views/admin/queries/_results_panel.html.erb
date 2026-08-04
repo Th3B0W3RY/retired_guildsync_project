@@ -1,0 +1,55 @@
+<% if @query_error %>
+  <div class="bg-red-900/20 border-2 border-red-700 rounded-lg p-6 shadow-lg">
+    <h3 class="text-xl font-semibold text-red-400 mb-2"><%= t("admin.queries.index.query_error_heading") %></h3>
+    <p class="text-red-200"><%= @query_error %></p>
+  </div>
+<% end %>
+
+<% if @query_results %>
+  <div class="bg-theme-card border border-theme-primary rounded-lg p-6 shadow-lg">
+    <h2 class="text-xl font-semibold mb-4">
+      <%= t("admin.queries.index.results_heading") %>
+      <% if @executed_query_key && @executed_query_key != "custom" %>
+        <span class="text-sm font-normal text-theme-secondary">— <%= t("admin.queries.saved.#{@executed_query_key}.name") %></span>
+      <% end %>
+    </h2>
+
+    <% if @query_results.is_a?(Hash) && @query_results[:count] %>
+      <div class="text-3xl font-bold text-theme-accent">
+        <%= @query_results[:count] %>
+      </div>
+    <% elsif @query_results.respond_to?(:each) %>
+      <div class="overflow-x-auto">
+        <table class="w-full border-collapse">
+          <thead>
+            <tr class="bg-theme-secondary border-b border-theme-primary">
+              <% if @query_results.any? %>
+                <% @query_results.first.keys.each do |column| %>
+                  <th class="px-4 py-2 text-left text-theme-primary font-semibold border-r border-theme-primary last:border-r-0">
+                    <%= column.to_s.humanize %>
+                  </th>
+                <% end %>
+              <% end %>
+            </tr>
+          </thead>
+          <tbody>
+            <% @query_results.each_with_index do |row, index| %>
+              <tr class="<%= index.even? ? 'bg-theme-secondary' : 'bg-theme-primary' %> border-b border-theme-primary">
+                <% row.values.each do |value| %>
+                  <td class="px-4 py-2 text-theme-secondary border-r border-theme-primary last:border-r-0">
+                    <%= value.nil? ? tag.em(t("admin.queries.index.null_label"), class: "text-theme-secondary") : value.to_s %>
+                  </td>
+                <% end %>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+        <div class="mt-4 text-sm text-theme-secondary">
+          <%= t("admin.queries.index.row_count", count: @query_results.count) %>
+        </div>
+      </div>
+    <% else %>
+      <p class="text-theme-secondary"><%= t("admin.queries.index.no_results") %></p>
+    <% end %>
+  </div>
+<% end %>

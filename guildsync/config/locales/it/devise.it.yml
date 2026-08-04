@@ -1,0 +1,66 @@
+it:
+  devise:
+    confirmations:
+      confirmed: "L'indirizzo email è stato confermato con successo."
+      send_instructions: "Riceverai un'email con le istruzioni per confermare l'indirizzo email entro pochi minuti."
+      send_paranoid_instructions: "Se la tua indirizzo email esiste nel nostro database, riceverai un'email con istruzioni per confermare il tuo indirizzo email entro breve."
+    failure:
+      already_authenticated: "Sei già autenticato."
+      inactive: "Il tuo account non è ancora attivato."
+      invalid: "Invalidi %{authentication_keys} o password."
+      locked: "Il tuo account è bloccato."
+      last_attempt: "Hai un altro tentativo prima che il tuo account venga bloccato."
+      not_found_in_database: "Invalidi %{authentication_keys} o password."
+      timeout: "La tua sessione è scaduta. Si prega di effettuare l'accesso nuovamente per continuare."
+      unauthenticated: "Devi accedere o registrarti prima di continuare."
+      unconfirmed: "Devi confermare l'indirizzo email prima di continuare."
+    mailer:
+      confirmation_instructions:
+        subject: "Istruzioni di conferma"
+      reset_password_instructions:
+        subject: "Istruzioni per il ripristino della password"
+      unlock_instructions:
+        subject: "Disblocco: Istruzioni"
+      email_changed:
+        subject: "Indirizzo Email Modificato"
+      password_change:
+        subject: "Password modificata"
+    omniauth_callbacks:
+      failure: "Non si è potuto autenticare da %{kind} perché '%{reason}'."
+      success: "Autenticazione effettuata dall' account di tipo %{kind}."
+    passwords:
+      no_token: "Non puoi accedere a questa pagina se non vieni da un'email di reimpostazione della password. Se arrivi attraverso un'email di reimpostazione della password, assicurati di aver utilizzato l'URL completo fornito."
+      send_instructions: "riceverà un'email con istruzioni per reimpostare la password entro breve."
+      send_paranoid_instructions: "Se l'indirizzo email specificato esiste nella nostra base di dati, riceverai il link per la ripresa della password all'indirizzo email fornito entro breve."
+      updated: "La tua password è stata modificata con successo. Ora sei autenticato."
+      updated_not_active: "La tua password è stata modificata con successo."
+    registrations:
+      destroyed: "Ciao! Il tuo account è stato cancellato con successo. Speriamo di rivederti presto!"
+      signed_up: "Benvenuto! Hai effettuato l'iscrizione con successo."
+      signed_up_but_inactive: "Ti sei registrato/a con successo. Tuttavia, non siamo riusciti a farti accedere poiché il tuo account non è ancora attivato."
+      signed_up_but_locked: "Hai registrato con successo. Tuttavia, non siamo riusciti a farti accedere perché il tuo account è bloccato."
+      signed_up_but_unconfirmed: "Un messaggio con un collegamento di conferma è stato inviato all'indirizzo email specificato. Si prega di fare clic sul link per attivare il tuo account."
+      update_needs_confirmation: "Hai aggiornato con successo il tuo account, ma abbiamo bisogno di verificare l'indirizzo email nuovo. Si prega di controllare la tua posta e fare clic sul collegamento di conferma per confermare l'indirizzo email nuovo."
+      updated: "Il tuo account è stato aggiornato con successo."
+      updated_but_not_signed_in: "Il tuo account è stato aggiornato con successo, ma poiché la tua password è stata modificata, avrai bisogno di effettuare l'accesso di nuovo."
+    sessions:
+      signed_in: "loggato con successo"
+      signed_out: "Sloggato con successo."
+      already_signed_out: "Sloggato con successo."
+    unlocks:
+      send_instructions: "riceverai un'email con istruzioni per sbloccare il tuo account entro pochi minuti."
+      send_paranoid_instructions: "Se il tuo account esiste, riceverai una email con istruzioni per come sbloccarlo entro breve."
+      unlocked: "Il tuo account è stato sbloccato con successo. Si prega di accedere per continuare."
+  errors:
+    attributes:
+      user:
+        one_account_per_ip: "È consentito un solo account per rete. Se hai già un account, accedi."
+    messages:
+      already_confirmed: "era già confermato, si prega di effettuare l'accesso"
+      confirmation_period_expired: "Deve essere confermato entro %{period}, si prega di richiedere uno nuovo"
+      expired: "è scaduto, si prega di richiedere uno nuovo"
+      not_found: "non trovato"
+      not_locked: "Non era bloccato"
+      not_saved:
+        one: "1 errore non è possibile salvare questo %{resource}:"
+        other: "%{count} errori hanno impedito il salvataggio di questo %{resource}:"

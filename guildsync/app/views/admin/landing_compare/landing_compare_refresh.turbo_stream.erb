@@ -1,0 +1,8 @@
+<%= turbo_stream.update "admin_landing_compare_flash" do %>
+  <%= render "admin/errors/flash_banner", message: @admin_landing_compare_message, variant: @admin_landing_compare_variant %>
+<% end %>
+<%= turbo_stream.replace "admin_landing_compare_form_wrap" do %>
+  <div id="admin_landing_compare_form_wrap">
+    <%= render "form", tables: @tables, section_title_field: @section_title_field %>
+  </div>
+<% end %>

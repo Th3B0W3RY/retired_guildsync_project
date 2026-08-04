@@ -1,0 +1,106 @@
+es:
+  billing:
+    show:
+      title: Mi Facturación
+      subtitle: Gestionar su suscripción y la información de pago
+      current_subscription: Suscripción actual
+      no_plan: Sin plan
+      status_label: 'Estado:'
+      trial_period_active: Período de prueba activo
+      trial_days_remaining_html: Tiene <strong>%{days}</strong> restantes en su período de prueba.
+      trial_ended: Tu período de prueba ha terminado.
+      trial_ends_on: 'Finaliza el periodo de prueba en:'
+      started: Iniciado
+      expires: Vence
+      no_active_subscription: No tienes una suscripción activa.
+      view_plans: Ver Planes
+      payment_management: Gestión de pagos
+      setup_payment_method: Configurar método de pago
+      setup_payment_trial: Seleccione un plan a continuación para configurar el pago. Puede suscribirse al plan de prueba actual o elegir otro plan.
+      setup_payment_current: Seleccione un plan abaixo para configurar el pago.
+      setup_payment_current_plan: Configuración de pago para el plan actual
+      subscribe_to_plan: Suscríbase al %{plan}
+      setup_payment: Configuración de pago
+      manage_payment_methods: Gestionar tus métodos de pago, información de facturación y facturas
+      need_help: "¿Necesita ayuda?"
+      need_help_description: "¿Tiene preguntas sobre su cobro o suscripción? El equipo de cobro está aquí para ayudarle."
+      contact_billing_team: Contáctenos, Nuestro Equipo de Facturación
+      contact_form_coming_soon: El formulario de contacto pronto llegará
+      js_loading: Cargando...
+      js_manage_billing: Gestionar la facturación
+      js_setup_payment: Configuración de pago
+      billing_portal: Portal de facturación
+      switch_plan: Cambiar a este plan
+      confirm_plan_change: "¿Cambiar a este plan? Hoy puede aplicarse un cargo prorrateado."
+      confirm_plan_change_with_amount: 'Importe estimado a pagar hoy:'
+      proration_disclaimer: 'Los cambios de plan usan prorrateo de Stripe: las mejoras se facturan de inmediato; las bajadas añaden crédito en la cuenta para facturas futuras (sin reembolso en efectivo).'
+      account_credit_html: Tienes <strong>%{amount}</strong> de crédito en cuenta que se aplicará a futuras facturas.
+      subscription_actions_title: Cancelar o reanudar suscripción
+      pending_cancel_html: Tu suscripción está programada para finalizar el <strong>%{date}</strong>. No se te volverá a cobrar después de esa fecha.
+      period_end_unknown: el final del periodo de facturación actual
+      resume_subscription: Reanudar suscripción
+      refund_window_active: Estás dentro de los tres días posteriores al primer pago. Cancelar ahora finaliza la suscripción de inmediato y reembolsa los cargos elegibles a tu método de pago.
+      cancel_no_refund: Cancelar ahora mantiene el acceso hasta el final del periodo de facturación actual. No hay reembolso por cargos ya pagados.
+      cancel_subscription: Cancelar suscripción
+      cancel_confirm: "¿Seguro que quieres cancelar tu suscripción?"
+  pricing:
+    interval:
+      monthly: Mensual
+      annual: Anual
+      save_annual: Ahorra un 10 %
+    public:
+      title: Precios
+    upgrade:
+      title: Actualiza tu Plan
+      subtitle: Elige el plan perfecto para tus necesidades de gestión de gremios. Todos los planes incluyen nuestros principales recursos.
+      most_popular: Más popular
+      trial_ends_in:
+        one: Tu periodo de prueba termina en 1 día
+        other: Tu versión de prueba termina en %{count} días
+      current_plan: Plan actual
+      start_free_trial: Iniciar Prueba Gratis
+      subscribe_now: Suscríbase ahora
+      switch_to_free_plan: Pasar al Plan Gratis
+      trial_message: Actualmente se encuentra en su prueba gratuita de 14 días. Agregue un método de pago para continuar después de que finalice la prueba.
+      payment_required: Actualizar a un plan de pago requiere un método de pago. No están disponibles más pruebas gratuitas después de tu prueba inicial.
+      free_trial_box:
+        title: Prueba gratuita / modo limitado
+        description: Las cuentas nuevas empiezan en el plan gratuito (funciones limitadas). Puedes iniciar una prueba de 14 días de Basic si cumples requisitos, o suscribirte a Basic, Upgraded o Elite con pago.
+        features:
+        - Prueba de 14 días en Basic (app o Stripe donde esté activo)
+        - 'Upgraded y Elite: pago por suscripción — sin segunda prueba'
+        - No hace falta tarjeta para iniciar la prueba Basic desde el plan gratuito
+        - Bajar al plan gratuito en cualquier momento
+        - Funciones limitadas en el plan gratuito después de la prueba
+      free_user_mode_box:
+        title: Plan gratuito y modo de usuario gratuito
+        description: 'Si estás en el plan gratuito o pasas a él tras una prueba, entras en modo de usuario gratuito. Esto significa:'
+        features:
+        - Sigues teniendo acceso a un gremio y un número limitado de miembros
+        - Las funciones principales siguen disponibles con límites reducidos
+        - Puedes ascender a Basic, Upgraded o Elite cuando quieras
+        - Tus datos se conservan si bajas de plan o cuando termina una prueba
+      questions_contact: "¿Preguntas? %{link} para más información."
+      contact_us: Contactanos
+      loading: Cargando...
+    public_pricing:
+      title: Elige tu plan
+      subtitle: Elige el plan perfecto para tus necesidades de gestión de gremios. Todos los planes incluyen nuestros principales recursos.
+      no_plans: Sin planes de precios disponibles en este momento.
+      most_popular: Más popular
+      trial_included: Prueba de 14 días en Basic si aplica
+      start_free_trial: Iniciar Prueba Gratis
+      plan_suffix: Planes
+      whats_included: 'Qué está incluido:'
+      free_plan_intro: Todas las cuentas nuevas empiezan en el plan gratuito (funciones limitadas). Puedes iniciar una prueba de 14 días de Basic si eres elegible, o suscribirte a Basic, Upgraded o Elite con checkout.
+      trial_info: La prueba de 14 días aplica solo a Basic. Upgraded y Elite usan checkout de pago sin prueba en la app. Tras la prueba Basic puedes quedarte en Gratis (limitado) o suscribirte.
+      questions_contact: "¿Preguntas? %{link} para más información."
+      contact_us: Contactanos
+      after_trial_title: "¿Qué pasa después de tu trial?"
+      after_trial_paragraph_html: Después de que finalice tu periodo de prueba, te encontrarás automáticamente en nuestro <strong class="text-theme-accent">Plan Gratis</strong>, el cual puedes seguir usando o desde el cual siempre podrás actualizar tu plan.
+      free_plan_includes_title: 'Este es lo que incluye el Plan Gratis:'
+      free_plan_feature_1_guild: 1 gremio
+      free_plan_feature_50_users: 50 usuarios
+      free_plan_feature_events: Planificación y programación de eventos.
+      free_plan_feature_members: Gestión de miembros
+      subscribe_now: Suscríbase ahora

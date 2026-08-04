@@ -1,0 +1,12 @@
+<div class="max-w-lg mx-auto p-6 text-center">
+  <div class="bg-theme-card border border-theme-primary rounded-lg shadow-lg p-8">
+    <h1 class="text-2xl font-bold text-theme-primary mb-2"><%= t('join.title') %></h1>
+    <p class="text-theme-secondary mb-6"><%= t('join.subtitle', guild_name: @guild.name) %></p>
+    <p class="text-theme-primary font-medium mb-8"><%= t('join.cta') %></p>
+    <div class="flex flex-col sm:flex-row gap-4 justify-center">
+      <%= link_to t('join.sign_in'), login_path, class: "inline-flex items-center justify-center px-6 py-3 bg-theme-accent text-white rounded-lg hover:bg-theme-accent-hover transition-colors font-semibold" %>
+      <%= link_to t('join.create_account'), sign_up_path, class: "inline-flex items-center justify-center px-6 py-3 bg-theme-secondary text-theme-primary border border-theme-primary rounded-lg hover:bg-theme-primary transition-colors font-semibold" %>
+    </div>
+    <p class="text-sm text-theme-secondary mt-6"><%= t('join.one_time_hint') %></p>
+  </div>
+</div>

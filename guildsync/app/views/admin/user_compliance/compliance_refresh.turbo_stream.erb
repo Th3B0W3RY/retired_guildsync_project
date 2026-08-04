@@ -1,0 +1,11 @@
+<%= turbo_stream.update "admin_user_show_flash" do %>
+  <%= render "admin/users/compliance_flash_banner", message: @admin_compliance_notice %>
+<% end %>
+<%= turbo_stream.replace "admin_user_compliance_panel" do %>
+  <%= render "admin/users/compliance_panel", user: @user %>
+<% end %>
+<% if @turbo_refresh_user_email %>
+  <%= turbo_stream.replace "admin_user_show_email" do %>
+    <span id="admin_user_show_email" class="text-theme-primary"><%= @user.email %></span>
+  <% end %>
+<% end %>

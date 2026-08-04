@@ -1,0 +1,27 @@
+# Python dependencies for Members Gear OCR feature
+# Install with: pip install -r requirements.txt
+# Or: pip3 install -r requirements.txt
+# Or use the setup script: ./script/setup_python_env.sh (Linux/macOS) or .\script\setup_python_env.ps1 (Windows)
+#
+# Python version requirement: 3.10 or higher (3.11 recommended)
+#
+# IMPORTANT: PyTorch Installation
+# PyTorch must be installed separately with the correct index-url for your system:
+#   - CPU only: pip install torch --index-url https://download.pytorch.org/whl/cpu
+#   - CUDA 11.8: pip install torch --index-url https://download.pytorch.org/whl/cu118
+#   - CUDA 12.1: pip install torch --index-url https://download.pytorch.org/whl/cu121
+#   - Check your CUDA version: nvidia-smi
+#   - See https://pytorch.org/get-started/locally/ for the correct command
+# After installing PyTorch, install the rest: pip install -r requirements.txt
+
+# OCR Engine (Primary)
+surya-ocr>=0.4.0
+transformers==4.56.0  # Surya compatibility: transformers>=5 triggers SuryaDecoderConfig pad_token_id error
+Pillow>=10.0.0
+requests>=2.28.0  # Required by surya-ocr at runtime but missing from its declared dependencies
+
+# Embeddings (Required - for local embedding generation)
+# These are required for the gear validation feature
+sentence-transformers>=2.2.0
+# torch>=2.0.0  # Install separately with correct index-url (see instructions above)
+

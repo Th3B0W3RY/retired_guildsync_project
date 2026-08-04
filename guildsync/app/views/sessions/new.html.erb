@@ -1,0 +1,74 @@
+<% content_for :head do %>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <% if params[:force_load].present? %>
+    <script>
+      (function() {
+        if (typeof Turbo !== "undefined" && Turbo.cache) Turbo.cache.clear();
+        <% if params[:signed_out].present? %>
+          window.location.replace("<%= login_url(signed_out: 1) %>");
+        <% else %>
+          window.location.replace("<%= login_url %>");
+        <% end %>
+      })();
+    </script>
+  <% else %>
+    <meta name="turbo-visit-control" content="reload">
+  <% end %>
+<% end %>
+
+<div class="w-full max-w-[448px] font-[family-name:Inter,ui-sans-serif,system-ui,sans-serif]" data-turbo="false">
+  <div class="rounded-2xl bg-[rgba(15,23,43,0.5)] shadow-[0px_25px_50px_-12px_rgba(0,0,0,0.25)] outline outline-1 outline-offset-[-1px] outline-[rgba(255,255,255,0.1)] pt-8 px-[33px] pb-8 flex flex-col gap-8">
+    <h1 class="text-center text-white text-2xl font-semibold leading-8"><%= t("sessions.new.title") %></h1>
+
+    <div class="flex flex-col gap-6 w-full">
+      <%= form_with url: sign_in_path, method: :post, local: true, data: { turbo: false }, class: "flex flex-col gap-6", html: { autocomplete: "on" } do |f| %>
+        <div class="flex flex-col gap-1">
+          <%= f.label :email, t("common.labels.email"), class: "text-[#CAD5E2] text-sm font-medium leading-5" %>
+          <%= f.email_field :email, name: "user[email]", required: true, autofocus: true, autocomplete: "email",
+              class: "w-full h-9 px-3 rounded-lg bg-[rgba(29,41,61,0.5)] border border-[#314158] text-white text-sm placeholder:text-[#90A1B9] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#7C86FF]/90 focus-visible:border-transparent transition-shadow" %>
+        </div>
+
+        <div class="flex flex-col gap-1">
+          <%= f.label :password, t("common.labels.password"), class: "text-[#CAD5E2] text-sm font-medium leading-5" %>
+          <%= f.password_field :password, name: "user[password]", required: true, autocomplete: "current-password",
+              class: "w-full h-9 px-3 rounded-lg bg-[rgba(29,41,61,0.5)] border border-[#314158] text-white text-sm placeholder:text-[#90A1B9] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#7C86FF]/90 focus-visible:border-transparent transition-shadow" %>
+        </div>
+
+        <div class="flex flex-col items-end gap-1 min-h-5">
+          <%= link_to t("sessions.new.forgot_password"), new_password_path,
+              class: "text-[#7C86FF] text-sm font-normal leading-5 hover:opacity-90 transition-opacity" %>
+          <%= link_to t("sessions.new.resend_confirmation"), new_user_confirmation_path,
+              class: "text-[#7C86FF] text-sm font-normal leading-5 hover:opacity-90 transition-opacity" %>
+        </div>
+
+        <%= f.submit t("common.buttons.sign_in"),
+            class: "w-full h-11 rounded-lg bg-theme-brand-gradient text-white text-sm font-medium leading-5 cursor-pointer border-0 shadow-none hover:opacity-95 transition-opacity focus:outline-none focus-visible:ring-2 focus-visible:ring-white/40 focus-visible:ring-offset-2 focus-visible:ring-offset-[rgba(15,23,43,0.5)]" %>
+      <% end %>
+
+      <%= button_to discord_login_path, method: :get, form: { data: { turbo: false }, class: "w-full" }, id: "discord-login-btn",
+          class: "w-full h-11 flex items-center justify-center gap-2 rounded-lg bg-[#5865F2] text-white text-sm font-medium leading-5 hover:bg-[#4752C4] transition-colors cursor-pointer border-0 shadow-none focus:outline-none focus-visible:ring-2 focus-visible:ring-white/30" do %>
+        <svg class="w-5 h-5 shrink-0" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515a.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0a12.64 12.64 0 0 0-.617-1.25a.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057a19.9 19.9 0 0 0 5.993 3.03a.078.078 0 0 0 .084-.028a14.09 14.09 0 0 0 1.226-1.994a.076.076 0 0 0-.041-.106a13.107 13.107 0 0 1-1.872-.892a.077.077 0 0 1-.008-.128a10.2 10.2 0 0 0 .372-.292a.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127a12.299 12.299 0 0 1-1.873.892a.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028a19.839 19.839 0 0 0 6.002-3.03a.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419c0-1.333.956-2.419 2.157-2.419c1.21 0 2.176 1.096 2.157 2.42c0 1.333-.956 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419c0-1.333.955-2.419 2.157-2.419c1.21 0 2.176 1.096 2.157 2.42c0 1.333-.946 2.418-2.157 2.418z"/>
+        </svg>
+        <span><%= t("sessions.new.sign_in_with_discord") %></span>
+      <% end %>
+
+      <%= button_to google_login_path, method: :get, form: { data: { turbo: false }, class: "w-full" }, id: "google-login-btn",
+          class: "w-full h-11 flex items-center justify-center gap-2 rounded-lg bg-white text-[#1f1f1f] text-sm font-medium leading-5 hover:bg-[#f2f2f2] transition-colors cursor-pointer border border-[#dadce0] shadow-none focus:outline-none focus-visible:ring-2 focus-visible:ring-white/30" do %>
+        <span class="font-semibold text-[#4285F4]">G</span>
+        <span><%= t("sessions.new.sign_in_with_google") %></span>
+      <% end %>
+
+      <%= button_to microsoft_login_path, method: :get, form: { data: { turbo: false }, class: "w-full" }, id: "microsoft-login-btn",
+          class: "w-full h-11 flex items-center justify-center gap-2 rounded-lg bg-[#2F2F2F] text-white text-sm font-medium leading-5 hover:bg-[#404040] transition-colors cursor-pointer border-0 shadow-none focus:outline-none focus-visible:ring-2 focus-visible:ring-white/30" do %>
+        <span><%= t("sessions.new.sign_in_with_microsoft") %></span>
+      <% end %>
+
+      <p class="text-center text-sm leading-5">
+        <span class="text-[#90A1B9] font-normal"><%= t("sessions.new.no_account") %> </span><%= link_to t("sessions.new.create_account"), sign_up_path, class: "text-[#7C86FF] font-normal hover:opacity-90 transition-opacity" %>
+      </p>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,12 @@
+<%= turbo_stream.update "admin_error_settings_flash" do %>
+  <% if @flash_message.present? %>
+    <% if @flash_variant == :alert %>
+      <p class="rounded-lg border border-red-500/30 bg-red-500/10 px-4 py-2 text-sm text-red-400"><%= @flash_message %></p>
+    <% else %>
+      <p class="rounded-lg border border-emerald-500/30 bg-emerald-500/10 px-4 py-2 text-sm text-emerald-400"><%= @flash_message %></p>
+    <% end %>
+  <% end %>
+<% end %>
+<%= turbo_stream.replace "error_settings_main" do %>
+  <%= render "error_settings_main" %>
+<% end %>

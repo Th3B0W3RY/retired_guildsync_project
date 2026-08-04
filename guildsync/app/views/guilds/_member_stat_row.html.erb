@@ -1,0 +1,103 @@
+<%# locals: row, guild:, target_user:, mobile: false %>
+<% mobile = local_assigns.fetch(:mobile, false) %>
+<% can_edit = can_edit_member_snapshot_data?(guild, target_user) %>
+<% can_edit_row = can_edit && row.key.present? %>
+<div
+  role="listitem"
+  class="member-stat-row group px-4 py-3 transition-colors border-b border-violet-500/15 last:border-b-0 hover:bg-violet-500/[0.06]"
+  <% if can_edit_row %>
+    data-controller="member-stat-row"
+    data-member-stat-row-url-value="<%= guild_member_stats_fields_path(guild, user_id: target_user.id) %>"
+    data-member-stat-row-stat-key-value="<%= ERB::Util.html_escape(row.key) %>"
+    data-member-stat-row-stat-json-value="<%= ERB::Util.html_escape(row.raw_value.to_json) %>"
+  <% end %>
+>
+  <div class="<%= mobile ? "flex flex-col gap-3" : "flex flex-col sm:flex-row sm:items-start gap-3 sm:gap-4" %>">
+    <div class="<%= mobile ? "min-w-0 w-full" : "sm:w-2/5 min-w-0 shrink-0" %>">
+      <div
+        data-member-stat-row-target="labelDisplay"
+        class="w-full px-3 py-1.5 rounded-lg bg-theme-primary/80 border border-violet-500/35 text-sm font-medium text-theme-primary break-words leading-snug shadow-sm shadow-violet-950/20"
+        title="<%= row.label %>"
+      >
+        <%= row.label %>
+      </div>
+      <% if can_edit_row %>
+        <input
+          type="text"
+          data-member-stat-row-target="labelInput"
+          autocomplete="off"
+          class="hidden w-full px-3 py-1.5 rounded-lg bg-theme-primary border border-violet-500/50 text-sm font-medium text-theme-primary placeholder:text-theme-secondary/70 leading-snug focus:outline-none focus:ring-2 focus:ring-[var(--gs-color-accent-primary)] focus:border-[var(--gs-color-accent-primary)]"
+          aria-label="<%= t("guilds.member_stats.stat_name_label") %>"
+        />
+      <% end %>
+    </div>
+    <div class="<%= mobile ? "min-w-0 w-full" : "sm:flex-1 min-w-0 flex flex-col sm:flex-row sm:items-start gap-2 sm:gap-3" %>">
+      <div
+        data-member-stat-row-target="valueBlock"
+        class="w-full min-w-0 flex-1 px-3 py-1.5 rounded-lg bg-theme-primary/50 border border-violet-500/30 text-sm text-theme-primary break-words whitespace-pre-wrap leading-snug shadow-inner shadow-violet-950/10"
+      >
+        <%= row.value %>
+      </div>
+      <% if can_edit_row %>
+        <textarea
+          data-member-stat-row-target="valueInput"
+          rows="1"
+          class="member-stat-value-input hidden w-full min-w-0 flex-1 px-3 py-1.5 rounded-lg bg-theme-primary border border-violet-500/50 text-sm text-theme-primary placeholder:text-theme-secondary/70 resize-y leading-snug focus:outline-none focus:ring-2 focus:ring-[var(--gs-color-accent-primary)] focus:border-[var(--gs-color-accent-primary)]"
+          aria-label="<%= t("guilds.member_stats.stat_value_label") %>"
+        ></textarea>
+        <div class="flex flex-row flex-wrap justify-end items-start gap-2 shrink-0 sm:max-w-[11rem] sm:flex-col sm:justify-start sm:self-start">
+          <button
+            type="button"
+            data-member-stat-row-target="editBtn"
+            data-action="member-stat-row#startEdit"
+            class="inline-flex items-center justify-center rounded-lg border border-violet-500/50 bg-theme-primary/60 px-3 py-1.5 text-xs font-semibold text-violet-200 shadow-sm hover:bg-violet-500/15 hover:border-violet-400/60 focus:outline-none focus:ring-2 focus:ring-[var(--gs-color-accent-primary)] focus:ring-offset-2 focus:ring-offset-theme-secondary"
+            title="<%= t("guilds.member_stats.edit_stat") %>"
+            aria-label="<%= t("guilds.member_stats.edit_stat") %>"
+          >
+            <%= t("guilds.member_stats.edit_stat") %>
+          </button>
+          <button
+            type="button"
+            data-member-stat-row-target="saveBtn"
+            data-action="member-stat-row#saveEdit"
+            class="hidden inline-flex items-center justify-center rounded-lg bg-theme-brand-gradient px-3 py-1.5 text-xs font-semibold text-white shadow-md shadow-violet-900/40 hover:opacity-95 focus:outline-none focus:ring-2 focus:ring-[var(--gs-color-accent-primary)] focus:ring-offset-2 focus:ring-offset-theme-secondary"
+            title="<%= t("guilds.member_stats.save_stat") %>"
+            aria-label="<%= t("guilds.member_stats.save_stat") %>"
+          >
+            <%= t("guilds.member_stats.save_stat") %>
+          </button>
+          <button
+            type="button"
+            data-member-stat-row-target="cancelBtn"
+            data-action="member-stat-row#cancelEdit"
+            class="hidden inline-flex items-center justify-center rounded-lg border border-theme-primary bg-theme-secondary px-3 py-1.5 text-xs font-semibold text-theme-secondary hover:bg-theme-hover hover:text-theme-primary focus:outline-none focus:ring-2 focus:ring-[var(--gs-color-accent-primary)] focus:ring-offset-2 focus:ring-offset-theme-secondary"
+            title="<%= t("guilds.member_stats.cancel_edit") %>"
+            aria-label="<%= t("guilds.member_stats.cancel_edit") %>"
+          >
+            <%= t("guilds.member_stats.cancel_edit") %>
+          </button>
+          <button
+            type="button"
+            data-member-stat-row-target="removeBtn"
+            data-action="member-stat-row#remove"
+            class="inline-flex h-9 w-9 items-center justify-center rounded-full bg-red-600/95 text-white shadow-sm hover:bg-red-500 focus:outline-none focus:ring-2 focus:ring-red-400 focus:ring-offset-2 focus:ring-offset-theme-secondary"
+            title="<%= t("guilds.member_stats.remove_stat") %>"
+            aria-label="<%= t("guilds.member_stats.remove_stat") %>"
+          >
+            <span class="text-lg font-bold leading-none select-none" aria-hidden="true">−</span>
+          </button>
+          <button
+            type="button"
+            data-member-stat-row-target="undoBtn"
+            data-action="member-stat-row#undo"
+            class="hidden inline-flex h-9 w-9 items-center justify-center rounded-full border-2 border-violet-400/80 text-violet-200 bg-theme-secondary shadow-sm hover:bg-violet-500/15 focus:outline-none focus:ring-2 focus:ring-[var(--gs-color-accent-primary)] focus:ring-offset-2 focus:ring-offset-theme-secondary"
+            title="<%= t("guilds.member_stats.undo_stat") %>"
+            aria-label="<%= t("guilds.member_stats.undo_stat") %>"
+          >
+            <span class="text-base font-bold leading-none select-none" aria-hidden="true">↶</span>
+          </button>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>

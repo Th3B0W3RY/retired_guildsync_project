@@ -1,0 +1,39 @@
+<div class="w-full max-w-[448px] font-[family-name:Inter,ui-sans-serif,system-ui,sans-serif]" data-turbo="false">
+  <div class="rounded-2xl bg-[rgba(15,23,43,0.5)] shadow-[0px_25px_50px_-12px_rgba(0,0,0,0.25)] outline outline-1 outline-offset-[-1px] outline-[rgba(255,255,255,0.1)] pt-8 px-[33px] pb-8 flex flex-col gap-6">
+    <h1 class="text-center text-white text-2xl font-semibold leading-8"><%= t("account_creation.standard.title") %></h1>
+
+    <% if @user&.errors&.any? %>
+      <div class="p-4 bg-red-900/50 border border-red-700 text-red-100 rounded-lg">
+        <ul class="list-disc list-inside space-y-1 text-sm">
+          <% @user.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+    <%= form_with model: @user, url: create_account_standard_path, method: :post, local: true, data: { turbo: false }, class: "flex flex-col gap-5" do |f| %>
+      <div class="flex flex-col gap-1">
+        <%= f.label :username, t("registrations.new.username"), class: "text-[#CAD5E2] text-sm font-medium leading-5" %>
+        <%= f.text_field :username, value: nil, required: true, autocomplete: "username",
+            class: "w-full h-9 px-3 rounded-lg bg-[rgba(29,41,61,0.5)] border border-[#314158] text-white text-sm placeholder:text-[#90A1B9] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#7C86FF]/90 focus-visible:border-transparent transition-shadow" %>
+        <p class="text-[#90A1B9] text-xs"><%= t("registrations.new.username_hint") %></p>
+      </div>
+
+      <div class="flex flex-col gap-1">
+        <%= f.label :password, t("common.labels.password"), class: "text-[#CAD5E2] text-sm font-medium leading-5" %>
+        <%= f.password_field :password, required: true, autocomplete: "new-password", minlength: Devise.password_length.first,
+            class: "w-full h-9 px-3 rounded-lg bg-[rgba(29,41,61,0.5)] border border-[#314158] text-white text-sm placeholder:text-[#90A1B9] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#7C86FF]/90 focus-visible:border-transparent transition-shadow" %>
+      </div>
+
+      <div class="flex flex-col gap-1">
+        <%= f.label :password_confirmation, t("registrations.new.confirm_password"), class: "text-[#CAD5E2] text-sm font-medium leading-5" %>
+        <%= f.password_field :password_confirmation, required: true, autocomplete: "new-password",
+            class: "w-full h-9 px-3 rounded-lg bg-[rgba(29,41,61,0.5)] border border-[#314158] text-white text-sm placeholder:text-[#90A1B9] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#7C86FF]/90 focus-visible:border-transparent transition-shadow" %>
+      </div>
+
+      <%= f.submit t("account_creation.standard.submit"),
+          class: "w-full h-11 rounded-lg bg-theme-brand-gradient text-white text-sm font-medium leading-5 cursor-pointer border-0 shadow-none hover:opacity-95 transition-opacity" %>
+    <% end %>
+  </div>
+</div>

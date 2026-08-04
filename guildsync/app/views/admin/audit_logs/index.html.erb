@@ -1,0 +1,25 @@
+<div class="space-y-6">
+  <div class="flex justify-between items-center">
+    <h1 class="text-3xl font-bold text-theme-accent"><%= t("admin.audit_logs.index.page_title") %></h1>
+    <%= link_to t("admin.users.index.back_to_dashboard"), admin_root_path, class: "px-4 py-2 bg-theme-secondary text-theme-primary rounded-lg hover:bg-theme-hover transition-colors" %>
+  </div>
+
+  <div class="bg-theme-card border border-theme-primary rounded-lg p-6 shadow-lg">
+    <div class="mb-4">
+      <%= form_with url: admin_audit_logs_path, method: :get,
+          data: { turbo_frame: Admin::AuditLogsController::AUDIT_LOGS_RESULTS_FRAME },
+          class: "flex gap-4 flex-wrap" do |f| %>
+        <%= f.text_field :admin_email, value: params[:admin_email], placeholder: t("admin.audit_logs.index.filter_admin_email_placeholder"), class: "flex-1 min-w-[12rem] px-4 py-2 bg-theme-secondary border border-theme-primary rounded-lg text-theme-primary" %>
+        <%= f.text_field :controller_name, value: params[:controller_name], placeholder: t("admin.audit_logs.index.filter_controller_placeholder"), class: "flex-1 min-w-[12rem] px-4 py-2 bg-theme-secondary border border-theme-primary rounded-lg text-theme-primary" %>
+        <%= f.submit t("admin.audit_logs.index.filter_submit"), class: "px-6 py-2 bg-theme-accent text-white rounded-lg hover:bg-theme-accent-hover transition-colors" %>
+        <%= link_to t("admin.users.index.clear"), admin_audit_logs_path,
+          class: "px-6 py-2 bg-theme-secondary text-theme-primary rounded-lg hover:bg-theme-hover transition-colors",
+          data: { turbo_frame: Admin::AuditLogsController::AUDIT_LOGS_RESULTS_FRAME } %>
+      <% end %>
+    </div>
+
+    <%= turbo_frame_tag Admin::AuditLogsController::AUDIT_LOGS_RESULTS_FRAME do %>
+      <%= render "audit_logs_table" %>
+    <% end %>
+  </div>
+</div>

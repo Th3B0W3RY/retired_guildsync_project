@@ -1,0 +1,6 @@
+---
+ja:
+  mailers:
+    trial_mailer:
+      trial_expiring:
+        subject: GuildSyncのトライアル期間がまもなく終了します

@@ -1,0 +1,14 @@
+<div class="space-y-8">
+  <div class="flex justify-between items-center">
+    <h1 class="text-3xl font-bold text-theme-accent"><%= t("admin.queries.index.page_title") %></h1>
+    <%= link_to t("admin.queries.index.back_to_dashboard"), admin_root_path, class: "px-4 py-2 bg-theme-secondary text-theme-primary rounded-lg hover:bg-theme-hover transition-colors" %>
+  </div>
+
+  <div id="admin_queries_flash" class="min-h-0" aria-live="polite"></div>
+
+  <%= turbo_frame_tag Admin::QueriesController::QUERIES_INDEX_MAIN_FRAME do %>
+    <div class="space-y-8">
+      <%= render "queries_index_main" %>
+    </div>
+  <% end %>
+</div>

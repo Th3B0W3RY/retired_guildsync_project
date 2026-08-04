@@ -1,0 +1,73 @@
+<%# locals: (unresolved:, resolved:) %>
+<div id="admin_errors_columns" class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+  <div>
+    <h2 class="text-xl font-semibold text-red-400 mb-3 flex items-center gap-2">
+      <%= t("admin.errors.index.unresolved_title", count: unresolved.size) %>
+      <% if unresolved.any? %>
+        <label class="text-sm font-normal text-theme-secondary cursor-pointer">
+          <input type="checkbox" id="select-all-unresolved" aria-label="<%= t("admin.errors.index.select_all_unresolved_aria") %>" /> <%= t("admin.errors.index.select_all") %>
+        </label>
+      <% end %>
+    </h2>
+    <div class="space-y-3">
+      <% if unresolved.any? %>
+        <% unresolved.each do |error| %>
+          <div class="bg-theme-card border border-red-900/50 rounded-lg p-4 shadow flex items-start gap-3">
+            <div class="pt-0.5">
+              <%= check_box_tag "error_ids[]", error.id, false, class: "error-checkbox unresolved-checkbox", id: "error_#{error.id}" %>
+            </div>
+            <div class="flex-1 min-w-0">
+              <div class="font-mono text-sm text-theme-accent truncate" title="<%= error.error_class %>"><%= error.error_class %></div>
+              <div class="text-theme-secondary text-sm mt-1 line-clamp-2"><%= truncate(error.message, length: 120) %></div>
+              <div class="text-theme-secondary text-xs mt-2"><%= error.occurred_at.strftime("%Y-%m-%d %H:%M") %></div>
+              <div class="mt-2 flex gap-2">
+                <%= link_to t("admin.errors.index.view"), admin_error_path(error), class: "text-blue-400 hover:underline text-sm", data: { turbo_frame: "_top" } %>
+                <%= button_to t("admin.errors.index.resolve"), resolve_admin_error_path(error), method: :post, class: "text-green-400 hover:underline text-sm", form: { data: { turbo_frame: "_top" } } %>
+              </div>
+            </div>
+          </div>
+        <% end %>
+      <% else %>
+        <p class="text-theme-secondary py-4"><%= t("admin.errors.index.empty_unresolved") %></p>
+      <% end %>
+    </div>
+  </div>
+
+  <div>
+    <h2 class="text-xl font-semibold text-green-400 mb-3 flex items-center gap-2">
+      <%= t("admin.errors.index.resolved_title", count: resolved.size) %>
+      <% if resolved.any? %>
+        <label class="text-sm font-normal text-theme-secondary cursor-pointer">
+          <input type="checkbox" id="select-all-resolved" aria-label="<%= t("admin.errors.index.select_all_resolved_aria") %>" /> <%= t("admin.errors.index.select_all") %>
+        </label>
+      <% end %>
+    </h2>
+    <div class="space-y-3">
+      <% if resolved.any? %>
+        <% resolved.each do |error| %>
+          <div class="bg-theme-card border border-theme-primary rounded-lg p-4 shadow flex items-start gap-3 opacity-90">
+            <div class="pt-0.5">
+              <%= check_box_tag "error_ids[]", error.id, false, class: "error-checkbox resolved-checkbox", id: "error_#{error.id}" %>
+            </div>
+            <div class="flex-1 min-w-0">
+              <div class="font-mono text-sm text-theme-accent truncate" title="<%= error.error_class %>"><%= error.error_class %></div>
+              <div class="text-theme-secondary text-sm mt-1 line-clamp-2"><%= truncate(error.message, length: 120) %></div>
+              <div class="text-theme-secondary text-xs mt-2">
+                <%= error.occurred_at.strftime("%Y-%m-%d %H:%M") %>
+                <% if error.resolved_at %>
+                  · <%= t("admin.errors.index.resolved_on", date: error.resolved_at.strftime("%Y-%m-%d")) %>
+                <% end %>
+              </div>
+              <div class="mt-2 flex gap-2">
+                <%= link_to t("admin.errors.index.view"), admin_error_path(error), class: "text-blue-400 hover:underline text-sm", data: { turbo_frame: "_top" } %>
+                <%= button_to t("admin.errors.index.delete"), admin_error_path(error), method: :delete, data: { turbo_confirm: t("admin.errors.show.confirm_delete") }, class: "text-red-400 hover:underline text-sm", form: { data: { turbo_frame: "_top" } } %>
+              </div>
+            </div>
+          </div>
+        <% end %>
+      <% else %>
+        <p class="text-theme-secondary py-4"><%= t("admin.errors.index.empty_resolved") %></p>
+      <% end %>
+    </div>
+  </div>
+</div>

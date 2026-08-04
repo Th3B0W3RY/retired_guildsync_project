@@ -1,0 +1,33 @@
+<div class="max-w-md mx-auto">
+  <div class="text-center mb-8">
+    <h1 class="text-3xl font-bold text-theme-primary mb-4"><%= t('mfa_verification.show.title') %></h1>
+    <p class="text-theme-secondary"><%= t('mfa_verification.show.subtitle') %></p>
+  </div>
+
+  <div class="bg-theme-card border border-theme-primary rounded-lg shadow-lg p-8">
+    <%= form_with url: mfa_verification_path, method: :post, local: true, class: "space-y-6" do |f| %>
+      <div>
+        <%= f.label :code, t('mfa_verification.show.code_label'), class: "block mb-2 text-theme-secondary font-medium" %>
+        <%= f.text_field :code, 
+            required: true, 
+            autofocus: true,
+            maxlength: 6,
+            pattern: "[0-9]{6}",
+            placeholder: "000000",
+            class: "w-full px-4 py-3 bg-theme-secondary border border-theme-primary rounded-lg text-theme-primary text-center text-2xl tracking-widest focus:outline-none focus:ring-2 focus:ring-theme-accent focus:border-transparent transition-all" %>
+        <p class="mt-2 text-sm text-theme-secondary text-center"><%= t('mfa_verification.show.code_hint') %></p>
+      </div>
+
+      <div>
+        <%= f.submit t('mfa_verification.show.verify_button'), 
+            class: "w-full px-4 py-3 bg-theme-accent text-white rounded-lg hover:bg-theme-accent-hover transition-colors cursor-pointer font-semibold text-lg shadow-lg" %>
+      </div>
+    <% end %>
+
+    <div class="mt-6 pt-6 border-t border-theme-primary">
+      <p class="text-sm text-theme-secondary text-center">
+        <%= t('mfa_verification.show.trouble_text') %> <%= link_to t('mfa_verification.show.contact_support'), release_notes_path, target: "_blank", rel: "noopener noreferrer", class: "text-theme-accent hover:text-dark-accent-hover underline" %>
+      </p>
+    </div>
+  </div>
+</div>

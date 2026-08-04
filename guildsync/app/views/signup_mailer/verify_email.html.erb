@@ -1,0 +1,17 @@
+<h1><%= t("account_creation.mailer.verify_email.heading") %></h1>
+
+<p><%= t("account_creation.mailer.verify_email.greeting") %></p>
+
+<p><%= t("account_creation.mailer.verify_email.body") %></p>
+
+<%= render partial: "signup_mailer/verify_cta_button", locals: { cta_text: t("account_creation.mailer.verify_email.cta") } %>
+
+<p><%= t("account_creation.mailer.verify_email.expires") %></p>
+
+<p><%= t("account_creation.mailer.verify_email.fallback") %></p>
+
+<p><a href="<%= @verify_url.to_s.strip %>"><%= @verify_url.to_s.strip %></a></p>
+
+<p><%= t("account_creation.mailer.verify_email.ignore") %></p>
+
+<p><%= t("account_creation.mailer.signoff") %></p>

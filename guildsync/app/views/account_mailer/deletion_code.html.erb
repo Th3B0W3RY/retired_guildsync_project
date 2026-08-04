@@ -1,0 +1,13 @@
+<h1><%= t("account_deletion.mailer.deletion_code.heading") %></h1>
+
+<p><%= t("account_deletion.mailer.deletion_code.greeting", username: @user.username) %></p>
+
+<p><%= t("account_deletion.mailer.deletion_code.body") %></p>
+
+<p style="font-size:1.25rem;font-weight:bold;letter-spacing:0.12em;font-family:ui-monospace,Menlo,monospace;"><%= @code %></p>
+
+<p><%= t("account_deletion.mailer.deletion_code.expires") %></p>
+
+<p><%= t("account_deletion.mailer.deletion_code.ignore") %></p>
+
+<p><%= t("account_creation.mailer.signoff") %></p>

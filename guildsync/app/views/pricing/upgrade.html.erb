@@ -1,0 +1,211 @@
+<div class="space-y-8">
+  <!-- Header -->
+  <div class="text-center">
+    <h1 class="text-5xl font-bold text-theme-primary mb-4"><%= t('pricing.upgrade.title') %></h1>
+    <p class="text-theme-secondary text-xl max-w-2xl mx-auto">
+      <%= t('pricing.upgrade.subtitle') %>
+    </p>
+  </div>
+
+  <!-- Paid Plans (Top - Vertical Cards) -->
+  <% paid_plans = @plans.reject(&:free_tier?) %>
+  <% free_plan = @plans.find(&:free_tier?) %>
+  <% any_has_annual = paid_plans.any? { |p| p.effective_stripe_price_id_annual.present? } %>
+
+  <div data-controller="pricing-plans"
+       data-pricing-plans-checkout-path-value="<%= billing_checkout_path %>"
+       data-pricing-plans-loading-text-value="<%= t('pricing.upgrade.loading') %>"
+       data-pricing-plans-price-missing-text-value="<%= t('js.pricing.price_id_missing') %>"
+       data-pricing-plans-checkout-failed-text-value="<%= t('js.pricing.checkout_failed') %>">
+
+  <!-- Global billing interval toggle (one toggle for all plans) -->
+  <% if any_has_annual %>
+    <div class="flex items-center justify-center gap-3 mt-8 mb-4 max-w-6xl mx-auto">
+      <span class="text-theme-secondary text-sm font-medium"><%= t('pricing.interval.monthly') %></span>
+      <button type="button" class="relative inline-flex h-7 w-14 flex-shrink-0 cursor-pointer rounded-full border-2 border-transparent bg-theme-secondary transition-colors focus:outline-none focus:ring-2 focus:ring-theme-accent focus:ring-offset-2" role="switch" aria-checked="false" data-interval="month" data-pricing-plans-target="intervalToggle">
+        <span class="pointer-events-none inline-block h-6 w-6 transform rounded-full bg-theme-accent shadow ring-2 ring-white/70 transition translate-x-1" data-pricing-plans-target="intervalThumb"></span>
+      </button>
+      <span class="text-theme-secondary text-sm font-medium"><%= t('pricing.interval.annual') %></span>
+      <span class="text-xs text-green-400 font-medium"><%= t('pricing.interval.save_annual') %></span>
+    </div>
+  <% end %>
+
+  <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mt-8 max-w-6xl mx-auto" id="upgrade-plan-cards">
+    <% paid_plans.each_with_index do |plan, idx| %>
+      <%
+        is_in_trial = @subscription&.trialing?
+        show_current_plan = (plan == @current_plan) && !is_in_trial
+        has_monthly = plan.effective_stripe_price_id.present?
+        has_annual = plan.effective_stripe_price_id_annual.present?
+      %>
+      <div class="upgrade-plan-card <%= 'ring-2 ring-theme-accent' if plan.popular %> bg-theme-card border border-theme-primary rounded-lg p-6 flex flex-col hover:border-theme-accent transition-all <%= 'scale-105' if plan.popular %>" data-plan-index="<%= idx %>" data-pricing-plans-target="planCard">
+        <!-- Popular Badge -->
+        <% if plan.popular %>
+          <div class="mb-4">
+            <span class="inline-block px-3 py-1 bg-theme-accent text-white text-sm font-semibold rounded-full">
+              <%= t('pricing.upgrade.most_popular') %>
+            </span>
+          </div>
+        <% end %>
+
+        <!-- Plan Name -->
+        <h3 class="text-2xl font-bold text-theme-primary mb-2"><%= plan.name %></h3>
+
+        <!-- Price (controlled by global toggle when has_annual) -->
+        <div class="mb-4 upgrade-price-wrap">
+          <span class="price-monthly">
+            <span class="text-4xl font-bold text-theme-accent"><%= plan.formatted_price %></span>
+            <span class="text-theme-secondary text-lg">/<%= plan.period %></span>
+          </span>
+          <% if has_annual && plan.effective_price_display_annual.present? %>
+            <span class="price-annual hidden">
+              <span class="text-4xl font-bold text-theme-accent"><%= plan.formatted_price_annual %></span>
+              <span class="text-theme-secondary text-lg">/year</span>
+            </span>
+          <% end %>
+        </div>
+
+        <!-- Description -->
+        <p class="text-theme-secondary mb-4 text-sm"><%= plan.description %></p>
+
+        <!-- Trial countdown (only if user is in trial and this is their current plan) -->
+        <% if is_in_trial && plan == @current_plan %>
+          <% days_remaining = ((@subscription.trial_ends_at - Time.current) / 1.day).ceil %>
+          <p class="text-theme-accent text-sm mb-6 font-semibold"><%= t('pricing.upgrade.trial_ends_in', count: days_remaining) %></p>
+        <% end %>
+
+        <!-- Features List -->
+        <ul class="space-y-3 mb-8 flex-grow">
+          <% (plan.features || []).each do |feature| %>
+            <li class="flex items-start">
+              <svg class="w-5 h-5 text-green-500 mr-2 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+              </svg>
+              <span class="text-theme-secondary text-sm"><%= feature %></span>
+            </li>
+          <% end %>
+        </ul>
+
+        <!-- CTA: Subscribe Now for all (when on trial, no "Current Plan" - all go to Stripe) -->
+        <div>
+          <% if show_current_plan %>
+            <div class="block w-full text-center px-4 py-3 rounded-lg font-semibold bg-theme-secondary text-theme-secondary border border-theme-primary cursor-not-allowed opacity-50">
+              <%= t('pricing.upgrade.current_plan') %>
+            </div>
+          <% else %>
+            <%
+              button_class = "block w-full text-center px-4 py-3 rounded-lg font-semibold transition-colors cursor-pointer #{plan.popular ? 'bg-theme-accent text-white hover:bg-theme-accent-hover' : 'bg-theme-secondary text-theme-accent hover:bg-theme-hover border border-theme-primary'}"
+              price_monthly = plan.effective_stripe_price_id
+              price_annual = plan.effective_stripe_price_id_annual
+            %>
+            <% if price_monthly.present? %>
+              <button type="button" class="<%= button_class %> checkout-btn" data-price-monthly="<%= price_monthly %>" data-price-annual="<%= price_annual || '' %>">
+                <%= t('pricing.upgrade.subscribe_now') %>
+              </button>
+            <% else %>
+              <%= link_to t('pricing.upgrade.subscribe_now'), subscribe_path(plan_id: plan.id), class: button_class %>
+            <% end %>
+          <% end %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+  </div>
+
+  <!-- Free Plan (Bottom - Horizontal Box) -->
+  <% if free_plan %>
+    <div class="mt-12 max-w-6xl mx-auto">
+      <div class="bg-theme-card border border-theme-primary rounded-lg p-6">
+        <div class="flex flex-col md:flex-row items-center md:items-start gap-6">
+          <!-- Left: Plan Info -->
+          <div class="flex-1 text-center md:text-left">
+            <h3 class="text-2xl font-bold text-theme-primary mb-2"><%= free_plan.name %></h3>
+            <div class="mb-4">
+              <span class="text-4xl font-bold text-theme-accent"><%= free_plan.formatted_price %></span>
+            </div>
+            <p class="text-theme-secondary mb-4"><%= free_plan.description %></p>
+          </div>
+
+          <!-- Middle: Features -->
+          <div class="flex-1">
+            <ul class="space-y-2">
+              <% (free_plan.features || []).each do |feature| %>
+                <li class="flex items-start">
+                  <svg class="w-5 h-5 text-green-500 mr-2 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                  </svg>
+                  <span class="text-theme-secondary text-sm"><%= feature %></span>
+                </li>
+              <% end %>
+            </ul>
+          </div>
+
+          <!-- Right: CTA -->
+          <div class="flex-shrink-0">
+            <% if free_plan == @current_plan %>
+              <div class="block px-6 py-3 bg-theme-secondary text-theme-secondary border border-theme-primary rounded-lg font-semibold text-center whitespace-nowrap cursor-not-allowed opacity-50">
+                <%= t('pricing.upgrade.current_plan') %>
+              </div>
+            <% else %>
+              <%= link_to t('pricing.upgrade.switch_to_free_plan'),
+                  select_plan_path(free_plan.id),
+                  class: "block px-6 py-3 bg-theme-secondary text-theme-accent hover:bg-theme-hover border border-theme-primary rounded-lg font-semibold transition-colors text-center whitespace-nowrap" %>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+  <% end %>
+
+  <!-- 4th box: Free plan & what happens in free user mode -->
+  <div class="mt-12 max-w-6xl mx-auto">
+    <div class="bg-theme-card border border-theme-primary rounded-lg p-6">
+      <h3 class="text-xl font-bold text-theme-primary mb-2"><%= t('pricing.upgrade.free_user_mode_box.title') %></h3>
+      <p class="text-theme-secondary text-sm mb-4"><%= t('pricing.upgrade.free_user_mode_box.description') %></p>
+      <ul class="space-y-2 mb-0">
+        <% t('pricing.upgrade.free_user_mode_box.features').each do |feature| %>
+          <li class="flex items-start text-theme-secondary text-sm">
+            <svg class="w-5 h-5 text-green-500 mr-2 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+            </svg>
+            <%= feature %>
+          </li>
+        <% end %>
+      </ul>
+    </div>
+  </div>
+
+  <!-- Free trial info -->
+  <div class="mt-8 max-w-6xl mx-auto">
+    <div class="bg-theme-card border border-theme-primary rounded-lg p-6">
+      <h3 class="text-xl font-bold text-theme-primary mb-2"><%= t('pricing.upgrade.free_trial_box.title') %></h3>
+      <p class="text-theme-secondary text-sm mb-4"><%= t('pricing.upgrade.free_trial_box.description') %></p>
+      <ul class="space-y-2 mb-0">
+        <% t('pricing.upgrade.free_trial_box.features').each do |feature| %>
+          <li class="flex items-start text-theme-secondary text-sm">
+            <svg class="w-5 h-5 text-green-500 mr-2 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+            </svg>
+            <%= feature %>
+          </li>
+        <% end %>
+      </ul>
+    </div>
+  </div>
+
+  <!-- FAQ or Additional Info -->
+  <div class="mt-16 text-center">
+    <% if @subscription&.trialing? %>
+      <p class="text-theme-secondary">
+        <%= t('pricing.upgrade.trial_message') %>
+      </p>
+    <% else %>
+      <p class="text-theme-secondary">
+        <%= t('pricing.upgrade.payment_required') %>
+      </p>
+    <% end %>
+    <p class="text-theme-secondary mt-2">
+      <%= t('pricing.upgrade.questions_contact', link: link_to(t('pricing.upgrade.contact_us'), support_center_url, target: "_blank", rel: "noopener noreferrer", class: "text-theme-accent hover:text-dark-accent-hover underline")).html_safe %>
+    </p>
+  </div>
+</div>

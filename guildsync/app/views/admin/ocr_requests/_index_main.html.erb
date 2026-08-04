@@ -1,0 +1,156 @@
+<% cm = "admin.ocr_requests.index" %>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 xl:grid-cols-7 gap-4">
+  <div class="bg-theme-card border border-theme-primary rounded-lg p-4 shadow-lg flex flex-col min-h-[5.25rem] h-full">
+    <h3 class="text-sm font-semibold text-theme-secondary mb-1 min-h-[2.5rem] line-clamp-2"><%= t("#{cm}.stats.total_all_time") %></h3>
+    <p class="mt-auto text-2xl font-bold text-theme-accent tabular-nums"><%= @total_ocr_all_time %></p>
+  </div>
+  <div class="bg-theme-card border border-theme-primary rounded-lg p-4 shadow-lg flex flex-col min-h-[5.25rem] h-full">
+    <h3 class="text-sm font-semibold text-theme-secondary mb-1 min-h-[2.5rem] line-clamp-2"><%= t("#{cm}.stats.this_month") %></h3>
+    <p class="mt-auto text-2xl font-bold text-theme-accent tabular-nums"><%= @requests_this_month %></p>
+  </div>
+  <div class="bg-theme-card border border-theme-primary rounded-lg p-4 shadow-lg flex flex-col min-h-[5.25rem] h-full">
+    <h3 class="text-sm font-semibold text-theme-secondary mb-1 min-h-[2.5rem] line-clamp-2"><%= t("#{cm}.stats.users_near_limit") %></h3>
+    <p class="mt-auto text-2xl font-bold text-theme-accent tabular-nums"><%= @users_near_limit %></p>
+  </div>
+  <div class="bg-theme-card border border-theme-primary rounded-lg p-4 shadow-lg flex flex-col min-h-[5.25rem] h-full">
+    <h3 class="text-sm font-semibold text-theme-secondary mb-1 min-h-[2.5rem] line-clamp-2"><%= t("#{cm}.stats.users_at_hard_stop") %></h3>
+    <p class="mt-auto text-2xl font-bold text-theme-accent tabular-nums"><%= @users_at_hard_stop %></p>
+  </div>
+  <div class="bg-theme-card border border-theme-primary rounded-lg p-4 shadow-lg flex flex-col min-h-[5.25rem] h-full">
+    <h3 class="text-sm font-semibold text-theme-secondary mb-1 min-h-[2.5rem] line-clamp-2"><%= t("#{cm}.stats.suspicious_ips") %></h3>
+    <p class="mt-auto text-2xl font-bold text-theme-accent tabular-nums"><%= @abusive_ips_count %></p>
+  </div>
+  <div class="bg-theme-card border border-theme-primary rounded-lg p-4 shadow-lg flex flex-col min-h-[5.25rem] h-full">
+    <h3 class="text-sm font-semibold text-theme-secondary mb-1 min-h-[2.5rem] line-clamp-2"><%= t("#{cm}.stats.locked_unlocked") %></h3>
+    <p class="mt-auto text-2xl font-bold text-theme-accent tabular-nums"><%= @locked_count %> / <%= @unlocked_count %></p>
+  </div>
+  <div class="bg-theme-card border border-theme-primary rounded-lg p-4 shadow-lg flex flex-col min-h-[5.25rem] h-full">
+    <h3 class="text-sm font-semibold text-theme-secondary mb-1 min-h-[2.5rem] line-clamp-2"><%= t("#{cm}.stats.trial_remaining") %></h3>
+    <p class="mt-auto text-2xl font-bold text-theme-accent tabular-nums"><%= @trial_remaining %></p>
+  </div>
+</div>
+
+<div class="bg-theme-card border border-theme-primary rounded-lg p-6 shadow-lg">
+  <div class="flex flex-wrap justify-between items-center gap-4 mb-4">
+    <h2 class="text-xl font-semibold"><%= t("#{cm}.users_heading") %></h2>
+    <div class="flex flex-wrap gap-2">
+      <%= link_to t("#{cm}.export_csv"), admin_ocr_requests_export_path,
+            class: "px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 font-semibold",
+            data: { turbo_frame: "_top" } %>
+    </div>
+  </div>
+  <%= form_with url: admin_ocr_requests_bulk_path(format: :turbo_stream), method: :post, id: "ocr-bulk-form" do |f| %>
+    <%= hidden_field_tag :q, @query if @query.present? %>
+    <%= f.hidden_field :bulk_action, id: "bulk_action_value" %>
+    <div class="mb-4 flex flex-wrap gap-2 items-center">
+      <span class="text-theme-secondary text-sm"><%= t("#{cm}.bulk_label") %></span>
+      <button type="button" onclick="document.getElementById('bulk_action_value').value='lock'; document.getElementById('ocr-bulk-form').requestSubmit();" class="px-3 py-1.5 bg-gray-600 text-white rounded hover:bg-gray-700 text-sm"><%= t("#{cm}.lock_selected") %></button>
+      <button type="button" onclick="document.getElementById('bulk_action_value').value='unlock'; document.getElementById('ocr-bulk-form').requestSubmit();" class="px-3 py-1.5 bg-gray-600 text-white rounded hover:bg-gray-700 text-sm"><%= t("#{cm}.unlock_selected") %></button>
+      <button type="button" onclick="document.getElementById('bulk_action_value').value='reset'; document.getElementById('ocr-bulk-form').requestSubmit();" class="px-3 py-1.5 bg-gray-600 text-white rounded hover:bg-gray-700 text-sm"><%= t("#{cm}.reset_selected") %></button>
+    </div>
+    <div class="overflow-x-auto">
+      <table class="w-full">
+        <thead>
+          <tr class="border-b border-theme-primary">
+            <th class="text-left p-2 w-8"><input type="checkbox" id="select-all-ocr" aria-label="<%= t("#{cm}.select_all_aria") %>" /></th>
+            <th class="text-left p-2"><%= t("#{cm}.table.email_username") %></th>
+            <th class="text-left p-2"><%= t("#{cm}.table.plan") %></th>
+            <th class="text-left p-2"><%= t("#{cm}.table.used_limit") %></th>
+            <th class="text-left p-2 w-32"><%= t("#{cm}.table.progress") %></th>
+            <th class="text-left p-2"><%= t("#{cm}.table.hard_stop") %></th>
+            <th class="text-left p-2"><%= t("#{cm}.table.lock") %></th>
+            <th class="text-left p-2"><%= t("#{cm}.table.last_reset") %></th>
+            <th class="text-left p-2"><%= t("#{cm}.table.actions") %></th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @users.each do |user| %>
+            <tr class="border-b border-theme-primary">
+              <td class="p-2"><%= check_box_tag "user_ids[]", user.id, false, class: "ocr-user-checkbox" %></td>
+              <td class="p-2"><%= user.email %> / <%= user.username %></td>
+              <td class="p-2"><%= user.respond_to?(:ocr_billing_plan) && user.ocr_billing_plan.present? ? user.ocr_billing_plan.titleize : t("#{cm}.not_available") %></td>
+              <td class="p-2">
+                <% if user.respond_to?(:ocr_requests_used_this_period) && user.respond_to?(:ocr_monthly_limit) %>
+                  <%= user.ocr_requests_used_this_period %> / <%= user.ocr_monthly_limit %>
+                <% else %>
+                  <%= t("#{cm}.not_available") %>
+                <% end %>
+              </td>
+              <td class="p-2">
+                <% if user.respond_to?(:ocr_requests_used_this_period) && user.respond_to?(:ocr_monthly_limit) && user.ocr_monthly_limit.to_i > 0 %>
+                  <% pct = (user.ocr_requests_used_this_period.to_f / user.ocr_monthly_limit * 100).round %>
+                  <% bar_color = pct >= 95 ? "bg-red-500" : (pct >= 70 ? "bg-yellow-500" : "bg-green-500") %>
+                  <div class="w-full bg-theme-secondary rounded h-2" title="<%= pct %>%">
+                    <div class="h-2 rounded <%= bar_color %>" style="width: <%= [ pct, 100 ].min %>%"></div>
+                  </div>
+                <% else %>
+                  <%= t("#{cm}.not_available") %>
+                <% end %>
+              </td>
+              <td class="p-2">
+                <% if @user_ids_at_hard_stop&.include?(user.id) %>
+                  <span class="px-2 py-0.5 rounded text-xs bg-red-900/50 text-red-300" title="<%= t("#{cm}.hard_stop_yes_title") %>"><%= t("#{cm}.hard_stop_yes") %></span>
+                <% else %>
+                  <span class="text-theme-secondary text-xs"><%= t("#{cm}.hard_stop_no") %></span>
+                <% end %>
+              </td>
+              <td class="p-2">
+                <% if user.respond_to?(:ocr_hard_locked) && user.ocr_hard_locked %>
+                  <span class="px-2 py-0.5 rounded text-xs bg-red-900/50 text-red-300"><%= t("#{cm}.lock_badge_locked") %></span>
+                <% elsif user.respond_to?(:ocr_unlocked) && user.ocr_unlocked %>
+                  <span class="px-2 py-0.5 rounded text-xs bg-green-900/50 text-green-300"><%= t("#{cm}.lock_badge_unlocked") %></span>
+                <% else %>
+                  <%= t("#{cm}.not_available") %>
+                <% end %>
+              </td>
+              <td class="p-2"><%= user.respond_to?(:ocr_last_reset_at) && user.ocr_last_reset_at ? l(user.ocr_last_reset_at, format: :short) : t("#{cm}.not_available") %></td>
+              <td class="p-2">
+                <%= link_to t("#{cm}.view"), admin_ocr_request_user_path(user),
+                      class: "text-blue-400 hover:underline mr-2",
+                      data: { turbo_frame: "_top" } %>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  <% end %>
+  <% if @users.respond_to?(:length) && @users.length >= 25 %>
+    <p class="mt-4 text-theme-secondary text-sm"><%= t("#{cm}.pagination_hint") %></p>
+  <% end %>
+
+  <% if @suspicious_ips.present? %>
+    <div class="mt-6 pt-6 border-t border-theme-primary">
+      <h2 class="text-lg font-semibold text-theme-accent mb-2"><%= t("#{cm}.suspicious_ips_heading") %></h2>
+      <div class="overflow-x-auto">
+        <table class="w-full text-sm">
+          <thead>
+            <tr class="border-b border-theme-primary">
+              <th class="text-left p-2"><%= t("#{cm}.suspicious_ips_ip") %></th>
+              <th class="text-left p-2"><%= t("#{cm}.suspicious_ips_requests") %></th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @suspicious_ips.each do |row| %>
+              <tr class="border-b border-theme-primary">
+                <td class="p-2 font-mono"><%= row[:ip] %></td>
+                <td class="p-2"><%= row[:count] %></td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  <% end %>
+  <div class="mt-4">
+    <%= form_with url: admin_ocr_requests_path, method: :get, local: true do |f| %>
+      <%= f.text_field :q, value: @query, placeholder: t("#{cm}.search_placeholder"), class: "px-3 py-2 bg-theme-secondary border border-theme-primary rounded text-theme-primary" %>
+      <%= f.submit t("#{cm}.search"), class: "ml-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700" %>
+      <% if @query.present? %>
+        <%= link_to t("#{cm}.clear_search"), admin_ocr_requests_path,
+              class: "ml-2 text-blue-400 hover:underline",
+              data: { turbo_frame: "_top" } %>
+      <% end %>
+    <% end %>
+  </div>
+</div>

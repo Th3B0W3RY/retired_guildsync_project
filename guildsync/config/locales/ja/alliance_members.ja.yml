@@ -1,0 +1,26 @@
+ja:
+  alliance_members:
+    removed: "メンバーを同盟から削除しました。"
+    bulk_removed: "選択したメンバーを同盟から削除しました。"
+    errors:
+      not_found: "メンバーが見つかりません。"
+      unauthorized: "この操作を行う権限がありません。"
+      protected_target: "ギルド オーナーやカスタム アライアンス管理者は外せません。"
+      tags_owner_only: "同盟タグを作成できるのは同盟作成者のみです。"
+    index:
+      title: "同盟メンバー"
+      subtitle: "%{alliance_name} のメンバー（ギルド別）"
+      export_csv: "CSV をエクスポート"
+      your_guild: "あなたのギルド"
+      remove: "削除"
+      remove_confirm: "%{name} をこの同盟から削除しますか？"
+      no_members: "このギルドにはまだメンバーがいません。"
+    tags:
+      manage_title: "同盟タグの管理"
+      name: "タグ名"
+      color: "タグの色"
+      create: "タグを作成"
+      created: "同盟タグを作成しました。"
+      assigned: "タグを割り当てました。"
+      removed: "タグを削除しました。"
+      not_found: "タグまたはメンバーが見つかりません。"

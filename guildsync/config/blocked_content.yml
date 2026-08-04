@@ -1,0 +1,9 @@
+# Public-safe fallback terms for roadmap moderation.
+#
+# Production deployments should manage their complete moderation vocabulary in
+# the BlockedWord table. These neutral fixtures keep fallback behavior testable
+# without publishing an offensive-word catalog in this retired source archive.
+# Only complete words are matched. Keep terms lowercase; matching ignores case.
+- blockedterm
+- restrictedphrase
+- hostileterm

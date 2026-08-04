@@ -1,0 +1,406 @@
+ko:
+  home:
+    landing:
+      title: GuildSync에 오신 것을 환영합니다
+      subtitle: 게임 커뮤니티, 이벤트, 멤버를 관리하는 올인원 플랫폼입니다.
+      hero_kicker: 길드 리더, 운영진, 활발한 커뮤니티를 위해
+      problem_title: 스프레드시트 혼란에서 운영 명확성으로
+      problem_subtitle: 이벤트, 멤버, 지원서, 전리품 워크플로를 한곳에 모아 운영진이 행정에 쓰는 시간을 줄이고 리더십에 집중하게 합니다.
+      outcome_1_title: 공정한 전리품 운영
+      outcome_1_desc: 일관된 규칙, 가시적인 참여 기록, 갈등 감소.
+      outcome_2_title: 이벤트를 더 잘 조율
+      outcome_2_desc: 이벤트를 예약하고, 실시간 신청 수를 확인하고, 지각자를 추적하며, 클래스/역할 커버리지를 실시간으로 확인하세요.
+      outcome_3_title: 운영진 부담 줄이기
+      outcome_3_desc: 역할 기반 제어와 감사 로그로 워크플로를 예측 가능하게 유지합니다.
+      trust:
+        no_card: 신용카드 불필요
+        setup: 길드 팀을 위한 빠른 시작
+        security: 역할 권한 + 전체 활동 로그
+      preview_title: 제품 미리보기
+      preview:
+        events_title: 이벤트
+        events_desc: 이벤트를 빠르게 만들고 출석과 참여 추세를 추적하세요.
+        members_title: 멤버
+        members_desc: 역할, 태그, 지원서, 길드 수준 권한을 한 허브에서 관리하세요.
+        loot_title: 전리품 + 투표
+        loot_desc: 투명한 기록으로 구조화된 전리품 굴림과 투표를 진행하세요.
+        logs_title: 활동 로그
+        logs_desc: 책임과 맥락을 위해 리더십 활동을 기록하세요.
+      explore_pricing: 요금제 보기
+      why_title: 왜 길즈ync를 선택하세요?
+      features_cta_hint: 각 카드를 클릭하면 기능이 실제로 무엇을 하는지 확인할 수 있습니다.
+      features_section_subtitle: 카드를 열어 자세히 살펴보세요. 길드 도구를 비교하는 방문자에게 적합합니다.
+      feedback:
+        section_title: 사용자 피드백
+        carousel_role: 캐러셀
+        slide_role: 슬라이드
+        keyboard_hint: 좌우 화살표 키로 후기를 이동할 수 있습니다.
+        announce_progress: 사용자 피드백 %{current} / %{total}
+        previous: 이전 피드백
+        next: 다음 피드백
+        pagination: 피드백 슬라이드
+        go_to_slide: 피드백 %{index}번으로 이동
+      compare_title: GuildSync vs 경쟁사
+      compare_old_title: 스프레드시트 + Discord만
+      compare_old_1: 올바른 시트를 찾거나 새로 만듭니다
+      compare_old_2: 여러 탭과 시트를 수동으로 업데이트합니다
+      compare_old_3: 운영진에게 수정과 재확인을 요청합니다
+      compare_new_title: GuildSync 지휘 센터
+      compare_new_1: 로그인한 운영진이 문서, 워크플로, 구조화된 관리 흐름에 빠르게 접근합니다
+      compare_new_2: 멤버 데이터, 출석 기록, 권한 관리를 한곳에 모읍니다
+      compare_new_3: 길드 기록, 활동 로그, 알림 워크플로
+      footer_copyright: "© %{year} GuildSync. 판권 소유."
+      cta:
+        title: 시작할 준비가 되셨나요?
+        description: 이미 GuildSync를 사용하는 수천 개의 게임 커뮤니티에 합류하세요.
+        button: 무료 체험 시작
+        button_hero: 무료로 시작하기
+      feature_spotlight:
+        title: GuildSync가 실제로 운영에 도움이 되는 부분
+        subtitle: 모집과 문서 관리부터 동맹 조율 및 모더레이션까지, 실제 길드 운영을 위해 설계되었습니다.
+        documents_title: 길드 문서
+        documents_desc: SOP, 빌드, 가이드를 공개 링크 또는 내부 전용으로 공유하세요.
+        activity_title: 활동 피드 + 로그
+        activity_desc: 리더십 활동, 멤버 변경, 운영 이력을 하나의 타임라인에서 추적하세요.
+        alliance_title: 동맹 시스템
+        alliance_desc: 협력 길드 간 동맹 이벤트, 투표, 전리품 롤을 조율하세요.
+        recruit_title: 모집 + 지원서
+        recruit_desc: 메모, 수락/거절 흐름, 후속 메시징이 포함된 구조화된 지원 프로세스를 운영하세요.
+        ocr_title: AI 장비 스크린샷 스캔
+        ocr_desc: 스크린샷을 업로드해 로드아웃 데이터를 빠르게 추출하고 멤버 장비 상태를 최신으로 유지하세요.
+        roles_title: 사용자 지정 역할 + 색상 태그
+        roles_desc: 세분화된 권한을 설정하고 미리 정의된 색상 태그를 지정해 명단 가시성을 높이세요.
+        warnings_title: 경고 시스템
+        warnings_desc: 경고 없음, 경고됨, 차단됨 목록을 유지해 모더레이션 워크플로를 관리하세요.
+        messaging_title: 메시지 센터
+        messaging_desc: GuildSync에서 GM과 운영진이 멤버와 직접 소통할 수 있도록 지원합니다.
+        analytics_title: 리더보드 + 참여도
+        analytics_desc: 출석과 참여 추세를 바탕으로 활발한 멤버를 파악해 운영 의사결정을 지원하세요.
+      compare:
+        feature: 기능
+        competitor_1: Guild Manager
+        competitor_2: GuildSpire
+        competitor_3: 일반적인 길드 관리 솔루션
+        features:
+          rapid_user_feedback: 빠른 사용자 피드백 기반 개발
+          unlimited_guilds: 무제한 길드
+          starter_basic_plan_value: 베이직 플랜 — 프리미엄만으로 시작하지 않는 필수 기능
+          multi_game_dashboard: 멀티게임 길드 대시보드
+          events_scheduling: 이벤트, 참석 확인 및 일정
+          loot_rolls_distribution: 루트 롤 및 공정 분배
+          recruitment_applications: 모집 및 지원서
+          discord_integration: Discord 봇 및 연동
+          member_analytics: 멤버 분석 및 인사이트
+          audit_history: 장기 감사 및 활동 기록
+          guild_documents_storage: 길드 문서 및 파일 저장
+          polls_community_votes: 투표 및 커뮤니티 투표
+          public_roadmap_voting: 공개 로드맵 및 기능 투표
+          api_access: API 액세스
+          export_data_backup: 보내기 및 백업
+          advanced_analytics: 고급 분석
+          custom_automation: 맞춤형 자동화
+          realtime_tracking: 실시간 추적
+          api_integration: API 통합
+          mobile_apps: 모바일 앱스
+          priority_support: 우선 지원
+          custom_branding: 맞춤형 브랜딩
+          member_onboarding: 회원 가입 절차
+          event_management: 이벤트 관리
+          role_management: 역할 관리
+          export_backup: export 백업
+          custom_role_system: 맞춤 역할 시스템
+      features_grid:
+        member_management:
+          title: 회원 관리
+          desc: 귀실클럽 회원들을 효율적으로 추적 및 관리하세요.
+        analytics_insights:
+          title: 애널리틱스 & 인사이트
+          desc: 상세한 분석 정보에 关于 회원 활동 및 성장
+        automation_tools:
+          title: 자동화 도구
+          desc: 일상 작업들과 워크플로우즈를 자동화하세요.
+        advanced_tracking:
+          title: 고급 회원 추적
+          desc: 실시간 회원 활동 모니터링
+        multi_guild:
+          title: 다중 길드 관리
+          desc: 한 대시보드에서 무제한 길드들을 관리하세요.
+        custom_automation:
+          title: 맞춤형 자동화
+          desc: 맞춤형 워크플로우 및 트리거 만들기
+        analytics_dashboard:
+          title: 분석 대시보드
+          desc: 상세한 분석 결과물과 보고서
+        role_management:
+          title: 역할 관리
+          desc: 고급형 역할 할당 시스템
+        member_onboarding:
+          title: 회원 가입 절차
+          desc: 자동화된 환영 및 설정 절차들
+        event_management:
+          title: 이벤트 관리
+          desc: 길드 이벤트 일정 예약 및 관리
+        custom_notifications:
+          title: 맞춤형 알림
+          desc: 맞춤형 알림 시스템
+        moderation_tools:
+          title: 콘텐츠 관리 도구
+          desc: 고급 관리 기능
+        api_integration:
+          title: API 통합
+          desc: 개발자용 완전한 API 액세스
+        export_backup:
+          title: export 백업
+          desc: 데이터导出 및 자동 백업
+        priority_support:
+          title: 우선 지원
+          desc: 24시간 365일 전담 지원 팀
+        security_features:
+          title: 보안 기능
+          desc: 기업급 보안
+        custom_branding:
+          title: 맞춤형 브랜딩
+          desc: 자체 브랜дин그 옵션 제공
+        mobile_app:
+          title: 모바일 앱
+          desc: iOS 및 Android 앱이 포함됨니다.
+        unlimited_storage:
+          title: 무제한 저장공간
+          desc: 데이터를 무제한으로 저장하세요
+        custom_role_system:
+          title: 맞춤 역할 시스템
+          desc: Discord와 연동된 역할·권한을 길드 운영 방식에 맞게 구성
+      footer:
+        tagline: 최고의 디스코르드 커뮤니티 길즈 관리 플랫폼입니다.
+        product: 제품
+        features: 기능
+        pricing_link: 요금제
+        roadmap_link: 로드맵
+        support: 지원
+        documentation: 문서화된 자료
+        contact: 연락처
+        disaster_recovery: 재해 복구 및 데이터 복구
+        status: 상태
+        legal: 법률적
+        privacy: 개인정보 보호 정책
+        terms: 약관
+        security_link: 보안
+      features:
+        guild_management:
+          title: 길드 관리
+          description: 여러 길드를 손쉽게 구성하고 관리하세요. 멤버, 역할, 권한을 한곳에서 추적할 수 있습니다.
+        event_planning:
+          title: 이벤트 계획
+          description: 참석 응답 추적, 알림, 참가자 관리를 통해 이벤트를 계획하고 운영하세요.
+        member_analytics:
+          title: 멤버 분석
+          description: 상세 분석과 멤버 활동 추적을 통해 커뮤니티 인사이트를 얻으세요.
+        gear_checks:
+          title: 장비 점검
+          description: 이벤트와 활동에 필요한 멤버 장비 요건을 추적하고 검증하세요.
+        gear_records:
+          title: 장비 기록
+          description: 멤버 장비, 업그레이드, 장비 이력을 종합적으로 관리하세요.
+        member_tracking:
+          title: 멤버 추적
+          description: 모든 길드 활동 전반에서 멤버의 활동, 참여, 기여를 상세히 기록하세요.
+        role_management:
+          title: 역할 관리
+          description: 사용자 지정 권한으로 역할을 할당하고 관리하세요. 접근 권한과 책임을 쉽게 제어할 수 있습니다.
+        communication_hub:
+          title: 커뮤니케이션 허브
+          description: 공지, 토론, 멤버 조율을 위한 중앙화된 커뮤니케이션 도구를 제공합니다.
+        activity_logs:
+          title: 활동 로그
+          description: 모든 길드 이벤트, 멤버 활동, 시스템 변경 사항을 종합적으로 추적하고 기록합니다.
+    dashboard:
+      title: 대시보드
+    index:
+      title: GuildSync에 오신 것을 환영합니다
+      subtitle: 당신의 길드 관리 플랫폼
+      signed_in_as: '현재 로그인 계정:'
+      discord_label: Discord
+      quick_links: 빠른 링크
+      api_documentation: API 문서
+      please_sign_in_html: 계속하려면 %{sign_in_link} 해주세요.
+      sign_in: 로그인
+  homepage_features:
+    back_to_home: 모든 기능으로 돌아가기
+    empty_detail: 이 기능에 대한 자세한 내용은 곧 추가됩니다.
+  sidebar:
+    navigation: 탐색
+    universal_actions: 공통 작업
+    universal_menu: 공통 메뉴
+    global_dashboard: 전체 대시보드
+    connected_as: "%{username}(으)로 연결됨"
+    connected_as_heading: '연결됨:'
+    connected_as_aria: "%{username}(으)로 연결됨"
+    discord_not_connected_heading: Discord 미연결
+    discord_not_connected_hint: 설정에서 Discord 계정을 연결하세요.
+    discord_username_fallback: 연결된 계정
+    apply_to_guild: 길드 지원
+    view_guilds: 길드 보기
+    create_guild: 길드 생성
+    my_applications: 내 지원서
+    archived_guilds: 보관된 길드
+    feature_requests: 기능 요청
+    alliances_hub: 동맹
+    my_guilds_owner: 내 길드 (소유자)
+    my_guilds_member: 내 길드 (멤버)
+    contact_support: 고객 지원 문의
+    guild_menu:
+      dashboard: 대시보드
+      message_center: 메시지 센터
+      members: 멤버
+      review_applications: 지원서 검토
+      guild_documents: 길드 문서
+      invite_members: 멤버 초대
+      guild_polls: 길드 투표
+      guild_loot_rolls: 길드 주사위 굴림
+      schedule_events: 이벤트 일정
+      schedule_guild_battle: 길드 배틀 일정
+      members_gear: AI 스탯 스캐너
+      file_storage: 파일 저장소
+      guild_analytics: 길드 분석
+      leaderboard: 리더보드
+      my_warnings: 내 경고
+      settings: 설정
+      warnings: 경고
+    alliance_menu:
+      pending_alliance_invites: 대기 중인 동맹 초대
+      outgoing_join_request: 가입 요청 상태
+      request_join_alliance: 동맹 가입 요청
+      join_requests: 가입 요청
+      create: 동맹 만들기
+      events: 동맹 이벤트
+      polls: 동맹 투표
+      rolls: 동맹 주사위
+      chat: 동맹 채팅
+      gm_chat: GM 채팅
+      settings: 설정
+    discord:
+      connected: "%{server_name}"
+      bot_not_connected: 봇이 연결되지 않음
+      connect_bot: 길드 디스코드에 봇 연결
+      discord_server: 디스코드 서버
+  dashboard:
+    title: 대시보드
+    access_denied: 접근 거부
+    sign_in_required: 대시보드에 접근하려면 로그인해야 합니다.
+    your_guilds: 내 길드
+    no_guilds: 아직 속한 길드가 없습니다.
+    open: 열기
+    quick_actions: 빠른 작업
+    view_guilds: 길드 보기
+    my_applications: 내 지원서
+    apply_to_guild: 길드 지원하기
+    archived_guilds: 보관된 길드
+    alliances: 얼라이언스
+    create_guild: 길드 생성
+    invite_members: 멤버 초대
+    recent_activity: 최근 활동
+    activity_coming_soon: 활동 피드는 곧 제공됩니다…
+    activity_empty: 아직 최근 활동이 없습니다. 길드와 페이지를 방문하면 여기에 표시됩니다.
+    viewed_guild: 길드 조회 %{name}
+    viewed_members: 멤버 – %{name}
+    viewed_invite_members: 멤버 초대 – %{name}
+    viewed_settings: 설정 – %{name}
+    viewed_applications: 지원서 – %{name}
+    viewed_schedule: 이벤트 일정 – %{name}
+    viewed_members_gear: AI 스탯 스캐너 – %{name}
+    join_discord_title: Discord에 참여하세요
+    join_discord_here: 여기에서 Discord 커뮤니티에 참여해 팀 및 다른 길드 소유자와 대화하세요.
+    discord_iframe_title: "%{app_name} Discord"
+    discord_community_card_title: GuildSync 커뮤니티 Discord
+    members_online_heading: 온라인 멤버
+    join_discord_cta_button: Discord 참여
+    discord_promo_online_example: 온라인 1명
+    pending_items: 내 대기 항목
+    pending_applications: 대기 중인 지원서
+    pending_invites: 대기 중인 초대
+    warning_queue: 경고 대기열
+    member_events_title: 예정된 이벤트
+    member_events_subtitle: 내가 속한 길드 전체
+    member_events_count_label: 예정된 총합
+    member_events_empty: 내 길드에 예정된 이벤트가 없습니다.
+    open_polls_title: 진행 중인 투표
+    open_polls_subtitle: 내 길드에서 아직 투표 가능한 진행 중인 투표
+    open_polls_empty: 내 길드에 진행 중인 투표가 없습니다.
+    open_loot_title: 진행 중인 전리품 롤
+    open_loot_subtitle: 내 길드에서 아직 진행 중인 전리품 롤
+    open_loot_empty: 내 길드에 진행 중인 전리품 롤이 없습니다.
+  user_activity:
+    view_activity: "활동 보기"
+    history_title: "활동 기록"
+    history_subtitle: "GuildSync에서의 최근 페이지 및 작업."
+    back_to_dashboard: "대시보드로 돌아가기"
+    signed_in_discord: "Discord로 로그인함"
+    signed_in_google: "Gmail로 로그인함"
+    signed_in_microsoft: "Outlook으로 로그인함"
+  layouts:
+    application:
+      nav:
+        upgrade_plan: 요금제 업그레이드
+        pricing: 요금제
+        roadmap: 로드맵
+        my_billing: 내 결제
+        welcome_user: "%{name}님, 환영합니다"
+        profile_picture: 프로필 사진
+        sign_in: 로그인
+        admin_session_label: 관리자
+        back_to_member_dashboard: 내 대시보드로 돌아가기
+      dropdown:
+        account_settings: 계정 설정
+        profile_settings: 프로필 설정
+        release_notes: 릴리스 노트
+        release_notes_instructions: 계정 생성 > 리소스 클릭 > 기사 > 릴리스 노트
+        roadmap: 로드맵 및 기능 요청
+        version: 버전 %{version}
+      search:
+        placeholder: 검색...
+        searching: 검색 중...
+        no_results: 검색 결과가 없습니다
+      beta_banner:
+        message: '베타 테스트 중 — 커뮤니티 Discord에 참여하세요:'
+        join_discord: Discord 참여
+  activity_feed:
+    title: "%{guild_name} 활동 피드"
+    subtitle: 이 길드의 최근 활동입니다. 로그는 3개월 동안 보관됩니다.
+    back_to_dashboard: 대시보드로 돌아가기
+    search_placeholder: 작업 검색...
+    filter_action_type: 작업 유형
+    filter_member: 멤버
+    all_actions: 모든 작업
+    all_members: 모든 멤버
+    no_activity: 아직 활동이 없습니다.
+    search_button: 검색
+    access_denied: 활동 피드를 볼 권한이 없습니다.
+    when: 언제
+    who: 누가
+    action: 작업
+    details: 세부사항
+    pagination_shown_total: "%{total}개 중 %{shown}개 표시"
+    pagination_previous: "← 이전"
+    pagination_next: 다음 →
+    export_csv: CSV 내보내기
+    export_csv_hint: 현재 필터와 일치하는 모든 행을 다운로드합니다(UTC 타임스탬프).
+  alliance_activity_feed:
+    title: 동맹 활동 — %{alliance_name}
+    subtitle: 동맹 소속 길드 전반의 활동입니다. 로그는 60일 동안 보관됩니다.
+    back: 동맹으로 돌아가기
+    search_placeholder: 검색...
+    filter_action_type: 작업 유형
+    all_actions: 모든 작업
+    search_button: 검색
+    when: 언제
+    guildsync_user: GuildSync 사용자
+    action: 작업
+    details: 세부사항
+    no_activity: 아직 동맹 활동이 없습니다.
+    pagination_shown_total: "%{total}개 중 %{shown}개 표시"
+    pagination_previous: "← 이전"
+    pagination_next: 다음 →
+    export_csv: CSV 내보내기 (UTC)
+    export_local_csv: CSV 내보내기 (로컬 시간)
+    export_csv_hint: UTC 타임스탬프가 포함된 서버 생성 CSV.
+    access_denied: 이 동맹의 길드 소유자만 동맹 활동 피드를 볼 수 있습니다.

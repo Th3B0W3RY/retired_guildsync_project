@@ -1,0 +1,6 @@
+<%= turbo_stream.update "admin_error_show_flash" do %>
+  <%= render "admin/errors/flash_banner", message: @admin_error_show_flash_message, variant: @admin_error_show_flash_variant %>
+<% end %>
+<%= turbo_stream.replace "admin_error_show_main" do %>
+  <%= render "admin/errors/show_main", error: @error %>
+<% end %>

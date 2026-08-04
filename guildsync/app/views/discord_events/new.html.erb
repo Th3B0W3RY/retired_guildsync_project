@@ -1,0 +1,334 @@
+<div class="max-w-4xl mx-auto p-6">
+  <div class="mb-6">
+    <h1 class="text-3xl font-bold text-theme-primary mb-2"><%= t('discord_events.new.title', guild_name: @guild.name) %></h1>
+    <p class="text-theme-secondary"><%= t('discord_events.new.subtitle') %></p>
+  </div>
+
+  <% @discord_setting = @guild.guild_discord_setting %>
+  <% if @discord_setting&.events_channel_configured? %>
+    <div class="bg-green-900/20 border border-green-500 rounded-lg p-4 mb-6">
+      <div class="flex items-center gap-3">
+        <svg class="w-6 h-6 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+        </svg>
+        <div>
+          <h3 class="text-lg font-semibold text-green-500"><%= t('discord_events.new.channel_configured.title') %></h3>
+          <p class="text-theme-secondary"><%= t('discord_events.new.channel_configured.message') %></p>
+        </div>
+      </div>
+    </div>
+  <% end %>
+
+  <%= form_with url: guild_discord_events_path(@guild), method: :post, local: true, class: "space-y-6", data: { turbo: false } do |f| %>
+    <div class="bg-theme-secondary rounded-lg border border-theme-primary p-6">
+      <h2 class="text-xl font-semibold text-theme-primary mb-4"><%= t('discord_events.new.event_details') %></h2>
+
+      <div class="mb-4">
+        <%= f.label :event_type, t('discord_events.new.event_type.label'), class: "block text-sm font-medium text-theme-primary mb-2" %>
+        <select name="event_type" id="event_type_select" class="gs-native-select gs-native-select--field w-full px-4 bg-theme-primary border border-theme-secondary rounded-lg text-theme-primary" required>
+          <option value="pvp"><%= t('discord_events.new.event_type.pvp') %></option>
+          <option value="guild_scrim"><%= t('discord_events.new.event_type.guild_scrim') %></option>
+          <option value="gvg"><%= t('discord_events.new.event_type.gvg') %></option>
+          <option value="regular_scrim"><%= t('discord_events.new.event_type.regular_scrim') %></option>
+          <option value="pve_event"><%= t('discord_events.new.event_type.pve_event') %></option>
+          <option value="world_boss"><%= t('discord_events.new.event_type.world_boss') %></option>
+          <option value="guild_questing_time"><%= t('discord_events.new.event_type.guild_questing_time') %></option>
+          <option value="custom"><%= t('discord_events.new.event_type.custom') %></option>
+        </select>
+      </div>
+
+      <div id="custom_event_type_field" class="mb-4 hidden">
+        <%= f.label :custom_event_type, t('discord_events.new.custom_event_type.label'), class: "block text-sm font-medium text-theme-primary mb-2" %>
+        <%= f.text_field :custom_event_type, id: "custom_event_type_input", class: "w-full px-4 py-2 bg-theme-primary border border-theme-secondary rounded-lg text-theme-primary", placeholder: t('discord_events.new.custom_event_type.placeholder') %>
+        <p class="text-xs text-theme-secondary mt-1"><%= t('discord_events.new.custom_event_type.hint') %></p>
+      </div>
+
+      <div class="mb-4">
+        <%= f.label :title, t('discord_events.new.event_title.label'), class: "block text-sm font-medium text-theme-primary mb-2" %>
+        <%= f.text_field :title, class: "w-full px-4 py-2 bg-theme-primary border border-theme-secondary rounded-lg text-theme-primary", required: true, placeholder: t('discord_events.new.event_title.placeholder') %>
+      </div>
+
+      <% if @synced_roles&.any? %>
+        <div class="mb-4">
+          <h3 class="text-lg font-semibold text-theme-primary mb-2"><%= t('discord_events.new.discord_roles.title') %></h3>
+          <p class="text-sm text-theme-secondary mb-2"><%= t('discord_events.new.discord_roles.subtitle') %></p>
+          
+          <div id="selected-roles-container" class="flex flex-wrap gap-2 mb-3 min-h-[2.5rem]">
+            <!-- Selected roles will appear here as chips -->
+          </div>
+          
+          <div class="space-y-2 max-h-48 overflow-y-scroll border border-theme-secondary rounded-lg p-3 bg-theme-primary role-selector-scroll" style="scrollbar-width: thin; scrollbar-color: rgba(156, 163, 175, 0.5) transparent;">
+            <% @synced_roles.each do |role| %>
+              <label class="flex items-center justify-between p-2 rounded hover:bg-theme-secondary cursor-pointer transition-colors role-checkbox-label" data-role-id="<%= role.role_id %>" data-role-name="<%= role.role_name %>">
+                <div class="flex items-center gap-3">
+                  <input 
+                    type="checkbox" 
+                    name="discord_role_mentions[]" 
+                    value="<%= role.role_id %>"
+                    class="role-checkbox w-5 h-5 rounded border-theme-secondary bg-theme-primary text-theme-accent focus:ring-theme-accent"
+                  >
+                  <span class="text-theme-primary"><%= role.role_name %></span>
+                </div>
+              </label>
+            <% end %>
+          </div>
+        </div>
+        
+        <style>
+          .role-selector-scroll::-webkit-scrollbar {
+            width: 8px;
+          }
+          .role-selector-scroll::-webkit-scrollbar-track {
+            background: transparent;
+          }
+          .role-selector-scroll::-webkit-scrollbar-thumb {
+            background-color: rgba(156, 163, 175, 0.5);
+            border-radius: 4px;
+          }
+          .role-selector-scroll::-webkit-scrollbar-thumb:hover {
+            background-color: rgba(156, 163, 175, 0.7);
+          }
+          
+          /* White calendar button for date input */
+          .date-input-white-calendar::-webkit-calendar-picker-indicator {
+            filter: invert(1);
+            cursor: pointer;
+          }
+          
+          .date-input-white-calendar::-moz-calendar-picker-indicator {
+            filter: invert(1);
+            cursor: pointer;
+          }
+        </style>
+        
+        <script>
+          (function() {
+            const container = document.getElementById('selected-roles-container');
+            const checkboxes = document.querySelectorAll('.role-checkbox');
+            
+            function updateSelectedRoles() {
+              if (!container) return;
+              
+              container.innerHTML = '';
+              const selected = Array.from(checkboxes).filter(cb => cb.checked);
+              
+              if (selected.length === 0) {
+                container.classList.add('min-h-[2.5rem]');
+                return;
+              }
+              
+              container.classList.remove('min-h-[2.5rem]');
+              
+              selected.forEach(checkbox => {
+                const label = checkbox.closest('.role-checkbox-label');
+                const roleId = label.dataset.roleId;
+                const roleName = label.dataset.roleName;
+                
+                const chip = document.createElement('div');
+                chip.className = 'inline-flex items-center gap-2 px-3 py-1.5 bg-theme-accent text-white rounded-lg text-sm font-medium shadow-sm';
+                chip.innerHTML = `
+                  <span>${roleName}</span>
+                  <button 
+                    type="button" 
+                    class="ml-1 hover:bg-white/20 rounded p-0.5 transition-colors flex items-center justify-center"
+                    onclick="const cb = document.querySelector('.role-checkbox[value=\\'${roleId}\\']'); if(cb) { cb.checked = false; updateSelectedRoles(); }"
+                  >
+                    <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                      <path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path>
+                    </svg>
+                  </button>
+                `;
+                container.appendChild(chip);
+              });
+            }
+            
+            // Make updateSelectedRoles available globally for onclick
+            window.updateSelectedRoles = updateSelectedRoles;
+            
+            checkboxes.forEach(checkbox => {
+              checkbox.addEventListener('change', updateSelectedRoles);
+            });
+            
+            // Initial render
+            updateSelectedRoles();
+          })();
+        </script>
+      <% end %>
+
+      <div class="mb-4">
+        <%= f.label :description, t('discord_events.new.description.label'), class: "block text-sm font-medium text-theme-primary mb-2" %>
+        <%= f.text_area :description, rows: 4, class: "w-full px-4 py-2 bg-theme-primary border border-theme-secondary rounded-lg text-theme-primary", placeholder: t('discord_events.new.description.placeholder') %>
+      </div>
+
+      <div class="grid grid-cols-2 gap-4 mb-4">
+        <div>
+          <%= f.label :date, t('discord_events.new.date.label'), class: "block text-sm font-medium text-theme-primary mb-2" %>
+          <%= f.date_field :date, value: Date.today.to_s, class: "w-full px-4 py-2 bg-theme-primary border border-theme-secondary rounded-lg text-theme-primary date-input-white-calendar", required: true, min: Date.today.to_s %>
+        </div>
+        <div>
+          <label class="block text-sm font-medium text-theme-primary mb-2"><%= t('discord_events.new.time.label') %></label>
+          <div class="flex gap-2 items-end">
+            <div class="flex-1">
+              <label class="block text-xs text-theme-secondary mb-1"><%= t('discord_events.new.time.hour') %></label>
+              <select name="time_hour" id="time_hour" required class="gs-native-select gs-native-select--field w-full px-4 bg-theme-primary border border-theme-secondary rounded-lg text-theme-primary">
+                <option value="">--</option>
+                <% (1..12).each do |hour| %>
+                  <option value="<%= hour %>"><%= hour %></option>
+                <% end %>
+              </select>
+            </div>
+            <div class="flex-1">
+              <label class="block text-xs text-theme-secondary mb-1"><%= t('discord_events.new.time.minute') %></label>
+              <select name="time_minute" id="time_minute" required class="gs-native-select gs-native-select--field w-full px-4 bg-theme-primary border border-theme-secondary rounded-lg text-theme-primary">
+                <option value="">--</option>
+                <% (0..59).each do |min| %>
+                  <option value="<%= format('%02d', min) %>"><%= format('%02d', min) %></option>
+                <% end %>
+              </select>
+            </div>
+            <div class="flex-1">
+              <label class="block text-xs text-theme-secondary mb-1"><%= t('discord_events.new.time.ampm') %></label>
+              <select name="time_ampm" id="time_ampm" required class="gs-native-select gs-native-select--field w-full px-4 bg-theme-primary border border-theme-secondary rounded-lg text-theme-primary">
+                <option value="">--</option>
+                <option value="AM">AM</option>
+                <option value="PM">PM</option>
+              </select>
+            </div>
+          </div>
+          <input type="hidden" name="time" id="time_hidden" />
+          <input type="hidden" name="timezone" id="timezone_hidden" />
+          <p class="text-xs text-theme-secondary mt-1" id="timezone_display"><%= t('discord_events.new.time.timezone_detecting') %></p>
+        </div>
+      </div>
+
+      <div class="mb-4">
+        <%= f.label :max_participants, t('discord_events.new.max_participants.label'), class: "block text-sm font-medium text-theme-primary mb-2" %>
+        <%= f.number_field :max_participants, class: "w-full px-4 py-2 bg-theme-primary border border-theme-secondary rounded-lg text-theme-primary", min: 1 %>
+      </div>
+
+      <div class="mb-4">
+        <%= f.label :squad_leader, t('discord_events.new.squad_leader.label'), class: "block text-sm font-medium text-theme-primary mb-2" %>
+        <%= f.text_field :squad_leader, class: "w-full px-4 py-2 bg-theme-primary border border-theme-secondary rounded-lg text-theme-primary", placeholder: t('discord_events.new.squad_leader.placeholder') %>
+      </div>
+
+      <div class="mb-4">
+        <%= f.label :location, t('discord_events.new.location.label'), class: "block text-sm font-medium text-theme-primary mb-2" %>
+        <%= f.text_field :location, class: "w-full px-4 py-2 bg-theme-primary border border-theme-secondary rounded-lg text-theme-primary", placeholder: t('discord_events.new.location.placeholder') %>
+      </div>
+
+      <div class="mb-6">
+        <label class="block text-sm font-medium text-theme-primary mb-2"><%= t('discord_events.new.role_categories.label') %></label>
+        <p class="text-xs text-theme-secondary mb-3"><%= t('discord_events.new.role_categories.hint') %></p>
+        <div class="space-y-2">
+          <label class="flex items-center">
+            <input type="checkbox" name="roles[]" value="dps" checked class="mr-2">
+            <span class="text-theme-primary">🗡️ <%= t('discord_events.new.role_categories.dps') %></span>
+          </label>
+          <label class="flex items-center">
+            <input type="checkbox" name="roles[]" value="tank" checked class="mr-2">
+            <span class="text-theme-primary">🛡️ <%= t('discord_events.new.role_categories.tank') %></span>
+          </label>
+          <label class="flex items-center">
+            <input type="checkbox" name="roles[]" value="healer" checked class="mr-2">
+            <span class="text-theme-primary">✚ <%= t('discord_events.new.role_categories.healer') %></span>
+          </label>
+          <label class="flex items-center">
+            <input type="checkbox" name="roles[]" value="ranged" checked class="mr-2">
+            <span class="text-theme-primary">🏹 <%= t('discord_events.new.role_categories.ranged') %></span>
+          </label>
+        </div>
+      </div>
+
+      <div class="flex gap-4">
+        <%= f.submit t('discord_events.new.create_button'), class: "px-6 py-3 bg-theme-accent text-white rounded-lg hover:bg-theme-accent-hover transition-colors font-semibold cursor-pointer" %>
+        <%= link_to t('common.buttons.cancel'), guild_schedule_events_path(@guild), class: "px-6 py-3 bg-theme-secondary text-theme-primary rounded-lg hover:bg-theme-primary transition-colors font-semibold" %>
+      </div>
+    </div>
+  <% end %>
+
+  <div class="mt-6">
+    <%= link_to t('discord_events.new.back_to_events'), guild_schedule_events_path(@guild), class: "text-theme-accent hover:text-theme-accent-hover" %>
+  </div>
+</div>
+
+<script>
+  (function() {
+    'use strict';
+    const eventTypeSelect = document.getElementById('event_type_select');
+    const customEventTypeField = document.getElementById('custom_event_type_field');
+    const customEventTypeInput = document.getElementById('custom_event_type_input');
+
+    if (eventTypeSelect && customEventTypeField) {
+      eventTypeSelect.addEventListener('change', function() {
+        if (this.value === 'custom') {
+          customEventTypeField.classList.remove('hidden');
+          customEventTypeInput.setAttribute('required', 'required');
+        } else {
+          customEventTypeField.classList.add('hidden');
+          customEventTypeInput.removeAttribute('required');
+          customEventTypeInput.value = '';
+        }
+      });
+    }
+
+    // Detect and store user's timezone
+    const timezoneHidden = document.getElementById('timezone_hidden');
+    const timezoneDisplay = document.getElementById('timezone_display');
+    
+    if (timezoneHidden && timezoneDisplay) {
+      try {
+        const timezone = Intl.DateTimeFormat().resolvedOptions().timeZone;
+        timezoneHidden.value = timezone;
+        const timezoneName = timezone.replace(/_/g, ' ');
+        timezoneDisplay.textContent = '<%= j t('discord_events.new.time.timezone_label', timezone: '') %>'.replace('%{timezone}', '') + timezoneName;
+      } catch (e) {
+        timezoneHidden.value = 'UTC';
+        timezoneDisplay.textContent = '<%= j t('discord_events.new.time.timezone_default') %>';
+      }
+    }
+
+    // Convert 12-hour time to 24-hour format for form submission
+    const timeHour = document.getElementById('time_hour');
+    const timeMinute = document.getElementById('time_minute');
+    const timeAmPm = document.getElementById('time_ampm');
+    const timeHidden = document.getElementById('time_hidden');
+    const form = document.querySelector('form');
+
+    function updateTimeField() {
+      const hour = timeHour.value;
+      const minute = timeMinute.value;
+      const ampm = timeAmPm.value;
+
+      if (hour && minute && ampm) {
+        let hour24 = parseInt(hour, 10);
+        if (ampm === 'PM' && hour24 !== 12) {
+          hour24 += 12;
+        } else if (ampm === 'AM' && hour24 === 12) {
+          hour24 = 0;
+        }
+        const hourStr = hour24 < 10 ? '0' + hour24 : String(hour24);
+        const minuteStr = minute.length === 1 ? '0' + minute : minute;
+        timeHidden.value = hourStr + ':' + minuteStr;
+      } else {
+        timeHidden.value = '';
+      }
+    }
+
+    if (timeHour && timeMinute && timeAmPm && timeHidden) {
+      timeHour.addEventListener('change', updateTimeField);
+      timeMinute.addEventListener('change', updateTimeField);
+      timeAmPm.addEventListener('change', updateTimeField);
+
+      if (form) {
+        form.addEventListener('submit', function(e) {
+          updateTimeField();
+          if (!timeHidden.value) {
+            e.preventDefault();
+            window.showToast('warning', '<%= j t('discord_events.new.time.incomplete_error') %>');
+            return false;
+          }
+        });
+      }
+    }
+  })();
+</script>

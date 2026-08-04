@@ -1,0 +1,139 @@
+pt:
+  settings:
+    account:
+      title: Configurações da conta
+      subtitle: Gere a segurança da conta e as preferências
+      password:
+        title: Alterar senha
+        description: Atualiza a senha da conta
+        button: Alterar senha
+      discord:
+        title: Conta Discord
+        connected_as: Conectado como %{username}
+        not_connected: Conta Discord não conectada
+        disconnect: Remover ligação Discord
+        disconnect_confirm: Tens a certeza de que queres desligar a conta Discord? A ligação será removida; precisas de voltar a ligar para usar as funcionalidades Discord.
+        switch_to_mfa_first: Muda primeiro para o início de sessão MFA para desligar o Discord
+        connect: Ligar conta Discord
+      auth_method:
+        title: Método de autenticação
+        description: Escolhe como iniciar sessão na tua conta.
+        mfa:
+          title: Início de sessão MFA
+          description: Palavra-passe e autenticação multifator
+          button: Usar MFA
+          button_active: A usar MFA
+        discord:
+          title: Início de sessão Discord
+          description: Inicia sessão com a tua conta Discord
+          button: Usar Discord
+          button_active: A usar Discord
+          connect_first: Liga primeiro a conta Discord
+        google:
+          title: Início de sessão Gmail
+          description: Inicias sessão com Google usando a conta Gmail ou Google Workspace associada.
+          active: A usar Gmail
+        microsoft:
+          title: Início de sessão Outlook
+          description: Inicias sessão com Microsoft com a tua conta pessoal (Outlook, Hotmail, etc.).
+          active: A usar Outlook
+        mfa_backup_warning: Considera configurar MFA como método de reserva.
+        discord_connect_warning: Ligar o Discord pode simplificar o acesso e acrescentar funcionalidades.
+      language:
+        title: Idioma
+        description: Escolhe o teu idioma. O predefinido é inglês para contas com sessão iniciada (sem sessão, o idioma do navegador pode continuar a aplicar-se salvo escolha no menu).
+        label: Idioma preferido
+        auto_detect: Predefinido (inglês)
+        save: Guardar idioma
+        updated: Preferência de idioma atualizada.
+        invalid: Seleção de idioma inválida.
+      mfa:
+        title: Autenticação multifator (MFA)
+        enabled: MFA está ativo.
+        not_enabled: MFA não está configurado. Configura-o para proteger a conta.
+        manage: Gerir MFA
+        setup: Configurar MFA
+      backup_codes:
+        title: Código de recuperação
+        description: O teu código de recuperação permite redefinir a palavra-passe e recuperar a conta se perderes o acesso ao MFA.
+        warning: Guarda este código em segurança — pode contornar a palavra-passe e o MFA!
+        current: O teu código de recuperação atual
+        no_codes: Não tens um código de recuperação ativo.
+        regenerate_button: Regenerar código de recuperação
+        regenerate_confirm: Regenerar invalidará o teu código atual e enviaremos um novo por e-mail. Continuar?
+        regenerate_description: Podes regenerar o código de recuperação no máximo a cada 3 meses. O novo código será enviado para o teu e-mail verificado.
+        regenerated_notice: Enviámos o teu novo código de recuperação para o teu e-mail verificado.
+        cooldown_active: Podes voltar a gerar o teu código de recuperação a %{date}.
+        verify_email_first: Verifica primeiro o teu endereço de e-mail antes de regenerar o código de recuperação.
+        how_it_works: Como funciona o teu código de recuperação
+        bullet_length: O código tem 24 caracteres (letras e números).
+        bullet_single_use: O código é de uso único — depois de usar, deixa de ser válido.
+        bullet_use_case: Usa o código de recuperação se esqueceres a palavra-passe OU perderes o acesso ao MFA.
+        bullet_store_offline: Guarda-o offline (impressão ou gestor de palavras-passe) — não o voltamos a mostrar!
+        bullet_regenerate: Ao regenerar, o código anterior deixa de ser válido; enviamos um novo por e-mail.
+      delete_account:
+        title: Eliminar conta
+        intro: Podes encerrar esta conta de forma permanente e remover os dados GuildSync associados. Após o nosso período de conservação é irreversível; antes, operações podem restaurar alguns dados conforme descrito nas políticas de suporte.
+        privacy_link: Política de privacidade
+        support_link: Contactar suporte
+        primary_cta: Quero eliminar a minha conta
+        code_label: Código de verificação por e-mail
+        code_hint: Introduz o código de utilização única do teu e-mail (letras e números).
+        resend_wait: Podes pedir outro código dentro de %{seconds} segundos.
+        continue_button: Continuar para eliminar a conta
+        modal_title: Tens a certeza de que queres eliminar a tua conta?
+        modal_body: A tua conta será encerrada e a sessão terminada. Após o período de conservação não pode ser anulado.
+        modal_cancel: Cancelar
+        modal_confirm: Sim, eliminar a minha conta
+        blocked:
+          generic: A eliminação da conta está bloqueada até resolveres o seguinte.
+          already_closed: Esta conta já está encerrada.
+          purge_in_progress: A eliminação já está em curso.
+          alliance_leader: Sai ou dissolves primeiro as alianças que lideras.
+          owned_guild_has_members: Resolve guildas das quais és dono e que ainda têm outros membros ativos (transfere a propriedade, remove membros ou dissolve a guilda).
+    profile:
+      title: Configurações do perfil
+      subtitle: Personaliza o teu perfil
+      email_verification:
+        required_notice: Adiciona e verifica um endereço de e-mail real nesta página para continuares a usar o GuildSync.
+        banner_title: Verifica o teu e-mail
+        banner_body: A tua conta usa um e-mail provisório ou não verificado. Indica um endereço real abaixo e confirma a ligação que enviaremos.
+        invalid_link: Essa ligação de verificação é inválida ou expirou. Pede um novo e-mail abaixo.
+        success_notice: O teu endereço de e-mail está verificado.
+        update_failed: Não foi possível atualizar o teu e-mail. Tenta novamente ou pede uma nova ligação de verificação.
+      avatar:
+        title: Avatar do perfil
+        change: Alterar avatar
+        upload: Carregar avatar
+        remove: Remover avatar
+        remove_confirm: Remover o avatar?
+        updated_notice: Avatar atualizado com sucesso.
+        removed_notice: Avatar removido com sucesso.
+      username:
+        title: Nome de utilizador
+        current: "Nome de utilizador atual:"
+        label: Novo nome de utilizador
+        hint: "3 a 30 caracteres: letras, números e sublinhados apenas."
+        save: Guardar nome de utilizador
+        updated_notice: Nome de utilizador atualizado.
+        update_failed: Não foi possível atualizar o nome de utilizador.
+      email:
+        title: Endereço de e-mail
+        current: "E-mail atual:"
+        verified_badge: Verificado
+        unverified_badge: Não verificado — indica um e-mail real abaixo
+        label: E-mail a verificar
+        placeholder: tu@exemplo.com
+        send_verification: Enviar e-mail de verificação
+        verification_sent_notice: Verifica a caixa de entrada para a ligação de confirmação.
+        pending_notice: Foi enviada uma ligação de confirmação para %{email}.
+        taken: Esse endereço de e-mail já está em uso.
+        mailer:
+          subject: Verifique o seu endereço de e-mail GuildSync
+          heading: Verifique o seu endereço de e-mail
+          greeting: Olá,
+          body: Pediu para verificar este endereço de e-mail para o seu perfil GuildSync. Use o botão abaixo para concluir a verificação.
+          cta: Verificar endereço de e-mail
+          expires: Este link expira em 24 horas.
+          fallback: "Se o botão não funcionar, copie e cole este URL no seu navegador:"
+          ignore: Se não pediu esta verificação de e-mail, pode ignorar esta mensagem.

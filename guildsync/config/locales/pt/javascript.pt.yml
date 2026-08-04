@@ -1,0 +1,50 @@
+pt:
+  js:
+    common:
+      popup_blocked: "O pop-up foi bloqueado. Por favor, permita os pop-ups para este site e tente novamente."
+      error_occurred: "Ocorreu um erro. Por favor, tente novamente."
+      unknown_error: "Erro desconhecido"
+    admin:
+      dashboard:
+        delete_success: "Todos os dados foram eliminados com sucesso!"
+        delete_error: "Erro: %{error}"
+        delete_failed: "Falha ao excluir os dados"
+    sessions:
+      popup_blocked: "O pop-up foi bloqueado. Por favor, permita os pop-ups para este site e tente novamente."
+    pricing:
+      price_id_missing: "O Identificador de Preço está ausente. Por favor, entre em contato com o suporte."
+      checkout_failed: "Falha ao iniciar o checkout. Por favor, tente novamente."
+    billing:
+      portal_failed: "Falhou ao abrir o portal de fatura. Por favor, tente novamente."
+      plan_change_failed: "Não foi possível alterar o plano. Tente novamente."
+    guilds:
+      members:
+        select_member: "Por favor, selecione pelo menos um membro."
+        select_role: "Por favor, selecione um cargo."
+        select_user: "Por favor seleione um usuário primeiro."
+        security_token_missing: "O token de segurança não foi encontrado. Por favor, recarregue a página e tente novamente."
+        invite_error: "Ocorreu um erro ao convidar o usuário. Por favor, tente novamente."
+      settings:
+        game_added: "Jogo adicionado com sucesso!"
+        game_add_failed: "Falhou ao adicionar o jogo: %{error}"
+        game_add_error: "Erro ao adicionar jogo: %{error}"
+        discord_role_sync:
+          section_title: "Sincronização de Papéis do Discord"
+          missing_role: "Falta informação do cargo; atualize a página e tente novamente."
+          generic_error: "Algo deu errado. Tente novamente."
+      members_gear:
+        select_file: "Selecione um arquivo, por favor."
+        select_game: "Por favor, selecione um jogo"
+        upload_failed: "Falha ao fazer upload: %{error}"
+        session_expired: "Sua sessão expirou. Entre novamente e tente enviar outra vez."
+        requests_sent: "Enviadas com sucesso %{count} solicitações de atualização de estatísticas"
+        requests_failed: "Falhou ao enviar solicitações: %{error}"
+        request_failed: "Falha ao enviar %{error}"
+    guild_applications:
+      select_guild: "Por favor, selecione uma guilda dos resultados da pesquisa."
+    guild_documents:
+      link_copied: "Link compartilhado copiado para a área de transferência!"
+    discord_connections:
+      connection_failed: "Falha na conexão do Discord: %{error}"
+      popup_blocked: "O pop-up foi bloqueado. Por favor, permita os pop-ups para este site e tente novamente."
+      bot_auth_url_missing: "Erro: A URL de autorização do bot está faltando o ID do servidor. Por favor, tente selecionar o servidor novamente."

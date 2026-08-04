@@ -1,0 +1,13 @@
+<%# locals: (comment:, inner_muted:) %>
+<div id="roadmap_comment_<%= comment.id %>" class="<%= inner_muted %> p-3" data-comment-id="<%= comment.id %>">
+  <div class="flex items-start justify-between gap-2">
+    <p class="min-w-0 flex-1 break-words text-sm whitespace-pre-wrap text-white"><%= comment.deleted? ? t("roadmap.comments.deleted") : comment.body %></p>
+    <div class="flex shrink-0 items-center gap-2">
+      <span class="text-xs text-[#90A1B9]"><%= comment.anonymized_author_name %></span>
+      <% if !comment.deleted? && user_signed_in? && comment.can_delete_by?(current_user) %>
+        <%= button_to t("roadmap.comments.delete"), roadmap_comment_path(comment), method: :delete, class: "text-xs text-red-400 hover:underline", data: { turbo_confirm: t("roadmap.comments.delete_confirm") } %>
+      <% end %>
+    </div>
+  </div>
+  <p class="mt-1 text-xs text-[#90A1B9]"><%= l(comment.created_at, format: :short) %></p>
+</div>

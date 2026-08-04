@@ -1,0 +1,131 @@
+<% legacy_icon_labels = HomepageFeatureCard::ICON_KEYS.index_with { |k| k.to_s.tr("_", " ").titleize } %>
+<%= form_with model: [:admin, homepage_feature_card], class: "space-y-6 max-w-3xl", data: { turbo_frame: "_top" } do |f| %>
+  <div>
+    <%= f.label :slug, t("admin.homepage_feature_cards.form.slug_label"), class: "block text-sm font-medium text-theme-secondary mb-2" %>
+    <%= f.text_field :slug, class: "w-full px-3 py-2 rounded-lg bg-theme-primary border border-theme-primary text-theme-primary", autocomplete: "off" %>
+    <p class="text-xs text-theme-secondary mt-1"><%= t("admin.homepage_feature_cards.form.slug_hint") %></p>
+  </div>
+
+  <div>
+    <%= f.label :title, t("admin.homepage_feature_cards.form.title_label"), class: "block text-sm font-medium text-theme-secondary mb-2" %>
+    <%= f.text_field :title, class: "w-full px-3 py-2 rounded-lg bg-theme-primary border border-theme-primary text-theme-primary" %>
+  </div>
+
+  <div>
+    <%= f.label :description, t("admin.homepage_feature_cards.form.description_label"), class: "block text-sm font-medium text-theme-secondary mb-2" %>
+    <%= f.text_area :description, rows: 3, class: "w-full px-3 py-2 rounded-lg bg-theme-primary border border-theme-primary text-theme-primary" %>
+  </div>
+
+  <%= tag.div(
+        class: "space-y-3",
+        data: {
+          controller: "fontawesome-icon-picker",
+          fontawesome_icon_picker_icons_url_value: admin_fontawesome_free_icons_path,
+          fontawesome_icon_picker_legacy_labels_value: legacy_icon_labels
+        }
+      ) do %>
+    <%= f.label :icon_key, t("admin.homepage_feature_cards.form.icon_key_label"), class: "block text-sm font-medium text-theme-secondary mb-2" %>
+    <%= f.hidden_field :icon_key, data: { fontawesome_icon_picker_target: "input" } %>
+    <div class="flex flex-wrap items-center gap-3">
+      <div
+        data-fontawesome-icon-picker-target="preview"
+        class="flex items-center min-h-[2.5rem] px-3 py-2 rounded-lg bg-theme-secondary border border-theme-primary flex-1 min-w-[12rem]"
+      ></div>
+      <button
+        type="button"
+        class="px-4 py-2 rounded-lg bg-theme-card hover:bg-theme-hover border border-theme-primary text-theme-primary text-sm font-medium shrink-0"
+        data-action="fontawesome-icon-picker#open"
+      >
+        <%= t("admin.homepage_feature_cards.form.pick_fa_icon") %>
+      </button>
+    </div>
+    <p data-fontawesome-icon-picker-target="loadError" class="hidden text-sm text-red-400"><%= t("admin.homepage_feature_cards.form.fa_icon_load_error") %></p>
+
+    <div class="mt-3">
+      <label class="text-xs text-theme-secondary block mb-1"><%= t("admin.homepage_feature_cards.form.or_pick_builtin") %></label>
+      <select
+        data-action="change->fontawesome-icon-picker#selectLegacy"
+        class="gs-native-select gs-native-select--field w-full px-3 rounded-lg bg-theme-primary border border-theme-primary text-theme-primary text-sm"
+      >
+        <option value=""><%= t("admin.homepage_feature_cards.form.builtin_placeholder") %></option>
+        <% HomepageFeatureCard::ICON_KEYS.each do |key| %>
+          <option value="<%= key %>" <%= "selected" if homepage_feature_card.icon_key == key %>><%= key.tr("_", " ").titleize %></option>
+        <% end %>
+      </select>
+    </div>
+
+    <p class="text-xs text-theme-secondary"><%= t("admin.homepage_feature_cards.form.icon_key_hint") %></p>
+
+    <dialog
+      data-fontawesome-icon-picker-target="dialog"
+      class="rounded-xl border border-theme-primary bg-[#151923] text-theme-primary p-0 max-w-[min(42rem,92vw)] w-full shadow-2xl backdrop:bg-black/60 open:flex open:flex-col"
+      data-action="click->fontawesome-icon-picker#backdropClose"
+    >
+      <div class="p-4 border-b border-theme-primary flex flex-col gap-3" data-action="click->fontawesome-icon-picker#stopDialogClick">
+        <div class="flex items-start justify-between gap-2">
+          <h2 class="text-lg font-semibold text-theme-accent m-0"><%= t("admin.homepage_feature_cards.form.fa_icon_modal_title") %></h2>
+          <button type="button" class="text-theme-secondary hover:text-theme-primary text-sm px-2 py-1 rounded border border-transparent hover:border-theme-primary" data-action="fontawesome-icon-picker#close">
+            <%= t("admin.homepage_feature_cards.form.fa_icon_close") %>
+          </button>
+        </div>
+        <input
+          type="search"
+          autocomplete="off"
+          class="w-full px-3 py-2 rounded-lg bg-theme-primary border border-theme-primary text-theme-primary"
+          placeholder="<%= t("admin.homepage_feature_cards.form.fa_icon_search_placeholder") %>"
+          data-fontawesome-icon-picker-target="search"
+          data-action="input->fontawesome-icon-picker#filterInput"
+        />
+      </div>
+      <div class="p-4 overflow-y-auto max-h-[min(24rem,55vh)]" data-action="click->fontawesome-icon-picker#stopDialogClick">
+        <p data-fontawesome-icon-picker-target="emptyState" class="hidden text-sm text-theme-secondary text-center py-6"><%= t("admin.homepage_feature_cards.form.fa_icon_empty") %></p>
+        <div data-fontawesome-icon-picker-target="grid" class="flex flex-wrap gap-2 justify-start"></div>
+      </div>
+    </dialog>
+  <% end %>
+
+  <div>
+    <%= f.label :visible, t("admin.homepage_feature_cards.form.visible_label"), class: "block text-sm font-medium text-theme-secondary mb-2" %>
+    <%= f.check_box :visible, class: "rounded border-theme-primary" %>
+  </div>
+
+  <div
+    data-controller="editor"
+    data-editor-upload-url-value="<%= upload_image_admin_homepage_feature_cards_path %>"
+    data-editor-output-format-value="html"
+    class="mb-4"
+  >
+    <%= f.label :body, t("admin.homepage_feature_cards.form.body_label"), class: "block text-sm font-medium text-theme-secondary mb-2" %>
+    <div class="bg-theme-secondary border border-theme-primary rounded-lg p-2 mb-2">
+      <div class="flex flex-wrap gap-2">
+        <button type="button" data-editor-prevent-blur data-action="editor#bold" class="px-3 py-1 bg-theme-card hover:bg-theme-hover border border-theme-primary rounded text-theme-primary text-sm font-bold">B</button>
+        <button type="button" data-editor-prevent-blur data-action="editor#italic" class="px-3 py-1 bg-theme-card hover:bg-theme-hover border border-theme-primary rounded text-theme-primary text-sm italic">I</button>
+        <button type="button" data-editor-prevent-blur data-action="editor#underline" class="px-3 py-1 bg-theme-card hover:bg-theme-hover border border-theme-primary rounded text-theme-primary text-sm underline">U</button>
+        <button type="button" data-editor-prevent-blur data-action="editor#heading1" class="px-3 py-1 bg-theme-card hover:bg-theme-hover border border-theme-primary rounded text-theme-primary text-sm">H1</button>
+        <button type="button" data-editor-prevent-blur data-action="editor#heading2" class="px-3 py-1 bg-theme-card hover:bg-theme-hover border border-theme-primary rounded text-theme-primary text-sm">H2</button>
+        <button type="button" data-editor-prevent-blur data-action="editor#bulletList" class="px-3 py-1 bg-theme-card hover:bg-theme-hover border border-theme-primary rounded text-theme-primary text-sm">• List</button>
+        <button type="button" data-editor-prevent-blur data-action="editor#orderedList" class="px-3 py-1 bg-theme-card hover:bg-theme-hover border border-theme-primary rounded text-theme-primary text-sm">1. List</button>
+        <button type="button" data-editor-prevent-blur data-action="editor#addLink" class="px-3 py-1 bg-theme-card hover:bg-theme-hover border border-theme-primary rounded text-theme-primary text-sm">🔗 Link</button>
+        <button type="button" data-editor-prevent-blur data-action="editor#uploadImage" class="px-3 py-1 bg-theme-card hover:bg-theme-hover border border-theme-primary rounded text-theme-primary text-sm" title="<%= t('guild_documents.toolbar.image') %>">🖼️ Image</button>
+        <button type="button" data-editor-prevent-blur data-action="editor#toggleSource" class="px-3 py-1 bg-theme-card hover:bg-theme-hover border border-theme-primary rounded text-theme-primary text-sm">&lt;/&gt; HTML</button>
+      </div>
+    </div>
+    <div
+      data-editor-target="editor"
+      class="min-h-[400px] bg-theme-secondary border border-theme-primary rounded-lg p-4 text-theme-primary focus-within:ring-2 focus-within:ring-theme-accent prose prose-invert max-w-none"
+      style="cursor: text; outline: none; overflow-y: auto;"
+    ></div>
+    <textarea
+      data-editor-target="source"
+      class="hidden mt-2 w-full min-h-[220px] bg-theme-secondary border border-theme-primary rounded-lg p-4 text-theme-primary font-mono text-sm"
+      spellcheck="false"
+      aria-label="HTML source"
+    ></textarea>
+    <%= f.hidden_field :body, data: { editor_target: "input" }, value: homepage_feature_card.body.to_s %>
+  </div>
+
+  <div class="flex flex-wrap gap-3">
+    <%= f.submit class: "px-6 py-2 rounded-lg bg-theme-brand-gradient text-white font-medium hover:opacity-95 cursor-pointer" %>
+    <%= link_to t("admin.landing_compare.cancel"), admin_homepage_feature_cards_path, class: "px-6 py-2 border border-theme-primary rounded-lg text-theme-secondary hover:bg-theme-hover", data: { turbo_frame: "_top" } %>
+  </div>
+<% end %>

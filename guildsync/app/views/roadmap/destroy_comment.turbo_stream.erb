@@ -1,0 +1,8 @@
+<% count = @feature_request.feature_request_comments.visible_to_public.chronological.count %>
+<%= turbo_stream.remove "roadmap_comment_#{@comment.id}" %>
+<%= turbo_stream.update "roadmap_comments_count", count.to_s %>
+<% if count.zero? %>
+  <%= turbo_stream.append "roadmap_comments_list" do %>
+    <p id="roadmap-comments-empty" class="text-sm italic text-[#90A1B9]"><%= t("roadmap.comments.empty_state") %></p>
+  <% end %>
+<% end %>

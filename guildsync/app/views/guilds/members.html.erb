@@ -1,0 +1,495 @@
+<div class="max-w-4xl mx-auto p-6">
+  <h1 class="text-3xl font-bold text-theme-primary mb-6"><%= t('guilds.members.title') %> - <%= @guild.name %></h1>
+  <p class="text-theme-secondary mb-6"><%= t('guilds.members.subtitle') %></p>
+  <div class="mb-6">
+    <%= link_to t('guilds.members.export_csv', default: 'Export CSV'), guild_members_list_path(@guild, format: :csv), class: "inline-flex items-center gap-2 px-4 py-2 bg-theme-secondary text-theme-primary border border-theme-primary rounded-lg hover:bg-theme-primary transition-colors font-semibold text-sm" %>
+  </div>
+  
+  <% if can_manage_roles?(@guild) || can_kick_members?(@guild) || can_manage_applications?(@guild) %>
+    <div class="flex flex-wrap gap-3 mb-6">
+      <%= link_to guild_invite_members_path(@guild), class: "inline-flex items-center gap-2 px-4 py-2 bg-theme-accent text-white rounded-lg hover:bg-theme-accent-hover transition-colors font-semibold text-sm shadow-md" do %>
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18 9v3m0 0v3m0-3h3m-3 0h-3m-2-5a4 4 0 11-8 0 4 4 0 018 0zM3 20a6 6 0 0112 0v1H3v-1z"></path>
+        </svg>
+        <%= t('sidebar.guild_menu.invite_members') %>
+      <% end %>
+      <%= link_to guild_review_applications_path(@guild), class: "inline-flex items-center gap-2 px-4 py-2 bg-theme-secondary text-theme-primary border border-theme-primary rounded-lg hover:bg-theme-primary transition-colors font-semibold text-sm" do %>
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+        </svg>
+        <%= t('sidebar.guild_menu.review_applications') %>
+      <% end %>
+    </div>
+  <% end %>
+  
+  <% if can_manage_roles?(@guild) || can_kick_members?(@guild) %>
+    <div class="mb-6 space-y-4">
+      <div class="flex flex-wrap gap-3 items-center">
+        <button type="button" id="select-all-btn" class="px-4 py-2 bg-theme-accent text-white rounded-lg hover:bg-theme-accent-hover transition-colors font-semibold text-sm shadow-md">
+          <%= t('guilds.members.select_all') %>
+        </button>
+        <button type="button" id="deselect-all-btn" class="px-4 py-2 bg-theme-secondary text-theme-primary border border-theme-primary rounded-lg hover:bg-theme-primary transition-colors font-semibold text-sm">
+          <%= t('guilds.members.deselect_all') %>
+        </button>
+        <% if can_manage_roles?(@guild) %>
+          <div class="flex gap-2 items-center">
+            <select id="bulk-role-select" class="gs-native-select gs-native-select--toolbar min-w-[11rem] shrink-0 pl-4 bg-theme-primary border border-theme-secondary rounded-lg text-theme-primary text-sm font-semibold focus:outline-none focus:ring-2 focus:ring-theme-accent">
+              <option value=""><%= t('guilds.members.select_role') %></option>
+              <% if @synced_roles.present? %>
+                <% @synced_roles.each do |role_sync| %>
+                  <option value="<%= role_sync.role_id %>"><%= role_sync.role_name %></option>
+                <% end %>
+              <% end %>
+            </select>
+            <button type="button" id="bulk-update-role-btn" class="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors font-semibold text-sm shadow-md">
+              <%= t('guilds.members.update_selected') %>
+            </button>
+          </div>
+        <% end %>
+      </div>
+      <div class="flex flex-wrap gap-3 items-center">
+        <div class="relative flex-1 min-w-[280px]">
+          <input
+            type="text" 
+            id="user-search-input" 
+            placeholder="<%= strip_tags(t('guilds.members.search_placeholder').to_s) %>" 
+            autocomplete="off"
+            class="w-full px-4 py-2 bg-theme-primary border border-theme-secondary rounded-lg text-theme-primary text-sm focus:outline-none focus:ring-2 focus:ring-theme-accent"
+          />
+          <div id="user-search-dropdown" class="absolute z-50 w-full mt-1 bg-theme-secondary border border-theme-primary rounded-lg shadow-lg max-h-60 overflow-y-auto" style="display: none;">
+            <!-- Results will be populated here -->
+          </div>
+        </div>
+        <button type="button" id="invite-user-btn" class="px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors font-semibold text-sm shadow-md disabled:opacity-50 disabled:cursor-not-allowed" disabled>
+          <%= t('guilds.members.invite_user') %>
+        </button>
+        <% if can_kick_members?(@guild) %>
+          <button type="button" id="bulk-kick-btn" class="px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 transition-colors font-semibold text-sm shadow-md">
+            <%= t('guilds.members.kick_selected') %>
+          </button>
+        <% end %>
+      </div>
+      <div class="flex flex-wrap gap-3 items-center">
+        <%= form_with url: guild_members_list_path(@guild), method: :get, local: true, class: "flex flex-wrap items-center gap-2" do %>
+          <label for="tag-filter-select" class="text-sm text-theme-secondary"><%= t('guilds.members.tags.filter_label') %></label>
+          <%= select_tag :tag_id,
+              options_for_select(
+                [[t('guilds.members.tags.filter_all'), ""],
+                 [t('guilds.members.tags.filter_untagged'), "untagged"]] +
+                @guild_tags.map { |tag| [tag.name, tag.id.to_s] },
+                @selected_tag_id
+              ),
+              id: "tag-filter-select",
+              class: "gs-native-select gs-native-select--toolbar pl-3 bg-theme-primary border border-theme-secondary rounded-lg text-theme-primary text-sm",
+              onchange: "this.form.requestSubmit()" %>
+          <% if @selected_tag_id.present? %>
+            <%= link_to t('guilds.members.tags.clear_filter'), guild_members_list_path(@guild), class: "px-3 py-2 bg-theme-secondary text-theme-primary border border-theme-primary rounded-lg text-sm" %>
+          <% end %>
+        <% end %>
+      </div>
+    </div>
+  <% end %>
+  
+  <form id="bulk-form" method="post" action="<%= guild_bulk_update_member_roles_path(@guild) %>" style="display: none;">
+    <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
+    <input type="hidden" name="discord_role_id" id="bulk-role-input">
+  </form>
+  
+  <form id="bulk-kick-form" method="post" action="<%= guild_bulk_kick_members_path(@guild) %>" style="display: none;">
+    <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
+  </form>
+  
+  <div class="mt-6 space-y-4">
+    <% @members.each do |member| %>
+      <div class="bg-theme-card p-4 rounded-lg border border-theme-primary">
+        <div class="flex items-center gap-3">
+          <% if can_manage_roles?(@guild) || can_kick_members?(@guild) %>
+            <input type="checkbox" class="member-checkbox" value="<%= member.id %>" data-member-id="<%= member.id %>" <%= 'disabled' if member.role == 'owner' || member.user_id == current_user.id || user_has_higher_authority_than?(@guild, member.user) || (@guild.owner_id != current_user.id && can_manage_guild_settings?(@guild, member.user)) %>>
+          <% end %>
+          <% if member.user.discord_avatar_url.present? %>
+            <%= image_tag member.user.discord_avatar_url, alt: member.user.discord_username, class: "w-12 h-12 rounded-full" %>
+          <% else %>
+            <div class="w-12 h-12 rounded-full bg-theme-secondary flex items-center justify-center">
+              <span class="text-theme-primary font-semibold"><%= member.user.username.first.upcase %></span>
+            </div>
+          <% end %>
+          <div class="flex-1">
+            <% linked_discord_username = member.user.user_discord_connection&.discord_username.presence || member.user.discord_username.presence %>
+            <% member_display_name = linked_discord_username.present? ? clean_discord_username(linked_discord_username) : member.user.username %>
+            <div class="flex items-center gap-2">
+              <p class="text-theme-primary font-semibold"><%= member_display_name %></p>
+              <% if member.user.discord_connected? %>
+                <span class="px-2 py-0.5 text-xs bg-green-600 text-white rounded-full"><%= t('guilds.members.discord_verified') %></span>
+              <% end %>
+            </div>
+            <% if linked_discord_username.present? %>
+              <p class="text-xs text-theme-secondary">GuildSync: <%= member.user.username %></p>
+            <% end %>
+            <p class="text-sm text-theme-secondary">
+              <% if linked_discord_username.present? %>
+                Discord: <%= clean_discord_username(linked_discord_username) %>
+              <% else %>
+                Discord: <%= t('guilds.members.discord_not_connected') %>
+              <% end %>
+            </p>
+            <div class="flex items-center gap-2 mt-1">
+              <% if member.discord_role_id.present? %>
+                <% role_sync = @guild.discord_role_syncs.find_by(role_id: member.discord_role_id) %>
+                <p class="text-sm text-theme-secondary">Role: <%= role_sync ? role_sync.role_name : "Unknown" %></p>
+              <% else %>
+                <p class="text-sm text-theme-secondary">Role: <%= t('guilds.members.role_none') %></p>
+              <% end %>
+              <% if member.role == 'owner' %>
+                <span class="text-xs text-theme-secondary">• <%= t('guilds.members.owner') %></span>
+              <% end %>
+            </div>
+            <div class="flex flex-wrap items-center gap-2 mt-2">
+              <% member.guild_tags.order(:name).each do |tag| %>
+                <span class="px-2 py-0.5 text-xs rounded-full text-white" style="background-color: <%= tag.color %>;"><%= tag.name %></span>
+              <% end %>
+            </div>
+            <% if @can_manage_member_tags && @guild_tags.any? %>
+              <div class="mt-2 flex flex-wrap gap-2">
+                <% @guild_tags.each do |tag| %>
+                  <% already_assigned = member.guild_tags.include?(tag) %>
+                  <% if already_assigned %>
+                    <%= button_to "x #{tag.name}", guild_remove_member_tag_path(@guild, member, tag), method: :delete, class: "px-2 py-1 text-xs rounded border border-theme-primary text-theme-primary" %>
+                  <% else %>
+                    <%= button_to "+ #{tag.name}", guild_assign_member_tag_path(@guild, member, tag), method: :post, class: "px-2 py-1 text-xs rounded border border-theme-primary text-theme-primary" %>
+                  <% end %>
+                <% end %>
+              </div>
+            <% end %>
+          </div>
+          <% if (can_manage_roles?(@guild) || can_kick_members?(@guild)) && member.role != 'owner' && member.user_id != current_user.id && !user_has_higher_authority_than?(@guild, member.user) && (@guild.owner_id == current_user.id || !can_manage_guild_settings?(@guild, member.user)) %>
+            <div class="flex gap-2 items-center">
+              <% if can_manage_roles?(@guild) && (@guild.owner_id == current_user.id || !can_manage_guild_settings?(@guild, member.user)) %>
+                <%= form_with url: guild_update_member_role_path(@guild, member), method: :patch, local: true, class: "inline role-update-form", data: { member_id: member.id } do |f| %>
+                  <% if @synced_roles.present? %>
+                    <%= f.select :discord_role_id, options_for_select([[t('guilds.members.role_none'), ""]] + @synced_roles.map { |r| [r.role_name, r.role_id] }, member.discord_role_id), {}, { class: "gs-native-select gs-native-select--compact pl-3 bg-theme-primary border border-theme-secondary rounded-lg text-theme-primary text-sm role-select", onchange: "this.form.requestSubmit()" } %>
+                  <% else %>
+                    <span class="text-sm text-theme-secondary"><%= t('guilds.members.no_roles_synced') %></span>
+                  <% end %>
+                <% end %>
+              <% end %>
+              <% if can_kick_members?(@guild) %>
+                <%= form_with url: guild_kick_member_path(@guild, member), method: :delete, local: true, class: "inline" do |f| %>
+                  <%= f.submit t('guilds.members.kick'), 
+                    class: "px-3 py-1 bg-red-600 text-white rounded-lg hover:bg-red-700 transition-colors text-sm cursor-pointer",
+                    onclick: "if (!confirm('#{j t('guilds.members.kick_confirm', username: member.user.username)}')) { return false; } if (!confirm('#{j t('guilds.members.kick_final_confirm', username: member.user.username)}')) { return false; }" %>
+                <% end %>
+              <% end %>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+
+  <% if @members_pagination.present? && @members_pagination[:total_pages].to_i > 1 %>
+    <% m = @members_pagination %>
+    <% qp = request.query_parameters.symbolize_keys.slice(:tag_id) %>
+    <div class="mt-6 px-4 py-3 border border-theme-primary rounded-lg flex flex-wrap items-center justify-between gap-3 bg-theme-secondary">
+      <span class="text-sm text-theme-secondary"><%= t('activity_feed.pagination_shown_total', shown: @members.size, total: m[:total_count]) %></span>
+      <div class="flex gap-2">
+        <% if m[:page].to_i > 1 %>
+          <%= link_to t('activity_feed.pagination_previous'), guild_members_list_path(@guild, qp.merge(page: m[:page] - 1)), class: "px-3 py-1 bg-theme-secondary text-theme-primary rounded hover:bg-theme-primary text-sm border border-theme-primary" %>
+        <% end %>
+        <% if m[:page].to_i < m[:total_pages].to_i %>
+          <%= link_to t('activity_feed.pagination_next'), guild_members_list_path(@guild, qp.merge(page: m[:page] + 1)), class: "px-3 py-1 bg-theme-secondary text-theme-primary rounded hover:bg-theme-primary text-sm border border-theme-primary" %>
+        <% end %>
+      </div>
+    </div>
+  <% end %>
+  
+  <%= link_to t('guilds.members.back_to_dashboard'), guild_path(@guild), class: "text-theme-accent hover:text-theme-accent-hover mt-6 inline-block" %>
+
+  <% if @guild.owner_id == current_user.id %>
+    <div class="mt-8 bg-theme-card p-4 rounded-lg border border-theme-primary">
+      <h2 class="text-lg font-semibold text-theme-primary mb-3"><%= t('guilds.members.tags.manage_title', default: 'Manage Guild Tags') %></h2>
+      <%= form_with url: guild_create_member_tag_path(@guild), method: :post, local: true, class: "flex flex-wrap gap-3 items-end" do %>
+        <div>
+          <label class="block text-xs text-theme-secondary mb-1"><%= t('guilds.members.tags.name', default: 'Tag Name') %></label>
+          <%= text_field_tag :name, nil, required: true, maxlength: 40, class: "px-3 py-2 bg-theme-primary border border-theme-secondary rounded-lg text-theme-primary text-sm" %>
+        </div>
+        <div>
+          <label class="block text-xs text-theme-secondary mb-1"><%= t('guilds.members.tags.color', default: 'Tag Color') %></label>
+          <%= color_field_tag :color, "#6366f1", class: "h-10 w-16 bg-theme-primary border border-theme-secondary rounded-lg" %>
+        </div>
+        <%= submit_tag t('guilds.members.tags.create', default: 'Create Tag'), class: "px-4 py-2 bg-theme-accent text-white rounded-lg hover:bg-theme-accent-hover text-sm font-semibold cursor-pointer" %>
+      <% end %>
+    </div>
+  <% end %>
+</div>
+
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  const selectAllBtn = document.getElementById("select-all-btn");
+  const deselectAllBtn = document.getElementById("deselect-all-btn");
+  const bulkUpdateRoleBtn = document.getElementById("bulk-update-role-btn");
+  const bulkKickBtn = document.getElementById("bulk-kick-btn");
+  const bulkRoleSelect = document.getElementById("bulk-role-select");
+  const checkboxes = document.querySelectorAll(".member-checkbox");
+  const bulkForm = document.getElementById("bulk-form");
+  const bulkKickForm = document.getElementById("bulk-kick-form");
+  
+  if (selectAllBtn) {
+    selectAllBtn.addEventListener("click", () => {
+      checkboxes.forEach(cb => {
+        if (!cb.disabled) cb.checked = true;
+      });
+    });
+  }
+  
+  if (deselectAllBtn) {
+    deselectAllBtn.addEventListener("click", () => {
+      checkboxes.forEach(cb => cb.checked = false);
+    });
+  }
+  
+  if (bulkUpdateRoleBtn && bulkRoleSelect) {
+    bulkUpdateRoleBtn.addEventListener("click", () => {
+      const selectedIds = Array.from(checkboxes).filter(cb => cb.checked).map(cb => cb.value);
+      const role = bulkRoleSelect.value;
+      
+      if (selectedIds.length === 0) {
+        window.showToast('warning', "<%= j t('js.guilds.members.select_member') %>");
+        return;
+      }
+      
+      if (!role) {
+        window.showToast('warning', "<%= j t('js.guilds.members.select_role') %>");
+        return;
+      }
+      
+      document.getElementById("bulk-role-input").value = role; // role is now discord_role_id
+      selectedIds.forEach(id => {
+        const input = document.createElement("input");
+        input.type = "hidden";
+        input.name = "member_ids[]";
+        input.value = id;
+        bulkForm.appendChild(input);
+      });
+      
+      bulkForm.submit();
+    });
+  }
+  
+  if (bulkKickBtn) {
+    bulkKickBtn.addEventListener("click", () => {
+      const selectedIds = Array.from(checkboxes).filter(cb => cb.checked).map(cb => cb.value);
+      
+      if (selectedIds.length === 0) {
+        window.showToast('warning', "<%= j t('js.guilds.members.select_member') %>");
+        return;
+      }
+      
+      if (!confirm('<%= j t('guilds.members.bulk_kick_confirm', count: '') %>'.replace('%{count}', selectedIds.length))) {
+        return;
+      }
+      
+      // Double confirmation for bulk kick
+      if (!confirm('<%= j t('guilds.members.bulk_kick_final', count: '') %>'.replace('%{count}', selectedIds.length))) {
+        return;
+      }
+      
+      selectedIds.forEach(id => {
+        const input = document.createElement("input");
+        input.type = "hidden";
+        input.name = "member_ids[]";
+        input.value = id;
+        bulkKickForm.appendChild(input);
+      });
+      
+      bulkKickForm.submit();
+    });
+  }
+
+  // User search and invite functionality
+  const userSearchInput = document.getElementById("user-search-input");
+  const userSearchDropdown = document.getElementById("user-search-dropdown");
+  const inviteUserBtn = document.getElementById("invite-user-btn");
+  let selectedUserId = null;
+
+  if (userSearchInput && userSearchDropdown && inviteUserBtn) {
+    let searchTimer = null;
+
+    function appendUserSearchOption(user) {
+      const option = document.createElement("div");
+      option.classList.add("autocomplete-option");
+      const discordBadge = user.discord_connected ? '<span class="text-xs text-green-500">Discord</span>' : '';
+      option.innerHTML = `
+        <div class="flex items-center justify-between">
+          <div>
+            <strong class="text-theme-primary">${escapeHtml(user.username)}</strong>
+            ${user.discord_username ? `<br><small class="text-theme-secondary">Discord: ${escapeHtml(user.discord_username)}</small>` : ''}
+          </div>
+          ${discordBadge}
+        </div>
+      `;
+      option.addEventListener("click", () => {
+        userSearchInput.value = user.username;
+        selectedUserId = user.id;
+        inviteUserBtn.disabled = false;
+        userSearchDropdown.style.display = "none";
+      });
+      userSearchDropdown.appendChild(option);
+    }
+
+    function removeUserSearchLoadMore() {
+      const b = userSearchDropdown.querySelector("[data-user-search-load-more]");
+      if (b) b.remove();
+    }
+
+    function fetchUserSearchPage(query, page, append) {
+      fetch(`<%= guild_search_users_path(@guild) %>?q=${encodeURIComponent(query)}&page=${page}`)
+        .then(res => res.json())
+        .then(data => {
+          const users = data.users || [];
+          const pag = data.pagination || { page: 1, total_pages: 1, total_count: 0 };
+
+          if (!append) {
+            userSearchDropdown.innerHTML = "";
+            selectedUserId = null;
+            inviteUserBtn.disabled = true;
+          }
+
+          if (users.length === 0 && !append) {
+            userSearchDropdown.innerHTML = '<div class="autocomplete-option text-theme-secondary"><%= j t('guilds.members.no_users_found') %></div>';
+            userSearchDropdown.style.display = "block";
+            return;
+          }
+
+          users.forEach(appendUserSearchOption);
+          removeUserSearchLoadMore();
+
+          if (pag.total_pages > pag.page) {
+            const nextPage = pag.page + 1;
+            const loadBtn = document.createElement("button");
+            loadBtn.type = "button";
+            loadBtn.setAttribute("data-user-search-load-more", "1");
+            loadBtn.className = "autocomplete-option w-full text-left text-sm text-theme-accent font-semibold";
+            loadBtn.textContent = "<%= j t('guilds.members.search_load_more') %>";
+            loadBtn.addEventListener("click", (e) => {
+              e.stopPropagation();
+              loadBtn.remove();
+              fetchUserSearchPage(query, nextPage, true);
+            });
+            userSearchDropdown.appendChild(loadBtn);
+          }
+
+          userSearchDropdown.style.display = "block";
+        })
+        .catch(error => {
+          console.error("Search error:", error);
+          if (!append) {
+            userSearchDropdown.innerHTML = '<div class="autocomplete-option text-theme-secondary"><%= j t('guilds.members.js_error_searching_users') %></div>';
+            userSearchDropdown.style.display = "block";
+          }
+        });
+    }
+
+    userSearchInput.addEventListener("input", () => {
+      const query = userSearchInput.value.trim();
+      clearTimeout(searchTimer);
+
+      if (query.length < 1) {
+        userSearchDropdown.innerHTML = "";
+        userSearchDropdown.style.display = "none";
+        selectedUserId = null;
+        inviteUserBtn.disabled = true;
+        return;
+      }
+
+      searchTimer = setTimeout(() => fetchUserSearchPage(query, 1, false), 200);
+    });
+
+    inviteUserBtn.addEventListener("click", () => {
+      if (!selectedUserId) {
+        window.showToast('warning', "<%= j t('js.guilds.members.select_user') %>");
+        return;
+      }
+
+      // Use fetch API for better error handling
+      const csrfToken = document.querySelector('meta[name="csrf-token"]')?.getAttribute('content') || 
+                       document.querySelector('input[name="authenticity_token"]')?.value;
+      
+      if (!csrfToken) {
+        window.showToast('error', "<%= j t('js.guilds.members.security_token_missing') %>");
+        return;
+      }
+
+      inviteUserBtn.disabled = true;
+      inviteUserBtn.textContent = "<%= j t('guilds.members.js_inviting') %>";
+
+      fetch(`<%= guild_invite_user_path(@guild) %>`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/x-www-form-urlencoded",
+          "X-CSRF-Token": csrfToken,
+          "X-Requested-With": "XMLHttpRequest"
+        },
+        body: new URLSearchParams({
+          user_id: selectedUserId,
+          authenticity_token: csrfToken
+        }),
+        credentials: "same-origin"
+      })
+      .then(response => {
+        if (response.redirected) {
+          window.location.href = response.url;
+        } else {
+          return response.text().then(text => {
+            // Try to parse as JSON if possible
+            try {
+              const data = JSON.parse(text);
+              if (data.error) {
+                window.showToast('error', data.error);
+              } else {
+                window.location.reload();
+              }
+            } catch {
+              // If not JSON, reload the page
+              window.location.reload();
+            }
+          });
+        }
+      })
+      .catch(error => {
+        console.error("Invite error:", error);
+        window.showToast('error', "<%= j t('js.guilds.members.invite_error') %>");
+        inviteUserBtn.disabled = false;
+        inviteUserBtn.textContent = "<%= j t('guilds.members.invite_user') %>";
+      });
+    });
+
+    // Hide dropdown when clicking outside
+    document.addEventListener("click", (e) => {
+      if (!userSearchInput.contains(e.target) && !userSearchDropdown.contains(e.target)) {
+        userSearchDropdown.style.display = "none";
+      }
+    });
+  }
+
+  // Helper function to escape HTML
+  function escapeHtml(text) {
+    const div = document.createElement("div");
+    div.textContent = text;
+    return div.innerHTML;
+  }
+});
+</script>
+
+<style>
+.autocomplete-option {
+  padding: 12px 16px;
+  cursor: pointer;
+  border-bottom: 1px solid #374151;
+}
+.autocomplete-option:last-child {
+  border-bottom: none;
+}
+.autocomplete-option:hover {
+  background: #1f2937;
+}
+</style>

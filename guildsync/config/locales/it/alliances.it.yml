@@ -1,0 +1,399 @@
+it:
+  # ============================================================================
+  # ALLIANCES FEATURE
+  # ============================================================================
+  alliances:
+    created: "Alleanza creata con successo!"
+    updated: "Impostazioni dell’alleanza salvate."
+    disbanded: "L’alleanza è stata sciolta."
+    left: "Hai lasciato l’alleanza."
+    guild_kicked: "La gilda è stata rimossa dall’alleanza."
+
+    errors:
+      join_requires_paid_plan: "Serve un abbonamento o una prova attiva su un piano a pagamento. Il piano gratuito e abbonamenti o prove scaduti non sono idonei."
+      plan_required_for_alliance_hub: "È richiesto un piano a pagamento per aprire l’hub Alleanze, a meno che tu non sia già membro di un’alleanza su GuildSync. Chiedi al tuo GM di sincronizzarti o passa a un piano superiore."
+      not_found: "Alleanza non trovata."
+      not_member: "Non sei membro di questa alleanza."
+      not_leader: "Solo il leader dell’alleanza può farlo."
+      kick_unauthorized: "Solo i proprietari di gilda o i gestori personalizzati dell’alleanza possono rimuovere gilde."
+      no_eligible_guild: "Non puoi creare un’alleanza con le tue attuali iscrizioni di gilda."
+      plan_required: "Il tuo piano attuale non consente di creare alleanze. Passa a un livello superiore."
+      disband_unauthorized: "Non sei autorizzato a sciogliere questa alleanza."
+      leave_unauthorized: "Solo i proprietari di gilda possono lasciare un’alleanza."
+      leader_cannot_leave: "La gilda fondatrice non può lasciare l’alleanza. Scioglila invece."
+      guild_not_found: "Gilda non trovata."
+      cannot_kick_leader_guild: "Non puoi rimuovere la gilda fondatrice dall’alleanza."
+      conflicting_alliance_membership: "Non puoi appartenere a gilde in più di un'alleanza contemporaneamente."
+    index:
+      title: "Alleanza"
+      open_alliance: "Apri alleanza"
+      invite_from: "Invitato da %{name}"
+      accept: "Accetta"
+      decline: "Rifiuta"
+      request_join_hint: "Cerca una gilda in elenco che sia già in un’alleanza, scegli la tua gilda, poi richiedi di unirti a quell’alleanza."
+      search_label: "Cerca gilde"
+      search_placeholder: "Digita il nome di una gilda..."
+      search_select_target: "Gilda di destinazione (deve essere in un’alleanza)"
+      submit_join_request: "Invia richiesta di adesione"
+      searching: "Ricerca..."
+      no_results: "Nessuna gilda trovata."
+      load_more_results: "Carica altri risultati"
+
+    roles:
+      leader_guild: "Gilda fondatrice"
+    new:
+      title: "Crea un’alleanza"
+      subtitle: "Unisci più gilde sotto un unico vessillo."
+
+    edit:
+      title: "Impostazioni alleanza"
+      back: "Torna all’alleanza"
+      danger_zone: "Zona pericolosa"
+      disband: "Sciogli alleanza"
+      disband_confirm: "Vuoi davvero sciogliere questa alleanza? L’azione non può essere annullata."
+
+    form:
+      name: "Nome alleanza"
+      name_placeholder: "Inserisci il nome dell’alleanza..."
+      description: "Descrizione"
+      description_placeholder: "Descrivi la tua alleanza..."
+      logo: "Logo alleanza"
+      choose_logo_button: "Scegli immagine"
+      no_file_chosen: "Nessun file selezionato"
+      logo_hint: "Facoltativo. Consigliato: immagine quadrata, almeno 256×256 px."
+      logo_replace_hint: "Carica un nuovo file per sostituire il logo attuale."
+      creating_for: "Creazione alleanza per:"
+      size_info: "Le alleanze possono includere da 1 a 20 gilde. Inizia con la tua gilda, poi invita altre."
+      create_button: "Crea alleanza"
+      save_button: "Salva modifiche"
+
+    show:
+      guilds: "Gilde membri"
+      guilds_count:
+        one: "1 gilda"
+        other: "%{count} gilde"
+      leader: "Guidata da %{name}"
+      edit: "Modifica"
+      leave: "Lascia alleanza"
+      leave_confirm: "Vuoi davvero lasciare questa alleanza?"
+      invite_guild: "Invita una gilda"
+      kick_guild: "Rimuovi"
+      kick_guild_confirm: "Rimuovere %{name} dall’alleanza?"
+      members_preview: "Membri"
+      view_all_members: "Vedi tutti i membri"
+      more_members:
+        one: "e 1 altro membro..."
+        other: "e altri %{count} membri..."
+
+    nav:
+      members: "Membri"
+      events: "Eventi alleanza"
+      polls: "Sondaggi alleanza"
+      rolls: "Tiri alleanza"
+      chat: "Chat alleanza"
+      activity_feed: "Feed attività"
+      gm_chat: "Chat GM"
+      invites: "Inviti in sospeso"
+      join_requests: "Richieste di adesione"
+      disband_vote: "Voto scioglimento"
+      back_to_alliance: "Torna all’alleanza"
+
+    invites:
+      sent: "Invito inviato a %{guild_name}."
+      accepted: "Ti sei unito a %{alliance_name}!"
+      declined: "Invito rifiutato."
+
+      errors:
+        not_found: "Invito non trovato."
+        guild_not_found: "Gilda non trovata. Cerca per nome e seleziona una gilda pubblicamente in elenco."
+        already_in_alliance: "Quella gilda fa già parte di questa alleanza."
+        already_invited: "Quella gilda ha già un invito in sospeso."
+        pending_join_request: "Quella gilda ha già una richiesta di adesione in sospeso per questa alleanza."
+        max_guilds: "Questa alleanza ha raggiunto il massimo di 20 gilde."
+        invite_unauthorized: "Solo i proprietari di gilda o i gestori personalizzati dell’alleanza possono invitare gilde."
+        accept_unauthorized: "Solo il proprietario della gilda di destinazione può accettare questo invito."
+        decline_unauthorized: "Solo il proprietario della gilda di destinazione può rifiutare questo invito."
+
+      index:
+        title: "Inviti in sospeso"
+        subtitle: "Inviti per %{alliance_name}"
+        invite_guild: "Invita una gilda"
+        search_label: "Cerca gilde in elenco pubblico"
+        search_placeholder: "Digita il nome di una gilda..."
+        search_hint: "La ricerca corrisponde solo al nome della gilda. Compaiono solo le gilde che hanno scelto l’elenco pubblico."
+        search_unauthorized: "Non puoi cercare da questa pagina."
+        load_more_results: "Carica altri risultati"
+        selected_guild: "Invito a"
+        already_in_alliance_suffix: "già in un’alleanza (invito non disponibile)"
+        invite_restricted: "Solo il leader dell’alleanza può inviare inviti."
+        send_invite: "Invia invito"
+        pending: "Inviti in sospeso"
+        no_pending: "Nessun invito in sospeso."
+        invited_by: "Invitato da %{name}"
+
+    events:
+      created: "Evento alleanza creato!"
+      updated: "Evento aggiornato."
+      deleted: "Evento eliminato."
+      rsvp_saved: "La tua conferma di partecipazione è stata salvata."
+      discord_rsvp:
+        errors:
+          link_required: "Collega il tuo account Discord a GuildSync prima di confermare la partecipazione."
+          event_not_found: "Evento alleanza non trovato."
+          invalid_status: "Stato di conferma non valido."
+          not_alliance_member: "Devi essere un membro attivo dell’alleanza per confermare la partecipazione."
+          save_failed: "Impossibile salvare la conferma: %{error}"
+          unexpected: "Si è verificato un errore durante il salvataggio della conferma."
+
+      errors:
+        not_found: "Evento non trovato."
+        manage_unauthorized: "Solo i proprietari di gilda possono gestire gli eventi."
+        invalid_rsvp: "Stato di conferma non valido."
+
+      index:
+        title: "Eventi alleanza"
+        subtitle: "Eventi per %{alliance_name}"
+        create: "Crea evento"
+        upcoming: "Prossimi eventi"
+        past: "Eventi passati"
+        no_events: "Ancora nessun evento. Creane uno per iniziare."
+        attending: "partecipanti"
+        upcoming_label: "In arrivo"
+
+      new:
+        title: "Crea evento alleanza"
+
+      edit:
+        title: "Modifica evento"
+
+      show:
+        back: "Torna agli eventi"
+        minutes: "min"
+        your_rsvp: "La tua conferma"
+        attending: "Partecipo"
+        maybe: "Forse"
+        declined: "Non partecipo"
+        participants: "Partecipanti"
+        no_participants: "Ancora nessuna conferma."
+        delete_confirm: "Eliminare questo evento?"
+        status:
+          attending: "Partecipo"
+          maybe: "Forse"
+          declined: "Non partecipo"
+
+      form:
+        title: "Titolo evento"
+        description: "Descrizione"
+        scheduled_at: "Data e ora"
+        duration: "Durata (minuti)"
+        duration_placeholder: "es. 60"
+        location: "Luogo / server"
+        location_placeholder: "es. Stage Discord, nome server di gioco..."
+        create_button: "Crea evento"
+        save_button: "Salva evento"
+        event_type: "Tipo di evento"
+        event_type_general: "Generale"
+        max_participants: "Partecipanti max (facoltativo)"
+        squad_leader: "Capo squadra (facoltativo)"
+        squad_leader_placeholder: "Facoltativo — se vuoto sarai tu"
+        role_categories_section: "Ruoli Discord per iscrizione"
+        role_categories_hint: "Quali ruoli compaiono come pulsanti sull’annuncio Discord (stesso concetto degli eventi Discord di gilda)."
+    polls:
+      created: "Sondaggio alleanza creato!"
+      deleted: "Sondaggio eliminato."
+
+      errors:
+        not_found: "Sondaggio non trovato."
+        manage_unauthorized: "Solo i proprietari di gilda o i gestori personalizzati dell’alleanza possono creare sondaggi."
+        poll_closed: "Questo sondaggio è chiuso."
+        invalid_choice: "Scelta di voto non valida."
+
+      index:
+        title: "Sondaggi alleanza"
+        subtitle: "Sondaggi per %{alliance_name}"
+        create: "Crea sondaggio"
+        no_polls: "Nessun sondaggio delle alleanze per ora."
+        created_by: "Creato da %{name}"
+        deadline: "Scadenza:"
+        open: "Aperto"
+        closed: "Chiuso"
+        anonymous: "Anonimo"
+        maybe: "Forse"
+        voters_heading: "Votanti"
+        view_vote: "Vota"
+        view_results: "Risultati"
+        delete_confirm: "Eliminare questo sondaggio?"
+
+        "yes": "Sì"
+        "no": "No"
+      new:
+        title: "Crea sondaggio alleanza"
+
+      show:
+        back: "Torna ai sondaggi"
+        deadline: "Scadenza: %{date}"
+        anonymous: "Anonimo"
+        open: "Aperto"
+        closed: "Chiuso"
+        your_vote: "Esprimi il tuo voto"
+        maybe: "Forse"
+        voters_heading: "Votanti"
+
+        "yes": "Sì"
+        "no": "No"
+      form:
+        title: "Domanda del sondaggio"
+        description: "Descrizione"
+        deadline: "Scadenza"
+        anonymous: "Voto anonimo (nascondi i singoli voti)"
+        create_button: "Crea sondaggio"
+
+    loot_rolls:
+      created: "Tiro bottino alleanza creato!"
+      deleted: "Tiro bottino eliminato."
+      closed: "Tiro bottino chiuso e vincitore determinato."
+      entered: "Hai tirato %{roll}!"
+
+      errors:
+        not_found: "Tiro bottino non trovato."
+        manage_unauthorized: "Solo i proprietari di gilda o i gestori personalizzati dell’alleanza possono gestire i tiri bottino."
+        already_closed: "Questo tiro è già chiuso."
+        not_open: "Questo tiro bottino non è attualmente aperto."
+        already_entered: "Hai già partecipato a questo tiro."
+
+      index:
+        title: "Tiri bottino alleanza"
+        subtitle: "Tiri per %{alliance_name}"
+        create: "Crea tiro bottino"
+        no_rolls: "Ancora nessun tiro bottino."
+        range: "Intervallo: %{min}–%{max}"
+        deadline: "Scadenza:"
+        winner: "🏆 Vincitore: %{name} (tiro %{roll})"
+        open: "Aperto"
+        closed: "Chiuso"
+        view: "Vedi tiro"
+
+      new:
+        title: "Crea tiro bottino alleanza"
+
+      show:
+        back: "Torna ai tiri"
+        range: "Intervallo tiro: %{min}–%{max}"
+        deadline: "Scadenza: %{date}"
+        open: "Aperto"
+        closed: "Chiuso"
+        winner: "🏆 Vincitore: %{name} (tiro %{roll})"
+        enter: "Partecipa al tiro"
+        your_roll: "Il tuo tiro: %{roll}"
+        close: "Chiudi e scegli vincitore"
+        close_confirm: "Chiudere questo tiro e determinare il vincitore?"
+        entries: "Partecipazioni"
+        no_entries: "Ancora nessuna partecipazione."
+        anonymous_entry: "Anonimo"
+        entries_line:
+          zero: "%{count} partecipazioni"
+          one: "%{count} partecipazione"
+          other: "%{count} partecipazioni"
+
+      form:
+        title: "Titolo tiro bottino"
+        description: "Descrizione"
+        min_roll: "Tiro minimo"
+        max_roll: "Tiro massimo"
+        deadline: "Scadenza (facoltativa)"
+        deadline_hint: "Lascia vuoto per nessuna scadenza."
+        anonymous: "Tiri anonimi"
+        create_button: "Crea tiro"
+
+    disband_votes:
+      vote_cast: "Il tuo voto per lo scioglimento è stato registrato."
+      majority_disbanded: "La maggioranza dei GM ha votato per sciogliere. L’alleanza è stata sciolta."
+
+      errors:
+        not_gm: "Solo i proprietari di gilda possono votare per sciogliere."
+
+      index:
+        title: "Voto scioglimento"
+        vote_tally: "Risultato attuale"
+        votes_to_disband: "%{count} di %{total} GM hanno votato per sciogliere"
+        threshold_note: "Più del 50% dei GM deve votare per lo scioglimento affinché passi."
+        your_vote: "Il tuo voto"
+        vote_disband: "Vota per sciogliere"
+        vote_disband_confirm: "Vuoi davvero votare per sciogliere questa alleanza?"
+        vote_keep: "Vota per mantenere l’alleanza"
+        current_vote: "Il tuo voto attuale: %{vote}"
+        all_votes: "Tutti i voti GM"
+        no_votes_yet: "Nessun voto espresso ancora."
+        disband: "Sciogli"
+        keep: "Mantieni"
+
+    messages:
+      errors:
+        gm_only: "Solo i proprietari di gilda possono accedere alla chat GM."
+        blank: "Il messaggio non può essere vuoto."
+
+      index:
+        gm_chat: "Chat GM"
+        alliance_chat: "Chat alleanza"
+        switch_to_gm: "Passa alla chat GM"
+        switch_to_all: "Passa alla chat alleanza"
+        gm_only_notice: "Questo canale è visibile solo ai proprietari di gilda in questa alleanza."
+        no_messages: "Ancora nessun messaggio. Saluta!"
+        you: "Tu"
+        send: "Invia"
+        placeholder: "Scrivi un messaggio..."
+        message_time_format: "%d/%m/%Y, %H:%M"
+
+    join_requests:
+      created: "Richiesta di adesione inviata a **%{alliance_name}**."
+      accepted: "**%{guild_name}** si è unita all’alleanza."
+      declined: "Richiesta di adesione rifiutata."
+
+      index:
+        title: "Richieste di adesione"
+        subtitle: "Gilde che chiedono di unirsi a **%{alliance_name}**."
+        back: "Torna all’alleanza"
+        none: "Nessuna richiesta di adesione in sospeso."
+
+      errors:
+        not_found: "Richiesta di adesione non trovata."
+        guild_not_found: "Gilda non trovata."
+        unauthorized: "Non ti è consentito richiedere per conto di quella gilda."
+        already_in_alliance: "Quella gilda è già in un’alleanza."
+        alliance_inactive: "Quell’alleanza non è più attiva."
+        requesting_already_in_alliance: "Quella gilda è entrata in un’altra alleanza prima che questa richiesta potesse essere accettata."
+        max_guilds: "Questa alleanza non può accettare altre gilde al momento."
+        pending_invite: "C’è già un invito in sospeso per questa alleanza e gilda."
+        create_failed: "Impossibile creare la richiesta di adesione."
+        accept_failed: "Impossibile accettare la richiesta di adesione."
+        manage_unauthorized: "Solo leader di alleanza, proprietari di gilda o ufficiali dell’alleanza possono gestire le richieste di adesione."
+
+    outgoing_join_requests:
+      new:
+        title: "Richiedi di entrare in un’alleanza"
+        subtitle: "La tua gilda: %{guild_name}. Cerca una gilda in elenco che sia già in un’alleanza."
+        back: "Torna alla gilda"
+      status:
+        title: "Stato richiesta di adesione"
+        subtitle: "Richieste in uscita da **%{guild_name}**."
+        none: "Nessuna richiesta di adesione in sospeso da questa gilda."
+        pending: "In sospeso"
+      search_unauthorized: "Non puoi cercare da questa pagina."
+      not_in_alliance_suffix: "non in un’alleanza"
+
+    received_invites:
+      pending:
+        title: "Inviti all’alleanza in sospeso"
+        subtitle: "Inviti per **%{guild_name}**."
+        none: "Nessun invito all’alleanza in sospeso."
+
+    discord:
+      invite_embed:
+        title: "Invito alleanza: %{alliance_name}"
+        body: "Invitato da %{inviter}. Apri GuildSync per accettare o rifiutare."
+      join_request_embed:
+        title: "Richiesta di adesione: %{guild_name}"
+        body: "%{guild_name} ha chiesto di unirsi a **%{alliance_name}**. Controlla su GuildSync."
+      member_joined_embed:
+        title: "%{guild_name} si è unita all’alleanza"
+        body: "**%{guild_name}** ora fa parte di **%{alliance_name}**."

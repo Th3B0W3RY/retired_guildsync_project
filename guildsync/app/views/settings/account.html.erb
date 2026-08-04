@@ -1,0 +1,322 @@
+<div class="space-y-6">
+  <div>
+    <h1 class="text-4xl font-bold text-theme-primary mb-2"><%= t('settings.account.title') %></h1>
+    <p class="text-theme-secondary text-lg"><%= t('settings.account.subtitle') %></p>
+  </div>
+
+  <div class="space-y-6">
+    <!-- Password Section -->
+    <div class="bg-theme-secondary rounded-lg border border-theme-primary p-6">
+      <h2 class="text-2xl font-semibold text-theme-primary mb-4"><%= t('settings.account.password.title') %></h2>
+      <p class="text-theme-secondary mb-4"><%= t('settings.account.password.description') %></p>
+      <%= link_to edit_password_path, 
+          class: "inline-block px-4 py-2 bg-theme-accent text-white rounded-lg hover:bg-theme-accent-hover transition-colors" do %>
+        <%= t('settings.account.password.button') %>
+      <% end %>
+    </div>
+
+    <!-- Discord Connection Section -->
+    <div class="bg-theme-secondary rounded-lg border border-theme-primary p-6">
+      <h2 class="text-2xl font-semibold text-theme-primary mb-4"><%= t('settings.account.discord.title') %></h2>
+      <p class="text-theme-secondary mb-4">
+        <% if current_user.discord_connected? %>
+          <span class="flex items-center gap-2">
+            <svg class="w-5 h-5 text-green-500" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515a.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0a12.64 12.64 0 0 0-.617-1.25a.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057a19.9 19.9 0 0 0 5.993 3.03a.078.078 0 0 0 .084-.028a14.09 14.09 0 0 0 1.226-1.994a.076.076 0 0 0-.041-.106a13.107 13.107 0 0 1-1.872-.892a.077.077 0 0 1-.008-.128a10.2 10.2 0 0 0 .372-.292a.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127a12.299 12.299 0 0 1-1.873.892a.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028a19.839 19.839 0 0 0 6.002-3.03a.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419c0-1.333.956-2.419 2.157-2.419c1.21 0 2.176 1.096 2.157 2.42c0 1.333-.956 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419c0-1.333.955-2.419 2.157-2.419c1.21 0 2.176 1.096 2.157 2.42c0 1.333-.946 2.418-2.157 2.418z"/>
+            </svg>
+            <%= t('settings.account.discord.connected_as', username: clean_discord_username(current_user.discord_username)) %>
+          </span>
+        <% else %>
+          <%= t('settings.account.discord.not_connected') %>
+        <% end %>
+      </p>
+      <div class="flex gap-3">
+        <% if current_user.discord_connected? %>
+          <%= button_to discord_disconnect_path, method: :post,
+              class: "px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 transition-colors flex items-center gap-2",
+              data: { confirm: t('settings.account.discord.disconnect_confirm') },
+              disabled: current_user.discord?,
+              title: current_user.discord? ? t('settings.account.discord.switch_to_mfa_first') : t('settings.account.discord.disconnect') do %>
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path>
+            </svg>
+            <%= t('settings.account.discord.disconnect') %>
+          <% end %>
+          <% if current_user.discord? %>
+            <p class="text-xs text-yellow-500 mt-2">⚠️ <%= t('settings.account.discord.switch_to_mfa_first') %></p>
+          <% end %>
+        <% else %>
+          <%= link_to discord_login_path, 
+              class: "inline-block px-4 py-2 bg-[#5865F2] text-white rounded-lg hover:bg-[#4752C4] transition-colors flex items-center gap-2" do %>
+            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515a.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0a12.64 12.64 0 0 0-.617-1.25a.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057a19.9 19.9 0 0 0 5.993 3.03a.078.078 0 0 0 .084-.028a14.09 14.09 0 0 0 1.226-1.994a.076.076 0 0 0-.041-.106a13.107 13.107 0 0 1-1.872-.892a.077.077 0 0 1-.008-.128a10.2 10.2 0 0 0 .372-.292a.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127a12.299 12.299 0 0 1-1.873.892a.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028a19.839 19.839 0 0 0 6.002-3.03a.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419c0-1.333.956-2.419 2.157-2.419c1.21 0 2.176 1.096 2.157 2.42c0 1.333-.956 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419c0-1.333.955-2.419 2.157-2.419c1.21 0 2.176 1.096 2.157 2.42c0 1.333-.946 2.418-2.157 2.418z"/>
+            </svg>
+            <%= t('settings.account.discord.connect') %>
+          <% end %>
+        <% end %>
+      </div>
+    </div>
+
+    <!-- Backup Codes Section -->
+    <div class="bg-theme-secondary rounded-lg border border-theme-primary p-6">
+      <h2 class="text-2xl font-semibold text-theme-primary mb-4"><%= t('settings.account.backup_codes.title', default: 'Backup Code') %></h2>
+      <p class="text-theme-secondary mb-2"><%= t('settings.account.backup_codes.description', default: 'Your backup code lets you reset your password and recover your account if you lose access to MFA.') %></p>
+      <p class="text-sm text-amber-500 mb-4">⚠️ <%= t('settings.account.backup_codes.warning', default: 'Store this code securely — it can bypass your password and MFA!') %></p>
+
+      <% active_codes = @backup_codes.select { |c| c.active && !c.used } %>
+      <% if active_codes.any? %>
+        <div class="mb-4">
+          <h3 class="font-medium text-theme-primary mb-2"><%= t('settings.account.backup_codes.current', default: 'Your current backup code') %></h3>
+          <div class="max-w-xs px-3 py-2 bg-theme-primary rounded border border-theme-secondary flex items-center justify-between text-sm">
+            <span class="text-theme-secondary tracking-widest">••••••••</span>
+            <span class="font-mono font-semibold text-theme-primary"><%= active_codes.first.last_four %></span>
+          </div>
+        </div>
+      <% else %>
+        <p class="text-theme-secondary mb-4"><%= t('settings.account.backup_codes.no_codes', default: "You don't have an active backup code.") %></p>
+      <% end %>
+
+      <% cooldown_active = !current_user.backup_code_regeneration_available? %>
+      <% verified_email = current_user.verified_real_email? %>
+      <% if cooldown_active %>
+        <p class="text-sm text-theme-secondary mb-4">
+          <%= t('settings.account.backup_codes.cooldown_active', date: l(current_user.backup_code_regeneration_available_at.to_date, format: :long), default: 'You can regenerate your backup code again on %{date}.') %>
+        </p>
+      <% elsif !verified_email %>
+        <p class="text-sm text-amber-500 mb-4"><%= t('settings.account.backup_codes.verify_email_first', default: 'Verify your email address before regenerating your backup code.') %></p>
+      <% else %>
+        <p class="text-sm text-theme-secondary mb-4"><%= t('settings.account.backup_codes.regenerate_description', default: 'You can regenerate your backup code once every 3 months. The new code will be emailed to your verified email address.') %></p>
+      <% end %>
+
+      <%= button_to regenerate_backup_codes_path,
+          method: :post,
+          class: "inline-flex items-center gap-2 px-4 py-2 rounded-lg transition-colors #{cooldown_active || !verified_email ? 'bg-slate-600 text-slate-300 cursor-not-allowed' : 'bg-amber-600 text-white hover:bg-amber-700'}",
+          form: { data: { turbo: false } },
+          disabled: cooldown_active || !verified_email,
+          data: { turbo_confirm: t('settings.account.backup_codes.regenerate_confirm', default: 'Regenerating your backup code will invalidate your existing code and email a new one. Continue?') } do %>
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 7a2 2 0 012 2m4 0a6 6 0 01-7.743 5.743L11 17H9v2H7v2H4a1 1 0 01-1-1v-2.586a1 1 0 01.293-.707l5.964-5.964A6 6 0 1121 9z"/>
+        </svg>
+        <%= t('settings.account.backup_codes.regenerate_button', default: 'Regenerate Backup Code') %>
+      <% end %>
+
+      <div class="mt-6 p-4 bg-theme-primary rounded-lg border border-amber-500/30 border-l-4 border-l-amber-500">
+        <h4 class="font-medium text-theme-primary mb-2"><%= t('settings.account.backup_codes.how_it_works', default: 'How your backup code works') %></h4>
+        <ul class="list-disc list-inside space-y-1 text-sm text-theme-secondary">
+          <li><%= t('settings.account.backup_codes.bullet_length', default: 'The code is 24 characters long (letters and numbers)') %></li>
+          <li><%= t('settings.account.backup_codes.bullet_single_use', default: "The code is single-use — after using it, it's invalid") %></li>
+          <li><%= t('settings.account.backup_codes.bullet_use_case', default: 'Use your backup code if you forget your password OR lose MFA access') %></li>
+          <li><%= t('settings.account.backup_codes.bullet_store_offline', default: 'Keep the code offline (print or password manager) — we never show it again!') %></li>
+          <li><%= t('settings.account.backup_codes.bullet_regenerate', default: 'Regenerating invalidates the old code and emails you a new one') %></li>
+        </ul>
+      </div>
+    </div>
+
+    <% if @account_deletion_feature %>
+      <div
+        class="bg-theme-secondary rounded-lg border border-red-900/40 p-6"
+        data-controller="account-deletion"
+      >
+        <h2 class="text-2xl font-semibold text-red-500 mb-4"><%= t("settings.account.delete_account.title") %></h2>
+        <p class="text-theme-secondary mb-2"><%= t("settings.account.delete_account.intro") %></p>
+        <p class="text-sm text-theme-secondary mb-4">
+          <%= link_to t("settings.account.delete_account.privacy_link"), privacy_policy_path, class: "text-theme-accent hover:underline" %>
+          ·
+          <%= link_to t("settings.account.delete_account.support_link"), contact_support_path, class: "text-theme-accent hover:underline" %>
+        </p>
+
+        <% unless @account_deletion_eligibility.allowed? %>
+          <div class="mb-4 p-3 rounded border border-amber-500/40 bg-amber-500/10 text-sm text-amber-200" role="alert">
+            <%= t("settings.account.delete_account.blocked.#{@account_deletion_eligibility.reason}", default: t("settings.account.delete_account.blocked.generic")) %>
+          </div>
+        <% end %>
+
+        <div class="space-y-4" id="account-deletion-forms">
+          <%= form_with url: account_deletion_send_code_path, method: :post, local: true, html: { class: "space-y-4", data: { turbo: false } } do %>
+            <%= button_tag t("settings.account.delete_account.primary_cta"),
+                  type: :submit,
+                  class: "px-4 py-2 bg-red-700 text-white rounded-lg hover:bg-red-800 disabled:opacity-50 disabled:cursor-not-allowed transition-colors",
+                  disabled: !@account_deletion_eligibility.allowed? %>
+          <% end %>
+
+          <% if @account_deletion_request&.sent_at.present? %>
+            <p class="text-xs text-theme-secondary" id="account_deletion_resend_hint">
+              <% unless @account_deletion_request.resend_available? %>
+                <%= t("settings.account.delete_account.resend_wait", seconds: @account_deletion_request.resend_available_in) %>
+              <% end %>
+            </p>
+          <% end %>
+
+          <%= form_with url: account_deletion_confirm_path, method: :post, local: true, html: { class: "space-y-4", data: { turbo: false } } do %>
+            <div>
+              <label for="account_deletion_code" class="block text-sm font-medium text-theme-secondary mb-1">
+                <%= t("settings.account.delete_account.code_label") %>
+              </label>
+              <input
+                type="text"
+                name="code"
+                id="account_deletion_code"
+                autocomplete="one-time-code"
+                aria-describedby="account_deletion_code_hint"
+                class="w-full max-w-xs px-3 py-2 rounded-lg bg-theme-primary border border-theme-primary text-theme-primary font-mono uppercase"
+                data-account-deletion-target="codeInput"
+                <%= @account_deletion_eligibility.allowed? ? "" : "disabled" %>
+              />
+              <p id="account_deletion_code_hint" class="text-xs text-theme-secondary mt-1">
+                <%= t("settings.account.delete_account.code_hint") %>
+              </p>
+            </div>
+            <button
+              type="button"
+              class="px-4 py-2 bg-red-700 text-white rounded-lg hover:bg-red-800 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+              data-account-deletion-target="continueButton"
+              data-action="click->account-deletion#openModal"
+              disabled
+            >
+              <%= t("settings.account.delete_account.continue_button") %>
+            </button>
+
+            <div
+              class="fixed inset-0 z-50 hidden items-center justify-center bg-black/60 p-4"
+              data-account-deletion-target="dialog"
+              role="dialog"
+              aria-modal="true"
+              aria-labelledby="account-deletion-modal-title"
+              data-action="click->account-deletion#backdropClose"
+            >
+              <div class="bg-theme-secondary rounded-lg border border-red-900/40 p-6 max-w-md w-full shadow-2xl">
+                <h2 id="account-deletion-modal-title" class="text-xl font-semibold text-red-500 mb-3">
+                  <%= t("settings.account.delete_account.modal_title") %>
+                </h2>
+                <p class="text-theme-secondary mb-6"><%= t("settings.account.delete_account.modal_body") %></p>
+                <div class="flex flex-wrap gap-3 justify-end">
+                  <button
+                    type="button"
+                    class="px-4 py-2 bg-theme-secondary text-theme-primary border border-theme-secondary rounded-lg hover:bg-theme-primary transition-colors"
+                    data-action="click->account-deletion#closeModal"
+                  >
+                    <%= t("settings.account.delete_account.modal_cancel") %>
+                  </button>
+                  <button
+                    type="submit"
+                    class="px-4 py-2 bg-red-900 text-white rounded-lg hover:bg-red-950 transition-colors font-semibold"
+                  >
+                    <%= t("settings.account.delete_account.modal_confirm") %>
+                  </button>
+                </div>
+              </div>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    <% end %>
+
+    <!-- Authentication Method Section -->
+    <% mfa_selected = current_user.mfa? %>
+    <% discord_selected = current_user.discord? %>
+    <div class="bg-theme-secondary rounded-lg border border-theme-primary p-6">
+      <h2 class="text-2xl font-semibold text-theme-primary mb-4"><%= t('settings.account.auth_method.title') %></h2>
+      <p class="text-theme-secondary mb-4">
+        <%= t('settings.account.auth_method.description') %>
+      </p>
+      <div class="space-y-3">
+        <% if current_user.google? %>
+          <div class="flex items-center justify-between p-4 bg-theme-primary rounded-lg border border-theme-secondary">
+            <div>
+              <h3 class="font-semibold text-theme-primary"><%= t('settings.account.auth_method.google.title') %></h3>
+              <p class="text-sm text-theme-secondary"><%= t('settings.account.auth_method.google.description') %></p>
+            </div>
+            <span class="px-4 py-2 rounded-lg bg-green-600 text-white cursor-default font-medium">
+              <%= t('settings.account.auth_method.google.active') %>
+            </span>
+          </div>
+        <% end %>
+        <% if current_user.microsoft? %>
+          <div class="flex items-center justify-between p-4 bg-theme-primary rounded-lg border border-theme-secondary">
+            <div>
+              <h3 class="font-semibold text-theme-primary"><%= t('settings.account.auth_method.microsoft.title') %></h3>
+              <p class="text-sm text-theme-secondary"><%= t('settings.account.auth_method.microsoft.description') %></p>
+            </div>
+            <span class="px-4 py-2 rounded-lg bg-green-600 text-white cursor-default font-medium">
+              <%= t('settings.account.auth_method.microsoft.active') %>
+            </span>
+          </div>
+        <% end %>
+        <div class="flex items-center justify-between p-4 bg-theme-primary rounded-lg border border-theme-secondary">
+          <div>
+            <h3 class="font-semibold text-theme-primary"><%= t('settings.account.auth_method.mfa.title') %></h3>
+            <p class="text-sm text-theme-secondary"><%= t('settings.account.auth_method.mfa.description') %></p>
+          </div>
+          <%= form_with url: discord_toggle_auth_method_path, method: :patch, local: true, class: "inline", html: { data: { turbo: false } } do |f| %>
+            <%= f.hidden_field :auth_method, value: "mfa" %>
+            <%= f.submit (mfa_selected ? t('settings.account.auth_method.mfa.button_active') : t('settings.account.auth_method.mfa.button')),
+                disabled: mfa_selected,
+                class: "px-4 py-2 rounded-lg transition-colors #{mfa_selected ? 'bg-green-600 text-white cursor-default' : 'bg-theme-secondary text-theme-primary hover:bg-theme-accent hover:text-white cursor-pointer'}" %>
+          <% end %>
+        </div>
+        <div class="flex items-center justify-between p-4 bg-theme-primary rounded-lg border border-theme-secondary">
+          <div>
+            <h3 class="font-semibold text-theme-primary"><%= t('settings.account.auth_method.discord.title') %></h3>
+            <p class="text-sm text-theme-secondary"><%= t('settings.account.auth_method.discord.description') %></p>
+            <% unless current_user.discord_connected? %>
+              <p class="text-xs text-yellow-500 mt-1">⚠️ <%= t('settings.account.auth_method.discord.connect_first') %></p>
+            <% end %>
+          </div>
+          <%= form_with url: discord_toggle_auth_method_path, method: :patch, local: true, class: "inline", html: { data: { turbo: false } } do |f| %>
+            <%= f.hidden_field :auth_method, value: "discord" %>
+            <%= f.submit (discord_selected ? t('settings.account.auth_method.discord.button_active') : t('settings.account.auth_method.discord.button')),
+                disabled: discord_selected,
+                class: "px-4 py-2 rounded-lg transition-colors #{discord_selected ? 'bg-green-600 text-white cursor-default' : 'bg-theme-secondary text-theme-primary hover:bg-theme-accent hover:text-white cursor-pointer'}" %>
+          <% end %>
+        </div>
+      </div>
+      <% if current_user.oauth_primary_auth? && !current_user.mfa_enabled? %>
+        <p class="text-sm text-yellow-500 mt-3">⚠️ <%= t('settings.account.auth_method.mfa_backup_warning') %></p>
+      <% end %>
+      <% if current_user.mfa? && !current_user.discord_connected? %>
+        <p class="text-sm text-yellow-500 mt-3">⚠️ <%= t('settings.account.auth_method.discord_connect_warning') %></p>
+      <% end %>
+    </div>
+
+    <!-- Language Preference Section -->
+    <div class="bg-theme-secondary rounded-lg border border-theme-primary p-6">
+      <h2 class="text-2xl font-semibold text-theme-primary mb-4"><%= t('settings.account.language.title') %></h2>
+      <p class="text-theme-secondary mb-4"><%= t('settings.account.language.description') %></p>
+
+      <%= form_with(url: update_locale_settings_path, method: :patch, local: true) do |f| %>
+        <div class="mb-4">
+          <label for="preferred_locale" class="block text-sm font-medium text-theme-secondary mb-2"><%= t('settings.account.language.label') %></label>
+          <select name="preferred_locale" id="preferred_locale" class="gs-native-select gs-native-select--field w-full max-w-xs px-4 bg-theme-primary border border-theme-primary rounded-lg text-theme-primary focus:outline-none focus:ring-2 focus:ring-theme-accent focus:border-transparent">
+            <option value="" <%= 'selected' if current_user.preferred_locale.nil? %>>
+              <%= t('settings.account.language.auto_detect') %>
+            </option>
+            <% I18n.available_locales.each do |loc| %>
+              <option value="<%= loc %>" <%= 'selected' if current_user.preferred_locale == loc.to_s %>>
+                <%= t("language_names.#{loc}") %>
+              </option>
+            <% end %>
+          </select>
+        </div>
+        <button type="submit" class="px-4 py-2 bg-theme-accent text-white rounded-lg hover:bg-theme-accent-hover transition-colors">
+          <%= t('settings.account.language.save') %>
+        </button>
+      <% end %>
+    </div>
+
+    <!-- MFA Section -->
+    <div class="bg-theme-secondary rounded-lg border border-theme-primary p-6">
+      <h2 class="text-2xl font-semibold text-theme-primary mb-4"><%= t('settings.account.mfa.title') %></h2>
+      <p class="text-theme-secondary mb-4">
+        <% if current_user.mfa_enabled? %>
+          <%= t('settings.account.mfa.enabled') %>
+        <% else %>
+          <%= t('settings.account.mfa.not_enabled') %>
+        <% end %>
+      </p>
+      <%= link_to mfa_setup_path, 
+          class: "inline-block px-4 py-2 bg-theme-accent text-white rounded-lg hover:bg-theme-accent-hover transition-colors" do %>
+        <%= current_user.mfa_enabled? ? t('settings.account.mfa.manage') : t('settings.account.mfa.setup') %>
+      <% end %>
+    </div>
+  </div>
+</div>

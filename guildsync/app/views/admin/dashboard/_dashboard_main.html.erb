@@ -1,0 +1,130 @@
+<% glass = "rounded-xl border border-white/10 bg-[rgba(15,23,43,0.5)] p-6 shadow-lg" %>
+<% stat_card = "#{glass} flex min-h-[5.5rem] flex-col" %>
+<% btn_pri = "inline-flex items-center justify-center rounded-lg bg-theme-brand-gradient px-4 py-2 text-sm font-semibold text-white transition-opacity hover:opacity-95" %>
+
+<div class="space-y-8">
+  <div class="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+    <div class="<%= stat_card %>">
+      <h3 class="mb-2 min-h-[2.75rem] line-clamp-2 text-lg font-semibold text-[#90A1B9]"><%= t('admin.dashboard.stats.total_users') %></h3>
+      <p class="mt-auto text-3xl font-bold tabular-nums text-white"><%= @stats[:total_users] %></p>
+    </div>
+
+    <div class="<%= stat_card %>">
+      <h3 class="mb-2 min-h-[2.75rem] line-clamp-2 text-lg font-semibold text-[#90A1B9]"><%= t('admin.dashboard.stats.total_guilds') %></h3>
+      <p class="mt-auto text-3xl font-bold tabular-nums text-white"><%= @stats[:total_guilds] %></p>
+    </div>
+
+    <div class="<%= stat_card %>">
+      <h3 class="mb-2 min-h-[2.75rem] line-clamp-2 text-lg font-semibold text-[#90A1B9]"><%= t('admin.dashboard.stats.total_events') %></h3>
+      <p class="mt-auto text-3xl font-bold tabular-nums text-white"><%= @stats[:total_events] %></p>
+    </div>
+
+    <div class="<%= stat_card %>">
+      <h3 class="mb-2 min-h-[2.75rem] line-clamp-2 text-lg font-semibold text-[#90A1B9]"><%= t('admin.dashboard.stats.total_games') %></h3>
+      <p class="mt-auto text-3xl font-bold tabular-nums text-white"><%= @stats[:total_games] %></p>
+    </div>
+
+    <div class="<%= stat_card %>">
+      <h3 class="mb-2 min-h-[2.75rem] line-clamp-2 text-lg font-semibold text-[#90A1B9]"><%= t('admin.dashboard.stats.total_alliances') %></h3>
+      <p class="mt-auto text-3xl font-bold tabular-nums text-white"><%= @stats[:total_alliances] %></p>
+    </div>
+
+    <div class="<%= stat_card %>">
+      <h3 class="mb-2 min-h-[2.75rem] line-clamp-2 text-lg font-semibold text-[#90A1B9]"><%= t('admin.dashboard.stats.paying_subscribers') %></h3>
+      <p class="mt-auto text-3xl font-bold tabular-nums text-white"><%= @stats[:paying_subscribers_count] %></p>
+      <p class="mt-2 text-xs text-[#90A1B9]"><%= t('admin.dashboard.stats.paying_subscribers_hint') %></p>
+    </div>
+
+    <div class="<%= stat_card %>">
+      <h3 class="mb-2 min-h-[2.75rem] line-clamp-2 text-lg font-semibold text-[#90A1B9]"><%= t('admin.dashboard.stats.trials_and_free') %></h3>
+      <p class="mt-auto text-3xl font-bold tabular-nums text-white"><%= @stats[:trials_and_free_count] %></p>
+      <p class="mt-2 text-xs text-[#90A1B9]"><%= t('admin.dashboard.stats.trials_and_free_hint') %></p>
+    </div>
+  </div>
+
+  <% if @stats[:pending_games] > 0 %>
+    <div class="rounded-xl border border-amber-500/40 bg-amber-950/30 p-6 shadow-lg">
+      <div class="flex items-center justify-between">
+        <div>
+          <h2 class="mb-2 text-xl font-semibold text-amber-200">⚠️ <%= t('admin.dashboard.pending_games.title') %></h2>
+          <p class="text-[#90A1B9]"><%= t('admin.dashboard.pending_games.description', count: @stats[:pending_games]) %></p>
+        </div>
+        <%= link_to t('admin.dashboard.pending_games.review_now'), pending_games_admin_games_path, class: "shrink-0 rounded-lg bg-gradient-to-r from-amber-500 to-orange-600 px-6 py-3 text-center text-base font-semibold text-white transition-opacity hover:opacity-95", data: { turbo_frame: "_top" } %>
+      </div>
+    </div>
+  <% end %>
+
+  <div class="<%= glass %>">
+    <h2 class="mb-4 text-xl font-semibold text-white"><%= t('admin.dashboard.quick_actions.title') %></h2>
+    <div class="flex flex-wrap gap-3">
+      <%= link_to t('admin.dashboard.quick_actions.feature_abusers'), admin_feature_abusers_path, class: btn_pri, data: { turbo_frame: "_top" } %>
+      <%= link_to t('admin.dashboard.quick_actions.manage_games'), games_path, class: btn_pri, data: { turbo_frame: "_top" } %>
+      <%= link_to t('admin.dashboard.quick_actions.cached_games'), admin_games_path, class: btn_pri, data: { turbo_frame: "_top" } %>
+      <%= link_to t('admin.dashboard.quick_actions.review_pending'), pending_games_admin_games_path, class: btn_pri, data: { turbo_frame: "_top" } %>
+      <%= link_to t('admin.dashboard.quick_actions.search_users'), admin_users_path, class: btn_pri, data: { turbo_frame: "_top" } %>
+      <%= link_to t('admin.dashboard.quick_actions.soft_deleted_records'), admin_soft_deleted_records_path, class: btn_pri, data: { turbo_frame: "_top" } %>
+      <%= link_to t('admin.dashboard.quick_actions.paying_users'), paying_users_admin_subscriptions_path, class: btn_pri, data: { turbo_frame: "_top" } %>
+      <%= link_to t('admin.dashboard.quick_actions.trial_users'), trial_users_admin_subscriptions_path, class: btn_pri, data: { turbo_frame: "_top" } %>
+      <%= link_to t('admin.dashboard.quick_actions.beta_features'), admin_beta_features_path, class: btn_pri, data: { turbo_frame: "_top" } %>
+      <%= link_to t('admin.dashboard.quick_actions.database_queries'), admin_queries_path, class: btn_pri, data: { turbo_frame: "_top" } %>
+      <%= link_to t('admin.dashboard.quick_actions.database_backups'), admin_database_backups_path, class: btn_pri, data: { turbo_frame: "_top" } %>
+      <%= link_to t('admin.dashboard.quick_actions.sidekiq'), "/sidekiq", target: "_blank", rel: "noopener", class: btn_pri, data: { turbo_frame: "_top" } %>
+      <%= link_to t('roadmap.admin.panel_title'), admin_feature_requests_path, class: btn_pri, data: { turbo_frame: "_top" } %>
+      <%= link_to t('admin.dashboard.quick_actions.error_notification_settings'), admin_error_notification_settings_path, class: btn_pri, data: { turbo_frame: "_top" } %>
+      <%= link_to t('admin.dashboard.quick_actions.error_batch_reports'), admin_error_batch_reports_path, class: btn_pri, data: { turbo_frame: "_top" } %>
+      <%= link_to t('admin.dashboard.quick_actions.flash_messages'), admin_flash_settings_path, class: btn_pri, data: { turbo_frame: "_top" } %>
+      <%= link_to t('admin.dashboard.quick_actions.ui_design_system'), admin_ui_design_system_path, class: btn_pri, data: { turbo_frame: "_top" } %>
+      <%= link_to t('admin.dashboard.quick_actions.release_note_link_updater'), admin_release_notes_settings_path, class: btn_pri, data: { turbo_frame: "_top" } %>
+      <%= link_to t('admin.dashboard.quick_actions.pricing_plan_features'), admin_edit_pricing_plan_features_path, class: btn_pri, data: { turbo_frame: "_top" } %>
+    </div>
+  </div>
+
+  <div class="<%= glass %>">
+    <h2 class="mb-2 text-xl font-semibold text-white"><%= t("admin.dashboard.homepage_cms.title") %></h2>
+    <p class="mb-4 text-sm leading-relaxed text-[#90A1B9]"><%= t("admin.dashboard.homepage_cms.subtitle") %></p>
+    <div class="flex flex-wrap gap-3">
+      <%= link_to t('admin.dashboard.quick_actions.landing_compare'), admin_edit_landing_compare_path, class: btn_pri, data: { turbo_frame: "_top" } %>
+      <%= link_to t('admin.dashboard.quick_actions.user_feedback_manager'), admin_landing_user_feedbacks_path, class: btn_pri, data: { turbo_frame: "_top" } %>
+      <%= link_to t('admin.dashboard.quick_actions.homepage_feature_cards'), admin_homepage_feature_cards_path, class: btn_pri, data: { turbo_frame: "_top" } %>
+      <%= link_to t('admin.dashboard.quick_actions.homepage_footer_links', default: 'Footer Links & Legal Pages'), admin_homepage_footer_settings_path, class: btn_pri, data: { turbo_frame: "_top" } %>
+      <%= link_to t('admin.dashboard.quick_actions.disaster_recovery_page'), edit_admin_marketing_legal_page_path("disaster_recovery"), class: btn_pri, data: { turbo_frame: "_top" } %>
+    </div>
+  </div>
+
+  <div class="<%= glass %>">
+    <h2 class="mb-4 text-xl font-semibold text-white"><%= t('admin.dashboard.critical_features.title') %></h2>
+    <div class="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-4">
+      <%= link_to admin_audit_logs_path, class: "#{btn_pri} min-h-[4.5rem] flex-col gap-1 px-4 py-3 text-center", data: { turbo_frame: "_top" } do %>
+        <div class="font-semibold"><%= t('admin.dashboard.critical_features.audit_log.title') %></div>
+        <div class="text-xs font-normal opacity-90"><%= t('admin.dashboard.critical_features.audit_log.description') %></div>
+      <% end %>
+      <%= link_to admin_ocr_requests_path, class: "#{btn_pri} min-h-[4.5rem] flex-col gap-1 px-4 py-3 text-center", data: { turbo_frame: "_top" } do %>
+        <div class="font-semibold"><%= t('admin.dashboard.critical_features.ocr_requests.title') %></div>
+        <div class="text-xs font-normal opacity-90"><%= t('admin.dashboard.critical_features.ocr_requests.description') %></div>
+      <% end %>
+      <%= link_to admin_errors_path, class: "#{btn_pri} min-h-[4.5rem] flex-col gap-1 px-4 py-3 text-center", data: { turbo_frame: "_top" } do %>
+        <div class="font-semibold"><%= t('admin.dashboard.critical_features.error_tracker.title') %></div>
+        <div class="text-xs font-normal opacity-90"><%= t('admin.dashboard.critical_features.error_tracker.description') %></div>
+      <% end %>
+      <%= link_to admin_system_monitoring_path, class: "#{btn_pri} min-h-[4.5rem] flex-col gap-1 px-4 py-3 text-center", data: { turbo_frame: "_top" } do %>
+        <div class="font-semibold"><%= t('admin.dashboard.critical_features.system_monitoring.title') %></div>
+        <div class="text-xs font-normal opacity-90"><%= t('admin.dashboard.critical_features.system_monitoring.description') %></div>
+      <% end %>
+      <%= link_to admin_content_moderation_index_path, class: "#{btn_pri} relative min-h-[4.5rem] flex-col gap-1 px-4 py-3 text-center", data: { turbo_frame: "_top" } do %>
+        <div class="font-semibold"><%= t('admin.dashboard.critical_features.content_moderation.title') %></div>
+        <div class="text-xs font-normal opacity-90"><%= t('admin.dashboard.critical_features.content_moderation.description') %></div>
+        <% if @stats[:moderation_pending].to_i > 0 %>
+          <span class="absolute right-2 top-2 flex h-6 min-w-[1.5rem] items-center justify-center rounded-full bg-amber-500 text-xs font-bold text-white"><%= @stats[:moderation_pending] %></span>
+        <% end %>
+      <% end %>
+      <%= link_to admin_soft_deleted_records_path, class: "#{btn_pri} min-h-[4.5rem] flex-col gap-1 px-4 py-3 text-center", data: { turbo_frame: "_top" } do %>
+        <div class="font-semibold"><%= t('admin.dashboard.critical_features.soft_deleted_records.title') %></div>
+        <div class="text-xs font-normal opacity-90"><%= t('admin.dashboard.critical_features.soft_deleted_records.description') %></div>
+      <% end %>
+      <%= link_to admin_users_path, class: "#{btn_pri} min-h-[4.5rem] flex-col gap-1 px-4 py-3 text-center", data: { turbo_frame: "_top" } do %>
+        <div class="font-semibold"><%= t('admin.dashboard.critical_features.closed_account_recovery.title') %></div>
+        <div class="text-xs font-normal opacity-90"><%= t('admin.dashboard.critical_features.closed_account_recovery.description') %></div>
+      <% end %>
+    </div>
+  </div>
+</div>

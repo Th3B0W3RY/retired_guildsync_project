@@ -1,0 +1,355 @@
+ru:
+  discord_connections:
+    auto_authorize_bot:
+      title: Открытие бота авторизации...
+      please_authorize: Пожалуйста, авторизуйте бота присоединиться к "%{server_name}"
+    show:
+      title: Подключить бот к Discord-сообществу
+      subtitle_connected: Ваш аккаунт Discord уже подключён. Выберите сервер Discord (где вы являетесь владельцем или администратором), чтобы подключить бота GuildSync для управления событиями и уведомлений.
+      subtitle_not_connected: Сначала подключите ваш аккаунт Discord (одноразовая настройка). Затем выберите сервер Discord (где вы являетесь владельцем или администратором), чтобы подключить к нему бота GuildSync. После выбора сервера вы дадите разрешение для бота GuildSync присоединиться к этому серверу.
+      server_not_selected:
+        title: Discord сервер не выбран
+        message: Пожалуйста, выберите Discord сервер для публикации событий.
+        select_button: Выберите сервер Discord
+      server_selected:
+        title: Сервер Discord выбран
+        server_label: 'Сервер:'
+        connected: Подключено
+      bot_connected:
+        title: GuildSync Бот подключен
+      configuration_error:
+        title: Конфликтная ошибка
+      bot_authorization:
+        title: Авторизация бота требуется
+        message: Щелкните ниже, чтобы авторизовать GuildSync-bot присоединиться к вашему Discord-серверу "%{server_name}".
+        authorize_button: Авторизовать GuildSync Бот
+        authorize_hint: Щелкните по кнопке выше для авторизации бота GuildSync в вашем Discord сервере %{server_name}. Попап закроется автоматически после авторизации.
+      reconnect_button: Переподключить / Сменить аккаунт
+      disconnect_button: Отключить Discord
+      disconnect_confirm: Вы уверены, что хотите отключить Discord от этой группы?
+      connection_invalid:
+        title: Соединение недействительно
+        message: Ваше подключение к Discord больше не действует. Повторите подключение.
+        last_connected: 'Последний раз подключены как:'
+      reconnect_discord: Повторное подключение к Discord
+      delete_connection: Удалить соединение
+      delete_confirm: Вы уверены, что вы хотите удалить это недействительное соединение с Discord?
+      bot_not_connected:
+        title: Бот не подключен
+        message: Бот GuildSync не подключён к серверу Discord для этой гильдии.
+      connect_section:
+        title: Подключить бота к серверу Discord
+        already_connected: Ваша учетная запись Discord уже подключена. Выберите сервер Discord, к которому вы хотите подключить бота GuildSync. Вы должны быть владельцем или администратором сервера.
+        not_connected: Сначала подключите свою учетную запись Discord (настройка выполняется единн раз). Затем выберите Discord-сервер, на который вы хотите подключить бота GuildSync. Для этого вы должны быть владельцем или администратором сервера. После выбора сервера авторизируйте бота GuildSync для присоединения к этому серверу.
+        select_server: Выберите сервер Discord
+        connect_and_select: Подключить аккаунт Discord и выбрать сервер
+      back_to_dashboard: Вернуться к панели
+      popup_blocked: Вспомогательное окно было блокировано. Пожалуйста, разрешите вспомогательные окна для этого сайта и попробуйте снова.
+    select_server:
+      title: Выберите сервер Discord
+      subtitle: Выберите сервер Discord для подключения бота GuildSync к нему. После выбора сервера вы даете разрешение боту GuildSync присоединиться к этому серверу.
+      header: Сервер Discord
+      header_subtitle: Выберите сервер, где вы являетесь владельцем или администратором, для подключения бота GuildSync.
+      role_owner: Владелец
+      role_admin: Администратор
+      empty_title: Серверы Discord не обнаружены
+      empty_message: Вам нужно быть владельцем или администратором своего Discord сервера, чтобы подключить бота.
+      go_back: Назад
+      back_to_dashboard: Вернуться к панели
+    callback_success:
+      title: Успешное соединение!
+      message: Discord сервер успешно подключен.
+      closing: Это окно закроется автоматически через 1 секунду...
+    callback_error:
+      title: Соединение разорвано
+      closing: Это окно закроется автоматически через 3 секунды...
+  discord_user_auth:
+    callback_success:
+      title: Успешная авторизация Discord
+      closing: Успешно! Закрытие окна...
+    callback_error:
+      title: Ошибка
+      default_message: Аутентификация Discord не удалась.
+      closing: Это окно закроется автоматически через 2 секунды...
+  discord_events:
+    new:
+      title: Создать событие Discord для %{guild_name}
+      subtitle: 'Создайте событие, которое будет опубликовано в Discord: участники смогут увидеть его и записаться.'
+      channel_configured:
+        title: Канал событий настроен
+        message: События будут публиковаться в канал, настроенный в Настройках.
+      event_details: Детали события
+      event_type:
+        label: Тип события
+        pvp: PvP
+        guild_scrim: Гильдейский скрим
+        gvg: GvG
+        regular_scrim: Обычный скрим
+        pve_event: PvE-событие
+        world_boss: Мировой босс
+        guild_questing_time: Гильдейское время квестов
+        custom: Свой тип
+      custom_event_type:
+        label: Название своего типа события
+        placeholder: Введите название своего типа события
+        hint: Укажите название для своего типа события
+      event_title:
+        label: Название события
+        placeholder: Введите заголовок события
+      discord_roles:
+        title: Роли в Discord для упоминания@
+        subtitle: Выберите одну или несколько ролей Discord для упоминания при публикации события.
+      description:
+        label: Описание
+        placeholder: Введите описание события
+      date:
+        label: Дата
+      time:
+        label: Время
+        hour: Час
+        minute: минута
+        ampm: до полудня / после полудня
+        timezone_detecting: Определяем ваш часовой пояс...
+        timezone_label: 'Часовой пояс: %{timezone}'
+        timezone_default: 'Часовой пояс: UTC (по умолчанию)'
+        incomplete_error: 'Укажите полное время: час, минуты и до/после полудня'
+      max_participants:
+        label: Максимальное количество участников (Необязательно)
+      squad_leader:
+        label: Лидер отряда (необязательно)
+        placeholder: Введите имя лидера отряда
+      location:
+        label: Локация (Необязательный)
+        placeholder: Введите локацию события
+      role_categories:
+        label: Ролевые категории
+        hint: Выберите роли, на которые пользователи смогут записаться. Все выбранные роли будут доступны для записи в Discord.
+        dps: ДПС
+        tank: Танк
+        healer: Хил
+        ranged: Дальний бой
+      create_button: Создать Событие
+      back_to_events: Назад к событиям
+    show:
+      signups_by_role: Регистрации по ролям
+      no_signups: Нет регистрации пока ещё.
+      status:
+        on_time: Вовремя
+        tentative: Предварительный
+        late: Задержка
+        absent: Не в сети
+      back_to_events: Назад к событиям
+      delete_event: Удалить Событие
+      delete_confirm: Вы уверены, что хотите удалить это событие?
+  discord:
+    connections:
+      title: Discord Подключения
+      select_server: Выберите сервер
+      callback_success: Успешное подключение!
+      callback_error: Соединение разорвано
+    oauth:
+      authorize: Авторизовать
+      select_server: Выберите сервер Discord
+    interactions:
+      account_or_membership_required: Создайте аккаунт GuildSync на https://guild-sync.net или убедитесь, что Вы вступили в этот альянс и/или гильдию.
+    webhooks:
+      invalid_signature: Недействительная подпись
+      unknown_interaction_type: Неизвестный тип взаимодействия
+      invalid_request_format: Неверный формат запроса
+      request_processing_error: При обработке запроса произошла ошибка. Попробуйте снова.
+      missing_custom_id: 'Недопустимое взаимодействие: отсутствует custom_id'
+      missing_user: 'Недопустимое взаимодействие: отсутствует пользователь'
+      invalid_event_signup_format: Неверный формат записи на событие
+      invalid_alliance_signup_format: Неверный формат записи в альянс
+      invalid_alliance_status_format: Неверный формат статуса альянса
+      invalid_status_update_format: Неверный формат обновления статуса
+      event_not_found: Событие не найдено
+      unknown_modal: Неизвестное модальное окно
+      signup_usage: 'Использование: /signup role:<dps|tank|healer|ranged> [event:<event_id>]'
+      signup_event_not_found: Событие не найдено. Укажите ID события или используйте команду в ответ на сообщение о событии.
+      invalid_command_structure: Неверная структура команды.
+      missing_interaction_token: Отсутствует токен взаимодействия.
+      gear_upload_error: При обработке загрузки произошла ошибка. Попробуйте снова.
+      unknown_gear_subcommand: Неизвестная подкоманда снаряжения
+      gear_command_error: При обработке команды произошла ошибка.
+      missing_token_or_application_id: Отсутствует токен взаимодействия или ID приложения
+      fallback_member_name: Участник
+      rsvp:
+        invalid_role: Недопустимая роль
+        followup_error: 'Ошибка: %{message}'
+        try_again_short: Произошла ошибка. Попробуйте снова.
+        attendance_prompt: 'Вы выбрали **%{role}**. Выберите статус присутствия:'
+        button_on_time: "✅ Вовремя"
+        button_late: "⏰ Опоздание"
+        button_absent: "❌ Не приду"
+        button_remove: Убрать
+        removed_from_signup: "✅ Удалено из записи на событие"
+        signup_not_found: Запись не найдена
+        invalid_status_hint: 'Недопустимый статус. Допустимо: Вовремя, Опоздание, Не приду'
+        status_updated: "✅ Обновлено: **%{role}** — **%{status}**"
+        status_labels:
+          on_time: Вовремя
+          late: Опоздание
+          absent: Не приду
+      alliance_rsvp:
+        attendance_prompt: Вы выбрали **%{role}**. Как вы будете участвовать?
+        wrong_account_button: Эта кнопка статуса не для вашей учётной записи.
+        status_updated: "✅ Статус события альянса обновлён: **%{role}** — **%{status}**"
+      event_embed:
+        squad_leader: "**\U0001F464 Лидер отряда**"
+        location: "**\U0001F4CD Место**"
+        event_type: "**\U0001F4C5 Тип**"
+        total: "**\U0001F465 Всего**"
+        general_type: Общее
+        none_markdown: "```Нет```"
+        none_display: "**Нет**"
+        status_separator: "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+        status_heading: "**СТАТУС**"
+        late: "**⏰ Опоздание**"
+        absent: "**❌ Не приду**"
+        scheduled_label: "**⏰ Запланировано:** %{timestamp}"
+        default_description: Присоединяйтесь к этому событию!
+        title: "\U0001F3AF %{title}"
+        footer: Событие GuildSync • Нажмите кнопки ниже, чтобы записаться
+        signup_prompt: "**\U0001F3AF Запись на событие** — Нажмите кнопки ниже, чтобы записаться:"
+      legacy_event_details:
+        scheduled_block: |
+          **Запланировано:** %{date_stamp}
+          %{time_stamp}
+        duration_line: "**Длительность:** %{minutes} мин.\n"
+        location_line: "**Место:** %{value}\n"
+        squad_leader_line: "**Лидер отряда:** %{value}\n"
+        participants_line: "**Участники:** %{count}\n"
+    commands:
+      help:
+        title: GuildSync — Справка
+        description: Доступные слэш-команды зависят от вашей роли в GuildSync. Попробуйте /poll, /event, /loot, /invite, /member, /application, /docs, /guild, /alliance, /leaderboard и /profile — подробности в параметрах каждой команды в Discord.
+      errors:
+        server_only: Эту команду нужно использовать на сервере Discord, а не в личных сообщениях.
+        guild_not_linked: Этот сервер Discord не привязан к гильдии GuildSync. Попросите офицера подключить его в настройках гильдии.
+        user_not_linked: Ваш аккаунт Discord не привязан к GuildSync. Зайдите на guild-sync.net, чтобы зарегистрироваться или связать аккаунт.
+        not_a_member: Вы не являетесь активным членом этой гильдии в GuildSync.
+        officer_required: Для этой команды нужны права офицера или выше.
+        owner_required: Только владелец гильдии может использовать эту команду.
+        no_plan: У владельца гильдии нет активной подписки GuildSync.
+        plan_limit: Ваш тариф %{plan} достиг лимита %{limit} %{feature}. Обновите тариф на guild-sync.net.
+        unknown_subcommand: Неизвестная подкоманда. См. /help для списка команд.
+        not_implemented: Эта команда ещё не реализована. Загляните позже!
+        generic: Произошла ошибка. Попробуйте снова или обратитесь в поддержку.
+      poll:
+        no_channel: Канал опросов не настроен. Попросите офицера настроить его на guild-sync.net.
+        missing_fields: Укажите вопрос и как минимум два варианта (option_a и option_b).
+        created: Опрос **"%{title}"** создан и опубликован в канале опросов.
+        none_active: В этой гильдии сейчас нет активных опросов.
+        not_found: Опрос не найден. Используйте /poll list, чтобы увидеть доступные опросы.
+        list_title: "%{guild} — Активные опросы"
+      loot:
+        no_channel: Канал лут-роллов не настроен. Попросите офицера настроить его на guild-sync.net.
+        missing_item: Укажите название предмета.
+        invalid_range: Максимум броска должен быть больше минимума.
+        created: Лут-ролл для **%{item}** создан и опубликован в канале.
+        none_active: В этой гильдии нет открытых лут-роллов.
+        not_found: Лут-ролл не найден. Используйте /loot list, чтобы увидеть открытые розыгрыши.
+        already_closed: Этот лут-ролл уже закрыт.
+        closed_winner: "Лут-ролл **\"%{item}\"** закрыт. Победитель: **%{winner}** с **%{roll}**! \U0001F3C6"
+        closed_no_entries: Лут-ролл **"%{item}"** закрыт. Заявок нет.
+        list_title: "%{guild} — Открытые лут-роллы"
+      datetime:
+        invalid_month: Неверный месяц. Выберите месяц из списка.
+        invalid_day: Неверный день. В %{month} только %{max} дней.
+        invalid_time: Неверное время. Укажите час (1–12), минуты и AM/PM.
+        in_the_past: Эта дата и время в прошлом. Выберите будущее время.
+        parse_error: 'Не удалось разобрать дату: %{detail}'
+      event:
+        no_channel: Канал событий не настроен. Попросите офицера настроить его на guild-sync.net.
+        not_connected: Сервер не подключён к Discord. Попросите офицера завершить настройку.
+        missing_title: Укажите название события.
+        duplicate: Событие **"%{title}"** в это время уже существует.
+        created: Событие **"%{title}"** создано и опубликовано в канале событий.
+        none_upcoming: Нет предстоящих событий в этой гильдии.
+        not_found: Событие не найдено. Используйте /event list, чтобы увидеть запланированные события.
+        cancelled: Событие **"%{title}"** отменено и удалено из Discord.
+        list_title: "%{guild} — Предстоящие события"
+      invite:
+        no_user: Укажите пользователя Discord для приглашения.
+        self_invite: Нельзя пригласить самого себя.
+        already_member: Этот пользователь уже активный член гильдии.
+        sent: Приглашение отправлено в ЛС Discord пользователю <@%{discord_user_id}>. Ссылка действует 7 дней.
+        dm_disabled: Не удалось отправить ЛС — у пользователя могут быть отключены личные сообщения.
+        dm_intro: "**%{inviter}** приглашает вас в **%{guild}** в GuildSync!"
+        dm_link: |-
+          Нажмите ссылку ниже, чтобы принять приглашение:
+          %{url}
+        dm_expiry: _Ссылка действует 7 дней._
+      member:
+        not_found: Участник не найден в этой гильдии.
+        kicked: "**%{username}** удалён из гильдии."
+        role_updated: Роль **%{username}** изменена на **%{role}**.
+        none: Участники не найдены.
+        list_title: "%{guild} — Участники"
+        info_title: Профиль %{username}
+        cannot_kick_owner: Нельзя исключить владельца гильдии.
+        cannot_demote_owner: Нельзя изменить роль владельца.
+      guild:
+        info_title: "%{name} — Информация о гильдии"
+        settings_title: "%{name} — Настройки"
+        channels_title: "%{name} — Каналы Discord"
+        not_connected: Гильдия не привязана к серверу Discord.
+        channel_not_set: Не настроено
+      application:
+        none_pending: Нет ожидающих заявок.
+        not_found: Заявка не найдена. Используйте /application list, чтобы увидеть ожидающие заявки.
+        accepted: Заявка принята. **%{username}** добавлен в гильдию.
+        rejected: Заявка от **%{username}** отклонена.
+        list_title: "%{guild} — Ожидающие заявки"
+        view_title: Заявка №%{id}
+        already_processed: Эта заявка уже обработана.
+      docs:
+        none: Документы не найдены.
+        not_found: Документ не найден. Используйте /docs list, чтобы увидеть доступные документы.
+        list_title: "%{guild} — Документы"
+        preview_footer: Превью обрезано. Полный документ на guild-sync.net
+        search_none: Нет документов по запросу "%{query}".
+      leaderboard:
+        title: "%{guild} — Рейтинг посещаемости событий"
+        none: Пока нет данных. Записывайтесь на события!
+        footer: Топ 10 участников по своевременному посещению
+      activity:
+        title: "%{guild} — Недавняя активность"
+        none: Нет недавней активности.
+      profile:
+        title: 'Профиль GuildSync: %{username}'
+        not_found: Пользователь не связан с GuildSync или не член гильдии.
+      alliance:
+        not_in_alliance: Гильдия этого сервера Discord ещё не в альянсе GuildSync.
+        info_title: "%{name}"
+        no_description: Описание отсутствует.
+        field_guilds: Гильдии-участники
+        field_hub: Управляйте приглашениями и заявками на сайте.
+        use_hub: Используйте /alliance hub для страницы альянсов.
+        hub_message: 'Открыть альянсы GuildSync: %{url}'
+        requests_unauthorized: Просматривать заявки могут только лидеры альянса, владельцы гильдий или офицеры альянса.
+        no_pending_requests: Нет ожидающих заявок на вступление в этот альянс.
+        requests_body: |-
+          **%{count}** ожидающих заявок:
+          %{list}
+
+          Обработка на сайте: %{url}
+  discord_oauth:
+    select_server:
+      title: Выберите сервер Discord
+      subtitle: Выберите сервер Discord, к которому вы хотите подключиться, %{name}.
+      owner: Владелец
+      member: Член
+      no_servers: Нет серверов Discord найдено.
+      no_servers_hint: Пожалуйста, убедитесь, что вы являетесь участником какого-либо Discord сервера.
+      try_again: Попробовать снова
+  discord_onboarding:
+    dm_message: |-
+      Спасибо за участие! Создайте аккаунт GuildSync, чтобы управлять деятельностью вашей гильдии, отслеживать историю добычи и полностью участвовать в вашей гильдии.
+
+      Регистрация: %{signup_url}
+    dm_failed: Не удалось отправить приветственное сообщение пользователю Discord.
+    vote_recorded_unregistered: Голос записан! Создайте аккаунт GuildSync для всех функций.
+    roll_recorded_unregistered: Бросок записан! Создайте аккаунт GuildSync для всех функций.
+    rsvp_recorded_unregistered: Участие записано! Создайте аккаунт GuildSync для всех функций.

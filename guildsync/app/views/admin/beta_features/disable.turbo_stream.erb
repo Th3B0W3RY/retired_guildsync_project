@@ -1,0 +1,6 @@
+<%= turbo_stream.replace "admin_beta_feature_row_#{@user.id}" do %>
+  <%= render "admin/beta_features/user_row", user: @user %>
+<% end %>
+<%= turbo_stream.update "admin_beta_features_flash" do %>
+  <p class="rounded-lg border border-emerald-500/30 bg-emerald-500/10 px-4 py-2 text-sm text-emerald-400"><%= @beta_features_notice %></p>
+<% end %>

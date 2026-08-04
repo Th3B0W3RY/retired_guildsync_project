@@ -1,0 +1,6 @@
+<%= turbo_stream.replace "admin_feature_abuser_row_#{@user.id}" do %>
+  <%= render "admin/feature_abusers/user_row", user: @user %>
+<% end %>
+<%= turbo_stream.update "admin_feature_abusers_flash" do %>
+  <p class="rounded-lg border border-emerald-500/30 bg-emerald-500/10 px-4 py-2 text-sm text-emerald-400"><%= @feature_abusers_notice %></p>
+<% end %>

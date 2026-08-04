@@ -1,0 +1,15 @@
+<% content_for :page_title, "#{strip_tags(@marketing_legal_page.title).squish} — #{t('app_name')}" %>
+
+<div class="w-full max-w-[1200px] mx-auto px-4 py-12 sm:py-16 font-[family-name:Inter,ui-sans-serif,system-ui,sans-serif]">
+  <%= link_to root_path, class: "text-sm text-[#90A1B9] hover:text-white mb-10 inline-flex items-center gap-2 transition-colors" do %>
+    <span aria-hidden="true">←</span>
+    Back to homepage
+  <% end %>
+
+  <article class="mx-auto max-w-4xl">
+    <h1 class="text-white text-3xl sm:text-4xl font-bold tracking-tight mb-8"><%= @marketing_legal_page.title %></h1>
+    <div class="text-[#CAD5E2] text-base leading-relaxed [&_a]:text-[#C27AFF] [&_a]:underline [&_img]:max-w-full [&_img]:rounded-xl [&_.attachment]:my-4 [&_h2]:mt-8 [&_h2]:mb-3 [&_h2]:text-2xl [&_h2]:font-semibold [&_h2]:text-white">
+      <%= @marketing_legal_page.body %>
+    </div>
+  </article>
+</div>

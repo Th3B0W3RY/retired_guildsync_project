@@ -1,0 +1,822 @@
+it:
+  guilds:
+    index:
+      title: mie gilde
+      subtitle: Gestisci le tue comunità di giochi
+      create_new_guild: Crea una nuova Gilda
+      view_guild: Visualizza Gilda
+      no_guilds: Non sei membro di alcuna gilda ancora.
+      create_first_guild: Crea la tua prima guilde
+    new:
+      title: Crea una Gilda
+      subtitle: Inizia la tua comunità di gaming
+      guild_name: NOME DELLA GUILDA
+      create_button: Crea Gilda
+      recruiting_name_warning: Questo nome contiene termini che nascondiamo dall’elenco pubblico di reclutamento. La tua gilda partirà come non elencata pubblicamente; puoi cambiare la visibilità nelle impostazioni della gilda se il tuo ruolo lo consente.
+      games:
+        label: Giocchi
+        required: richiesto
+        help_text: Seleziona almeno un gioco che la tua gilde gioca. Puoi aggiungere più giochi più tardi nelle impostazioni.
+        search_placeholder: Cerca un gioco...
+        featured_games: Giochi in evidenza
+        no_games: Non ci sono giochi disponibili per ora. Utilizza la barra di ricerca sopra o aggiungi un gioco personalizzato qui sotto.
+        pending_approval: In attesa di approvazione
+        select_primary: Seleziona il tuo gioco principale (il gioco principale su cui la tua guilde si concentra)
+        select_one_error: Si prega di selezionare almeno un gioco.
+        select_primary_error: Seleziona per favore un gioco primario dai giochi selezionati.
+        primary_must_be_selected: Il gioco principale deve essere uno dei giochi selezionati.
+        approve_pending_html: <strong>Per approvare i giochi in sospeso:</strong> Vai su %{link} e fai clic su "Attiva" per qualsiasi gioco in sospeso per attivarlo.
+        games_management: Gestione dei giochi
+        select_button: Selezionare
+      custom_game:
+        add_link: Non riesci a trovare il tuo gioco? Aggiungetelo qui.
+        label: Nome del Gioco
+        placeholder: Inserisci il nome del gioco...
+        add_button: Aggiungi Gioco
+        no_similar: Nessun gioco simile trovato. Fai clic su "Aggiungi Gioco" per creare "%{name}". Si prega di controllare l'ortografia.
+        already_exists: Il gioco "%{name}" esiste già. Selezionalo dalla lista sopra indicata.
+        search_error: Errore durante la ricerca dei giochi. Si prega di riprovare.
+        js_no_similar_found: Nessun gioco simile trovato. Fai clic su "Aggiungi Gioco" per creare "%{query}". Si prega di controllare l'ortografia.
+        js_game_exists: Il gioco "%{name}" esiste già. Selezionalo dalla lista sopra indicata.
+        js_search_error: Errore durante la ricerca dei giochi. Si prega di riprovare.
+        js_adding: Aggiungendo...
+        js_server_error: Errore del server. Si prega di aggiornare la pagina e riprovare.
+        pending_admin_approval: In attesa di approvazione dall'amministratore
+        js_game_added_success: Gioco aggiunto con successo! Il gioco sarà disponibile dopo l'approvazione dell'amministratore.
+        js_failed_add: 'Impossibile aggiungere il gioco: '
+        js_error_adding: 'Errore durante l''aggiunta del gioco: '
+      modal:
+        title: Conferma Aggiunta del Gioco
+        confirm_text: Sei sicuro di voler aggiungere %{name} come un nuovo gioco?
+        warning: Si prega di verificare che l'ortografia sia corretta. Il gioco sarà creato come in attesa e richiederà l'approvazione dell'amministratore.
+        yes_add: Sì, Aggiungi Gioco
+      pending_admin_info: 'Per approvare i giochi in sospeso: Vai alla Gestione dei Giochi e fai clic su "Attiva" su qualsiasi gioco pendente per attivarlo.'
+    show:
+      guild_information: Informazioni della Gilda
+      quick_actions: Azioni rapide
+      invite_members: Invita Membri
+      schedule_event: Programma Evento
+      about: Informazioni
+      no_description: Nessuna descrizione ancora.
+      discord_public_invite: Invito Discord pubblico
+      join_discord: Entra su Discord
+      discord_invite_missing: Aggiungi un link di invito pubblico così i membri possono aprire il server Discord con un clic.
+      discord_invite_none: Questa gilda non ha pubblicato un link di invito Discord.
+    settings:
+      title: Impostazioni della Gilda
+      subtitle: Gestisci le impostazioni del tuo guild e le preferenze.
+      guild_profile:
+        title: Profilo gilda
+        description: Descrizione e invito Discord pubblico opzionale visibili nella dashboard della gilda per tutti i membri.
+        description_label: Descrizione
+        discord_invite_label: URL invito Discord pubblico
+        discord_invite_hint: Opzionale. Incolla un link di invito Discord (es. https://discord.gg/…). Visibile a chi può vedere la dashboard.
+        save_button: Salva profilo
+      logo:
+        title: Logo della gilda
+        description: Carica un logo per la tua guilde. Il logo apparirà accanto al nome della tua guilde in tutto l'applicazione.
+        recommended: 'dimensioni consigliate:'
+        dimensions_info: '256x256 pixel (il formato quadrato funziona meglio). Format supportati: JPG, PNG, GIF, WebP.'
+        current_logo: 'Logo corrente:'
+        note: 'Nota:'
+        click_update: Fai clic su 'Aggiorna Logo' per selezionare un nuovo file e salvarlo.
+        update_button: Aggiorna Logo
+        delete_button: Elimina Logo
+        delete_confirm: Sei sicuro di voler eliminare il logo della guilde?
+        save_button: Salva Logo
+      application_messages:
+        title: Messaggi delle applicazioni
+        description: Personalizza i messaggi inviati agli candidati quando vengono accettati o rifiutati. Se lasciato vuoto, verranno utilizzati dei messaggi predefiniti.
+        accept_label: Messaggio di Accettazione
+        accept_default_message: Congratulazioni! sei stato accettato nella guilde %{guild_name}!
+        accept_hint: 'Messaggio inviato quando un candidato viene accettato. Usa %{guild_name} per includere il nome della gilda. Predefinito: "%{default_message}"'
+        reject_label: Messaggio di rifiuto
+        reject_default_message: Spiacente, non sei il candidato adatto per la nostra guilde, ma sentiti libero di ricandidare più tardi.
+        reject_hint: 'Messaggio inviato quando un candidato viene rifiutato. Predefinito: "%{default_message}"'
+        save_button: Salva Messaggi
+      discord_channels:
+        title: Configurazione dei canali di Discord
+        description: Seleziona quali canali Discord dovranno ricevere le notifiche per diversi tipi di contenuti.
+        events_channel: Canale degli Eventi
+        events_hint: Seleziona il canale dov'eventi di Discord verranno pubblicati.
+        battles_channel: Canale delle Battaglie della Gilda
+        battles_hint: Seleziona il canale dove verranno pubblicati gli avvisi delle battaglie della gilda.
+        gear_channel: Canali Membri degli Strumenti
+        gear_hint: Seleziona il canale dove verranno pubblicati gli aggiornamenti degli attrezzi dei membri.
+        polls_channel: Canale dei sondaggi della gilde
+        polls_hint: Seleziona il canale dove verranno pubblicati i sondaggi della guild.
+        loot_channel: Canale di Loot e Roli
+        loot_hint: Seleziona il canale dove verranno pubblicati i risultati della sorte di bottino.Questo è richiesto per le sorti di bottino.
+        select_channel: Seleziona un canale...
+        save_button: Salva Impostazioni Canale
+        unable_to_load: Impossibile caricare i canali.
+        load_error: Impossibile caricare i canali di Discord. Si prega di verificare la connessione del bot di Discord della tua squadra.
+        alliance_section_title: Canali alleanza (inter-gilda)
+        alliance_section_description: 'Scegli dove pubblicare inviti alleanza, eventi, sondaggi e tiri bottino usando il tuo bot GuildSync connesso. Se sono impostati solo alcuni canali, le notifiche di invito useranno il primo canale configurato in quest''ordine: Inviti, Eventi, Sondaggi, Bottino.'
+        alliance_invites_channel: Inviti e richieste alleanza
+        alliance_invites_hint: Notifiche quando la tua gilda viene invitata in un'alleanza o quando un'altra gilda chiede di unirsi alla tua.
+        alliance_events_channel: Eventi alleanza
+        alliance_events_hint: Pubblica un messaggio incorporato quando viene creato un evento a livello di alleanza.
+        alliance_polls_channel: Sondaggi alleanza
+        alliance_polls_hint: Pubblica un messaggio incorporato quando viene creato un sondaggio a livello di alleanza.
+        alliance_loot_channel: Tiri bottino alleanza
+        alliance_loot_hint: Pubblica un messaggio incorporato quando viene creato un tiro bottino a livello di alleanza.
+      discord_bot:
+        not_connected: Il bot non è connesso
+        not_connected_authorize: Il bot GuildSync non è connesso al server di Discord. Si prega di autorizzare il bot.
+        not_connected_connect: Si prega di connettere il bot di GuildSync a un server di Discord prima di configurare i canali.
+        authorize_button: Autorizzare Bot
+        connect_button: Connetti il bot alla Gilda di Discord
+      role_sync:
+        title: 'Discord: sincronizzazione automatica'
+        description: Gestire quali ruoli di Discord sono sincronizzati nel database. I ruoli sincronizzati vengono ricaricati automaticamente tutti i 30 minuti.
+        sync_all: Sincronizza tutti i ruoli
+        remove_all: Rimuovi tutte le sincronizzazioni
+        refresh: Aggiorna Ruoli
+        loading: Caricamento dei ruoli...
+        role_name: Nome del ruolo
+        role_id: Ruolo ID
+        sync_status: Stato della sincronizzazione
+        action: azione
+        click_refresh: Clicca 'Aggiorna Ruoli' per caricare i ruoli di Discord
+      games:
+        title: Giocchi
+        description: Gestione dei giochi della tua gilda. Almeno un gioco deve essere richiesto.
+        no_games: Al momento non sono disponibili giochi. Si prega di contattare un amministratore per aggiungere dei giochi.
+        required_note: Almeno uno gioco deve essere selezionato
+        update_button: Aggiorna giochi
+        cant_find: Non riesci a trovare il tuo gioco? Aggiungetelo qui.
+        game_name_label: Nome del Gioco
+        enter_game_name: Inserisci il nome del gioco...
+        pending_approval: In attesa di approvazione dall'amministratore
+        primary_label: Principale
+        add_game_button: Aggiungi Gioco
+        pending_approval_short: In attesa di approvazione
+        pending_admin_approval: In attesa di approvazione dall'amministratore
+        js_no_similar_found: Nessun gioco simile trovato. Fai clic su "Aggiungi Gioco" per creare "%{query}". Si prega di controllare l'ortografia.
+        js_game_exists: Il gioco "%{name}" esiste già. Selezionalo dalla lista sopra indicata.
+        js_search_error: Errore durante la ricerca dei giochi. Si prega di riprovare.
+        js_confirm_add: Sei sicuro di voler aggiungere "%{name}" come un nuovo gioco? Verifica che l'ortografia sia corretta.
+        js_adding: Aggiungendo...
+        js_server_error: Errore del server. Si prega di aggiornare la pagina e riprovare.
+      permissions:
+        title: Autorizzazioni dei ruoli
+        description: Seleziona fino a quattro ruoli di Discord che possono disporre dei permessi per gestire i ruoli, le applicazioni e le impostazioni della guild. Seleziona le caselle per abilitare ogni permesso.
+        role_n: Ruolo %{n}
+        select_discord_role: Seleziona Ruolo di Discord
+        none: Nessuno
+        can_manage_roles: Può gestire i ruoli
+        can_manage_applications: Gestire le Applicazioni
+        can_manage_guild_settings: Può gestire le impostazioni della gilda
+        can_kick_members: Può cacciare i membri
+        can_invite_alliance_guilds: Può invitare gilde alleate
+        can_kick_alliance_guilds: Può rimuovere gilde alleate
+        can_manage_tags: Può gestire i tag
+        can_manage_warnings: Può gestire gli avvisi
+        can_manage_documents: Può gestire i documenti
+        can_manage_files: Può gestire i file
+        can_manage_events: Può gestire gli eventi
+        can_manage_polls: Può gestire i sondaggi
+        can_manage_loot_rolls: Può gestire i tiri bottino
+        can_manage_discord_channels: Può gestire i canali Discord
+        can_view_activity_feed: Può vedere il feed attività
+        can_export_members_csv: Può esportare il CSV membri
+        can_use_message_center: Può usare il centro messaggi
+        can_manage_gear_requests: Può gestire le richieste equipaggiamento
+        can_edit_gear_scanned_stats: Può modificare le statistiche equipaggiamento scansionate
+        save_button: Salva i Permessi
+        default_role:
+          title: Ruolo predefinito per i nuovi membri
+          description: Seleziona un ruolo di Discord che sarà assegnato automaticamente a tutti i nuovi membri al momento dell'iscrizione alla guilde.
+          label: Ruolo predefinito
+          save_button: Salva Ruolo Predefinito
+      visibility:
+        title: Visibilità gilda
+        description: Controlla se la tua gilda appare negli elenchi pubblici. Le gilde private possono essere trovate solo dai membri esistenti.
+        toggle_label: Mostra questa gilda negli elenchi pubblici
+        toggle_hint: Se disattivato, la tua gilda non apparirà nell'elenco delle gilde disponibili o nei risultati di ricerca. Membri e candidati esistenti non sono interessati.
+        save_button: Salva visibilità
+      react_roles:
+        title: Ruoli a reazione
+        description: 'Configura fino a 3 associazioni emoji-ruolo. Pubblica un messaggio incorporato in un canale Discord: gli utenti reagiscono con un''emoji per ricevere il ruolo corrispondente e lo perdono quando rimuovono la reazione.'
+        channel_label: Canale (dove verrà pubblicato il messaggio incorporato)
+        select_channel: Seleziona un canale...
+        slot_title: Ruolo a reazione %{n}
+        role_label: Ruolo Discord
+        select_role: Seleziona un ruolo...
+        emoji_label: Emoji
+        select_emoji: Seleziona emoji...
+        emoji_hint: Supporta emoji Unicode standard ed emoji server personalizzate.
+        server_emojis: Emoji del server
+        standard_emojis: Emoji standard
+        loading_emojis: Caricamento...
+        save_button: Salva ruoli a reazione
+        deploy_button: Pubblica su Discord
+        remove_button: Rimuovi da Discord
+        remove_confirm: Questo eliminerà il messaggio incorporato dei ruoli a reazione da Discord. Sei sicuro?
+      back_to_dashboard: Indietro al Dashboard
+    members:
+      title: Membri della Gilda
+      subtitle: Visualizza e gestisci tutti i membri della guilde
+      select_all: Seleziona tutto
+      deselect_all: Deseleziona tutto
+      select_role: Seleziona Ruolo...
+      update_selected: Aggiorna Selezionati
+      search_placeholder: Cerca utente per nome utente o Discord...
+      invite_user: Invita Utente
+      export_csv: Esporta CSV
+      kick_selected: Espelli Selezionati
+      discord_verified: Discord Verificato
+      discord_not_connected: Non connesso
+      role_none: Nessuno
+      owner: Proprietario
+      kick: Espulsi
+      kick_confirm: Sei sicuro di voler cacciare %{username}? Questa azione non può essere annullata.
+      kick_final_confirm: 'Conferma finale: Sei assolutamente sicuro di voler rimuovere %{username} dal gilde?'
+      bulk_kick_confirm: Sei sicuro di voler espellere %{count} membro/i? Questa azione non può essere annullata.
+      bulk_kick_final: 'Conferma finale: Sei assolutamente sicuro di volere rimuovere %{count} membro(i) dalla guilde?'
+      no_roles_synced: Nessun ruolo sincronizzato
+      no_users_found: Nessun utente trovato
+      search_load_more: Carica altri utenti
+      js_error_searching_users: Errore durante la ricerca degli utenti
+      js_inviting: Invitando...
+      select_at_least_one: Si prega di selezionare almeno un membro.
+      select_a_role: Si prega di selezionare un ruolo.
+      select_user_first: Si prega di selezionare un utente per primo.
+      back_to_dashboard: Indietro al Dashboard
+      tags:
+        manage_title: Gestisci tag gilda
+        name: Nome tag
+        color: Colore tag
+        create: Crea tag
+        filter_label: Ordina / filtra per tag
+        filter_all: Tutti i tag
+        filter_untagged: Membri senza tag
+        clear_filter: Cancella
+    members_gear:
+      title: Scanner equipaggiamento IA per %{guild_name}
+      pending_request_officer_banner: "%{requester} ti ha chiesto di aggiornare lo screenshot dell’equipaggiamento. Caricalo qui sotto quando sei pronto."
+      filter_by_game: 'Filtro per Gioco:'
+      all_games: Tutti i giochi
+      no_games_configured: Questa gilda non ha giochi configurati. Si prega di aggiungere giochi nelle impostazioni della gilda.
+      gear_status_overview: Panorama degli Stati delle Guarnigioni
+      request_missing_gear: Richiesta di accessori mancanti (%{count})
+      request_outdated_gear: Richiesta Attrezzatura Obsoleta (%{count})
+      request_all_missing_outdated: Richiedi tutti Mancanti/Oppurgati (%{count})
+      total_members: Totale Membri
+      missing_gear: Equipaggiamento mancante
+      outdated_gear: Equipaggiamento Obsoleti
+      up_to_date: Di ultima modella
+      pending_gear_requests:
+        one: 1 richiesta di apparecchiamento in sospeso
+        other: "%{count} Richieste di Attrezzatura Pendenti"
+      view_pending_requests: Visualizza le Richieste Pendenti
+      filter_all: Tutti
+      filter_missing: Mancante
+      filter_outdated: Obsoleto
+      filter_up_to_date: all'ultimo
+      request_updates_from_missing_outdated: Richiesta di aggiornamenti dai mancanti/obsoleti
+      th_avatar: Avviso
+      th_member: Membro
+      th_last_updated: Ultimo Aggiornamento
+      th_status: Stato
+      th_key_stats: Chiave statistiche
+      th_actions: Azioni
+      ago: fa tempo
+      never: Mai
+      view_gear: View Attrezzatura
+      view_stats: Vedi statistiche
+      pending_request: In corso richiesta
+      request_update: Richiesta Aggiornamento
+      view_image: Immagine
+      screenshot_unavailable: Quello screenshot delle statistiche non è più disponibile. Potrebbe essere scaduto dopo il periodo di conservazione oppure non c’è alcun caricamento.
+      no_members_with_status: 'Nessun membro trovato con stato: %{status}'
+      no_members_found: Nessun membro trovato
+      your_gear_screenshot: La tua attrezzatura Screenshot
+      last_updated: Ultimo aggiornamento
+      select_game: 'Seleziona Gioco:'
+      select_game_prompt: "-- Seleziona Gioco --"
+      choose_file: Scegli file
+      upload_screenshot: Caricamento Screenshot
+      parsed_data_preview: 'Anteprima dei dati analizzati:'
+      upload_preview_heading: Anteprima statistiche estratte
+      upload_preview_truncated: "… e altre %{count}"
+      back_to_dashboard: Indietro al Dashboard
+      gear_details: Dettagli dell'attrezzatura
+      js_processing: Elaborazione...
+      js_processing_message: Elaborando immagine... e estrarre i dati del gear... Ciò potrebbe richiedere un momento.
+      js_upload_success: Successo! Immagine elaborata e dati sulle attrezzature estratti. Ri caricando la pagina...
+      upload_success_notice: Screenshot caricato correttamente. Le statistiche più recenti sono state aggiornate.
+      js_loading_gear: Caricamento dei dati degli attrezzi...
+      js_no_gear_data: Nessun dato sulla attrezzatura disponibile
+      js_error_loading_gear: 'Errore nel caricamento dei dati degli attrezzi: '
+      js_confirm_bulk_all: Inviare richieste di aggiornamento degli attrezzi a tutti i membri con attrezzatura mancante o obsoleta?
+      js_confirm_bulk_status: Invia le richieste di aggiornamento del equipaggiamento a tutti i membri con stato %{status} del equipaggiamento?
+      js_confirm_request_user: Inviare richiesta di aggiornamento statistiche a %{name}?
+      stats_hidden: "—"
+    member_stats:
+      back_to_scanner: Torna allo scanner statistiche IA
+      title: Statistiche di %{name}
+      guild_context: "%{guild_name}"
+      last_updated: Ultimo aggiornamento
+      extracted_heading: Statistiche estratte
+      stat_count:
+        one: 1 statistica
+        other: "%{count} statistiche"
+      empty_title: Nessuno snapshot ancora
+      empty_body: Questo membro non ha ancora caricato uno screenshot delle statistiche.
+      partial_title: Nessuna statistica nell’ultimo snapshot
+      partial_body: Screenshot salvato, ma non sono state estratte coppie etichetta/valore.
+      member_not_found: Membro non trovato.
+      unnamed_stat: Statistica
+      unparsed_label: Valore
+      remove_stat: Rimuovi questa statistica
+      undo_stat: Ripristina questa statistica
+      edit_stat: Modifica
+      save_stat: Salva
+      cancel_edit: Annulla
+      stat_saved: Statistica salvata.
+      stat_name_label: Nome statistica
+      stat_value_label: Valore statistica
+      api_error: Impossibile aggiornare le statistiche. Aggiorna la pagina e riprova.
+      cannot_view_other_member_stats: In questa gilda puoi vedere solo le statistiche equipaggiamento tue.
+      modify_own_gear_only: Puoi modificare solo il tuo equipaggiamento.
+      cannot_edit_scanned_stats: Solo il capogilda o un ruolo con permesso di modificare le statistiche scansionate può cambiare i valori estratti. I membri non possono modificare i risultati della propria scansione.
+    analytics:
+      title: Analytics per %{guild_name}
+      subtitle: Visualizza analitiche dettagliate e insights per la tua guild.
+      back_to_dashboard: Indietro al Dashboard
+    activity_feed:
+      title: Feed attività per %{guild_name}
+      subtitle: Attività recenti in questa gilda. I log vengono conservati per 3 mesi.
+      back_to_dashboard: Indietro al Dashboard
+    review_applications:
+      title: Rivedere le domande per %{name}
+      subtitle: Examina e gestione le richieste in sospeso della tua guilde.
+      invited_members: Membri invitati
+      invited_by: 'Invitato da:'
+      invited: 'invitati:'
+      discord_verified: Discord Verificato
+      dismiss: Rifiutare
+      dismiss_confirm: Vuoi disconnettere questo invito dalla tua vista?
+      pending_applications: Applicazioni Pendenti
+      discord_not_connected: 'Discord: Non connesso'
+      applied: 'Applicati:'
+      message_label: 'Messaggio:'
+      accept: Accettare
+      accept_confirm: Accettare questa applicazione e aggiungere il membro alla gilda?
+      reject: Rifiutare
+      reject_confirm: Vuoi rifiutare questa richiesta?
+      message_applicant: Messaggio All'Aspirante
+      message: Messaggio
+      enter_message_placeholder: Inserisci il tuo messaggio...
+      send: Inviare
+      cancel: Annulla
+      no_pending: Nessuna richiesta in sospeso al momento.
+      back_to_dashboard: Indietro al Dashboard
+    invite_members:
+      title: Invita Membri a %{name}
+      subtitle: Invita i membri a unirsi alla tua gilda e esamina le richieste in sospeso.
+      pending_applications: Applicazioni Pendenti
+      discord_server_unknown: Sconosciuto
+      discord_server_not_available: 'Discord Server: Non disponibile'
+      applied: 'Applicati:'
+      message_label: 'Messaggio:'
+      character_details: 'Dettagli del carattere:'
+      accept: Accettare
+      accept_confirm: Accettare questa applicazione e aggiungere il membro alla gilda?
+      reject: Rifiutare
+      reject_confirm: Vuoi rifiutare questa richiesta?
+      message_applicant: Messaggio All'Aspirante
+      message: Messaggio
+      enter_message_placeholder: Inserisci il tuo messaggio...
+      send: Inviare
+      cancel: Annulla
+      back_to_dashboard: Indietro al Dashboard
+    schedule_events:
+      title: Programmare eventi per %{name}
+      subtitle: Crea e gestisci eventi programmati per la tua guilde.
+      create_new_event: Crea nuovo evento su Discord
+      create_event: Crea evento
+      recent_events: Eventi recenti
+      signups: 'Iscrizioni:'
+      view: Visualizza
+      delete: Elimina
+      delete_confirm: Sei sicuro?
+      bot_not_connected: Il bot non è connesso
+      discord_server_not_selected: Server di Discord Non Selezionato
+      bot_not_connected_message: Il bot GuildSync non è connesso al server di Discord. Si prega di autorizzare il bot.
+      select_server_message: Il tuo account Discord è connesso, ma devi selezionare un server Discord per connettere il bot GuildSync.
+      connect_bot_message: Si prega di connettere il bot GuildSync a un server di Discord prima di creare eventi.
+      authorize_bot: Autorizzare Bot
+      select_discord_server: Seleziona Server di Discord
+      connect_bot_to_guild: Connetti il bot alla Gilda di Discord
+      back_to_dashboard: Indietro al Dashboard
+    schedule_guild_battle:
+      title: Programma la battaglia della guilde per %{name}
+      subtitle: Organizzare e programmare guerre tra gilde.
+      management_title: Gestione della battaglia della gilda
+      management_desc: Sfida altre gilde, rispondi alle sfide e coordina le battaglie.
+      view_all_battles: Visualizza tutti i combattimenti
+      challenge_another_guild: Sfida un'altra gilda
+      notifications: Notifiche
+      back_to_dashboard: Indietro al Dashboard
+    connect_discord:
+      title: Connetti il bot alla Gilda di Discord
+      subtitle: Seleziona un server di Discord per connettere il bot GuildSync a, per la gestione degli eventi e le notifiche.
+      connected:
+        title: Discord Connesso
+        connected_to: 'Connesso a:'
+      channel_config:
+        title: Configurazione del canale
+        subtitle: Seleziona quali canali di Discord dovrebbero ricevere diversi tipi di contenuti.
+        events_channel:
+          label: Canale degli Eventi
+          placeholder: Seleziona un canale...
+          hint: Canale dove verranno pubblicati gli annunci degli eventi
+        guild_battles_channel:
+          label: Canale delle Battaglie della Gilda
+          placeholder: Seleziona un canale...
+          hint: Canale dove verranno pubblicati gli annunci delle battaglie di gilda
+        gear_channel:
+          label: Canale Ruota
+          placeholder: Seleziona un canale...
+          hint: Canale dove saranno pubblicati gli upload degli attrezzi dei membri
+        save_button: Salva Configurazione Canale
+      select_server:
+        title: Seleziona Server di Discord
+        already_connected: Il tuo account Discord è connesso. Seleziona il server Discord a cui vuoi collegare il bot GuildSync. Devi essere un amministratore del server.
+        not_connected: Innanzitutto, connetti il tuo account Discord (impostazione unica). Poi seleziona il server Discord al quale vuoi connettere il bot GuildSync. Devi essere un amministratore del server.
+        select_button: Seleziona Server di Discord
+        connect_button: Connetti il tuo account di Discord
+      back_to_dashboard: Indietro al Dashboard
+      popup_blocked: Il popup è stato bloccato. Per favore, abilita i popup per questo sito e riprova.
+      connection_failed: 'Connessione Discord fallita: %{error}'
+  guild_archives:
+    alerts:
+      archived_unavailable: Questa gilda è archiviata e non è accessibile.
+      archived_success: '"%{guild_name}" è stata archiviata. Potrà essere eliminata definitivamente dopo un anno.'
+      unarchived_success: '"%{guild_name}" è stata ripristinata.'
+      unarchive_plan_limit: 'Non puoi ripristinare questa gilda: hai raggiunto il limite di gilde attive. Archivia o elimina prima un’altra gilda attiva.'
+      purge_not_ready: Questa gilda non può ancora essere eliminata definitivamente. Deve restare archiviata almeno un anno.
+      purged_success: '"%{guild_name}" è stata eliminata definitivamente.'
+      not_found: Gilda archiviata non trovata.
+      name_confirmation_mismatch: Il nome della gilda non corrisponde. Digita il nome esatto.
+    index:
+      title: Gilde archiviate
+      subtitle: Le gilde archiviate non contano nel limite delle gilde attive. Vengono eliminate automaticamente dopo un anno.
+      recovery_note_label: Informazioni sul recupero dei dati
+      long_recovery_hint: 'Conserviamo i record eliminati per un massimo di sei mesi. Trascorso questo periodo, vengono eliminati definitivamente. Contatta l''assistenza se i tuoi dati rientrano ancora in questo intervallo e desideri richiederne il recupero.'
+      empty: Non hai gilde archiviate.
+      archived_on: 'Archiviata il: %{date}'
+      auto_delete_on: 'Data di eliminazione automatica: %{date}'
+      unarchive_button: Ripristina gilda
+      permanent_delete_button: Elimina definitivamente
+      permanent_delete_confirm: Eliminare definitivamente %{guild_name}? Questa azione non può essere annullata.
+    settings:
+      title: Zona pericolosa
+      warning: Archiviando si disabilita l’accesso a questa gilda per tutti. I dati sono conservati per un anno prima dell’eliminazione definitiva.
+      type_name_hint: 'Digita esattamente il nome della gilda per archiviarla: %{guild_name}'
+      confirmation_label: Conferma nome gilda
+      archive_button: Archivia gilda
+      archive_confirm_prompt: Archiviare %{guild_name}? Questa gilda non sarà più accessibile.
+  polls:
+    index:
+      title: Sondaggi della Gilda
+      subtitle: Visualizza e partecipare ai sondaggi per %{guild_name}
+      create_poll: Sondaggi
+      created_by: Creato da %{name}
+      deadline: 'Scadenza:'
+      vote_count: "%{count} voti"
+      vote_count_plural: "%{count} voti"
+      anonymous: Anonimo
+      open: Aperto
+      closed: Chiuso
+      'yes': Sì
+      'no': 'No'
+      maybe: Forse
+      view_vote: Visualizza & Vota
+      view_results: Visualizza i risultati
+      delete: Elimina
+      delete_confirm: Sei sicuro di voler eliminare questo sondaggio? Questa azione non può essere annullata.
+      no_polls: Nessun sondaggio effettuato ancora.
+      create_first: Crea il Primo sondaggio
+    new:
+      title: Creare nuovo sondaggio
+      subtitle: Crea un sondaggio per %{guild_name}
+      poll_title: Sondaggio Titolo
+      poll_title_placeholder: Inserisci il titolo del sondaggio
+      description: Descrizione
+      description_placeholder: Inserisci la descrizione del sondaggio
+      discord_roles_title: Ruoli di Discord in menzioni a @
+      discord_roles_hint: Seleziona uno o più ruoli di Discord da menzionare quando pubbli il sondaggio.
+      deadline: data limite
+      deadline_hint: Il sondaggio chiuderà in questa data e ora.
+      anonymous_voting: Votazione Anonima
+      anonymous_hint: Se abilitato, le identità dei voteri saranno nascosti negli risultati.
+      create_button: Sondaggi
+    show:
+      back_to_polls: "← Indietro ai sondaggi"
+      created_by: Creato da %{name}
+      deadline: 'Scadenza:'
+      description: Descrizione
+      cast_vote: Lancia il tuo voto
+      'yes': "✅ Sì"
+      'no': "❌ No"
+      maybe: "\U0001F914 Forse"
+      change_vote_hint: Puoi modificare il tuo voto a qualsiasi momento prima del termine.
+      results: Risultati
+      votes: voti
+      no_votes: Non è stato ricevuto nessun voto ancora. Sii il primo a votare!
+      delete_poll: Elimina sondaggio
+  loot_rolls:
+    index:
+      title: Gilda - Ricerca del Bottino
+      subtitle: Visualizza e partecipa agli eventi di loot roll per %{guild_name}
+      create_loot_roll: Crea il Loot Roll
+      created_by: Creato da %{name}
+      range: 'Intervallo:'
+      roll_count: "%{count} vuole tentare il dado"
+      roll_count_plural: "%{count} dadi"
+      deadline: 'Scadenza:'
+      open: Aperto
+      closed: Chiuso
+      highest_roll: 'Massimo Ripreso:'
+      winner: 'Vincitore:'
+      view_roll: Visualizza & Ruolo
+      view_results: Visualizza i risultati
+      delete: Elimina
+      delete_confirm: Sei sicuro di voler eliminare questo loot roll? Questa azione non può essere annullata.
+      no_loot_rolls: Nessun tentativo di loot ancora.
+      create_first: Creare il Primo Ruolo di Loot
+    show:
+      back_to_loot_rolls: "← Indietro alla Lista dei Trovamenti"
+      created_by: Creato da %{name}
+      range: 'Intervallo: %{min} - %{max}'
+      roll_count:
+        one: tiro
+        other: tentativi
+      deadline: data limite
+      open: Aperto
+      closed: Chiuso
+      description: Descrizione
+      time_remaining: Tempo rimanente
+      calculating: Calcolando...
+      expired: Scaduto
+      tie_detected: Collisione rilevata!
+      are_tied_at: sono legati a
+      tied_reroll_hint: Gli utenti incollati devono riciclare il dado utilizzando il pulsante di Discord.
+      winner: Vincitore!
+      with_roll_of: con un getto di
+      leaderboard: Classifica
+      tied: Pareggio
+      force_reroll: Forza Riarro
+      force_reroll_confirm: Questo renderà invalido il giro di %{name} e consentirà loro a fare un altro tentativo. Proseguire?
+      no_rolls_yet: Non ci sono ancora lanci. Utilizza il pulsante di Discord per fare un lancio!
+      close_loot_roll: Chiudi Loot Roll
+      close_confirm: Sei sicuro che vuoi chiudere questa ruota del loot prematuramente? Un vincitore sarà determinato.
+      delete_loot_roll: Elimina elenco del bottino
+      delete_confirm: Sei sicuro di voler eliminare questo loot roll? Questa azione non può essere annullata.
+    new:
+      title: Crea Nuovo Botin
+      subtitle: Crea una raffa per %{guild_name}
+      loot_title: Loot
+      loot_title_placeholder: Inserisci il titolo del loot roll
+      description: Descrizione (opzionale)
+      description_placeholder: Inserisci descrizione (opzionale)
+      min_roll: Minimo Roll
+      max_roll: Massimo Ruoto
+      allowed_roles_title: Ruoli ammessi (Opzionale)
+      allowed_roles_hint: Seleziona quali ruoli di Discord possono partecipare. Lascia vuoto per consentire a tutti.
+      deadline: Scadenza (opzionale)
+      deadline_hint: La Ruota del loot si chiuderà automaticamente in questo momento. Lascia vuoto per nessun termine.
+      auto_post_title: Pubblicazione Automatica su Discord
+      auto_post_hint: Questa lotteria sarà pubblicata automaticamente nel canale configurato delle tue lotterie.
+      create_button: Crea
+  guild_applications:
+    index:
+      title: Miei Applicazioni
+      subtitle: Visualizza e monitora le tue applicazioni per i membri del gruppo.
+      apply_to_guild: Applica alla Gilda
+      guild_invitations: Inviti di Gilda
+      invited_by: 'Invitato da:'
+      invited: 'invitati:'
+      pending: In sospeso
+      accept_invitation: Accettare l'invito
+      decline: Rifiuta
+      applied: 'Applicati:'
+      your_message: 'Il tuo messaggio:'
+      view_guild: Visualizza Gilda
+      no_applications: Non ci sono ancora richieste di ammissione. Applica ad una guilde per iniziare!
+    new:
+      title: Applica alla Gilda
+      subtitle: Invia una richiesta per unirti a una gilda.
+      select_guild: Seleziona Gilda
+      search_placeholder: Cerca un'organizzazione per nome...
+      start_typing: Inizia a scrivere per cercare le gilde...
+      discord_username: Nome utente Discord
+      discord_placeholder: Il tuo Discord#1234
+      message_label: Messaggio (Opzionale)
+      message_placeholder: Dì alla gilda perché vuoi unirti...
+      character_details_label: Carattere Dettagli (Opzionale)
+      character_details_placeholder: Includi le statistiche del tuo personaggio, il gioco che giochi, il nome del personaggio, il livello, la classe, l'attrezzatura, ecc...
+      character_details_hint: Condividi dettagli sulla tua personaggio, statistiche, gioco e qualsiasi altro informazione rilevante.
+      submit: Inviare domanda
+      cancel: Annulla
+      no_guilds_found: Nessuna gilda trovata
+      load_more_guilds: Carica più gilde
+      owner_unknown: Sconosciuto
+      error_searching: Errore durante la ricerca delle gilde
+    create:
+      guild_not_available: Questa gilda non è in elenco, è stata archiviata o non accetta candidature.
+  guild_battles:
+    index:
+      title: Battaglie di Gilda per %{name}
+      subtitle: Gestire le sfide e le risposte delle battaglie tra le diverse guild.
+      challenge_another_guild: Sfida un'altra gilda
+      your_guild_battles: Le tue battaglie della gilde
+      you_challenged: Hai sfidato %{name}
+      challenged_you: "%{name} ti ha sfidato"
+      scheduled: 'Programmato:'
+      location: 'Località:'
+      max_participants: 'Partecipanti massimi:'
+      view_details: Vedere i dettagli
+      delete: Elimina
+      delete_confirm: Sei sicuro di voler eliminare questa lotta di gilde? Questa azione non può essere annullata.
+      empty: Non ci sono ancora battaglie di gilde. Sfida un'altra guild per iniziare!
+    new:
+      title: Sfida un'altra gilda
+      subtitle: Seleziona una gilde per sfidare e imposta i dettagli della battaglia.
+      battle_details: Dettagli della Battaglia
+      select_guild_to_challenge: Seleziona la guilda da sfidare
+      search_placeholder: Cerca una guilde per nome, descrizione o proprietario...
+      search_hint: Inizia a scrivere per cercare le gilde...
+      scheduled_date_time: Data e Ora Programmate
+      location: Posizione
+      location_placeholder: Inserisci ubicazione della battaglia
+      max_participants: Massimo partecipanti
+      optional: Opzionale
+      notes: Note
+      notes_placeholder: Dettagli aggiuntivi della battaglia o richieste...
+      role_categories: Ruoli categorie
+      role_categories_hint: Seleziona quali ruoli gli utenti possono iscriversi a. Tutti i ruoli selezionati saranno disponibili per l'iscrizione su Discord.
+      role_dps: DPS
+      role_tank: Difensore
+      role_healer: Curatore
+      role_ranged: Distanza
+      send_challenge: Inviare sfida
+      cancel: Annulla
+      owner_label: Proprietario
+      search_error: Errore durante la ricerca delle gilde
+    show:
+      title: Dettagli della Battaglia di Guilde
+      subtitle: Gilda Battaglie Sfida
+      battle_details: Dettagli della Battaglia
+      status: Stato
+      scheduled: Programmato
+      location: Posizione
+      max_participants: Massimo partecipanti
+      notes: Note
+      respond_to_challenge: Rispondi alla Sfida
+      scheduled_date_time: Data e Ora Programmate
+      accept: Accettare
+      request_changes: Modifica Richiesta
+      decline: Rifiuta
+      communication: Comunicazione
+      communication_visit_html: Per inviare messaggi o visualizzare la conversazione, si prega di visitare il %{link}.
+      notifications_page: Pagina delle notifiche
+      communication_discord: Puoi anche inviare messaggi direttamente attraverso il bot di Discord GuildSync.
+      cancellation_requested: Richiesta di cancellazione
+      cancellation_by_challenger: Il sommettitore della sfida ha richiesto di cancellare questa battaglia.
+      cancellation_by_defender: Il difensore ha richiesto di cancellare questa battaglia.
+      cancellation_waiting: Hai richiesto di cancellare questa battaglia. Stiamo aspettando la risposta del altro proprietario.
+      accept_cancellation: Accettare Cancellazione
+      accept_cancellation_confirm: Accettando sosterà e eliminerà questa battaglia. Sei sicuro?
+      decline_cancellation: Rifiutare Annullamento
+      back_to_guild_battles: Indietro alle Battaglie di Gilda
+      request_cancellation: Richiesta di annullamento
+      request_cancellation_confirm: Questo richiederà la cancellazione. Il altro proprietario deve accettare. Proseguire?
+      delete_battle: Elimina Battaglia
+      delete_battle_confirm: Sei sicuro di voler eliminare definitivamente questa sfida di gilda? Quest'azione non si può sostenere e cancellerà tutti gli eventi associati a Discord. L'altro amministratore sarà informato.
+    notifications:
+      title: Notifiche di Battaglia della Gilda
+      subtitle: Gestire le sfide, i messaggi e le comunicazioni delle battaglie.
+      back_to_battle_home: "← Torna alla Home della Battaglia della Gilda"
+      pending_incoming: Pendenti Sfide In Arrivo
+      pending_outgoing: Pendenti Sfide in Uscita
+      accepted_battles: Battaglie Accettate
+      declined_battles: Battaglie Rifiate
+      reschedule_requests: Richieste di Rimprogrammazione
+      cancelled_battles: Battaglie Annullate
+      empty: Non ci sono ancora notifiche di battaglia di gilde. Sfida un'altra gilda per iniziare!
+    battle_notification_card:
+      you_challenged: Hai sfidato %{name}
+      challenged_you: "%{name} ti ha sfidato"
+      scheduled: 'Programmato:'
+      location: 'Località:'
+      max_participants: 'Partecipanti massimi:'
+      notes: 'Note:'
+      messages: Messaggi
+      no_messages: Nessun messaggio ancora. Inizia la conversazione!
+      message_placeholder: Scrivi un messaggio...
+      send: Inviare
+      view_details: Vedere i dettagli
+      accept: Accettare
+      decline: Rifiuta
+  guild_documents:
+    index:
+      title: Documenti della Gilda
+      subtitle: Gestire e condividere documenti per %{guild_name}
+      new_folder: Nuova cartella
+      new_document: Nuovo documento
+      create_document: Crea documento
+      folder_name: Cartella Nome
+      folder_name_placeholder: Nome della cartella
+      color: Colore
+      create_folder: Crea Cartella
+      documents_count: documenti
+      edit: Modifica
+      delete_folder_confirm: Sei sicuro? Questo sposterà tutti i documenti in questa cartella nella 'Nessuna Cartella'.
+      delete: Elimina
+      by_author: Da %{author}
+      visibility_public: Pubblico
+      visibility_private: Privato
+      visibility_unlisted: Non elencato
+      share: Condividere
+      no_documents_in_folder: Nessun documento in questa cartella
+      no_folder: Nessun file
+      no_documents_yet: Non ci sono documenti ancora
+      create_first_hint: Crea il primo documento o la cartella per iniziare.
+      edit_folder_title: Modifica Cartella
+      cancel: Annulla
+      update_folder: Aggiorna Cartella
+    new:
+      title: Nuovo documento
+      subtitle: Crea un nuovo documento per %{guild_name}
+      fix_errors: 'Si prega di correggere gli errori seguenti:'
+      document_title_placeholder: Titolo del documento
+      visibility_private: Privato - Solo per membri della guilde
+      visibility_public: Pubblico - Chiunque abbia il Collegamento
+      visibility_unlisted: Non elencato - Non indicizzato, ma vedibile tramite link
+      folder_optional: Cartella (opzionale)
+      no_folder: Nessun file
+      content: Contenuto
+      cancel: Annulla
+      create_document: Crea documento
+    toolbar:
+      image: Carica immagine
+    edit:
+      title: Modifica documento
+      subtitle: Modifica documento per %{guild_name}
+      fix_errors: 'Si prega di correggere gli errori seguenti:'
+      document_title_placeholder: Titolo del documento
+      visibility_private: Privato - Solo per membri della guilde
+      visibility_public: Pubblico - Chiunque abbia il Collegamento
+      visibility_unlisted: Non elencato - Non indicizzato, ma vedibile tramite link
+      folder_optional: Cartella (opzionale)
+      no_folder: Nessun file
+      content: Contenuto
+      cancel: Annulla
+      update_document: Aggiorna documento
+  guild_warnings:
+    title: Centro avvisi di gilda
+    subtitle: Tieni traccia degli avvisi ai membri e organizza gli elenchi di stato.
+    send_title: Invia avviso
+    send_description: Invia un DM Discord tramite il bot GuildSync quando il membro ha un account Discord collegato.
+    member_label: Membro di gilda
+    select_member: Seleziona un membro
+    reason_label: Motivo dell'avviso
+    send_button: Invia avviso
+    warning_count: 'Avvisi: %{count}/%{limit}'
+    empty_column: Nessun membro in questo elenco.
+    save_lists_button: Salva elenchi
+    back_to_guild: Torna alla dashboard della gilda
+    columns:
+      no_warnings: Nessun avviso
+      warned: Elenco avvisati
+      banned: Elenco espulsi
+    alerts:
+      access_denied: Non hai il permesso di gestire gli avvisi per questa gilda.
+      member_not_found: Membro di gilda non trovato.
+      protected_member: Non puoi avvisare o riclassificare il proprietario della gilda o i gestori degli avvisi.
+      reason_required: Il motivo dell'avviso è obbligatorio.
+      warning_sent: Avviso inviato a %{user}.
+      warning_failed: 'Impossibile inviare l''avviso: %{error}'
+      lists_updated: Gli elenchi degli avvisi sono stati aggiornati.
+      list_update_failed: 'Impossibile aggiornare gli elenchi degli avvisi: %{error}'
+    discord:
+      warning_dm: |-
+        Hai ricevuto un avviso in **%{guild_name}**.
+        Motivo: %{reason}
+        Avvisi: %{warning_count}/%{warning_limit}
+    my_status:
+      title: Il tuo stato avvisi
+      subtitle: Avvisi ufficiali registrati per te in questa gilda.
+      access_denied: Devi essere membro di questa gilda per vedere questa pagina.
+      none_title: Nessun avviso in archivio
+      none_body: Non hai un record di avvisi attivo per questa gilda.
+      state_label: Stato
+      count_label: Numero di avvisi
+      last_reason: Motivo più recente
+      last_at: Ultimo avviso il
+      discord_note: Se il tuo account Discord è collegato in GuildSync, dovresti ricevere anche un messaggio diretto dal bot quando viene emesso un nuovo avviso.

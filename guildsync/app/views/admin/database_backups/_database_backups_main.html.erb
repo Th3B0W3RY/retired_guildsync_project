@@ -1,0 +1,163 @@
+<% unless @backup_feature_enabled %>
+  <div class="mb-6 p-4 rounded-lg border border-amber-500/40 bg-amber-950/30 text-amber-100 text-sm">
+    <%= t("admin.database_backups.feature_off") %>
+  </div>
+<% end %>
+
+<div class="rounded-lg border border-theme-primary bg-theme-secondary/30 p-6">
+  <h2 class="text-lg font-semibold text-theme-primary mb-4"><%= t("admin.database_backups.last_success") %></h2>
+
+  <% if @last_success.is_a?(Hash) && @last_success["s3_key"].present? %>
+    <dl class="space-y-3 text-sm">
+      <div>
+        <dt class="text-theme-secondary"><%= t("admin.database_backups.s3_key") %></dt>
+        <dd class="text-theme-primary font-mono break-all mt-1"><%= @last_success["s3_key"] %></dd>
+      </div>
+      <div>
+        <dt class="text-theme-secondary"><%= t("admin.database_backups.finished_at") %></dt>
+        <dd class="text-theme-primary mt-1"><%= @last_success["finished_at"] %></dd>
+      </div>
+    </dl>
+  <% else %>
+    <p class="text-theme-secondary"><%= t("admin.database_backups.none_yet") %></p>
+  <% end %>
+</div>
+
+<div class="rounded-lg border border-theme-primary bg-theme-secondary/30 p-6 mt-6">
+  <h2 class="text-lg font-semibold text-theme-primary mb-2"><%= t("admin.database_backups.config_snapshot_heading") %></h2>
+  <p class="text-theme-secondary text-sm mb-4"><%= t("admin.database_backups.config_snapshot_intro") %></p>
+
+  <% unless @config_snapshot_feature_enabled %>
+    <div class="mb-4 p-4 rounded-lg border border-amber-500/40 bg-amber-950/30 text-amber-100 text-sm">
+      <%= t("admin.database_backups.config_snapshot_feature_off") %>
+    </div>
+  <% end %>
+
+  <h3 class="text-base font-medium text-theme-primary mb-3"><%= t("admin.database_backups.config_snapshot_last_success") %></h3>
+  <% if @config_snapshot_last_success.is_a?(Hash) && @config_snapshot_last_success["s3_key"].present? %>
+    <dl class="space-y-3 text-sm">
+      <div>
+        <dt class="text-theme-secondary"><%= t("admin.database_backups.s3_key") %></dt>
+        <dd class="text-theme-primary font-mono break-all mt-1"><%= @config_snapshot_last_success["s3_key"] %></dd>
+      </div>
+      <div>
+        <dt class="text-theme-secondary"><%= t("admin.database_backups.finished_at") %></dt>
+        <dd class="text-theme-primary mt-1"><%= @config_snapshot_last_success["finished_at"] %></dd>
+      </div>
+    </dl>
+  <% else %>
+    <p class="text-theme-secondary"><%= t("admin.database_backups.config_snapshot_none_yet") %></p>
+  <% end %>
+
+  <p class="text-xs text-theme-secondary mt-4"><%= t("admin.database_backups.config_snapshot_note") %></p>
+
+  <% if @config_snapshot_feature_enabled && @recent_config_snapshot_list.present? %>
+    <div class="mt-6 pt-6 border-t border-theme-primary/30">
+      <h3 class="text-base font-medium text-theme-primary mb-2"><%= t("admin.database_backups.config_recent_heading") %></h3>
+      <p class="text-theme-secondary text-sm mb-4"><%= t("admin.database_backups.config_recent_intro", count: 100) %></p>
+
+      <% if @recent_config_snapshot_list.failed %>
+        <p class="text-sm text-amber-200"><%= t("admin.database_backups.config_recent_failed") %></p>
+      <% elsif @recent_config_snapshot_list.entries.blank? %>
+        <p class="text-theme-secondary text-sm"><%= t("admin.database_backups.config_recent_empty") %></p>
+      <% else %>
+        <% if @recent_config_snapshot_list.truncated %>
+          <p class="text-xs text-amber-200/90 mb-3"><%= t("admin.database_backups.config_recent_truncated", count: 100) %></p>
+        <% end %>
+        <div class="overflow-x-auto">
+          <table class="w-full text-left text-sm border-collapse">
+            <thead>
+              <tr class="border-b border-theme-primary/40 text-theme-secondary">
+                <th class="py-2 pr-4 font-medium"><%= t("admin.database_backups.col_key") %></th>
+                <th class="py-2 pr-4 font-medium whitespace-nowrap"><%= t("admin.database_backups.col_size") %></th>
+                <th class="py-2 font-medium whitespace-nowrap"><%= t("admin.database_backups.col_last_modified") %></th>
+              </tr>
+            </thead>
+            <tbody>
+              <% @recent_config_snapshot_list.entries.each do |row| %>
+                <tr class="border-b border-theme-primary/20 text-theme-primary">
+                  <td class="py-2 pr-4 font-mono break-all align-top"><%= row[:key] %></td>
+                  <td class="py-2 pr-4 align-top whitespace-nowrap"><%= number_to_human_size(row[:size].to_i) %></td>
+                  <td class="py-2 align-top whitespace-nowrap"><%= row[:last_modified] %></td>
+                </tr>
+              <% end %>
+            </tbody>
+          </table>
+        </div>
+        <div class="mt-4 flex flex-wrap gap-4 text-sm">
+          <% if @recent_config_snapshot_list.truncated && @recent_config_snapshot_list.next_continuation_token.present? %>
+            <%= link_to t("admin.database_backups.config_recent_next_page"),
+                admin_database_backups_path(
+                  **{
+                    continuation_token: params[:continuation_token],
+                    config_continuation_token: @recent_config_snapshot_list.next_continuation_token
+                  }.compact_blank
+                ),
+                class: "text-sky-400 hover:underline font-medium" %>
+          <% end %>
+          <% if @config_list_continuation.present? %>
+            <%= link_to t("admin.database_backups.config_recent_first_page"),
+                admin_database_backups_path(**{ continuation_token: params[:continuation_token] }.compact_blank),
+                class: "text-theme-secondary hover:underline" %>
+          <% end %>
+        </div>
+      <% end %>
+    </div>
+  <% end %>
+</div>
+
+<% if @backup_feature_enabled && @recent_backup_list.present? %>
+  <div class="rounded-lg border border-theme-primary bg-theme-secondary/30 p-6 mt-6">
+    <h2 class="text-lg font-semibold text-theme-primary mb-2"><%= t("admin.database_backups.recent_heading") %></h2>
+    <p class="text-theme-secondary text-sm mb-4"><%= t("admin.database_backups.recent_intro", count: 100) %></p>
+
+    <% if @recent_backup_list.failed %>
+      <p class="text-sm text-amber-200"><%= t("admin.database_backups.recent_failed") %></p>
+    <% elsif @recent_backup_list.entries.blank? %>
+      <p class="text-theme-secondary text-sm"><%= t("admin.database_backups.recent_empty") %></p>
+    <% else %>
+      <% if @recent_backup_list.truncated %>
+        <p class="text-xs text-amber-200/90 mb-3"><%= t("admin.database_backups.recent_truncated", count: 100) %></p>
+      <% end %>
+      <div class="overflow-x-auto">
+        <table class="w-full text-left text-sm border-collapse">
+          <thead>
+            <tr class="border-b border-theme-primary/40 text-theme-secondary">
+              <th class="py-2 pr-4 font-medium"><%= t("admin.database_backups.col_key") %></th>
+              <th class="py-2 pr-4 font-medium whitespace-nowrap"><%= t("admin.database_backups.col_size") %></th>
+              <th class="py-2 font-medium whitespace-nowrap"><%= t("admin.database_backups.col_last_modified") %></th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @recent_backup_list.entries.each do |row| %>
+              <tr class="border-b border-theme-primary/20 text-theme-primary">
+                <td class="py-2 pr-4 font-mono break-all align-top"><%= row[:key] %></td>
+                <td class="py-2 pr-4 align-top whitespace-nowrap"><%= number_to_human_size(row[:size].to_i) %></td>
+                <td class="py-2 align-top whitespace-nowrap"><%= row[:last_modified] %></td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+      <div class="mt-4 flex flex-wrap gap-4 text-sm">
+        <% if @recent_backup_list.truncated && @recent_backup_list.next_continuation_token.present? %>
+          <%= link_to t("admin.database_backups.recent_next_page"),
+              admin_database_backups_path(
+                **{
+                  continuation_token: @recent_backup_list.next_continuation_token,
+                  config_continuation_token: params[:config_continuation_token]
+                }.compact_blank
+              ),
+              class: "text-sky-400 hover:underline font-medium" %>
+        <% end %>
+        <% if @backup_list_continuation.present? %>
+          <%= link_to t("admin.database_backups.recent_first_page"),
+              admin_database_backups_path(**{ config_continuation_token: params[:config_continuation_token] }.compact_blank),
+              class: "text-theme-secondary hover:underline" %>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
+<% end %>
+
+<p class="text-xs text-theme-secondary mt-6"><%= t("admin.database_backups.cache_note") %></p>

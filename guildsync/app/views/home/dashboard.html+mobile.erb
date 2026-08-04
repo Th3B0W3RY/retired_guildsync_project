@@ -1,0 +1,111 @@
+<% unless user_signed_in? && current_user.present? && mfa_verified_for_session? %>
+  <div class="text-center py-12">
+    <h2 class="text-2xl font-bold text-theme-primary mb-4"><%= t('dashboard.access_denied') %></h2>
+    <p class="text-theme-secondary mb-6"><%= t('dashboard.sign_in_required') %></p>
+    <%= link_to t('common.buttons.sign_in'), login_path, class: "px-6 py-3 bg-theme-accent text-white rounded-lg hover:bg-theme-accent-hover transition-colors font-semibold" %>
+  </div>
+<% else %>
+  <% dash_font = "font-[family-name:Inter,ui-sans-serif,system-ui,sans-serif]" %>
+  <% glass = "rounded-xl border border-white/10 bg-[rgba(15,23,43,0.5)] outline outline-1 outline-offset-[-1px] outline-white/10" %>
+  <% btn_secondary = "inline-flex min-h-11 items-center justify-center rounded-lg border border-white/10 bg-[rgba(15,23,43,0.35)] px-4 text-base font-medium text-slate-300 transition-colors hover:bg-[rgba(15,23,43,0.55)]" %>
+  <% btn_gradient = "inline-flex min-h-11 items-center justify-center rounded-lg bg-theme-brand-gradient px-4 text-base font-medium text-white transition-opacity hover:opacity-95" %>
+
+  <div class="<%= dash_font %> space-y-8">
+    <header>
+      <h1 class="text-[28px] font-bold leading-9 tracking-tight text-white"><%= t('dashboard.title') %></h1>
+    </header>
+
+    <section class="<%= glass %> p-5">
+      <div class="mb-3 flex items-center justify-between gap-3">
+        <h2 class="text-lg font-semibold text-white"><%= t("dashboard.your_guilds") %></h2>
+        <% if current_user.guilds.any? %>
+          <%= link_to t("dashboard.open"), member_dashboard_path, class: "shrink-0 text-sm font-medium text-[#7C86FF] hover:underline" %>
+        <% end %>
+      </div>
+      <% if current_user.guilds.any? %>
+        <ul class="space-y-3">
+          <% current_user.guilds.each do |guild| %>
+            <li class="flex items-center gap-3">
+              <%= guild_sidebar_logo_tile(guild) %>
+              <span class="min-w-0 flex-1 truncate text-base font-medium text-white"><%= guild.name %></span>
+              <%= link_to t("dashboard.open"), guild_path(guild), class: "shrink-0 text-sm font-medium text-[#7C86FF] hover:underline" %>
+            </li>
+          <% end %>
+        </ul>
+      <% else %>
+        <p class="text-sm text-slate-400"><%= t("dashboard.no_guilds") %></p>
+      <% end %>
+    </section>
+
+    <section class="<%= glass %> p-5">
+      <h2 class="mb-3 text-lg font-semibold text-white"><%= t("dashboard.quick_actions") %></h2>
+      <div class="flex flex-col gap-3 sm:flex-row sm:flex-wrap">
+        <% if show_nav_create_guild?(current_user) %>
+          <%= link_to t("dashboard.create_guild"), new_guild_path, data: { turbo: false, metric_id: "dashboard_quick_action_create_guild" }, class: "#{btn_gradient} w-full justify-center sm:w-auto" %>
+        <% end %>
+        <%= link_to t("dashboard.view_guilds"), member_dashboard_path, data: { metric_id: "dashboard_quick_action_view_guilds" }, class: "#{btn_secondary} w-full justify-center sm:w-auto" %>
+        <%= link_to t("dashboard.my_applications"), guild_applications_path, data: { metric_id: "dashboard_quick_action_my_applications" }, class: "#{btn_secondary} w-full justify-center sm:w-auto" %>
+        <%= link_to t("dashboard.apply_to_guild"), new_guild_application_path, data: { metric_id: "dashboard_quick_action_apply_to_guild" }, class: "#{btn_secondary} w-full justify-center sm:w-auto" %>
+        <% if show_nav_archived_guilds?(current_user) %>
+          <%= link_to t("dashboard.archived_guilds"), guild_archives_path, data: { metric_id: "dashboard_quick_action_archived_guilds" }, class: "#{btn_secondary} w-full justify-center sm:w-auto" %>
+        <% end %>
+        <% if show_alliances_top_nav?(current_user) %>
+          <%= link_to t("dashboard.alliances"), alliances_path, data: { metric_id: "dashboard_quick_action_alliances" }, class: "#{btn_secondary} w-full justify-center sm:w-auto" %>
+        <% end %>
+      </div>
+    </section>
+
+    <section data-controller="dashboard-stats-poll" data-dashboard-stats-poll-interval-value="20000" data-dashboard-stats-poll-url-value="<%= dashboard_stats_path %>">
+      <div data-dashboard-stats-poll-target="container" class="space-y-6">
+        <%= render partial: "home/dashboard_stats" %>
+      </div>
+    </section>
+
+    <section class="<%= glass %> p-5" data-controller="recent-activity-poll" data-recent-activity-poll-interval-value="30000" data-recent-activity-poll-url-value="<%= dashboard_recent_activity_path %>">
+      <div class="mb-3 flex items-center justify-between gap-4">
+        <h2 class="text-lg font-semibold text-white"><%= t('dashboard.recent_activity') %></h2>
+        <%= link_to t("user_activity.view_activity"), dashboard_activity_path, class: "shrink-0 text-sm font-medium text-[#7C86FF] hover:underline" %>
+      </div>
+      <div data-recent-activity-poll-target="container">
+        <%= render partial: "home/recent_activity_list", locals: { activities: current_user.user_recent_activities.recent_first.limit(10) } %>
+      </div>
+    </section>
+
+    <section class="<%= glass %> space-y-5 overflow-hidden p-5">
+      <div class="flex gap-3">
+        <svg class="mt-0.5 h-6 w-6 shrink-0 text-[#5865F2]" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515a.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0a12.64 12.64 0 0 0-.617-1.25a.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057a19.9 19.9 0 0 0 5.993 3.03a.078.078 0 0 0 .084-.028a14.09 14.09 0 0 0 1.226-1.994a.076.076 0 0 0-.041-.106a13.107 13.107 0 0 1-1.872-.892a.077.077 0 0 1-.008-.128a10.2 10.2 0 0 0 .372-.292a.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127a12.299 12.299 0 0 1-1.873.892a.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028a19.839 19.839 0 0 0 6.002-3.03a.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03z"/>
+        </svg>
+        <div class="min-w-0 flex-1 space-y-2">
+          <h2 class="text-lg font-semibold text-white"><%= t("dashboard.join_discord_title") %></h2>
+          <p class="text-sm text-slate-400"><%= t("dashboard.join_discord_here") %></p>
+          <div class="flex flex-wrap gap-2 pt-1">
+            <a href="https://discord.com/widget?id=1499890686021992539&theme=dark" target="_blank" rel="noopener noreferrer" class="inline-flex h-10 items-center gap-2 rounded-lg bg-[#5865F2] px-4 text-sm font-medium text-white">
+              <svg class="h-4 w-4" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515a.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0a12.64 12.64 0 0 0-.617-1.25a.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057a19.9 19.9 0 0 0 5.993 3.03a.078.078 0 0 0 .084-.028a14.09 14.09 0 0 0 1.226-1.994a.076.076 0 0 0-.041-.106a13.107 13.107 0 0 1-1.872-.892a.077.077 0 0 1-.008-.128a10.2 10.2 0 0 0 .372-.292a.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127a12.299 12.299 0 0 1-1.873.892a.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028a19.839 19.839 0 0 0 6.002-3.03a.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03z"/>
+              </svg>
+              <%= t("home.index.discord_label") %>
+            </a>
+            <span class="inline-flex h-10 items-center rounded-lg border border-slate-700 bg-slate-800/50 px-4 text-sm font-medium text-slate-300"><%= t("dashboard.discord_promo_online_example") %></span>
+          </div>
+        </div>
+      </div>
+      <div class="space-y-3 rounded-lg bg-black/30 p-4">
+        <p class="text-sm font-semibold text-white"><%= t("dashboard.discord_community_card_title") %></p>
+        <div>
+          <p class="text-xs font-medium uppercase tracking-wide text-slate-400"><%= t("dashboard.members_online_heading") %></p>
+          <% if (dc = current_user.user_discord_connection).present? %>
+            <div class="mt-2 flex items-center gap-2">
+              <span class="h-2 w-2 shrink-0 rounded-full bg-green-500" aria-hidden="true"></span>
+              <span class="text-sm text-slate-300"><%= clean_discord_username(dc.discord_username) || t("sidebar.discord_username_fallback") %></span>
+            </div>
+          <% end %>
+        </div>
+        <%= link_to t("dashboard.join_discord_cta_button"), "https://discord.com/widget?id=1499890686021992539&theme=dark", target: "_blank", rel: "noopener noreferrer", class: "flex h-11 w-full items-center justify-center rounded-lg bg-green-500 text-base font-medium text-white" %>
+        <div class="flex w-full max-w-full justify-center overflow-x-auto overflow-hidden rounded-lg">
+          <iframe src="https://discord.com/widget?id=1499890686021992539&theme=dark" width="350" height="500" allowtransparency="true" frameborder="0" sandbox="allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts" title="<%= t("dashboard.discord_iframe_title", app_name: t("app_name")) %>" class="block max-w-full rounded-lg"></iframe>
+        </div>
+      </div>
+    </section>
+  </div>
+<% end %>

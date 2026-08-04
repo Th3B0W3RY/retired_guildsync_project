@@ -1,0 +1,36 @@
+<div class="w-full max-w-[760px] font-[family-name:Inter,ui-sans-serif,system-ui,sans-serif]" data-turbo="false">
+  <div class="rounded-2xl bg-[rgba(15,23,43,0.5)] shadow-[0px_25px_50px_-12px_rgba(0,0,0,0.25)] outline outline-1 outline-offset-[-1px] outline-[rgba(255,255,255,0.1)] pt-8 px-[33px] pb-8 flex flex-col gap-6">
+    <div class="text-center">
+      <h1 class="text-white text-2xl font-semibold leading-8"><%= t("account_creation.choose.title") %></h1>
+      <p class="mt-2 text-[#90A1B9] text-sm leading-5"><%= t("account_creation.choose.subtitle") %></p>
+    </div>
+
+    <div class="grid gap-4 md:grid-cols-2">
+      <%= link_to create_account_standard_path, class: "rounded-xl border border-[#314158] bg-[rgba(29,41,61,0.5)] p-5 hover:border-[#7C86FF] transition-colors" do %>
+        <h2 class="text-white text-lg font-semibold"><%= t("account_creation.choose.mfa.title") %></h2>
+        <p class="mt-2 text-[#90A1B9] text-sm"><%= t("account_creation.choose.mfa.body") %></p>
+      <% end %>
+
+      <%= button_to create_account_discord_path, method: :post,
+          form: { data: { turbo: false }, class: "contents" },
+          class: "text-left rounded-xl border border-[#314158] bg-[rgba(29,41,61,0.5)] p-5 hover:border-[#5865F2] transition-colors cursor-pointer" do %>
+        <h2 class="text-white text-lg font-semibold"><%= t("account_creation.choose.discord.title") %></h2>
+        <p class="mt-2 text-[#90A1B9] text-sm"><%= t("account_creation.choose.discord.body") %></p>
+      <% end %>
+
+      <%= button_to create_account_google_path, method: :post,
+          form: { data: { turbo: false }, class: "contents" },
+          class: "text-left rounded-xl border border-[#314158] bg-[rgba(29,41,61,0.5)] p-5 hover:border-[#EA4335] transition-colors cursor-pointer" do %>
+        <h2 class="text-white text-lg font-semibold"><%= t("account_creation.choose.google.title") %></h2>
+        <p class="mt-2 text-[#90A1B9] text-sm"><%= t("account_creation.choose.google.body") %></p>
+      <% end %>
+
+      <%= button_to create_account_microsoft_path, method: :post,
+          form: { data: { turbo: false }, class: "contents" },
+          class: "text-left rounded-xl border border-[#314158] bg-[rgba(29,41,61,0.5)] p-5 hover:border-[#00A4EF] transition-colors cursor-pointer" do %>
+        <h2 class="text-white text-lg font-semibold"><%= t("account_creation.choose.microsoft.title") %></h2>
+        <p class="mt-2 text-[#90A1B9] text-sm"><%= t("account_creation.choose.microsoft.body") %></p>
+      <% end %>
+    </div>
+  </div>
+</div>

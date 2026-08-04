@@ -1,0 +1,19 @@
+<div id="admin_feature_requests_flash" class="min-h-0" aria-live="polite"></div>
+
+<p class="text-sm text-theme-secondary"><%= t("roadmap.admin.drag_hint") %></p>
+
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4" data-controller="admin-roadmap">
+  <% FeatureRequest::STATUSES.each do |status| %>
+    <div class="bg-theme-secondary rounded-lg border border-theme-primary p-4 min-h-[200px] transition-colors" data-admin-roadmap-target="column" data-status="<%= status %>">
+      <h2 class="text-lg font-semibold text-theme-primary mb-3"><%= t("roadmap.columns.#{status}") %></h2>
+      <div id="admin_roadmap_column_list_<%= status %>" class="space-y-3">
+        <% (@by_status[status] || []).each do |fr| %>
+          <%= render "admin/feature_requests/feature_request_card", fr: fr %>
+        <% end %>
+        <% if (@by_status[status] || []).empty? %>
+          <p id="admin_roadmap_empty_<%= status %>" class="text-theme-secondary text-sm italic"><%= t("roadmap.empty_column") %></p>
+        <% end %>
+      </div>
+    </div>
+  <% end %>
+</div>

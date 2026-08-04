@@ -1,0 +1,15 @@
+<% cm = "admin.content_moderation.index" %>
+<div class="bg-theme-card border border-theme-primary rounded-lg p-6 shadow-lg">
+  <h2 class="text-xl font-semibold text-theme-primary mb-4"><%= t("#{cm}.health_heading") %></h2>
+  <% if @last_health %>
+    <div class="mb-4 p-4 rounded-lg <%= @last_health.passed? ? 'bg-green-900/30 text-green-200' : 'bg-red-900/30 text-red-200' %>">
+      <%= @last_health.passed? ? t("#{cm}.health_ok") : t("#{cm}.health_issues") %>
+    </div>
+    <p class="text-theme-secondary"><%= t("#{cm}.health_last_check", time: l(@last_health.created_at, format: :short)) %></p>
+    <p class="text-theme-secondary"><%= t("#{cm}.health_score_line", score: @health_score) %></p>
+    <p class="text-theme-secondary"><%= t("#{cm}.health_warnings_fails", warnings: @last_health.warning_count, fails: @last_health.fail_count) %></p>
+  <% else %>
+    <p class="text-theme-secondary"><%= t("#{cm}.health_never_run") %></p>
+  <% end %>
+  <%= button_to t("#{cm}.run_manual_check"), run_health_check_admin_content_moderation_index_path(format: :turbo_stream), method: :post, class: "mt-4 px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700" %>
+</div>

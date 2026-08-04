@@ -1,0 +1,134 @@
+<div class="max-w-4xl mx-auto p-6">
+  <h1 class="text-3xl font-bold text-theme-primary mb-6"><%= t('guilds.invite_members.title', name: @guild.name) %></h1>
+  <p class="text-theme-secondary mb-6"><%= t('guilds.invite_members.subtitle') %></p>
+
+  <!-- One-time invite link -->
+  <div class="bg-theme-card border border-theme-primary rounded-lg p-6 mb-6">
+    <h2 class="text-xl font-semibold text-theme-primary mb-2"><%= t('join.invite_link_section') %></h2>
+    <p class="text-theme-secondary text-sm mb-4"><%= t('join.invite_link_description') %></p>
+    <%= button_to t('join.generate_link'), guild_invite_links_path(@guild), method: :post, class: "px-4 py-2 bg-theme-accent text-white rounded-lg hover:bg-theme-accent-hover transition-colors font-semibold cursor-pointer" %>
+    <% if flash[:invite_link_url].present? %>
+      <div class="mt-4 p-3 bg-theme-primary rounded-lg flex flex-wrap items-center gap-2">
+        <input type="text" id="invite-link-url" readonly value="<%= flash[:invite_link_url] %>" class="flex-1 min-w-0 px-3 py-2 bg-theme-secondary border border-theme-primary rounded text-theme-primary text-sm" />
+        <button type="button" data-copy-invite-link data-copy-label="<%= t('join.copy_link') %>" data-copied-label="<%= t('join.link_copied') %>" class="px-4 py-2 bg-theme-accent text-white rounded-lg hover:bg-theme-accent-hover transition-colors font-semibold text-sm"><%= t('join.copy_link') %></button>
+      </div>
+      <p class="text-xs text-theme-secondary mt-2"><%= t('join.one_time_hint') %></p>
+    <% else %>
+      <p class="text-sm text-theme-secondary mt-2"><%= t('join.no_link_yet') %></p>
+    <% end %>
+  </div>
+  
+  <!-- Application Review Section -->
+  <% if @applications_pagination[:total_count].to_i > 0 %>
+    <div class="bg-theme-secondary rounded-lg border border-theme-primary p-6 mb-6">
+      <h2 class="text-xl font-semibold text-theme-primary mb-4"><%= t('guilds.invite_members.pending_applications') %></h2>
+      
+      <div class="space-y-4">
+        <% @pending_applications.each do |application| %>
+          <div class="bg-theme-primary rounded-lg border border-theme-secondary p-4">
+            <div class="flex items-start justify-between mb-3">
+              <div class="flex-1">
+                <h3 class="text-lg font-semibold text-theme-primary"><%= clean_discord_username(application.discord_username) %></h3>
+                <p class="text-sm text-theme-secondary">
+                  <% discord_conn = application.user.discord_connections.order(created_at: :desc).first %>
+                  <% if discord_conn&.guild&.guild_discord_setting %>
+                    Discord Server: <%= discord_conn.guild.guild_discord_setting.discord_guild_name || t('guilds.invite_members.discord_server_unknown') %>
+                  <% else %>
+                    <%= t('guilds.invite_members.discord_server_not_available') %>
+                  <% end %>
+                </p>
+                <p class="text-xs text-theme-secondary mt-1"><%= t('guilds.invite_members.applied') %> <%= application.created_at.strftime('%B %d, %Y at %I:%M %p') %></p>
+              </div>
+            </div>
+            
+            <% if application.message.present? %>
+              <div class="mb-3">
+                <p class="text-sm text-theme-secondary"><strong><%= t('guilds.invite_members.message_label') %></strong></p>
+                <p class="text-theme-primary"><%= simple_format(application.message) %></p>
+              </div>
+            <% end %>
+            
+            <% if application.character_details.present? %>
+              <div class="mb-3">
+                <p class="text-sm text-theme-secondary"><strong><%= t('guilds.invite_members.character_details') %></strong></p>
+                <p class="text-theme-primary whitespace-pre-wrap"><%= simple_format(application.character_details) %></p>
+              </div>
+            <% end %>
+            
+            <div class="flex gap-3">
+              <%= button_to t('guilds.invite_members.accept'), accept_guild_application_path(application), method: :patch, 
+                  class: "px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors font-semibold cursor-pointer",
+                  data: { confirm: t('guilds.invite_members.accept_confirm') } %>
+              <%= button_to t('guilds.invite_members.reject'), reject_guild_application_path(application), method: :patch, 
+                  class: "px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 transition-colors font-semibold cursor-pointer",
+                  data: { confirm: t('guilds.invite_members.reject_confirm') } %>
+              <button type="button" 
+                      onclick="document.getElementById('message-modal-<%= application.id %>').classList.remove('hidden')"
+                      class="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors font-semibold cursor-pointer">
+                <%= t('guilds.invite_members.message_applicant') %>
+              </button>
+            </div>
+            
+            <!-- Message Modal -->
+            <div id="message-modal-<%= application.id %>" class="hidden fixed inset-0 bg-black/50 z-50 flex items-center justify-center">
+              <div class="bg-theme-secondary rounded-lg border border-theme-primary p-6 max-w-md w-full mx-4">
+                <h3 class="text-xl font-semibold text-theme-primary mb-4"><%= t('guilds.invite_members.message_applicant') %></h3>
+                <%= form_with url: message_guild_application_path(application), method: :post, local: true, class: "space-y-4" do |f| %>
+                  <div>
+                    <%= f.label :message_content, t('guilds.invite_members.message'), class: "block text-sm font-medium text-theme-primary mb-2" %>
+                    <%= f.text_area :message_content, rows: 4, class: "w-full px-4 py-2 bg-theme-primary border border-theme-secondary rounded-lg text-theme-primary", required: true, placeholder: t('guilds.invite_members.enter_message_placeholder') %>
+                  </div>
+                  <div class="flex gap-3">
+                    <%= f.submit t('guilds.invite_members.send'), class: "px-4 py-2 bg-theme-accent text-white rounded-lg hover:bg-theme-accent-hover transition-colors font-semibold cursor-pointer" %>
+                    <button type="button" 
+                            onclick="document.getElementById('message-modal-<%= application.id %>').classList.add('hidden')"
+                            class="px-4 py-2 bg-theme-secondary text-theme-primary rounded-lg hover:bg-theme-primary transition-colors font-semibold">
+                      <%= t('guilds.invite_members.cancel') %>
+                    </button>
+                  </div>
+                <% end %>
+              </div>
+            </div>
+          </div>
+        <% end %>
+      </div>
+      <% ap = @applications_pagination %>
+      <% if ap[:total_pages].to_i > 1 %>
+        <div class="mt-4 pt-4 border-t border-theme-primary flex flex-wrap items-center justify-between gap-3">
+          <span class="text-sm text-theme-secondary"><%= t('activity_feed.pagination_shown_total', shown: @pending_applications.size, total: ap[:total_count]) %></span>
+          <div class="flex gap-2">
+            <% if ap[:page].to_i > 1 %>
+              <%= link_to t('activity_feed.pagination_previous'), guild_invite_members_path(@guild, apps_page: ap[:page] - 1), class: "px-3 py-1 bg-theme-primary text-theme-primary rounded hover:bg-theme-secondary text-sm border border-theme-secondary" %>
+            <% end %>
+            <% if ap[:page].to_i < ap[:total_pages].to_i %>
+              <%= link_to t('activity_feed.pagination_next'), guild_invite_members_path(@guild, apps_page: ap[:page] + 1), class: "px-3 py-1 bg-theme-primary text-theme-primary rounded hover:bg-theme-secondary text-sm border border-theme-secondary" %>
+            <% end %>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  <% end %>
+  
+  <%= link_to t('guilds.invite_members.back_to_dashboard'), guild_path(@guild), class: "text-theme-accent hover:text-theme-accent-hover" %>
+</div>
+
+<% if flash[:invite_link_url].present? %>
+<script>
+(function() {
+  var btn = document.querySelector('[data-copy-invite-link]');
+  var input = document.getElementById('invite-link-url');
+  if (btn && input) {
+    var copyLabel = btn.getAttribute('data-copy-label') || 'Copy link';
+    var copiedLabel = btn.getAttribute('data-copied-label') || 'Copied!';
+    btn.addEventListener('click', function() {
+      input.select();
+      input.setSelectionRange(0, 99999);
+      navigator.clipboard.writeText(input.value).then(function() {
+        btn.textContent = copiedLabel;
+        setTimeout(function() { btn.textContent = copyLabel; }, 2000);
+      });
+    });
+  }
+})();
+</script>
+<% end %>

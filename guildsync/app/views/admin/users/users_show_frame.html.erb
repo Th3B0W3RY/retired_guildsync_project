@@ -1,0 +1,7 @@
+<%= turbo_frame_tag Admin::UsersController::USERS_SHOW_MAIN_FRAME do %>
+  <%= render "users_show_main",
+      user: @user,
+      current_subscription: @current_subscription,
+      pricing_plans: @pricing_plans,
+      account_deletion_eligible_reactivate: @account_deletion_eligible_reactivate %>
+<% end %>

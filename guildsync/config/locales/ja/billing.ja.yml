@@ -1,0 +1,106 @@
+ja:
+  billing:
+    show:
+      title: 請求情報
+      subtitle: サブスクリプションと支払い情報を管理します
+      current_subscription: 現在のサブスクリプション
+      no_plan: プランなし
+      status_label: 'ステータス:'
+      trial_period_active: トライアル期間中
+      trial_days_remaining_html: トライアル期間は残り <strong>%{days}</strong> 日です。
+      trial_ended: トライアル期間が終了しました。
+      trial_ends_on: 'トライアル終了日:'
+      started: 開始日
+      expires: 終了日
+      no_active_subscription: 有効なサブスクリプションがありません。
+      view_plans: プランを見る
+      payment_management: 支払い管理
+      setup_payment_method: 支払い方法を設定
+      setup_payment_trial: 下のプランを選択して支払いを設定してください。現在のトライアルプランを継続するか、別のプランを選択できます。
+      setup_payment_current: 下のプランを選択して支払いを設定してください。
+      setup_payment_current_plan: 現在のプランの支払いを設定
+      subscribe_to_plan: "%{plan} を購読"
+      setup_payment: 支払いを設定
+      manage_payment_methods: 支払い方法、請求情報、請求書を管理します
+      need_help: お困りですか？
+      need_help_description: 請求やサブスクリプションに関するご質問は、請求サポートチームが対応します。
+      contact_billing_team: 請求サポートに連絡
+      contact_form_coming_soon: お問い合わせフォームは近日対応予定
+      js_loading: 読み込み中...
+      js_manage_billing: 請求を管理
+      js_setup_payment: 支払いを設定
+      billing_portal: 請求ポータル
+      switch_plan: このプランに変更
+      confirm_plan_change: このプランに変更しますか？本日、日割り料金が請求される場合があります。
+      confirm_plan_change_with_amount: '本日のお支払い見積額:'
+      proration_disclaimer: プラン変更はStripeの日割り計算を使用します。アップグレードは即時請求、ダウングレードは将来の請求に使えるクレジットとなります（現金払い戻しではありません）。
+      account_credit_html: 今後の請求に適用される<strong>%{amount}</strong>のクレジットがあります。
+      subscription_actions_title: サブスクリプションのキャンセルまたは再開
+      pending_cancel_html: サブスクリプションは<strong>%{date}</strong>に終了予定です。その後は課金されません。
+      period_end_unknown: 現在の請求期間の終了時
+      resume_subscription: サブスクリプションを再開
+      refund_window_active: 初回お支払いから3日以内です。今キャンセルすると即時に終了し、対象のお支払いはお支払い方法へ返金されます。
+      cancel_no_refund: キャンセルしても現在の請求期間終了までアクセスは維持されます。既にお支払い済みの料金の返金はありません。
+      cancel_subscription: サブスクリプションをキャンセル
+      cancel_confirm: サブスクリプションをキャンセルしてもよろしいですか？
+  pricing:
+    interval:
+      monthly: 月額
+      annual: 年額
+      save_annual: 10%お得
+    public:
+      title: 料金
+    upgrade:
+      title: プランをアップグレード
+      subtitle: ギルド運営に最適なプランを選択してください。すべてのプランに主要機能が含まれます。
+      most_popular: 一番人気
+      trial_ends_in:
+        one: トライアル終了まであと1日
+        other: トライアル終了まであと %{count} 日
+      current_plan: 現在のプラン
+      start_free_trial: 無料トライアルを開始
+      subscribe_now: 今すぐ購読
+      switch_to_free_plan: 無料プランへ切り替え
+      trial_message: 現在、14日間の無料トライアル中です。終了後も継続するには支払い方法を追加してください。
+      payment_required: 有料プランへのアップグレードには支払い方法が必要です。初回トライアル後に追加トライアルは利用できません。
+      questions_contact: ご質問がありますか？ 詳細は %{link} をご確認ください。
+      free_trial_box:
+        title: 無料トライアル / 制限付きモード
+        description: 新規アカウントは無料プラン（機能制限あり）から始まります。条件を満たす場合はベーシックの14日トライアルを開始するか、決済でベーシック・アップグレード・エリートに加入できます。
+        features:
+        - ベーシック向け14日トライアル（アプリまたは有効なStripeチェックアウト）
+        - アップグレードとエリートは課金のサブスクのみ（2回目のトライアルなし）
+        - 無料プランからベーシックのトライアルを始めるのにカード不要
+        - いつでも無料プランにダウングレード可能
+        - トライアル終了後は無料プランで機能が制限されます
+      free_user_mode_box:
+        title: 無料プランと無料ユーザーモード
+        description: 無料プランにいる場合、またはトライアル後に無料プランに移ると、無料ユーザーモードです。内容は次のとおりです。
+        features:
+        - 1つのギルドと制限された人数にアクセスできます
+        - 主要機能は上限を下げた形で利用できます
+        - いつでも「ベーシック」「上位」「エリート」にアップグレードできます
+        - ダウングレード時やトライアル終了後もデータは保持されます
+      contact_us: お問い合わせ
+      loading: 読み込み中...
+    public_pricing:
+      title: プランを選択
+      subtitle: ギルド運営に最適なプランを選択してください。すべてのプランに主要機能が含まれます。
+      no_plans: 現在利用可能な料金プランはありません。
+      most_popular: 一番人気
+      trial_included: ベーシック向け14日トライアル（提供時）
+      start_free_trial: 無料トライアルを開始
+      subscribe_now: 今すぐ購読
+      plan_suffix: プラン
+      whats_included: '含まれる内容:'
+      free_plan_intro: 新規アカウントは無料プラン（機能制限あり）から始まります。条件を満たせばベーシックの14日トライアルを開始するか、チェックアウトでベーシック・アップグレード・エリートに加入できます。
+      trial_info: 14日トライアルはベーシックのみ対象です。アップグレードとエリートはアプリ内トライアルなしの有料チェックアウトです。ベーシックのトライアル後は無料（制限あり）を継続するか、サブスクにできます。
+      questions_contact: ご質問がありますか？ 詳細は %{link} をご確認ください。
+      contact_us: お問い合わせ
+      after_trial_title: トライアル終了後はどうなりますか？
+      after_trial_paragraph_html: トライアル終了後は既定で <strong class="text-theme-accent">無料プラン</strong> に切り替わります。引き続き利用することも、いつでもアップグレードすることもできます。
+      free_plan_includes_title: '無料プランに含まれる内容:'
+      free_plan_feature_1_guild: 1つのギルド
+      free_plan_feature_50_users: 50人のユーザー
+      free_plan_feature_events: イベント企画とスケジュール
+      free_plan_feature_members: メンバー管理

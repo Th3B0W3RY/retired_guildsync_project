@@ -1,0 +1,147 @@
+es:
+  activerecord:
+    models:
+      user: "Usuario"
+      guild: "Gremio"
+      game: "Juego"
+      event: "Evento"
+      poll: "Sondeo"
+      guild_document: "Documento"
+      guild_member: "Miembro"
+      guild_application: "Aplicación"
+      loot_roll: "Ruleta del Botín"
+    attributes:
+      user:
+        email: "Correo electrónico"
+        password: "Contraseña"
+        display_name: "Nombre"
+      guild:
+        name: "Nombre"
+        description: "Descripción"
+      game:
+        name: "Nombre"
+        description: "Descripción"
+    errors:
+      models:
+        landing_user_feedback:
+          attributes:
+            base:
+              entry_limit_reached: "Puede haber como máximo %{max} opiniones en la página de inicio. Elimine una para añadir otra."
+        homepage_feature_card:
+          attributes:
+            icon_key:
+              invalid_fontawesome_icon: "no está en el catálogo sincronizado de Font Awesome Free. Ejecuta la sincronización o elige otro icono."
+        user:
+          attributes:
+            username:
+              invalid_format: "Solo puede contener letras, números y guiones bajo"
+        guild:
+          attributes:
+            name:
+              already_owned: "Tú ya tienes un gremio con este nombre."
+            base:
+              subscription_required: "Debe tener una suscripción activa para crear un gremio"
+              guild_limit_reached: "Has alcanzado el número máximo de gremios (%{max_guilds}) para tu %{plan_name}."
+        guild_member:
+          attributes:
+            user_id:
+              already_member: "ya es un miembro de este gremio"
+            base:
+              member_limit_reached: "La hermandad ha agotado el número máximo de miembros (%{max_members}) para el plan %{plan_name}"
+        guild_discord_setting:
+          attributes:
+            discord_guild_id:
+              already_connected: "Este servidor de Discord ya está vinculado a otro gremio."
+            guild_id:
+              one_connection_only: "Gremio solo puede tener una conexión de Discord"
+        feature_request:
+          attributes:
+            description:
+              too_short: "debe tener al menos 50 caracteres para que otros entiendan tu solicitud"
+        poll_vote:
+          attributes:
+            user_id:
+              one_vote_only: "Solo puedes votar una vez por encuesta"
+            base:
+              user_or_discord_required: "Bien una cuenta de usuario o un identificador de Discord es obligatorio"
+        loot_roll:
+          attributes:
+            max_roll:
+              must_be_greater: "debe ser mayor que el roll mínimo"
+        loot_roll_entry:
+          attributes:
+            discord_user_id:
+              already_rolled: "¡Has ya rollado!"
+            roll_value:
+              out_of_bounds: "debe estar entre %{min} y %{max}"
+            base:
+              loot_roll_closed: "Esta rifa de botín está cerrada."
+        guild_battle:
+          attributes:
+            defender_guild_id:
+              same_as_challenger: "No puede ser el mismo que el gremio del retador"
+        gear_snapshot:
+          attributes:
+            data:
+              blank: "No puede estar en blanco"
+            screenshot:
+              must_be_attached: "debe adjuntarse"
+        gear_upload_request:
+          attributes:
+            requester:
+              no_permission: "no tiene permiso para solicitar actualizaciones de equipos"
+        guild_application:
+          attributes:
+            user_id:
+              already_applied: "Ya te has inscrito en esta hermandad."
+        guild_invite:
+          attributes:
+            user_id:
+              already_invited: "ha sido invitado/a ya a esta hermandad"
+              already_member: "ya es un miembro de este gremio"
+        discord_event_signup:
+          attributes:
+            discord_user_id:
+              one_role_per_event: "Solo puedes solicitar una función por evento"
+        discord_event_participation:
+          attributes:
+            discord_user_id:
+              already_signed_up: "ya se ha inscrito en este evento"
+        event_participation:
+          attributes:
+            user_id:
+              already_responded: "ya ha respondido a este evento"
+            base:
+              user_or_discord_required: "Bien una cuenta de usuario o un identificador de Discord es obligatorio"
+        discord_connection:
+          attributes:
+            guild_id:
+              one_connection_only: "Gremio solo puede tener una conexión de Discord"
+        subscription:
+          attributes:
+            expires_at:
+              must_be_after_started: "debe ser posterior a la fecha de inicio"
+        guild_game:
+          attributes:
+            primary:
+              only_one_allowed: "Solo un juego principal permitido por gremio."
+
+        alliance_poll_vote:
+          attributes:
+            base:
+              user_or_discord_required: "Bien una cuenta de usuario o un identificador de Discord es obligatorio"
+        alliance_event_participation:
+          attributes:
+            base:
+              user_or_discord_required: "Bien una cuenta de usuario o un identificador de Discord es obligatorio"
+        alliance_loot_roll_entry:
+          attributes:
+            base:
+              user_or_discord_required: "Bien una cuenta de usuario o un identificador de Discord es obligatorio"
+  ocr:
+    messages:
+      limit_reached: "Has usado todas tus solicitudes OCR en este periodo de facturación. Tu plan %{plan_name} permite %{limit} solicitudes al mes. Ponte en contacto con soporte."
+      hard_locked: "Tu acceso OCR se ha suspendido temporalmente. Ponte en contacto con soporte."
+      trial_expired: "Has agotado las solicitudes OCR de prueba gratuita. Suscríbete a un plan para seguir usando OCR."
+      free_blocked: "Has usado todas tus solicitudes OCR gratuitas. Suscríbete a un plan para desbloquear más."
+      ip_abuse: "Se ha detectado actividad OCR inusual desde tu red. Ponte en contacto con soporte si no es esperado."

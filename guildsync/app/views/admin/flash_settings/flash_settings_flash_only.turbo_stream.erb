@@ -1,0 +1,3 @@
+<%= turbo_stream.update "admin_flash_settings_flash" do %>
+  <%= render "admin/errors/flash_banner", message: @admin_flash_settings_message, variant: @admin_flash_settings_variant %>
+<% end %>

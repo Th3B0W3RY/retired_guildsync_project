@@ -1,0 +1,16 @@
+<%= form_with model: [:admin, landing_user_feedback], class: "space-y-6 max-w-3xl", data: { turbo_frame: "_top" } do |f| %>
+  <div>
+    <%= f.label :visible, t("admin.landing_user_feedbacks.form.visible_label"), class: "block text-sm font-medium text-theme-secondary mb-2" %>
+    <%= f.check_box :visible, class: "rounded border-theme-primary" %>
+  </div>
+
+  <div>
+    <%= f.label :body, t("admin.landing_user_feedbacks.form.body_label"), class: "block text-sm font-medium text-theme-secondary mb-2" %>
+    <%= f.rich_text_area :body, class: "trix-content min-h-[12rem] bg-theme-primary border border-theme-primary rounded-lg" %>
+  </div>
+
+  <div class="flex flex-wrap gap-3">
+    <%= f.submit class: "px-6 py-2 rounded-lg bg-theme-brand-gradient text-white font-medium hover:opacity-95 cursor-pointer" %>
+    <%= link_to t("admin.landing_compare.cancel"), admin_landing_user_feedbacks_path, class: "px-6 py-2 border border-theme-primary rounded-lg text-theme-secondary hover:bg-theme-hover", data: { turbo_frame: "_top" } %>
+  </div>
+<% end %>

@@ -1,0 +1,145 @@
+ja:
+  sessions:
+    new:
+      title: サインイン
+      forgot_password: パスワードをお忘れですか？
+      resend_confirmation: 確認メールを再送信
+      sign_in_with_discord: Discordでサインイン
+      sign_in_with_google: Gmailでサインイン
+      sign_in_with_microsoft: Outlookでサインイン
+      no_account: アカウントをお持ちでないですか？
+      create_account: こちらで作成
+      discord_login_failed: 'Discordログイン失敗:'
+  registrations:
+    new:
+      title: サインアップ
+      have_account: すでにアカウントをお持ちですか？
+      sign_in_here: こちらからサインイン
+      signing_up_for: 'サインアップ対象:'
+      trial_after_mfa: トライアルはMFA認証後に開始されます
+      username: ユーザー名
+      username_hint: 3〜30文字、英字・数字・アンダースコアのみ使用できます
+      password_hint: 6文字以上
+      confirm_password: パスワード確認
+      create_account_button: アカウント作成
+      sign_up_with_discord: Discordでサインアップ
+      discord_signup_failed: 'Discordサインアップ失敗:'
+      popup_blocked: ポップアップがブロックされました。このサイトでポップアップを許可して、もう一度お試しください。
+    errors:
+      captcha_invalid: セキュリティ確認に失敗しました。下の確認を完了してからもう一度お試しください。
+      discord_captcha_required: セキュリティ確認の後、このページの「Discordでサインアップ」ボタンをご利用ください。
+  confirmations:
+    new:
+      title: 確認手順を再送信
+      intro: メールアドレスを入力すると、新しい確認用リンクをお送りします。
+      submit: 手順を再送信
+      back_to_sign_in: サインインに戻る
+    create:
+      already_registered: このメールアドレスは既に登録・確認済みです。別のアドレスを試すか、サインインしてください。
+  passwords:
+    new:
+      title: パスワードをお忘れですか？
+      instructions: メールアドレスを入力すると、パスワード再設定手順を送信します。
+      send_instructions: 再設定手順を送信
+      back_to_sign_in: サインインに戻る
+    edit:
+      title: パスワードを再設定
+      subtitle: 新しいパスワードを入力してください。
+      new_password: 新しいパスワード
+      confirm_password: パスワード確認
+      confirm_new_password: 新しいパスワードを確認
+      password_hint: 6文字以上
+      reset_password: パスワードを再設定
+      back_to_sign_in: サインインに戻る
+    create:
+      instructions_sent: 該当するメールアドレスのアカウントがある場合、パスワード再設定の案内をお送りします。
+      invalid_email: メールアドレスが無効です。
+    update:
+      success: パスワードを変更しました。サインイン済みです。
+    account_recovery:
+      title: アカウント復旧
+      page_intro: アカウントへのアクセス方法を選んでください。
+      email_section_title: メールでパスワードを再設定
+      email_section_intro: 登録メール宛にリンクを送ります。この端末で開き、新しいパスワードを設定してください。
+      email_send_button: 再設定用リンクを送信
+      email_link_hint: 既にメールを受け取った場合は、そのメール内のリンクを開いてください。
+      or_divider: または
+      backup_section_title: バックアップコードを使う
+      backup_section_intro: アカウント設定でバックアップコードを保存した場合は、下にメールアドレスとコードを入力してください。
+      backup_code_label: バックアップコード
+      backup_code_placeholder: XXXX-XXXX-XXXX-XXXX-XXXX-XXXX
+      backup_code_hint: 24文字のバックアップコードのいずれかを入力してください（ハイフンは任意）
+      verify_backup_code: バックアップコードを確認
+      contact_support: サポートに連絡
+  backup_codes:
+    verify:
+      invalid_email_or_code: メールアドレスまたはバックアップコードが無効です。
+      invalid_code: バックアップコードが無効です。
+      success: バックアップコードを受け付けました。以下で新しいパスワードを設定してください。
+  recoveries:
+    edit:
+      title: アカウントをリセット
+      badge: バックアップコードで復旧中
+      new_password: 新しいパスワード
+      confirm_password: 新しいパスワードを確認
+      mfa_section: 多要素認証 (MFA)
+      mfa_warning: 現在このアカウントではMFAが有効です。バックアップコードで復旧しているため、MFAをリセットできます。
+      reset_mfa_label: MFAをリセットする（無効化して再設定を許可）
+      mfa_not_enabled: このアカウントではMFAは有効化されていません。
+      submit: 変更を保存してアカウントを復旧
+      note: 復旧後は新しいパスワードでサインインしてください。MFAをリセットした場合は、アカウント設定から再設定できます。
+    update:
+      success: アカウントを復旧しました。新しいパスワードでサインインしてください。
+    expired: 復旧セッションの有効期限が切れました。最初からやり直してください。
+  mfa_setup:
+    show:
+      title: 多要素認証を有効化
+      subtitle: 認証アプリでQRコードを読み取って開始してください
+      instructions_title: セットアップ手順
+      step_1: スマートフォンに認証アプリをインストールします（Google Authenticator、Authy、Microsoft Authenticator など）
+      step_2: アプリを開き、「アカウントを追加」または「+」ボタンをタップします
+      step_3: 下のQRコードをスマートフォンのカメラまたはアプリのスキャナーで読み取ります
+      step_4: アプリに表示された6桁のコードを入力して確認します
+      manual_entry: 'QRコードを読み取れない場合は、次のシークレットを認証アプリに手入力してください:'
+      cant_scan: '読み取れない場合は、アプリにこのコードを手入力してください:'
+      code_label: 認証アプリの6桁コードを入力
+      code_placeholder: '000000'
+      code_hint: 認証アプリに表示されている6桁コードを入力してください
+      verify_button: 確認してMFAを有効化
+      recommended_apps: '推奨認証アプリ:'
+      setup_unavailable: セットアップ用のキーを生成できませんでした。ページを更新するか、しばらくしてから再度お試しください。繰り返す場合はサポートにお問い合わせください。
+  mfa_verification:
+    show:
+      title: 本人確認
+      subtitle: 認証アプリの6桁コードを入力してください
+      code_label: 認証コード
+      code_placeholder: '000000'
+      code_hint: 認証アプリを開いて6桁コードを入力してください
+      verify_button: 確認
+      trouble_text: サインインでお困りですか？
+      having_trouble: お困りですか？
+      contact_support: サポートに連絡
+  profile_completion:
+    show:
+      title: プロフィールを完成
+      subtitle: 続行するにはアカウント情報を入力してください
+      email_label: メールアドレス
+      email_placeholder: メールアドレスを入力
+      email_hint: アカウントで使用する有効なメールアドレスを入力してください
+      username_label: ユーザー名
+      username_hint: 3〜30文字、英字・数字・アンダースコアのみ使用できます
+      username_placeholder: ユーザー名を入力
+      password_label: パスワード
+      password_hint: 安全なパスワードを設定してください（6文字以上）
+      password_confirmation_label: パスワード確認
+      password_confirmation_hint: 確認のため、パスワードをもう一度入力してください
+      confirm_password_hint: 確認のため、パスワードをもう一度入力してください
+      submit_button: プロフィールを保存
+      complete_button: 設定を完了
+    update:
+      success: プロフィールが完了しました。続けてMFAを設定してください。
+  mfa:
+    setup:
+      title: MFAを設定
+    verification:
+      title: MFAを確認

@@ -1,0 +1,24 @@
+<div class="loading">
+  <div style="color: #44ff44; font-size: 48px; margin-bottom: 20px;">✓</div>
+  <h2 style="color: #44ff44; margin-bottom: 10px;">Discord Server Connected!</h2>
+  <p style="color: #cccccc; margin-bottom: 20px;">
+    Please add the GuildSync bot to your server:
+  </p>
+  <a href="<%= invite_url %>" target="_blank" style="display: inline-block; padding: 10px 20px; background: #5865F2; color: white; text-decoration: none; border-radius: 5px; margin-bottom: 20px;">
+    Add Bot to Server
+  </a>
+  <p style="color: #888; font-size: 14px;">This window will close automatically...</p>
+</div>
+
+<script>
+  // Send success message to parent window
+  sendToParent('DISCORD_OAUTH_SUCCESS', {
+    invite_url: '<%= j(invite_url) %>'
+  });
+
+  // Close popup immediately after sending message
+  setTimeout(function() {
+    closePopup();
+  }, 500);
+</script>
+

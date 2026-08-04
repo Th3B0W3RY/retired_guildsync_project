@@ -1,0 +1,8 @@
+<%# locals: (message:, variant: :notice) %>
+<% if message.present? %>
+  <% if variant == :alert %>
+    <p class="rounded-lg border border-red-500/30 bg-red-500/10 px-4 py-2 text-sm text-red-400"><%= message %></p>
+  <% else %>
+    <p class="rounded-lg border border-emerald-500/30 bg-emerald-500/10 px-4 py-2 text-sm text-emerald-400"><%= message %></p>
+  <% end %>
+<% end %>

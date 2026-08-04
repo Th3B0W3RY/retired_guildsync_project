@@ -1,0 +1,299 @@
+zh:
+  controllers:
+    subscription_required:
+      trial_ended: 您的试用已结束。请选择方案以继续使用 GuildSync。
+    application:
+      session:
+        expired: 您的会话已过期。请重新登录。
+        invalid: 您的会话无效。请重新登录。
+        sign_in_required: 您必须登录后才能访问此页面。
+      mfa:
+        complete_setup: 请先完成 MFA 设置以继续
+        verify_identity: 请验证您的身份
+        session_expired: 您的会话已过期。请重新验证
+        setup_required: 请先完成 MFA 设置以继续。
+        verify_required: 请验证您的身份以继续。
+      profile:
+        complete_before_mfa: 启用 MFA 前请先完善您的资料。
+      csrf:
+        error: 安全令牌无效。请刷新页面后重试。
+      invalid_external_redirect: 该链接暂不可用。若问题持续，请联系支持团队。
+    guilds:
+      create:
+        success: 公会创建成功！
+        failed: 创建公会失败：%{error}
+        select_game: 请至少选择一个游戏
+        select_primary_game: 请选择一个主游戏
+        invalid_games: 所选游戏中有一个或多个不存在
+      update:
+        success: 公会设置更新成功！
+        failed: 更新设置失败：%{errors}
+        no_changes: 没有可保存的更改。
+        select_photo: 点击“保存徽标”前请先选择图片。
+        own_role_modify: 只有公会所有者可以修改您角色的权限。请尝试编辑低于您或权限更少的角色。
+      logo:
+        deleted: 公会徽标删除成功！
+        no_logo: 没有可删除的徽标。
+      permissions:
+        settings_denied: 您没有管理设置的权限。
+        kick_denied: 您没有移除成员的权限。
+        roles_denied: 您没有更新成员角色的权限。
+        applications_denied: 您没有审核申请的权限。
+        manage_members_denied: 您没有管理成员的权限。
+        members_page_denied: 您没有访问成员页面的权限。
+        owner_only: 只有公会所有者可访问此功能。
+        owner_discord: 只有公会所有者可管理 Discord 设置。
+        discord_channels_denied: 您没有管理 Discord 频道的权限。
+        member_required: 您必须是成员才能查看装备。
+        games_denied: 您没有管理游戏的权限
+        invite_denied: 您没有邀请成员的权限。
+        tags_denied: 您没有管理标签的权限。
+        tags_owner_only: 只有公会所有者可以创建公会标签。
+        export_members_csv_denied: 您没有导出成员 CSV 的权限。
+      not_found: 未找到公会。
+      access_denied: 未找到公会或您无权访问。
+      members:
+        kick_owner: 无法移除公会所有者。
+        kick_higher_authority: 您不能移除权限高于您的用户。
+        kicked: 成员已从公会移除。
+        bulk_kicked: 已从公会移除 %{count} 名成员。
+        no_selected: 未选择成员。
+        bulk_kick_higher_authority: 无法移除 %{count} 名权限高于您的成员。
+        role_updated: 成员角色已更新。
+        bulk_role_updated: 已更新 %{count} 名成员角色。
+        own_role_modify: 您不能修改自己的角色。
+        settings_user_role: 只有公会所有者可修改拥有公会设置权限用户的角色。
+        higher_authority_role: 您不能修改权限高于您的用户角色。
+        bulk_higher_authority: 无法更新 %{count} 名权限更高或拥有公会设置权限的成员。
+        tags:
+          created: 已创建公会标签。
+          assigned: 标签已分配。
+          removed: 标签已移除。
+          not_found: 未找到标签或成员。
+      invite:
+        user_not_found: 未找到用户。
+        already_member: 您已经在这个公会里啦！
+        already_invited: 该用户已被邀请。
+        failed: 发送邀请失败：%{errors}
+        success: 用户邀请成功。
+      discord:
+        not_connected: Discord 未连接
+        channels_updated: Discord 频道更新成功！
+        channels_failed: 更新频道失败：%{errors}
+      games:
+        at_least_one: 公会必须至少有一个游戏
+        select_primary: 请从已选择的游戏中选择一个主游戏
+        invalid_games: 所选游戏中有一个或多个不存在：%{ids}
+        updated: 游戏更新成功
+        update_failed: 更新游戏失败：%{error}
+    pricing:
+      plan_not_found: 未找到方案。
+      switched_to_free: 您已切换到免费方案。
+      trial_switched_free: 您已切换到免费方案。试用将持续至到期。
+      plan_switched_trial: 您已切换到 %{plan} 方案。试用结束日期保持不变。
+      already_free: 您已在免费方案中。
+      trial_started: "%{plan} 的 14 天免费试用已开始！"
+      not_available: 该方案当前不可订阅。
+      payment_error: 支付处理错误。请重试。
+      update_failed: 更新您的方案失败。请重试。
+      free_not_at_signup: 注册时不可选择免费方案。请选择付费方案开始试用。
+    subscriptions:
+      switched_to_free: 您已切换到免费方案。
+      not_available: 该方案当前不可订阅。
+      activated: 订阅激活成功！
+      payment_not_completed: 支付未完成。
+      invalid_session: 无效会话。
+      invalid_metadata: 会话元数据无效。
+      account_mismatch: 会话与您的账户不匹配。
+      payment_error: 支付处理错误：%{error}
+      general_error: 发生错误。请重试。
+      processing_error: 处理订阅时出错。请联系支持。
+      success_error: 发生错误。请联系支持。
+    mfa_verification:
+      enter_code: 请输入验证码
+      success: 验证成功！
+      invalid_code: 验证码无效。请重试。
+      sign_in_first: 请先登录
+      setup_first: 请先完成 MFA 设置
+      already_verified: 您已验证过
+    mfa_setup:
+      generate_failed: 生成验证码失败。请重试。
+      qr_failed: 生成二维码失败。请刷新页面。
+      enter_code: 请输入验证码
+      invalid_code: 验证码无效。请重试。
+      trial_active: 您的 14 天免费试用已激活！剩余 %{days} 天。
+      subscription_active: 欢迎！您的订阅已激活。
+      free_plan_welcome: 欢迎！您当前使用免费方案。随时升级以解锁更多功能。
+      profile_incomplete: 启用 MFA 前请先完善您的资料。
+    polls:
+      created_discord: 投票创建并成功发布到 Discord！
+      created_discord_failed: 投票创建成功！（Discord 发布失败：%{error}）
+      created: 投票创建成功！
+      posted_discord: 投票已成功发布到 Discord！
+      post_discord_failed: 投票发布到 Discord 失败：%{error}
+      deleted: 投票“%{title}”已成功删除。
+      delete_failed: 删除投票失败：%{errors}
+      not_member: 您不是该公会成员。
+      create_denied: 您没有创建投票的权限。
+      delete_denied: 您没有删除此投票的权限。
+      access_denied: 未找到公会或您无权访问。
+      vote:
+        invalid_choice: 无效选项
+        poll_closed: 此投票已关闭
+    react_roles:
+      saved: 反应角色已保存。
+      deployed: 反应角色嵌入已发布到 Discord！
+      removed: 已从 Discord 移除反应角色。
+      no_roles_configured: 发布前请至少配置一个反应角色。
+      no_channel_configured: 请选择用于反应角色嵌入的频道。
+      deploy_failed: 发布反应角色嵌入失败，请重试。
+      remove_failed: 移除反应角色嵌入失败，请重试。
+    loot_rolls:
+      created_discord: 战利品掷骰已创建并成功发布到 Discord！
+      created_discord_failed: 战利品掷骰已创建！（Discord 发布失败：%{error}）
+      channel_required: 创建战利品掷骰前，请先在公会设置中配置战利品掷骰频道。
+      channel_must_configure: 必须在公会设置中配置战利品掷骰频道。
+      already_closed: 此战利品掷骰已关闭。
+      closed: 战利品掷骰关闭成功！
+      entry_not_found: 未找到条目。
+      entry_invalidated: 条目已失效，用户可重新掷骰。
+      deleted: 战利品掷骰“%{title}”已成功删除。
+      delete_failed: 删除战利品掷骰失败。
+      not_member: 您不是该公会成员。
+      create_denied: 您没有创建战利品掷骰的权限。
+      manage_denied: 您没有管理此战利品掷骰的权限。
+      access_denied: 未找到公会或您无权访问。
+    guild_documents:
+      created: 文档创建成功。
+      updated: 文档更新成功。
+      deleted: 文档删除成功。
+      manage_denied: 您没有管理文档的权限。
+      view_denied: 您没有查看该文档的权限。
+      invalid_link: 无效的文档链接。
+      private_document: 该文档为私密文档。
+      upload_image:
+        missing: 未提供图片。
+        invalid_data: 图片数据无效。
+        failed: 图片上传失败，请重试。
+      folder:
+        created: 文件夹创建成功。
+        create_failed: 创建文件夹失败：%{errors}
+        updated: 文件夹更新成功。
+        update_failed: 更新文件夹失败：%{errors}
+        deleted: 文件夹删除成功。
+        edit_denied: 您没有编辑该文件夹的权限。
+        delete_denied: 您没有删除该文件夹的权限。
+    games:
+      not_found: 未找到游戏
+      created: 游戏创建成功
+      updated: 游戏更新成功
+      deleted: 游戏删除成功
+      delete_failed: 删除游戏失败：%{errors}
+      has_guilds: 无法删除已关联公会的游戏
+      has_snapshots: 无法删除存在装备快照的游戏
+      activated: 游戏已启用
+      deactivated: 游戏已停用
+      toggle_failed: 更新游戏失败：%{errors}
+      admin_required: 需要管理员权限
+      suggest:
+        name_required: 游戏名称为必填项
+        already_exists: 游戏已存在
+        create_failed: 创建游戏失败
+    storage:
+      not_member: 您不是该公会成员。
+    folders:
+      created: 文件夹创建成功。
+      create_error: 创建文件夹出错：%{errors}
+      cannot_move_into_self: 无法将文件夹移动到其自身或其子级目录中
+      not_empty: 文件夹不为空。请先删除全部内容，或使用强制删除。
+      manage_denied: 您没有管理文件夹的权限。
+      missing_required_parameter: 缺少必需参数：%{param}
+      unexpected_create_error: 创建文件夹时出错：%{message}
+    file_entries:
+      no_files_selected: 未选择文件
+      not_found: 未找到文件
+      not_member: 您不是该公会成员。
+      manage_denied: 您没有管理文件的权限。
+    discord_connections:
+      authorization_failed: Discord 授权失败，请重试。
+      invalid_state: OAuth 状态无效，请重试。
+      guild_lost: 未找到公会，请重试。
+      sign_in_first: 请先登录。
+      connect_discord_first: 请先连接 Discord。
+      connection_expired: 您的 Discord 连接已过期，请重新连接 Discord 账号。
+      fetch_servers_failed: 无法获取 Discord 服务器，请重试。
+      guild_not_found: 未找到公会。
+    search:
+      search_failed: 搜索失败，请重试。
+    discord_event_signups:
+      webhook:
+        missing_required_parameters: 缺少必需参数。
+        event_not_found: 未找到活动。
+        invalid_role: 无效角色。
+    billing:
+      sign_in_required: 请登录后查看账单信息。
+      select_plan: 请选择方案以设置付款。
+      portal_unavailable: 无法访问账单门户，请稍后重试。
+      error_occurred: 发生错误，请稍后重试。
+      payment_session_failed: 无法创建付款会话：%{error}
+      invalid_session: 无效会话。
+      session_mismatch: 会话与您的账户不匹配。
+      payment_not_completed: 支付未完成。
+      payment_processing_error: 处理付款时出错，请联系支持。
+      contact_support: 发生错误。请联系支持。
+      plan_not_found: 该方案不可用。
+      plan_changed: 订阅已更新。
+      canceled_with_refund: 订阅已取消，符合条件的款项已退款。
+      canceled_at_period_end: 订阅将在当前计费周期结束时取消。
+      canceled: 订阅已取消。
+      subscription_resumed: 订阅将在当前周期结束后继续。
+      no_stripe_subscription: 未找到 Stripe 订阅。请完成结账或联系支持。
+      checkout_active_subscription_use_portal: 您已有有效订阅。请使用账单门户进行管理。
+      checkout_price_id_required: 需要提供价格 ID。
+      checkout_payment_setup_failed: 支付设置失败。请重试或联系支持。
+      checkout_failed: 结账失败。请重试。
+      portal_customer_init_failed: 无法初始化账单。请重试。
+      portal_session_create_failed: 无法打开账单门户。请重试。
+      checkout_success: 支付设置成功！
+    oidc_user_auth:
+      login_failed: Gmail 或 Outlook 登录失败，请重试。
+      oauth_error: 登录已取消或失败：%{message}
+      invalid_state: OAuth 状态无效，请重试。
+      invalid_profile: 无法从提供商读取您的账户资料，请重试。
+      email_not_verified: 您的 Gmail 或 Outlook 账户电子邮件未验证。请在提供商处完成验证后再试。
+      email_missing: 提供商未返回电子邮件地址。请使用其他登录方式或联系支持。
+      email_mismatch: 请使用与您已验证邮箱匹配的同一 Gmail 或 Outlook 账户登录。
+      identity_in_use: 该 Gmail 或 Outlook 账户已关联到其他 GuildSync 用户。
+      signup_session_lost: 注册会话已过期。请从电子邮件步骤重新开始创建账户。
+      no_account: 没有使用此 Gmail 或 Outlook 登录的 GuildSync 账户。请先创建账户。
+      signed_in_notice: 登录成功！
+      complete_auth: 请完成身份验证以继续。
+      session_not_found: 未找到会话，请重试。
+    discord_user_auth:
+      auth_error: Discord 认证错误：%{error}
+      login_failed: Discord 登录失败，请重试。
+      invalid_state: OAuth 状态无效，请重试。
+      connection_failed: Discord 连接失败：%{error}
+      oauth_error_login: Discord 登录失败：%{error}
+      already_connected: 该 Discord 账号已绑定其他账号。请先在另一账号上解绑，或换用其他 Discord 账号。
+      linked_successfully: Discord 账号已成功绑定！
+      signed_in_successfully: 已通过 Discord 登录！
+      already_has_account: 您已有账号，请登录。
+      create_failed: 创建账号失败，请重试。
+      no_account_found: 未找到与此 Discord 账号关联的账号，请先注册。
+      token_revoked_reconnect: Discord 连接已被撤销，请重新连接 Discord 账号。
+      token_revoked_signin: Discord 连接已被撤销，请重新登录。
+      link_failed: 绑定 Discord 账号失败：%{error}
+      must_be_signed_in: 断开 Discord 前请先登录。
+      cannot_disconnect_discord_auth: 使用 Discord 登录时无法断开 Discord，请先切换到 MFA 登录。
+      disconnected_successfully: 已成功断开 Discord 账号。
+      session_not_found: 未找到会话，请重试。
+      session_not_found_signin: 未找到会话，请重新登录。
+      signed_in_notice: 登录成功！
+      complete_auth: 请完成身份验证以继续。
+      must_be_signed_in_toggle: 您必须登录。
+      setup_mfa_first: 切换前请先设置 MFA。
+      mfa_updated: 已更新为 MFA 登录。
+      discord_updated: 已更新为 Discord 登录。
+      connect_discord_first: 启用 Discord 登录前请先连接 Discord。
+      invalid_auth_method: 无效的认证方式。

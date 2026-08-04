@@ -1,0 +1,69 @@
+<div class="max-w-2xl mx-auto p-6">
+  <div class="mb-6">
+    <h1 class="text-3xl font-bold text-theme-primary mb-2"><%= t('alliances.disband_votes.index.title') %></h1>
+    <p class="text-theme-secondary"><%= @alliance.name %></p>
+    <%= link_to "&larr; #{t('alliances.nav.back_to_alliance')}".html_safe, alliance_path(@alliance),
+        class: "text-sm text-theme-accent hover:text-theme-accent-hover" %>
+  </div>
+
+  <div class="bg-theme-secondary rounded-lg border border-theme-primary p-6 mb-6">
+    <div class="flex items-center justify-between mb-2">
+      <h2 class="text-lg font-semibold text-theme-primary"><%= t('alliances.disband_votes.index.vote_tally') %></h2>
+      <span class="text-theme-secondary text-sm">
+        <%= t('alliances.disband_votes.index.votes_to_disband',
+              count: @votes.where(vote: true).count,
+              total: @total_guilds) %>
+      </span>
+    </div>
+    <div class="w-full bg-theme-primary rounded-full h-3 mt-2">
+      <% pct = @total_guilds > 0 ? (@votes.where(vote: true).count.to_f / @total_guilds * 100).round : 0 %>
+      <div class="bg-red-500 h-3 rounded-full transition-all" style="width: <%= pct %>%"></div>
+    </div>
+    <p class="text-xs text-theme-secondary mt-1"><%= t('alliances.disband_votes.index.threshold_note') %></p>
+  </div>
+
+  <!-- Cast or Update Vote -->
+  <div class="bg-theme-secondary rounded-lg border border-theme-primary p-6 mb-6">
+    <h2 class="text-lg font-semibold text-theme-primary mb-4"><%= t('alliances.disband_votes.index.your_vote') %></h2>
+    <% if @my_guild %>
+      <div class="flex gap-4">
+        <%= button_to t('alliances.disband_votes.index.vote_disband'), alliance_alliance_disband_votes_path(@alliance),
+            params: { vote: "true" }, method: :post,
+            class: "px-6 py-3 bg-red-600 text-white rounded-lg hover:bg-red-700 transition-colors font-semibold #{@my_vote&.vote? ? 'ring-2 ring-red-400' : ''}",
+            data: { confirm: t('alliances.disband_votes.index.vote_disband_confirm') } %>
+        <%= button_to t('alliances.disband_votes.index.vote_keep'), alliance_alliance_disband_votes_path(@alliance),
+            params: { vote: "false" }, method: :post,
+            class: "px-6 py-3 bg-theme-accent text-white rounded-lg hover:bg-theme-accent-hover transition-colors font-semibold #{@my_vote && !@my_vote.vote? ? 'ring-2 ring-theme-accent' : ''}" %>
+      </div>
+      <% if @my_vote %>
+        <p class="text-sm text-theme-secondary mt-2">
+          <%= t('alliances.disband_votes.index.current_vote', vote: @my_vote.vote? ? t('alliances.disband_votes.index.disband') : t('alliances.disband_votes.index.keep')) %>
+        </p>
+      <% end %>
+    <% else %>
+      <p class="text-theme-secondary"><%= t('alliances.disband_votes.errors.not_gm') %></p>
+    <% end %>
+  </div>
+
+  <!-- Vote List -->
+  <div class="bg-theme-secondary rounded-lg border border-theme-primary p-6">
+    <h2 class="text-lg font-semibold text-theme-primary mb-4"><%= t('alliances.disband_votes.index.all_votes') %></h2>
+    <% if @votes.any? %>
+      <div class="space-y-2">
+        <% @votes.each do |vote| %>
+          <div class="flex items-center justify-between py-2 px-3 bg-theme-primary rounded-lg">
+            <div>
+              <span class="text-theme-primary text-sm font-medium"><%= vote.guild.name %></span>
+              <span class="text-xs text-theme-secondary ml-2">(<%= vote.user.display_name %>)</span>
+            </div>
+            <span class="px-3 py-1 rounded-full text-xs font-medium <%= vote.vote? ? 'bg-red-900/30 text-red-400' : 'bg-green-900/30 text-green-400' %>">
+              <%= vote.vote? ? t('alliances.disband_votes.index.disband') : t('alliances.disband_votes.index.keep') %>
+            </span>
+          </div>
+        <% end %>
+      </div>
+    <% else %>
+      <p class="text-theme-secondary text-sm"><%= t('alliances.disband_votes.index.no_votes_yet') %></p>
+    <% end %>
+  </div>
+</div>

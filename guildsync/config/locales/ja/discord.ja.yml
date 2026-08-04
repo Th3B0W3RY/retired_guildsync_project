@@ -1,0 +1,355 @@
+ja:
+  discord_connections:
+    auto_authorize_bot:
+      title: Bot認可を開いています...
+      please_authorize: '"%{server_name}" への参加をBotに認可してください'
+    show:
+      title: BotをギルドDiscordに接続
+      subtitle_connected: Discordアカウントは接続済みです。イベント管理と通知のため、GuildSync Botを接続するDiscordサーバー（オーナーまたは管理者権限のあるサーバー）を選択してください。
+      subtitle_not_connected: まずDiscordアカウントを接続（初回のみ）し、その後GuildSync Botを接続するDiscordサーバー（オーナーまたは管理者権限のあるサーバー）を選択してください。サーバー選択後、GuildSync Botの参加を認可します。
+      server_not_selected:
+        title: Discordサーバー未選択
+        message: イベント投稿先のDiscordサーバーを選択してください。
+        select_button: Discordサーバーを選択
+      server_selected:
+        title: Discordサーバー選択済み
+        server_label: 'サーバー:'
+        connected: 接続済み
+      bot_connected:
+        title: GuildSync Botは接続済みです
+      configuration_error:
+        title: 設定エラー
+      bot_authorization:
+        title: Bot認可が必要です
+        message: 下のボタンをクリックして、GuildSync BotのDiscordサーバー "%{server_name}" 参加を認可してください。
+        authorize_button: GuildSync Botを認可
+        authorize_hint: 上のボタンをクリックしてGuildSync BotのDiscordサーバー "%{server_name}" 参加を認可してください。認可後、ポップアップは自動で閉じます。
+      reconnect_button: 再接続 / アカウント変更
+      disconnect_button: Discord接続を解除
+      disconnect_confirm: このギルドのDiscord接続を解除してもよろしいですか？
+      connection_invalid:
+        title: 接続が無効です
+        message: Discord接続が無効になっています。再接続してください。
+        last_connected: '最終接続アカウント:'
+      reconnect_discord: Discordを再接続
+      delete_connection: 接続を削除
+      delete_confirm: この無効なDiscord接続を削除してもよろしいですか？
+      bot_not_connected:
+        title: Bot未接続
+        message: このギルドではGuildSync BotがDiscordサーバーに接続されていません。
+      connect_section:
+        title: BotをDiscordサーバーに接続
+        already_connected: Discordアカウントは接続済みです。GuildSync Botを接続するDiscordサーバーを選択してください。サーバーのオーナーまたは管理者権限が必要です。
+        not_connected: まずDiscordアカウントを接続（初回のみ）し、その後GuildSync Botを接続するDiscordサーバーを選択してください。サーバーのオーナーまたは管理者権限が必要です。サーバー選択後、GuildSync Botの参加を認可します。
+        select_server: Discordサーバーを選択
+        connect_and_select: Discordアカウントを接続してサーバーを選択
+      back_to_dashboard: ダッシュボードに戻る
+      popup_blocked: ポップアップがブロックされました。このサイトでポップアップを許可して、もう一度お試しください。
+    select_server:
+      title: Discordサーバーを選択
+      subtitle: GuildSync Botを接続するDiscordサーバーを選択してください。サーバー選択後、Botの参加を認可します。
+      header: Discordサーバー
+      header_subtitle: GuildSync Botを接続するサーバー（オーナーまたは管理者権限）を選択してください
+      role_owner: オーナー
+      role_admin: 管理者
+      empty_title: Discordサーバーが見つかりません
+      empty_message: Bot接続には、少なくとも1つのDiscordサーバーでオーナーまたは管理者である必要があります。
+      go_back: 戻る
+      back_to_dashboard: ダッシュボードに戻る
+    callback_success:
+      title: 接続に成功しました！
+      message: Discordサーバーへの接続が完了しました。
+      closing: このウィンドウは1秒後に自動で閉じます...
+    callback_error:
+      title: 接続に失敗しました
+      closing: このウィンドウは3秒後に自動で閉じます...
+  discord_user_auth:
+    callback_success:
+      title: Discord認証成功
+      closing: 成功しました！ウィンドウを閉じます...
+    callback_error:
+      title: エラー
+      default_message: Discord認証に失敗しました。
+      closing: このウィンドウは2秒後に自動で閉じます...
+  discord_events:
+    new:
+      title: "%{guild_name} のDiscordイベントを作成"
+      subtitle: 全ユーザーが閲覧・参加登録できるDiscord投稿イベントを作成します。
+      channel_configured:
+        title: イベントチャンネル設定済み
+        message: イベントは設定で指定したチャンネルに投稿されます。
+      event_details: イベント詳細
+      event_type:
+        label: イベント種別
+        pvp: PvP
+        guild_scrim: ギルドスクリム
+        gvg: GvG
+        regular_scrim: 通常スクリム
+        pve_event: PvEイベント
+        world_boss: ワールドボス
+        guild_questing_time: ギルドクエスト時間
+        custom: カスタム
+      custom_event_type:
+        label: カスタムイベント種別名
+        placeholder: カスタムイベント種別名を入力
+        hint: カスタムイベント種別の名前を入力してください
+      event_title:
+        label: イベントタイトル
+        placeholder: イベントタイトルを入力
+      discord_roles:
+        title: メンションするDiscordロール
+        subtitle: イベント投稿時にメンションするDiscordロールを1つ以上選択してください。
+      description:
+        label: 説明
+        placeholder: イベント説明を入力
+      date:
+        label: 日付
+      time:
+        label: 時刻
+        hour: 時
+        minute: 分
+        ampm: 午前/午後
+        timezone_detecting: タイムゾーンを検出中...
+        timezone_label: 'タイムゾーン: %{timezone}'
+        timezone_default: 'タイムゾーン: UTC（既定）'
+        incomplete_error: 完全な時刻（時・分・午前/午後）を選択してください
+      max_participants:
+        label: 最大参加人数（任意）
+      squad_leader:
+        label: 分隊長（任意）
+        placeholder: 分隊長名を入力
+      location:
+        label: 場所（任意）
+        placeholder: イベント場所を入力
+      role_categories:
+        label: ロールカテゴリ
+        hint: 参加登録可能なロールを選択してください。選択したロールはすべてDiscordで登録可能になります。
+        dps: DPS
+        tank: タンク
+        healer: ヒーラー
+        ranged: 遠距離
+      create_button: イベントを作成
+      back_to_events: イベントに戻る
+    show:
+      signups_by_role: ロール別参加登録
+      no_signups: まだ参加登録はありません
+      status:
+        on_time: 時間通り
+        tentative: 未確定
+        late: 遅刻
+        absent: 欠席
+      back_to_events: イベントに戻る
+      delete_event: イベントを削除
+      delete_confirm: このイベントを削除してもよろしいですか？
+  discord:
+    connections:
+      title: Discord接続
+      select_server: サーバーを選択
+      callback_success: 接続に成功しました！
+      callback_error: 接続に失敗しました
+    oauth:
+      authorize: 認可
+      select_server: Discordサーバーを選択
+    interactions:
+      account_or_membership_required: https://guild-sync.net で GuildSync アカウントを作成するか、このアライアンスおよび／またはギルドに参加しているか確認してください。
+    webhooks:
+      invalid_signature: 署名が無効です
+      unknown_interaction_type: 不明なインタラクションの種類です
+      invalid_request_format: リクエストの形式が無効です
+      request_processing_error: リクエストの処理中にエラーが発生しました。もう一度お試しください。
+      missing_custom_id: '無効なインタラクション: custom_id がありません'
+      missing_user: '無効なインタラクション: ユーザーがありません'
+      invalid_event_signup_format: イベント登録の形式が無効です
+      invalid_alliance_signup_format: アライアンス登録の形式が無効です
+      invalid_alliance_status_format: アライアンスのステータス形式が無効です
+      invalid_status_update_format: ステータス更新の形式が無効です
+      event_not_found: イベントが見つかりません
+      unknown_modal: 不明なモーダルです
+      signup_usage: '使い方: /signup role:<dps|tank|healer|ranged> [event:<event_id>]'
+      signup_event_not_found: イベントが見つかりません。イベント ID を指定するか、イベントメッセージへの返信でこのコマンドを使ってください。
+      invalid_command_structure: コマンドの構造が無効です。
+      missing_interaction_token: インタラクショントークンがありません。
+      gear_upload_error: アップロードの処理中にエラーが発生しました。もう一度お試しください。
+      unknown_gear_subcommand: 不明な装備サブコマンドです
+      gear_command_error: コマンドの処理中にエラーが発生しました。
+      missing_token_or_application_id: インタラクショントークンまたはアプリケーション ID がありません
+      fallback_member_name: メンバー
+      rsvp:
+        invalid_role: 無効なロールです
+        followup_error: 'エラー: %{message}'
+        try_again_short: エラーが発生しました。もう一度お試しください。
+        attendance_prompt: "**%{role}** を選択しました。参加状況を選んでください:"
+        button_on_time: "✅ 定刻"
+        button_late: "⏰ 遅刻"
+        button_absent: "❌ 欠席"
+        button_remove: 削除
+        removed_from_signup: "✅ イベント申し込みから削除しました"
+        signup_not_found: 申し込みが見つかりません
+        invalid_status_hint: '無効なステータスです。有効: 定刻、遅刻、欠席'
+        status_updated: "✅ 更新しました: **%{role}** - **%{status}**"
+        status_labels:
+          on_time: 定刻
+          late: 遅刻
+          absent: 欠席
+      alliance_rsvp:
+        attendance_prompt: "**%{role}** を選択しました。どのように参加しますか？"
+        wrong_account_button: このステータスボタンはあなたのアカウント用ではありません。
+        status_updated: "✅ アライアンスイベントのステータスを更新: **%{role}** - **%{status}**"
+      event_embed:
+        squad_leader: "**\U0001F464 スクワッドリーダー**"
+        location: "**\U0001F4CD 場所**"
+        event_type: "**\U0001F4C5 種類**"
+        total: "**\U0001F465 合計**"
+        general_type: 一般
+        none_markdown: "```なし```"
+        none_display: "**なし**"
+        status_separator: "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+        status_heading: "**ステータス**"
+        late: "**⏰ 遅刻**"
+        absent: "**❌ 欠席**"
+        scheduled_label: "**⏰ 予定:** %{timestamp}"
+        default_description: このイベントに参加しよう！
+        title: "\U0001F3AF %{title}"
+        footer: GuildSync イベント • 下のボタンで申し込み
+        signup_prompt: "**\U0001F3AF イベント申し込み** — 下のボタンで申し込み:"
+      legacy_event_details:
+        scheduled_block: |
+          **予定:** %{date_stamp}
+          %{time_stamp}
+        duration_line: "**所要時間:** %{minutes} 分\n"
+        location_line: "**場所:** %{value}\n"
+        squad_leader_line: "**小隊長:** %{value}\n"
+        participants_line: "**参加者:** %{count}\n"
+    commands:
+      help:
+        title: GuildSync — ヘルプ
+        description: 利用できるスラッシュコマンドは GuildSync 上の役割によって異なります。/poll、/event、/loot、/invite、/member、/application、/docs、/guild、/alliance、/leaderboard、/profile などを試してください。詳細は Discord 上の各コマンドのオプションをご覧ください。
+      errors:
+        server_only: このコマンドは DM ではなく Discord サーバー内で実行してください。
+        guild_not_linked: この Discord サーバーは GuildSync ギルドに連携されていません。役職メンバーにギルド設定からの連携を依頼してください。
+        user_not_linked: Discord アカウントが GuildSync と連携されていません。guild-sync.net で登録または連携してください。
+        not_a_member: このギルドの GuildSync 上でのアクティブメンバーではありません。
+        officer_required: このコマンドを使うには役職（Officer）以上の権限が必要です。
+        owner_required: このコマンドはギルドオーナーのみが使用できます。
+        no_plan: ギルドオーナーに有効な GuildSync サブスクリプションがありません。
+        plan_limit: "%{plan} プランの %{feature} が上限（%{limit}）に達しました。guild-sync.net でアップグレードしてください。"
+        unknown_subcommand: 不明なサブコマンドです。/help で利用可能なコマンドを確認してください。
+        not_implemented: このコマンドは未実装です。また後日お試しください。
+        generic: リクエストの処理中にエラーが発生しました。再試行するかサポートへ連絡してください。
+      poll:
+        no_channel: 投票用チャンネルが設定されていません。guild-sync.net のギルド設定で役職メンバーに設定を依頼してください。
+        missing_fields: 質問と少なくとも 2 つの選択肢（option_a と option_b）を指定してください。
+        created: 投票 **「%{title}」** を作成し、投票チャンネルに投稿しました。
+        none_active: 現在このギルドにアクティブな投票はありません。
+        not_found: 投票が見つかりません。/poll list で一覧を確認してください。
+        list_title: "%{guild} — アクティブな投票"
+      loot:
+        no_channel: ルートロール用チャンネルが設定されていません。guild-sync.net のギルド設定で役職メンバーに設定を依頼してください。
+        missing_item: アイテム名を指定してください。
+        invalid_range: 最大ロール値は最小値より大きくしてください。
+        created: "**%{item}** のルートロールを作成し、ルートロールチャンネルに投稿しました。"
+        none_active: 現在このギルドに開いているルートロールはありません。
+        not_found: ルートロールが見つかりません。/loot list で確認してください。
+        already_closed: このルートロールは既に終了しています。
+        closed_winner: "ルートロール **「%{item}」** を終了。勝者: **%{winner}**（出目 **%{roll}**）！ \U0001F3C6"
+        closed_no_entries: ルートロール **「%{item}」** を終了。エントリーはありませんでした。
+        list_title: "%{guild} — 進行中のルートロール"
+      datetime:
+        invalid_month: 無効な月です。リストから選んでください。
+        invalid_day: 無効な日です。%{month} は %{max} 日までです。
+        invalid_time: 無効な時刻です。時（1–12）、分、AM/PM を正しく指定してください。
+        in_the_past: その日時は過去です。未来の時刻を選んでください。
+        parse_error: '日付を解釈できませんでした: %{detail}'
+      event:
+        no_channel: イベント用チャンネルが設定されていません。guild-sync.net のギルド設定で役職メンバーに設定を依頼してください。
+        not_connected: このサーバーは Discord 連携が完了していません。役職メンバーにセットアップ完了を依頼してください。
+        missing_title: イベントのタイトルを指定してください。
+        duplicate: "**「%{title}」** というタイトルのイベントが同じ時間に既に存在します。"
+        created: イベント **「%{title}」** を作成し、イベントチャンネルに投稿しました。
+        none_upcoming: このギルドに予定されたイベントはありません。
+        not_found: イベントが見つかりません。/event list で確認してください。
+        cancelled: イベント **「%{title}」** をキャンセルし、Discord から削除しました。
+        list_title: "%{guild} — 予定イベント"
+      invite:
+        no_user: 招待する Discord ユーザーをメンションしてください。
+        self_invite: 自分自身を招待することはできません。
+        already_member: そのユーザーは既にこのギルドのアクティブメンバーです。
+        sent: "<@%{discord_user_id}> に Discord DM で招待を送信しました。リンクの有効期限は 7 日です。"
+        dm_disabled: DM を送信できませんでした。相手が DM を受け取れない設定の可能性があります。
+        dm_intro: "**%{inviter}** さんが GuildSync の **%{guild}** へ招待しています！"
+        dm_link: |-
+          招待を受け入れるには下のリンクをクリック:
+          %{url}
+        dm_expiry: _この招待リンクの有効期限は 7 日です。_
+      member:
+        not_found: このギルドにそのメンバーが見つかりません。
+        kicked: "**%{username}** をギルドから削除しました。"
+        role_updated: "**%{username}** のロールを **%{role}** に更新しました。"
+        none: メンバーが見つかりません。
+        list_title: "%{guild} — メンバー"
+        info_title: "%{username} のプロフィール"
+        cannot_kick_owner: ギルドオーナーをキックすることはできません。
+        cannot_demote_owner: ギルドオーナーのロールは変更できません。
+      guild:
+        info_title: "%{name} — ギルド情報"
+        settings_title: "%{name} — 設定"
+        channels_title: "%{name} — Discord チャンネル"
+        not_connected: このギルドは Discord サーバーに連携されていません。
+        channel_not_set: 未設定
+      application:
+        none_pending: 保留中の申請はありません。
+        not_found: 申請が見つかりません。/application list で確認してください。
+        accepted: 申請を承認しました。**%{username}** をギルドに追加しました。
+        rejected: "**%{username}** さんからの申請を却下しました。"
+        list_title: "%{guild} — 保留中の申請"
+        view_title: '申請 #%{id}'
+        already_processed: この申請は既に処理済みです。
+      docs:
+        none: ドキュメントが見つかりません。
+        not_found: ドキュメントが見つかりません。/docs list で確認してください。
+        list_title: "%{guild} — ドキュメント"
+        preview_footer: プレビューは省略されています。全文は guild-sync.net で
+        search_none: "「%{query}」に一致するドキュメントはありません。"
+      leaderboard:
+        title: "%{guild} — イベント参加ランキング"
+        none: まだデータがありません。イベントに参加登録しましょう！
+        footer: 定刻出席によるトップ 10 メンバー
+      activity:
+        title: "%{guild} — 最近のアクティビティ"
+        none: 表示するアクティビティはありません。
+      profile:
+        title: "%{username} さんの GuildSync プロフィール"
+        not_found: そのユーザーは GuildSync と連携していないか、このギルドのメンバーではありません。
+      alliance:
+        not_in_alliance: この Discord サーバーのギルドはまだ GuildSync アライアンスに所属していません。
+        info_title: "%{name}"
+        no_description: 説明はありません。
+        field_guilds: 参加ギルド
+        field_hub: 招待と参加リクエストはウェブで管理します。
+        use_hub: アライアンスページは /alliance hub を使用してください。
+        hub_message: 'GuildSync アライアンスを開く: %{url}'
+        requests_unauthorized: 参加リクエストを表示できるのはアライアンスリーダー、ギルドオーナー、アライアンス役職のみです。
+        no_pending_requests: このアライアンスに保留中の参加リクエストはありません。
+        requests_body: |-
+          保留中の参加リクエスト **%{count}** 件:
+          %{list}
+
+          ウェブで確認: %{url}
+  discord_oauth:
+    select_server:
+      title: Discordサーバーを選択
+      subtitle: "%{name} に接続するDiscordサーバーを選択してください。"
+      owner: オーナー
+      member: メンバー
+      no_servers: Discordサーバーが見つかりません。
+      no_servers_hint: 少なくとも1つのDiscordサーバーに参加していることを確認してください。
+      try_again: 再試行
+  discord_onboarding:
+    dm_message: |-
+      ご参加ありがとうございます！GuildSyncアカウントを作成して、ギルドの活動管理、ルート履歴の追跡、ギルドへの完全な参加を行いましょう。
+
+      登録: %{signup_url}
+    dm_failed: DiscordユーザーにオンボーディングDMを送信できませんでした。
+    vote_recorded_unregistered: 投票が記録されました！すべての機能を利用するにはGuildSyncアカウントを作成してください。
+    roll_recorded_unregistered: ロールが記録されました！すべての機能を利用するにはGuildSyncアカウントを作成してください。
+    rsvp_recorded_unregistered: 参加が記録されました！すべての機能を利用するにはGuildSyncアカウントを作成してください。

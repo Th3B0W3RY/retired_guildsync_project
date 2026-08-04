@@ -1,0 +1,35 @@
+<% if @users.any? %>
+  <div class="bg-theme-card border border-theme-primary rounded-lg p-6 shadow-lg">
+    <h2 class="text-xl font-semibold mb-4"><%= t("admin.subscriptions.trial_users.list_heading", count: @users.count) %></h2>
+    <div class="space-y-2">
+      <% @users.each do |user| %>
+        <div class="flex justify-between items-center p-4 bg-theme-secondary rounded-lg hover:bg-theme-hover transition-colors">
+          <div class="flex-1">
+            <div class="font-medium text-theme-primary"><%= user.email %></div>
+            <div class="text-sm text-theme-secondary"><%= t("admin.users.index.username_label") %> <%= user.username %></div>
+            <% if user.current_subscription %>
+              <div class="text-sm text-theme-secondary mt-1">
+                <%= t("admin.users.index.plan_label") %> <%= user.current_subscription.pricing_plan.name %> |
+                <%= t("admin.users.show.status_label") %> <span class="text-yellow-400"><%= t("admin.users.show.subscription_status.#{user.current_subscription.status}") %></span>
+                <% if user.current_subscription.trial_ends_at %>
+                  | <%= t("admin.users.show.trial_ends_label") %> <span class="text-yellow-400"><%= l(user.current_subscription.trial_ends_at, format: :long) %></span>
+                <% end %>
+              </div>
+            <% end %>
+          </div>
+          <%= link_to t("admin.users.index.view_details"), admin_user_path(user),
+              class: "px-4 py-2 bg-theme-accent text-white rounded-lg hover:bg-theme-accent-hover transition-colors",
+              data: { turbo_frame: "_top" } %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+<% elsif @query.present? %>
+  <div class="bg-theme-card border border-theme-primary rounded-lg p-6 shadow-lg text-center">
+    <p class="text-theme-secondary"><%= t("admin.subscriptions.trial_users.no_results_for_query", query: ERB::Util.html_escape(@query.to_s)) %></p>
+  </div>
+<% else %>
+  <div class="bg-theme-card border border-theme-primary rounded-lg p-6 shadow-lg text-center">
+    <p class="text-theme-secondary"><%= t("admin.subscriptions.trial_users.no_results") %></p>
+  </div>
+<% end %>

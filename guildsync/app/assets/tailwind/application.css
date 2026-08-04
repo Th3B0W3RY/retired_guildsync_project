@@ -1,0 +1,231 @@
+@import "tailwindcss";
+
+/*
+ * Themed scrollbars — viewport, sidebar, and overflow regions (Firefox + WebKit).
+ * Mobile overlay scrollbars often ignore these rules. Thumb = theme accent, track = bg-theme-primary.
+ */
+@layer base {
+  :root {
+    --gs-color-bg-primary: #0f172a;
+    --gs-color-bg-secondary: #1e293b;
+    --gs-color-bg-card: #1e293b;
+    --gs-color-bg-hover: #334155;
+    --gs-color-text-primary: #f1f5f9;
+    --gs-color-text-secondary: #cbd5e1;
+    --gs-color-border-primary: #334155;
+    --gs-color-accent-primary: #6366f1;
+    --gs-color-accent-hover: #818cf8;
+    --gs-gradient-brand: linear-gradient(to right, #4f39f6, #9810fa);
+  }
+
+  html {
+    scrollbar-color: var(--gs-color-accent-primary) var(--gs-color-bg-primary);
+    scrollbar-width: thin;
+  }
+
+  * {
+    scrollbar-color: var(--gs-color-accent-primary) var(--gs-color-bg-primary);
+    scrollbar-width: thin;
+  }
+
+  *::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+  }
+
+  *::-webkit-scrollbar-track,
+  *::-webkit-scrollbar-track-piece {
+    background-color: var(--gs-color-bg-primary);
+  }
+
+  *::-webkit-scrollbar-thumb {
+    background-color: var(--gs-color-accent-primary);
+    border-radius: 9999px;
+    border: 2px solid var(--gs-color-bg-primary);
+  }
+
+  *::-webkit-scrollbar-thumb:hover {
+    background-color: var(--gs-color-accent-hover);
+  }
+
+  *::-webkit-scrollbar-corner {
+    background-color: var(--gs-color-bg-primary);
+  }
+}
+
+/* Global ambient background (see shared/_ambient_theme_background.html.erb) */
+/* translate3d + backface: smoother compositing on iOS / Safari / Windows Chrome */
+@keyframes ambientDriftA {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0) scale(1);
+    opacity: 0.38;
+  }
+  50% {
+    transform: translate3d(6%, 5%, 0) scale(1.06);
+    opacity: 0.52;
+  }
+}
+@keyframes ambientDriftB {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0) scale(1);
+    opacity: 0.32;
+  }
+  50% {
+    transform: translate3d(-7%, -6%, 0) scale(1.1);
+    opacity: 0.48;
+  }
+}
+@layer utilities {
+  .animate-ambient-drift-a {
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    animation: ambientDriftA 18s ease-in-out infinite alternate;
+  }
+  .animate-ambient-drift-b {
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    animation: ambientDriftB 22s ease-in-out infinite alternate;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-ambient-drift-a,
+  .animate-ambient-drift-b {
+    animation: none !important;
+  }
+}
+
+/* Custom component classes for theme system */
+@layer components {
+  /* Background colors */
+  .bg-theme-primary {
+    background-color: var(--gs-color-bg-primary);
+  }
+  
+  .bg-theme-secondary {
+    background-color: var(--gs-color-bg-secondary);
+  }
+  
+  .bg-theme-card {
+    background-color: var(--gs-color-bg-card);
+  }
+  
+  /* Text colors */
+  .text-theme-primary {
+    color: var(--gs-color-text-primary);
+  }
+  
+  .text-theme-secondary {
+    color: var(--gs-color-text-secondary);
+  }
+  
+  /* Border colors */
+  .border-theme-primary {
+    border-color: var(--gs-color-border-primary);
+  }
+
+  .border-theme-accent {
+    border-color: var(--gs-color-accent-primary);
+  }
+  
+  /* Accent colors */
+  .text-theme-accent {
+    color: var(--gs-color-accent-primary);
+  }
+  
+  .bg-theme-accent {
+    background-color: var(--gs-color-accent-primary);
+  }
+
+  .bg-theme-brand-gradient {
+    background-image: var(--gs-gradient-brand);
+  }
+  
+  /* Hover states */
+  .hover\:bg-theme-hover:hover {
+    background-color: var(--gs-color-bg-hover);
+  }
+  
+  .hover\:bg-theme-accent-hover:hover {
+    background-color: var(--gs-color-accent-hover);
+  }
+  
+  .hover\:text-theme-accent-hover:hover {
+    color: var(--gs-color-accent-hover);
+  }
+
+  /*
+   * Native checkbox sizing is inconsistent across engines when only Tailwind
+   * w-4/h-4 is applied. Scope explicit dimensions to the guild settings grid.
+   */
+  .guild-permission-checkbox-grid input[type="checkbox"] {
+    width: 1rem;
+    height: 1rem;
+    min-width: 1rem;
+    min-height: 1rem;
+    flex-shrink: 0;
+    margin: 0;
+    box-sizing: border-box;
+    vertical-align: middle;
+    accent-color: var(--gs-color-accent-primary);
+  }
+
+  /*
+   * Native <select>: reset inconsistent browser chrome (WebKit/Firefox/Windows)
+   * so closed-state text and height align with themed buttons and inputs.
+   */
+  .gs-native-select {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    box-sizing: border-box;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='none' viewBox='0 0 24 24' stroke='%23cbd5e1'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M19 9l-7 7-7-7'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 0.625rem center;
+    background-size: 1rem 1rem;
+    padding-inline-end: 2rem;
+  }
+
+  .gs-native-select::-ms-expand {
+    display: none;
+  }
+
+  /* Stacked / full-width fields (replaces px-* py-2 on selects). */
+  .gs-native-select--field {
+    min-height: 2.25rem;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+    line-height: 1.25rem;
+  }
+
+  /* Toolbar row: matches px-* + text-sm controls using py-2 (~36px). */
+  .gs-native-select--toolbar {
+    height: 2.25rem;
+    padding-top: 0;
+    padding-bottom: 0;
+    line-height: 2.25rem;
+  }
+
+  /* Compact inline selects (e.g. per-row role). */
+  .gs-native-select--compact {
+    height: 2rem;
+    padding-top: 0;
+    padding-bottom: 0;
+    line-height: 2rem;
+    padding-inline-end: 1.75rem;
+    background-position: right 0.5rem center;
+    background-size: 0.875rem 0.875rem;
+  }
+
+  /*
+   * Member stats edit: value field stays one line until content needs more
+   * (field-sizing supported in current Chromium / Firefox / Safari).
+   */
+  .member-stat-value-input {
+    field-sizing: content;
+    min-height: 2.25rem;
+    max-height: min(40vh, 18rem);
+  }
+}

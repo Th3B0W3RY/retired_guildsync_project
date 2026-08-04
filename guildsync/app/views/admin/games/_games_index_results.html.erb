@@ -1,0 +1,38 @@
+<div class="bg-theme-card border border-theme-primary rounded-lg p-6 shadow-lg">
+  <div class="flex justify-between items-center mb-4">
+    <h2 class="text-xl font-semibold"><%= t("admin.games.index.active_heading", count: @active_games.count) %></h2>
+  </div>
+
+  <% if @active_games.any? %>
+    <div class="space-y-2">
+      <% @active_games.each do |game| %>
+        <div class="flex justify-between items-center p-4 bg-theme-secondary rounded-lg hover:bg-theme-hover transition-colors">
+          <div class="flex-1">
+            <div class="font-medium text-theme-primary"><%= game.name %></div>
+            <% if game.description.present? %>
+              <div class="text-sm text-theme-secondary mt-1"><%= truncate(game.description, length: 100) %></div>
+            <% end %>
+            <div class="text-xs text-theme-secondary mt-2">
+              <%= t("admin.games.index.guilds_using") %>: <%= game.guilds.count %> |
+              <%= t("admin.games.index.gear_snapshots") %>: <%= game.gear_snapshots.count %>
+            </div>
+          </div>
+          <%= button_to t("admin.games.index.delete"), admin_game_path(game), method: :delete,
+              class: "px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 transition-colors",
+              data: { turbo_confirm: t("admin.games.index.delete_confirm", name: game.name) },
+              form: { data: { turbo_frame: "_top" } } %>
+        </div>
+      <% end %>
+    </div>
+  <% else %>
+    <div class="text-center py-8">
+      <p class="text-theme-secondary">
+        <% if @query.present? %>
+          <%= t("admin.games.index.no_results_query", query: ERB::Util.html_escape(@query.to_s)) %>
+        <% else %>
+          <%= t("admin.games.index.no_results") %>
+        <% end %>
+      </p>
+    </div>
+  <% end %>
+</div>

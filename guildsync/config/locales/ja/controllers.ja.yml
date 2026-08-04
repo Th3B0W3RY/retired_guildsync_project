@@ -1,0 +1,299 @@
+ja:
+  controllers:
+    subscription_required:
+      trial_ended: トライアルが終了しました。GuildSync を使い続けるにはプランを選択してください。
+    application:
+      session:
+        expired: セッションの有効期限が切れました。再度サインインしてください。
+        invalid: 無効なセッションです。再度サインインしてください。
+        sign_in_required: このページにアクセスするにはサインインが必要です。
+      mfa:
+        complete_setup: 続行するにはMFA設定を完了してください
+        verify_identity: 本人確認を行ってください
+        session_expired: セッションの有効期限が切れました。再度確認してください
+        setup_required: 続行するにはMFA設定を完了してください。
+        verify_required: 続行するには本人確認が必要です。
+      profile:
+        complete_before_mfa: MFAを有効化する前にプロフィールを完成してください。
+      csrf:
+        error: 無効なセキュリティトークンです。ページを更新して再試行してください。
+      invalid_external_redirect: このリンクは利用できません。問題が続く場合はサポートにお問い合わせください。
+    guilds:
+      create:
+        success: ギルドを作成しました！
+        failed: 'ギルド作成に失敗しました: %{error}'
+        select_game: 少なくとも1つのゲームを選択してください
+        select_primary_game: プライマリゲームを選択してください
+        invalid_games: 選択されたゲームの一部またはすべてが存在しません
+      update:
+        success: ギルド設定を更新しました！
+        failed: '設定の更新に失敗しました: %{errors}'
+        no_changes: 保存する変更はありません。
+        select_photo: "「ロゴを保存」をクリックする前に画像を選択してください。"
+        own_role_modify: あなたのロール権限を変更できるのはギルドオーナーのみです。自分より下位、または権限の少ないロールを編集してください。
+      logo:
+        deleted: ギルドロゴを削除しました！
+        no_logo: 削除するロゴがありません。
+      permissions:
+        settings_denied: 設定を管理する権限がありません。
+        kick_denied: メンバーを追放する権限がありません。
+        roles_denied: メンバーロールを更新する権限がありません。
+        applications_denied: 申請を確認する権限がありません。
+        manage_members_denied: メンバーを管理する権限がありません。
+        members_page_denied: メンバーページへアクセスする権限がありません。
+        owner_only: この機能にアクセスできるのはギルドオーナーのみです。
+        owner_discord: Discord設定を管理できるのはギルドオーナーのみです。
+        discord_channels_denied: Discordチャンネルを管理する権限がありません。
+        member_required: 装備を閲覧するにはメンバーである必要があります。
+        games_denied: ゲームを管理する権限がありません
+        invite_denied: メンバーを招待する権限がありません。
+        tags_denied: タグを管理する権限がありません。
+        tags_owner_only: ギルドタグを作成できるのはギルドオーナーのみです。
+        export_members_csv_denied: メンバーCSVをエクスポートする権限がありません。
+      not_found: ギルドが見つかりません。
+      access_denied: ギルドが見つからないか、アクセス権がありません。
+      members:
+        kick_owner: ギルドオーナーは追放できません。
+        kick_higher_authority: あなたより高い権限のユーザーは追放できません。
+        kicked: メンバーをギルドから削除しました。
+        bulk_kicked: "%{count} 人のメンバーをギルドから削除しました。"
+        no_selected: メンバーが選択されていません。
+        bulk_kick_higher_authority: あなたより高い権限を持つ %{count} 人のメンバーは追放できません。
+        role_updated: メンバーロールを更新しました。
+        bulk_role_updated: "%{count} 人のメンバーロールを更新しました。"
+        own_role_modify: 自分自身のロールは変更できません。
+        settings_user_role: ギルド設定権限を持つユーザーのロールを変更できるのはギルドオーナーのみです。
+        higher_authority_role: あなたより高い権限を持つユーザーのロールは変更できません。
+        bulk_higher_authority: あなたより高い権限またはギルド設定権限を持つ %{count} 人のメンバーは更新できません。
+        tags:
+          created: ギルドタグを作成しました。
+          assigned: タグを割り当てました。
+          removed: タグを外しました。
+          not_found: タグまたはメンバーが見つかりません。
+      invite:
+        user_not_found: ユーザーが見つかりません。
+        already_member: このギルドにはすでに参加しています！
+        already_invited: このユーザーはすでに招待済みです。
+        failed: '招待送信に失敗しました: %{errors}'
+        success: ユーザーを招待しました。
+      discord:
+        not_connected: Discord未接続
+        channels_updated: Discordチャンネルを更新しました！
+        channels_failed: 'チャンネル更新に失敗しました: %{errors}'
+      games:
+        at_least_one: ギルドには少なくとも1つのゲームが必要です
+        select_primary: 選択したゲームの中からプライマリゲームを選択してください
+        invalid_games: '選択されたゲームの一部またはすべてが存在しません: %{ids}'
+        updated: ゲームを更新しました
+        update_failed: 'ゲーム更新に失敗しました: %{error}'
+    pricing:
+      plan_not_found: プランが見つかりません。
+      switched_to_free: 無料プランに切り替わりました。
+      trial_switched_free: 無料プランに切り替わりました。トライアルは期限まで継続されます。
+      plan_switched_trial: "%{plan} プランに切り替わりました。トライアル終了日はそのままです。"
+      already_free: すでに無料プランです。
+      trial_started: "%{plan} の14日間無料トライアルが開始しました！"
+      not_available: このプランはまだ購読できません。
+      payment_error: 支払い処理エラーが発生しました。もう一度お試しください。
+      update_failed: プラン更新に失敗しました。もう一度お試しください。
+      free_not_at_signup: サインアップ時に無料プランは選択できません。トライアル開始には有料プランを選択してください。
+    subscriptions:
+      switched_to_free: 無料プランに切り替わりました。
+      not_available: このプランはまだ購読できません。
+      activated: サブスクリプションを有効化しました！
+      payment_not_completed: 支払いは完了していません。
+      invalid_session: 無効なセッションです。
+      invalid_metadata: 無効なセッションメタデータです。
+      account_mismatch: セッションがあなたのアカウントと一致しません。
+      payment_error: '支払い処理エラー: %{error}'
+      general_error: エラーが発生しました。もう一度お試しください。
+      processing_error: サブスクリプション処理エラーです。サポートへお問い合わせください。
+      success_error: エラーが発生しました。サポートへお問い合わせください。
+    mfa_verification:
+      enter_code: 確認コードを入力してください
+      success: 確認に成功しました！
+      invalid_code: 無効な確認コードです。もう一度お試しください。
+      sign_in_first: 先にサインインしてください
+      setup_first: 先にMFA設定を完了してください
+      already_verified: すでに確認済みです
+    mfa_setup:
+      generate_failed: 認証コードの生成に失敗しました。もう一度お試しください。
+      qr_failed: QRコードの生成に失敗しました。ページを更新してください。
+      enter_code: 確認コードを入力してください
+      invalid_code: 無効な確認コードです。もう一度お試しください。
+      trial_active: 14日間の無料トライアルが有効です！残り %{days} 日。
+      subscription_active: ようこそ！サブスクリプションは有効です。
+      free_plan_welcome: ようこそ！現在は無料プランです。いつでもアップグレードして機能を拡張できます。
+      profile_incomplete: MFAを有効化する前にプロフィールを完成してください。
+    polls:
+      created_discord: 投票を作成し、Discordへの投稿に成功しました！
+      created_discord_failed: '投票は作成されました！（Discord投稿失敗: %{error}）'
+      created: 投票を作成しました！
+      posted_discord: 投票をDiscordに投稿しました！
+      post_discord_failed: 'Discordへの投票投稿に失敗しました: %{error}'
+      deleted: 投票 '%{title}' を削除しました。
+      delete_failed: '投票の削除に失敗しました: %{errors}'
+      not_member: このギルドのメンバーではありません。
+      create_denied: 投票を作成する権限がありません。
+      delete_denied: この投票を削除する権限がありません。
+      access_denied: ギルドが見つからないか、アクセス権がありません。
+      vote:
+        invalid_choice: 無効な選択です
+        poll_closed: この投票は締め切られています
+    react_roles:
+      saved: リアクションロールを保存しました。
+      deployed: リアクションロールの埋め込みをDiscordに投稿しました！
+      removed: リアクションロールをDiscordから削除しました。
+      no_roles_configured: 投稿する前に少なくとも1つのリアクションロールを設定してください。
+      no_channel_configured: リアクションロール埋め込み用のチャンネルを選択してください。
+      deploy_failed: リアクションロール埋め込みの投稿に失敗しました。もう一度お試しください。
+      remove_failed: リアクションロール埋め込みの削除に失敗しました。もう一度お試しください。
+    loot_rolls:
+      created_discord: ルートロールを作成し、Discordへの投稿に成功しました！
+      created_discord_failed: 'ルートロールを作成しました！（Discord投稿失敗: %{error}）'
+      channel_required: ルートロール作成前に、ギルド設定でルートロールチャンネルを設定してください。
+      channel_must_configure: ギルド設定でルートロールチャンネルの設定が必要です。
+      already_closed: このルートロールはすでに締め切られています。
+      closed: ルートロールを締め切りました！
+      entry_not_found: エントリが見つかりません。
+      entry_invalidated: エントリを無効化しました。ユーザーは再ロールできます。
+      deleted: ルートロール '%{title}' を削除しました。
+      delete_failed: ルートロールの削除に失敗しました。
+      not_member: このギルドのメンバーではありません。
+      create_denied: ルートロールを作成する権限がありません。
+      manage_denied: このルートロールを管理する権限がありません。
+      access_denied: ギルドが見つからないか、アクセス権がありません。
+    guild_documents:
+      created: ドキュメントを作成しました。
+      updated: ドキュメントを更新しました。
+      deleted: ドキュメントを削除しました。
+      manage_denied: ドキュメントを管理する権限がありません。
+      view_denied: このドキュメントを閲覧する権限がありません。
+      invalid_link: 無効なドキュメントリンクです。
+      private_document: このドキュメントは非公開です。
+      upload_image:
+        missing: 画像が指定されていません。
+        invalid_data: 画像データが無効です。
+        failed: 画像のアップロードに失敗しました。もう一度お試しください。
+      folder:
+        created: フォルダを作成しました。
+        create_failed: 'フォルダの作成に失敗しました: %{errors}'
+        updated: フォルダを更新しました。
+        update_failed: 'フォルダの更新に失敗しました: %{errors}'
+        deleted: フォルダを削除しました。
+        edit_denied: このフォルダを編集する権限がありません。
+        delete_denied: このフォルダを削除する権限がありません。
+    games:
+      not_found: ゲームが見つかりません
+      created: ゲームを作成しました
+      updated: ゲームを更新しました
+      deleted: ゲームを削除しました
+      delete_failed: 'ゲームの削除に失敗しました: %{errors}'
+      has_guilds: ギルドに関連付けられているゲームは削除できません
+      has_snapshots: 装備スナップショットがあるゲームは削除できません
+      activated: ゲームを有効化しました
+      deactivated: ゲームを無効化しました
+      toggle_failed: 'ゲーム更新に失敗しました: %{errors}'
+      admin_required: 管理者アクセスが必要です
+      suggest:
+        name_required: ゲーム名は必須です
+        already_exists: ゲームはすでに存在します
+        create_failed: ゲームの作成に失敗しました
+    storage:
+      not_member: このギルドのメンバーではありません。
+    folders:
+      created: フォルダを作成しました。
+      create_error: 'フォルダ作成エラー: %{errors}'
+      cannot_move_into_self: フォルダを自身または配下フォルダへ移動することはできません
+      not_empty: フォルダは空ではありません。先に内容を削除するか、強制削除を使用してください。
+      manage_denied: フォルダを管理する権限がありません。
+      missing_required_parameter: '必須パラメータがありません: %{param}'
+      unexpected_create_error: 'フォルダの作成中にエラーが発生しました: %{message}'
+    file_entries:
+      no_files_selected: ファイルが選択されていません
+      not_found: ファイルが見つかりません
+      not_member: このギルドのメンバーではありません。
+      manage_denied: ファイルを管理する権限がありません。
+    discord_connections:
+      authorization_failed: Discordの認可に失敗しました。もう一度お試しください。
+      invalid_state: OAuthの状態が無効です。もう一度お試しください。
+      guild_lost: ギルドが見つかりません。もう一度お試しください。
+      sign_in_first: 先にサインインしてください。
+      connect_discord_first: 先にDiscordを接続してください。
+      connection_expired: Discordの接続の有効期限が切れました。Discordアカウントを再接続してください。
+      fetch_servers_failed: Discordサーバーを取得できませんでした。もう一度お試しください。
+      guild_not_found: ギルドが見つかりません。
+    search:
+      search_failed: 検索に失敗しました。もう一度お試しください。
+    discord_event_signups:
+      webhook:
+        missing_required_parameters: 必須のパラメータがありません。
+        event_not_found: イベントが見つかりません。
+        invalid_role: 無効なロールです。
+    billing:
+      sign_in_required: 請求情報を表示するにはサインインしてください。
+      select_plan: 支払いを設定するにはプランを選択してください。
+      portal_unavailable: 請求ポータルにアクセスできません。後でもう一度お試しください。
+      error_occurred: エラーが発生しました。後でもう一度お試しください。
+      payment_session_failed: '支払いセッションを作成できませんでした: %{error}'
+      invalid_session: 無効なセッションです。
+      session_mismatch: セッションがあなたのアカウントと一致しません。
+      payment_not_completed: 支払いは完了していません。
+      payment_processing_error: 支払い処理エラーです。サポートにお問い合わせください。
+      contact_support: エラーが発生しました。サポートへお問い合わせください。
+      plan_not_found: そのプランは利用できません。
+      plan_changed: サブスクリプションを更新しました。
+      canceled_with_refund: サブスクリプションをキャンセルし、対象のお支払いを返金しました。
+      canceled_at_period_end: 現在の請求期間の終了時にサブスクリプションがキャンセルされます。
+      canceled: サブスクリプションをキャンセルしました。
+      subscription_resumed: 現在の期間終了後もサブスクリプションが継続します。
+      no_stripe_subscription: Stripeのサブスクリプションが見つかりません。チェックアウトを完了するかサポートへお問い合わせください。
+      checkout_active_subscription_use_portal: すでに有効なサブスクリプションがあります。管理は請求ポータルから行ってください。
+      checkout_price_id_required: 価格IDが必要です。
+      checkout_payment_setup_failed: 支払いの設定に失敗しました。再度お試しいただくかサポートにお問い合わせください。
+      checkout_failed: チェックアウトに失敗しました。もう一度お試しください。
+      portal_customer_init_failed: 請求の初期化に失敗しました。もう一度お試しください。
+      portal_session_create_failed: 請求ポータルを開けませんでした。もう一度お試しください。
+      checkout_success: お支払いの設定が完了しました。
+    oidc_user_auth:
+      login_failed: GmailまたはOutlookでのサインインに失敗しました。もう一度お試しください。
+      oauth_error: サインインがキャンセルされたか失敗しました：%{message}
+      invalid_state: OAuthの状態が無効です。もう一度お試しください。
+      invalid_profile: プロバイダーからアカウント情報を読み取れませんでした。もう一度お試しください。
+      email_not_verified: GmailまたはOutlookアカウントのメールが確認されていません。プロバイダーで確認してから再度お試しください。
+      email_missing: プロバイダーがメールアドレスを返しませんでした。別のサインイン方法を使うかサポートへお問い合わせください。
+      email_mismatch: 認証したメールと同じGmailまたはOutlookアカウントでサインインしてください。
+      identity_in_use: そのGmailまたはOutlookアカウントは既に別のGuildSyncユーザーに紐づいています。
+      signup_session_lost: 登録セッションの有効期限が切れました。メールの手順からアカウント作成をやり直してください。
+      no_account: そのGmailまたはOutlookサインインを使うGuildSyncアカウントはありません。先にアカウントを作成してください。
+      signed_in_notice: サインインしました！
+      complete_auth: 続行するには認証を完了してください。
+      session_not_found: セッションが見つかりません。もう一度お試しください。
+    discord_user_auth:
+      auth_error: 'Discord認証エラー: %{error}'
+      login_failed: Discordでのログインに失敗しました。もう一度お試しください。
+      invalid_state: OAuthの状態が無効です。もう一度お試しください。
+      connection_failed: 'Discord接続に失敗しました: %{error}'
+      oauth_error_login: 'Discordでのログインに失敗しました: %{error}'
+      already_connected: このDiscordアカウントは別のアカウントにすでに連携されています。そちらで解除するか、別のDiscordアカウントを使用してください。
+      linked_successfully: Discordアカウントを連携しました！
+      signed_in_successfully: Discordでサインインしました！
+      already_has_account: すでにアカウントがあります。サインインしてください。
+      create_failed: アカウントを作成できませんでした。もう一度お試しください。
+      no_account_found: このDiscordアカウントに紐づくアカウントが見つかりません。先に登録してください。
+      token_revoked_reconnect: Discord接続が取り消されました。Discordアカウントを再接続してください。
+      token_revoked_signin: Discord接続が取り消されました。再度サインインしてください。
+      link_failed: 'Discordアカウントの連携に失敗しました: %{error}'
+      must_be_signed_in: Discordを切断するにはサインインが必要です。
+      cannot_disconnect_discord_auth: Discordログインを使用中はDiscordを切断できません。先にMFAログインに切り替えてください。
+      disconnected_successfully: Discordアカウントの連携を解除しました。
+      session_not_found: セッションが見つかりません。もう一度お試しください。
+      session_not_found_signin: セッションが見つかりません。再度サインインしてください。
+      signed_in_notice: サインインしました！
+      complete_auth: 続行するには認証を完了してください。
+      must_be_signed_in_toggle: サインインが必要です。
+      setup_mfa_first: 切り替える前にMFAを設定してください。
+      mfa_updated: 認証方法をMFAログインに更新しました。
+      discord_updated: 認証方法をDiscordログインに更新しました。
+      connect_discord_first: Discordログインを有効にする前にDiscordを接続してください。
+      invalid_auth_method: 認証方法が無効です。

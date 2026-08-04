@@ -1,0 +1,355 @@
+ko:
+  discord_connections:
+    auto_authorize_bot:
+      title: 봇 인증 창 여는 중...
+      please_authorize: '"%{server_name}"에 봇이 참여할 수 있도록 인증해주세요'
+    show:
+      title: 길드 Discord에 봇 연결
+      subtitle_connected: Discord 계정이 이미 연결되어 있습니다. 이벤트 관리 및 알림을 위해 GuildSync 봇을 연결할 Discord 서버(소유자 또는 관리자 권한 필요)를 선택하세요.
+      subtitle_not_connected: 먼저 Discord 계정을 연결하세요(1회 설정). 그런 다음 GuildSync 봇을 연결할 Discord 서버(소유자 또는 관리자 권한 필요)를 선택하세요. 서버를 선택하면 GuildSync 봇의 서버 참여를 인증하게 됩니다.
+      server_not_selected:
+        title: Discord 서버가 선택되지 않음
+        message: 이벤트를 게시할 Discord 서버를 선택해주세요.
+        select_button: Discord 서버 선택
+      server_selected:
+        title: Discord 서버 선택됨
+        server_label: '서버:'
+        connected: 연결됨
+      bot_connected:
+        title: GuildSync 봇이 연결되었습니다
+      configuration_error:
+        title: 설정 오류
+      bot_authorization:
+        title: 봇 인증 필요
+        message: 아래를 클릭해 GuildSync 봇이 Discord 서버 "%{server_name}"에 참여하도록 인증하세요.
+        authorize_button: GuildSync 봇 인증
+        authorize_hint: 위 버튼을 클릭해 GuildSync 봇이 Discord 서버 "%{server_name}"에 참여하도록 인증하세요. 인증 후 팝업은 자동으로 닫힙니다.
+      reconnect_button: 재연결 / 계정 변경
+      disconnect_button: Discord 연결 해제
+      disconnect_confirm: 이 길드에서 Discord 연결을 해제하시겠습니까?
+      connection_invalid:
+        title: 연결이 유효하지 않음
+        message: Discord 연결이 더 이상 유효하지 않습니다. 다시 연결해주세요.
+        last_connected: '마지막 연결 계정:'
+      reconnect_discord: Discord 다시 연결
+      delete_connection: 연결 삭제
+      delete_confirm: 이 유효하지 않은 Discord 연결을 삭제하시겠습니까?
+      bot_not_connected:
+        title: 봇이 연결되지 않음
+        message: 이 길드의 Discord 서버에 GuildSync 봇이 연결되어 있지 않습니다.
+      connect_section:
+        title: Discord 서버에 봇 연결
+        already_connected: Discord 계정이 이미 연결되어 있습니다. GuildSync 봇을 연결할 Discord 서버를 선택하세요. 서버의 소유자 또는 관리자여야 합니다.
+        not_connected: 먼저 Discord 계정을 연결하세요(1회 설정). 그런 다음 GuildSync 봇을 연결할 Discord 서버를 선택하세요. 서버의 소유자 또는 관리자여야 합니다. 서버를 선택한 후 GuildSync 봇의 서버 참여를 인증하게 됩니다.
+        select_server: Discord 서버 선택
+        connect_and_select: Discord 계정 연결 및 서버 선택
+      back_to_dashboard: 대시보드로 돌아가기
+      popup_blocked: 팝업이 차단되었습니다. 이 사이트의 팝업을 허용한 후 다시 시도하세요.
+    select_server:
+      title: Discord 서버 선택
+      subtitle: GuildSync 봇을 연결할 Discord 서버를 선택하세요. 서버를 선택한 후 GuildSync 봇의 서버 참여를 인증하게 됩니다.
+      header: Discord 서버
+      header_subtitle: GuildSync 봇을 연결할 수 있도록 소유자 또는 관리자 권한이 있는 서버를 선택하세요
+      role_owner: 소유자
+      role_admin: 관리자
+      empty_title: Discord 서버를 찾을 수 없음
+      empty_message: 봇을 연결하려면 최소 한 개 이상의 Discord 서버에서 소유자 또는 관리자여야 합니다.
+      go_back: 뒤로 가기
+      back_to_dashboard: 대시보드로 돌아가기
+    callback_success:
+      title: 연결 성공!
+      message: Discord 서버가 성공적으로 연결되었습니다.
+      closing: 이 창은 1초 후 자동으로 닫힙니다...
+    callback_error:
+      title: 연결 실패
+      closing: 이 창은 3초 후 자동으로 닫힙니다...
+  discord_user_auth:
+    callback_success:
+      title: Discord 인증 성공
+      closing: 성공! 창을 닫는 중...
+    callback_error:
+      title: 오류
+      default_message: Discord 인증에 실패했습니다.
+      closing: 이 창은 2초 후 자동으로 닫힙니다...
+  discord_events:
+    new:
+      title: "%{guild_name} Discord 이벤트 생성"
+      subtitle: 모든 사용자가 보고 신청할 수 있도록 Discord에 게시될 새 이벤트를 생성하세요.
+      channel_configured:
+        title: 이벤트 채널 설정됨
+        message: 이벤트는 설정에서 구성한 채널에 게시됩니다.
+      event_details: 이벤트 상세
+      event_type:
+        label: 이벤트 유형
+        pvp: PvP
+        guild_scrim: 길드 스크림
+        gvg: GvG
+        regular_scrim: 일반 스크림
+        pve_event: PvE 이벤트
+        world_boss: 월드 보스
+        guild_questing_time: 길드 퀘스팅 시간
+        custom: 사용자 지정
+      custom_event_type:
+        label: 사용자 지정 이벤트 유형 이름
+        placeholder: 사용자 지정 이벤트 유형 이름 입력
+        hint: 사용자 지정 이벤트 유형 이름을 입력하세요
+      event_title:
+        label: 이벤트 제목
+        placeholder: 이벤트 제목 입력
+      discord_roles:
+        title: 멘션할 Discord 역할 (@)
+        subtitle: 이벤트 게시 시 멘션할 Discord 역할을 하나 이상 선택하세요.
+      description:
+        label: 설명
+        placeholder: 이벤트 설명 입력
+      date:
+        label: 날짜
+      time:
+        label: 시간
+        hour: 시
+        minute: 분
+        ampm: 오전/오후
+        timezone_detecting: 시간대를 감지하는 중...
+        timezone_label: '시간대: %{timezone}'
+        timezone_default: '시간대: UTC (기본값)'
+        incomplete_error: 완전한 시간(시, 분, 오전/오후)을 선택해주세요
+      max_participants:
+        label: 최대 참가자 수 (선택)
+      squad_leader:
+        label: 분대장 (선택)
+        placeholder: 분대장 이름 입력
+      location:
+        label: 장소 (선택)
+        placeholder: 이벤트 장소 입력
+      role_categories:
+        label: 역할 카테고리
+        hint: 사용자가 신청할 수 있는 역할을 선택하세요. 선택된 모든 역할은 Discord 신청에서 사용 가능합니다.
+        dps: DPS
+        tank: 탱커
+        healer: 힐러
+        ranged: 원거리
+      create_button: 이벤트 생성
+      back_to_events: 이벤트로 돌아가기
+    show:
+      signups_by_role: 역할별 신청
+      no_signups: 아직 신청이 없습니다
+      status:
+        on_time: 정시
+        tentative: 미정
+        late: 지각
+        absent: 불참
+      back_to_events: 이벤트로 돌아가기
+      delete_event: 이벤트 삭제
+      delete_confirm: 이 이벤트를 삭제하시겠습니까?
+  discord:
+    connections:
+      title: Discord 연결
+      select_server: 서버 선택
+      callback_success: 성공적으로 연결되었습니다!
+      callback_error: 연결 실패
+    oauth:
+      authorize: 인증
+      select_server: Discord 서버 선택
+    interactions:
+      account_or_membership_required: https://guild-sync.net 에서 GuildSync 계정을 만들거나, 이 동맹 및/또는 길드에 가입했는지 확인해 주세요.
+    webhooks:
+      invalid_signature: 서명이 유효하지 않습니다
+      unknown_interaction_type: 알 수 없는 상호작용 유형입니다
+      invalid_request_format: 요청 형식이 유효하지 않습니다
+      request_processing_error: 요청을 처리하는 중 오류가 발생했습니다. 다시 시도해 주세요.
+      missing_custom_id: '유효하지 않은 상호작용: custom_id가 없습니다'
+      missing_user: '유효하지 않은 상호작용: 사용자가 없습니다'
+      invalid_event_signup_format: 이벤트 신청 형식이 유효하지 않습니다
+      invalid_alliance_signup_format: 동맹 신청 형식이 유효하지 않습니다
+      invalid_alliance_status_format: 동맹 상태 형식이 유효하지 않습니다
+      invalid_status_update_format: 상태 업데이트 형식이 유효하지 않습니다
+      event_not_found: 이벤트를 찾을 수 없습니다
+      unknown_modal: 알 수 없는 모달입니다
+      signup_usage: '사용법: /signup role:<dps|tank|healer|ranged> [event:<event_id>]'
+      signup_event_not_found: 이벤트를 찾을 수 없습니다. 이벤트 ID를 지정하거나 이벤트 메시지에 답장하여 이 명령을 사용하세요.
+      invalid_command_structure: 명령 구조가 유효하지 않습니다.
+      missing_interaction_token: 상호작용 토큰이 없습니다.
+      gear_upload_error: 업로드 처리 중 오류가 발생했습니다. 다시 시도해 주세요.
+      unknown_gear_subcommand: 알 수 없는 장비 하위 명령입니다
+      gear_command_error: 명령 처리 중 오류가 발생했습니다.
+      missing_token_or_application_id: 상호작용 토큰 또는 애플리케이션 ID가 없습니다
+      fallback_member_name: 멤버
+      rsvp:
+        invalid_role: 잘못된 역할입니다
+        followup_error: '오류: %{message}'
+        try_again_short: 오류가 발생했습니다. 다시 시도하세요.
+        attendance_prompt: "**%{role}**을(를) 선택했습니다. 참석 상태를 고르세요:"
+        button_on_time: "✅ 정시"
+        button_late: "⏰ 지각"
+        button_absent: "❌ 불참"
+        button_remove: 제거
+        removed_from_signup: "✅ 이벤트 신청에서 제거됨"
+        signup_not_found: 신청을 찾을 수 없습니다
+        invalid_status_hint: '잘못된 상태입니다. 가능: 정시, 지각, 불참'
+        status_updated: "✅ 업데이트됨: **%{role}** - **%{status}**"
+        status_labels:
+          on_time: 정시
+          late: 지각
+          absent: 불참
+      alliance_rsvp:
+        attendance_prompt: "**%{role}**을(를) 선택했습니다. 어떻게 참석하시겠어요?"
+        wrong_account_button: 이 상태 버튼은 회원님 계정용이 아닙니다.
+        status_updated: "✅ 연합 이벤트 상태 업데이트: **%{role}** - **%{status}**"
+      event_embed:
+        squad_leader: "**\U0001F464 분대장**"
+        location: "**\U0001F4CD 위치**"
+        event_type: "**\U0001F4C5 유형**"
+        total: "**\U0001F465 합계**"
+        general_type: 일반
+        none_markdown: "```없음```"
+        none_display: "**없음**"
+        status_separator: "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+        status_heading: "**상태**"
+        late: "**⏰ 지각**"
+        absent: "**❌ 불참**"
+        scheduled_label: "**⏰ 예정:** %{timestamp}"
+        default_description: 이 이벤트에 참여하세요!
+        title: "\U0001F3AF %{title}"
+        footer: GuildSync 이벤트 • 아래 버튼으로 신청
+        signup_prompt: "**\U0001F3AF 이벤트 신청** — 아래 버튼으로 신청:"
+      legacy_event_details:
+        scheduled_block: |
+          **예정:** %{date_stamp}
+          %{time_stamp}
+        duration_line: "**소요 시간:** %{minutes}분\n"
+        location_line: "**위치:** %{value}\n"
+        squad_leader_line: "**분대장:** %{value}\n"
+        participants_line: "**참가자:** %{count}명\n"
+    commands:
+      help:
+        title: GuildSync — 도움말
+        description: 사용할 수 있는 슬래시 명령은 GuildSync 역할에 따라 다릅니다. /poll, /event, /loot, /invite, /member, /application, /docs, /guild, /alliance, /leaderboard, /profile 등을 사용해 보세요. 자세한 내용은 Discord에서 각 명령의 옵션을 확인하세요.
+      errors:
+        server_only: 이 명령은 DM이 아니라 Discord 서버 안에서 사용해야 합니다.
+        guild_not_linked: 이 Discord 서버는 GuildSync 길드와 연결되어 있지 않습니다. 길드 설정에서 임원에게 연결을 요청하세요.
+        user_not_linked: Discord 계정이 GuildSync와 연결되어 있지 않습니다. guild-sync.net 에서 가입하거나 연결하세요.
+        not_a_member: 이 길드의 GuildSync 활성 멤버가 아닙니다.
+        officer_required: 이 명령을 사용하려면 임원(Officer) 이상 권한이 필요합니다.
+        owner_required: 길드 소유자만 이 명령을 사용할 수 있습니다.
+        no_plan: 길드 소유자에게 유효한 GuildSync 구독이 없습니다.
+        plan_limit: "%{plan} 플랜에서 %{feature} 한도(%{limit})에 도달했습니다. guild-sync.net 에서 업그레이드하세요."
+        unknown_subcommand: 알 수 없는 하위 명령입니다. /help 로 사용 가능한 명령을 확인하세요.
+        not_implemented: 아직 구현되지 않은 명령입니다. 나중에 다시 확인하세요.
+        generic: 요청 처리 중 오류가 발생했습니다. 다시 시도하거나 지원팀에 문의하세요.
+      poll:
+        no_channel: 투표 채널이 설정되지 않았습니다. guild-sync.net 길드 설정에서 임원에게 설정을 요청하세요.
+        missing_fields: 질문과 최소 두 개의 선택지(option_a, option_b)를 입력하세요.
+        created: 투표 **"%{title}"** 를 만들어 투표 채널에 게시했습니다.
+        none_active: 이 길드에 현재 활성 투표가 없습니다.
+        not_found: 투표를 찾을 수 없습니다. /poll list 를 사용하세요.
+        list_title: "%{guild} — 활성 투표"
+      loot:
+        no_channel: 루팅 채널이 설정되지 않았습니다. guild-sync.net 길드 설정에서 임원에게 설정을 요청하세요.
+        missing_item: 아이템 이름을 입력하세요.
+        invalid_range: 최대 굴림 값은 최소값보다 커야 합니다.
+        created: "**%{item}** 루팅 주사위를 만들어 채널에 게시했습니다."
+        none_active: 이 길드에 열린 루팅이 없습니다.
+        not_found: 루팅을 찾을 수 없습니다. /loot list 를 사용하세요.
+        already_closed: 이 루팅은 이미 종료되었습니다.
+        closed_winner: "루팅 **\"%{item}\"** 종료. 승자: **%{winner}** (**%{roll}**)! \U0001F3C6"
+        closed_no_entries: 루팅 **"%{item}"** 종료. 참가자가 없습니다.
+        list_title: "%{guild} — 진행 중 루팅"
+      datetime:
+        invalid_month: 잘못된 월입니다. 목록에서 선택하세요.
+        invalid_day: 잘못된 일입니다. %{month} 은(는) %{max} 일까지 있습니다.
+        invalid_time: 잘못된 시간입니다. 시(1–12), 분, AM/PM을 올바르게 선택하세요.
+        in_the_past: 과거 날짜·시간입니다. 미래 시각을 선택하세요.
+        parse_error: '날짜를 해석할 수 없습니다: %{detail}'
+      event:
+        no_channel: 이벤트 채널이 설정되지 않았습니다. guild-sync.net 길드 설정에서 임원에게 설정을 요청하세요.
+        not_connected: 이 서버는 Discord 연결이 완료되지 않았습니다. 임원에게 설정 완료를 요청하세요.
+        missing_title: 이벤트 제목을 입력하세요.
+        duplicate: 같은 시간에 **"%{title}"** 이라는 이벤트가 이미 있습니다.
+        created: 이벤트 **"%{title}"** 을(를) 만들어 이벤트 채널에 게시했습니다.
+        none_upcoming: 이 길드에 예정된 이벤트가 없습니다.
+        not_found: 이벤트를 찾을 수 없습니다. /event list 를 사용하세요.
+        cancelled: 이벤트 **"%{title}"** 을(를) 취소하고 Discord에서 제거했습니다.
+        list_title: "%{guild} — 예정 이벤트"
+      invite:
+        no_user: 초대할 Discord 사용자를 멘션하세요.
+        self_invite: 본인을 초대할 수 없습니다.
+        already_member: 해당 사용자는 이미 이 길드의 활성 멤버입니다.
+        sent: "<@%{discord_user_id}> 님에게 Discord DM으로 초대를 보냈습니다. 링크는 7일간 유효합니다."
+        dm_disabled: DM을 보낼 수 없습니다. 상대가 DM을 받지 않도록 설정했을 수 있습니다.
+        dm_intro: "**%{inviter}** 님이 GuildSync **%{guild}** 길드로 초대했습니다!"
+        dm_link: |-
+          아래 링크를 눌러 초대를 수락하세요:
+          %{url}
+        dm_expiry: _초대 링크는 7일 후 만료됩니다._
+      member:
+        not_found: 이 길드에서 멤버를 찾을 수 없습니다.
+        kicked: "**%{username}** 님을 길드에서 제거했습니다."
+        role_updated: "**%{username}** 님의 역할을 **%{role}**(으)로 변경했습니다."
+        none: 멤버가 없습니다.
+        list_title: "%{guild} — 멤버"
+        info_title: "%{username} 님의 프로필"
+        cannot_kick_owner: 길드 소유자를 추방할 수 없습니다.
+        cannot_demote_owner: 길드 소유자의 역할을 변경할 수 없습니다.
+      guild:
+        info_title: "%{name} — 길드 정보"
+        settings_title: "%{name} — 설정"
+        channels_title: "%{name} — Discord 채널"
+        not_connected: 이 길드는 Discord 서버와 연결되어 있지 않습니다.
+        channel_not_set: 설정되지 않음
+      application:
+        none_pending: 대기 중인 신청이 없습니다.
+        not_found: 신청을 찾을 수 없습니다. /application list 를 사용하세요.
+        accepted: 신청을 수락했습니다. **%{username}** 님이 길드에 추가되었습니다.
+        rejected: "**%{username}** 님의 신청을 거절했습니다."
+        list_title: "%{guild} — 대기 중인 신청"
+        view_title: '신청 #%{id}'
+        already_processed: 이미 처리된 신청입니다.
+      docs:
+        none: 문서가 없습니다.
+        not_found: 문서를 찾을 수 없습니다. /docs list 를 사용하세요.
+        list_title: "%{guild} — 문서"
+        preview_footer: 미리보기가 잘렸습니다. 전체는 guild-sync.net 에서 보세요
+        search_none: '"%{query}" 와 일치하는 문서가 없습니다.'
+      leaderboard:
+        title: "%{guild} — 이벤트 참여 순위"
+        none: 아직 데이터가 없습니다. 이벤트에 신청해 보세요!
+        footer: 이벤트 정시 참석 기준 상위 10명
+      activity:
+        title: "%{guild} — 최근 활동"
+        none: 표시할 최근 활동이 없습니다.
+      profile:
+        title: "%{username} 님의 GuildSync 프로필"
+        not_found: 해당 사용자는 GuildSync와 연결되어 있지 않거나 이 길드 멤버가 아닙니다.
+      alliance:
+        not_in_alliance: 이 Discord 서버의 길드는 아직 GuildSync 동맹에 속해 있지 않습니다.
+        info_title: "%{name}"
+        no_description: 설명이 없습니다.
+        field_guilds: 참여 길드
+        field_hub: 초대와 가입 요청은 웹에서 관리합니다.
+        use_hub: 동맹 페이지는 /alliance hub 를 사용하세요.
+        hub_message: 'GuildSync 동맹 열기: %{url}'
+        requests_unauthorized: 가입 요청은 동맹 리더, 길드 소유자, 동맹 임원만 볼 수 있습니다.
+        no_pending_requests: 이 동맹에 대기 중인 가입 요청이 없습니다.
+        requests_body: |-
+          대기 중 가입 요청 **%{count}**건:
+          %{list}
+
+          웹에서 처리: %{url}
+  discord_oauth:
+    select_server:
+      title: Discord 서버 선택
+      subtitle: "%{name}에 연결할 Discord 서버를 선택하세요."
+      owner: 소유자
+      member: 멤버
+      no_servers: Discord 서버를 찾을 수 없습니다.
+      no_servers_hint: 최소 하나의 Discord 서버에 멤버로 참여되어 있는지 확인해주세요.
+      try_again: 다시 시도
+  discord_onboarding:
+    dm_message: |-
+      참여해 주셔서 감사합니다! GuildSync 계정을 만들어 길드 활동을 관리하고, 전리품 기록을 추적하며, 길드에 완전히 참여하세요.
+
+      가입: %{signup_url}
+    dm_failed: Discord 사용자에게 온보딩 DM을 보낼 수 없습니다.
+    vote_recorded_unregistered: 투표가 기록되었습니다! 모든 기능을 사용하려면 GuildSync 계정을 만드세요.
+    roll_recorded_unregistered: 주사위가 기록되었습니다! 모든 기능을 사용하려면 GuildSync 계정을 만드세요.
+    rsvp_recorded_unregistered: 참석이 기록되었습니다! 모든 기능을 사용하려면 GuildSync 계정을 만드세요.

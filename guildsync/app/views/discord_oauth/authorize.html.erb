@@ -1,0 +1,14 @@
+<div class="loading">
+  <div class="spinner"></div>
+  <h2 style="color: #5865F2; margin-bottom: 10px;">Redirecting to Discord...</h2>
+  <p style="color: #cccccc;">Please wait while we redirect you to Discord's authorization page.</p>
+</div>
+
+<script>
+  // This page should never actually render - we should redirect immediately
+  // But if it does, try to redirect manually
+  setTimeout(function() {
+    window.location.reload();
+  }, 500);
+</script>
+

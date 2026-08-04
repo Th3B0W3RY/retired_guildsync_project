@@ -1,0 +1,92 @@
+<div class="max-w-4xl mx-auto p-6">
+  <div class="mb-6 flex items-center justify-between">
+    <div>
+      <h1 class="text-3xl font-bold text-theme-primary mb-2"><%= t('alliances.polls.index.title') %></h1>
+      <p class="text-theme-secondary"><%= t('alliances.polls.index.subtitle', alliance_name: @alliance.name) %></p>
+    </div>
+    <div class="flex items-center gap-3">
+      <%= link_to "&larr; #{t('alliances.nav.back_to_alliance')}".html_safe, alliance_path(@alliance),
+          class: "text-sm text-theme-accent hover:text-theme-accent-hover" %>
+      <% if can_manage_alliance_actions?(@alliance) %>
+        <%= link_to t('alliances.polls.index.create'), new_alliance_alliance_poll_path(@alliance),
+            class: "px-6 py-3 bg-theme-accent text-white rounded-lg hover:bg-theme-accent-hover transition-colors font-semibold" %>
+      <% end %>
+    </div>
+  </div>
+
+  <% ap_index_choice_labels = {
+    yes: t("alliances.polls.index.yes"),
+    no: t("alliances.polls.index.no"),
+    maybe: t("alliances.polls.index.maybe")
+  } %>
+
+  <% if @polls.any? %>
+    <div class="space-y-4">
+      <% @polls.each do |poll| %>
+        <div class="bg-theme-secondary rounded-lg border border-theme-primary p-6">
+          <div class="flex items-start justify-between mb-4">
+            <div class="flex-1">
+              <h3 class="text-xl font-semibold text-theme-primary mb-2">
+                <%= link_to poll.title, alliance_alliance_poll_path(@alliance, poll), class: "hover:text-theme-accent transition-colors" %>
+              </h3>
+              <div class="flex items-center gap-4 text-sm text-theme-secondary">
+                <span><%= t('alliances.polls.index.created_by', name: poll.creator.name_for_discord_embed) %></span>
+                <span>&bull;</span>
+                <span><%= t('alliances.polls.index.deadline') %> <%= poll.deadline.strftime("%B %d, %Y") %></span>
+                <span>&bull;</span>
+                <span><%= poll.total_votes %> <%= "vote".pluralize(poll.total_votes) %></span>
+                <% if poll.anonymous? %>
+                  <span class="px-2 py-0.5 bg-blue-900/30 text-blue-400 rounded text-xs"><%= t('alliances.polls.index.anonymous') %></span>
+                <% end %>
+              </div>
+            </div>
+            <span class="px-3 py-1 rounded-full text-sm font-medium <%= poll.open? ? 'bg-green-900/30 text-green-500' : 'bg-gray-900/30 text-gray-500' %>">
+              <%= poll.open? ? t('alliances.polls.index.open') : t('alliances.polls.index.closed') %>
+            </span>
+          </div>
+
+          <% if poll.total_votes > 0 %>
+            <div class="mt-4 pt-4 border-t border-theme-primary">
+              <% percentages = poll.vote_percentages %>
+              <% voters_by_choice = poll.anonymous? ? nil : poll.voters_display_names_by_choice %>
+              <div class="grid grid-cols-3 gap-4">
+                <% [:yes, :no, :maybe].each do |choice| %>
+                  <div>
+                    <div class="flex justify-between mb-1">
+                      <span class="text-sm text-theme-secondary"><%= ap_index_choice_labels[choice] %></span>
+                      <span class="text-sm font-semibold text-theme-primary"><%= percentages[choice] %>%</span>
+                    </div>
+                    <div class="w-full bg-theme-primary rounded-full h-2">
+                      <div class="<%= choice == :yes ? 'bg-green-500' : choice == :no ? 'bg-red-500' : 'bg-yellow-500' %> h-2 rounded-full" style="width: <%= percentages[choice] %>%"></div>
+                    </div>
+                    <% if voters_by_choice && voters_by_choice[choice].any? %>
+                      <p class="text-xs text-theme-secondary mt-2">
+                        <span class="font-medium text-theme-primary"><%= t("alliances.polls.index.voters_heading") %>:</span>
+                        <%= voters_by_choice[choice].join(", ") %>
+                      </p>
+                    <% end %>
+                  </div>
+                <% end %>
+              </div>
+            </div>
+          <% end %>
+
+          <div class="mt-4 flex items-center gap-4">
+            <%= link_to poll.open? ? t('alliances.polls.index.view_vote') : t('alliances.polls.index.view_results'),
+                alliance_alliance_poll_path(@alliance, poll),
+                class: "px-4 py-2 bg-theme-accent text-white rounded-lg hover:bg-theme-accent-hover transition-colors text-sm" %>
+            <% if can_manage_alliance_actions?(@alliance) %>
+              <%= button_to t('common.buttons.delete'), alliance_alliance_poll_path(@alliance, poll), method: :delete,
+                  class: "px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 transition-colors text-sm",
+                  data: { confirm: t('alliances.polls.index.delete_confirm') } %>
+            <% end %>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  <% else %>
+    <div class="bg-theme-secondary rounded-lg border border-theme-primary p-8 text-center">
+      <p class="text-theme-secondary text-lg"><%= t('alliances.polls.index.no_polls') %></p>
+    </div>
+  <% end %>
+</div>

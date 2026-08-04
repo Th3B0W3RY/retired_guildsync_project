@@ -1,0 +1,105 @@
+<div class="max-w-6xl mx-auto px-4 py-10 space-y-10">
+  <div class="flex items-start justify-between gap-4">
+    <div>
+      <h1 class="text-3xl font-bold text-theme-accent">Homepage Footer Links & Legal Pages</h1>
+      <p class="mt-2 text-theme-secondary max-w-3xl">
+        Manage the guest-homepage support redirects and the standalone legal pages. All values are stored in the production database and persist across deploys.
+      </p>
+    </div>
+    <%= link_to "Back to admin dashboard", admin_root_path,
+          class: "inline-flex items-center justify-center rounded-lg border border-theme-primary px-4 py-2 text-sm text-theme-secondary hover:bg-theme-hover",
+          data: { turbo_frame: "_top" } %>
+  </div>
+
+  <section class="rounded-2xl border border-white/10 bg-[rgba(15,23,43,0.5)] p-6 shadow-lg">
+    <h2 class="text-xl font-semibold text-white">Support Section Redirects</h2>
+    <p class="mt-2 text-sm text-theme-secondary">
+      Homepage footer links redirect through GuildSync routes, but the destination URLs live in the database so admins can change them without code deploys.
+    </p>
+
+    <%= form_with url: admin_update_homepage_footer_settings_path, method: :patch, class: "mt-6 space-y-6" do %>
+      <div class="grid grid-cols-1 gap-6 lg:grid-cols-3">
+        <div>
+          <label class="block text-sm font-medium text-theme-secondary mb-2" for="homepage_footer_documentation_url">Documentation URL</label>
+          <%= url_field_tag "homepage_footer[documentation_url]", @support_urls[:documentation],
+                id: "homepage_footer_documentation_url",
+                required: true,
+                class: "w-full rounded-lg border border-theme-primary bg-theme-primary px-4 py-3 text-theme-primary" %>
+        </div>
+
+        <div>
+          <label class="block text-sm font-medium text-theme-secondary mb-2" for="homepage_footer_contact_url">Contact URL</label>
+          <%= url_field_tag "homepage_footer[contact_url]", @support_urls[:contact],
+                id: "homepage_footer_contact_url",
+                required: true,
+                class: "w-full rounded-lg border border-theme-primary bg-theme-primary px-4 py-3 text-theme-primary" %>
+        </div>
+
+        <div>
+          <label class="block text-sm font-medium text-theme-secondary mb-2" for="homepage_footer_discord_url">Discord URL</label>
+          <%= url_field_tag "homepage_footer[discord_url]", @support_urls[:discord],
+                id: "homepage_footer_discord_url",
+                required: true,
+                class: "w-full rounded-lg border border-theme-primary bg-theme-primary px-4 py-3 text-theme-primary" %>
+        </div>
+      </div>
+
+      <div class="rounded-xl border border-white/10 bg-theme-primary/40 p-5">
+        <h3 class="text-sm font-semibold text-white">Disaster Recovery and Data Recovery</h3>
+        <p class="mt-2 text-sm text-theme-secondary">
+          Long-form disaster recovery and data-retention copy is stored in the database (same as Privacy / Terms / Security) and linked from the homepage footer under Support.
+        </p>
+        <div class="mt-4 flex flex-wrap gap-3">
+          <%= link_to "Edit disaster recovery page", edit_admin_marketing_legal_page_path("disaster_recovery"),
+                class: "inline-flex items-center justify-center rounded-lg bg-theme-brand-gradient px-4 py-2 text-sm font-semibold text-white hover:opacity-95",
+                data: { turbo_frame: "_top" } %>
+          <%= link_to "View public page", disaster_recovery_page_path,
+                target: "_blank",
+                rel: "noopener",
+                class: "inline-flex items-center justify-center rounded-lg border border-theme-primary px-4 py-2 text-sm text-theme-secondary hover:bg-theme-hover" %>
+        </div>
+      </div>
+
+      <div class="flex flex-wrap gap-3">
+        <%= submit_tag "Save footer support links",
+              class: "inline-flex items-center justify-center rounded-lg bg-theme-brand-gradient px-5 py-2.5 text-sm font-semibold text-white hover:opacity-95" %>
+        <%= link_to "Open homepage", root_path,
+              target: "_blank",
+              rel: "noopener",
+              class: "inline-flex items-center justify-center rounded-lg border border-theme-primary px-5 py-2.5 text-sm text-theme-secondary hover:bg-theme-hover" %>
+      </div>
+    <% end %>
+  </section>
+
+  <section class="rounded-2xl border border-white/10 bg-[rgba(15,23,43,0.5)] p-6 shadow-lg">
+    <h2 class="text-xl font-semibold text-white">Legal Pages</h2>
+    <p class="mt-2 text-sm text-theme-secondary">
+      These pages render as standalone rich-text documents at public routes and are intended for long-form privacy, terms, and security content.
+    </p>
+
+    <div class="mt-6 grid grid-cols-1 gap-4 lg:grid-cols-2 xl:grid-cols-4">
+      <% @marketing_legal_pages.each do |page| %>
+        <% public_path = case page.kind
+           when "privacy" then privacy_policy_path
+           when "terms" then terms_of_service_path
+           when "security" then security_page_path
+           else disaster_recovery_page_path
+           end %>
+        <article class="rounded-xl border border-white/10 bg-theme-primary p-5">
+          <p class="text-xs uppercase tracking-[0.2em] text-theme-secondary"><%= page.kind %></p>
+          <h3 class="mt-2 text-lg font-semibold text-white"><%= page.title %></h3>
+          <p class="mt-3 text-sm text-theme-secondary line-clamp-4"><%= page.body.to_plain_text.squish %></p>
+          <div class="mt-5 flex flex-wrap gap-3">
+            <%= link_to "Edit", edit_admin_marketing_legal_page_path(page.kind),
+                  class: "inline-flex items-center justify-center rounded-lg bg-theme-brand-gradient px-4 py-2 text-sm font-semibold text-white hover:opacity-95",
+                  data: { turbo_frame: "_top" } %>
+            <%= link_to "View public", public_path,
+                  target: "_blank",
+                  rel: "noopener",
+                  class: "inline-flex items-center justify-center rounded-lg border border-theme-primary px-4 py-2 text-sm text-theme-secondary hover:bg-theme-hover" %>
+          </div>
+        </article>
+      <% end %>
+    </div>
+  </section>
+</div>

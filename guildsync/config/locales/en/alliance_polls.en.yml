@@ -1,0 +1,48 @@
+# Alliance-wide polls UI (see alliance_polls.* in i18n-tasks.yml)
+en:
+  alliance_polls:
+    created: "Poll created."
+    deleted: "Poll deleted."
+    errors:
+      poll_closed: "This poll is closed."
+      invalid_choice: "That choice is not valid."
+      not_found: "Poll not found."
+      manage_unauthorized: "You cannot manage alliance polls."
+    index:
+      title: "Alliance Polls"
+      subtitle: "Polls for %{alliance_name}."
+      create: "Create poll"
+      created_by: "Created by %{name}"
+      deadline: "Deadline:"
+      anonymous: "Anonymous"
+      open: "Open"
+      closed: "Closed"
+      yes: "Yes"
+      no: "No"
+      maybe: "Maybe"
+      view_vote: "View & vote"
+      view_results: "View results"
+      delete_confirm: "Delete this poll? This cannot be undone."
+      no_polls: "No alliance polls yet."
+      voters_heading: "Voters"
+    new:
+      title: "Create alliance poll"
+    form:
+      title: "Title"
+      description: "Description"
+      deadline: "Deadline"
+      anonymous: "Anonymous voting"
+      create_button: "Create poll"
+    show:
+      back: "Back to polls"
+      deadline: "Deadline: %{date}"
+      anonymous: "Anonymous"
+      open: "Open"
+      closed: "Closed"
+      your_vote: "Your vote"
+      yes: "Yes"
+      no: "No"
+      maybe: "Maybe"
+      voters_heading: "Voters"
+      vote_noun: "vote"
+      votes_noun: "votes"

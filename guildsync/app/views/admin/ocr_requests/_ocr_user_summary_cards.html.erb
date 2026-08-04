@@ -1,0 +1,20 @@
+<%# locals: (user:) %>
+<% ns = "admin.ocr_requests.show" %>
+<div id="admin_ocr_user_summary_cards" class="grid grid-cols-1 md:grid-cols-3 gap-4">
+  <div class="bg-theme-card border border-theme-primary rounded-lg p-4">
+    <h3 class="text-sm font-semibold text-theme-secondary"><%= t("#{ns}.plan") %></h3>
+    <p class="text-theme-accent font-medium"><%= user.ocr_plan&.titleize || t("admin.ocr_requests.index.not_available") %></p>
+  </div>
+  <div class="bg-theme-card border border-theme-primary rounded-lg p-4">
+    <h3 class="text-sm font-semibold text-theme-secondary"><%= t("#{ns}.used_period_limit") %></h3>
+    <p class="text-theme-accent font-medium"><%= user.ocr_requests_used_this_period %> / <%= user.ocr_monthly_limit %></p>
+  </div>
+  <div class="bg-theme-card border border-theme-primary rounded-lg p-4">
+    <h3 class="text-sm font-semibold text-theme-secondary"><%= t("#{ns}.status") %></h3>
+    <p class="text-theme-accent font-medium"><%= user.ocr_hard_locked? ? t("#{ns}.status_locked") : (user.ocr_unlocked? ? t("#{ns}.status_unlocked_override") : t("#{ns}.status_normal")) %></p>
+  </div>
+  <div class="bg-theme-card border border-theme-primary rounded-lg p-4">
+    <h3 class="text-sm font-semibold text-theme-secondary"><%= t("#{ns}.hard_stop") %></h3>
+    <p class="text-theme-accent font-medium"><%= User.at_ocr_hard_stop.exists?(id: user.id) ? t("#{ns}.hard_stop_at") : t("#{ns}.hard_stop_within") %></p>
+  </div>
+</div>

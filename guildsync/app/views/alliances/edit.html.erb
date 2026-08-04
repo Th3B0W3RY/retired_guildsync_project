@@ -1,0 +1,54 @@
+<div class="mx-auto max-w-2xl p-6 font-[family-name:Inter,ui-sans-serif,system-ui,sans-serif]">
+  <div class="mb-6">
+    <h1 class="mb-2 text-3xl font-bold text-white"><%= t('alliances.edit.title') %></h1>
+    <%= link_to "&larr; #{t('alliances.edit.back')}".html_safe, alliance_path(@alliance),
+        class: "text-sm text-[#7C86FF] hover:underline" %>
+  </div>
+
+  <%= form_with model: @alliance, url: alliance_path(@alliance), method: :patch, local: true, multipart: true,
+      class: "space-y-6 rounded-xl border border-white/10 bg-[rgba(15,23,43,0.5)] p-6 shadow-lg", data: { turbo: false } do |f| %>
+    <% if @alliance.errors.any? %>
+      <div class="bg-red-900/20 border border-red-500 rounded-lg p-4">
+        <ul class="list-disc list-inside text-red-400">
+          <% @alliance.errors.full_messages.each do |msg| %>
+            <li><%= msg %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+    <div>
+      <%= f.label :name, t('alliances.form.name'), class: "mb-2 block text-sm font-medium text-white" %>
+      <%= f.text_field :name, class: "w-full rounded-lg border border-white/10 bg-[rgba(2,6,24,0.5)] px-4 py-2 text-white", required: true %>
+    </div>
+
+    <div>
+      <%= f.label :description, t('alliances.form.description'), class: "mb-2 block text-sm font-medium text-white" %>
+      <%= f.text_area :description, rows: 4, class: "w-full rounded-lg border border-white/10 bg-[rgba(2,6,24,0.5)] px-4 py-2 text-white" %>
+    </div>
+
+    <div>
+      <%= f.label :logo, t('alliances.form.logo'), class: "mb-2 block text-sm font-medium text-white" %>
+      <% if @alliance.logo.attached? %>
+        <div class="mb-3">
+          <%= image_tag @alliance.logo, class: "h-20 w-20 rounded-full border border-white/10 object-cover" %>
+          <p class="mt-1 text-xs text-[#90A1B9]"><%= t('alliances.form.logo_replace_hint') %></p>
+        </div>
+      <% end %>
+      <%= render "alliances/logo_file_field", f: f %>
+    </div>
+
+    <div class="flex gap-4">
+      <%= f.submit t('alliances.form.save_button'), class: "cursor-pointer rounded-lg bg-theme-brand-gradient px-6 py-3 font-semibold text-white transition-opacity hover:opacity-95" %>
+      <%= link_to t('common.buttons.cancel'), alliance_path(@alliance), class: "rounded-lg border border-white/10 bg-[rgba(15,23,43,0.35)] px-6 py-3 font-semibold text-[#CAD5E2] transition-colors hover:bg-[rgba(15,23,43,0.55)]" %>
+    </div>
+
+    <!-- Danger Zone -->
+    <div class="mt-8 pt-6 border-t border-red-500/20">
+      <h3 class="text-lg font-semibold text-red-400 mb-4"><%= t('alliances.edit.danger_zone') %></h3>
+      <%= button_to t('alliances.edit.disband'), alliance_path(@alliance), method: :delete,
+          class: "px-6 py-3 bg-red-600 text-white rounded-lg hover:bg-red-700 transition-colors font-semibold",
+          data: { confirm: t('alliances.edit.disband_confirm') } %>
+    </div>
+  <% end %>
+</div>

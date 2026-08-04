@@ -1,0 +1,15 @@
+<div class="space-y-8 max-w-4xl">
+  <div class="flex flex-wrap items-center justify-between gap-4">
+    <div>
+      <h1 class="text-3xl font-bold text-theme-accent"><%= t("admin.pricing_plan_features.page_title") %></h1>
+      <p class="text-theme-secondary mt-2"><%= t("admin.pricing_plan_features.page_subtitle") %></p>
+    </div>
+    <%= link_to t("admin.pricing_plan_features.back_dashboard"), admin_root_path,
+          class: "px-4 py-2 bg-theme-secondary text-theme-accent border border-theme-primary rounded-lg hover:bg-theme-hover font-medium",
+          data: { turbo_frame: "_top" } %>
+  </div>
+
+  <%= turbo_frame_tag Admin::PricingPlanFeaturesController::PRICING_PLAN_FEATURES_EDIT_MAIN_FRAME do %>
+    <%= render "pricing_plan_features_main" %>
+  <% end %>
+</div>

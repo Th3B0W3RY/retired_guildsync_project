@@ -1,0 +1,10 @@
+<div id="admin_flash_settings_test_card" class="max-w-2xl rounded-lg border border-theme-primary bg-theme-card p-6 shadow-lg">
+  <h2 class="mb-2 text-lg font-semibold text-theme-primary"><%= t("admin.flash_settings.test_section_title") %></h2>
+  <p class="mb-4 text-sm text-theme-secondary"><%= t("admin.flash_settings.test_section_hint") %></p>
+  <div class="flex flex-wrap gap-3">
+    <%= button_to t("admin.flash_settings.test_notice"), admin_test_flash_settings_path, method: :post, params: { kind: "notice" }, class: "rounded-lg bg-green-700 px-4 py-2 text-sm font-semibold text-white hover:bg-green-600" %>
+    <%= button_to t("admin.flash_settings.test_alert"), admin_test_flash_settings_path, method: :post, params: { kind: "alert" }, class: "rounded-lg bg-red-700 px-4 py-2 text-sm font-semibold text-white hover:bg-red-600" %>
+    <%= button_to t("admin.flash_settings.test_warning"), admin_test_flash_settings_path, method: :post, params: { kind: "warning" }, class: "rounded-lg bg-amber-700 px-4 py-2 text-sm font-semibold text-white hover:bg-amber-600" %>
+    <%= button_to t("admin.flash_settings.test_info"), admin_test_flash_settings_path, method: :post, params: { kind: "info" }, class: "rounded-lg bg-blue-700 px-4 py-2 text-sm font-semibold text-white hover:bg-blue-600" %>
+  </div>
+</div>

@@ -1,0 +1,139 @@
+ja:
+  settings:
+    account:
+      title: アカウント設定
+      subtitle: アカウントのセキュリティと設定を管理
+      password:
+        title: パスワードを変更
+        description: アカウントのパスワードを更新
+        button: パスワードを変更
+      discord:
+        title: Discordアカウント
+        connected_as: "%{username} として接続中"
+        not_connected: Discordアカウントは接続されていません。
+        disconnect: Discord接続を削除
+        disconnect_confirm: Discordアカウントの接続を解除しますか？接続が削除され、Discord機能を利用するには再接続が必要です。
+        switch_to_mfa_first: Discordを解除する前にMFAログインへ切り替えてください
+        connect: Discordアカウントを接続
+      auth_method:
+        title: 認証方法
+        description: アカウントへのサインイン方法を選択してください。
+        mfa:
+          title: MFAログイン
+          description: パスワードと多要素認証
+          button: MFAを使用
+          button_active: MFAを使用中
+        discord:
+          title: Discordログイン
+          description: Discordアカウントでサインイン
+          button: Discordを使用
+          button_active: Discordを使用中
+          connect_first: 先にDiscordアカウントを接続してください
+        google:
+          title: Gmailでサインイン
+          description: リンク済みのGmailまたはGoogle WorkspaceアカウントでGoogleサインインしています。
+          active: Gmailを使用中
+        microsoft:
+          title: Outlookでサインイン
+          description: 個人用のMicrosoftアカウント（Outlook、Hotmailなど）でサインインしています。
+          active: Outlookを使用中
+        mfa_backup_warning: バックアップ認証方法としてMFA設定を検討してください。
+        discord_connect_warning: Discord接続でログインが簡単になり、機能が拡張される場合があります。
+      language:
+        title: 言語
+        description: 使用言語を選択してください。サインイン中のアカウントの既定は英語です（サインアウト中はメニューで選ばない限りブラウザの言語が適用されることがあります）。
+        label: 使用言語
+        auto_detect: 既定（英語）
+        save: 言語を保存
+        updated: 言語設定を更新しました。
+        invalid: 無効な言語選択です。
+      mfa:
+        title: 多要素認証（MFA）
+        enabled: MFAは有効です。
+        not_enabled: MFAは未設定です。アカウント保護のため設定してください。
+        manage: MFAを管理
+        setup: MFAを設定
+      backup_codes:
+        title: バックアップコード
+        description: バックアップコードは、MFAにアクセスできなくなったときにパスワードをリセットし、アカウントを回復するために使います。
+        warning: このコードは安全に保管してください。パスワードとMFAをバイパスできる可能性があります。
+        current: 現在のバックアップコード
+        no_codes: 有効なバックアップコードはありません。
+        regenerate_button: バックアップコードを再発行
+        regenerate_confirm: 再発行すると現在のコードは無効になり、新しいコードをメールでお送りします。続行しますか？
+        regenerate_description: バックアップコードは3か月に1回まで再発行できます。新しいコードは確認済みのメールアドレスに送信されます。
+        regenerated_notice: 新しいバックアップコードを確認済みのメールアドレスに送信しました。
+        cooldown_active: "%{date}以降にバックアップコードを再発行できます。"
+        verify_email_first: バックアップコードを再発行する前にメールアドレスを確認してください。
+        how_it_works: バックアップコードのしくみ
+        bullet_length: コードは24文字（英数字）です。
+        bullet_single_use: コードは1回限りです。使用すると無効になります。
+        bullet_use_case: パスワードを忘れた場合、またはMFAにアクセスできない場合にバックアップコードを使用してください。
+        bullet_store_offline: コードはオフラインで保管してください（印刷またはパスワードマネージャー）。再表示はしません。
+        bullet_regenerate: 再発行すると以前のコードは無効になり、新しいコードをメールでお送りします。
+      delete_account:
+        title: アカウントを削除
+        intro: このアカウントを永久に閉じ、関連するGuildSyncデータを削除できます。保持期間経過後は元に戻せません。それ以前はサポート方針に従い一部データが復元される場合があります。
+        privacy_link: プライバシーポリシー
+        support_link: サポートに連絡
+        primary_cta: アカウントを削除したい
+        code_label: メール確認コード
+        code_hint: メールに記載されたワンタイムコードを入力してください（英数字）。
+        resend_wait: "%{seconds}秒後に別のコードをリクエストできます。"
+        continue_button: 削除に進む
+        modal_title: アカウントを削除してもよろしいですか？
+        modal_body: アカウントを閉じてサインアウトします。保持期間経過後は元に戻せません。
+        modal_cancel: キャンセル
+        modal_confirm: はい、アカウントを削除します
+        blocked:
+          generic: 以下の問題が解決されるまでアカウント削除はブロックされています。
+          already_closed: このアカウントはすでに閉じられています。
+          purge_in_progress: 削除処理はすでに進行中です。
+          alliance_leader: まず、あなたがリーダーのアライアンスを脱退または解散してください。
+          owned_guild_has_members: あなたがオーナーで他にアクティブメンバーがいるギルドを解決してください（所有権の移譲、メンバー削除、またはギルド解散）。
+    profile:
+      title: プロフィール設定
+      subtitle: プロフィールをカスタマイズ
+      email_verification:
+        required_notice: GuildSyncを引き続き利用するには、このページで実際のメールアドレスを追加して確認してください。
+        banner_title: メールを確認
+        banner_body: このアカウントはプレースホルダーまたは未確認のメールを使用しています。下に実際のアドレスを入力し、送信するリンクを確認してください。
+        invalid_link: この確認リンクは無効か期限切れです。下から新しいメールをリクエストしてください。
+        success_notice: メールアドレスが確認されました。
+        update_failed: メールを更新できませんでした。もう一度試すか、新しい確認リンクをリクエストしてください。
+      avatar:
+        title: プロフィールアバター
+        change: アバターを変更
+        upload: アバターをアップロード
+        remove: アバターを削除
+        remove_confirm: アバターを削除してもよろしいですか？
+        updated_notice: アバターを更新しました。
+        removed_notice: アバターを削除しました。
+      username:
+        title: ユーザー名
+        current: "現在のユーザー名:"
+        label: 新しいユーザー名
+        hint: 3〜30文字：英字、数字、アンダースコアのみ。
+        save: ユーザー名を保存
+        updated_notice: ユーザー名を更新しました。
+        update_failed: ユーザー名を更新できませんでした。
+      email:
+        title: メールアドレス
+        current: "現在のメールアドレス:"
+        verified_badge: 確認済み
+        unverified_badge: 未確認 — 下に実際のメールを入力してください
+        label: 確認するメールアドレス
+        placeholder: you@example.com
+        send_verification: 確認メールを送信
+        verification_sent_notice: 受信トレイで確認リンクをご確認ください。
+        pending_notice: 確認リンクを %{email} に送信しました。
+        taken: そのメールアドレスは既に使用されています。
+        mailer:
+          subject: GuildSync のメールアドレスを確認してください
+          heading: メールアドレスを確認してください
+          greeting: こんにちは、
+          body: GuildSync プロフィールでこのメールアドレスの確認をリクエストしました。下のボタンで確認を完了してください。
+          cta: メールアドレスを確認
+          expires: このリンクの有効期限は24時間です。
+          fallback: ボタンが動作しない場合は、この URL をコピーしてブラウザに貼り付けてください。
+          ignore: メールの確認をリクエストしていない場合は、このメールを無視してかまいません。

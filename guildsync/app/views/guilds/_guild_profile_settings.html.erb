@@ -1,0 +1,20 @@
+<%# locals: guild - requires can_manage_guild_settings?(guild) checked by caller %>
+<div class="bg-theme-secondary rounded-lg border border-theme-primary p-6 mb-6">
+  <h2 class="text-xl font-semibold text-theme-primary mb-2"><%= t("guilds.settings.guild_profile.title") %></h2>
+  <p class="text-theme-secondary mb-6"><%= t("guilds.settings.guild_profile.description") %></p>
+
+  <%= form_with model: guild, url: update_guild_path(guild), method: :patch, local: true, class: "space-y-4" do |f| %>
+    <div>
+      <%= f.label :description, t("guilds.settings.guild_profile.description_label"), class: "block text-sm font-medium text-theme-primary mb-2" %>
+      <%= f.text_area :description, rows: 4, maxlength: 1000, class: "w-full px-4 py-2 bg-theme-primary border border-theme-secondary rounded-lg text-theme-primary" %>
+    </div>
+    <div>
+      <%= f.label :discord_invite_url, t("guilds.settings.guild_profile.discord_invite_label"), class: "block text-sm font-medium text-theme-primary mb-2" %>
+      <%= f.url_field :discord_invite_url, class: "w-full px-4 py-2 bg-theme-primary border border-theme-secondary rounded-lg text-theme-primary", placeholder: "https://discord.gg/..." %>
+      <p class="text-xs text-theme-secondary mt-1"><%= t("guilds.settings.guild_profile.discord_invite_hint") %></p>
+    </div>
+    <div>
+      <%= f.submit t("guilds.settings.guild_profile.save_button"), class: "px-6 py-2 bg-theme-accent text-white rounded-lg hover:bg-theme-accent-hover transition-colors font-semibold text-sm cursor-pointer" %>
+    </div>
+  <% end %>
+</div>

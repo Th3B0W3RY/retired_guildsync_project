@@ -1,0 +1,25 @@
+<div class="space-y-6">
+  <div class="flex justify-between items-center flex-wrap gap-4">
+    <h1 class="text-3xl font-bold text-theme-accent"><%= t('.title') %></h1>
+    <%= link_to t('.back_dashboard'), admin_root_path,
+          class: "px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors font-semibold",
+          data: { turbo_frame: "_top" } %>
+  </div>
+
+  <div id="admin_ocr_requests_index_flash" class="min-h-0" aria-live="polite"></div>
+
+  <%= turbo_frame_tag Admin::OcrRequestsController::OCR_REQUESTS_INDEX_MAIN_FRAME do %>
+    <div id="admin_ocr_requests_index_main_wrap" class="space-y-6">
+      <%= render "index_main" %>
+    </div>
+  <% end %>
+</div>
+
+<script>
+  document.addEventListener("change", function(ev) {
+    var t = ev.target;
+    if (t && t.id === "select-all-ocr") {
+      document.querySelectorAll(".ocr-user-checkbox").forEach(function(cb) { cb.checked = t.checked; });
+    }
+  });
+</script>

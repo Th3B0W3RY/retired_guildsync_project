@@ -1,0 +1,284 @@
+<%#
+  Games card for guild settings, wrapped in a Turbo Frame so PATCH /guilds/:id/games
+  swaps only this card in place instead of doing a full page reload. The anchor id
+  (`guild-games-section`) and `scroll-mt-20` remain on the inner div so the
+  non-Turbo HTML fallback (format.html in GuildsController#update_games) still works.
+
+  Locals: none. Renders state from @attempted_game_ids / @attempted_primary_id when
+  present (preserves user input on validation errors), otherwise from the persisted
+  @guild associations.
+%>
+<%
+  selected_game_ids = Array(@attempted_game_ids).presence || @guild.games.map { |g| g.id.to_s }
+  selected_game_ids = selected_game_ids.map(&:to_s)
+  selected_primary_id = @attempted_primary_id.presence || @guild.primary_game&.id&.to_s
+%>
+<%= turbo_frame_tag "guild_games_section", class: "block" do %>
+  <div id="guild-games-section" class="bg-theme-secondary rounded-lg border border-theme-primary p-6 mb-6 scroll-mt-20">
+    <h2 class="text-xl font-semibold text-theme-primary mb-4"><%= t('guilds.settings.games.title') %></h2>
+    <p class="text-theme-secondary mb-4">
+      <%= t('guilds.settings.games.description') %>
+    </p>
+
+    <%= form_with url: guild_update_games_path(@guild), method: :patch, class: "space-y-4" do |f| %>
+      <div class="space-y-2 max-h-96 overflow-y-auto border border-theme-primary rounded-lg p-4"
+           data-submit-scroll-restore-target="scrollContainer">
+        <% if @available_games.any? %>
+          <% @available_games.each do |game| %>
+          <label class="flex items-center space-x-3 cursor-pointer hover:bg-theme-hover p-2 rounded">
+            <%= check_box_tag "game_ids[]", game.id, selected_game_ids.include?(game.id.to_s),
+                class: "w-4 h-4 text-theme-accent border-theme-primary rounded focus:ring-theme-accent",
+                data: { game_id: game.id } %>
+            <div class="flex-1">
+              <div class="font-medium text-theme-primary"><%= game.name %></div>
+              <% if game.description.present? %>
+                <div class="text-sm text-theme-secondary"><%= truncate(game.description, length: 100) %></div>
+              <% end %>
+            </div>
+            <%= radio_button_tag "primary_game_id", game.id, selected_primary_id == game.id.to_s,
+                class: "w-4 h-4 text-theme-accent border-theme-primary focus:ring-theme-accent",
+                data: { primary_for: game.id } %>
+            <span class="text-sm text-theme-secondary"><%= t('guilds.settings.games.primary_label') %></span>
+          </label>
+          <% end %>
+        <% else %>
+          <p class="text-theme-secondary p-4 text-center">
+            <%= t('guilds.settings.games.no_games') %>
+          </p>
+        <% end %>
+      </div>
+
+      <div class="flex items-center justify-between">
+        <p class="text-sm text-theme-secondary">
+          <span class="text-red-500">*</span> <%= t('guilds.settings.games.required_note') %>
+        </p>
+        <%= f.submit t('guilds.settings.games.update_button'),
+            class: "px-4 py-2 bg-theme-accent text-white rounded hover:bg-theme-accent-hover" %>
+      </div>
+
+      <!-- Add Custom Game Section -->
+      <div class="mt-4 pt-4 border-t border-theme-primary">
+        <button type="button" id="show-custom-game-btn-settings" class="text-sm text-theme-accent hover:text-theme-accent-hover underline">
+          <%= t('guilds.settings.games.cant_find') %>
+        </button>
+
+        <div id="custom-game-section-settings" class="hidden mt-3 p-4 bg-theme-primary border border-theme-secondary rounded-lg">
+          <label class="block text-sm font-medium text-theme-primary mb-2">
+            <%= t('guilds.settings.games.game_name_label') %> <span class="text-red-500">*</span>
+          </label>
+          <input type="text"
+                 id="custom-game-input-settings"
+                 class="w-full px-3 py-2 bg-theme-secondary border border-theme-primary rounded text-theme-primary focus:outline-none focus:ring-2 focus:ring-theme-accent"
+                 placeholder="<%= t('guilds.settings.games.enter_game_name') %>"
+                 autocomplete="off">
+
+          <div id="game-suggestions-settings" class="mt-2 hidden border border-theme-primary rounded-lg bg-theme-secondary max-h-48 overflow-y-auto">
+            <!-- Suggestions will be populated here -->
+          </div>
+
+          <div id="game-suggest-error-settings" class="hidden mt-2 p-2 bg-yellow-900/50 border border-yellow-700 text-yellow-200 rounded text-sm">
+            <!-- Error messages -->
+          </div>
+
+          <div class="mt-3 flex gap-2">
+            <button type="button"
+                    id="confirm-add-game-btn-settings"
+                    class="px-4 py-2 bg-theme-accent text-white rounded hover:bg-theme-accent-hover disabled:opacity-50 disabled:cursor-not-allowed"
+                    disabled>
+              <%= t('guilds.settings.games.add_game_button') %>
+            </button>
+            <button type="button"
+                    id="cancel-custom-game-btn-settings"
+                    class="px-4 py-2 bg-theme-secondary text-theme-primary rounded hover:bg-theme-hover border border-theme-primary">
+              <%= t('common.buttons.cancel') %>
+            </button>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+
+  <script>
+    // Custom game addition functionality for settings page.
+    // Re-runs whenever this Turbo Frame is swapped, re-wiring listeners to the new DOM.
+    (function() {
+      const showCustomGameBtn = document.getElementById('show-custom-game-btn-settings');
+      const customGameSection = document.getElementById('custom-game-section-settings');
+      const customGameInput = document.getElementById('custom-game-input-settings');
+      const gameSuggestions = document.getElementById('game-suggestions-settings');
+      const gameSuggestError = document.getElementById('game-suggest-error-settings');
+      const confirmAddGameBtn = document.getElementById('confirm-add-game-btn-settings');
+      const cancelCustomGameBtn = document.getElementById('cancel-custom-game-btn-settings');
+
+      if (!showCustomGameBtn) return;
+
+      let searchTimeout = null;
+      let selectedGameName = null;
+
+      showCustomGameBtn.addEventListener('click', () => {
+        customGameSection.classList.remove('hidden');
+        showCustomGameBtn.classList.add('hidden');
+        customGameInput.focus();
+      });
+
+      cancelCustomGameBtn.addEventListener('click', () => {
+        customGameSection.classList.add('hidden');
+        showCustomGameBtn.classList.remove('hidden');
+        customGameInput.value = '';
+        gameSuggestions.classList.add('hidden');
+        gameSuggestError.classList.add('hidden');
+        confirmAddGameBtn.disabled = true;
+        selectedGameName = null;
+      });
+
+      customGameInput.addEventListener('input', () => {
+        const query = customGameInput.value.trim();
+
+        clearTimeout(searchTimeout);
+        gameSuggestions.classList.add('hidden');
+        gameSuggestError.classList.add('hidden');
+        confirmAddGameBtn.disabled = true;
+        selectedGameName = null;
+
+        if (query.length < 2) {
+          return;
+        }
+
+        searchTimeout = setTimeout(async () => {
+          try {
+            const response = await fetch(`/games/search?q=${encodeURIComponent(query)}`);
+            const data = await response.json();
+
+            if (data.suggestions && data.suggestions.length > 0) {
+              gameSuggestions.innerHTML = '';
+              gameSuggestions.classList.remove('hidden');
+
+              data.suggestions.forEach(suggestion => {
+                const item = document.createElement('div');
+                item.className = 'p-2 hover:bg-theme-hover cursor-pointer border-b border-theme-primary last:border-b-0';
+                item.innerHTML = `
+                  <div class="font-medium text-theme-primary">${suggestion.name}</div>
+                  ${!suggestion.active ? '<div class="text-xs text-yellow-400"><%= j t('guilds.settings.games.pending_approval_short') %></div>' : ''}
+                `;
+                item.addEventListener('click', () => {
+                  const gameId = suggestion.id;
+                  const checkbox = document.querySelector(`input[name="game_ids[]"][value="${gameId}"]`);
+                  if (checkbox) {
+                    checkbox.checked = true;
+                    const primaryRadio = document.querySelector(`input[name="primary_game_id"][value="${gameId}"]`);
+                    if (primaryRadio && !document.querySelector('input[name="primary_game_id"]:checked')) {
+                      primaryRadio.checked = true;
+                    }
+                    customGameSection.classList.add('hidden');
+                    showCustomGameBtn.classList.remove('hidden');
+                    customGameInput.value = '';
+                    gameSuggestions.classList.add('hidden');
+                  }
+                });
+                gameSuggestions.appendChild(item);
+              });
+            } else if (data.can_create) {
+              selectedGameName = query;
+              confirmAddGameBtn.disabled = false;
+              gameSuggestError.classList.remove('hidden');
+              gameSuggestError.className = 'mt-2 p-2 bg-blue-900/50 border border-blue-700 text-blue-200 rounded text-sm';
+              gameSuggestError.textContent = '<%= raw j t('guilds.settings.games.js_no_similar_found', query: "%{query}") %>'.replace('%{query}', query);
+            } else if (data.exact_match) {
+              gameSuggestError.classList.remove('hidden');
+              gameSuggestError.className = 'mt-2 p-2 bg-green-900/50 border border-green-700 text-green-200 rounded text-sm';
+              gameSuggestError.textContent = '<%= raw j t('guilds.settings.games.js_game_exists', name: "%{name}") %>'.replace('%{name}', data.exact_match.name);
+            }
+          } catch (error) {
+            console.error('Search error:', error);
+            gameSuggestError.classList.remove('hidden');
+            gameSuggestError.className = 'mt-2 p-2 bg-red-900/50 border border-red-700 text-red-200 rounded text-sm';
+            gameSuggestError.textContent = '<%= j t('guilds.settings.games.js_search_error') %>';
+          }
+        }, 300);
+      });
+
+      confirmAddGameBtn.addEventListener('click', async () => {
+        if (!selectedGameName) return;
+
+        if (!confirm('<%= raw j t('guilds.settings.games.js_confirm_add', name: "%{name}") %>'.replace('%{name}', selectedGameName))) {
+          return;
+        }
+
+        confirmAddGameBtn.disabled = true;
+        confirmAddGameBtn.textContent = '<%= j t('guilds.settings.games.js_adding') %>';
+
+        try {
+          const response = await fetch('/games/suggest', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+              'X-CSRF-Token': document.querySelector('meta[name="csrf-token"]')?.content || ''
+            },
+            body: JSON.stringify({ name: selectedGameName })
+          });
+
+          if (!response.ok) {
+            const contentType = response.headers.get('content-type');
+            if (contentType && contentType.includes('application/json')) {
+              const errorData = await response.json();
+              throw new Error(errorData.error || 'Failed to create game');
+            } else {
+              throw new Error('<%= j t('guilds.settings.games.js_server_error') %>');
+            }
+          }
+
+          const data = await response.json();
+
+          if (data.success) {
+            const gameId = data.game.id;
+            const gameName = data.game.name;
+
+            const gamesContainer = document.querySelector('.space-y-2.max-h-96');
+            const newLabel = document.createElement('label');
+            newLabel.className = 'flex items-center space-x-3 cursor-pointer hover:bg-theme-hover p-2 rounded';
+            newLabel.innerHTML = `
+              <input type="checkbox" name="game_ids[]" value="${gameId}"
+                     class="w-4 h-4 text-theme-accent border-theme-primary rounded focus:ring-theme-accent"
+                     data-game_id="${gameId}">
+              <div class="flex-1">
+                <div class="font-medium text-theme-primary">${gameName}</div>
+                <div class="text-xs text-yellow-400"><%= j t('guilds.settings.games.pending_admin_approval') %></div>
+              </div>
+              <input type="radio" name="primary_game_id" value="${gameId}"
+                     class="w-4 h-4 text-theme-accent border-theme-primary focus:ring-theme-accent"
+                     data-primary_for="${gameId}">
+              <span class="text-sm text-theme-secondary"><%= j t('guilds.settings.games.primary_label') %></span>
+            `;
+            gamesContainer.appendChild(newLabel);
+
+            const newCheckbox = newLabel.querySelector('input[type="checkbox"]');
+            const newRadio = newLabel.querySelector('input[type="radio"]');
+            newCheckbox.checked = true;
+            if (!document.querySelector('input[name="primary_game_id"]:checked')) {
+              newRadio.checked = true;
+            }
+
+            customGameSection.classList.add('hidden');
+            showCustomGameBtn.classList.remove('hidden');
+            customGameInput.value = '';
+            gameSuggestions.classList.add('hidden');
+            gameSuggestError.classList.add('hidden');
+            confirmAddGameBtn.disabled = true;
+            confirmAddGameBtn.textContent = '<%= j t('guilds.settings.games.add_game_button') %>';
+            selectedGameName = null;
+
+            window.showToast('success', data.game.message || '<%= j t('js.guilds.settings.game_added') %>');
+          } else {
+            window.showToast('error', '<%= j t('js.guilds.settings.game_add_failed', error: '') %>'.replace('%{error}', '') + (data.error || '<%= j t('js.common.unknown_error') %>'));
+            confirmAddGameBtn.disabled = false;
+            confirmAddGameBtn.textContent = '<%= j t('guilds.settings.games.add_game_button') %>';
+          }
+        } catch (error) {
+          window.showToast('error', '<%= j t('js.guilds.settings.game_add_error', error: '') %>'.replace('%{error}', '') + error.message);
+          confirmAddGameBtn.disabled = false;
+          confirmAddGameBtn.textContent = '<%= j t('guilds.settings.games.add_game_button') %>';
+        }
+      });
+    })();
+  </script>
+<% end %>

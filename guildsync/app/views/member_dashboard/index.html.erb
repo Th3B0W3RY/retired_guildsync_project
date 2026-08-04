@@ -1,0 +1,93 @@
+<% glass = "rounded-xl border border-white/10 bg-[rgba(15,23,43,0.5)] p-6 shadow-lg" %>
+<% inner = "rounded-lg border border-white/5 bg-[rgba(2,6,24,0.45)] p-4" %>
+<% link_accent = "text-sm text-[#7C86FF] hover:underline" %>
+
+<div class="mx-auto max-w-4xl p-6 font-[family-name:Inter,ui-sans-serif,system-ui,sans-serif]">
+  <div class="mb-6">
+    <h1 class="mb-2 text-3xl font-bold text-white"><%= t('member_dashboard.index.title') %></h1>
+    <p class="text-[#90A1B9]"><%= t('member_dashboard.index.subtitle') %></p>
+  </div>
+
+  <div class="mb-6 grid grid-cols-1 gap-6 md:grid-cols-2">
+    <div class="<%= glass %>">
+      <h2 class="mb-4 text-xl font-semibold text-white"><%= t('member_dashboard.index.my_applications') %></h2>
+      <% if @applications.any? %>
+        <div class="space-y-3">
+          <% @applications.each do |application| %>
+            <div class="<%= inner %>">
+              <div class="mb-2 flex items-center justify-between">
+                <div class="flex items-center gap-2">
+                  <% if application.guild.logo.attached? %>
+                    <%= image_tag application.guild.logo, alt: "#{application.guild.name} logo", class: "h-8 w-8 flex-shrink-0 rounded border border-white/10 object-cover" %>
+                  <% end %>
+                  <h3 class="font-semibold text-white"><%= application.guild.name %></h3>
+                </div>
+                <span class="rounded px-2 py-1 text-xs font-medium
+                  <%= case application.status
+                      when 'pending' then 'bg-yellow-900/40 text-yellow-300'
+                      when 'accepted' then 'bg-green-900/40 text-green-300'
+                      when 'rejected' then 'bg-red-900/40 text-red-300'
+                      end %>">
+                  <%= application.status.humanize %>
+                </span>
+              </div>
+              <p class="text-sm text-[#90A1B9]"><%= t('member_dashboard.index.applied') %> <%= application.created_at.strftime('%B %d, %Y') %></p>
+            </div>
+          <% end %>
+        </div>
+      <% else %>
+        <p class="text-[#90A1B9]"><%= t('member_dashboard.index.no_applications_yet') %></p>
+      <% end %>
+      <%= link_to t('member_dashboard.index.view_all_applications'), guild_applications_path, class: "mt-4 inline-block #{link_accent}" %>
+    </div>
+
+    <div class="<%= glass %>">
+      <h2 class="mb-4 text-xl font-semibold text-white"><%= t('member_dashboard.index.my_guilds') %></h2>
+      <% if @accepted_guilds.any? %>
+        <div class="space-y-3">
+          <% @accepted_guilds.each do |guild| %>
+            <div class="<%= inner %>">
+              <div class="mb-2 flex items-center gap-2">
+                <% if guild.logo.attached? %>
+                  <%= image_tag guild.logo, alt: "#{guild.name} logo", class: "h-8 w-8 flex-shrink-0 rounded border border-white/10 object-cover" %>
+                <% end %>
+                <h3 class="font-semibold text-white"><%= guild.name %></h3>
+              </div>
+              <p class="text-sm text-[#90A1B9]"><%= guild.description %></p>
+              <%= link_to t('member_dashboard.index.view_guild'), guild_path(guild), class: "mt-2 inline-block #{link_accent}" %>
+            </div>
+          <% end %>
+        </div>
+      <% else %>
+        <p class="text-[#90A1B9]"><%= t('member_dashboard.index.no_guilds_yet') %></p>
+      <% end %>
+    </div>
+  </div>
+
+  <div class="<%= glass %>">
+    <h2 class="mb-4 text-xl font-semibold text-white"><%= t('member_dashboard.index.available_guilds') %></h2>
+    <% if @available_guilds.any? %>
+      <div class="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
+        <% @available_guilds.each do |guild| %>
+          <div class="<%= inner %>">
+            <div class="mb-2 flex items-center gap-2">
+              <% if guild.logo.attached? %>
+                <%= image_tag guild.logo, alt: "#{guild.name} logo", class: "h-8 w-8 flex-shrink-0 rounded border border-white/10 object-cover" %>
+              <% end %>
+              <h3 class="font-semibold text-white"><%= guild.name %></h3>
+            </div>
+            <p class="mb-3 line-clamp-2 text-sm text-[#90A1B9]"><%= guild.description.presence || t('member_dashboard.index.no_description') %></p>
+            <div class="flex gap-2">
+              <%= link_to t('member_dashboard.index.view_details'), guild_path(guild), class: link_accent %>
+              <% unless current_user.guild_applications.exists?(guild_id: guild.id) || current_user.guilds.exists?(id: guild.id) %>
+                <%= link_to t('member_dashboard.index.apply'), new_guild_application_path(guild_id: guild.id), class: "#{link_accent} ml-auto" %>
+              <% end %>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    <% else %>
+      <p class="text-[#90A1B9]"><%= t('member_dashboard.index.no_guilds_available') %></p>
+    <% end %>
+  </div>
+</div>

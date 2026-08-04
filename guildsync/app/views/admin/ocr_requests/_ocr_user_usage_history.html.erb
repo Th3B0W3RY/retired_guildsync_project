@@ -1,0 +1,17 @@
+<%# locals: (user:, usage_changes:) %>
+<% ns = "admin.ocr_requests.show" %>
+<div id="admin_ocr_user_usage_history" class="bg-theme-card border border-theme-primary rounded-lg p-6 shadow-lg">
+  <h2 class="text-xl font-semibold mb-4"><%= t("#{ns}.usage_history_heading") %></h2>
+  <% if usage_changes.any? %>
+    <ul class="space-y-2">
+      <% usage_changes.each do |change| %>
+        <li class="flex justify-between text-sm border-b border-theme-primary pb-2">
+          <span><%= change.created_at.strftime("%Y-%m-%d %H:%M") %> — <%= change.reason %></span>
+          <span><%= change.delta != 0 ? "#{change.delta > 0 ? '+' : ''}#{change.delta}" : change.action_type %> — <%= change.admin_email %></span>
+        </li>
+      <% end %>
+    </ul>
+  <% else %>
+    <p class="text-theme-secondary"><%= t("#{ns}.no_usage_changes") %></p>
+  <% end %>
+</div>

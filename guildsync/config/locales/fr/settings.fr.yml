@@ -1,0 +1,139 @@
+fr:
+  settings:
+    account:
+      title: Paramètres du compte
+      subtitle: Gérer la sécurité du compte et les préférences
+      password:
+        title: Modifier le mot de passe
+        description: Mettre à jour le mot de passe du compte
+        button: Modifier le mot de passe
+      discord:
+        title: Compte Discord
+        connected_as: Connecté en tant que %{username}
+        not_connected: Compte Discord non connecté
+        disconnect: Supprimer la connexion Discord
+        disconnect_confirm: Êtes-vous sûr de vouloir déconnecter votre compte Discord ? La connexion sera supprimée ; vous devrez vous reconnecter pour utiliser les fonctionnalités Discord.
+        switch_to_mfa_first: Passez d'abord à la connexion MFA pour déconnecter Discord
+        connect: Connecter le compte Discord
+      auth_method:
+        title: Méthode d'authentification
+        description: Choisis comment te connecter à ton compte.
+        mfa:
+          title: Connexion MFA
+          description: Mot de passe et authentification multifacteur
+          button: Utiliser MFA
+          button_active: MFA actif
+        discord:
+          title: Connexion Discord
+          description: Se connecter avec ton compte Discord
+          button: Utiliser Discord
+          button_active: Discord actif
+          connect_first: Connecte d'abord le compte Discord
+        google:
+          title: Connexion Gmail
+          description: Tu te connectes avec Google (compte Gmail ou Google Workspace lié).
+          active: Gmail actif
+        microsoft:
+          title: Connexion Outlook
+          description: Tu te connectes avec Microsoft (compte personnel Outlook, Hotmail, etc.).
+          active: Outlook actif
+        mfa_backup_warning: Envisage MFA comme méthode de secours.
+        discord_connect_warning: Lier Discord simplifie la connexion et enrichit les fonctionnalités.
+      language:
+        title: Langue
+        description: Choisis ta langue. Par défaut l'anglais pour les comptes connectés (hors connexion, la langue du navigateur peut encore s'appliquer sauf choix explicite dans le menu).
+        label: Langue préférée
+        auto_detect: Par défaut (anglais)
+        save: Enregistrer la langue
+        updated: Préférence de langue mise à jour.
+        invalid: Sélection de langue invalide.
+      mfa:
+        title: Authentification multifacteur (MFA)
+        enabled: MFA est activé.
+        not_enabled: MFA n'est pas configuré. Configure-le pour sécuriser ton compte.
+        manage: Gérer MFA
+        setup: Configurer MFA
+      backup_codes:
+        title: Code de secours
+        description: Ton code de secours permet de réinitialiser le mot de passe et de récupérer le compte si tu perds l'accès au MFA.
+        warning: Conserve ce code en lieu sûr — il peut contourner le mot de passe et le MFA !
+        current: Ton code de secours actuel
+        no_codes: Tu n'as pas de code de secours actif.
+        regenerate_button: Régénérer le code de secours
+        regenerate_confirm: Régénérer invalidera ton code actuel et nous t'enverrons un nouveau par e-mail. Continuer ?
+        regenerate_description: Tu peux régénérer ton code de secours au maximum tous les 3 mois. Le nouveau code sera envoyé à ton adresse e-mail vérifiée.
+        regenerated_notice: Nous avons envoyé ton nouveau code de secours à ton adresse e-mail vérifiée.
+        cooldown_active: Tu peux régénérer ton code de secours à partir du %{date}.
+        verify_email_first: Vérifie d'abord ton adresse e-mail avant de régénérer le code de secours.
+        how_it_works: Fonctionnement de ton code de secours
+        bullet_length: Le code fait 24 caractères (lettres et chiffres).
+        bullet_single_use: Le code est à usage unique — après utilisation il n'est plus valide.
+        bullet_use_case: Utilise ton code de secours si tu oublies ton mot de passe OU perds l'accès au MFA.
+        bullet_store_offline: Garde-le hors ligne (impression ou gestionnaire de mots de passe) — nous ne l'affichons plus ensuite !
+        bullet_regenerate: La régénération invalide l'ancien code ; un nouveau t'est envoyé par e-mail.
+      delete_account:
+        title: Supprimer le compte
+        intro: Tu peux fermer définitivement ce compte et supprimer les données GuildSync associées. Après notre délai de conservation c'est irréversible ; avant, des opérations peuvent restaurer certaines données selon nos politiques de support.
+        privacy_link: Politique de confidentialité
+        support_link: Contacter le support
+        primary_cta: Je veux supprimer mon compte
+        code_label: Code de vérification e-mail
+        code_hint: Saisis le code à usage unique reçu par e-mail (lettres et chiffres).
+        resend_wait: Tu peux demander un autre code dans %{seconds} secondes.
+        continue_button: Continuer pour supprimer le compte
+        modal_title: Es-tu sûr de vouloir supprimer ton compte ?
+        modal_body: "Ton compte sera fermé et tu seras déconnecté. Après le délai de conservation, ce n'est plus annulable."
+        modal_cancel: Annuler
+        modal_confirm: Oui, supprimer mon compte
+        blocked:
+          generic: La suppression du compte est bloquée tant que les points ci-dessous ne sont pas résolus.
+          already_closed: Ce compte est déjà fermé.
+          purge_in_progress: La suppression est déjà en cours.
+          alliance_leader: Quitte ou dissous d'abord les alliances dont tu es le chef.
+          owned_guild_has_members: Règle les guildes dont tu es propriétaire et qui ont encore d'autres membres actifs (transfert de propriété, retrait des membres ou dissolution de la guilde).
+    profile:
+      title: Paramètres du profil
+      subtitle: Personnalise ton profil
+      email_verification:
+        required_notice: Ajoute et vérifie une vraie adresse e-mail sur cette page pour continuer à utiliser GuildSync.
+        banner_title: Vérifie ton e-mail
+        banner_body: Ton compte utilise un e-mail fictif ou non vérifié. Saisis une vraie adresse ci-dessous et confirme le lien que nous enverrons.
+        invalid_link: Ce lien de vérification est invalide ou a expiré. Demande un nouvel e-mail ci-dessous.
+        success_notice: Ton adresse e-mail est vérifiée.
+        update_failed: Impossible de mettre à jour ton e-mail. Réessaie ou demande un nouveau lien de vérification.
+      avatar:
+        title: Avatar du profil
+        change: Changer d'avatar
+        upload: Téléverser l'avatar
+        remove: Supprimer l'avatar
+        remove_confirm: Supprimer l'avatar ?
+        updated_notice: Avatar mis à jour avec succès.
+        removed_notice: Avatar supprimé avec succès.
+      username:
+        title: Nom d'utilisateur
+        current: "Nom d'utilisateur actuel :"
+        label: "Nouveau nom d'utilisateur"
+        hint: "3 à 30 caractères : lettres, chiffres et traits de soulignement uniquement."
+        save: "Enregistrer le nom d'utilisateur"
+        updated_notice: "Nom d'utilisateur mis à jour."
+        update_failed: "Impossible de mettre à jour le nom d'utilisateur."
+      email:
+        title: Adresse e-mail
+        current: "E-mail actuel :"
+        verified_badge: Vérifié
+        unverified_badge: Non vérifié — saisis une vraie adresse ci-dessous
+        label: E-mail à vérifier
+        placeholder: toi@exemple.com
+        send_verification: Envoyer l'e-mail de vérification
+        verification_sent_notice: Vérifie ta boîte de réception pour le lien de confirmation.
+        pending_notice: Un lien de confirmation a été envoyé à %{email}.
+        taken: Cette adresse e-mail est déjà utilisée.
+        mailer:
+          subject: Vérifiez votre adresse e-mail GuildSync
+          heading: Vérifiez votre adresse e-mail
+          greeting: Bonjour,
+          body: Vous avez demandé à vérifier cette adresse e-mail pour votre profil GuildSync. Utilisez le bouton ci-dessous pour terminer la vérification.
+          cta: Vérifier l'adresse e-mail
+          expires: Ce lien expire dans 24 heures.
+          fallback: "Si le bouton ne fonctionne pas, copiez et collez cette URL dans votre navigateur :"
+          ignore: Si vous n'avez pas demandé cette vérification par e-mail, vous pouvez ignorer ce message.

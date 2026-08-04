@@ -1,0 +1,147 @@
+ru:
+  activerecord:
+    models:
+      user: "Пользователь"
+      guild: "Гильдия"
+      game: "Игра"
+      event: "Событие"
+      poll: "Опрос"
+      guild_document: "Документ"
+      guild_member: "Член"
+      guild_application: "Заявка"
+      loot_roll: "Ролевая добыча"
+    attributes:
+      user:
+        email: "Электронная почта"
+        password: "Пароль"
+        display_name: "Отображаемое имя"
+      guild:
+        name: "Имя"
+        description: "Описание"
+      game:
+        name: "Имя"
+        description: "Описание"
+    errors:
+      models:
+        landing_user_feedback:
+          attributes:
+            base:
+              entry_limit_reached: "На главной не более %{max} отзывов. Удалите один, чтобы добавить новый."
+        homepage_feature_card:
+          attributes:
+            icon_key:
+              invalid_fontawesome_icon: "нет в синхронизированном каталоге Font Awesome Free. Запустите синхронизацию или выберите другую иконку."
+        user:
+          attributes:
+            username:
+              invalid_format: "может содержать только буквы, цифры и подчеркивания"
+        guild:
+          attributes:
+            name:
+              already_owned: "У вас уже есть гильдия с этим именем"
+            base:
+              subscription_required: "У вас должна быть активная подписка для создания гильдии"
+              guild_limit_reached: "Вы достигли максимального количества гильдий (%{max_guilds}) для вашего %{plan_name} плана"
+        guild_member:
+          attributes:
+            user_id:
+              already_member: "уже является членом этой гильдии"
+            base:
+              member_limit_reached: "Гильдия достигла максимального количества членов (%{max_members}) для плана %{plan_name}"
+        guild_discord_setting:
+          attributes:
+            discord_guild_id:
+              already_connected: "Этот сервер Discord уже подключен к другой гильдии."
+            guild_id:
+              one_connection_only: "Гильдия может иметь только одну связь с Discord"
+        feature_request:
+          attributes:
+            description:
+              too_short: "должно быть не менее 50 символов, чтобы другие поняли запрос"
+        poll_vote:
+          attributes:
+            user_id:
+              one_vote_only: "Вы можете голосовать только один раз на опрос."
+            base:
+              user_or_discord_required: "Необходима учетная запись пользователя или идентификатор Discord."
+        loot_roll:
+          attributes:
+            max_roll:
+              must_be_greater: "должен быть больше минимального броска"
+        loot_roll_entry:
+          attributes:
+            discord_user_id:
+              already_rolled: "Вы уже сделали бросок."
+            roll_value:
+              out_of_bounds: "Должно быть между %{min} и %{max}"
+            base:
+              loot_roll_closed: "Этот лут-ролл уже закрыт."
+        guild_battle:
+          attributes:
+            defender_guild_id:
+              same_as_challenger: "не может совпадать с гильдией соперника"
+        gear_snapshot:
+          attributes:
+            data:
+              blank: "не может быть пустым"
+            screenshot:
+              must_be_attached: "должно быть прикреплено"
+        gear_upload_request:
+          attributes:
+            requester:
+              no_permission: "не имеет разрешения на запрос обновлений оборудования"
+        guild_application:
+          attributes:
+            user_id:
+              already_applied: "Вы уже подали заявку в этот гильд"
+        guild_invite:
+          attributes:
+            user_id:
+              already_invited: "уже приглашён в эту гильдию"
+              already_member: "уже является членом этой гильдии"
+        discord_event_signup:
+          attributes:
+            discord_user_id:
+              one_role_per_event: "Вы можете зарегистрироваться только на одну роль в одном событии."
+        discord_event_participation:
+          attributes:
+            discord_user_id:
+              already_signed_up: "уже зарегестрировались на это событие"
+        event_participation:
+          attributes:
+            user_id:
+              already_responded: "уже ответил(а) на это событие"
+            base:
+              user_or_discord_required: "Необходима учетная запись пользователя или идентификатор Discord."
+        discord_connection:
+          attributes:
+            guild_id:
+              one_connection_only: "Гильдия может иметь только одну связь с Discord"
+        subscription:
+          attributes:
+            expires_at:
+              must_be_after_started: "должно быть позже даты начала"
+        guild_game:
+          attributes:
+            primary:
+              only_one_allowed: "Только одна основная игра разрешена на гильдию."
+
+        alliance_poll_vote:
+          attributes:
+            base:
+              user_or_discord_required: "Необходима учетная запись пользователя или идентификатор Discord."
+        alliance_event_participation:
+          attributes:
+            base:
+              user_or_discord_required: "Необходима учетная запись пользователя или идентификатор Discord."
+        alliance_loot_roll_entry:
+          attributes:
+            base:
+              user_or_discord_required: "Необходима учетная запись пользователя или идентификатор Discord."
+  ocr:
+    messages:
+      limit_reached: "Вы исчерпали все OCR-запросы за этот расчётный период. План %{plan_name} допускает %{limit} запросов в месяц. Обратитесь в поддержку."
+      hard_locked: "Доступ к OCR временно приостановлен. Обратитесь в поддержку."
+      trial_expired: "Вы исчерпали OCR-запросы пробного периода. Оформите подписку, чтобы продолжить использовать OCR."
+      free_blocked: "Вы исчерпали все бесплатные OCR-запросы. Оформите подписку, чтобы разблокировать больше."
+      ip_abuse: "С вашей сети зафиксирована необычная активность OCR. Обратитесь в поддержку, если это не ожидалось."

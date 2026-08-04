@@ -1,0 +1,89 @@
+<div class="space-y-8">
+  <div class="flex justify-between items-center">
+    <h1 class="text-3xl font-bold text-theme-accent">Games Management</h1>
+    <div class="flex gap-4">
+      <% if admin_user? %>
+        <%= link_to "Admin Panel", admin_root_path, class: "px-4 py-2 bg-theme-secondary text-theme-primary rounded-lg hover:bg-theme-hover transition-colors" %>
+        <%= link_to "Cached Games", admin_games_path, class: "px-4 py-2 bg-purple-600 text-white rounded-lg hover:bg-purple-700 transition-colors" %>
+        <%= link_to "Pending Games", pending_games_admin_games_path, class: "px-4 py-2 bg-yellow-600 text-white rounded-lg hover:bg-yellow-700 transition-colors" %>
+      <% end %>
+      <%= link_to "New Game", new_game_path, class: "px-4 py-2 bg-theme-accent text-white rounded-lg hover:bg-theme-accent-hover transition-colors" %>
+    </div>
+  </div>
+
+  <div class="bg-theme-card border border-theme-primary rounded-lg p-6 shadow-lg">
+    <h2 class="text-xl font-semibold mb-4">Filter Games</h2>
+    <div class="flex gap-4 flex-wrap">
+      <%= link_to "All Games", games_path, 
+          class: "px-4 py-2 #{params[:active].blank? ? 'bg-theme-accent text-white' : 'bg-theme-secondary text-theme-primary'} rounded-lg hover:bg-theme-hover transition-colors" %>
+      <%= link_to "Active Only", games_path(active: 'true'), 
+          class: "px-4 py-2 #{params[:active] == 'true' ? 'bg-theme-accent text-white' : 'bg-theme-secondary text-theme-primary'} rounded-lg hover:bg-theme-hover transition-colors" %>
+      <% if Game.column_names.include?('guild_oriented') %>
+        <%= link_to "Guild-Oriented", games_path(guild_oriented: 'true'), 
+            class: "px-4 py-2 #{params[:guild_oriented] == 'true' ? 'bg-theme-accent text-white' : 'bg-theme-secondary text-theme-primary'} rounded-lg hover:bg-theme-hover transition-colors" %>
+        <%= link_to "Non-Guild-Oriented", games_path(guild_oriented: 'false'), 
+            class: "px-4 py-2 #{params[:guild_oriented] == 'false' ? 'bg-theme-accent text-white' : 'bg-theme-secondary text-theme-primary'} rounded-lg hover:bg-theme-hover transition-colors" %>
+      <% end %>
+    </div>
+  </div>
+
+  <div class="bg-theme-card border border-theme-primary rounded-lg p-6 shadow-lg">
+    <div class="flex justify-between items-center mb-4">
+      <h2 class="text-xl font-semibold">Games (<%= @games.count %>)</h2>
+    </div>
+
+    <% if @games.any? %>
+      <div class="space-y-2">
+        <% @games.each do |game| %>
+          <div class="flex justify-between items-center p-4 bg-theme-secondary rounded-lg hover:bg-theme-hover transition-colors">
+            <div class="flex-1">
+              <div class="flex items-center gap-3">
+                <div class="font-medium text-theme-primary text-lg"><%= game.name %></div>
+                <% unless game.active? %>
+                  <span class="px-2 py-1 bg-yellow-900/50 border border-yellow-700 rounded text-yellow-400 text-xs">Inactive</span>
+                <% end %>
+                <% if game.deactivated_at.present? %>
+                  <span class="px-2 py-1 bg-red-900/50 border border-red-700 rounded text-red-400 text-xs">Deactivated</span>
+                <% end %>
+              </div>
+              <% if game.description.present? %>
+                <div class="text-sm text-theme-secondary mt-1"><%= truncate(game.description, length: 150) %></div>
+              <% end %>
+              <div class="text-xs text-theme-secondary mt-2">
+                Guilds using: <%= game.guilds.count %> | 
+                Gear snapshots: <%= game.gear_snapshots.count %>
+                <% if Game.column_names.include?('guild_oriented') %>
+                  | Guild-oriented: <%= game.guild_oriented? ? 'Yes' : 'No' %>
+                <% end %>
+              </div>
+            </div>
+            <div class="flex gap-2">
+              <%= link_to "View", game_path(game), 
+                  class: "px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors" %>
+              <%= link_to "Edit", edit_game_path(game), 
+                  class: "px-4 py-2 bg-theme-accent text-white rounded-lg hover:bg-theme-accent-hover transition-colors" %>
+              <% if admin_user? %>
+                <%= button_to game.active? ? "Deactivate" : "Activate", toggle_active_game_path(game), method: :patch,
+                    class: "px-4 py-2 #{game.active? ? 'bg-orange-600 hover:bg-orange-700' : 'bg-green-600 hover:bg-green-700'} text-white rounded-lg transition-colors",
+                    data: { confirm: "Are you sure you want to #{game.active? ? 'deactivate' : 'activate'} '#{game.name}'?" } %>
+              <% end %>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    <% else %>
+      <div class="text-center py-8">
+        <p class="text-theme-secondary">
+          <% if params[:active].present? || params[:guild_oriented].present? %>
+            No games found matching the current filters.
+          <% else %>
+            No games in the database.
+          <% end %>
+        </p>
+        <%= link_to "Create First Game", new_game_path, 
+            class: "inline-block mt-4 px-6 py-3 bg-theme-accent text-white rounded-lg hover:bg-theme-accent-hover transition-colors font-semibold" %>
+      </div>
+    <% end %>
+  </div>
+</div>
+

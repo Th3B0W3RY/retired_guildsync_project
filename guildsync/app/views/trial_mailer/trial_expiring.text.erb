@@ -1,0 +1,15 @@
+Hi <%= @user.display_name %>,
+
+Your GuildSync trial for the "<%= @subscription.pricing_plan.name %>" plan will end in
+<%= @days_remaining && @days_remaining > 0 ? "#{@days_remaining} day#{'s' if @days_remaining != 1}" : 'less than a day' %>.
+
+After your trial ends, your account will automatically be moved to Free mode. You'll keep all
+of your data and guilds, but some advanced features may be limited until you upgrade.
+
+To avoid any interruption, you can set up your billing details from the Billing page:
+<%= billing_url %>
+
+If you have any questions or need an extension, please reach out to our billing team.
+
+Thanks for using GuildSync!
+

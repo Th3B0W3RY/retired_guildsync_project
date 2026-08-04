@@ -1,0 +1,26 @@
+<div class="space-y-6">
+  <div>
+    <h1 class="text-4xl font-bold text-theme-primary mb-2"><%= t('support.contact.title') %></h1>
+    <p class="text-theme-secondary text-lg"><%= t('support.contact.subtitle') %></p>
+  </div>
+
+  <div class="p-8 bg-theme-secondary rounded-lg border border-theme-primary">
+    <p class="text-theme-secondary text-sm mb-4 rounded-lg border border-theme-primary p-3 bg-theme-primary/50"><%= t('support.contact.english_only_notice') %></p>
+    <div class="space-y-4">
+      <div>
+        <h3 class="text-xl font-semibold text-theme-primary mb-2"><%= t('support.contact.email_support') %></h3>
+        <p class="text-theme-secondary"><%= t('support.contact.send_email') %> <a href="mailto:support@guildsync.com" class="text-theme-accent hover:text-dark-accent-hover underline">support@guildsync.com</a></p>
+      </div>
+      
+      <div>
+        <h3 class="text-xl font-semibold text-theme-primary mb-2"><%= t('support.contact.response_time') %></h3>
+        <p class="text-theme-secondary"><%= t('support.contact.response_time_note') %></p>
+      </div>
+    </div>
+    
+    <div class="mt-6 text-center">
+      <%= link_to t('support.contact.back_to_dashboard'), dashboard_path, 
+          class: "px-6 py-3 bg-theme-accent text-white rounded-lg hover:bg-theme-accent-hover transition-colors font-semibold" %>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,10 @@
+<div class="mx-auto max-w-lg space-y-6 px-4 py-10 font-[family-name:Inter,ui-sans-serif,system-ui,sans-serif]">
+  <h1 class="text-3xl font-bold text-white"><%= t("signup_plan_choices.title") %></h1>
+  <p class="text-[#90A1B9]"><%= t("signup_plan_choices.intro", plan: @pending_plan.name) %></p>
+  <div class="flex flex-col gap-3">
+    <%= button_to t("signup_plan_choices.basic_trial_button"), signup_plan_choice_basic_trial_path, method: :post,
+        class: "rounded-lg bg-theme-brand-gradient px-4 py-3 text-center text-base font-semibold text-white" %>
+    <%= button_to t("signup_plan_choices.pay_for_plan_button", plan: @pending_plan.name), signup_plan_choice_paid_path, method: :post,
+        class: "rounded-lg border border-white/20 bg-[rgba(15,23,43,0.5)] px-4 py-3 text-center text-base font-semibold text-white" %>
+  </div>
+</div>

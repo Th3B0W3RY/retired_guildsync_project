@@ -1,0 +1,26 @@
+ko:
+  alliance_members:
+    removed: "동맹에서 멤버를 제거했습니다."
+    bulk_removed: "선택한 멤버를 동맹에서 제거했습니다."
+    errors:
+      not_found: "멤버를 찾을 수 없습니다."
+      unauthorized: "이 작업을 수행할 권한이 없습니다."
+      protected_target: "길드 소유자나 동맹 관리자는 제거할 수 없습니다."
+      tags_owner_only: "동맹 태그는 동맹 생성자만 만들 수 있습니다."
+    index:
+      title: "동맹 멤버"
+      subtitle: "%{alliance_name}의 멤버(길드별)"
+      export_csv: "CSV보내기"
+      your_guild: "내 길드"
+      remove: "제거"
+      remove_confirm: "%{name}님을 이 동맹에서 제거할까요?"
+      no_members: "이 길드에 아직 멤버가 없습니다."
+    tags:
+      manage_title: "동맹 태그 관리"
+      name: "태그 이름"
+      color: "태그 색"
+      create: "태그 만들기"
+      created: "동맹 태그를 만들었습니다."
+      assigned: "태그를 지정했습니다."
+      removed: "태그를 제거했습니다."
+      not_found: "태그 또는 멤버를 찾을 수 없습니다."

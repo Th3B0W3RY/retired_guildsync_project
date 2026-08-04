@@ -1,0 +1,37 @@
+<div class="space-y-6">
+  <div class="flex flex-wrap items-center justify-between gap-4">
+    <h1 class="text-3xl font-bold text-theme-accent"><%= t("admin.feature_abusers.title") %></h1>
+    <%= link_to t("admin.dashboard.title"), admin_root_path, class: "text-theme-secondary hover:text-theme-accent" %>
+  </div>
+
+  <p class="text-theme-secondary text-sm max-w-3xl"><%= t("admin.feature_abusers.intro") %></p>
+
+  <div id="admin_feature_abusers_flash" class="min-h-0" aria-live="polite"></div>
+
+  <div class="flex flex-wrap gap-3 items-end">
+    <%= form_with url: admin_feature_abusers_path, method: :get,
+        data: { turbo_frame: Admin::FeatureAbusersController::FEATURE_ABUSERS_RESULTS_FRAME },
+        class: "flex flex-wrap gap-3 items-end" do %>
+      <div>
+        <label for="q" class="block text-sm text-theme-secondary mb-1"><%= t("admin.feature_abusers.search") %></label>
+        <input type="search" name="q" id="q" value="<%= @q %>" placeholder="<%= t("admin.feature_abusers.search_placeholder") %>" class="px-3 py-2 bg-theme-primary border border-theme-primary rounded-lg text-theme-primary min-w-[16rem]" />
+      </div>
+      <div>
+        <label for="filter" class="block text-sm text-theme-secondary mb-1"><%= t("admin.feature_abusers.filter") %></label>
+        <select name="filter" id="filter" class="gs-native-select gs-native-select--field px-3 bg-theme-primary border border-theme-primary rounded-lg text-theme-primary">
+          <option value="all" <%= "selected" if @filter == "all" %>><%= t("admin.feature_abusers.filter_all") %></option>
+          <option value="locked" <%= "selected" if @filter == "locked" %>><%= t("admin.feature_abusers.filter_locked") %></option>
+          <option value="warned" <%= "selected" if @filter == "warned" %>><%= t("admin.feature_abusers.filter_warned_not_locked") %></option>
+        </select>
+      </div>
+      <button type="submit" class="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 font-medium"><%= t("admin.feature_abusers.apply") %></button>
+    <% end %>
+    <%= link_to t("admin.users.index.clear"), admin_feature_abusers_path,
+      class: "px-4 py-2 bg-theme-secondary text-theme-primary rounded-lg hover:bg-theme-hover transition-colors",
+      data: { turbo_frame: Admin::FeatureAbusersController::FEATURE_ABUSERS_RESULTS_FRAME } %>
+  </div>
+
+  <%= turbo_frame_tag Admin::FeatureAbusersController::FEATURE_ABUSERS_RESULTS_FRAME do %>
+    <%= render "feature_abusers_results" %>
+  <% end %>
+</div>

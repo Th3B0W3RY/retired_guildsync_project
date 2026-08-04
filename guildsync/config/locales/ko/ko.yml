@@ -1,0 +1,448 @@
+# See https://guides.rubyonrails.org/i18n.html for Rails I18n guide
+
+ko:
+  # ============================================================================
+  # APPLICATION-WIDE
+  # ============================================================================
+  app_name: "GuildSync"
+
+  plan_entitlements:
+    upgrade_required: "이 기능을 사용하려면 요금제를 업그레이드하세요."
+
+  signup_plan_choices:
+    title: "시작 방법 선택"
+    intro: "%{plan}을(를) 선택했습니다. 14일 Basic 체험을 시작하거나 %{plan} 유료 결제로 진행할 수 있습니다."
+    basic_trial_button: "14일 Basic 체험 시작"
+    pay_for_plan_button: "유료 결제로 계속 — %{plan}"
+    basic_trial_started: "Basic 체험이 활성화되었습니다. GuildSync에 오신 것을 환영합니다."
+    trial_unavailable: "이 계정에서는 체험을 사용할 수 없습니다."
+    missing_basic: "Basic 요금제가 구성되지 않았습니다. 지원팀에 문의하세요."
+
+  account_creation:
+    invalid_email: "Enter a valid email address."
+    sent_notice: "We sent a verification email. Please check your inbox to continue creating your account."
+    resent_notice: "We sent another verification email. Please use the latest link."
+    start_over: "Start account creation again."
+    already_verified: "This email has already been verified."
+    invalid_or_expired: "That verification link is invalid or expired. Request a new verification email."
+    verified_notice: "Email successfully verified."
+    email_taken: "That email address is already connected to an account."
+    use_new_flow: "Start by verifying your email address."
+    resend_cooldown: "Please wait %{seconds} seconds before resending the verification email."
+    show:
+      title: "Create Account"
+      subtitle: "Enter your email address first. We will send a verification link before you choose MFA or Discord."
+      submit: "Send Verification Email"
+      have_account: "Already have an account?"
+    sent:
+      title: "Check your inbox"
+      body: "We sent a verification email. Please check your inbox to continue creating your account."
+      latest_link: "If you request another email, only the latest verification link will work."
+      resend: "Resend verification email"
+      change_email: "Use a different email"
+    backup_code:
+      title: "Save your backup code"
+      body: "This one-time recovery code can help you recover your account if you lose access. We will not show it again."
+      confirm_text: "I've copied my backup code and I have saved it somewhere safe."
+      confirm: "Confirm backup code saved"
+      confirm_required: "Confirm that you saved your backup code before continuing."
+      must_confirm: "Save and confirm your backup code before continuing."
+    choose:
+      title: "Choose how to finish"
+      subtitle: "Your email is verified and your backup code is saved. Choose how you want to finish account setup."
+      mfa:
+        title: "Create account with MFA"
+        body: "Use a password plus an authenticator app for secure sign-in."
+      discord:
+        title: "Create account with Discord"
+        body: "Continue through Discord OAuth using your verified email address."
+      google:
+        title: "Create account with Gmail"
+        body: "Use Gmail sign-in with the same email you verified (Gmail or Google Workspace)."
+      microsoft:
+        title: "Create account with Outlook"
+        body: "Use Outlook sign-in with the same email you verified (personal Microsoft accounts such as Outlook.com and Hotmail)."
+    standard:
+      title: "Finish account setup"
+      submit: "Continue to MFA Setup"
+      created: "Account created. Now set up MFA."
+    gated_oauth:
+      verify_first: "Verify your email and save your backup code before continuing with Discord, Gmail, or Outlook."
+    mailer:
+      signoff: "- GuildSync Team"
+      verify_email:
+        subject: "GuildSync 이메일 주소를 확인하세요"
+        heading: "이메일 주소를 확인하세요"
+        greeting: "안녕하세요,"
+        body: "GuildSync에 오신 것을 환영합니다. 계정을 만들려면 이 이메일 주소를 확인해 주세요."
+        cta: "이메일 주소 확인"
+        expires: "이 링크는 24시간 후 만료됩니다."
+        fallback: "버튼이 작동하지 않으면 이 URL을 복사하여 브라우저에 붙여넣으세요:"
+        ignore: "GuildSync 계정을 만든 적이 없다면 이 메시지를 무시하셔도 됩니다."
+      backup_code_regenerated:
+        subject: "Your new GuildSync backup code"
+        heading: "Your backup code was regenerated"
+        greeting: "Hi %{username},"
+        body: "A new GuildSync backup code was generated for your account. Store this code somewhere safe."
+        warning: "Your previous backup code has been invalidated."
+        store_safely: "Keep this code offline or in a trusted password manager. We will not show it again."
+        unrequested: "If you did not request this, secure your account and contact support."
+  
+  api:
+    auth:
+      captcha_invalid: "보안 확인에 실패했습니다. 다시 시도해 주세요."
+      invalid_sign_in: "이메일 또는 비밀번호가 올바르지 않습니다."
+      me_user_missing: "사용자를 찾을 수 없습니다."
+      authentication_failed: "인증에 실패했습니다."
+      internal_error: "서버 내부 오류가 발생했습니다."
+      user_created: "사용자가 생성되었습니다."
+      confirmation_required: "로그인하기 전에 이메일로 계정을 확인하세요."
+      unconfirmed_sign_in: "로그인하기 전에 이메일 주소를 확인하세요."
+      archived_sign_in: "이 계정은 보관 처리되어 로그인할 수 없습니다."
+      signed_in: "로그인되었습니다."
+      signed_out: "로그아웃되었습니다."
+      pending_registration_sign_in: "Finish creating your account on the web before signing in."
+    discord:
+      not_connected: "이 길드에 Discord가 연결되어 있지 않습니다."
+      fetch_channels_failed: "채널을 가져오지 못했습니다: %{message}"
+      channels_updated: "채널이 업데이트되었습니다."
+      event_not_found: "이벤트를 찾을 수 없습니다."
+      missing_discord_identity: "discord_user_id 또는 discord_username이 없습니다."
+      signup_success: "이벤트에 성공적으로 등록되었습니다."
+      signup_failed: "등록에 실패했습니다: %{message}"
+    users:
+      account_archived: "계정이 보관 처리되었습니다."
+    v1:
+      authentication_required: "인증이 필요합니다."
+      not_authorized: "이 작업을 수행할 권한이 없습니다."
+      resource_not_found: "리소스를 찾을 수 없습니다."
+      guild_id_required: "길드 ID가 필요합니다."
+
+  gear:
+    activity:
+      uploaded: "스탯 스크린샷 업로드(%{game})"
+      uploaded_shared_guild_plan: "스탯 스크린샷 업로드(%{game}); OCR는 길드장 %{leader_name}님 할당으로 처리"
+      requested: "%{name}에게 스탯 업데이트 요청"
+    api:
+      screenshot_required: "스크린샷이 필요합니다"
+      invalid_file_type: "잘못된 파일 형식입니다. PNG, JPEG 또는 WebP를 업로드하세요."
+      file_too_large: "파일이 너무 큽니다. 최대 크기: %{max_mb}MB입니다."
+      specify_game: "이 장비 스크린샷이 어떤 게임용인지 지정하세요"
+      guild_needs_game: "길드는 최소 하나의 게임과 연결되어 있어야 합니다"
+      ocr_failed: "OCR 처리에 실패했습니다"
+      stats_not_extracted: "스크린샷은 저장했지만 스탯을 읽지 못했습니다. 캐릭터 스탯 패널을 더 선명하게 캡처해 다시 시도해 주세요."
+      mfa_required: "본인 확인(MFA)을 완료한 후 다시 업로드해 주세요."
+      attach_screenshot_failed: "스크린샷을 첨부하지 못했습니다"
+      attach_screenshot_invalid: "첨부에 실패했습니다. 유효한 이미지이며 10MB 미만인지 확인하세요."
+      snapshot_save_failed: "장비 스냅샷을 저장하지 못했습니다"
+      upload_error: "업로드 처리 중 오류가 발생했습니다"
+      request_already_pending: "%{name}에 대한 장비 업데이트 요청이 이미 대기 중입니다"
+      request_created: "%{name}에 대한 장비 업데이트를 요청했습니다"
+      create_request_failed: "장비 요청을 만들지 못했습니다"
+      no_members_match: "선택한 기준과 일치하는 멤버가 없습니다"
+      all_members_already_pending: "일치하는 멤버는 모두 이미 장비 요청이 대기 중입니다"
+      bulk_create_failed: "장비 요청을 만들지 못했습니다"
+      bulk_process_failed: "일괄 요청을 처리하지 못했습니다"
+      guild_id_required: "길드 ID가 필요합니다"
+      not_a_member: "이 길드의 멤버가 아닙니다"
+      reach_guildsync_support: "문제가 계속되면 GuildSync 지원팀에 문의하세요."
+      created_requests:
+        one: "장비 업데이트 요청 1건을 만들었습니다"
+        other: "장비 업데이트 요청 %{count}건을 만들었습니다"
+
+  discord_roles:
+    api:
+      fetch_failed: "Discord 역할을 가져오지 못했습니다: %{message}"
+      role_id_and_name_required: "role_id와 role_name이 필요합니다"
+      already_synced: "이미 동기화된 역할입니다"
+      synced_successfully: "역할을 동기화했습니다"
+      sync_failed: "역할 동기화에 실패했습니다: %{message}"
+      role_id_required: "role_id가 필요합니다"
+      removed_successfully: "역할 동기화를 제거했습니다"
+      sync_not_found: "역할 동기화를 찾을 수 없습니다"
+      remove_sync_failed: "역할 동기화 제거에 실패했습니다: %{message}"
+      per_role_sync_failed: "역할 %{name} 동기화에 실패했습니다: %{message}"
+      sync_all_failed: "모든 역할 동기화에 실패했습니다: %{message}"
+      destroy_all_failed: "모든 역할 동기화 제거에 실패했습니다: %{message}"
+      synced_roles_count:
+        zero: "동기화한 역할 0개"
+        one: "동기화한 역할 1개"
+        other: "동기화한 역할 %{count}개"
+      removed_syncs_count:
+        zero: "제거한 역할 동기화 0개"
+        one: "제거한 역할 동기화 1개"
+        other: "제거한 역할 동기화 %{count}개"
+
+  # Language names (always in native script so users can identify their language)
+  language_names:
+    en: "English"
+    de: "Deutsch"
+    es: "Español"
+    fr: "Français"
+    it: "Italiano"
+    ja: "日本語"
+    ko: "한국어"
+    pt: "Português"
+    ru: "Русский"
+    zh: "中文"
+
+  flash:
+    signed_in: "로그인되었습니다."
+    signed_out: "로그아웃되었습니다."
+    created: "성공적으로 생성되었습니다."
+    saved: "성공적으로 저장되었습니다."
+    updated: "성공적으로 업데이트되었습니다."
+
+  image_attachments:
+    invalid_type: "JPEG, PNG, GIF 또는 WebP 이미지여야 합니다"
+    too_large: "%{max_mb}MB를 초과할 수 없습니다"
+
+  # ============================================================================
+  # COMMON UI ELEMENTS
+  # ============================================================================
+  common:
+    "yes": "예"
+    "no": "아니요"
+    buttons:
+      sign_in: "로그인"
+      sign_out: "로그아웃"
+      sign_up: "회원가입"
+      create_account: "Create Account"
+      cancel: "취소"
+      save: "저장"
+      create: "생성"
+      update: "수정"
+      delete: "삭제"
+      submit: "제출"
+      confirm: "확인"
+      back: "뒤로"
+      next: "다음"
+      close: "닫기"
+      add: "추가"
+      remove: "제거"
+      edit: "편집"
+      view: "보기"
+      logout: "로그아웃"
+      select: "선택"
+
+    labels:
+      email: "이메일"
+      password: "비밀번호"
+      name: "이름"
+      description: "설명"
+      status: "상태"
+      actions: "작업"
+      owner: "소유자"
+      members: "멤버"
+      created_at: "생성일"
+      updated_at: "수정일"
+      primary: "기본"
+
+    placeholders:
+      search: "검색..."
+      email: "이메일을 입력하세요"
+      password: "비밀번호를 입력하세요"
+      enter_name: "이름을 입력하세요..."
+
+    messages:
+      searching: "검색 중..."
+      no_results: "검색 결과가 없습니다"
+      loading: "로딩 중..."
+      success: "성공!"
+      error: "오류가 발생했습니다"
+      confirm_delete: "정말 삭제하시겠습니까?"
+      required_field: "필수 입력 항목입니다"
+      popup_blocked: "팝업이 차단되었습니다. 이 사이트의 팝업을 허용한 후 다시 시도하세요."
+
+    or: "또는"
+    and: "그리고"
+    ago: "전"
+    none: "없음"
+    all: "전체"
+    pending: "대기 중"
+    active: "활성"
+    inactive: "비활성"
+    connected: "연결됨"
+    disconnected: "연결 해제됨"
+
+  # ============================================================================
+  # EVENTS
+  # ============================================================================
+  events:
+    schedule:
+      title: "이벤트 일정"
+      subtitle: "길드 이벤트를 생성하고 관리하세요"
+      coming_soon: "이벤트 일정 기능이 곧 제공됩니다!"
+      back_to_dashboard: "대시보드로 돌아가기"
+    guild_battle:
+      title: "길드 배틀 일정"
+      subtitle: "길드 간 경쟁 배틀을 구성하세요"
+      coming_soon: "길드 배틀 일정 기능이 곧 제공됩니다!"
+      back_to_dashboard: "대시보드로 돌아가기"
+
+  # ============================================================================
+  # SUPPORT
+  # ============================================================================
+  support:
+    disclaimer: "모든 지원 요청은 지원 센터를 통해 처리됩니다. GuildSync 계정과 지원 센터 계정은 서로 별개이며 연결되지 않습니다."
+    contact:
+      title: "고객 지원 문의"
+      subtitle: "길드 관리 관련 도움을 받아보세요"
+      email_support: "이메일 지원"
+      send_email: "다음 주소로 이메일을 보내주세요:"
+      response_time: "응답 시간"
+      response_time_note: "보통 24~48시간 내에 답변드립니다."
+      back_to_dashboard: "대시보드로 돌아가기"
+      english_only_notice: "모든 지원 커뮤니케이션은 영어로 진행됩니다"
+
+  # ============================================================================
+  # ANALYTICS
+  # ============================================================================
+  analytics:
+    guilds:
+      title: "길드 분석"
+      subtitle: "길드의 성과와 인사이트를 추적하세요"
+      coming_soon: "길드 분석 기능이 곧 제공됩니다!"
+      back_to_dashboard: "대시보드로 돌아가기"
+
+  # ============================================================================
+  # LEADERBOARD
+  # ============================================================================
+  leaderboard:
+    index:
+      title: "길드 참여 리더보드"
+      subtitle: "소속 길드 전체 가중 점수: 이벤트 정시 참여와 설문 투표는 크게 반영되고, 종료된 룻 롤 참여는 소량만 반영됩니다."
+      rank: "순위"
+      discord_username: "Discord 사용자명"
+      discord_server: "Discord 서버"
+      score: "점수"
+      no_data: "아직 참여 데이터가 없습니다."
+      no_data_hint: "이벤트를 예약하고, 설문을 열고, 룻 롤을 마감해 리더보드 활동을 쌓으세요."
+
+  # ============================================================================
+  # MESSAGE CENTER
+  # ============================================================================
+  message_center:
+    title: "메시지 센터"
+    subtitle: "길드 멤버 및 다른 길드 소유자에게 메시지를 보냅니다"
+    search_placeholder: "사용자명 또는 이메일로 검색..."
+    select_recipient: "수신자를 선택해 대화를 시작하세요"
+    no_recipient: "위 검색에서 대상을 선택하면 메시지를 보거나 보낼 수 있습니다."
+    type_member: "길드 멤버"
+    type_owner: "길드 소유자"
+    send: "보내기"
+    sending: "보내는 중..."
+    invalid_recipient: "유효하지 않은 수신자입니다."
+    content_blank: "메시지는 비울 수 없습니다."
+    access_denied: "이 길드의 메시지 센터에 액세스할 권한이 없습니다."
+
+  # ============================================================================
+  # JOIN GUILD (one-time invite link)
+  # ============================================================================
+  join:
+    title: "이 길드 참가"
+    subtitle: "%{guild_name} 참가 초대를 받았습니다."
+    cta: "기존 계정으로 로그인하거나 계정을 만들어 이 길드에 참가하세요."
+    sign_in: "로그인"
+    create_account: "계정 만들기"
+    one_time_hint: "이 초대 링크는 1회용입니다. 참가 후에는 더 이상 사용할 수 없습니다."
+    invalid_title: "유효하지 않거나 이미 사용된 초대 링크"
+    invalid_message: "이 초대 링크는 유효하지 않거나 이미 사용되었습니다."
+    back_home: "홈으로"
+    invalid_or_used: "이 초대 링크는 유효하지 않거나 이미 사용되었습니다."
+    already_member: "이미 %{name}의 멤버입니다."
+    welcome: "%{name}에 오신 것을 환영합니다!"
+    invite_link_section: "1회용 초대 링크"
+    invite_link_description: "누구나 한 번만 사용해 이 길드에 참가할 수 있는 링크를 만듭니다. 신규 멤버는 길드 설정의 기본 역할을 받습니다."
+    generate_link: "초대 링크 생성"
+    link_copied: "링크가 클립보드에 복사되었습니다."
+    copy_link: "링크 복사"
+    no_link_yet: "「초대 링크 생성」을 눌러 1회용 링크를 만든 뒤 공유하세요. 상대는 로그인 또는 가입 후 기본 역할로 참가합니다."
+    invite_links_limit: "이 길드에는 이미 %{count}개의 활성 초대 링크가 있습니다. 하나를 삭제하거나 만료될 때까지 기다린 뒤 새로 만드세요."
+    conflicting_alliance: "이미 다른 동맹에 속해 있어 이 길드에 참여할 수 없습니다. 먼저 현재 동맹을 떠나세요."
+
+  # ============================================================================
+  # STORAGE
+  # ============================================================================
+  storage:
+    show:
+      title: "파일 저장소"
+      subtitle: "%{guild_name} 파일을 관리하세요"
+      root: "루트"
+      new_folder: "새 폴더"
+      select: "선택"
+      files_selected:
+        zero: "선택된 파일 0개"
+        one: "선택된 파일 1개"
+        other: "선택된 파일 %{count}개"
+      move: "이동"
+      delete: "삭제"
+      cancel: "취소"
+      folders: "폴더"
+      no_folders_yet: "아직 폴더가 없습니다"
+      drag_drop: "파일을 드래그 앤 드롭하세요"
+      paste_clipboard: "또는 클립보드에서 붙여넣기 (Ctrl+V / Cmd+V)"
+      browse_files: "파일 찾아보기"
+      download: "다운로드"
+      no_files_yet: "아직 파일이 없습니다"
+      no_files_uploaded: "이 위치에 업로드된 파일이 없습니다."
+      create_folder_title: "폴더 생성"
+      folder_name: "폴더 이름"
+      create: "생성"
+      move_files_title: "파일 이동"
+      select_folder: "폴더 선택"
+      confirm_delete_title: "삭제 확인"
+      confirm_delete_message: "이 항목을 삭제하시겠습니까?"
+
+  # ============================================================================
+  # MEMBER DASHBOARD
+  # ============================================================================
+  member_dashboard:
+    index:
+      title: "길드 보기"
+      subtitle: "사용 가능한 모든 길드를 둘러보고 멤버십을 관리하세요."
+      my_applications: "내 지원서"
+      no_applications_yet: "아직 지원서가 없습니다."
+      view_all_applications: "모든 지원서 보기"
+      my_guilds: "내 길드"
+      view_guild: "길드 보기"
+      no_guilds_yet: "아직 승인된 길드가 없습니다."
+      available_guilds: "사용 가능한 길드"
+      no_description: "설명이 없습니다."
+      view_details: "상세 보기"
+      apply: "지원"
+      no_guilds_available: "현재 사용 가능한 길드가 없습니다."
+      applied: "지원일:"
+
+  # ============================================================================
+  # INTEGRATIONS
+  # ============================================================================
+  integrations:
+    discord:
+      title: "Discord와 연결"
+      subtitle: "원활한 커뮤니케이션을 위해 길드를 Discord와 연동하세요"
+      coming_soon: "Discord 연동 기능이 곧 제공됩니다!"
+      back_to_dashboard: "대시보드로 돌아가기"
+
+  # ============================================================================
+  # MEMBERS
+  # ============================================================================
+  members:
+    invite:
+      title: "길드에 멤버 초대"
+      subtitle: "게임 커뮤니티에 참여할 초대를 보내세요"
+      coming_soon: "멤버 초대 기능이 곧 제공됩니다!"
+      back_to_dashboard: "대시보드로 돌아가기"
+
+  # ============================================================================
+  # GAMES
+  # ============================================================================
+  games:
+    index:
+      title: "게임"
+
+  compliance:
+    ip_conflict:
+      banner_title: "계정 준수 안내"
+      warning_message: "여러 계정이 같은 IP 주소를 공유하고 있습니다. 해당 IP로는 서로 다른 길드에 여러 계정을 둘 수 없습니다. 한 길드를 나간 뒤 다시 시도하세요. GuildSync 기능 남용에 대한 경고입니다. 반복 시 계정이 제재되거나 서비스에서 제거될 수 있습니다."
+      lock_message: "같은 IP에서 길드에 여러 계정을 반복 남용하여 계정이 잠겼습니다. 한 계정에서 모든 길드를 보관하고 다른 계정에서는 모든 길드를 나간 뒤, 경고가 지워지지 않으면 지원팀에 문의하세요."

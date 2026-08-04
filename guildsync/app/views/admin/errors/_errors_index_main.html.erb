@@ -1,0 +1,10 @@
+<%= form_with url: bulk_admin_errors_path, method: :post, id: "errors-bulk-form" do |f| %>
+  <%= f.hidden_field :bulk_action, id: "errors_bulk_action_value" %>
+  <div class="mb-4 flex flex-wrap gap-2 items-center">
+    <span class="text-theme-secondary text-sm"><%= t("admin.errors.index.bulk_label") %></span>
+    <button type="button" onclick="document.getElementById('errors_bulk_action_value').value='resolve'; document.getElementById('errors-bulk-form').submit();" class="px-3 py-1.5 bg-green-600 text-white rounded hover:bg-green-700 text-sm font-medium"><%= t("admin.errors.index.resolve_selected") %></button>
+    <button type="button" onclick="if(confirm('<%= j t("admin.errors.index.confirm_bulk_delete") %>')) { document.getElementById('errors_bulk_action_value').value='delete'; document.getElementById('errors-bulk-form').submit(); }" class="px-3 py-1.5 bg-red-600 text-white rounded hover:bg-red-700 text-sm font-medium"><%= t("admin.errors.index.delete_selected") %></button>
+  </div>
+
+  <%= render "admin/errors/index_columns", unresolved: @unresolved, resolved: @resolved %>
+<% end %>

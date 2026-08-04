@@ -1,0 +1,450 @@
+# See https://guides.rubyonrails.org/i18n.html for Rails I18n guide
+
+zh:
+  # ============================================================================
+  # APPLICATION-WIDE
+  # ============================================================================
+  app_name: "GuildSync"
+
+  plan_entitlements:
+    upgrade_required: "请升级套餐以使用此功能。"
+
+  signup_plan_choices:
+    title: "选择入门方式"
+    intro: "您选择了 %{plan}。您可以先开始 14 天 Basic 试用，或继续为 %{plan} 付费结账。"
+    basic_trial_button: "开始 14 天 Basic 试用"
+    pay_for_plan_button: "继续付费结账 — %{plan}"
+    basic_trial_started: "Basic 试用已启用。欢迎使用 GuildSync。"
+    trial_unavailable: "此账户无法使用试用。"
+    missing_basic: "未配置 Basic 套餐。请联系支持。"
+
+  account_creation:
+    invalid_email: "Enter a valid email address."
+    sent_notice: "We sent a verification email. Please check your inbox to continue creating your account."
+    resent_notice: "We sent another verification email. Please use the latest link."
+    start_over: "Start account creation again."
+    already_verified: "This email has already been verified."
+    invalid_or_expired: "That verification link is invalid or expired. Request a new verification email."
+    verified_notice: "Email successfully verified."
+    email_taken: "That email address is already connected to an account."
+    use_new_flow: "Start by verifying your email address."
+    resend_cooldown: "Please wait %{seconds} seconds before resending the verification email."
+    show:
+      title: "Create Account"
+      subtitle: "Enter your email address first. We will send a verification link before you choose MFA or Discord."
+      submit: "Send Verification Email"
+      have_account: "Already have an account?"
+    sent:
+      title: "Check your inbox"
+      body: "We sent a verification email. Please check your inbox to continue creating your account."
+      latest_link: "If you request another email, only the latest verification link will work."
+      resend: "Resend verification email"
+      change_email: "Use a different email"
+    backup_code:
+      title: "Save your backup code"
+      body: "This one-time recovery code can help you recover your account if you lose access. We will not show it again."
+      confirm_text: "I've copied my backup code and I have saved it somewhere safe."
+      confirm: "Confirm backup code saved"
+      confirm_required: "Confirm that you saved your backup code before continuing."
+      must_confirm: "Save and confirm your backup code before continuing."
+    choose:
+      title: "Choose how to finish"
+      subtitle: "Your email is verified and your backup code is saved. Choose how you want to finish account setup."
+      mfa:
+        title: "Create account with MFA"
+        body: "Use a password plus an authenticator app for secure sign-in."
+      discord:
+        title: "Create account with Discord"
+        body: "Continue through Discord OAuth using your verified email address."
+      google:
+        title: "Create account with Gmail"
+        body: "Use Gmail sign-in with the same email you verified (Gmail or Google Workspace)."
+      microsoft:
+        title: "Create account with Outlook"
+        body: "Use Outlook sign-in with the same email you verified (personal Microsoft accounts such as Outlook.com and Hotmail)."
+    standard:
+      title: "Finish account setup"
+      submit: "Continue to MFA Setup"
+      created: "Account created. Now set up MFA."
+    gated_oauth:
+      verify_first: "Verify your email and save your backup code before continuing with Discord, Gmail, or Outlook."
+    mailer:
+      signoff: "- GuildSync Team"
+      verify_email:
+        subject: "验证您的 GuildSync 电子邮件地址"
+        heading: "验证您的电子邮件地址"
+        greeting: "您好，"
+        body: "欢迎使用 GuildSync。请验证此电子邮件地址以继续创建您的账户。"
+        cta: "验证电子邮件地址"
+        expires: "此链接将在 24 小时后失效。"
+        fallback: "如果按钮无效，请复制此 URL 并粘贴到浏览器中："
+        ignore: "如果您未创建 GuildSync 账户，可忽略此邮件。"
+      backup_code_regenerated:
+        subject: "Your new GuildSync backup code"
+        heading: "Your backup code was regenerated"
+        greeting: "Hi %{username},"
+        body: "A new GuildSync backup code was generated for your account. Store this code somewhere safe."
+        warning: "Your previous backup code has been invalidated."
+        store_safely: "Keep this code offline or in a trusted password manager. We will not show it again."
+        unrequested: "If you did not request this, secure your account and contact support."
+
+  api:
+    auth:
+      captcha_invalid: "安全验证失败，请重试。"
+      invalid_sign_in: "邮箱或密码无效。"
+      me_user_missing: "未找到用户。"
+      authentication_failed: "身份验证失败。"
+      internal_error: "服务器内部错误。"
+      user_created: "用户创建成功。"
+      confirmation_required: "登录前请查收邮件确认账户。"
+      unconfirmed_sign_in: "登录前请先确认邮箱。"
+      archived_sign_in: "该账户已归档，无法登录。"
+      signed_in: "登录成功。"
+      signed_out: "已退出登录。"
+      pending_registration_sign_in: "Finish creating your account on the web before signing in."
+    discord:
+      not_connected: "此公会尚未连接 Discord。"
+      fetch_channels_failed: "获取频道失败：%{message}"
+      channels_updated: "频道已更新。"
+      event_not_found: "未找到活动。"
+      missing_discord_identity: "缺少 discord_user_id 或 discord_username。"
+      signup_success: "已成功报名活动。"
+      signup_failed: "报名失败：%{message}"
+    users:
+      account_archived: "账户已成功归档。"
+    v1:
+      authentication_required: "需要身份验证。"
+      not_authorized: "您无权执行此操作。"
+      resource_not_found: "未找到资源。"
+      guild_id_required: "需要公会 ID。"
+
+  gear:
+    activity:
+      uploaded: "已上传属性截图（%{game}）"
+      uploaded_shared_guild_plan: "已上传属性截图（%{game}）；OCR 计入公会长 %{leader_name} 的额度"
+      requested: "已向 %{name} 请求属性更新"
+    api:
+      screenshot_required: "需要上传截图"
+      invalid_file_type: "文件类型无效。请上传 PNG、JPEG 或 WebP。"
+      file_too_large: "文件过大。最大大小为 %{max_mb} MB。"
+      specify_game: "请指定此装备截图对应的游戏"
+      guild_needs_game: "公会必须至少关联一个游戏"
+      ocr_failed: "OCR 处理失败"
+      stats_not_extracted: "我们已保存你的截图，但未能从中读取任何属性。请尝试更清晰地截取角色属性面板。"
+      mfa_required: "请完成身份验证（MFA）后重新上传。"
+      attach_screenshot_failed: "无法附加截图"
+      attach_screenshot_invalid: "附加失败。请确保文件为有效图片且小于 10MB。"
+      snapshot_save_failed: "无法保存装备快照"
+      upload_error: "处理上传时发生错误"
+      request_already_pending: "%{name} 的装备更新请求已在处理中"
+      request_created: "已为 %{name} 请求装备更新"
+      create_request_failed: "无法创建装备请求"
+      no_members_match: "没有符合所选条件的成员"
+      all_members_already_pending: "所有符合条件的成员已有待处理的装备请求"
+      bulk_create_failed: "无法创建装备请求"
+      bulk_process_failed: "无法处理批量请求"
+      guild_id_required: "需要公会 ID"
+      not_a_member: "不是该公会的成员"
+      reach_guildsync_support: "若问题持续，请联系 GuildSync 支持团队。"
+      created_requests:
+        one: "已创建 1 条装备更新请求"
+        other: "已创建 %{count} 条装备更新请求"
+
+  discord_roles:
+    api:
+      fetch_failed: "获取 Discord 角色失败：%{message}"
+      role_id_and_name_required: "需要 role_id 和 role_name"
+      already_synced: "该角色已同步"
+      synced_successfully: "角色同步成功"
+      sync_failed: "同步角色失败：%{message}"
+      role_id_required: "需要 role_id"
+      removed_successfully: "已移除角色同步"
+      sync_not_found: "未找到角色同步"
+      remove_sync_failed: "移除角色同步失败：%{message}"
+      per_role_sync_failed: "同步角色 %{name} 失败：%{message}"
+      sync_all_failed: "同步所有角色失败：%{message}"
+      destroy_all_failed: "移除所有角色同步失败：%{message}"
+      synced_roles_count:
+        zero: "已同步 0 个角色"
+        one: "已同步 1 个角色"
+        other: "已同步 %{count} 个角色"
+      removed_syncs_count:
+        zero: "已移除 0 条角色同步"
+        one: "已移除 1 条角色同步"
+        other: "已移除 %{count} 条角色同步"
+
+  # Language names (always in native script so users can identify their language)
+  language_names:
+    en: "English"
+    de: "Deutsch"
+    es: "Español"
+    fr: "Français"
+    it: "Italiano"
+    ja: "日本語"
+    ko: "한국어"
+    pt: "Português"
+    ru: "Русский"
+    zh: "中文"
+
+  flash:
+    signed_in: "登录成功。"
+    signed_out: "退出登录成功。"
+    created: "创建成功。"
+    saved: "保存成功。"
+    updated: "更新成功。"
+
+  image_attachments:
+    invalid_type: "必须是 JPEG、PNG、GIF 或 WebP 图片"
+    too_large: "大小不能超过 %{max_mb} MB"
+
+  # ============================================================================
+  # COMMON UI ELEMENTS
+  # ============================================================================
+  common:
+    "yes": "是"
+    "no": "否"
+    buttons:
+      sign_in: "登录"
+      sign_out: "退出登录"
+      sign_up: "注册"
+      create_account: "创建账户"
+      cancel: "取消"
+      save: "保存"
+      create: "创建"
+      update: "更新"
+      delete: "删除"
+      submit: "提交"
+      confirm: "确认"
+      back: "返回"
+      next: "下一步"
+      close: "关闭"
+      add: "添加"
+      remove: "移除"
+      edit: "编辑"
+      view: "查看"
+      logout: "登出"
+      select: "选择"
+
+    labels:
+      email: "邮箱"
+      password: "密码"
+      name: "名称"
+      description: "描述"
+      status: "状态"
+      actions: "操作"
+      owner: "所有者"
+      members: "成员"
+      created_at: "创建时间"
+      updated_at: "更新时间"
+      primary: "主要"
+
+    placeholders:
+      search: "搜索..."
+      email: "输入您的邮箱"
+      password: "输入您的密码"
+      enter_name: "输入名称..."
+
+    messages:
+      searching: "搜索中..."
+      no_results: "未找到结果"
+      loading: "加载中..."
+      success: "成功！"
+      error: "发生错误"
+      confirm_delete: "您确定要删除吗？"
+      required_field: "此字段为必填项"
+      popup_blocked: "弹窗被拦截。请允许此站点弹窗后重试。"
+
+    or: "或"
+    and: "并且"
+    ago: "前"
+    none: "无"
+    all: "全部"
+    pending: "待处理"
+    active: "已启用"
+    inactive: "未启用"
+    connected: "已连接"
+    disconnected: "已断开"
+
+
+
+  # ============================================================================
+  # EVENTS
+  # ============================================================================
+  events:
+    schedule:
+      title: "安排活动"
+      subtitle: "为您的公会创建并管理活动"
+      coming_soon: "活动排期功能即将上线！"
+      back_to_dashboard: "返回仪表盘"
+    guild_battle:
+      title: "安排公会战"
+      subtitle: "组织公会间竞技战斗"
+      coming_soon: "公会战排期功能即将上线！"
+      back_to_dashboard: "返回仪表盘"
+
+  # ============================================================================
+  # SUPPORT
+  # ============================================================================
+  support:
+    disclaimer: "所有支持请求均通过我们的支持中心处理。您的 GuildSync 账户与支持中心账户相互独立，彼此未关联。"
+    contact:
+      title: "联系支持"
+      subtitle: "获取公会管理相关帮助"
+      email_support: "邮件支持"
+      send_email: "请发送邮件至："
+      response_time: "响应时间"
+      response_time_note: "我们通常会在 24-48 小时内回复。"
+      back_to_dashboard: "返回仪表盘"
+      english_only_notice: "所有支持沟通均使用英语"
+
+  # ============================================================================
+  # ANALYTICS
+  # ============================================================================
+  analytics:
+    guilds:
+      title: "公会分析"
+      subtitle: "跟踪公会表现与洞察"
+      coming_soon: "公会分析功能即将上线！"
+      back_to_dashboard: "返回仪表盘"
+
+  # ============================================================================
+  # LEADERBOARD
+  # ============================================================================
+  leaderboard:
+    index:
+      title: "公会参与排行榜"
+      subtitle: "跨所属公会的加权积分：活动准时参与与投票权重高；已结束的loot roll每次参与少量加分。"
+      rank: "排名"
+      discord_username: "Discord 用户名"
+      discord_server: "Discord 服务器"
+      score: "积分"
+      no_data: "暂无参与数据。"
+      no_data_hint: "安排活动、发起投票并结束loot roll，以累积排行榜数据。"
+
+  # ============================================================================
+  # MESSAGE CENTER
+  # ============================================================================
+  message_center:
+    title: "消息中心"
+    subtitle: "向公会成员及其他公会所有者发送消息"
+    search_placeholder: "按用户名或邮箱搜索..."
+    select_recipient: "选择收件人开始私信"
+    no_recipient: "请从上方搜索中选择联系人，以查看或发送消息。"
+    type_member: "公会成员"
+    type_owner: "公会所有者"
+    send: "发送"
+    sending: "发送中..."
+    invalid_recipient: "无效的收件人。"
+    content_blank: "消息不能为空。"
+    access_denied: "您无权访问该公会的消息中心。"
+
+  # ============================================================================
+  # JOIN GUILD (one-time invite link)
+  # ============================================================================
+  join:
+    title: "加入此公会"
+    subtitle: "您已被邀请加入 %{guild_name}。"
+    cta: "使用已有账号登录，或注册账号后加入此公会。"
+    sign_in: "登录"
+    create_account: "创建账号"
+    one_time_hint: "此邀请链接仅限一次性使用。加入后将失效。"
+    invalid_title: "邀请链接无效或已使用"
+    invalid_message: "此邀请链接无效或已被使用。"
+    back_home: "返回首页"
+    invalid_or_used: "此邀请链接无效或已被使用。"
+    already_member: "您已经是 %{name} 的成员。"
+    welcome: "欢迎加入 %{name}！"
+    invite_link_section: "一次性邀请链接"
+    invite_link_description: "生成仅供单次使用的加入链接。新成员将获得公会设置中的默认角色。"
+    generate_link: "生成邀请链接"
+    link_copied: "链接已复制到剪贴板。"
+    copy_link: "复制链接"
+    no_link_yet: "点击「生成邀请链接」创建一次性链接并分享给对方；对方登录或注册后将按默认角色加入。"
+    invite_links_limit: "该公会已有 %{count} 个有效邀请链接。请先删除或等待过期后再创建新的。"
+    conflicting_alliance: "你已属于其他联盟，无法加入此公会。请先离开当前联盟。"
+
+  # ============================================================================
+  # STORAGE
+  # ============================================================================
+  storage:
+    show:
+      title: "文件存储"
+      subtitle: "管理 %{guild_name} 的文件"
+      root: "根目录"
+      new_folder: "新建文件夹"
+      select: "选择"
+      files_selected:
+        zero: "已选择 0 个文件"
+        one: "已选择 1 个文件"
+        other: "已选择 %{count} 个文件"
+      move: "移动"
+      delete: "删除"
+      cancel: "取消"
+      folders: "文件夹"
+      no_folders_yet: "还没有文件夹"
+      drag_drop: "拖放文件"
+      paste_clipboard: "或从剪贴板粘贴（Ctrl+V / Cmd+V）"
+      browse_files: "浏览文件"
+      download: "下载"
+      no_files_yet: "还没有文件"
+      no_files_uploaded: "此位置尚未上传任何文件。"
+      create_folder_title: "创建文件夹"
+      folder_name: "文件夹名称"
+      create: "创建"
+      move_files_title: "移动文件"
+      select_folder: "选择文件夹"
+      confirm_delete_title: "确认删除"
+      confirm_delete_message: "您确定要删除此项吗？"
+
+  # ============================================================================
+  # MEMBER DASHBOARD
+  # ============================================================================
+  member_dashboard:
+    index:
+      title: "查看公会"
+      subtitle: "浏览所有可用公会并管理您的成员身份。"
+      my_applications: "我的申请"
+      no_applications_yet: "还没有申请。"
+      view_all_applications: "查看全部申请"
+      my_guilds: "我的公会"
+      view_guild: "查看公会"
+      no_guilds_yet: "您尚未被任何公会接收。"
+      available_guilds: "可用公会"
+      no_description: "暂无描述。"
+      view_details: "查看详情"
+      apply: "申请"
+      no_guilds_available: "当前没有可用公会。"
+      applied: "申请时间："
+
+  # ============================================================================
+  # INTEGRATIONS
+  # ============================================================================
+  integrations:
+    discord:
+      title: "连接 Discord"
+      subtitle: "将公会与 Discord 集成，实现无缝沟通"
+      coming_soon: "Discord 集成功能即将上线！"
+      back_to_dashboard: "返回仪表盘"
+
+  # ============================================================================
+  # MEMBERS
+  # ============================================================================
+  members:
+    invite:
+      title: "邀请成员加入您的公会"
+      subtitle: "发送邀请加入您的游戏社区"
+      coming_soon: "成员邀请功能即将上线！"
+      back_to_dashboard: "返回仪表盘"
+
+  # ============================================================================
+  # GAMES
+  # ============================================================================
+  games:
+    index:
+      title: "游戏"
+
+  compliance:
+    ip_conflict:
+      banner_title: "账户合规提示"
+      warning_message: "您的多个账号共享同一 IP 地址。使用该 IP 时不能在多个公会中拥有多个账号。请先退出一个公会再重试。这是对滥用 GuildSync 功能的警告；若再次发生，您的账号可能被标记或从服务中移除。"
+      lock_message: "因在同一 IP 上于多个公会中反复滥用多个账号，您的账号已被锁定。请在一个账号上归档所有公会并在另一账号上退出所有公会，若提示未清除请联系支持。"

@@ -1,0 +1,132 @@
+<%# locals: (tables:, section_title_field:) %>
+<% if tables.size != 3 %>
+  <p class="text-amber-200 border border-amber-500/40 rounded-lg p-4"><%= t("admin.landing_compare.incomplete_tables_warning") %></p>
+<% end %>
+
+<%= form_with url: admin_landing_compare_path, method: :patch, class: "space-y-8" do %>
+  <div class="bg-theme-card border border-theme-primary rounded-lg p-6 shadow-lg space-y-3">
+    <label class="block text-sm font-medium text-theme-secondary" for="landing_compare_section_title">
+      <%= t("admin.landing_compare.section_title_label") %>
+    </label>
+    <%= text_field_tag "landing_compare[section_title]", section_title_field,
+          id: "landing_compare_section_title",
+          class: "w-full px-3 py-2 rounded-lg bg-theme-primary border border-theme-primary text-theme-primary text-sm focus:ring-2 focus:ring-theme-accent focus:border-transparent",
+          autocomplete: "off",
+          aria: { describedby: "landing_compare_section_title_hint" } %>
+    <p class="text-xs text-theme-secondary" id="landing_compare_section_title_hint">
+      <%= t("admin.landing_compare.section_title_hint") %>
+    </p>
+  </div>
+
+  <% tables.each do |table| %>
+    <div class="bg-theme-card border border-theme-primary rounded-lg p-6 shadow-lg space-y-4">
+      <h2 class="text-lg font-semibold text-white"><%= t("admin.landing_compare.table_heading", n: table.position + 1) %></h2>
+      <p class="text-xs text-theme-secondary font-mono"><%= t("admin.landing_compare.table_position_key", position: table.position) %></p>
+
+      <div class="grid gap-4 sm:grid-cols-2">
+        <div>
+          <label class="block text-sm font-medium text-theme-secondary mb-2" for="lcmp_feat_<%= table.position %>">
+            <%= t("admin.landing_compare.feature_column_label") %>
+          </label>
+          <%= text_field_tag "landing_compare[tables][#{table.position}][feature_column_label]", table.feature_column_label,
+                id: "lcmp_feat_#{table.position}",
+                class: "w-full px-3 py-2 rounded-lg bg-theme-primary border border-theme-primary text-theme-primary text-sm focus:ring-2 focus:ring-theme-accent focus:border-transparent" %>
+        </div>
+        <div>
+          <label class="block text-sm font-medium text-theme-secondary mb-2" for="lcmp_gs_<%= table.position %>">
+            <%= t("admin.landing_compare.guildsync_column_label") %>
+          </label>
+          <%= text_field_tag "landing_compare[tables][#{table.position}][guildsync_column_label]", table.guildsync_column_label,
+                id: "lcmp_gs_#{table.position}",
+                class: "w-full px-3 py-2 rounded-lg bg-theme-primary border border-theme-primary text-theme-primary text-sm focus:ring-2 focus:ring-theme-accent focus:border-transparent" %>
+        </div>
+        <div class="sm:col-span-2">
+          <label class="block text-sm font-medium text-theme-secondary mb-2" for="lcmp_comp_<%= table.position %>">
+            <%= t("admin.landing_compare.competitor_column_label") %>
+          </label>
+          <%= text_field_tag "landing_compare[tables][#{table.position}][competitor_column_label]", table.competitor_column_label,
+                id: "lcmp_comp_#{table.position}",
+                class: "w-full px-3 py-2 rounded-lg bg-theme-primary border border-theme-primary text-theme-primary text-sm focus:ring-2 focus:ring-theme-accent focus:border-transparent" %>
+        </div>
+        <div class="sm:col-span-2 flex items-center gap-2">
+          <%= hidden_field_tag "landing_compare[tables][#{table.position}][show_guildsync_badge]", "0" %>
+          <%= check_box_tag "landing_compare[tables][#{table.position}][show_guildsync_badge]", "1", table.show_guildsync_badge,
+                id: "lcmp_badge_#{table.position}",
+                class: "h-4 w-4 rounded border-theme-primary text-theme-accent focus:ring-theme-accent" %>
+          <label class="text-sm text-theme-primary" for="lcmp_badge_<%= table.position %>"><%= t("admin.landing_compare.show_badge_label") %></label>
+        </div>
+      </div>
+
+      <div class="border-t border-theme-primary pt-4 space-y-3">
+        <p class="text-sm font-medium text-theme-secondary"><%= t("admin.landing_compare.rows_heading") %></p>
+        <p class="text-xs text-theme-secondary"><%= t("admin.landing_compare.rows_hint") %></p>
+
+        <% table.landing_comparison_rows.each do |row| %>
+          <% ri = row.position %>
+          <div class="rounded-lg border border-theme-primary/60 p-4 space-y-3 bg-theme-primary/30">
+            <label class="block text-xs font-medium text-theme-secondary" for="lcmp_row_<%= table.position %>_<%= ri %>_label">
+              <%= t("admin.landing_compare.row_feature_label") %>
+            </label>
+            <%= text_field_tag "landing_compare[tables][#{table.position}][rows][#{ri}][feature_label]", row.feature_label,
+                  id: "lcmp_row_#{table.position}_#{ri}_label",
+                  class: "w-full px-3 py-2 rounded-lg bg-theme-primary border border-theme-primary text-theme-primary text-sm" %>
+            <div class="flex flex-wrap gap-6">
+              <div class="flex items-center gap-2">
+                <%= hidden_field_tag "landing_compare[tables][#{table.position}][rows][#{ri}][guildsync_included]", "0" %>
+                <%= check_box_tag "landing_compare[tables][#{table.position}][rows][#{ri}][guildsync_included]", "1", row.guildsync_included,
+                      id: "lcmp_row_#{table.position}_#{ri}_gs",
+                      class: "h-4 w-4 rounded border-theme-primary text-theme-accent" %>
+                <label class="text-sm text-theme-primary" for="lcmp_row_<%= table.position %>_<%= ri %>_gs"><%= t("admin.landing_compare.guildsync_check_label") %></label>
+              </div>
+              <div class="flex items-center gap-2">
+                <%= hidden_field_tag "landing_compare[tables][#{table.position}][rows][#{ri}][competitor_included]", "0" %>
+                <%= check_box_tag "landing_compare[tables][#{table.position}][rows][#{ri}][competitor_included]", "1", row.competitor_included,
+                      id: "lcmp_row_#{table.position}_#{ri}_co",
+                      class: "h-4 w-4 rounded border-theme-primary text-theme-accent" %>
+                <label class="text-sm text-theme-primary" for="lcmp_row_<%= table.position %>_<%= ri %>_co"><%= t("admin.landing_compare.competitor_check_label") %></label>
+              </div>
+            </div>
+          </div>
+        <% end %>
+
+        <% next_row = (table.landing_comparison_rows.maximum(:position) || -1) + 1 %>
+        <% 5.times do |b| %>
+          <% ri = next_row + b %>
+          <div class="rounded-lg border border-dashed border-theme-primary/50 p-4 space-y-3">
+            <p class="text-xs text-theme-secondary"><%= t("admin.landing_compare.new_row_slot") %></p>
+            <label class="block text-xs font-medium text-theme-secondary" for="lcmp_row_<%= table.position %>_<%= ri %>_label">
+              <%= t("admin.landing_compare.row_feature_label") %>
+            </label>
+            <%= text_field_tag "landing_compare[tables][#{table.position}][rows][#{ri}][feature_label]", "",
+                  id: "lcmp_row_#{table.position}_#{ri}_label",
+                  class: "w-full px-3 py-2 rounded-lg bg-theme-primary border border-theme-primary text-theme-primary text-sm" %>
+            <div class="flex flex-wrap gap-6">
+              <div class="flex items-center gap-2">
+                <%= hidden_field_tag "landing_compare[tables][#{table.position}][rows][#{ri}][guildsync_included]", "0" %>
+                <%= check_box_tag "landing_compare[tables][#{table.position}][rows][#{ri}][guildsync_included]", "1", true,
+                      id: "lcmp_row_#{table.position}_#{ri}_gs",
+                      class: "h-4 w-4 rounded border-theme-primary text-theme-accent" %>
+                <label class="text-sm text-theme-primary" for="lcmp_row_<%= table.position %>_<%= ri %>_gs"><%= t("admin.landing_compare.guildsync_check_label") %></label>
+              </div>
+              <div class="flex items-center gap-2">
+                <%= hidden_field_tag "landing_compare[tables][#{table.position}][rows][#{ri}][competitor_included]", "0" %>
+                <%= check_box_tag "landing_compare[tables][#{table.position}][rows][#{ri}][competitor_included]", "1", false,
+                      id: "lcmp_row_#{table.position}_#{ri}_co",
+                      class: "h-4 w-4 rounded border-theme-primary text-theme-accent" %>
+                <label class="text-sm text-theme-primary" for="lcmp_row_<%= table.position %>_<%= ri %>_co"><%= t("admin.landing_compare.competitor_check_label") %></label>
+              </div>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  <% end %>
+
+  <div class="flex gap-4">
+    <%= submit_tag t("admin.landing_compare.save"),
+          class: "px-6 py-3 bg-theme-accent text-white rounded-lg hover:bg-theme-accent-hover font-semibold cursor-pointer" %>
+    <%= link_to t("admin.landing_compare.cancel"), admin_root_path,
+          class: "px-6 py-3 bg-theme-secondary text-theme-accent border border-theme-primary rounded-lg hover:bg-theme-hover font-semibold",
+          data: { turbo_frame: "_top" } %>
+  </div>
+<% end %>

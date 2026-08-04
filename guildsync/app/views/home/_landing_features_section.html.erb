@@ -1,0 +1,20 @@
+<%# locals: card_bg, icon_gradient. why_title → features CTA → grid; #features id on grid for footer links. %>
+<section class="px-4 pt-6 sm:pt-8 md:pt-10 pb-20 sm:pb-24" aria-labelledby="landing-why-guildsync-heading">
+  <header class="text-center max-w-[1100px] mx-auto mb-10 sm:mb-12 md:mb-14">
+    <%# Display scale: clamp ÷1.5 vs prior max 6.75rem (~72px cap on large screens) %>
+    <h2 id="landing-why-guildsync-heading" class="text-white font-bold leading-[1.05] tracking-tight text-center mb-8 sm:mb-10 md:mb-12 [text-shadow:0_2px_24px_rgba(0,0,0,0.45)] text-[clamp(1.85rem,7vw,4.5rem)] max-w-[min(100%,52rem)] mx-auto">
+      <%= t("home.landing.why_title") %>
+    </h2>
+    <h3 id="landing-features-heading" class="text-white text-4xl sm:text-5xl lg:text-[3.25rem] font-bold leading-tight tracking-tight mb-5">
+      <%= t("home.landing.features_cta_hint") %>
+    </h3>
+    <p class="text-[#90A1B9] text-lg sm:text-xl lg:text-2xl font-normal leading-relaxed max-w-[46rem] mx-auto">
+      <%= t("home.landing.features_section_subtitle") %>
+    </p>
+  </header>
+  <div id="features" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 items-stretch max-w-[1200px] mx-auto">
+    <% @homepage_feature_cards.each do |card| %>
+      <%= render "home/homepage_feature_card", card: card, card_bg: card_bg, icon_gradient: icon_gradient %>
+    <% end %>
+  </div>
+</section>

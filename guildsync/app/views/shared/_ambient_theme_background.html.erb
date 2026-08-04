@@ -1,0 +1,6 @@
+<%# Decorative purple ambient layer — behind all chrome; no pointer events. Admin layout skips this partial. %>
+<%# motion-reduce: + CSS @media (prefers-reduced-motion) both gate animation for macOS/Windows/iOS accessibility settings. %>
+<div class="pointer-events-none absolute inset-0 -z-10 overflow-hidden motion-reduce:animate-none" aria-hidden="true">
+  <div class="animate-ambient-drift-a motion-reduce:animate-none absolute -left-[20%] top-[-10%] h-[min(90vh,720px)] w-[min(95vw,720px)] rounded-full bg-[radial-gradient(circle,rgba(79,57,246,0.22)_0%,transparent_68%)] blur-2xl motion-reduce:opacity-35 will-change-transform"></div>
+  <div class="animate-ambient-drift-b motion-reduce:animate-none absolute -right-[15%] bottom-[-15%] h-[min(85vh,640px)] w-[min(90vw,640px)] rounded-full bg-[radial-gradient(circle,rgba(152,16,250,0.18)_0%,transparent_70%)] blur-2xl motion-reduce:opacity-30 will-change-transform"></div>
+</div>

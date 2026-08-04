@@ -1,0 +1,7 @@
+/*
+ * Tailwind CSS is imported via application.tailwind.css
+ * This file serves as the main stylesheet entry point
+ */
+
+@import "application.tailwind.css";
+

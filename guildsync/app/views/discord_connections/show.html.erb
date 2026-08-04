@@ -1,0 +1,339 @@
+<div class="max-w-4xl mx-auto p-6">
+  <div class="mb-6">
+    <h1 class="text-3xl font-bold text-theme-primary mb-2"><%= t('discord_connections.show.title') %></h1>
+      <p class="text-theme-secondary">
+        <% if current_user.has_valid_discord_connection? %>
+          <%= t('discord_connections.show.subtitle_connected') %>
+        <% else %>
+          <%= t('discord_connections.show.subtitle_not_connected') %>
+        <% end %>
+      </p>
+  </div>
+
+  <% if current_user.has_valid_discord_connection? %>
+    <% discord_guild_id = @guild.discord_id || @guild.guild_discord_setting&.discord_guild_id %>
+    <% if discord_guild_id.blank? %>
+      <div class="bg-yellow-900/20 border border-yellow-500 rounded-lg p-4 mb-6">
+        <div class="flex items-center gap-3">
+          <svg class="w-6 h-6 text-yellow-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path>
+          </svg>
+          <div class="flex-1">
+            <h3 class="text-lg font-semibold text-yellow-500"><%= t('discord_connections.show.server_not_selected.title') %></h3>
+            <p class="text-theme-secondary"><%= t('discord_connections.show.server_not_selected.message') %></p>
+          </div>
+        </div>
+        <div class="mt-4">
+          <%= link_to t('discord_connections.show.server_not_selected.select_button'), select_discord_server_path(@guild), data: { turbo: false }, class: "inline-flex items-center gap-2 px-6 py-3 bg-[#5865F2] text-white rounded-lg hover:bg-[#4752C4] transition-colors font-semibold" %>
+        </div>
+      </div>
+    <% else %>
+      <div class="bg-green-900/20 border border-green-500 rounded-lg p-4 mb-6">
+        <div class="flex items-center gap-3">
+          <svg class="w-6 h-6 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+          </svg>
+          <div class="flex-1">
+            <h3 class="text-lg font-semibold text-green-500"><%= t('discord_connections.show.server_selected.title') %></h3>
+            <p class="text-theme-secondary"><%= t('discord_connections.show.server_selected.server_label') %> <span class="text-theme-primary"><%= @guild.guild_discord_setting&.discord_guild_name || t('discord_connections.show.server_selected.connected') %></span></p>
+          </div>
+        </div>
+      </div>
+      
+      <% if @bot_connected %>
+        <div class="bg-green-900/20 border border-green-500 rounded-lg p-4 mb-6">
+          <div class="flex items-center gap-3">
+            <svg class="w-6 h-6 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+            </svg>
+            <div class="flex-1">
+              <h3 class="text-lg font-semibold text-green-500"><%= t('discord_connections.show.bot_connected.title') %></h3>
+            </div>
+          </div>
+        </div>
+      <% elsif @bot_authorization_error.present? %>
+        <div class="bg-red-900/20 border border-red-500 rounded-lg p-4 mb-6">
+          <div class="flex items-center gap-3">
+            <svg class="w-6 h-6 text-red-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+            </svg>
+            <div class="flex-1">
+              <h3 class="text-lg font-semibold text-red-500"><%= t('discord_connections.show.configuration_error.title') %></h3>
+              <p class="text-theme-secondary"><%= @bot_authorization_error %></p>
+            </div>
+          </div>
+        </div>
+      <% elsif @bot_invite_url.present? %>
+        <div class="bg-yellow-900/20 border border-yellow-500 rounded-lg p-4 mb-6">
+          <div class="flex items-center gap-3 mb-4">
+            <svg class="w-6 h-6 text-yellow-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path>
+            </svg>
+            <div class="flex-1">
+              <h3 class="text-lg font-semibold text-yellow-500"><%= t('discord_connections.show.bot_authorization.title') %></h3>
+              <p class="text-theme-secondary"><%= t('discord_connections.show.bot_authorization.message', server_name: h(@guild.guild_discord_setting&.discord_guild_name)) %></p>
+            </div>
+          </div>
+          <div class="mt-4">
+            <%= link_to @bot_invite_url, data: { turbo: false }, id: "authorize-guildsync-bot", class: "inline-flex items-center gap-2 px-6 py-3 bg-[#5865F2] text-white rounded-lg hover:bg-[#4752C4] transition-colors font-semibold cursor-pointer no-underline" do %>
+              <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515a.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0a12.64 12.64 0 0 0-.617-1.25a.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057a19.9 19.9 0 0 0 5.993 3.03a.078.078 0 0 0 .084-.028a14.09 14.09 0 0 0 1.226-1.994a.076.076 0 0 0-.041-.106a13.107 13.107 0 0 1-1.872-.892a.077.077 0 0 1-.008-.128a10.2 10.2 0 0 0 .372-.292a.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127a12.299 12.299 0 0 1-1.873.892a.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028a19.839 19.839 0 0 0 6.002-3.03a.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419c0-1.333.956-2.419 2.157-2.419c1.21 0 2.176 1.096 2.157 2.42c0 1.333-.956 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419c0-1.333.955-2.419 2.157-2.419c1.21 0 2.176 1.096 2.157 2.42c0 1.333-.946 2.418-2.157 2.418z"/>
+              </svg>
+              <%= t('discord_connections.show.bot_authorization.authorize_button') %>
+            <% end %>
+            <p class="text-theme-secondary text-sm mt-2"><%= t('discord_connections.show.bot_authorization.authorize_hint', server_name: h(@guild.guild_discord_setting&.discord_guild_name)) %></p>
+            <% if @discord_bot_redirect_uri.present? && @discord_bot_client_id.present? %>
+              <p class="text-theme-secondary text-xs mt-3 pt-3 border-t border-theme-primary/30">
+                If you see &quot;Invalid OAuth2 redirect_uri&quot;, add this <strong>exact</strong> URL in the Discord Developer Portal for the app with Client ID <code class="bg-theme-primary/20 px-1 rounded"><%= @discord_bot_client_id %></code>: OAuth2 → Redirects → <code class="bg-theme-primary/20 px-1 rounded break-all"><%= @discord_bot_redirect_uri %></code>
+              </p>
+            <% end %>
+          </div>
+        </div>
+      <% end %>
+    <% end %>
+
+    <div class="bg-theme-secondary rounded-lg border border-theme-primary p-6 mb-6">
+      <div class="flex gap-4">
+        <button id="reconnect-valid-btn" 
+                class="inline-flex items-center gap-2 px-6 py-3 bg-[#5865F2] text-white rounded-lg hover:bg-[#4752C4] transition-colors font-semibold cursor-pointer">
+          <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+            <path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515a.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0a12.64 12.64 0 0 0-.617-1.25a.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057a19.9 19.9 0 0 0 5.993 3.03a.078.078 0 0 0 .084-.028a14.09 14.09 0 0 0 1.226-1.994a.076.076 0 0 0-.041-.106a13.107 13.107 0 0 1-1.872-.892a.077.077 0 0 1-.008-.128a10.2 10.2 0 0 0 .372-.292a.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127a12.299 12.299 0 0 1-1.873.892a.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028a19.839 19.839 0 0 0 6.002-3.03a.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419c0-1.333.956-2.419 2.157-2.419c1.21 0 2.176 1.096 2.157 2.42c0 1.333-.956 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419c0-1.333.955-2.419 2.157-2.419c1.21 0 2.176 1.096 2.157 2.42c0 1.333-.946 2.418-2.157 2.418z"/>
+          </svg>
+          <%= t('discord_connections.show.reconnect_button') %>
+        </button>
+
+        <%= button_to t('discord_connections.show.disconnect_button'), 
+            guild_discord_connection_path(@guild), 
+            method: :delete,
+            class: "px-6 py-3 bg-red-600 text-white rounded-lg hover:bg-red-700 transition-colors font-semibold cursor-pointer",
+            data: { confirm: t('discord_connections.show.disconnect_confirm') } %>
+      </div>
+    </div>
+  <% elsif @user_conn.present? && !current_user.has_valid_discord_connection? %>
+    <div class="bg-yellow-900/20 border border-yellow-500 rounded-lg p-4 mb-6">
+      <div class="flex items-center gap-3">
+        <svg class="w-6 h-6 text-yellow-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path>
+        </svg>
+        <div class="flex-1">
+          <h3 class="text-lg font-semibold text-yellow-500"><%= t('discord_connections.show.connection_invalid.title') %></h3>
+          <p class="text-theme-secondary"><%= t('discord_connections.show.connection_invalid.message') %></p>
+          <p class="text-theme-secondary text-sm"><%= t('discord_connections.show.connection_invalid.last_connected') %> <span class="text-theme-primary"><%= clean_discord_username(@user_conn.discord_username) if @user_conn %></span></p>
+        </div>
+      </div>
+    </div>
+
+    <div class="bg-theme-secondary rounded-lg border border-theme-primary p-6 mb-6">
+      <div class="flex gap-4">
+        <button id="reconnect-invalid-btn" 
+                class="inline-flex items-center gap-2 px-6 py-3 bg-[#5865F2] text-white rounded-lg hover:bg-[#4752C4] transition-colors font-semibold cursor-pointer">
+          <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+            <path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515a.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0a12.64 12.64 0 0 0-.617-1.25a.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057a19.9 19.9 0 0 0 5.993 3.03a.078.078 0 0 0 .084-.028a14.09 14.09 0 0 0 1.226-1.994a.076.076 0 0 0-.041-.106a13.107 13.107 0 0 1-1.872-.892a.077.077 0 0 1-.008-.128a10.2 10.2 0 0 0 .372-.292a.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127a12.299 12.299 0 0 1-1.873.892a.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028a19.839 19.839 0 0 0 6.002-3.03a.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419c0-1.333.956-2.419 2.157-2.419c1.21 0 2.176 1.096 2.157 2.42c0 1.333-.956 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419c0-1.333.955-2.419 2.157-2.419c1.21 0 2.176 1.096 2.157 2.42c0 1.333-.946 2.418-2.157 2.418z"/>
+          </svg>
+          <%= t('discord_connections.show.reconnect_discord') %>
+        </button>
+
+        <%= button_to t('discord_connections.show.delete_connection'), 
+            guild_discord_connection_path(@guild), 
+            method: :delete,
+            class: "px-6 py-3 bg-red-600 text-white rounded-lg hover:bg-red-700 transition-colors font-semibold cursor-pointer",
+            data: { confirm: t('discord_connections.show.delete_confirm') } %>
+      </div>
+    </div>
+  <% else %>
+    <div class="bg-red-900/20 border border-red-500 rounded-lg p-4 mb-6">
+      <div class="flex items-center gap-3">
+        <svg class="w-6 h-6 text-red-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+        </svg>
+        <div>
+          <h3 class="text-lg font-semibold text-red-500"><%= t('discord_connections.show.bot_not_connected.title') %></h3>
+          <p class="text-theme-secondary"><%= t('discord_connections.show.bot_not_connected.message') %></p>
+        </div>
+      </div>
+    </div>
+
+    <div class="bg-theme-secondary rounded-lg border border-theme-primary p-6 mb-6">
+      <h2 class="text-xl font-semibold text-theme-primary mb-4"><%= t('discord_connections.show.connect_section.title') %></h2>
+      <p class="text-theme-secondary mb-4">
+        <% if current_user.has_valid_discord_connection? %>
+          <%= t('discord_connections.show.connect_section.already_connected') %>
+        <% else %>
+          <%= t('discord_connections.show.connect_section.not_connected') %>
+        <% end %>
+      </p>
+
+      <button id="connect-discord-btn" 
+              class="inline-flex items-center gap-2 px-6 py-3 bg-[#5865F2] text-white rounded-lg hover:bg-[#4752C4] transition-colors font-semibold cursor-pointer">
+        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+          <path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515a.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0a12.64 12.64 0 0 0-.617-1.25a.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057a19.9 19.9 0 0 0 5.993 3.03a.078.078 0 0 0 .084-.028a14.09 14.09 0 0 0 1.226-1.994a.076.076 0 0 0-.041-.106a13.107 13.107 0 0 1-1.872-.892a.077.077 0 0 1-.008-.128a10.2 10.2 0 0 0 .372-.292a.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127a12.299 12.299 0 0 1-1.873.892a.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028a19.839 19.839 0 0 0 6.002-3.03a.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419c0-1.333.956-2.419 2.157-2.419c1.21 0 2.176 1.096 2.157 2.42c0 1.333-.956 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419c0-1.333.955-2.419 2.157-2.419c1.21 0 2.176 1.096 2.157 2.42c0 1.333-.946 2.418-2.157 2.418z"/>
+        </svg>
+        <% if current_user.has_valid_discord_connection? %>
+          <%= t('discord_connections.show.connect_section.select_server') %>
+        <% else %>
+          <%= t('discord_connections.show.connect_section.connect_and_select') %>
+        <% end %>
+      </button>
+    </div>
+  <% end %>
+
+  <div class="mt-6">
+    <%= link_to t('discord_connections.show.back_to_dashboard'), guild_path(@guild), class: "text-theme-accent hover:text-theme-accent-hover" %>
+  </div>
+</div>
+
+<script>
+  (function() {
+    'use strict';
+
+    // Global message listener for Discord user connection and bot authorization (always active)
+    var globalMessageListener = function(event) {
+      // Handle Discord user connection - redirect to server selection
+      if (event.data && event.data.type === 'DISCORD_USER_CONNECTED' && event.data.redirect) {
+        console.log('Discord user connected, redirecting to server selection...', event.data);
+        window.location.href = event.data.redirect;
+        return;
+      }
+
+      // Handle bot authorization messages - check for both formats
+      var isBotAuthorized = event.data && (
+        event.data.status === 'authorized' || 
+        event.data.type === 'DISCORD_BOT_AUTHORIZED' ||
+        (event.data.type === 'DISCORD_BOT_AUTHORIZED' && event.data.status === 'authorized')
+      );
+
+      if (isBotAuthorized) {
+        console.log('Discord bot authorization complete (global listener), reloading...', event.data);
+        window.removeEventListener('message', globalMessageListener);
+        // Reload the page to show updated bot connection status
+        // Use a small delay to ensure any pending updates are complete
+        setTimeout(function() {
+          window.location.reload();
+        }, 500);
+      }
+    };
+
+    // Add global listener for Discord user connection and bot authorization
+    window.addEventListener('message', globalMessageListener);
+
+    function openDiscordOAuth() {
+      <% if current_user.has_valid_discord_connection? %>
+        // User already has Discord connected - redirect to server selection page (not popup)
+        window.location.href = '<%= select_discord_server_path(@guild) %>';
+        return;
+      <% else %>
+        // User needs to connect Discord first
+        var authUrl = '<%= new_guild_discord_connection_path(@guild) %>?popup=true';
+        var width = 600;
+        var height = 700;
+        var left = Math.round((screen.width - width) / 2);
+        var top = Math.round((screen.height - height) / 2);
+
+        var popup = window.open(
+          authUrl,
+          'Discord OAuth',
+          'width=' + width + ',height=' + height + ',left=' + left + ',top=' + top + ',toolbar=no,location=no,status=no,menubar=no,scrollbars=yes,resizable=yes'
+        );
+      <% end %>
+
+      if (!popup || popup.closed || typeof popup.closed === 'undefined') {
+        window.showToast('warning', '<%= j t('discord_connections.show.popup_blocked') %>');
+        return;
+      }
+
+      var messageListener = function(event) {
+        // Accept messages from same origin or allow wildcard for popup communication
+        var allowedOrigin = window.location.origin;
+        // Allow wildcard origin for cross-popup communication
+        if (event.origin !== allowedOrigin && event.origin !== '*' && event.origin !== 'null') {
+          return;
+        }
+
+        console.log('Message received:', event.data);
+
+        // Handle Discord user connection - redirect to server selection
+        if (event.data && event.data.type === 'DISCORD_USER_CONNECTED' && event.data.redirect) {
+          console.log('Discord user connected, redirecting to server selection...', event.data);
+          if (popup && !popup.closed) {
+            try {
+              popup.close();
+            } catch (e) {
+              console.error('Error closing popup:', e);
+            }
+          }
+          window.removeEventListener('message', messageListener);
+          window.location.href = event.data.redirect;
+          return;
+        }
+
+        if (event.data && event.data.type === 'DISCORD_OAUTH_SUCCESS') {
+          console.log('Discord OAuth success received, closing popup and reloading...');
+          if (popup && !popup.closed) {
+            try {
+              popup.close();
+            } catch (e) {
+              console.error('Error closing popup:', e);
+            }
+          }
+          window.removeEventListener('message', messageListener);
+          // Reload the page to show updated connection status
+          window.location.reload();
+        } else if (event.data && (
+          event.data.status === 'authorized' || 
+          event.data.type === 'DISCORD_BOT_AUTHORIZED' ||
+          (event.data.type === 'DISCORD_BOT_AUTHORIZED' && event.data.status === 'authorized')
+        )) {
+          console.log('Discord bot authorization complete, reloading...');
+          if (popup && !popup.closed) {
+            try {
+              popup.close();
+            } catch (e) {
+              console.error('Error closing popup:', e);
+            }
+          }
+          window.removeEventListener('message', messageListener);
+          // Reload the page to show updated bot connection status
+          setTimeout(function() {
+            window.location.reload();
+          }, 500);
+        } else if (event.data && event.data.type === 'DISCORD_OAUTH_ERROR') {
+          console.log('Discord OAuth error received:', event.data);
+          if (popup && !popup.closed) {
+            try {
+              popup.close();
+            } catch (e) {
+              console.error('Error closing popup:', e);
+            }
+          }
+          window.removeEventListener('message', messageListener);
+          window.showToast('error', '<%= j t('js.discord_connections.connection_failed', error: '') %>'.replace('%{error}', '') + (event.data.message || '<%= j t('js.common.unknown_error') %>'));
+        }
+      };
+
+      window.addEventListener('message', messageListener);
+
+      var checkClosed = setInterval(function() {
+        if (popup.closed) {
+          clearInterval(checkClosed);
+          window.removeEventListener('message', messageListener);
+        }
+      }, 500);
+    }
+
+    var connectBtn = document.getElementById('connect-discord-btn');
+    var reconnectValidBtn = document.getElementById('reconnect-valid-btn');
+    var reconnectInvalidBtn = document.getElementById('reconnect-invalid-btn');
+
+    if (connectBtn) {
+      connectBtn.addEventListener('click', openDiscordOAuth);
+    }
+
+    if (reconnectValidBtn) {
+      reconnectValidBtn.addEventListener('click', openDiscordOAuth);
+    }
+
+    if (reconnectInvalidBtn) {
+      reconnectInvalidBtn.addEventListener('click', openDiscordOAuth);
+    }
+  })();
+</script>

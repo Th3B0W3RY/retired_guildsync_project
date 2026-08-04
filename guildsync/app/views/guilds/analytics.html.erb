@@ -1,0 +1,6 @@
+<div class="max-w-4xl mx-auto p-6">
+  <h1 class="text-3xl font-bold text-theme-primary mb-6"><%= t('guilds.analytics.title', guild_name: @guild.name) %></h1>
+  <p class="text-theme-secondary mb-6"><%= t('guilds.analytics.subtitle') %></p>
+  <%= link_to t('guilds.analytics.back_to_dashboard'), guild_path(@guild), class: "text-theme-accent hover:text-theme-accent-hover" %>
+</div>
+

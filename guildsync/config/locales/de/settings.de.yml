@@ -1,0 +1,139 @@
+de:
+  settings:
+    account:
+      title: Konto-Einstellungen
+      subtitle: Verwalte deine Kontosicherheit und Einstellungen
+      password:
+        title: Passwort ändern
+        description: Aktualisiere dein Kontopasswort
+        button: Passwort ändern
+      discord:
+        title: Discord-Konto
+        connected_as: Angemeldet als %{username}
+        not_connected: Discord-Konto nicht verbunden
+        disconnect: Discord-Verbindung löschen
+        disconnect_confirm: Bist du sicher, dass du dein Discord-Konto trennen möchtest? Die Verbindung wird entfernt; du musst dich erneut verbinden, um Discord-Funktionen zu nutzen.
+        switch_to_mfa_first: Wechsle zuerst zum MFA-Login, um Discord zu trennen
+        connect: Discord-Konto verbinden
+      auth_method:
+        title: Authentifizierungsmethode
+        description: Wähle, wie du dich bei deinem Konto anmelden möchtest.
+        mfa:
+          title: MFA-Anmeldung
+          description: Passwort und Mehrfaktorauthentifizierung
+          button: MFA verwenden
+          button_active: MFA aktiv
+        discord:
+          title: Discord-Anmeldung
+          description: Mit deinem Discord-Konto anmelden
+          button: Discord verwenden
+          button_active: Discord aktiv
+          connect_first: Zuerst Discord-Konto verbinden
+        google:
+          title: Gmail-Anmeldung
+          description: Du meldest dich mit Google an (verknüpftes Gmail- oder Google-Workspace-Konto).
+          active: Gmail aktiv
+        microsoft:
+          title: Outlook-Anmeldung
+          description: Du meldest dich mit Microsoft an (persönliches Konto, z. B. Outlook.com oder Hotmail).
+          active: Outlook aktiv
+        mfa_backup_warning: Erwäge MFA als zusätzliche Authentifizierungsmethode.
+        discord_connect_warning: Discord zu verbinden kann die Anmeldung erleichtern und Funktionen erweitern.
+      language:
+        title: Sprache
+        description: Wähle deine bevorzugte Sprache. Standard ist Englisch für angemeldete Konten (Ausgeloggt kann weiterhin die Browsersprache gelten, sofern du keine Sprache aus dem Menü wählst).
+        label: Bevorzugte Sprache
+        auto_detect: Standard (Englisch)
+        save: Sprache speichern
+        updated: Spracheinstellung aktualisiert.
+        invalid: Ungültige Sprachauswahl.
+      mfa:
+        title: Mehrfaktorauthentifizierung (MFA)
+        enabled: MFA ist aktiviert und aktiv.
+        not_enabled: MFA ist nicht eingerichtet. Bitte konfiguriere es zum Schutz deines Kontos.
+        manage: MFA verwalten
+        setup: MFA einrichten
+      backup_codes:
+        title: Sicherungscode
+        description: Dein Sicherungscode erlaubt es dir, dein Passwort zurückzusetzen und dein Konto wiederherzustellen, wenn du den Zugang zu MFA verlierst.
+        warning: Bewahre diesen Code sicher auf — er kann Passwort und MFA umgehen!
+        current: Dein aktueller Sicherungscode
+        no_codes: Du hast keinen aktiven Sicherungscode.
+        regenerate_button: Sicherungscode neu erzeugen
+        regenerate_confirm: Wenn du einen neuen Sicherungscode erzeugst, wird dein bisheriger ungültig und wir senden dir den neuen per E-Mail. Fortfahren?
+        regenerate_description: Du kannst deinen Sicherungscode höchstens alle 3 Monate neu erzeugen. Der neue Code wird an deine bestätigte E-Mail-Adresse gesendet.
+        regenerated_notice: Wir haben deinen neuen Sicherungscode an deine bestätigte E-Mail-Adresse gesendet.
+        cooldown_active: Du kannst deinen Sicherungscode erneut erzeugen am %{date}.
+        verify_email_first: Bestätige zuerst deine E-Mail-Adresse, bevor du den Sicherungscode neu erzeugst.
+        how_it_works: So funktioniert dein Sicherungscode
+        bullet_length: Der Code ist 24 Zeichen lang (Buchstaben und Zahlen).
+        bullet_single_use: Der Code ist nur einmal gültig — nach Verwendung ungültig.
+        bullet_use_case: Nutze den Code, wenn du dein Passwort vergisst ODER den MFA-Zugang verlierst.
+        bullet_store_offline: Bewahre den Code offline auf (Ausdruck oder Passwort-Manager) — wir zeigen ihn nicht erneut!
+        bullet_regenerate: Durch Erneuern wird der alte Code ungültig; ein neuer wird dir per E-Mail zugesendet.
+      delete_account:
+        title: Konto löschen
+        intro: Du kannst dieses Konto dauerhaft schließen und zugehörige GuildSync-Daten entfernen. Nach unserer Aufbewahrungsfrist ist das unwiderruflich; vorher können laut Supportrichtlinien bestimmte Daten noch wiederhergestellt werden.
+        privacy_link: Datenschutzerklärung
+        support_link: Support kontaktieren
+        primary_cta: Ich möchte mein Konto löschen
+        code_label: E-Mail-Bestätigungscode
+        code_hint: Gib den Einmalcode aus deiner E-Mail ein (Buchstaben und Zahlen).
+        resend_wait: Du kannst in %{seconds} Sekunden einen weiteren Code anfordern.
+        continue_button: Weiter zur Kontolöschung
+        modal_title: Möchtest du dein Konto wirklich löschen?
+        modal_body: Dein Konto wird geschlossen und du wirst abgemeldet. Nach der Aufbewahrungsfrist ist dies nicht mehr rückgängig zu machen.
+        modal_cancel: Abbrechen
+        modal_confirm: Ja, mein Konto löschen
+        blocked:
+          generic: Die Kontolöschung ist blockiert, bis die folgenden Punkte geklärt sind.
+          already_closed: Dieses Konto ist bereits geschlossen.
+          purge_in_progress: Die Löschung läuft bereits.
+          alliance_leader: Verlasse oder löse zuerst Allianzen, in denen du Anführer bist.
+          owned_guild_has_members: Kläre Gilden, deren du Inhaber bist und die noch andere aktive Mitglieder haben (Besitz übertragen, Mitglieder entfernen oder Gilde auflösen).
+    profile:
+      title: Profil-Einstellungen
+      subtitle: Passe dein Profil an
+      email_verification:
+        required_notice: Füge auf dieser Seite eine echte E-Mail-Adresse hinzu und bestätige sie, um GuildSync weiter zu nutzen.
+        banner_title: E-Mail bestätigen
+        banner_body: Für dieses Konto wird eine Platzhalter- oder unbestätigte E-Mail verwendet. Gib unten eine echte Adresse ein und bestätige den Link, den wir senden.
+        invalid_link: Dieser Bestätigungslink ist ungültig oder abgelaufen. Fordere unten eine neue E-Mail an.
+        success_notice: Deine E-Mail-Adresse ist bestätigt.
+        update_failed: Deine E-Mail konnte nicht aktualisiert werden. Bitte versuche es erneut oder fordere einen neuen Bestätigungslink an.
+      avatar:
+        title: Profil-Avatar
+        change: Avatar ändern
+        upload: Avatar hochladen
+        remove: Avatar entfernen
+        remove_confirm: Avatar wirklich entfernen?
+        updated_notice: Avatar erfolgreich aktualisiert.
+        removed_notice: Avatar erfolgreich entfernt.
+      username:
+        title: Benutzername
+        current: "Aktueller Benutzername:"
+        label: Neuer Benutzername
+        hint: "3–30 Zeichen: Buchstaben, Ziffern und Unterstriche."
+        save: Benutzername speichern
+        updated_notice: Benutzername aktualisiert.
+        update_failed: Benutzername konnte nicht aktualisiert werden.
+      email:
+        title: E-Mail-Adresse
+        current: "Aktuelle E-Mail:"
+        verified_badge: Bestätigt
+        unverified_badge: Nicht bestätigt — gib unten eine echte E-Mail ein
+        label: Zu bestätigende E-Mail
+        placeholder: du@beispiel.de
+        send_verification: Bestätigungs-E-Mail senden
+        verification_sent_notice: Prüfe deinen Posteingang auf den Bestätigungslink.
+        pending_notice: Ein Bestätigungslink wurde an %{email} gesendet.
+        taken: Diese E-Mail-Adresse wird bereits verwendet.
+        mailer:
+          subject: Deine GuildSync-E-Mail-Adresse bestätigen
+          heading: Bestätige deine E-Mail-Adresse
+          greeting: Hallo,
+          body: Du hast angefordert, diese E-Mail-Adresse für dein GuildSync-Profil zu bestätigen. Nutze die Schaltfläche unten, um die Verifizierung abzuschließen.
+          cta: E-Mail-Adresse bestätigen
+          expires: Dieser Link läuft in 24 Stunden ab.
+          fallback: "Wenn die Schaltfläche nicht funktioniert, kopiere diese URL und füge sie in deinen Browser ein:"
+          ignore: Wenn du diese E-Mail-Verifizierung nicht angefordert hast, kannst du diese Nachricht ignorieren.

@@ -1,0 +1,83 @@
+<% glass = "rounded-xl border border-white/10 bg-[rgba(15,23,43,0.5)] p-6 shadow-lg" %>
+<% inner = "rounded-lg border border-white/5 bg-[rgba(2,6,24,0.45)] p-4" %>
+<% primary_cta = "inline-flex items-center gap-2 rounded-lg bg-theme-brand-gradient px-6 py-3 text-base font-semibold text-white transition-opacity hover:opacity-95" %>
+<% link_accent = "font-medium text-[#7C86FF] hover:underline" %>
+
+<div class="mx-auto max-w-4xl p-6 font-[family-name:Inter,ui-sans-serif,system-ui,sans-serif]">
+  <div class="mb-6">
+    <h1 class="mb-2 text-3xl font-bold text-white"><%= t('guild_applications.index.title') %></h1>
+    <p class="text-[#90A1B9]"><%= t('guild_applications.index.subtitle') %></p>
+  </div>
+
+  <div class="mb-6">
+    <%= link_to t('guild_applications.index.apply_to_guild'), new_guild_application_path, class: primary_cta %>
+  </div>
+
+  <% if @pending_invites.any? %>
+    <div class="<%= glass %> mb-6">
+      <h2 class="mb-4 text-xl font-semibold text-white"><%= t('guild_applications.index.guild_invitations') %></h2>
+      <div class="space-y-4">
+        <% @pending_invites.each do |invite| %>
+          <div class="<%= inner %>">
+            <div class="mb-2 flex items-center justify-between">
+              <div>
+                <h3 class="text-lg font-semibold text-white"><%= invite.guild.name %></h3>
+                <p class="text-sm text-[#90A1B9]"><%= t('guild_applications.index.invited_by') %> <%= invite.invited_by.username %></p>
+                <p class="text-sm text-[#90A1B9]"><%= t('guild_applications.index.invited') %> <%= invite.created_at.strftime('%B %d, %Y at %I:%M %p') %></p>
+              </div>
+              <span class="rounded-full bg-blue-900/40 px-3 py-1 text-sm font-medium text-blue-300">
+                <%= t('guild_applications.index.pending') %>
+              </span>
+            </div>
+            <div class="mt-4 flex gap-3">
+              <%= button_to t('guild_applications.index.accept_invitation'), accept_guild_invite_path(invite), method: :patch, class: "rounded-lg bg-green-600 px-4 py-2 font-semibold text-white transition-colors hover:bg-green-700" %>
+              <%= button_to t('guild_applications.index.decline'), deny_guild_invite_path(invite), method: :patch, class: "rounded-lg bg-red-600 px-4 py-2 font-semibold text-white transition-colors hover:bg-red-700" %>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  <% end %>
+
+  <% if @applications.any? %>
+    <div class="<%= glass %>">
+      <div class="space-y-4">
+        <% @applications.each do |application| %>
+          <div class="<%= inner %>">
+            <div class="mb-2 flex items-center justify-between">
+              <div>
+                <h3 class="text-lg font-semibold text-white"><%= application.guild.name %></h3>
+                <p class="text-sm text-[#90A1B9]"><%= t('guild_applications.index.applied') %> <%= application.created_at.strftime('%B %d, %Y at %I:%M %p') %></p>
+              </div>
+              <span class="rounded-full px-3 py-1 text-sm font-medium
+                <%= case application.status
+                    when 'pending' then 'bg-yellow-900/40 text-yellow-300'
+                    when 'accepted' then 'bg-green-900/40 text-green-300'
+                    when 'rejected' then 'bg-red-900/40 text-red-300'
+                    end %>">
+                <%= application.status.humanize %>
+              </span>
+            </div>
+
+            <% if application.message.present? %>
+              <div class="mt-2">
+                <p class="text-sm text-[#90A1B9]"><strong><%= t('guild_applications.index.your_message') %></strong></p>
+                <p class="text-white"><%= simple_format(application.message) %></p>
+              </div>
+            <% end %>
+
+            <% if application.status == 'accepted' %>
+              <div class="mt-4">
+                <%= link_to t('guild_applications.index.view_guild'), guild_path(application.guild), class: link_accent %>
+              </div>
+            <% end %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  <% else %>
+    <div class="<%= glass %> p-8 text-center">
+      <p class="text-lg text-[#90A1B9]"><%= t('guild_applications.index.no_applications') %></p>
+    </div>
+  <% end %>
+</div>

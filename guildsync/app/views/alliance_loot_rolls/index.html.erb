@@ -1,0 +1,56 @@
+<div class="max-w-4xl mx-auto p-6">
+  <div class="mb-6 flex items-center justify-between">
+    <div>
+      <h1 class="text-3xl font-bold text-theme-primary mb-2"><%= t('alliances.loot_rolls.index.title') %></h1>
+      <p class="text-theme-secondary"><%= t('alliances.loot_rolls.index.subtitle', alliance_name: @alliance.name) %></p>
+    </div>
+    <div class="flex items-center gap-3">
+      <%= link_to "&larr; #{t('alliances.nav.back_to_alliance')}".html_safe, alliance_path(@alliance),
+          class: "text-sm text-theme-accent hover:text-theme-accent-hover" %>
+      <% if can_manage_alliance_actions?(@alliance) %>
+        <%= link_to t('alliances.loot_rolls.index.create'), new_alliance_alliance_loot_roll_path(@alliance),
+            class: "px-6 py-3 bg-theme-accent text-white rounded-lg hover:bg-theme-accent-hover transition-colors font-semibold" %>
+      <% end %>
+    </div>
+  </div>
+
+  <% if @loot_rolls.any? %>
+    <div class="space-y-4">
+      <% @loot_rolls.each do |roll| %>
+        <div class="bg-theme-secondary rounded-lg border border-theme-primary p-6">
+          <div class="flex items-start justify-between">
+            <div>
+              <h3 class="text-xl font-semibold text-theme-primary mb-1">
+                <%= link_to roll.title, alliance_alliance_loot_roll_path(@alliance, roll), class: "hover:text-theme-accent transition-colors" %>
+              </h3>
+              <div class="flex items-center gap-3 text-sm text-theme-secondary">
+                <span><%= t('alliances.loot_rolls.index.range', min: roll.min_roll, max: roll.max_roll) %></span>
+                <span>&bull;</span>
+                <span><%= roll.total_entries %> <%= "entry".pluralize(roll.total_entries) %></span>
+                <% if roll.deadline_at.present? %>
+                  <span>&bull; <%= t('alliances.loot_rolls.index.deadline') %> <%= roll.deadline_at.strftime("%B %d, %Y") %></span>
+                <% end %>
+              </div>
+              <% if roll.winner_entry.present? %>
+                <p class="text-sm text-yellow-400 mt-1">
+                  <%= t('alliances.loot_rolls.index.winner', name: roll.winner_entry.display_name, roll: roll.winner_entry.roll_value) %>
+                </p>
+              <% end %>
+            </div>
+            <span class="px-3 py-1 rounded-full text-sm font-medium <%= roll.currently_open? ? 'bg-green-900/30 text-green-400' : 'bg-gray-900/30 text-gray-500' %>">
+              <%= roll.currently_open? ? t('alliances.loot_rolls.index.open') : t('alliances.loot_rolls.index.closed') %>
+            </span>
+          </div>
+          <div class="mt-4">
+            <%= link_to t('alliances.loot_rolls.index.view'), alliance_alliance_loot_roll_path(@alliance, roll),
+                class: "px-4 py-2 bg-theme-accent text-white rounded-lg hover:bg-theme-accent-hover transition-colors text-sm inline-block" %>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  <% else %>
+    <div class="bg-theme-secondary rounded-lg border border-theme-primary p-8 text-center">
+      <p class="text-theme-secondary text-lg"><%= t('alliances.loot_rolls.index.no_rolls') %></p>
+    </div>
+  <% end %>
+</div>

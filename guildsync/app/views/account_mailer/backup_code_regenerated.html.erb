@@ -1,0 +1,15 @@
+<h1><%= t("account_creation.mailer.backup_code_regenerated.heading") %></h1>
+
+<p><%= t("account_creation.mailer.backup_code_regenerated.greeting", username: @user.username) %></p>
+
+<p><%= t("account_creation.mailer.backup_code_regenerated.body") %></p>
+
+<pre style="font-size: 18px; font-weight: bold; letter-spacing: 0.08em;"><%= @backup_code %></pre>
+
+<p><%= t("account_creation.mailer.backup_code_regenerated.warning") %></p>
+
+<p><%= t("account_creation.mailer.backup_code_regenerated.store_safely") %></p>
+
+<p><%= t("account_creation.mailer.backup_code_regenerated.unrequested") %></p>
+
+<p><%= t("account_creation.mailer.signoff") %></p>

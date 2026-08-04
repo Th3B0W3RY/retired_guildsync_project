@@ -1,0 +1,95 @@
+<div class="space-y-8">
+  <div class="flex justify-between items-center">
+    <h1 class="text-3xl font-bold text-theme-accent"><%= t("admin.subscriptions.paying_users.page_title") %></h1>
+    <div class="flex gap-4">
+      <%= link_to t("admin.subscriptions.paying_users.link_trial_users"), trial_users_admin_subscriptions_path, class: "px-4 py-2 bg-yellow-600 text-white rounded-lg hover:bg-yellow-700 transition-colors" %>
+      <%= link_to t("admin.users.index.back_to_dashboard"), admin_root_path, class: "px-4 py-2 bg-theme-secondary text-theme-primary rounded-lg hover:bg-theme-hover transition-colors" %>
+    </div>
+  </div>
+
+  <div class="bg-theme-card border border-theme-primary rounded-lg p-6 shadow-lg">
+    <%= form_with url: paying_users_admin_subscriptions_path, method: :get, class: "flex gap-4",
+        data: { turbo_frame: Admin::SubscriptionsController::PAYING_RESULTS_FRAME } do |f| %>
+      <div class="flex-1 relative">
+        <%= f.text_field :q, value: @query, placeholder: t("admin.users.index.search_placeholder"),
+            id: "paying-user-search-input",
+            class: "w-full px-4 py-2 bg-theme-secondary border border-theme-primary rounded-lg text-theme-primary focus:outline-none focus:ring-2 focus:ring-theme-accent",
+            autocomplete: "off" %>
+        <div id="paying-user-search-results" class="hidden absolute z-50 w-full mt-1 bg-theme-card border border-theme-primary rounded-lg shadow-xl max-h-64 overflow-y-auto"></div>
+      </div>
+      <%= f.submit t("admin.users.index.search_submit"), class: "px-6 py-2 bg-theme-accent text-white rounded-lg hover:bg-theme-accent-hover transition-colors" %>
+      <% if @query.present? %>
+        <%= link_to t("admin.users.index.clear"), paying_users_admin_subscriptions_path,
+            class: "px-6 py-2 bg-theme-secondary text-theme-primary rounded-lg hover:bg-theme-hover transition-colors",
+            data: { turbo_frame: Admin::SubscriptionsController::PAYING_RESULTS_FRAME } %>
+      <% end %>
+    <% end %>
+  </div>
+
+  <%= turbo_frame_tag Admin::SubscriptionsController::PAYING_RESULTS_FRAME do %>
+    <%= render "paying_users_list" %>
+  <% end %>
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const searchInput = document.getElementById('paying-user-search-input');
+    const resultsDiv = document.getElementById('paying-user-search-results');
+    let searchTimeout = null;
+
+    if (searchInput && resultsDiv) {
+      searchInput.addEventListener('input', function() {
+        const query = this.value.trim();
+
+        clearTimeout(searchTimeout);
+
+        if (query.length < 1) {
+          resultsDiv.classList.add('hidden');
+          return;
+        }
+
+        searchTimeout = setTimeout(async () => {
+          try {
+            const response = await fetch(`<%= search_paying_admin_subscriptions_path %>?q=${encodeURIComponent(query)}`);
+            const data = await response.json();
+
+            resultsDiv.innerHTML = '';
+
+            if (data.users && data.users.length > 0) {
+              data.users.forEach(user => {
+                const item = document.createElement('div');
+                item.className = 'p-3 hover:bg-theme-secondary cursor-pointer border-b border-theme-primary last:border-b-0';
+                const emailLine = document.createElement('div');
+                emailLine.className = 'font-medium text-theme-primary';
+                emailLine.textContent = user.email;
+                const metaLine = document.createElement('div');
+                metaLine.className = 'text-sm text-theme-secondary';
+                metaLine.textContent = `${user.username} • ${user.plan} • ${user.status}`;
+                item.appendChild(emailLine);
+                item.appendChild(metaLine);
+                item.addEventListener('click', () => {
+                  searchInput.value = user.email;
+                  resultsDiv.classList.add('hidden');
+                  searchInput.form.requestSubmit();
+                });
+                resultsDiv.appendChild(item);
+              });
+              resultsDiv.classList.remove('hidden');
+            } else {
+              resultsDiv.classList.add('hidden');
+            }
+          } catch (error) {
+            console.error('Search error:', error);
+            resultsDiv.classList.add('hidden');
+          }
+        }, 300);
+      });
+
+      document.addEventListener('click', (e) => {
+        if (!searchInput.contains(e.target) && !resultsDiv.contains(e.target)) {
+          resultsDiv.classList.add('hidden');
+        }
+      });
+    }
+  });
+</script>

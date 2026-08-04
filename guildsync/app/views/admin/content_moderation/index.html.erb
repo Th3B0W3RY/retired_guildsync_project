@@ -1,0 +1,15 @@
+<% cm = "admin.content_moderation.index" %>
+<div class="space-y-6">
+  <div class="flex justify-between items-center flex-wrap gap-4">
+    <h1 class="text-3xl font-bold text-theme-accent"><%= t("#{cm}.page_title") %></h1>
+    <%= link_to t("#{cm}.back_to_dashboard"), admin_root_path,
+          class: "px-4 py-2 bg-theme-secondary text-theme-primary rounded-lg hover:bg-theme-hover transition-colors",
+          data: { turbo_frame: "_top" } %>
+  </div>
+
+  <div id="admin_content_moderation_flash" class="min-h-0" aria-live="polite"></div>
+
+  <%= turbo_frame_tag Admin::ContentModerationController::CONTENT_MODERATION_INDEX_MAIN_FRAME do %>
+    <%= render "content_moderation_index_main" %>
+  <% end %>
+</div>

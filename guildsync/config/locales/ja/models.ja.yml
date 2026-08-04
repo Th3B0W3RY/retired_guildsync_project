@@ -1,0 +1,235 @@
+# frozen_string_literal: true
+#
+# Model Validation Translations
+# ============================
+# This file contains all model validation error messages for i18n support.
+#
+ja:
+  # ============================================================================
+  # ACTIVERECORD MODELS
+  # ============================================================================
+  activerecord:
+    models:
+      user: "ユーザー"
+      guild: "ギルド"
+      game: "ゲーム"
+      event: "イベント"
+      poll: "投票"
+      guild_document: "ドキュメント"
+      guild_member: "メンバー"
+      guild_application: "申請"
+      loot_roll: "ルートロール"
+    attributes:
+      user:
+        email: "メールアドレス"
+        password: "パスワード"
+        display_name: "表示名"
+      guild:
+        name: "名前"
+        description: "説明"
+      game:
+        name: "名前"
+        description: "説明"
+
+  # ============================================================================
+  # ACTIVERECORD ERRORS
+  # ============================================================================
+    errors:
+      models:
+        landing_user_feedback:
+          attributes:
+            base:
+              entry_limit_reached: "ホームのフィードバックは最大%{max}件までです。追加するには1件削除してください。"
+        homepage_feature_card:
+          attributes:
+            icon_key:
+              invalid_fontawesome_icon: "同期済みの Font Awesome Free カタログにありません。同期を実行するか別のアイコンを選んでください。"
+        # ----------------------------------------------------------------------
+        # USER MODEL
+        # ----------------------------------------------------------------------
+        user:
+          attributes:
+            username:
+              invalid_format: "使用できるのは英字・数字・アンダースコアのみです"
+
+        # ----------------------------------------------------------------------
+        # GUILD MODEL
+        # ----------------------------------------------------------------------
+        guild:
+          attributes:
+            name:
+              already_owned: "この名前のギルドはすでに所有しています"
+            base:
+              subscription_required: "ギルドを作成するには有効なサブスクリプションが必要です"
+              guild_limit_reached: "%{plan_name} プランのギルド上限（%{max_guilds}）に達しています"
+
+        # ----------------------------------------------------------------------
+        # GUILD MEMBER MODEL
+        # ----------------------------------------------------------------------
+        guild_member:
+          attributes:
+            user_id:
+              already_member: "このギルドのメンバーですでにあります"
+            base:
+              member_limit_reached: "このギルドは %{plan_name} プランのメンバー上限（%{max_members}）に達しています"
+
+        # ----------------------------------------------------------------------
+        # GUILD DISCORD SETTING MODEL
+        # ----------------------------------------------------------------------
+        guild_discord_setting:
+          attributes:
+            discord_guild_id:
+              already_connected: "このDiscordサーバーはすでに別のギルドに接続されています"
+            guild_id:
+              one_connection_only: "ギルドに接続できるDiscordは1つのみです"
+
+        # ----------------------------------------------------------------------
+        # FEATURE REQUEST MODEL
+        # ----------------------------------------------------------------------
+        feature_request:
+          attributes:
+            description:
+              too_short: "他の人が理解できるように50文字以上で入力してください"
+
+        # ----------------------------------------------------------------------
+        # POLL VOTE MODEL
+        # ----------------------------------------------------------------------
+        poll_vote:
+          attributes:
+            user_id:
+              one_vote_only: "投票は1つの投票につき1回のみ可能です"
+
+        # ----------------------------------------------------------------------
+        # LOOT ROLL MODEL
+        # ----------------------------------------------------------------------
+            base:
+              user_or_discord_required: "ユーザー アカウント または Discord ID を指定する必要があります。"
+        loot_roll:
+          attributes:
+            max_roll:
+              must_be_greater: "最小ロール値より大きくしてください"
+
+        # ----------------------------------------------------------------------
+        # LOOT ROLL ENTRY MODEL
+        # ----------------------------------------------------------------------
+        loot_roll_entry:
+          attributes:
+            discord_user_id:
+              already_rolled: "すでにロール済みです。"
+            roll_value:
+              out_of_bounds: "%{min} 以上 %{max} 以下である必要があります"
+            base:
+              loot_roll_closed: "このルートロールは終了しています。"
+
+        # ----------------------------------------------------------------------
+        # GUILD BATTLE MODEL
+        # ----------------------------------------------------------------------
+        guild_battle:
+          attributes:
+            defender_guild_id:
+              same_as_challenger: "挑戦側ギルドと同じにはできません"
+
+        # ----------------------------------------------------------------------
+        # GEAR SNAPSHOT MODEL
+        # ----------------------------------------------------------------------
+        gear_snapshot:
+          attributes:
+            data:
+              blank: "を入力してください"
+            screenshot:
+              must_be_attached: "を添付してください"
+
+        # ----------------------------------------------------------------------
+        # GEAR UPLOAD REQUEST MODEL
+        # ----------------------------------------------------------------------
+        gear_upload_request:
+          attributes:
+            requester:
+              no_permission: "ギア更新を要求する権限がありません"
+
+        # ----------------------------------------------------------------------
+        # GUILD APPLICATION MODEL
+        # ----------------------------------------------------------------------
+        guild_application:
+          attributes:
+            user_id:
+              already_applied: "このギルドにはすでに申請済みです"
+
+        # ----------------------------------------------------------------------
+        # GUILD INVITE MODEL
+        # ----------------------------------------------------------------------
+        guild_invite:
+          attributes:
+            user_id:
+              already_invited: "このギルドにはすでに招待されています"
+              already_member: "このギルドのメンバーですでにあります"
+
+        # ----------------------------------------------------------------------
+        # DISCORD EVENT SIGNUP MODEL
+        # ----------------------------------------------------------------------
+        discord_event_signup:
+          attributes:
+            discord_user_id:
+              one_role_per_event: "1つのイベントで選べるロールは1つだけです"
+
+        # ----------------------------------------------------------------------
+        # DISCORD EVENT PARTICIPATION MODEL
+        # ----------------------------------------------------------------------
+        discord_event_participation:
+          attributes:
+            discord_user_id:
+              already_signed_up: "このイベントにはすでに参加登録済みです"
+
+        # ----------------------------------------------------------------------
+        # EVENT PARTICIPATION MODEL
+        # ----------------------------------------------------------------------
+        event_participation:
+          attributes:
+            user_id:
+              already_responded: "このイベントにはすでに回答済みです"
+
+        # ----------------------------------------------------------------------
+        # DISCORD CONNECTION MODEL
+        # ----------------------------------------------------------------------
+            base:
+              user_or_discord_required: "ユーザー アカウント または Discord ID を指定する必要があります。"
+        discord_connection:
+          attributes:
+            guild_id:
+              one_connection_only: "ギルドに接続できるDiscordは1つのみです"
+
+        # ----------------------------------------------------------------------
+        # SUBSCRIPTION MODEL
+        # ----------------------------------------------------------------------
+        subscription:
+          attributes:
+            expires_at:
+              must_be_after_started: "開始日時より後である必要があります"
+
+        # ----------------------------------------------------------------------
+        # GUILD GAME MODEL
+        # ----------------------------------------------------------------------
+        guild_game:
+          attributes:
+            primary:
+              only_one_allowed: "ギルドごとにプライマリゲームは1つのみ設定できます"
+
+        alliance_poll_vote:
+          attributes:
+            base:
+              user_or_discord_required: "ユーザー アカウント または Discord ID を指定する必要があります。"
+        alliance_event_participation:
+          attributes:
+            base:
+              user_or_discord_required: "ユーザー アカウント または Discord ID を指定する必要があります。"
+        alliance_loot_roll_entry:
+          attributes:
+            base:
+              user_or_discord_required: "ユーザー アカウント または Discord ID を指定する必要があります。"
+  ocr:
+    messages:
+      limit_reached: "この請求期間のOCRリクエストを使い切りました。%{plan_name}プランでは月%{limit}件までです。サポートにお問い合わせください。"
+      hard_locked: "OCRへのアクセスが一時的に停止されています。サポートにお問い合わせください。"
+      trial_expired: "無料トライアルのOCRリクエストを使い切りました。OCRを続けるにはプランに加入してください。"
+      free_blocked: "無料OCRリクエストをすべて使い切りました。さらに利用するにはプランに加入してください。"
+      ip_abuse: "ネットワークから異常なOCRアクティビティが検出されました。心当たりがない場合はサポートに連絡してください。"

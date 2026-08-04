@@ -1,0 +1,12 @@
+<div class="space-y-6">
+  <div class="flex items-center justify-between">
+    <h1 class="text-3xl font-bold text-theme-accent"><%= t("admin.flash_settings.page_title") %></h1>
+    <%= link_to t("admin.flash_settings.back_dashboard"), admin_root_path, class: "rounded-lg bg-theme-secondary px-4 py-2 text-theme-primary hover:bg-theme-hover" %>
+  </div>
+
+  <%= turbo_frame_tag Admin::FlashSettingsController::FLASH_SETTINGS_MAIN_FRAME do %>
+    <div class="space-y-6">
+      <%= render "flash_settings_main" %>
+    </div>
+  <% end %>
+</div>

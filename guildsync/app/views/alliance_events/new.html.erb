@@ -1,0 +1,55 @@
+<div class="max-w-2xl mx-auto p-6">
+  <div class="mb-6">
+    <h1 class="text-3xl font-bold text-theme-primary mb-2"><%= t('alliances.events.new.title') %></h1>
+    <p class="text-theme-secondary"><%= @alliance.name %></p>
+  </div>
+
+  <%= form_with model: [ @alliance, @event ], local: true, class: "bg-theme-secondary rounded-lg border border-theme-primary p-6 space-y-6" do |f| %>
+    <% if @event.errors.any? %>
+      <div class="bg-red-900/20 border border-red-500 rounded-lg p-4">
+        <ul class="list-disc list-inside text-red-400">
+          <% @event.errors.full_messages.each do |msg| %><li><%= msg %></li><% end %>
+        </ul>
+      </div>
+    <% end %>
+
+    <div>
+      <%= f.label :title, t('alliances.events.form.title'), class: "block text-sm font-medium text-theme-primary mb-2" %>
+      <%= f.text_field :title, required: true, class: "w-full px-4 py-2 bg-theme-primary border border-theme-secondary rounded-lg text-theme-primary" %>
+    </div>
+
+    <div>
+      <%= f.label :description, t('alliances.events.form.description'), class: "block text-sm font-medium text-theme-primary mb-2" %>
+      <%= f.text_area :description, rows: 4, class: "w-full px-4 py-2 bg-theme-primary border border-theme-secondary rounded-lg text-theme-primary" %>
+    </div>
+
+    <div class="grid grid-cols-2 gap-4">
+      <div>
+        <%= f.label :scheduled_at, t('alliances.events.form.scheduled_at'), class: "block text-sm font-medium text-theme-primary mb-2" %>
+        <%= f.datetime_local_field :scheduled_at, required: true, class: "w-full px-4 py-2 bg-theme-primary border border-theme-secondary rounded-lg text-theme-primary date-input-white-calendar" %>
+      </div>
+      <div>
+        <%= f.label :duration, t('alliances.events.form.duration'), class: "block text-sm font-medium text-theme-primary mb-2" %>
+        <%= f.number_field :duration, min: 1, class: "w-full px-4 py-2 bg-theme-primary border border-theme-secondary rounded-lg text-theme-primary", placeholder: t('alliances.events.form.duration_placeholder') %>
+      </div>
+    </div>
+
+    <div>
+      <%= f.label :location, t('alliances.events.form.location'), class: "block text-sm font-medium text-theme-primary mb-2" %>
+      <%= f.text_field :location, class: "w-full px-4 py-2 bg-theme-primary border border-theme-secondary rounded-lg text-theme-primary", placeholder: t('alliances.events.form.location_placeholder') %>
+    </div>
+
+    <div class="space-y-6 pt-2 border-t border-theme-secondary">
+      <%= render "event_extras", f: f %>
+    </div>
+
+    <div class="flex gap-4">
+      <%= f.submit t('alliances.events.form.create_button'), class: "px-6 py-3 bg-theme-accent text-white rounded-lg hover:bg-theme-accent-hover transition-colors font-semibold cursor-pointer" %>
+      <%= link_to t('common.buttons.cancel'), alliance_alliance_events_path(@alliance), class: "px-6 py-3 bg-theme-secondary text-theme-primary rounded-lg hover:bg-theme-primary transition-colors font-semibold" %>
+    </div>
+  <% end %>
+
+  <style>
+    .date-input-white-calendar::-webkit-calendar-picker-indicator { filter: invert(1); cursor: pointer; }
+  </style>
+</div>

@@ -1,0 +1,406 @@
+fr:
+  home:
+    landing:
+      title: Bienvenue à GuildSync
+      subtitle: La plateforme tout-en-un pour gérer vos communautés de jeux vidéo, événements et membres.
+      hero_kicker: Conçu pour les chefs de guilde, officiers et communautés actives
+      problem_title: Du chaos des tableurs à une clarté opérationnelle
+      problem_subtitle: Unifiez événements, membres, candidatures et flux de butin au même endroit pour que vos officiers passent moins de temps sur l’admin et plus à guider.
+      outcome_1_title: Des opérations de butin équitables
+      outcome_1_desc: Règles cohérentes, historique de participation visible et moins de tensions.
+      outcome_2_title: Mieux coordonner les événements
+      outcome_2_desc: Planifiez des événements, obtenez le nombre d'inscriptions en direct, suivez les retards et visualisez la couverture des classes/rôles en temps réel.
+      outcome_3_title: Réduire la charge des officiers
+      outcome_3_desc: Contrôles par rôle et journaux d’audit pour des flux prévisibles.
+      trust:
+        no_card: Aucune carte bancaire requise
+        setup: Mise en place rapide pour les équipes de guilde
+        security: Permissions par rôle + journaux d’activité complets
+      preview_title: Aperçu du produit
+      preview:
+        events_title: Événements
+        events_desc: Créez des événements rapidement, suivez la présence et les tendances de participation.
+        members_title: Membres
+        members_desc: Gérez rôles, étiquettes, candidatures et permissions au niveau guilde depuis un hub unique.
+        loot_title: Butin + sondages
+        loot_desc: Lancez des jets de butin et sondages structurés avec des traces transparentes.
+        logs_title: Journaux d’activité
+        logs_desc: Enregistrez les actions de leadership pour la responsabilité et le contexte historique.
+      explore_pricing: Voir les tarifs
+      why_title: Pourquoi Choisir GuildSync?
+      features_cta_hint: Cliquez sur chaque carte pour voir ce que font réellement les fonctionnalités.
+      features_section_subtitle: Ouvrez une carte pour le détail complet—idéal pour comparer les outils de guilde.
+      feedback:
+        section_title: Retour des utilisateurs
+        carousel_role: carrousel
+        slide_role: diapositive
+        keyboard_hint: Utilisez les flèches gauche et droite pour passer d’un témoignage à l’autre.
+        announce_progress: Avis utilisateurs %{current} sur %{total}
+        previous: Témoignage précédent
+        next: Témoignage suivant
+        pagination: Diapositives de témoignages
+        go_to_slide: Aller au témoignage %{index}
+      compare_title: GuildSync face à la concurrence
+      compare_old_title: Tableur + Discord uniquement
+      compare_old_1: Retrouver le bon classeur (ou en créer un nouveau)
+      compare_old_2: Mettre à jour plusieurs onglets et feuilles à la main
+      compare_old_3: Demander aux officiers de mettre à jour et de revérifier
+      compare_new_title: Centre de commande GuildSync
+      compare_new_1: Les officiers connectés accèdent rapidement aux documents, workflows et flux d’admin structurés
+      compare_new_2: Centralisez données membres, présences et gestion des permissions
+      compare_new_3: Historique de guilde, journal d’activité et notifications
+      footer_copyright: "© %{year} GuildSync. Tous droits réservés."
+      cta:
+        title: Êtes-vous prêt à commencer?
+        description: Rejoignez des milliers de communautés de jeux vidéo déjà utilisant GuildSync.
+        button: Commencez votre essai gratuit
+        button_hero: Inizia gratuitamente
+      feature_spotlight:
+        title: Ce que GuildSync vous aide vraiment à piloter
+        subtitle: 'Conçu pour les opérations réelles de guilde : du recrutement et des documents à la coordination d''alliance et à la modération.'
+        documents_title: Documents de guilde
+        documents_desc: Partagez SOP, builds et guides via des liens publics ou un accès interne uniquement.
+        activity_title: Flux d'activité + journaux
+        activity_desc: Suivez les actions de leadership, les changements de membres et l'historique opérationnel dans une seule chronologie.
+        alliance_title: Système d'alliance
+        alliance_desc: Coordonnez événements, sondages et jets de butin d'alliance entre guildes partenaires.
+        recruit_title: Recrutement + candidatures
+        recruit_desc: Gérez un processus de candidature structuré avec notes, flux accepter/refuser et messages de suivi.
+        ocr_title: Analyse IA des captures d'équipement
+        ocr_desc: Téléchargez des captures, extrayez rapidement les données d'équipement et maintenez l'état d'équipement des membres à jour.
+        roles_title: Rôles personnalisés + tags colorés
+        roles_desc: Configurez des permissions granulaires et attribuez des tags couleur prédéfinis pour une visibilité rapide du roster.
+        warnings_title: Système d'avertissements
+        warnings_desc: Maintenez des listes sans avertissement, avertis et bannis pour les workflows de modération.
+        messaging_title: Centre de messages
+        messaging_desc: Aidez les GM et officiers à communiquer directement avec les membres depuis GuildSync.
+        analytics_title: Classement + engagement
+        analytics_desc: Faites ressortir les membres les plus actifs selon la présence et les tendances de participation pour guider les décisions de leadership.
+      compare:
+        feature: Fonctionnalité
+        competitor_1: Guild Manager
+        competitor_2: GuildSpire
+        competitor_3: Solutions typiques de gestion de guildes
+        features:
+          rapid_user_feedback: Développement rapide guidé par les retours utilisateurs
+          unlimited_guilds: Guildes illimitées
+          starter_basic_plan_value: Offre Basic — l’essentiel sans tout réservé au premium
+          multi_game_dashboard: Tableau de bord multi-jeux pour guildes
+          events_scheduling: Événements, RSVP et planification
+          loot_rolls_distribution: Loot rolls et distribution équitable
+          recruitment_applications: Recrutement et candidatures
+          discord_integration: Bot Discord et intégration
+          member_analytics: Analyses et insights membres
+          audit_history: Historique d’audit et d’activité à long terme
+          guild_documents_storage: Documents de guilde et stockage de fichiers
+          polls_community_votes: Sondages et votes communautaires
+          public_roadmap_voting: Feuille de route publique et votes de fonctionnalités
+          api_access: Accès API
+          export_data_backup: Export et sauvegarde des données
+          advanced_analytics: Avancées en Analytique
+          custom_automation: Automatisation personnalisée
+          realtime_tracking: Suivi en temps réel
+          api_integration: Intégration de l'API
+          mobile_apps: Applications mobiles
+          priority_support: Assistance Priorité
+          custom_branding: Marque personnalisée
+          member_onboarding: Intégration des membres
+          event_management: Gestion d'événements
+          role_management: Gestion des rôles
+          export_backup: Export & Sauvegarde
+          custom_role_system: Système de rôles personnalisé
+      features_grid:
+        member_management:
+          title: Gestion des Membres
+          desc: Suivez et organisez vos membres de guilde efficacement
+        analytics_insights:
+          title: Analytiques & Incidences
+          desc: Analytiques détaillés sur l'activité des membres et la croissance
+        automation_tools:
+          title: Automatisation des outils
+          desc: Automatisez les tâches récurrentes et les flux de travail
+        advanced_tracking:
+          title: Suivi Avancé des Membres
+          desc: Surveillance de l'activité des utilisateurs en temps réel
+        multi_guild:
+          title: Gestion de plusieurs guildes
+          desc: Gérer des guildes illimitées à partir d’un tableau de bord
+        custom_automation:
+          title: Automatisation personnalisée
+          desc: Créer des flux de travail personnalisés et des déclencheurs.
+        analytics_dashboard:
+          title: Tableau de bord analytique
+          desc: Des rapports détaillés et des aperçus
+        role_management:
+          title: Gestion des rôles
+          desc: Système avancé de gestion des rôles
+        member_onboarding:
+          title: Intégration des membres
+          desc: Flux d’accueil et de mise en place automatisés
+        event_management:
+          title: Gestion d'événements
+          desc: Planifier et suivre les événements de guilde
+        custom_notifications:
+          title: Notifications personnalisables
+          desc: système d'alertes personnalisé
+        moderation_tools:
+          title: Outils de modération
+          desc: Fonctionnalités de modération avancées
+        api_integration:
+          title: Intégration de l'API
+          desc: Accès complet à l'API pour les développeurs
+        export_backup:
+          title: Export & Sauvegarde
+          desc: Export de données et sauvegardes automatiques
+        priority_support:
+          title: Assistance Priorité
+          desc: 24/7 soutien dédié par notre équipe
+        security_features:
+          title: Caractéristiques de sécurité
+          desc: Sécurité d'entreprise-grade
+        custom_branding:
+          title: Marque personnalisée
+          desc: Options de marque blanche disponibles
+        mobile_app:
+          title: Application mobile
+          desc: L'application mobile incluant les versions pour iOS et Android.
+        unlimited_storage:
+          title: Stockage illimité
+          desc: Pas de limitations sur le stockage des données
+        custom_role_system:
+          title: Système de rôles personnalisé
+          desc: Rôles et permissions alignés sur Discord, calqués sur l’organisation réelle de votre guilde
+      footer:
+        tagline: L'ultime plateforme de gestion d'guildes pour les communautés Discord.
+        product: Produit
+        features: Fonctionnalités
+        pricing_link: Tarification
+        roadmap_link: Roadmap
+        support: Support
+        documentation: Documentation
+        contact: Contact
+        disaster_recovery: Reprise après sinistre et récupération des données
+        status: Statut
+        legal: Mentions légales
+        privacy: Confidentialité
+        terms: Conditions
+        security_link: Sécurité
+      features:
+        guild_management:
+          title: Gestion des guildes
+          description: Organisez et gérerez plusieurs guildes avec simplicité. Surveillez les membres, les rôles et les droits dans un seul endroit.
+        event_planning:
+          title: Organisation d'événements
+          description: Planifier et gérer des événements avec un suivi des R.S.V.P., des rappels et une gestion des participants.
+        member_analytics:
+          title: Analytiques des Membres
+          description: Obtenez des insights sur votre communauté avec des analytics détaillés et un suivi de l'activité des membres.
+        gear_checks:
+          title: Vérifications des engrenages
+          description: Surveiller et vérifier les équipements et matériels nécessaires pour les événements et activités des membres.
+        gear_records:
+          title: Enregistrements de l'équipement
+          description: Garder un suivi détaillé de l'équipement des membres, des mises à niveau et de l'historique du matériel.
+        member_tracking:
+          title: Suivi des Membres
+          description: Garder des dossiers détaillés sur l'activité, la participation et l'engagement des membres dans toutes les activités de la guilde.
+        role_management:
+          title: Gestion des rôles
+          description: Attribuez et gérerez les rôles avec des droits personnalisés. Contrôlez l’accès et les responsabilités avec simplicité.
+        communication_hub:
+          title: Pôle de Communication
+          description: Outils de communication centralisés pour les annonces, les discussions et la coordination des membres.
+        activity_logs:
+          title: Journal d'activités
+          description: Un suivi et un journalisme global des activités pour tous les événements des guildes, les actions des membres et les changements du système.
+    dashboard:
+      title: Tableau de bord
+    index:
+      title: Bienvenue à GuildSync
+      subtitle: Votre plateforme de gestion de guilde
+      signed_in_as: 'Vous êtes connecté en tant que :'
+      discord_label: Discord
+      quick_links: Liens rapides
+      api_documentation: Documentation de l'API
+      please_sign_in_html: Veuillez %{sign_in_link} pour continuer.
+      sign_in: se connecter
+  homepage_features:
+    back_to_home: Retour à toutes les fonctionnalités
+    empty_detail: Plus d’informations sur cette fonctionnalité seront bientôt disponibles ici.
+  sidebar:
+    navigation: Navigation
+    universal_actions: Actions universelles
+    universal_menu: Menu universel
+    global_dashboard: Tableau de bord global
+    connected_as: Connecté en tant que %{username}
+    connected_as_heading: 'Connecté en tant que :'
+    connected_as_aria: Connecté en tant que %{username}
+    discord_not_connected_heading: Discord non connecté
+    discord_not_connected_hint: Connectez votre compte Discord dans les paramètres.
+    discord_username_fallback: Compte lié
+    apply_to_guild: Postuler à la Guilde
+    view_guilds: Voir les guil­des
+    create_guild: Créer une guilde
+    my_applications: Mes Applications
+    archived_guilds: Guildes archivées
+    feature_requests: Demandes de fonctionnalités
+    alliances_hub: Alliances
+    my_guilds_owner: Mes Guilds (Propriétaire)
+    my_guilds_member: Mes Guilds (Membre)
+    contact_support: Contactez le Soutien
+    guild_menu:
+      dashboard: Tableau de bord
+      message_center: Centre de messages
+      members: Membres
+      review_applications: Voir les demandes
+      guild_documents: Documents de guilde
+      invite_members: Inviter les Membres
+      guild_polls: Sondages de guilde
+      guild_loot_rolls: Tours de butin des guilde
+      schedule_events: Planifier les événements
+      schedule_guild_battle: Programmer la Bataille de guilde
+      members_gear: Scanner de statistiques IA
+      file_storage: Stockage des fichiers
+      guild_analytics: Guilde Analytiques
+      leaderboard: Classement
+      my_warnings: Mes avertissements
+      settings: Paramètres
+      warnings: Avertissements
+    alliance_menu:
+      pending_alliance_invites: Invitations d'alliance en attente
+      outgoing_join_request: État des demandes d'adhésion
+      request_join_alliance: Demander à rejoindre une alliance
+      join_requests: Demandes d'adhésion
+      create: Créer une alliance
+      events: Événements d'alliance
+      polls: Sondages d'alliance
+      rolls: Tirages d'alliance
+      chat: Discussion d'alliance
+      gm_chat: Chat GM
+      settings: Paramètres
+    discord:
+      connected: "%{server_name}"
+      bot_not_connected: Bot non connecté
+      connect_bot: Se connecter le Bot à la Guilde Discord
+      discord_server: Serveur Discord
+  dashboard:
+    title: Tableau de bord
+    access_denied: Accès Refusé
+    sign_in_required: Vous devez être connecté pour accéder au tableau de bord.
+    your_guilds: Vos guildes
+    no_guilds: Vous ne faites partie d'aucune guilde encore.
+    open: Ouvrir
+    quick_actions: Actions rapides
+    view_guilds: Voir les guildes
+    my_applications: Mes candidatures
+    apply_to_guild: Postuler à une guilde
+    archived_guilds: Guildes archivées
+    alliances: Alliances
+    create_guild: Créer une guilde
+    invite_members: Inviter les Membres
+    recent_activity: Activité récente
+    activity_coming_soon: Flux d'activités bientôt disponibles…
+    activity_empty: Aucune activité récente pour le moment. Visitez des guildes et des pages pour les voir ici.
+    viewed_guild: Guilde consultée %{name}
+    viewed_members: Membres – %{name}
+    viewed_invite_members: Inviter des membres – %{name}
+    viewed_settings: Paramètres – %{name}
+    viewed_applications: Candidatures – %{name}
+    viewed_schedule: Planifier des événements – %{name}
+    viewed_members_gear: Scanner de statistiques IA – %{name}
+    join_discord_title: Rejoignez notre Discord
+    join_discord_here: Rejoignez notre communauté Discord ici — discutez avec l'équipe et d'autres propriétaires de guildes.
+    discord_iframe_title: Discord %{app_name}
+    discord_community_card_title: Discord communautaire GuildSync
+    members_online_heading: Membres en ligne
+    join_discord_cta_button: Rejoindre Discord
+    discord_promo_online_example: 1 membre en ligne
+    pending_items: Mes éléments en attente
+    pending_applications: Candidatures en attente
+    pending_invites: Invitations en attente
+    warning_queue: File des avertissements
+    member_events_title: Événements à venir
+    member_events_subtitle: Dans les guildes dont vous êtes membre
+    member_events_count_label: Total à venir
+    member_events_empty: Aucun événement à venir dans vos guildes.
+    open_polls_title: Sondages ouverts
+    open_polls_subtitle: Sondages encore ouverts au vote dans vos guildes
+    open_polls_empty: Aucun sondage ouvert dans vos guildes.
+    open_loot_title: Jets de butin ouverts
+    open_loot_subtitle: Jets de butin encore ouverts dans vos guildes
+    open_loot_empty: Aucun jet de butin ouvert dans vos guildes.
+  user_activity:
+    view_activity: "Voir l'activité"
+    history_title: "Historique d'activité"
+    history_subtitle: "Vos pages et actions récentes sur GuildSync."
+    back_to_dashboard: "Retour au tableau de bord"
+    signed_in_discord: "Connecté avec Discord"
+    signed_in_google: "Connecté avec Gmail"
+    signed_in_microsoft: "Connecté avec Outlook"
+  layouts:
+    application:
+      nav:
+        upgrade_plan: Mise à niveau de votre plan
+        pricing: Tarification
+        roadmap: Roadmap
+        my_billing: Ma Facturation
+        welcome_user: Bienvenue, %{name}
+        profile_picture: Photo de profil
+        sign_in: Se connecter
+        admin_session_label: Admin
+        back_to_member_dashboard: Retour à mon tableau de bord
+      dropdown:
+        account_settings: Paramètres du compte
+        profile_settings: Paramètres du profil
+        release_notes: Notes de version
+        release_notes_instructions: Créez un compte > cliquez sur Ressources > Articles > Notes de version
+        roadmap: Feuille de route et demandes de fonctionnalités
+        version: Version %{version}
+      search:
+        placeholder: Rechercher...
+        searching: Recherche en cours...
+        no_results: Aucun résultat trouvé
+      beta_banner:
+        message: 'Version bêta — rejoignez notre communauté Discord :'
+        join_discord: Rejoindre Discord
+  activity_feed:
+    title: Flux d'activité pour %{guild_name}
+    subtitle: Activité récente dans cette guilde. Les journaux sont conservés 3 mois.
+    back_to_dashboard: Retour au tableau de bord
+    search_placeholder: Rechercher des actions...
+    filter_action_type: Type d'action
+    filter_member: Membre
+    all_actions: Toutes les actions
+    all_members: Tous les membres
+    no_activity: Aucune activité pour le moment.
+    search_button: Rechercher
+    access_denied: Vous n'avez pas la permission de voir le flux d'activité.
+    when: Quand
+    who: Qui
+    action: Action
+    details: Détails
+    pagination_shown_total: "%{shown} sur %{total} entrées"
+    pagination_previous: "← Précédent"
+    pagination_next: Suivant →
+    export_csv: Exporter CSV
+    export_csv_hint: Télécharger toutes les lignes correspondant aux filtres actuels (horodatages UTC).
+  alliance_activity_feed:
+    title: Activité de l'alliance — %{alliance_name}
+    subtitle: Actions à l'échelle de l'alliance depuis les guildes membres. Les journaux sont conservés 60 jours.
+    back: Retour à l'alliance
+    search_placeholder: Rechercher...
+    filter_action_type: Type d'action
+    all_actions: Toutes les actions
+    search_button: Rechercher
+    when: Quand
+    guildsync_user: Utilisateur GuildSync
+    action: Action
+    details: Détails
+    no_activity: Aucune activité d'alliance pour le moment.
+    pagination_shown_total: "%{shown} sur %{total} entrées"
+    pagination_previous: "← Précédent"
+    pagination_next: Suivant →
+    export_csv: Exporter CSV (UTC)
+    export_local_csv: Exporter CSV (heure locale)
+    export_csv_hint: CSV généré par le serveur avec horodatages UTC.
+    access_denied: Seuls les propriétaires de guilde de cette alliance peuvent voir le flux d'activité de l'alliance.

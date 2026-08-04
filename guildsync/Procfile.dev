@@ -1,0 +1,3 @@
+# Mirrored by `bin/dev` (esbuild watch + tailwindcss:watch + rails server).
+web: bin/rails server
+css: bin/rails tailwindcss:watch

@@ -1,0 +1,12 @@
+<div class="mx-auto w-full max-w-7xl space-y-6 px-4 py-6 sm:px-6 lg:px-8">
+  <div class="flex flex-wrap items-center justify-between gap-3">
+    <h1 class="text-3xl font-bold text-theme-accent"><%= t("admin.ui_design_system.title") %></h1>
+    <%= link_to t("admin.ui_design_system.back_dashboard"), admin_root_path, class: "rounded-lg bg-theme-secondary px-4 py-2 text-theme-primary hover:bg-theme-hover", data: { turbo_frame: "_top" } %>
+  </div>
+
+  <p class="text-sm text-theme-secondary"><%= t("admin.ui_design_system.intro") %></p>
+
+  <%= turbo_frame_tag Admin::UiDesignSystemController::UI_DESIGN_SYSTEM_MAIN_FRAME do %>
+    <%= render "admin/ui_design_system/main" %>
+  <% end %>
+</div>

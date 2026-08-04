@@ -1,0 +1,18 @@
+<div class="loading">
+  <div class="spinner"></div>
+  <h2 style="color: #ff4444; margin-bottom: 10px;">Connection Failed</h2>
+  <p style="color: #cccccc;"><%= error %></p>
+</div>
+
+<script>
+  // Send error message to parent window
+  sendToParent('DISCORD_OAUTH_ERROR', {
+    message: '<%= j(error) %>'
+  });
+
+  // Close popup after a short delay
+  setTimeout(function() {
+    closePopup();
+  }, 2000);
+</script>
+

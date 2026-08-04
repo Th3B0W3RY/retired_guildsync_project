@@ -1,0 +1,17 @@
+# Production deploy (canonical)
+
+GuildSync production is deployed from this monorepo using:
+
+0. **[`deploy/provision.sh`](../../deploy/provision.sh)** (optional **green VM** / first-time host setup) — SSHs as today; **`scp`** uploads **`deploy/guildsync-nginx-http-only`** then **`deploy/guildsync-nginx`**; installs **nginx** + **certbot**, **`/var/www/certbot`** (HTTP-01), removes **`sites-enabled/default`**, applies **phase 1** nginx (HTTP only so **`nginx -t`** passes before certs exist), optionally runs **`certbot certonly --webroot`** when **`PROVISION_ISSUE_CERT=1`** and **`CERTBOT_EMAIL`** are set (DNS must point at the host), then **phase 2** full vhost with TLS; enables **`certbot.timer`** when available. Then continues with PostgreSQL, Redis, Node, rbenv, Ruby, etc.
+
+1. **[`deploy/deploy.sh`](../../deploy/deploy.sh)** — SSHs to the app server, `git fetch` / `reset` to the configured branch (default `development`), runs `bundle install`, **`RAILS_ENV=production bundle exec rails db:migrate`**, asset build/precompile, installs systemd unit files from `deploy/` when present, runs the **mailer SMTP verification** (`guildsync:verify_production_mailer_config`) **while Puma + Sidekiq are stopped**, then starts **Puma** + **Sidekiq** services.
+
+2. **Environment** — secrets and SMTP live in **`guildsync/.env`** on the server (see comments in `deploy.sh`). `config/master.key` and credentials are **not** committed.
+
+**Mailer verify ordering / log-roll race:** the SMTP verify boots Rails, which initializes the `logging` gem's daily rolling appenders on the shared `production.log`. It is intentionally run **after services are stopped and before they restart** so Puma, Sidekiq, and the rake task never roll the same file concurrently (the gem copies `production.log` → `production.log._copy_` then renames to `production.YYYYMMDD.log`; a concurrent roller can leave `_copy_` missing → `Errno::ENOENT`). As defense in depth, [`config/initializers/logging.rb`](../../guildsync/config/initializers/logging.rb) builds every rolling appender through [`GuildsyncLogging::SafeRollingFile`](../../guildsync/lib/guildsync_logging/safe_rolling_file.rb), which ensures the target dir/file exist, retries once on `Errno::ENOENT`, and falls back to a non-rolling file appender so boot never fails because of rotation. **Residual risk:** if a process lands in that fallback (e.g. a midnight runtime roll race that survives the single retry), its log file will **not rotate until the next restart**; the event is recorded in `system_warnings.txt` via `GuildsyncLoggers.warn` so ops can spot the degraded state. Wiring is locked by [`spec/initializers/logging_wiring_spec.rb`](../../guildsync/spec/initializers/logging_wiring_spec.rb) and deploy ordering by [`spec/lib/deploy_script_mailer_verify_order_spec.rb`](../../guildsync/spec/lib/deploy_script_mailer_verify_order_spec.rb).
+
+**Nginx templates:** [`deploy/guildsync-nginx-http-only`](../../deploy/guildsync-nginx-http-only) (phase 1), [`deploy/guildsync-nginx`](../../deploy/guildsync-nginx) (phase 2, TLS + proxy).
+
+**Not used for production shipping:** application Dockerfiles, `docker-compose`, or Kamal. CI may still use Postgres/Redis **service** containers on GitHub Actions; that is unrelated to app container images.
+
+Historical release and QA notes belong in `guildsync_knowledge_base`; keep this page focused on the current production deploy path.

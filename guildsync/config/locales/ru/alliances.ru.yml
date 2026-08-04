@@ -1,0 +1,405 @@
+ru:
+  # ============================================================================
+  # ALLIANCES FEATURE
+  # ============================================================================
+  alliances:
+    created: "Альянс успешно создан!"
+    updated: "Настройки альянса сохранены."
+    disbanded: "Альянс распущен."
+    left: "Вы вышли из альянса."
+    guild_kicked: "Гильдия исключена из альянса."
+
+    errors:
+      join_requires_paid_plan: "Нужна действующая подписка или пробный период на платном тарифе. Бесплатный тариф и истёкшие подписки или пробные периоды не подходят."
+      plan_required_for_alliance_hub: "Для доступа к разделу «Альянсы» нужен платный тариф, если Вы ещё не состоите в альянсе на GuildSync. Попросите ГМ синхронизировать Вас или перейдите на более высокий тариф."
+      not_found: "Альянс не найден."
+      not_member: "Вы не состоите в этом альянсе."
+      not_leader: "Только лидер альянса может это сделать."
+      kick_unauthorized: "Исключать гильдии могут только владельцы гильдий или назначенные управляющие альянса."
+      no_eligible_guild: "С Вашими текущими членствами в гильдиях нельзя создать альянс."
+      plan_required: "Ваш тариф не поддерживает создание альянсов. Перейдите на более высокий уровень."
+      disband_unauthorized: "У Вас нет права распускать этот альянс."
+      leave_unauthorized: "Покидать альянс могут только владельцы гильдий."
+      leader_cannot_leave: "Гильдия-основатель не может выйти из альянса. Распустите альянс."
+      guild_not_found: "Гильдия не найдена."
+      cannot_kick_leader_guild: "Нельзя исключить гильдию-основателя из альянса."
+      conflicting_alliance_membership: "Нельзя одновременно состоять в гильдиях разных альянсов."
+    index:
+      title: "Альянс"
+      open_alliance: "Открыть альянс"
+      invite_from: "Пригласил %{name}"
+      accept: "Принять"
+      decline: "Отклонить"
+      request_join_hint: "Найдите в списке гильдию, уже входящую в альянс, выберите свою гильдию и отправьте заявку в этот альянс."
+      search_label: "Поиск гильдий"
+      search_placeholder: "Введите название гильдии..."
+      search_select_target: "Целевая гильдия (должна быть в альянсе)"
+      submit_join_request: "Отправить заявку"
+      searching: "Поиск..."
+      no_results: "Гильдии не найдены."
+      load_more_results: "Загрузить ещё результаты"
+
+    roles:
+      leader_guild: "Гильдия-основатель"
+    new:
+      title: "Создать альянс"
+      subtitle: "Объедините несколько гильдий под одним знаменем."
+
+    edit:
+      title: "Настройки альянса"
+      back: "Назад к альянсу"
+      danger_zone: "Опасная зона"
+      disband: "Распустить альянс"
+      disband_confirm: "Вы уверены, что хотите распустить этот альянс? Это действие нельзя отменить."
+
+    form:
+      name: "Название альянса"
+      name_placeholder: "Введите название альянса..."
+      description: "Описание"
+      description_placeholder: "Опишите свой альянс..."
+      logo: "Эмблема альянса"
+      choose_logo_button: "Выбрать изображение"
+      no_file_chosen: "Файл не выбран"
+      logo_hint: "Необязательно. Рекомендуется: квадратное изображение не менее 256×256 px."
+      logo_replace_hint: "Загрузите новый файл, чтобы заменить текущую эмблему."
+      creating_for: "Создание альянса для:"
+      size_info: "В альянс можно включить от 1 до 20 гильдий. Начните со своей гильдии и приглашайте другие."
+      create_button: "Создать альянс"
+      save_button: "Сохранить изменения"
+
+    show:
+      guilds: "Гильдии в альянсе"
+      guilds_count:
+        one: "1 гильдия"
+        few: "%{count} гильдии"
+        many: "%{count} гильдий"
+        other: "%{count} гильдий"
+      leader: "Лидер: %{name}"
+      edit: "Изменить"
+      leave: "Покинуть альянс"
+      leave_confirm: "Вы уверены, что хотите покинуть этот альянс?"
+      invite_guild: "Пригласить гильдию"
+      kick_guild: "Исключить"
+      kick_guild_confirm: "Исключить %{name} из альянса?"
+      members_preview: "Участники"
+      view_all_members: "Все участники"
+      more_members:
+        one: "и ещё 1 участник..."
+        few: "и ещё %{count} участника..."
+        many: "и ещё %{count} участников..."
+        other: "и ещё %{count} участников..."
+
+    nav:
+      members: "Участники"
+      events: "События альянса"
+      polls: "Опросы альянса"
+      rolls: "Броски альянса"
+      chat: "Чат альянса"
+      activity_feed: "Лента активности"
+      gm_chat: "Чат ГМ"
+      invites: "Приглашения"
+      join_requests: "Заявки на вступление"
+      disband_vote: "Голосование о роспуске"
+      back_to_alliance: "Назад к альянсу"
+
+    invites:
+      sent: "Приглашение отправлено в %{guild_name}."
+      accepted: "Вы вступили в %{alliance_name}!"
+      declined: "Приглашение отклонено."
+
+      errors:
+        not_found: "Приглашение не найдено."
+        guild_not_found: "Гильдия не найдена. Ищите по названию и выберите гильдию из публичного списка."
+        already_in_alliance: "Эта гильдия уже в этом альянсе."
+        already_invited: "У этой гильдии уже есть ожидающее приглашение."
+        pending_join_request: "У этой гильдии уже есть ожидающая заявка в этот альянс."
+        max_guilds: "В альянсе уже максимум — 20 гильдий."
+        invite_unauthorized: "Приглашать гильдии могут только владельцы гильдий или назначенные управляющие альянса."
+        accept_unauthorized: "Принять приглашение может только владелец целевой гильдии."
+        decline_unauthorized: "Отклонить приглашение может только владелец целевой гильдии."
+
+      index:
+        title: "Ожидающие приглашения"
+        subtitle: "Приглашения для %{alliance_name}"
+        invite_guild: "Пригласить гильдию"
+        search_label: "Поиск гильдий в публичном списке"
+        search_placeholder: "Введите название гильдии..."
+        search_hint: "Поиск только по названию гильдии. Отображаются гильдии с публичным списком."
+        search_unauthorized: "С этой страницы поиск недоступен."
+        load_more_results: "Загрузить ещё результаты"
+        selected_guild: "Приглашение"
+        already_in_alliance_suffix: "уже в альянсе (пригласить нельзя)"
+        invite_restricted: "Приглашения может отправлять только лидер альянса."
+        send_invite: "Отправить приглашение"
+        pending: "Ожидающие приглашения"
+        no_pending: "Нет ожидающих приглашений."
+        invited_by: "Пригласил %{name}"
+
+    events:
+      created: "Событие альянса создано!"
+      updated: "Событие обновлено."
+      deleted: "Событие удалено."
+      rsvp_saved: "Ваш ответ сохранён."
+      discord_rsvp:
+        errors:
+          link_required: "Сначала привяжите аккаунт Discord к GuildSync."
+          event_not_found: "Событие альянса не найдено."
+          invalid_status: "Недопустимый статус ответа."
+          not_alliance_member: "Нужно быть активным членом альянса, чтобы ответить."
+          save_failed: "Не удалось сохранить ответ: %{error}"
+          unexpected: "При сохранении ответа произошла ошибка."
+
+      errors:
+        not_found: "Событие не найдено."
+        manage_unauthorized: "Управлять событиями могут только владельцы гильдий."
+        invalid_rsvp: "Недопустимый статус ответа."
+
+      index:
+        title: "События альянса"
+        subtitle: "События %{alliance_name}"
+        create: "Создать событие"
+        upcoming: "Предстоящие"
+        past: "Прошедшие"
+        no_events: "Событий пока нет. Создайте первое."
+        attending: "идут"
+        upcoming_label: "Скоро"
+
+      new:
+        title: "Создать событие альянса"
+
+      edit:
+        title: "Изменить событие"
+
+      show:
+        back: "К событиям"
+        minutes: "мин"
+        your_rsvp: "Ваш ответ"
+        attending: "Буду"
+        maybe: "Возможно"
+        declined: "Не буду"
+        participants: "Участники"
+        no_participants: "Пока никто не ответил."
+        delete_confirm: "Удалить это событие?"
+        status:
+          attending: "Буду"
+          maybe: "Возможно"
+          declined: "Не буду"
+
+      form:
+        title: "Название события"
+        description: "Описание"
+        scheduled_at: "Дата и время"
+        duration: "Длительность (минуты)"
+        duration_placeholder: "напр. 60"
+        location: "Место / сервер"
+        location_placeholder: "напр. Discord Stage, название игрового сервера..."
+        create_button: "Создать событие"
+        save_button: "Сохранить событие"
+        event_type: "Тип события"
+        event_type_general: "Общее"
+        max_participants: "Макс. участников (необязательно)"
+        squad_leader: "Командир отряда (необязательно)"
+        squad_leader_placeholder: "Необязательно — если пусто, по умолчанию Вы"
+        role_categories_section: "Роли Discord для записи"
+        role_categories_hint: "Какие роли показывать кнопками в объявлении Discord (как у событий гильдии в Discord)."
+    polls:
+      created: "Опрос альянса создан!"
+      deleted: "Опрос удалён."
+
+      errors:
+        not_found: "Опрос не найден."
+        manage_unauthorized: "Создавать опросы могут только владельцы гильдий или назначенные управляющие альянса."
+        poll_closed: "Опрос закрыт."
+        invalid_choice: "Недопустимый вариант голосования."
+
+      index:
+        title: "Опросы альянса"
+        subtitle: "Опросы %{alliance_name}"
+        create: "Создать опрос"
+        no_polls: "Опросов по союзам пока нет."
+        created_by: "Создано пользователем %{name}"
+        deadline: "Срок:"
+        open: "Открыт"
+        closed: "Закрыт"
+        anonymous: "Анонимный"
+        maybe: "Возможно"
+        voters_heading: "Голосовавшие"
+        view_vote: "Голосовать"
+        view_results: "Результаты"
+        delete_confirm: "Удалить этот опрос?"
+
+        "yes": "Да"
+        "no": "Нет"
+      new:
+        title: "Создать опрос альянса"
+
+      show:
+        back: "К опросам"
+        deadline: "Срок: %{date}"
+        anonymous: "Анонимный"
+        open: "Открыт"
+        closed: "Закрыт"
+        your_vote: "Ваш голос"
+        maybe: "Возможно"
+        voters_heading: "Голосовавшие"
+
+        "yes": "Да"
+        "no": "Нет"
+      form:
+        title: "Вопрос опроса"
+        description: "Описание"
+        deadline: "Срок"
+        anonymous: "Анонимное голосование (скрыть отдельные голоса)"
+        create_button: "Создать опрос"
+
+    loot_rolls:
+      created: "Бросок лута альянса создан!"
+      deleted: "Бросок удалён."
+      closed: "Бросок закрыт, победитель определён."
+      entered: "Вы выбросили %{roll}!"
+
+      errors:
+        not_found: "Бросок не найден."
+        manage_unauthorized: "Управлять бросками могут только владельцы гильдий или назначенные управляющие альянса."
+        already_closed: "Этот бросок уже закрыт."
+        not_open: "Этот бросок сейчас не открыт."
+        already_entered: "Вы уже участвовали в этом броске."
+
+      index:
+        title: "Броски лута альянса"
+        subtitle: "Броски %{alliance_name}"
+        create: "Создать бросок"
+        no_rolls: "Бросков пока нет."
+        range: "Диапазон: %{min}–%{max}"
+        deadline: "Срок:"
+        winner: "🏆 Победитель: %{name} (выпало %{roll})"
+        open: "Открыт"
+        closed: "Закрыт"
+        view: "Открыть бросок"
+
+      new:
+        title: "Создать бросок лута альянса"
+
+      show:
+        back: "К броскам"
+        range: "Диапазон: %{min}–%{max}"
+        deadline: "Срок: %{date}"
+        open: "Открыт"
+        closed: "Закрыт"
+        winner: "🏆 Победитель: %{name} (выпало %{roll})"
+        enter: "Участвовать"
+        your_roll: "Ваш бросок: %{roll}"
+        close: "Закрыть и выбрать победителя"
+        close_confirm: "Закрыть бросок и определить победителя?"
+        entries: "Участники"
+        no_entries: "Пока никто не участвовал."
+        anonymous_entry: "Анонимно"
+        entries_line:
+          zero: "%{count} записей"
+          one: "%{count} запись"
+          few: "%{count} записи"
+          many: "%{count} записей"
+          other: "%{count} записей"
+
+      form:
+        title: "Название броска"
+        description: "Описание"
+        min_roll: "Минимум"
+        max_roll: "Максимум"
+        deadline: "Срок (необязательно)"
+        deadline_hint: "Пусто — без срока."
+        anonymous: "Анонимные броски"
+        create_button: "Создать бросок"
+
+    disband_votes:
+      vote_cast: "Ваш голос за роспуск учтён."
+      majority_disbanded: "Большинство ГМ проголосовало за роспуск. Альянс распущен."
+
+      errors:
+        not_gm: "За роспуск могут голосовать только владельцы гильдий."
+
+      index:
+        title: "Голосование о роспуске"
+        vote_tally: "Текущий подсчёт"
+        votes_to_disband: "%{count} из %{total} ГМ проголосовали за роспуск"
+        threshold_note: "За роспуск должны проголосовать более 50% ГМ."
+        your_vote: "Ваш голос"
+        vote_disband: "Голосовать за роспуск"
+        vote_disband_confirm: "Вы уверены, что хотите проголосовать за роспуск этого альянса?"
+        vote_keep: "Сохранить альянс"
+        current_vote: "Ваш текущий голос: %{vote}"
+        all_votes: "Голоса всех ГМ"
+        no_votes_yet: "Голосов пока нет."
+        disband: "Роспуск"
+        keep: "Сохранить"
+
+    messages:
+      errors:
+        gm_only: "Чат ГМ доступен только владельцам гильдий."
+        blank: "Сообщение не может быть пустым."
+
+      index:
+        gm_chat: "Чат ГМ"
+        alliance_chat: "Чат альянса"
+        switch_to_gm: "Перейти в чат ГМ"
+        switch_to_all: "Перейти в чат альянса"
+        gm_only_notice: "Этот канал видят только владельцы гильдий в альянсе."
+        no_messages: "Сообщений пока нет. Поздоровайтесь!"
+        you: "Вы"
+        send: "Отправить"
+        placeholder: "Введите сообщение..."
+        message_time_format: "%d.%m.%Y %H:%M"
+
+    join_requests:
+      created: "Заявка отправлена в **%{alliance_name}**."
+      accepted: "Гильдия **%{guild_name}** вступила в альянс."
+      declined: "Заявка отклонена."
+
+      index:
+        title: "Заявки на вступление"
+        subtitle: "Гильдии, подавшие заявку в **%{alliance_name}**."
+        back: "Назад к альянсу"
+        none: "Нет ожидающих заявок."
+
+      errors:
+        not_found: "Заявка не найдена."
+        guild_not_found: "Гильдия не найдена."
+        unauthorized: "Нельзя подать заявку от имени этой гильдии."
+        already_in_alliance: "Эта гильдия уже в альянсе."
+        alliance_inactive: "Этот альянс больше не активен."
+        requesting_already_in_alliance: "Гильдия успела вступить в другой альянс до принятия заявки."
+        max_guilds: "Сейчас этот альянс не может принять больше гильдий."
+        pending_invite: "Уже есть ожидающее приглашение для этой пары альянс–гильдия."
+        create_failed: "Не удалось создать заявку."
+        accept_failed: "Не удалось принять заявку."
+        manage_unauthorized: "Заявками управляют лидеры альянса, владельцы гильдий или офицеры альянса."
+
+    outgoing_join_requests:
+      new:
+        title: "Заявка на вступление в альянс"
+        subtitle: "Ваша гильдия: %{guild_name}. Найдите в списке гильдию, уже входящую в альянс."
+        back: "Назад к гильдии"
+      status:
+        title: "Статус заявки"
+        subtitle: "Исходящие заявки от **%{guild_name}**."
+        none: "Нет ожидающих заявок от этой гильдии."
+        pending: "В ожидании"
+      search_unauthorized: "С этой страницы поиск недоступен."
+      not_in_alliance_suffix: "не в альянсе"
+
+    received_invites:
+      pending:
+        title: "Ожидающие приглашения в альянс"
+        subtitle: "Приглашения для **%{guild_name}**."
+        none: "Нет ожидающих приглашений."
+
+    discord:
+      invite_embed:
+        title: "Приглашение в альянс: %{alliance_name}"
+        body: "Пригласил %{inviter}. Откройте GuildSync, чтобы принять или отклонить."
+      join_request_embed:
+        title: "Заявка на вступление: %{guild_name}"
+        body: "Гильдия %{guild_name} подала заявку в **%{alliance_name}**. Проверьте в GuildSync."
+      member_joined_embed:
+        title: "Новый член альянса: %{guild_name}"
+        body: "**%{guild_name}** теперь в **%{alliance_name}**."

@@ -1,0 +1,399 @@
+de:
+  # ============================================================================
+  # ALLIANCES FEATURE
+  # ============================================================================
+  alliances:
+    created: "Allianz erfolgreich erstellt!"
+    updated: "Allianzeinstellungen gespeichert."
+    disbanded: "Die Allianz wurde aufgelöst."
+    left: "Du hast die Allianz verlassen."
+    guild_kicked: "Die Gilde wurde aus der Allianz entfernt."
+
+    errors:
+      join_requires_paid_plan: "Du brauchst ein aktives Abonnement oder eine aktive Testphase auf einem kostenpflichtigen Tarif. Der kostenlose Tarif sowie abgelaufene Abonnements oder Testphasen sind nicht berechtigt."
+      plan_required_for_alliance_hub: "Ein kostenpflichtiger Tarif ist nötig, um den Allianzen-Hub zu öffnen, sofern du nicht bereits Mitglied einer Allianz auf GuildSync bist. Bitte deinen GM, dich zu synchronisieren, oder buche ein Upgrade."
+      not_found: "Allianz nicht gefunden."
+      not_member: "Du bist kein Mitglied dieser Allianz."
+      not_leader: "Nur der Allianzleiter kann das tun."
+      kick_unauthorized: "Nur Gildenbesitzer oder benutzerdefinierte Allianzmanager können Gilden entfernen."
+      no_eligible_guild: "Du kannst mit deinen aktuellen Gildenmitgliedschaften keine Allianz erstellen."
+      plan_required: "Dein aktueller Tarif unterstützt keine Allianzen. Bitte upgrade."
+      disband_unauthorized: "Du darfst diese Allianz nicht auflösen."
+      leave_unauthorized: "Nur Gildenbesitzer können eine Allianz verlassen."
+      leader_cannot_leave: "Die Gründungsgilde kann die Allianz nicht verlassen. Bitte löse sie stattdessen auf."
+      guild_not_found: "Gilde nicht gefunden."
+      cannot_kick_leader_guild: "Du kannst die Gründungsgilde nicht aus der Allianz entfernen."
+      conflicting_alliance_membership: "Du kannst nicht gleichzeitig Gilden in mehr als einer Allianz angehören."
+    index:
+      title: "Allianz"
+      open_alliance: "Allianz öffnen"
+      invite_from: "Eingeladen von %{name}"
+      accept: "Annehmen"
+      decline: "Ablehnen"
+      request_join_hint: "Suche eine gelistete Gilde, die bereits in einer Allianz ist, wähle deine Gilde und beantrage dann den Beitritt zu dieser Allianz."
+      search_label: "Gilden suchen"
+      search_placeholder: "Gildenname eingeben..."
+      search_select_target: "Zielgilde (muss in einer Allianz sein)"
+      submit_join_request: "Beitrittsanfrage senden"
+      searching: "Suche..."
+      no_results: "Keine Gilden gefunden."
+      load_more_results: "Weitere Ergebnisse laden"
+
+    roles:
+      leader_guild: "Gründungsgilde"
+    new:
+      title: "Allianz erstellen"
+      subtitle: "Schließt mehrere Gilden unter einem Banner zusammen."
+
+    edit:
+      title: "Allianzeinstellungen"
+      back: "Zurück zur Allianz"
+      danger_zone: "Gefahrenbereich"
+      disband: "Allianz auflösen"
+      disband_confirm: "Allianz wirklich auflösen? Das kann nicht rückgängig gemacht werden."
+
+    form:
+      name: "Allianzname"
+      name_placeholder: "Allianzname eingeben..."
+      description: "Beschreibung"
+      description_placeholder: "Beschreibe deine Allianz..."
+      logo: "Allianz-Logo"
+      choose_logo_button: "Bild wählen"
+      no_file_chosen: "Keine Datei ausgewählt"
+      logo_hint: "Optional. Empfohlen: quadratisches Bild, mindestens 256×256 px."
+      logo_replace_hint: "Neue Datei hochladen, um das aktuelle Logo zu ersetzen."
+      creating_for: "Allianz erstellen für:"
+      size_info: "Allianzen können 1 bis 20 Gilden umfassen. Beginne mit deiner Gilde und lade andere ein."
+      create_button: "Allianz erstellen"
+      save_button: "Änderungen speichern"
+
+    show:
+      guilds: "Gildenmitglieder"
+      guilds_count:
+        one: "1 Gilde"
+        other: "%{count} Gilden"
+      leader: "Geführt von %{name}"
+      edit: "Bearbeiten"
+      leave: "Allianz verlassen"
+      leave_confirm: "Allianz wirklich verlassen?"
+      invite_guild: "Gilde einladen"
+      kick_guild: "Entfernen"
+      kick_guild_confirm: "%{name} aus der Allianz entfernen?"
+      members_preview: "Mitglieder"
+      view_all_members: "Alle Mitglieder anzeigen"
+      more_members:
+        one: "und 1 weiteres Mitglied..."
+        other: "und %{count} weitere Mitglieder..."
+
+    nav:
+      members: "Mitglieder"
+      events: "Allianz-Events"
+      polls: "Allianz-Umfragen"
+      rolls: "Allianz-Würfe"
+      chat: "Allianz-Chat"
+      activity_feed: "Aktivitätsfeed"
+      gm_chat: "GM-Chat"
+      invites: "Ausstehende Einladungen"
+      join_requests: "Beitrittsanfragen"
+      disband_vote: "Auflösungsabstimmung"
+      back_to_alliance: "Zurück zur Allianz"
+
+    invites:
+      sent: "Einladung an %{guild_name} gesendet."
+      accepted: "Du bist %{alliance_name} beigetreten!"
+      declined: "Einladung abgelehnt."
+
+      errors:
+        not_found: "Einladung nicht gefunden."
+        guild_not_found: "Gilde nicht gefunden. Suche nach Name und wähle eine öffentlich gelistete Gilde."
+        already_in_alliance: "Diese Gilde ist bereits Teil dieser Allianz."
+        already_invited: "Diese Gilde hat bereits eine ausstehende Einladung."
+        pending_join_request: "Für diese Gilde und Allianz liegt bereits eine ausstehende Beitrittsanfrage vor."
+        max_guilds: "Diese Allianz hat die Höchstzahl von 20 Gilden erreicht."
+        invite_unauthorized: "Nur Gildenbesitzer oder Allianzmanager dürfen Gilden einladen."
+        accept_unauthorized: "Nur der Besitzer der Zielgilde kann diese Einladung annehmen."
+        decline_unauthorized: "Nur der Besitzer der Zielgilde kann diese Einladung ablehnen."
+
+      index:
+        title: "Ausstehende Einladungen"
+        subtitle: "Einladungen für %{alliance_name}"
+        invite_guild: "Gilde einladen"
+        search_label: "Öffentlich gelistete Gilden suchen"
+        search_placeholder: "Gildenname eingeben..."
+        search_hint: "Die Suche gilt nur für Gildennamen. Nur Gilden mit öffentlicher Listung erscheinen hier."
+        search_unauthorized: "Du kannst von dieser Seite aus nicht suchen."
+        load_more_results: "Weitere Ergebnisse laden"
+        selected_guild: "Einladung an"
+        already_in_alliance_suffix: "bereits in einer Allianz (Einladung nicht möglich)"
+        invite_restricted: "Nur der Allianzleiter kann Einladungen versenden."
+        send_invite: "Einladung senden"
+        pending: "Ausstehende Einladungen"
+        no_pending: "Keine ausstehenden Einladungen."
+        invited_by: "Eingeladen von %{name}"
+
+    events:
+      created: "Allianz-Event erstellt!"
+      updated: "Event aktualisiert."
+      deleted: "Event gelöscht."
+      rsvp_saved: "Deine Zusage wurde gespeichert."
+      discord_rsvp:
+        errors:
+          link_required: "Bitte verknüpfe dein Discord-Konto mit GuildSync, bevor du zusagst."
+          event_not_found: "Allianz-Event nicht gefunden."
+          invalid_status: "Ungültiger Zusage-Status."
+          not_alliance_member: "Du musst aktives Allianzmitglied sein, um zuzusagen."
+          save_failed: "Zusage konnte nicht gespeichert werden: %{error}"
+          unexpected: "Beim Speichern der Allianz-Zusage ist ein Fehler aufgetreten."
+
+      errors:
+        not_found: "Event nicht gefunden."
+        manage_unauthorized: "Nur Gildenbesitzer können Events verwalten."
+        invalid_rsvp: "Ungültiger Zusage-Status."
+
+      index:
+        title: "Allianz-Events"
+        subtitle: "Events für %{alliance_name}"
+        create: "Event erstellen"
+        upcoming: "Kommende Events"
+        past: "Vergangene Events"
+        no_events: "Noch keine Events. Leg eines an, um zu starten."
+        attending: "zugesagt"
+        upcoming_label: "Kommend"
+
+      new:
+        title: "Allianz-Event erstellen"
+
+      edit:
+        title: "Event bearbeiten"
+
+      show:
+        back: "Zurück zu den Events"
+        minutes: "Min."
+        your_rsvp: "Deine Zusage"
+        attending: "Zugesagt"
+        maybe: "Vielleicht"
+        declined: "Abgelehnt"
+        participants: "Teilnehmende"
+        no_participants: "Noch keine Zusagen."
+        delete_confirm: "Dieses Event löschen?"
+        status:
+          attending: "Zugesagt"
+          maybe: "Vielleicht"
+          declined: "Abgelehnt"
+
+      form:
+        title: "Event-Titel"
+        description: "Beschreibung"
+        scheduled_at: "Datum & Uhrzeit"
+        duration: "Dauer (Minuten)"
+        duration_placeholder: "z. B. 60"
+        location: "Ort / Server"
+        location_placeholder: "z. B. Discord-Bühne, Spielserver..."
+        create_button: "Event erstellen"
+        save_button: "Event speichern"
+        event_type: "Event-Typ"
+        event_type_general: "Allgemein"
+        max_participants: "Max. Teilnehmer (optional)"
+        squad_leader: "Gruppenleiter (optional)"
+        squad_leader_placeholder: "Optional — Standard: du, falls leer"
+        role_categories_section: "Discord-Anmelde-Rollen"
+        role_categories_hint: "Welche Rollen erscheinen als Buttons in der Discord-Ankündigung (wie bei Gilden-Events auf Discord)."
+    polls:
+      created: "Allianz-Umfrage erstellt!"
+      deleted: "Umfrage gelöscht."
+
+      errors:
+        not_found: "Umfrage nicht gefunden."
+        manage_unauthorized: "Nur Gildenbesitzer oder Allianzmanager können Umfragen erstellen."
+        poll_closed: "Diese Umfrage ist geschlossen."
+        invalid_choice: "Ungültige Stimmenwahl."
+
+      index:
+        title: "Allianz-Umfragen"
+        subtitle: "Umfragen für %{alliance_name}"
+        create: "Umfrage erstellen"
+        no_polls: "Keine Allianz-Umfragen vorhanden."
+        created_by: "Erstellt von %{name}"
+        deadline: "Frist:"
+        open: "Offen"
+        closed: "Geschlossen"
+        anonymous: "Anonym"
+        maybe: "Vielleicht"
+        voters_heading: "Wähler"
+        view_vote: "Abstimmen"
+        view_results: "Ergebnisse"
+        delete_confirm: "Diese Umfrage löschen?"
+
+        "yes": "Ja"
+        "no": "Nein"
+      new:
+        title: "Allianz-Umfrage erstellen"
+
+      show:
+        back: "Zurück zu den Umfragen"
+        deadline: "Frist: %{date}"
+        anonymous: "Anonym"
+        open: "Offen"
+        closed: "Geschlossen"
+        your_vote: "Stimme abgeben"
+        maybe: "Vielleicht"
+        voters_heading: "Wähler"
+
+        "yes": "Ja"
+        "no": "Nein"
+      form:
+        title: "Umfragefrage"
+        description: "Beschreibung"
+        deadline: "Frist"
+        anonymous: "Anonyme Abstimmung (einzelne Stimmen verbergen)"
+        create_button: "Umfrage erstellen"
+
+    loot_rolls:
+      created: "Allianz-Loot-Wurf erstellt!"
+      deleted: "Loot-Wurf gelöscht."
+      closed: "Loot-Wurf geschlossen und Gewinner ermittelt."
+      entered: "Du hast %{roll} gewürfelt!"
+
+      errors:
+        not_found: "Loot-Wurf nicht gefunden."
+        manage_unauthorized: "Nur Gildenbesitzer oder Allianzmanager können Loot-Würfe verwalten."
+        already_closed: "Dieser Wurf ist bereits geschlossen."
+        not_open: "Dieser Loot-Wurf ist derzeit nicht offen."
+        already_entered: "Du hast an diesem Wurf bereits teilgenommen."
+
+      index:
+        title: "Allianz-Loot-Würfe"
+        subtitle: "Würfe für %{alliance_name}"
+        create: "Loot-Wurf erstellen"
+        no_rolls: "Noch keine Loot-Würfe."
+        range: "Bereich: %{min}–%{max}"
+        deadline: "Frist:"
+        winner: "🏆 Gewinner: %{name} (Wurf %{roll})"
+        open: "Offen"
+        closed: "Geschlossen"
+        view: "Wurf ansehen"
+
+      new:
+        title: "Allianz-Loot-Wurf erstellen"
+
+      show:
+        back: "Zurück zu den Würfen"
+        range: "Wurfbereich: %{min}–%{max}"
+        deadline: "Frist: %{date}"
+        open: "Offen"
+        closed: "Geschlossen"
+        winner: "🏆 Gewinner: %{name} (Wurf %{roll})"
+        enter: "Am Wurf teilnehmen"
+        your_roll: "Dein Wurf: %{roll}"
+        close: "Schließen & Gewinner wählen"
+        close_confirm: "Wurf schließen und Gewinner ermitteln?"
+        entries: "Teilnahmen"
+        no_entries: "Noch keine Teilnahmen."
+        anonymous_entry: "Anonym"
+        entries_line:
+          zero: "%{count} Teilnahmen"
+          one: "%{count} Teilnahme"
+          other: "%{count} Teilnahmen"
+
+      form:
+        title: "Loot-Wurf-Titel"
+        description: "Beschreibung"
+        min_roll: "Minimalwurf"
+        max_roll: "Maximalwurf"
+        deadline: "Frist (optional)"
+        deadline_hint: "Leer lassen für keine Frist."
+        anonymous: "Anonyme Würfe"
+        create_button: "Wurf erstellen"
+
+    disband_votes:
+      vote_cast: "Deine Auflösungsstimme wurde erfasst."
+      majority_disbanded: "Eine Mehrheit der GMs hat für die Auflösung gestimmt. Die Allianz wurde aufgelöst."
+
+      errors:
+        not_gm: "Nur Gildenbesitzer können über die Auflösung abstimmen."
+
+      index:
+        title: "Auflösungsabstimmung"
+        vote_tally: "Aktueller Stand"
+        votes_to_disband: "%{count} von %{total} GMs haben für Auflösung gestimmt"
+        threshold_note: "Mehr als 50 % der GMs müssen für die Auflösung stimmen, damit sie gilt."
+        your_vote: "Deine Stimme"
+        vote_disband: "Für Auflösung stimmen"
+        vote_disband_confirm: "Wirklich für die Auflösung dieser Allianz stimmen?"
+        vote_keep: "Für Erhalt der Allianz stimmen"
+        current_vote: "Deine aktuelle Stimme: %{vote}"
+        all_votes: "Alle GM-Stimmen"
+        no_votes_yet: "Noch keine Stimmen abgegeben."
+        disband: "Auflösen"
+        keep: "Erhalten"
+
+    messages:
+      errors:
+        gm_only: "Nur Gildenbesitzer können den GM-Chat nutzen."
+        blank: "Nachricht darf nicht leer sein."
+
+      index:
+        gm_chat: "GM-Chat"
+        alliance_chat: "Allianz-Chat"
+        switch_to_gm: "Zum GM-Chat wechseln"
+        switch_to_all: "Zum Allianz-Chat wechseln"
+        gm_only_notice: "Dieser Kanal ist nur für Gildenbesitzer dieser Allianz sichtbar."
+        no_messages: "Noch keine Nachrichten. Sag Hallo!"
+        you: "Du"
+        send: "Senden"
+        placeholder: "Nachricht eingeben..."
+        message_time_format: "%d.%m.%Y, %H:%M"
+
+    join_requests:
+      created: "Beitrittsanfrage an **%{alliance_name}** gesendet."
+      accepted: "**%{guild_name}** ist der Allianz beigetreten."
+      declined: "Beitrittsanfrage abgelehnt."
+
+      index:
+        title: "Beitrittsanfragen"
+        subtitle: "Gilden, die **%{alliance_name}** beitreten möchten."
+        back: "Zurück zur Allianz"
+        none: "Keine ausstehenden Beitrittsanfragen."
+
+      errors:
+        not_found: "Beitrittsanfrage nicht gefunden."
+        guild_not_found: "Gilde nicht gefunden."
+        unauthorized: "Du darfst für diese Gilde keine Anfrage stellen."
+        already_in_alliance: "Diese Gilde ist bereits in einer Allianz."
+        alliance_inactive: "Diese Allianz ist nicht mehr aktiv."
+        requesting_already_in_alliance: "Diese Gilde ist vor Annahme der Anfrage einer anderen Allianz beigetreten."
+        max_guilds: "Diese Allianz kann derzeit keine weiteren Gilden aufnehmen."
+        pending_invite: "Für diese Allianz und Gilde gibt es bereits eine ausstehende Einladung."
+        create_failed: "Beitrittsanfrage konnte nicht erstellt werden."
+        accept_failed: "Beitrittsanfrage konnte nicht angenommen werden."
+        manage_unauthorized: "Nur Allianzleiter, Gildenbesitzer oder Allianzoffiziere können Beitrittsanfragen verwalten."
+
+    outgoing_join_requests:
+      new:
+        title: "Beitritt zu einer Allianz beantragen"
+        subtitle: "Deine Gilde: %{guild_name}. Suche eine gelistete Gilde, die bereits in einer Allianz ist."
+        back: "Zurück zur Gilde"
+      status:
+        title: "Status der Beitrittsanfrage"
+        subtitle: "Ausgehende Anfragen von **%{guild_name}**."
+        none: "Keine ausstehenden Beitrittsanfragen von dieser Gilde."
+        pending: "Ausstehend"
+      search_unauthorized: "Du kannst von dieser Seite aus nicht suchen."
+      not_in_alliance_suffix: "nicht in einer Allianz"
+
+    received_invites:
+      pending:
+        title: "Ausstehende Allianzeinladungen"
+        subtitle: "Einladungen für **%{guild_name}**."
+        none: "Keine ausstehenden Allianzeinladungen."
+
+    discord:
+      invite_embed:
+        title: "Allianzeinladung: %{alliance_name}"
+        body: "Eingeladen von %{inviter}. Öffne GuildSync, um anzunehmen oder abzulehnen."
+      join_request_embed:
+        title: "Beitrittsanfrage: %{guild_name}"
+        body: "%{guild_name} möchte **%{alliance_name}** beitreten. Auf GuildSync prüfen."
+      member_joined_embed:
+        title: "%{guild_name} ist der Allianz beigetreten"
+        body: "**%{guild_name}** ist jetzt Teil von **%{alliance_name}**."

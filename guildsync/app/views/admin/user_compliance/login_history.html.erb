@@ -1,0 +1,12 @@
+<div class="space-y-6">
+  <div class="flex justify-between items-center">
+    <h1 class="text-3xl font-bold text-theme-accent"><%= t("admin.user_compliance.login_history.page_title", email: @user.email) %></h1>
+    <%= link_to t("admin.user_compliance.login_history.back_to_user"), admin_user_path(@user),
+      class: "px-4 py-2 bg-theme-secondary text-theme-primary rounded-lg hover:bg-theme-hover transition-colors",
+      data: { turbo_frame: "_top" } %>
+  </div>
+
+  <%= turbo_frame_tag Admin::UserComplianceController::LOGIN_HISTORY_MAIN_FRAME do %>
+    <%= render "login_history_main" %>
+  <% end %>
+</div>

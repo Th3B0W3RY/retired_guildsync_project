@@ -1,0 +1,20 @@
+<%# Replace the games card in place and dispatch a toast event. %>
+<%= turbo_stream.replace "guild_games_section" do %>
+  <%= render "guilds/games_form" %>
+<% end %>
+
+<%
+  toast_kind = @toast_type == :notice ? "success" : "error"
+%>
+<turbo-stream action="append" target="toast-host">
+  <template>
+    <script>
+      window.dispatchEvent(new CustomEvent("toast:show", {
+        detail: {
+          type: <%= raw toast_kind.to_json %>,
+          message: <%= raw @toast_message.to_s.to_json %>
+        }
+      }));
+    </script>
+  </template>
+</turbo-stream>

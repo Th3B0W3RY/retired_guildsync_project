@@ -1,0 +1,224 @@
+<div class="max-w-6xl mx-auto p-6">
+  <div class="flex items-center justify-between mb-6">
+    <div>
+      <h1 class="text-3xl font-bold text-theme-primary mb-2"><%= t('guild_documents.index.title') %></h1>
+      <p class="text-theme-secondary"><%= t('guild_documents.index.subtitle', guild_name: @guild.name) %></p>
+    </div>
+    <div class="flex items-center gap-3">
+      <% if can_manage_documents?(@guild) %>
+        <button onclick="document.getElementById('folder-form').classList.toggle('hidden')" class="px-4 py-2 bg-theme-secondary text-theme-primary rounded-lg hover:bg-theme-hover transition-colors">
+          <svg class="w-5 h-5 inline mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-6l-2-2H5a2 2 0 00-2 2z"></path>
+          </svg>
+          <%= t('guild_documents.index.new_folder') %>
+        </button>
+      <% end %>
+      <%= link_to new_guild_document_path(@guild), class: "px-4 py-2 bg-theme-accent text-white rounded-lg hover:bg-theme-accent-hover transition-colors" do %>
+        <svg class="w-5 h-5 inline mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path>
+        </svg>
+        <%= t('guild_documents.index.new_document') %>
+      <% end %>
+    </div>
+  </div>
+
+  <!-- Folder Creation Form -->
+  <% if can_manage_documents?(@guild) %>
+    <div id="folder-form" class="hidden mb-6 bg-theme-card border border-theme-primary rounded-lg p-4">
+      <%= form_with url: create_folder_guild_documents_path(@guild), method: :post, local: true, data: { turbo: false }, class: "space-y-4" do |f| %>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+          <div>
+            <%= label_tag "guild_document_folder_name", t('guild_documents.index.folder_name'), class: "block text-sm font-medium text-theme-primary mb-2" %>
+            <%= text_field_tag "guild_document_folder[name]", "", id: "guild_document_folder_name", class: "w-full px-4 py-2 bg-theme-secondary border border-theme-primary rounded-lg text-theme-primary focus:outline-none focus:ring-2 focus:ring-theme-accent", placeholder: t('guild_documents.index.folder_name_placeholder'), required: true %>
+          </div>
+          <div>
+            <%= label_tag "guild_document_folder_color", t('guild_documents.index.color'), class: "block text-sm font-medium text-theme-primary mb-2" %>
+            <%= color_field_tag "guild_document_folder[color]", "#3b82f6", id: "guild_document_folder_color", class: "w-full h-10 bg-theme-secondary border border-theme-primary rounded-lg focus:outline-none focus:ring-2 focus:ring-theme-accent" %>
+          </div>
+          <div class="flex items-end">
+            <%= f.submit t('guild_documents.index.create_folder'), class: "w-full px-4 py-2 bg-theme-accent text-white rounded-lg hover:bg-theme-accent-hover transition-colors cursor-pointer" %>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  <% end %>
+
+  <!-- Folders and Documents -->
+  <div class="space-y-6">
+    <% @folders.each do |folder| %>
+      <div class="bg-theme-card border border-theme-primary rounded-lg overflow-hidden">
+        <div class="bg-theme-secondary border-b border-theme-primary px-6 py-3 flex items-center justify-between" style="border-left: 4px solid <%= folder.color %>">
+          <div class="flex items-center gap-3">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" style="color: <%= folder.color %>">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-6l-2-2H5a2 2 0 00-2 2z"></path>
+            </svg>
+            <h2 class="text-lg font-semibold text-theme-primary"><%= folder.name %></h2>
+            <span class="text-sm text-theme-secondary">(<%= @documents_by_folder[folder.id]&.count || 0 %> <%= t('guild_documents.index.documents_count') %>)</span>
+          </div>
+          <% if can_manage_documents?(@guild) && folder.can_manage?(current_user) %>
+            <div class="flex items-center gap-2">
+              <button onclick="editFolder(<%= folder.id %>, '<%= j folder.name %>', '<%= folder.color %>')" class="text-theme-accent hover:text-theme-accent-hover text-sm"><%= t('guild_documents.index.edit') %></button>
+              <%= button_to destroy_folder_guild_documents_path(@guild, folder_id: folder.id), method: :delete, data: { confirm: t('guild_documents.index.delete_folder_confirm') }, class: "text-red-600 hover:text-red-700 text-sm" do %>
+                <%= t('guild_documents.index.delete') %>
+              <% end %>
+            </div>
+          <% end %>
+        </div>
+        <% if @documents_by_folder[folder.id]&.any? %>
+          <div class="divide-y divide-theme-primary">
+            <% @documents_by_folder[folder.id].each do |document| %>
+              <div class="px-6 py-4 hover:bg-theme-secondary transition-colors">
+                <div class="flex items-center justify-between">
+                  <div class="flex-1">
+                    <%= link_to guild_document_path(@guild, document), class: "text-theme-accent hover:text-theme-accent-hover font-medium" do %>
+                      <%= document.title %>
+                    <% end %>
+                    <div class="flex items-center gap-4 mt-1 text-sm text-theme-secondary">
+                      <span><%= t('guild_documents.index.by_author', author: document.user.username) %></span>
+                      <span>•</span>
+                      <span><%= document.updated_at.strftime("%B %d, %Y") %></span>
+                      <span>•</span>
+                      <% case document.visibility %>
+                      <% when "public_doc" %>
+                        <span class="px-2 py-1 text-xs font-semibold rounded-full bg-green-600 text-white"><%= t('guild_documents.index.visibility_public') %></span>
+                      <% when "private_doc" %>
+                        <span class="px-2 py-1 text-xs font-semibold rounded-full bg-red-600 text-white"><%= t('guild_documents.index.visibility_private') %></span>
+                      <% when "unlisted_doc" %>
+                        <span class="px-2 py-1 text-xs font-semibold rounded-full bg-yellow-600 text-white"><%= t('guild_documents.index.visibility_unlisted') %></span>
+                      <% end %>
+                    </div>
+                  </div>
+                  <div class="flex items-center gap-3">
+                    <% if document.can_edit?(current_user) %>
+                      <%= link_to edit_guild_document_path(@guild, document), class: "text-theme-accent hover:text-theme-accent-hover text-sm" do %>
+                        <%= t('guild_documents.index.edit') %>
+                      <% end %>
+                    <% end %>
+                    <%= link_to share_guild_document_path(@guild, document, slug: document.slug), class: "text-blue-600 hover:text-blue-700 text-sm", target: "_blank" do %>
+                      <%= t('guild_documents.index.share') %>
+                    <% end %>
+                  </div>
+                </div>
+              </div>
+            <% end %>
+          </div>
+        <% else %>
+          <div class="px-6 py-8 text-center text-theme-secondary">
+            <%= t('guild_documents.index.no_documents_in_folder') %>
+          </div>
+        <% end %>
+      </div>
+    <% end %>
+
+    <!-- Documents without folder -->
+    <% if @documents_without_folder.any? %>
+      <div class="bg-theme-card border border-theme-primary rounded-lg overflow-hidden">
+        <div class="bg-theme-secondary border-b border-theme-primary px-6 py-3">
+          <h2 class="text-lg font-semibold text-theme-primary"><%= t('guild_documents.index.no_folder') %></h2>
+        </div>
+        <div class="divide-y divide-theme-primary">
+          <% @documents_without_folder.each do |document| %>
+            <div class="px-6 py-4 hover:bg-theme-secondary transition-colors">
+              <div class="flex items-center justify-between">
+                <div class="flex-1">
+                  <%= link_to guild_document_path(@guild, document), class: "text-theme-accent hover:text-theme-accent-hover font-medium" do %>
+                    <%= document.title %>
+                  <% end %>
+                  <div class="flex items-center gap-4 mt-1 text-sm text-theme-secondary">
+                    <span>By <%= document.user.username %></span>
+                    <span>•</span>
+                    <span><%= document.updated_at.strftime("%B %d, %Y") %></span>
+                    <span>•</span>
+                    <% case document.visibility %>
+                    <% when "public_doc" %>
+                      <span class="px-2 py-1 text-xs font-semibold rounded-full bg-green-600 text-white">Public</span>
+                    <% when "private_doc" %>
+                      <span class="px-2 py-1 text-xs font-semibold rounded-full bg-red-600 text-white">Private</span>
+                    <% when "unlisted_doc" %>
+                      <span class="px-2 py-1 text-xs font-semibold rounded-full bg-yellow-600 text-white">Unlisted</span>
+                    <% end %>
+                  </div>
+                </div>
+                <div class="flex items-center gap-3">
+                  <% if document.can_edit?(current_user) %>
+                    <%= link_to edit_guild_document_path(@guild, document), class: "text-theme-accent hover:text-theme-accent-hover text-sm" do %>
+                      Edit
+                    <% end %>
+                  <% end %>
+                  <%= link_to share_guild_document_path(@guild, document, slug: document.slug), class: "text-blue-600 hover:text-blue-700 text-sm", target: "_blank" do %>
+                    Share
+                  <% end %>
+                </div>
+              </div>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    <% end %>
+
+    <!-- Empty state -->
+    <% if @documents.empty? && @folders.empty? %>
+      <div class="bg-theme-card border border-theme-primary rounded-lg p-12 text-center">
+        <svg class="w-16 h-16 mx-auto text-theme-secondary mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+        </svg>
+        <h3 class="text-xl font-semibold text-theme-primary mb-2"><%= t('guild_documents.index.no_documents_yet') %></h3>
+        <p class="text-theme-secondary mb-6"><%= t('guild_documents.index.create_first_hint') %></p>
+        <div class="flex items-center justify-center gap-4">
+          <% if can_manage_documents?(@guild) %>
+            <button onclick="document.getElementById('folder-form').classList.toggle('hidden')" class="px-6 py-3 bg-theme-secondary text-theme-primary rounded-lg hover:bg-theme-hover transition-colors">
+              <%= t('guild_documents.index.create_folder') %>
+            </button>
+          <% end %>
+          <%= link_to new_guild_document_path(@guild), class: "px-6 py-3 bg-theme-accent text-white rounded-lg hover:bg-theme-accent-hover transition-colors" do %>
+            <%= t('guild_documents.index.create_document') %>
+          <% end %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>
+
+<!-- Folder Edit Modal -->
+<% if can_manage_documents?(@guild) %>
+  <div id="folder-edit-modal" class="hidden fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center">
+    <div class="bg-theme-card border border-theme-primary rounded-lg p-6 max-w-md w-full mx-4">
+      <h3 class="text-xl font-bold text-theme-primary mb-4"><%= t('guild_documents.index.edit_folder_title') %></h3>
+      <%= form_with url: update_folder_guild_documents_path(@guild), method: :patch, local: true, data: { turbo: false }, id: "folder-edit-form" do |f| %>
+        <%= hidden_field_tag :folder_id, "", id: "edit-folder-id" %>
+        <div class="space-y-4">
+          <div>
+            <%= f.label "guild_document_folder[name]", t('guild_documents.index.folder_name'), class: "block text-sm font-medium text-theme-primary mb-2" %>
+            <%= f.text_field "guild_document_folder[name]", id: "edit-folder-name", class: "w-full px-4 py-2 bg-theme-secondary border border-theme-primary rounded-lg text-theme-primary focus:outline-none focus:ring-2 focus:ring-theme-accent", required: true %>
+          </div>
+          <div>
+            <%= f.label "guild_document_folder[color]", t('guild_documents.index.color'), class: "block text-sm font-medium text-theme-primary mb-2" %>
+            <%= f.color_field "guild_document_folder[color]", id: "edit-folder-color", class: "w-full h-10 bg-theme-secondary border border-theme-primary rounded-lg focus:outline-none focus:ring-2 focus:ring-theme-accent" %>
+          </div>
+          <div class="flex items-center justify-end gap-3">
+            <button type="button" onclick="document.getElementById('folder-edit-modal').classList.add('hidden')" class="px-4 py-2 bg-theme-secondary text-theme-primary rounded-lg hover:bg-theme-hover transition-colors">
+              <%= t('guild_documents.index.cancel') %>
+            </button>
+            <%= f.submit t('guild_documents.index.update_folder'), class: "px-4 py-2 bg-theme-accent text-white rounded-lg hover:bg-theme-accent-hover transition-colors cursor-pointer" %>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+
+  <script>
+    function editFolder(id, name, color) {
+      document.getElementById('edit-folder-id').value = id;
+      document.getElementById('edit-folder-name').value = name;
+      document.getElementById('edit-folder-color').value = color;
+      document.getElementById('folder-edit-modal').classList.remove('hidden');
+    }
+
+    // Close modal on outside click
+    document.getElementById('folder-edit-modal')?.addEventListener('click', function(e) {
+      if (e.target === this) {
+        this.classList.add('hidden');
+      }
+    });
+  </script>
+<% end %>

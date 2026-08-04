@@ -1,0 +1,83 @@
+<div class="mx-auto max-w-5xl p-3 sm:p-4">
+  <div class="mb-6 flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:items-center sm:justify-between sm:gap-4">
+    <div>
+      <h1 class="text-3xl font-bold text-theme-primary"><%= t('activity_feed.title', guild_name: @guild.name) %></h1>
+      <p class="text-theme-secondary mt-1"><%= t('activity_feed.subtitle') %></p>
+    </div>
+    <div class="flex flex-wrap items-center gap-2">
+      <%= link_to t('activity_feed.export_csv'),
+          guild_activity_feed_export_path(@guild, q: params[:q], action_type: params[:action_type], user_id: params[:user_id]),
+          class: "px-4 py-2 bg-theme-secondary border border-theme-primary rounded-lg text-theme-primary hover:bg-theme-primary text-sm font-medium",
+          title: t('activity_feed.export_csv_hint') %>
+      <%= link_to t('activity_feed.back_to_dashboard'), guild_path(@guild), class: "text-theme-accent hover:text-theme-accent-hover font-medium" %>
+    </div>
+  </div>
+
+  <%= form_with url: guild_activity_feed_path(@guild), method: :get, local: true, class: "mb-6 flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:items-end" do |f| %>
+    <div class="min-w-0 w-full sm:flex-1 sm:min-w-[200px]">
+      <label for="q" class="block text-sm font-medium text-theme-secondary mb-1"><%= t('activity_feed.search_placeholder') %></label>
+      <input type="search" name="q" id="q" value="<%= params[:q] %>" placeholder="<%= t('activity_feed.search_placeholder') %>" class="w-full px-4 py-2 bg-theme-secondary border border-theme-primary rounded-lg text-theme-primary focus:outline-none focus:ring-2 focus:ring-theme-accent" />
+    </div>
+    <div class="w-full min-w-0 sm:min-w-[160px] sm:w-auto">
+      <label for="action_type" class="block text-sm font-medium text-theme-secondary mb-1"><%= t('activity_feed.filter_action_type') %></label>
+      <select name="action_type" id="action_type" class="gs-native-select gs-native-select--field w-full px-4 bg-theme-secondary border border-theme-primary rounded-lg text-theme-primary focus:outline-none focus:ring-2 focus:ring-theme-accent">
+        <option value=""><%= t('activity_feed.all_actions') %></option>
+        <% @action_types.each do |type| %>
+          <option value="<%= type %>" <%= 'selected' if params[:action_type] == type %>><%= format_activity_action_type(type) %></option>
+        <% end %>
+      </select>
+    </div>
+    <div class="w-full min-w-0 sm:min-w-[180px] sm:w-auto">
+      <label for="user_id" class="block text-sm font-medium text-theme-secondary mb-1"><%= t('activity_feed.filter_member') %></label>
+      <select name="user_id" id="user_id" class="gs-native-select gs-native-select--field w-full px-4 bg-theme-secondary border border-theme-primary rounded-lg text-theme-primary focus:outline-none focus:ring-2 focus:ring-theme-accent">
+        <option value=""><%= t('activity_feed.all_members') %></option>
+        <% @members_for_filter.each do |member| %>
+          <option value="<%= member.id %>" <%= 'selected' if params[:user_id].to_s == member.id.to_s %>><%= member.username.presence || member.email %></option>
+        <% end %>
+      </select>
+    </div>
+    <button type="submit" class="w-full px-4 py-2 bg-theme-accent text-white rounded-lg hover:bg-theme-accent-hover font-medium sm:w-auto"><%= t('activity_feed.search_button') %></button>
+  <% end %>
+
+  <div class="bg-theme-card border border-theme-primary rounded-lg overflow-hidden">
+    <% if @logs.any? %>
+      <div class="overflow-x-auto">
+        <table class="w-full text-left">
+          <thead class="bg-theme-secondary border-b border-theme-primary">
+            <tr>
+              <th class="px-4 py-3 text-sm font-semibold text-theme-primary"><%= t('activity_feed.when') %></th>
+              <th class="px-4 py-3 text-sm font-semibold text-theme-primary"><%= t('activity_feed.who') %></th>
+              <th class="px-4 py-3 text-sm font-semibold text-theme-primary"><%= t('activity_feed.action') %></th>
+              <th class="px-4 py-3 text-sm font-semibold text-theme-primary"><%= t('activity_feed.details') %></th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-theme-primary">
+            <% @logs.each do |log| %>
+              <tr class="hover:bg-theme-secondary/50">
+                <td class="px-4 py-3 text-sm text-theme-secondary whitespace-nowrap"><%= l(log.created_at, format: :short) %></td>
+                <td class="px-4 py-3 text-sm text-theme-primary"><%= log.user ? (log.user.username.presence || log.user.email) : "—" %></td>
+                <td class="px-4 py-3 text-sm text-theme-primary"><%= format_activity_action_type(log.action_type) %></td>
+                <td class="px-4 py-3 text-sm text-theme-primary"><%= log.description %></td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+      <% if @total_pages > 1 %>
+        <div class="px-4 py-3 border-t border-theme-primary flex items-center justify-between">
+          <span class="text-sm text-theme-secondary"><%= t('activity_feed.pagination_shown_total', shown: @logs.size, total: @total_count) %></span>
+          <div class="flex gap-2">
+            <% if @current_page > 1 %>
+              <%= link_to t('activity_feed.pagination_previous'), guild_activity_feed_path(@guild, page: @current_page - 1, q: params[:q], action_type: params[:action_type], user_id: params[:user_id]), class: "px-3 py-1 bg-theme-secondary text-theme-primary rounded hover:bg-theme-primary text-sm" %>
+            <% end %>
+            <% if @current_page < @total_pages %>
+              <%= link_to t('activity_feed.pagination_next'), guild_activity_feed_path(@guild, page: @current_page + 1, q: params[:q], action_type: params[:action_type], user_id: params[:user_id]), class: "px-3 py-1 bg-theme-secondary text-theme-primary rounded hover:bg-theme-primary text-sm" %>
+            <% end %>
+          </div>
+        </div>
+      <% end %>
+    <% else %>
+      <p class="px-6 py-8 text-theme-secondary text-center"><%= t('activity_feed.no_activity') %></p>
+    <% end %>
+  </div>
+</div>

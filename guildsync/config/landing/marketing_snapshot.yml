@@ -1,0 +1,355 @@
+---
+version: 1
+homepage_feature_cards:
+- slug: member_management
+  title: Member Management
+  description: Track and organize your guild members efficiently
+  icon_key: member_management
+  position: 0
+  visible: true
+  body_html: ''
+- slug: analytics_insights
+  title: Analytics & Insights
+  description: Detailed analytics on member activity and growth
+  icon_key: analytics_insights
+  position: 1
+  visible: true
+  body_html: ''
+- slug: automation_tools
+  title: Automation Tools
+  description: Automate routine tasks and workflows
+  icon_key: automation_tools
+  position: 2
+  visible: true
+  body_html: ''
+- slug: advanced_tracking
+  title: Advanced Member Tracking
+  description: Real-time member activity monitoring
+  icon_key: advanced_tracking
+  position: 3
+  visible: true
+  body_html: ''
+- slug: multi_guild
+  title: Multi-Guild Management
+  description: Manage unlimited guilds from one dashboard
+  icon_key: multi_guild
+  position: 4
+  visible: true
+  body_html: ''
+- slug: custom_automation
+  title: Custom Automation
+  description: Create custom workflows and triggers
+  icon_key: custom_automation
+  position: 5
+  visible: true
+  body_html: ''
+- slug: analytics_dashboard
+  title: Analytics Dashboard
+  description: Detailed insights and reports
+  icon_key: analytics_dashboard
+  position: 6
+  visible: true
+  body_html: ''
+- slug: role_management
+  title: Role Management
+  description: Advanced role assignment system
+  icon_key: role_management
+  position: 7
+  visible: true
+  body_html: ''
+- slug: member_onboarding
+  title: Member Onboarding
+  description: Automated welcome and setup flows
+  icon_key: member_onboarding
+  position: 8
+  visible: true
+  body_html: ''
+- slug: event_management
+  title: Event Management
+  description: Schedule and track guild events
+  icon_key: event_management
+  position: 9
+  visible: true
+  body_html: ''
+- slug: custom_notifications
+  title: Custom Notifications
+  description: Personalized alert system
+  icon_key: custom_notifications
+  position: 10
+  visible: true
+  body_html: ''
+- slug: moderation_tools
+  title: Moderation Tools
+  description: Advanced moderation features
+  icon_key: moderation_tools
+  position: 11
+  visible: true
+  body_html: ''
+- slug: api_integration
+  title: API Integration
+  description: Full API access for developers
+  icon_key: api_integration
+  position: 12
+  visible: true
+  body_html: ''
+- slug: export_backup
+  title: Export & Backup
+  description: Data export and automatic backups
+  icon_key: export_backup
+  position: 13
+  visible: true
+  body_html: ''
+- slug: priority_support
+  title: Priority Support
+  description: 24/7 dedicated support team
+  icon_key: priority_support
+  position: 14
+  visible: true
+  body_html: ''
+- slug: security_features
+  title: Security Features
+  description: Enterprise-grade security
+  icon_key: security_features
+  position: 15
+  visible: true
+  body_html: ''
+- slug: custom_branding
+  title: Custom Branding
+  description: White-label options available
+  icon_key: custom_branding
+  position: 16
+  visible: true
+  body_html: ''
+- slug: mobile_app
+  title: Mobile App
+  description: iOS and Android apps included
+  icon_key: mobile_app
+  position: 17
+  visible: true
+  body_html: ''
+- slug: unlimited_storage
+  title: Unlimited Storage
+  description: No limits on data storage
+  icon_key: unlimited_storage
+  position: 18
+  visible: true
+  body_html: ''
+- slug: custom_role_system
+  title: Custom Role System
+  description: Discord-aware roles and permissions mapped to how your guild actually
+    operates
+  icon_key: custom_role_system
+  position: 19
+  visible: true
+  body_html: ''
+landing_comparison_tables:
+- position: 0
+  feature_column_label: Feature
+  guildsync_column_label: GuildSync
+  competitor_column_label: Guild Manager
+  show_guildsync_badge: true
+  rows:
+  - position: 0
+    feature_label: Rapid, user-feedback-based development
+    guildsync_included: true
+    competitor_included: false
+  - position: 1
+    feature_label: Unlimited guilds
+    guildsync_included: true
+    competitor_included: false
+  - position: 2
+    feature_label: Basic plan — essential features without premium-only pricing
+    guildsync_included: true
+    competitor_included: false
+  - position: 3
+    feature_label: Multi-game guild dashboard
+    guildsync_included: true
+    competitor_included: true
+  - position: 4
+    feature_label: Events, RSVPs & scheduling
+    guildsync_included: true
+    competitor_included: true
+  - position: 5
+    feature_label: Loot rolls & fair distribution
+    guildsync_included: true
+    competitor_included: true
+  - position: 6
+    feature_label: Recruitment & applications
+    guildsync_included: true
+    competitor_included: true
+  - position: 7
+    feature_label: Discord bot & integration
+    guildsync_included: true
+    competitor_included: true
+  - position: 8
+    feature_label: Member analytics & insights
+    guildsync_included: true
+    competitor_included: true
+  - position: 9
+    feature_label: Long-term audit & activity history
+    guildsync_included: true
+    competitor_included: true
+  - position: 10
+    feature_label: Guild documents & file storage
+    guildsync_included: true
+    competitor_included: true
+  - position: 11
+    feature_label: Polls & community votes
+    guildsync_included: true
+    competitor_included: true
+  - position: 12
+    feature_label: Public roadmap & feature voting
+    guildsync_included: true
+    competitor_included: false
+  - position: 13
+    feature_label: API access
+    guildsync_included: true
+    competitor_included: true
+  - position: 14
+    feature_label: Export & data backup
+    guildsync_included: true
+    competitor_included: true
+  - position: 15
+    feature_label: Custom Role System
+    guildsync_included: true
+    competitor_included: false
+- position: 1
+  feature_column_label: Feature
+  guildsync_column_label: GuildSync
+  competitor_column_label: GuildSpire
+  show_guildsync_badge: true
+  rows:
+  - position: 0
+    feature_label: Rapid, user-feedback-based development
+    guildsync_included: true
+    competitor_included: false
+  - position: 1
+    feature_label: Unlimited guilds
+    guildsync_included: true
+    competitor_included: false
+  - position: 2
+    feature_label: Basic plan — essential features without premium-only pricing
+    guildsync_included: true
+    competitor_included: false
+  - position: 3
+    feature_label: Multi-game guild dashboard
+    guildsync_included: true
+    competitor_included: true
+  - position: 4
+    feature_label: Events, RSVPs & scheduling
+    guildsync_included: true
+    competitor_included: true
+  - position: 5
+    feature_label: Loot rolls & fair distribution
+    guildsync_included: true
+    competitor_included: true
+  - position: 6
+    feature_label: Recruitment & applications
+    guildsync_included: true
+    competitor_included: true
+  - position: 7
+    feature_label: Discord bot & integration
+    guildsync_included: true
+    competitor_included: true
+  - position: 8
+    feature_label: Member analytics & insights
+    guildsync_included: true
+    competitor_included: true
+  - position: 9
+    feature_label: Long-term audit & activity history
+    guildsync_included: true
+    competitor_included: false
+  - position: 10
+    feature_label: Guild documents & file storage
+    guildsync_included: true
+    competitor_included: false
+  - position: 11
+    feature_label: Polls & community votes
+    guildsync_included: true
+    competitor_included: true
+  - position: 12
+    feature_label: Public roadmap & feature voting
+    guildsync_included: true
+    competitor_included: false
+  - position: 13
+    feature_label: API access
+    guildsync_included: true
+    competitor_included: false
+  - position: 14
+    feature_label: Export & data backup
+    guildsync_included: true
+    competitor_included: false
+  - position: 15
+    feature_label: Custom Role System
+    guildsync_included: true
+    competitor_included: false
+- position: 2
+  feature_column_label: Feature
+  guildsync_column_label: GuildSync
+  competitor_column_label: Typical Guild Manager Solutions
+  show_guildsync_badge: true
+  rows:
+  - position: 0
+    feature_label: Rapid, user-feedback-based development
+    guildsync_included: true
+    competitor_included: false
+  - position: 1
+    feature_label: Unlimited guilds
+    guildsync_included: true
+    competitor_included: false
+  - position: 2
+    feature_label: Basic plan — essential features without premium-only pricing
+    guildsync_included: true
+    competitor_included: false
+  - position: 3
+    feature_label: Multi-game guild dashboard
+    guildsync_included: true
+    competitor_included: false
+  - position: 4
+    feature_label: Events, RSVPs & scheduling
+    guildsync_included: true
+    competitor_included: false
+  - position: 5
+    feature_label: Loot rolls & fair distribution
+    guildsync_included: true
+    competitor_included: false
+  - position: 6
+    feature_label: Recruitment & applications
+    guildsync_included: true
+    competitor_included: false
+  - position: 7
+    feature_label: Discord bot & integration
+    guildsync_included: true
+    competitor_included: false
+  - position: 8
+    feature_label: Member analytics & insights
+    guildsync_included: true
+    competitor_included: false
+  - position: 9
+    feature_label: Long-term audit & activity history
+    guildsync_included: true
+    competitor_included: false
+  - position: 10
+    feature_label: Guild documents & file storage
+    guildsync_included: true
+    competitor_included: false
+  - position: 11
+    feature_label: Polls & community votes
+    guildsync_included: true
+    competitor_included: false
+  - position: 12
+    feature_label: Public roadmap & feature voting
+    guildsync_included: true
+    competitor_included: false
+  - position: 13
+    feature_label: API access
+    guildsync_included: true
+    competitor_included: false
+  - position: 14
+    feature_label: Export & data backup
+    guildsync_included: true
+    competitor_included: false
+  - position: 15
+    feature_label: Custom Role System
+    guildsync_included: true
+    competitor_included: false

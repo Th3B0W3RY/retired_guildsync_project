@@ -1,0 +1,16 @@
+<% count = @feature_request.feature_request_comments.visible_to_public.chronological.count %>
+<%= turbo_stream.update "roadmap_comments_count", count.to_s %>
+<%= turbo_stream.update "roadmap_comment_form_errors", "" %>
+<% if @comment.visible? %>
+  <%= turbo_stream.append "roadmap_comments_list" do %>
+    <%= render "roadmap/feature_request_comment",
+               comment: @comment,
+               inner_muted: "bg-[#1a1d2e] border border-[#2d3142] rounded-xl" %>
+  <% end %>
+  <%= turbo_stream.remove "roadmap-comments-empty" %>
+  <%= turbo_stream.update "roadmap_comment_moderation_notice", "" %>
+<% else %>
+  <%= turbo_stream.update "roadmap_comment_moderation_notice" do %>
+    <p class="text-sm text-amber-400"><%= t("roadmap.comments.sent_for_review") %></p>
+  <% end %>
+<% end %>

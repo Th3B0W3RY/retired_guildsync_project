@@ -1,0 +1,58 @@
+@import "trix/dist/trix.css";
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Custom component classes for theme system */
+@layer components {
+  /* Background colors */
+  .bg-theme-primary {
+    @apply bg-dark-bg-primary;
+  }
+  
+  .bg-theme-secondary {
+    @apply bg-dark-bg-secondary;
+  }
+  
+  .bg-theme-card {
+    @apply bg-dark-bg-card;
+  }
+  
+  /* Text colors */
+  .text-theme-primary {
+    @apply text-dark-text-primary;
+  }
+  
+  .text-theme-secondary {
+    @apply text-dark-text-secondary;
+  }
+  
+  /* Border colors */
+  .border-theme-primary {
+    @apply border-dark-border-primary;
+  }
+  
+  /* Accent colors */
+  .text-theme-accent {
+    @apply text-dark-accent-primary;
+  }
+  
+  .bg-theme-accent {
+    @apply bg-dark-accent-primary;
+  }
+  
+  /* Hover states */
+  .hover\:bg-theme-hover:hover {
+    @apply bg-dark-bg-hover;
+  }
+  
+  .hover\:bg-theme-accent-hover:hover {
+    @apply bg-dark-accent-hover;
+  }
+  
+  .hover\:text-theme-accent-hover:hover {
+    @apply text-dark-accent-hover;
+  }
+}
+

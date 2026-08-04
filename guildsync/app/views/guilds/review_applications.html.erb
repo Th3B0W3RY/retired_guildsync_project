@@ -1,0 +1,172 @@
+<div class="max-w-4xl mx-auto p-6">
+  <h1 class="text-3xl font-bold text-theme-primary mb-6"><%= t('guilds.review_applications.title', name: @guild.name) %></h1>
+  <p class="text-theme-secondary mb-6"><%= t('guilds.review_applications.subtitle') %></p>
+  
+  <!-- Invited Members Section -->
+  <% if @invites_pagination[:total_count].to_i > 0 %>
+    <div class="bg-theme-secondary rounded-lg border border-theme-primary p-6 mb-6">
+      <h2 class="text-xl font-semibold text-theme-primary mb-4"><%= t('guilds.review_applications.invited_members') %></h2>
+      <div class="space-y-4">
+        <% @guild_invites.each do |invite| %>
+          <div class="bg-theme-primary rounded-lg border border-theme-secondary p-4">
+            <div class="flex items-start justify-between mb-3">
+              <div class="flex-1">
+                <div class="flex items-center gap-3 mb-2">
+                  <% if invite.user.discord_avatar_url.present? %>
+                    <%= image_tag invite.user.discord_avatar_url, alt: invite.user.discord_username, class: "w-10 h-10 rounded-full" %>
+                  <% else %>
+                    <div class="w-10 h-10 rounded-full bg-theme-secondary flex items-center justify-center">
+                      <span class="text-theme-primary font-semibold"><%= invite.user.username.first.upcase %></span>
+                    </div>
+                  <% end %>
+                  <div>
+                    <h3 class="text-lg font-semibold text-theme-primary">
+                      <%= invite.user.username %>
+                      <% if invite.user.discord_connected? %>
+                        <span class="ml-2 px-2 py-0.5 text-xs bg-green-600 text-white rounded-full"><%= t('guilds.review_applications.discord_verified') %></span>
+                      <% end %>
+                    </h3>
+                    <p class="text-sm text-theme-secondary">
+                      <%= t('guilds.review_applications.invited_by') %> <%= invite.invited_by.username %>
+                    </p>
+                    <p class="text-xs text-theme-secondary mt-1"><%= t('guilds.review_applications.invited') %> <%= invite.created_at.strftime('%B %d, %Y at %I:%M %p') %></p>
+                  </div>
+                </div>
+              </div>
+              <div class="flex items-center gap-2">
+                <span class="px-3 py-1 rounded-full text-sm font-medium
+                  <%= case invite.status
+                      when 'pending' then 'bg-yellow-900/30 text-yellow-500'
+                      when 'accepted' then 'bg-green-900/30 text-green-500'
+                      when 'denied' then 'bg-red-900/30 text-red-500'
+                      end %>">
+                  <%= invite.status.humanize %>
+                </span>
+                <%= button_to t('guilds.review_applications.dismiss'), dismiss_guild_invite_path(invite), method: :patch, 
+                    class: "px-3 py-1 bg-theme-secondary text-theme-primary border border-theme-primary rounded-lg hover:bg-theme-primary transition-colors text-sm font-semibold",
+                    data: { confirm: t('guilds.review_applications.dismiss_confirm') } %>
+              </div>
+            </div>
+          </div>
+        <% end %>
+      </div>
+      <% inv = @invites_pagination %>
+      <% if inv[:total_pages].to_i > 1 %>
+        <% qp = request.query_parameters.symbolize_keys.slice(:apps_page) %>
+        <div class="mt-4 pt-4 border-t border-theme-primary flex flex-wrap items-center justify-between gap-3">
+          <span class="text-sm text-theme-secondary"><%= t('activity_feed.pagination_shown_total', shown: @guild_invites.size, total: inv[:total_count]) %></span>
+          <div class="flex gap-2">
+            <% if inv[:page].to_i > 1 %>
+              <%= link_to t('activity_feed.pagination_previous'), guild_review_applications_path(@guild, qp.merge(invites_page: inv[:page] - 1)), class: "px-3 py-1 bg-theme-primary text-theme-primary rounded hover:bg-theme-secondary text-sm border border-theme-secondary" %>
+            <% end %>
+            <% if inv[:page].to_i < inv[:total_pages].to_i %>
+              <%= link_to t('activity_feed.pagination_next'), guild_review_applications_path(@guild, qp.merge(invites_page: inv[:page] + 1)), class: "px-3 py-1 bg-theme-primary text-theme-primary rounded hover:bg-theme-secondary text-sm border border-theme-secondary" %>
+            <% end %>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  <% end %>
+
+  <!-- Application Review Section -->
+  <% if @applications_pagination[:total_count].to_i > 0 %>
+    <div class="bg-theme-secondary rounded-lg border border-theme-primary p-6 mb-6">
+      <h2 class="text-xl font-semibold text-theme-primary mb-4"><%= t('guilds.review_applications.pending_applications') %></h2>
+      
+      <div class="space-y-4">
+        <% @pending_applications.each do |application| %>
+          <div class="bg-theme-primary rounded-lg border border-theme-secondary p-4">
+            <div class="flex items-start justify-between mb-3">
+              <div class="flex-1">
+                <div class="flex items-center gap-3 mb-2">
+                  <% if application.user.discord_avatar_url.present? %>
+                    <%= image_tag application.user.discord_avatar_url, alt: application.user.discord_username, class: "w-10 h-10 rounded-full" %>
+                  <% end %>
+                  <div>
+                    <h3 class="text-lg font-semibold text-theme-primary">
+                      <%= clean_discord_username(application.discord_username) || application.user.username %>
+                      <% if application.user.discord_connected? %>
+                        <span class="ml-2 px-2 py-0.5 text-xs bg-green-600 text-white rounded-full"><%= t('guilds.review_applications.discord_verified') %></span>
+                      <% end %>
+                    </h3>
+                    <p class="text-sm text-theme-secondary">
+                      <% if application.user.discord_connected? && application.user.discord_username.present? %>
+                        Discord: <%= clean_discord_username(application.user.discord_username) %>
+                      <% else %>
+                        <%= t('guilds.review_applications.discord_not_connected') %>
+                      <% end %>
+                    </p>
+                  </div>
+                </div>
+                <p class="text-xs text-theme-secondary mt-1"><%= t('guilds.review_applications.applied') %> <%= application.created_at.strftime('%B %d, %Y at %I:%M %p') %></p>
+              </div>
+            </div>
+            
+            <% if application.message.present? %>
+              <div class="mb-3">
+                <p class="text-sm text-theme-secondary"><strong><%= t('guilds.review_applications.message_label') %></strong></p>
+                <p class="text-theme-primary"><%= simple_format(application.message) %></p>
+              </div>
+            <% end %>
+            
+            <div class="flex gap-3">
+              <%= button_to t('guilds.review_applications.accept'), accept_guild_application_path(application), method: :patch, 
+                  class: "px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors font-semibold cursor-pointer",
+                  data: { confirm: t('guilds.review_applications.accept_confirm') } %>
+              <%= button_to t('guilds.review_applications.reject'), reject_guild_application_path(application), method: :patch, 
+                  class: "px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 transition-colors font-semibold cursor-pointer",
+                  data: { confirm: t('guilds.review_applications.reject_confirm') } %>
+              <button type="button" 
+                      onclick="document.getElementById('message-modal-<%= application.id %>').classList.remove('hidden')"
+                      class="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors font-semibold cursor-pointer">
+                <%= t('guilds.review_applications.message_applicant') %>
+              </button>
+            </div>
+            
+            <!-- Message Modal -->
+            <div id="message-modal-<%= application.id %>" class="hidden fixed inset-0 bg-black/50 z-50 flex items-center justify-center">
+              <div class="bg-theme-secondary rounded-lg border border-theme-primary p-6 max-w-md w-full mx-4">
+                <h3 class="text-xl font-semibold text-theme-primary mb-4"><%= t('guilds.review_applications.message_applicant') %></h3>
+                <%= form_with url: message_guild_application_path(application), method: :post, local: true, class: "space-y-4" do |f| %>
+                  <div>
+                    <%= f.label :message_content, t('guilds.review_applications.message'), class: "block text-sm font-medium text-theme-primary mb-2" %>
+                    <%= f.text_area :message_content, rows: 4, class: "w-full px-4 py-2 bg-theme-primary border border-theme-secondary rounded-lg text-theme-primary", required: true, placeholder: t('guilds.review_applications.enter_message_placeholder') %>
+                  </div>
+                  <div class="flex gap-3">
+                    <%= f.submit t('guilds.review_applications.send'), class: "px-4 py-2 bg-theme-accent text-white rounded-lg hover:bg-theme-accent-hover transition-colors font-semibold cursor-pointer" %>
+                    <button type="button" 
+                            onclick="document.getElementById('message-modal-<%= application.id %>').classList.add('hidden')"
+                            class="px-4 py-2 bg-theme-secondary text-theme-primary rounded-lg hover:bg-theme-primary transition-colors font-semibold">
+                      <%= t('guilds.review_applications.cancel') %>
+                    </button>
+                  </div>
+                <% end %>
+              </div>
+            </div>
+          </div>
+        <% end %>
+      </div>
+      <% ap = @applications_pagination %>
+      <% if ap[:total_pages].to_i > 1 %>
+        <% qp = request.query_parameters.symbolize_keys.slice(:invites_page) %>
+        <div class="mt-4 pt-4 border-t border-theme-primary flex flex-wrap items-center justify-between gap-3">
+          <span class="text-sm text-theme-secondary"><%= t('activity_feed.pagination_shown_total', shown: @pending_applications.size, total: ap[:total_count]) %></span>
+          <div class="flex gap-2">
+            <% if ap[:page].to_i > 1 %>
+              <%= link_to t('activity_feed.pagination_previous'), guild_review_applications_path(@guild, qp.merge(apps_page: ap[:page] - 1)), class: "px-3 py-1 bg-theme-primary text-theme-primary rounded hover:bg-theme-secondary text-sm border border-theme-secondary" %>
+            <% end %>
+            <% if ap[:page].to_i < ap[:total_pages].to_i %>
+              <%= link_to t('activity_feed.pagination_next'), guild_review_applications_path(@guild, qp.merge(apps_page: ap[:page] + 1)), class: "px-3 py-1 bg-theme-primary text-theme-primary rounded hover:bg-theme-secondary text-sm border border-theme-secondary" %>
+            <% end %>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  <% else %>
+    <div class="bg-theme-secondary rounded-lg border border-theme-primary p-8 text-center">
+      <p class="text-theme-secondary text-lg"><%= t('guilds.review_applications.no_pending') %></p>
+    </div>
+  <% end %>
+  
+  <%= link_to t('guilds.review_applications.back_to_dashboard'), guild_path(@guild), class: "text-theme-accent hover:text-theme-accent-hover" %>
+</div>

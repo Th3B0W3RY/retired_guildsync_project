@@ -1,0 +1,71 @@
+<div class="max-w-4xl mx-auto p-6">
+  <div class="mb-6">
+    <h1 class="text-3xl font-bold text-theme-primary mb-2"><%= t('guilds.schedule_events.title', name: @guild.name) %></h1>
+    <p class="text-theme-secondary"><%= t('guilds.schedule_events.subtitle') %></p>
+  </div>
+
+  <% if @user_conn&.access_token.present? && @discord_guild_id.present? && @bot_connected %>
+    <div class="bg-theme-secondary rounded-lg border border-theme-primary p-6 mb-6">
+      <h2 class="text-xl font-semibold text-theme-primary mb-4"><%= t('guilds.schedule_events.create_new_event') %></h2>
+      <%= link_to t('guilds.schedule_events.create_event'), new_guild_discord_event_path(@guild), class: "inline-flex items-center gap-2 px-6 py-3 bg-theme-accent text-white rounded-lg hover:bg-theme-accent-hover transition-colors font-semibold" %>
+    </div>
+
+    <% if @discord_events&.any? %>
+      <div class="bg-theme-secondary rounded-lg border border-theme-primary p-6">
+        <h2 class="text-xl font-semibold text-theme-primary mb-4"><%= t('guilds.schedule_events.recent_events') %></h2>
+        <div class="space-y-4">
+          <% @discord_events.each do |event| %>
+            <div class="flex items-center justify-between p-4 bg-theme-primary rounded-lg">
+              <div>
+                <h3 class="text-lg font-semibold text-theme-primary"><%= event.title %></h3>
+                <p class="text-theme-secondary text-sm"><%= event.scheduled_at.strftime("%B %d, %Y at %I:%M %p") %></p>
+                <p class="text-theme-secondary text-sm"><%= t('guilds.schedule_events.signups') %> <%= event.discord_event_signups.count %></p>
+              </div>
+              <div class="flex gap-2">
+                <%= link_to t('guilds.schedule_events.view'), guild_discord_event_path(@guild, event), class: "px-4 py-2 bg-theme-accent text-white rounded-lg hover:bg-theme-accent-hover transition-colors" %>
+                <%= button_to t('guilds.schedule_events.delete'), guild_discord_event_path(@guild, event), method: :delete, class: "px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 transition-colors", data: { confirm: t('guilds.schedule_events.delete_confirm') } %>
+              </div>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    <% end %>
+  <% else %>
+    <div class="bg-yellow-900/20 border border-yellow-500 rounded-lg p-4 mb-6">
+      <div class="flex items-center gap-3">
+        <svg class="w-6 h-6 text-yellow-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path>
+        </svg>
+        <div>
+          <h3 class="text-lg font-semibold text-yellow-500">
+            <% if @user_conn&.access_token.present? && @discord_guild_id.present? %>
+              <%= t('guilds.schedule_events.bot_not_connected') %>
+            <% elsif @user_conn&.access_token.present? %>
+              <%= t('guilds.schedule_events.discord_server_not_selected') %>
+            <% else %>
+              <%= t('guilds.schedule_events.bot_not_connected') %>
+            <% end %>
+          </h3>
+          <p class="text-theme-secondary">
+            <% if @user_conn&.access_token.present? && @discord_guild_id.present? %>
+              <%= t('guilds.schedule_events.bot_not_connected_message') %>
+            <% elsif @user_conn&.access_token.present? %>
+              <%= t('guilds.schedule_events.select_server_message') %>
+            <% else %>
+              <%= t('guilds.schedule_events.connect_bot_message') %>
+            <% end %>
+          </p>
+        </div>
+      </div>
+      <div class="mt-4">
+        <%= link_to @user_conn&.access_token.present? && @discord_guild_id.present? ? t('guilds.schedule_events.authorize_bot') : (@user_conn&.access_token.present? ? t('guilds.schedule_events.select_discord_server') : t('guilds.schedule_events.connect_bot_to_guild')), 
+            guild_discord_connection_path(@guild), 
+            class: "inline-flex items-center gap-2 px-4 py-2 bg-[#5865F2] text-white rounded-lg hover:bg-[#4752C4] transition-colors font-semibold" %>
+      </div>
+    </div>
+  <% end %>
+
+  <div class="mt-6">
+    <%= link_to t('guilds.schedule_events.back_to_dashboard'), guild_path(@guild), class: "text-theme-accent hover:text-theme-accent-hover" %>
+  </div>
+</div>

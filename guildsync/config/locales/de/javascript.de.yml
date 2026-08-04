@@ -1,0 +1,44 @@
+de:
+  js:
+    common:
+      unknown_error: "Unbekannter Fehler"
+    admin:
+      dashboard:
+        delete_error: "Fehler: %{error}"
+    pricing:
+      price_id_missing: "Preis-ID fehlt. Bitte kontaktieren Sie den Support."
+      checkout_failed: "Die Bezahlung konnte nicht gestartet werden. Bitte erneut versuchen."
+    billing:
+      portal_failed: "Das Öffnen des Rechnungportals ist gescheitert. Bitte versuchen Sie es erneut."
+      plan_change_failed: "Planwechsel nicht möglich. Bitte erneut versuchen."
+    guilds:
+      members:
+        select_member: "Bitte wählen Sie mindestens einen Mitglied."
+        select_role: "Bitte wählen Sie eine Rolle."
+        select_user: "Bitte wählen Sie zuerst einen Benutzer aus."
+        security_token_missing: "Sicherheits-Token nicht gefunden. Bitte aktualisieren Sie die Seite und probieren Sie es erneut."
+        invite_error: "Es gab einen Fehler beim Einladen des Benutzers. Bitte versuchen Sie es erneut."
+      settings:
+        game_added: "Spiel wurde erfolgreich hinzugefügt!"
+        game_add_failed: "Hinzufügen des Spiels fehlgeschlagen: %{error}"
+        game_add_error: "Fehler beim Hinzufügen des Spiels: %{error}"
+        discord_role_sync:
+          section_title: "Discord-Rollen-Synchronisierung"
+          missing_role: "Rolleninformationen fehlen; bitte aktualisieren und erneut versuchen."
+          generic_error: "Etwas ist schiefgelaufen. Bitte versuchen Sie es erneut."
+      members_gear:
+        select_file: "Bitte wähle eine Datei"
+        select_game: "Bitte wählen Sie ein Spiel"
+        upload_failed: "Hochladen fehlgeschlagen: %{error}"
+        session_expired: "Deine Sitzung ist abgelaufen. Melde dich erneut an und versuche den Upload noch einmal."
+        requests_sent: "Erfolgreich %{count} Stat-Aktualisierungsanfragen gesendet"
+        requests_failed: "Die Anfragen konnten nicht gesendet werden: %{error}"
+        request_failed: "Anfrage konnte nicht gesendet werden: %{error}"
+    guild_applications:
+      select_guild: "Bitte wählen Sie eine Gilde aus den Suchergebnissen."
+    guild_documents:
+      link_copied: "Teilen-Link kopiert in die Zwischenablage!"
+    discord_connections:
+      connection_failed: "Discord-Verbindung fehlgeschlagen: %{error}"
+      popup_blocked: "Popup wurde blockiert. Bitte erlauben Sie Popups für diese Website und versuchen Sie es erneut."
+      bot_auth_url_missing: "Fehler: Die Bot-Authorisierungs-URL fehlt die Server-ID. Bitte wählen Sie den Server erneut aus."

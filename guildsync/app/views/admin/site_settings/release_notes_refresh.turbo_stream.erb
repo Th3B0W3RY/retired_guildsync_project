@@ -1,0 +1,8 @@
+<%= turbo_stream.update "admin_release_notes_flash" do %>
+  <%= render "admin/errors/flash_banner", message: @admin_release_notes_message, variant: @admin_release_notes_variant %>
+<% end %>
+<%= turbo_stream.replace "admin_release_notes_form_wrap" do %>
+  <div id="admin_release_notes_form_wrap">
+    <%= render "release_notes_form", release_notes_url: @release_notes_url %>
+  </div>
+<% end %>

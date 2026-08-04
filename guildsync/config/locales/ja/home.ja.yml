@@ -1,0 +1,406 @@
+ja:
+  home:
+    landing:
+      title: GuildSyncへようこそ
+      subtitle: ゲームコミュニティ、イベント、メンバー管理を一元化するプラットフォームです。
+      hero_kicker: ギルドリーダー、オフィサー、アクティブなコミュニティ向け
+      problem_title: 表計算の混沌から運用の明瞭さへ
+      problem_subtitle: イベント、メンバー、応募、ルートのワークフローを一か所にまとめ、オフィサーの事務負担を減らしリーダーシップに時間を使えるようにします。
+      outcome_1_title: 公平なルート運用
+      outcome_1_desc: 一貫したルール、見える参加履歴、トラブルの軽減。
+      outcome_2_title: イベントをより良く調整
+      outcome_2_desc: イベントを予定し、リアルタイムの参加登録数を把握し、遅刻を追跡し、クラス/ロールのカバー状況をリアルタイムで確認できます。
+      outcome_3_title: オフィサーの負荷を下げる
+      outcome_3_desc: ロールベースの管理と監査ログでワークフローを予測可能に。
+      trust:
+        no_card: クレジットカード不要
+        setup: ギルドチーム向けにすばやく開始
+        security: ロール権限 + 完全なアクティビティログ
+      preview_title: 製品プレビュー
+      preview:
+        events_title: イベント
+        events_desc: イベントを素早く作成し、出席と参加傾向を追跡。
+        members_title: メンバー
+        members_desc: ロール、タグ、応募、ギルド権限を一つのハブで管理。
+        loot_title: ルート + 投票
+        loot_desc: 透明な記録で構造化されたルートロールと投票を実施。
+        logs_title: アクティビティログ
+        logs_desc: 説明責任と文脈のためリーダー行動を記録。
+      explore_pricing: 料金を見る
+      why_title: なぜGuildSyncを選ぶのか？
+      features_cta_hint: 各カードをクリックして、機能の内容を確認してください。
+      features_section_subtitle: カードを開いて詳しく確認できます。ギルド向けツールを比較する訪問者向けです。
+      feedback:
+        section_title: ユーザーフィードバック
+        carousel_role: カルーセル
+        slide_role: スライド
+        keyboard_hint: 左右の矢印キーで声を切り替えられます。
+        announce_progress: ユーザーの声 %{current} / %{total}
+        previous: 前のユーザーの声
+        next: 次のユーザーの声
+        pagination: ユーザーの声のスライド
+        go_to_slide: ユーザーの声 %{index} に移動
+      compare_title: GuildSyncと競合の比較
+      compare_old_title: 表計算 + Discord のみ
+      compare_old_1: 正しい表を探す（または新規作成）
+      compare_old_2: 複数のタブとシートを手作業で更新
+      compare_old_3: 役員に更新とダブルチェックを依頼
+      compare_new_title: GuildSync コマンドセンター
+      compare_new_1: サインイン済みの役員はドキュメント、ワークフロー、構造化された管理フローにすばやくアクセス
+      compare_new_2: メンバーデータ、出席記録、権限管理を一元化
+      compare_new_3: ギルド履歴、アクティビティログ、通知フロー
+      footer_copyright: "© %{year} GuildSync。全著作権所有。"
+      cta:
+        title: 始める準備はできましたか？
+        description: すでに多くのゲームコミュニティがGuildSyncを利用しています。
+        button: 無料トライアルを開始
+        button_hero: 無料で始める
+      feature_spotlight:
+        title: GuildSyncが実際に運営を助けること
+        subtitle: 採用・ドキュメント管理から、アライアンス調整・モデレーションまで、実運用向けに設計。
+        documents_title: ギルドドキュメント
+        documents_desc: SOP、ビルド、ガイドを公開リンクまたは内部限定で共有できます。
+        activity_title: アクティビティフィード + ログ
+        activity_desc: リーダー行動、メンバー変更、運用履歴を1つのタイムラインで追跡します。
+        alliance_title: アライアンスシステム
+        alliance_desc: 提携ギルド間でアライアンスイベント、投票、ルートロールを調整します。
+        recruit_title: 募集 + 申請
+        recruit_desc: メモ、承認/拒否フロー、フォローアップ連絡を含む構造化された申請プロセスを運用できます。
+        ocr_title: AI装備スクリーンショット解析
+        ocr_desc: スクリーンショットをアップロードしてビルドデータを素早く抽出し、メンバー装備状況を最新化します。
+        roles_title: カスタムロール + カラータグ
+        roles_desc: 細かな権限を設定し、定義済みカラータグを割り当ててロスター可視性を高めます。
+        warnings_title: 警告システム
+        warnings_desc: 警告なし・警告あり・BAN済みの管理リストを維持し、モデレーション運用に活用します。
+        messaging_title: メッセージセンター
+        messaging_desc: GuildSync内からGMとオフィサーがメンバーへ直接連絡できるよう支援します。
+        analytics_title: ランキング + エンゲージメント
+        analytics_desc: 出席や参加傾向から高アクティブメンバーを可視化し、運営判断を支援します。
+      compare:
+        feature: 特徴
+        competitor_1: Guild Manager
+        competitor_2: GuildSpire
+        competitor_3: 一般的なギルド管理ソリューション
+        features:
+          rapid_user_feedback: 迅速なユーザーフィードバックに基づく開発
+          unlimited_guilds: 無制限のギルド
+          starter_basic_plan_value: ベーシックプラン — プレミアムのみの入口なしで必要な機能
+          multi_game_dashboard: マルチゲームギルドダッシュボード
+          events_scheduling: イベント・出欠・スケジュール管理
+          loot_rolls_distribution: ルートロールと公平な配分
+          recruitment_applications: 募集と応募管理
+          discord_integration: Discordボットと連携
+          member_analytics: メンバー分析とインサイト
+          audit_history: 長期の監査・活動履歴
+          guild_documents_storage: ギルド文書とファイル保管
+          polls_community_votes: 投票とコミュニティ投票
+          public_roadmap_voting: 公開ロードマップと機能リクエスト投票
+          api_access: APIアクセス
+          export_data_backup: エクスポートとバックアップ
+          advanced_analytics: 高度な分析
+          custom_automation: カスタム 自動化
+          realtime_tracking: リアルタイム トラッキング
+          api_integration: API 集成
+          mobile_apps: モバイル アプリケーションズ
+          priority_support: 優先サポート
+          custom_branding: カスタム ブランド
+          member_onboarding: 会員の登録手続き
+          event_management: イベント管理
+          role_management: ロール管理
+          export_backup: エクスポート & バックアップ
+          custom_role_system: カスタムロールシステム
+      features_grid:
+        member_management:
+          title: 会員管理
+          desc: ギルドメンバーを効率的に管理します。
+        analytics_insights:
+          title: アナリティクス & インサイト
+          desc: メンバーの活動状況に関する詳細な分析データと成長に関する洞察データを提供します。
+        automation_tools:
+          title: 自動化工貝
+          desc: ルーチンタスクとワークフローを自動化する
+        advanced_tracking:
+          title: 高度な会員追跡
+          desc: リアルタイム メンバーの活動状況の監視
+        multi_guild:
+          title: マルチギルド管理
+          desc: 無制限の公会を、1つのダッシュボードから管理する。
+        custom_automation:
+          title: カスタム 自動化
+          desc: 独自のワークフローとトリガーを作成します
+        analytics_dashboard:
+          title: アナリティクス ダッシュボード
+          desc: 詳細な洞察とレポート
+        role_management:
+          title: ロール管理
+          desc: 高度な役割Assigning システム
+        member_onboarding:
+          title: 会員の登録手続き
+          desc: 自動化された歓迎とセットアップのフローウ
+        event_management:
+          title: イベント管理
+          desc: ギルドのイベンツをスケジュールし、管理します。
+        custom_notifications:
+          title: カスタム通知
+          desc: 個人化された通知システム
+        moderation_tools:
+          title: モデレーションツールズ
+          desc: 高度なモデレーション機能
+        api_integration:
+          title: API 集成
+          desc: 完全なAPIアクセス – 開発者向けに
+        export_backup:
+          title: エクスポート & バックアップ
+          desc: データエキスポートと自動バックアップ
+        priority_support:
+          title: 優先サポート
+          desc: 24/7専門サポートチームが常にサポート致します。
+        security_features:
+          title: セキュリティ機能
+          desc: エンタープライズグレード セキュリティ
+        custom_branding:
+          title: カスタム ブランド
+          desc: 白ラベルの選択肢がご利用可能です。
+        mobile_app:
+          title: モバイルアプリ
+          desc: iOS と Android アプリが含まれています
+        unlimited_storage:
+          title: 無制限のストレージ
+          desc: データストレージの制限なし
+        custom_role_system:
+          title: カスタムロールシステム
+          desc: Discord と連動したロールと権限を、ギルドの実際の運用に合わせて設計
+      footer:
+        tagline: 最良のギルド管理プラットフォームは、ディスコード コミュニティに最適です。
+        product: 商品
+        features: 機能
+        pricing_link: 料金
+        roadmap_link: ロードマップ
+        support: サポート
+        documentation: ドキュメンテーション
+        contact: お問い合わせ
+        disaster_recovery: ディザスタリカバリとデータリカバリ
+        status: 状態
+        legal: 法律的
+        privacy: プライバシー
+        terms: 利用規約
+        security_link: セキュリティ
+      features:
+        guild_management:
+          title: ギルド管理
+          description: 複数ギルドを簡単に管理。メンバー・ロール・権限を一か所で追跡できます。
+        event_planning:
+          title: イベント計画
+          description: 出欠管理、リマインダー、参加者管理付きでイベントを運営できます。
+        member_analytics:
+          title: メンバー分析
+          description: 詳細分析と活動追跡でコミュニティ状況を把握できます。
+        gear_checks:
+          title: 装備チェック
+          description: イベントに必要な装備を追跡・確認できます。
+        gear_records:
+          title: 装備記録
+          description: 装備、強化履歴、更新履歴を包括的に記録します。
+        member_tracking:
+          title: メンバー追跡
+          description: 活動・参加・貢献を詳細に記録します。
+        role_management:
+          title: ロール管理
+          description: カスタム権限でロールを管理し、アクセスと責務を簡単に制御します。
+        communication_hub:
+          title: コミュニケーション
+          description: 告知・議論・連携のための統合コミュニケーション機能。
+        activity_logs:
+          title: アクティビティログ
+          description: イベント、メンバー操作、システム変更を包括的に記録します。
+    dashboard:
+      title: ダッシュボード
+    index:
+      title: GuildSyncへようこそ
+      subtitle: ギルド管理プラットフォーム
+      signed_in_as: '現在のサインイン:'
+      discord_label: Discord
+      quick_links: クイックリンク
+      api_documentation: APIドキュメント
+      please_sign_in_html: 続行するには %{sign_in_link} してください。
+      sign_in: サインイン
+  homepage_features:
+    back_to_home: すべての機能に戻る
+    empty_detail: この機能の詳細は近日追加予定です。
+  sidebar:
+    navigation: ナビゲーション
+    universal_actions: 共通アクション
+    universal_menu: ユニバーサルメニュー
+    global_dashboard: グローバルダッシュボード
+    connected_as: "%{username} として接続中"
+    connected_as_heading: 接続中：
+    connected_as_aria: "%{username} として接続中"
+    discord_not_connected_heading: Discord 未接続
+    discord_not_connected_hint: 設定で Discord アカウントを接続してください。
+    discord_username_fallback: 連携アカウント
+    apply_to_guild: ギルドに申請
+    view_guilds: ギルド一覧
+    create_guild: ギルド作成
+    my_applications: 自分の申請
+    archived_guilds: アーカイブ済みギルド
+    feature_requests: 機能リクエスト
+    alliances_hub: アライアンス
+    my_guilds_owner: 自分のギルド（オーナー）
+    my_guilds_member: 自分のギルド（メンバー）
+    contact_support: サポートに連絡
+    guild_menu:
+      dashboard: ダッシュボード
+      message_center: メッセージセンター
+      members: メンバー
+      review_applications: 申請を確認
+      guild_documents: ギルドドキュメント
+      invite_members: メンバーを招待
+      guild_polls: ギルド投票
+      guild_loot_rolls: ギルドルートロール
+      schedule_events: イベントを作成
+      schedule_guild_battle: ギルドバトルを予定
+      members_gear: AIステータススキャナー
+      file_storage: ファイルストレージ
+      guild_analytics: ギルド分析
+      leaderboard: ランキング
+      my_warnings: 自分の警告
+      settings: 設定
+      warnings: 警告
+    alliance_menu:
+      pending_alliance_invites: 保留中のアライアンス招待
+      outgoing_join_request: 参加申請の状態
+      request_join_alliance: アライアンス参加を申請
+      join_requests: 参加申請
+      create: アライアンスを作成
+      events: アライアンス イベント
+      polls: アライアンス投票
+      rolls: アライアンス ルートロール
+      chat: アライアンス チャット
+      gm_chat: GM チャット
+      settings: 設定
+    discord:
+      connected: "%{server_name}"
+      bot_not_connected: Bot未接続
+      connect_bot: BotをギルドDiscordに接続
+      discord_server: Discordサーバー
+  dashboard:
+    title: ダッシュボード
+    access_denied: アクセス拒否
+    sign_in_required: ダッシュボードにアクセスするにはサインインが必要です。
+    your_guilds: あなたのギルド
+    no_guilds: まだどのギルドにも所属していません。
+    open: 公開
+    quick_actions: クイックアクション
+    view_guilds: ギルドを表示
+    my_applications: 自分の応募
+    apply_to_guild: ギルドに応募
+    archived_guilds: アーカイブしたギルド
+    alliances: アライアンス
+    create_guild: ギルド作成
+    invite_members: メンバーを招待
+    recent_activity: 最近のアクティビティ
+    activity_coming_soon: アクティビティフィードは近日対応予定…
+    activity_empty: 最近のアクティビティはまだありません。ギルドやページを訪問すると、ここに表示されます。
+    viewed_guild: ギルドを表示 %{name}
+    viewed_members: メンバー – %{name}
+    viewed_invite_members: メンバーを招待 – %{name}
+    viewed_settings: 設定 – %{name}
+    viewed_applications: 申請 – %{name}
+    viewed_schedule: イベントを予定 – %{name}
+    viewed_members_gear: AIステータススキャナー – %{name}
+    join_discord_title: Discordに参加しよう
+    join_discord_here: こちらからDiscordコミュニティに参加してください — チームや他のギルドオーナーと交流できます。
+    discord_iframe_title: "%{app_name} Discord"
+    discord_community_card_title: GuildSync コミュニティ Discord
+    members_online_heading: オンラインのメンバー
+    join_discord_cta_button: Discord に参加
+    discord_promo_online_example: 1 人がオンライン
+    pending_items: 自分の保留中アイテム
+    pending_applications: 保留中の申請
+    pending_invites: 保留中の招待
+    warning_queue: 警告キュー
+    member_events_title: 今後のイベント
+    member_events_subtitle: あなたが所属するギルド全体
+    member_events_count_label: 今後の合計
+    member_events_empty: あなたのギルドには今後のイベントはありません。
+    open_polls_title: 受付中の投票
+    open_polls_subtitle: あなたのギルドで現在投票受付中の投票
+    open_polls_empty: あなたのギルドに受付中の投票はありません。
+    open_loot_title: 受付中のルートロール
+    open_loot_subtitle: あなたのギルドで現在受付中のルートロール
+    open_loot_empty: あなたのギルドに受付中のルートロールはありません。
+  user_activity:
+    view_activity: "アクティビティを表示"
+    history_title: "アクティビティ履歴"
+    history_subtitle: "GuildSync での最近のページと操作。"
+    back_to_dashboard: "ダッシュボードに戻る"
+    signed_in_discord: "Discord でサインインしました"
+    signed_in_google: "Gmail でサインインしました"
+    signed_in_microsoft: "Outlook でサインインしました"
+  layouts:
+    application:
+      nav:
+        upgrade_plan: プランをアップグレード
+        pricing: 料金
+        roadmap: ロードマップ
+        my_billing: 請求情報
+        welcome_user: ようこそ、%{name} さん
+        profile_picture: プロフィール画像
+        sign_in: サインイン
+        admin_session_label: 管理者
+        back_to_member_dashboard: マイダッシュボードに戻る
+      dropdown:
+        account_settings: アカウント設定
+        profile_settings: プロフィール設定
+        release_notes: リリースノート
+        release_notes_instructions: アカウントを作成 > リソースをクリック > 記事 > リリースノート
+        roadmap: ロードマップと機能要望
+        version: バージョン %{version}
+      search:
+        placeholder: 検索...
+        searching: 検索中...
+        no_results: 結果が見つかりません
+      beta_banner:
+        message: ベータ版です — コミュニティの Discord に参加してください：
+        join_discord: Discord に参加
+  activity_feed:
+    title: "%{guild_name} のアクティビティフィード"
+    subtitle: このギルドの最近のアクティビティです。ログは3か月保持されます。
+    back_to_dashboard: ダッシュボードに戻る
+    search_placeholder: アクションを検索...
+    filter_action_type: アクション種別
+    filter_member: メンバー
+    all_actions: すべてのアクション
+    all_members: すべてのメンバー
+    no_activity: まだアクティビティはありません。
+    search_button: 検索
+    access_denied: アクティビティフィードを表示する権限がありません。
+    when: いつ
+    who: 誰
+    action: アクション
+    details: 詳細
+    pagination_shown_total: "%{total} 件中 %{shown} 件を表示"
+    pagination_previous: "← 前へ"
+    pagination_next: 次へ →
+    export_csv: CSVをエクスポート
+    export_csv_hint: 現在のフィルターに一致するすべての行をダウンロードします（UTCタイムスタンプ）。
+  alliance_activity_feed:
+    title: アライアンスのアクティビティ — %{alliance_name}
+    subtitle: 加盟ギルド全体のアクションです。ログは60日間保持されます。
+    back: アライアンスに戻る
+    search_placeholder: 検索...
+    filter_action_type: アクション種別
+    all_actions: すべてのアクション
+    search_button: 検索
+    when: いつ
+    guildsync_user: GuildSyncユーザー
+    action: アクション
+    details: 詳細
+    no_activity: まだアライアンスのアクティビティはありません。
+    pagination_shown_total: "%{total} 件中 %{shown} 件を表示"
+    pagination_previous: "← 前へ"
+    pagination_next: 次へ →
+    export_csv: CSVをエクスポート（UTC）
+    export_local_csv: CSVをエクスポート（ローカル時刻）
+    export_csv_hint: UTCタイムスタンプ付きのサーバー生成CSV。
+    access_denied: このアライアンスのギルドオーナーのみがアライアンスのアクティビティフィードを閲覧できます。

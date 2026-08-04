@@ -1,0 +1,111 @@
+<style>
+  .auto-auth-container {
+    text-align: center;
+    padding: 40px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: calc(100vh - 48px);
+  }
+  .spinner {
+    border: 4px solid rgba(88, 101, 242, 0.3);
+    border-top: 4px solid #5865F2;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    animation: spin 1s linear infinite;
+    margin: 0 auto 20px;
+  }
+  @keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+  .auto-auth-container h1 {
+    font-size: 24px;
+    margin: 0 0 10px 0;
+    color: #ffffff;
+  }
+  .auto-auth-container p {
+    font-size: 14px;
+    color: #b0b0b0;
+    margin: 0;
+  }
+</style>
+
+<div class="auto-auth-container">
+  <div class="spinner"></div>
+  <h1><%= t('discord_connections.auto_authorize_bot.title') %></h1>
+  <p><%= t('discord_connections.auto_authorize_bot.please_authorize', server_name: server_name) %></p>
+</div>
+
+<script>
+  (function() {
+    // Verify the bot auth URL includes guild_id
+    var botAuthUrl = '<%= bot_auth_url %>';
+    console.log('Bot authorization URL:', botAuthUrl);
+    
+    // Verify URL includes guild_id parameter
+    if (!botAuthUrl.includes('guild_id=')) {
+      console.error('ERROR: Bot authorization URL is missing guild_id parameter!');
+      window.showToast('error', '<%= j t('js.discord_connections.bot_auth_url_missing') %>');
+      window.close();
+      return;
+    }
+    
+    var width = 600;
+    var height = 700;
+    var left = Math.round((screen.width - width) / 2);
+    var top = Math.round((screen.height - height) / 2);
+    
+    var popup = window.open(
+      botAuthUrl,
+      'GuildSyncBotAuth',
+      'width=' + width + ',height=' + height + ',left=' + left + ',top=' + top + ',toolbar=no,location=no,status=no,menubar=no,scrollbars=yes,resizable=yes'
+    );
+    
+    if (!popup || popup.closed || typeof popup.closed === 'undefined') {
+      window.showToast('warning', '<%= j t('js.discord_connections.popup_blocked') %>');
+      window.close();
+      return;
+    }
+    
+    // Listen for postMessage from bot callback
+    var listener = function(event) {
+      // Accept messages from any origin (Discord redirects may come from different origins)
+      if (event.data && (event.data.status === "authorized" || event.data.type === "DISCORD_BOT_AUTHORIZED")) {
+        console.log('Bot authorization message received in auto_authorize_bot:', event.data);
+        window.removeEventListener('message', listener);
+        
+        // Notify parent window that authorization is complete
+        // Send multiple times to ensure message is received
+        var sendToOpener = function() {
+          if (window.opener && !window.opener.closed) {
+            try {
+              window.opener.postMessage({ status: "authorized" }, '*');
+              window.opener.postMessage({ type: "DISCORD_BOT_AUTHORIZED", status: "authorized" }, '*');
+            } catch (e) {
+              console.error('Error sending message to opener:', e);
+            }
+          }
+        };
+        
+        sendToOpener();
+        setTimeout(sendToOpener, 100);
+        setTimeout(sendToOpener, 300);
+        
+        // Close this popup after a brief delay
+        setTimeout(function() {
+          try {
+            window.close();
+          } catch (e) {
+            console.error('Error closing window:', e);
+          }
+        }, 400);
+      }
+    };
+    
+    window.addEventListener('message', listener);
+  })();
+</script>
+

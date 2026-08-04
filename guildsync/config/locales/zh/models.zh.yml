@@ -1,0 +1,235 @@
+# frozen_string_literal: true
+#
+# Model Validation Translations
+# ============================
+# This file contains all model validation error messages for i18n support.
+#
+zh:
+  # ============================================================================
+  # ACTIVERECORD MODELS
+  # ============================================================================
+  activerecord:
+    models:
+      user: "用户"
+      guild: "公会"
+      game: "游戏"
+      event: "活动"
+      poll: "投票"
+      guild_document: "文档"
+      guild_member: "成员"
+      guild_application: "申请"
+      loot_roll: "战利品掷骰"
+    attributes:
+      user:
+        email: "邮箱"
+        password: "密码"
+        display_name: "显示名称"
+      guild:
+        name: "名称"
+        description: "描述"
+      game:
+        name: "名称"
+        description: "描述"
+
+  # ============================================================================
+  # ACTIVERECORD ERRORS
+  # ============================================================================
+    errors:
+      models:
+        landing_user_feedback:
+          attributes:
+            base:
+              entry_limit_reached: "首页反馈最多 %{max} 条。请删除一条后再添加。"
+        homepage_feature_card:
+          attributes:
+            icon_key:
+              invalid_fontawesome_icon: "不在已同步的 Font Awesome Free 目录中。请执行同步或选择其他图标。"
+        # ----------------------------------------------------------------------
+        # USER MODEL
+        # ----------------------------------------------------------------------
+        user:
+          attributes:
+            username:
+              invalid_format: "只能包含字母、数字和下划线"
+
+        # ----------------------------------------------------------------------
+        # GUILD MODEL
+        # ----------------------------------------------------------------------
+        guild:
+          attributes:
+            name:
+              already_owned: "您已拥有同名公会"
+            base:
+              subscription_required: "创建公会需要有效订阅"
+              guild_limit_reached: "您已达到 %{plan_name} 方案允许的公会数量上限（%{max_guilds}）"
+
+        # ----------------------------------------------------------------------
+        # GUILD MEMBER MODEL
+        # ----------------------------------------------------------------------
+        guild_member:
+          attributes:
+            user_id:
+              already_member: "已是该公会成员"
+            base:
+              member_limit_reached: "该公会已达到 %{plan_name} 方案允许的成员数量上限（%{max_members}）"
+
+        # ----------------------------------------------------------------------
+        # GUILD DISCORD SETTING MODEL
+        # ----------------------------------------------------------------------
+        guild_discord_setting:
+          attributes:
+            discord_guild_id:
+              already_connected: "此 Discord 服务器已连接到其他公会"
+            guild_id:
+              one_connection_only: "公会只能有一个 Discord 连接"
+
+        # ----------------------------------------------------------------------
+        # FEATURE REQUEST MODEL
+        # ----------------------------------------------------------------------
+        feature_request:
+          attributes:
+            description:
+              too_short: "至少 50 个字符，以便他人理解您的请求"
+
+        # ----------------------------------------------------------------------
+        # POLL VOTE MODEL
+        # ----------------------------------------------------------------------
+        poll_vote:
+          attributes:
+            user_id:
+              one_vote_only: "每个投票您只能投一次"
+
+        # ----------------------------------------------------------------------
+        # LOOT ROLL MODEL
+        # ----------------------------------------------------------------------
+            base:
+              user_or_discord_required: "必须提供用户账号或 Discord ID。"
+        loot_roll:
+          attributes:
+            max_roll:
+              must_be_greater: "必须大于最小掷骰值"
+
+        # ----------------------------------------------------------------------
+        # LOOT ROLL ENTRY MODEL
+        # ----------------------------------------------------------------------
+        loot_roll_entry:
+          attributes:
+            discord_user_id:
+              already_rolled: "您已经掷过骰了。"
+            roll_value:
+              out_of_bounds: "必须在 %{min} 到 %{max} 之间"
+            base:
+              loot_roll_closed: "该战利品掷骰已关闭。"
+
+        # ----------------------------------------------------------------------
+        # GUILD BATTLE MODEL
+        # ----------------------------------------------------------------------
+        guild_battle:
+          attributes:
+            defender_guild_id:
+              same_as_challenger: "不能与挑战方公会相同"
+
+        # ----------------------------------------------------------------------
+        # GEAR SNAPSHOT MODEL
+        # ----------------------------------------------------------------------
+        gear_snapshot:
+          attributes:
+            data:
+              blank: "不能为空"
+            screenshot:
+              must_be_attached: "必须附加"
+
+        # ----------------------------------------------------------------------
+        # GEAR UPLOAD REQUEST MODEL
+        # ----------------------------------------------------------------------
+        gear_upload_request:
+          attributes:
+            requester:
+              no_permission: "没有请求装备更新的权限"
+
+        # ----------------------------------------------------------------------
+        # GUILD APPLICATION MODEL
+        # ----------------------------------------------------------------------
+        guild_application:
+          attributes:
+            user_id:
+              already_applied: "您已申请过该公会"
+
+        # ----------------------------------------------------------------------
+        # GUILD INVITE MODEL
+        # ----------------------------------------------------------------------
+        guild_invite:
+          attributes:
+            user_id:
+              already_invited: "已被邀请加入该公会"
+              already_member: "已是该公会成员"
+
+        # ----------------------------------------------------------------------
+        # DISCORD EVENT SIGNUP MODEL
+        # ----------------------------------------------------------------------
+        discord_event_signup:
+          attributes:
+            discord_user_id:
+              one_role_per_event: "每个活动您只能报名一个角色"
+
+        # ----------------------------------------------------------------------
+        # DISCORD EVENT PARTICIPATION MODEL
+        # ----------------------------------------------------------------------
+        discord_event_participation:
+          attributes:
+            discord_user_id:
+              already_signed_up: "已报名该活动"
+
+        # ----------------------------------------------------------------------
+        # EVENT PARTICIPATION MODEL
+        # ----------------------------------------------------------------------
+        event_participation:
+          attributes:
+            user_id:
+              already_responded: "已回应该活动"
+
+        # ----------------------------------------------------------------------
+        # DISCORD CONNECTION MODEL
+        # ----------------------------------------------------------------------
+            base:
+              user_or_discord_required: "必须提供用户账号或 Discord ID。"
+        discord_connection:
+          attributes:
+            guild_id:
+              one_connection_only: "公会只能有一个 Discord 连接"
+
+        # ----------------------------------------------------------------------
+        # SUBSCRIPTION MODEL
+        # ----------------------------------------------------------------------
+        subscription:
+          attributes:
+            expires_at:
+              must_be_after_started: "必须晚于开始时间"
+
+        # ----------------------------------------------------------------------
+        # GUILD GAME MODEL
+        # ----------------------------------------------------------------------
+        guild_game:
+          attributes:
+            primary:
+              only_one_allowed: "每个公会仅允许一个主游戏"
+
+        alliance_poll_vote:
+          attributes:
+            base:
+              user_or_discord_required: "必须提供用户账号或 Discord ID。"
+        alliance_event_participation:
+          attributes:
+            base:
+              user_or_discord_required: "必须提供用户账号或 Discord ID。"
+        alliance_loot_roll_entry:
+          attributes:
+            base:
+              user_or_discord_required: "必须提供用户账号或 Discord ID。"
+  ocr:
+    messages:
+      limit_reached: "您已用完本计费周期的全部 OCR 请求。%{plan_name} 方案每月允许 %{limit} 次。请联系支持。"
+      hard_locked: "OCR 访问已暂时暂停。请联系支持。"
+      trial_expired: "您已用完免费试用的 OCR 请求。请订阅方案以继续使用 OCR。"
+      free_blocked: "您已用完所有免费 OCR 请求。请订阅方案以解锁更多。"
+      ip_abuse: "检测到来自您网络的异常 OCR 活动。若非本人操作请联系支持。"

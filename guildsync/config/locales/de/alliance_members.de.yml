@@ -1,0 +1,26 @@
+de:
+  alliance_members:
+    removed: "Mitglied aus der Allianz entfernt."
+    bulk_removed: "Ausgewählte Mitglieder wurden aus der Allianz entfernt."
+    errors:
+      not_found: "Mitglied nicht gefunden."
+      unauthorized: "Dazu sind Sie nicht berechtigt."
+      protected_target: "Du kannst keine Gildenbesitzer oder benutzerdefinierten Allianzmanager entfernen."
+      tags_owner_only: "Nur der Allianz-Gründer kann Allianz-Tags anlegen."
+    index:
+      title: "Allianzmitglieder"
+      subtitle: "Alle in %{alliance_name}, nach Gilde gruppiert."
+      export_csv: "CSV exportieren"
+      your_guild: "Eure Gilde"
+      remove: "Entfernen"
+      remove_confirm: "%{name} aus dieser Allianz entfernen?"
+      no_members: "Noch keine Mitglieder in dieser Gilde."
+    tags:
+      manage_title: "Allianz-Tags verwalten"
+      name: "Tag-Name"
+      color: "Tag-Farbe"
+      create: "Tag erstellen"
+      created: "Allianz-Tag erstellt."
+      assigned: "Tag zugewiesen."
+      removed: "Tag entfernt."
+      not_found: "Tag oder Mitglied nicht gefunden."

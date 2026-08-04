@@ -1,0 +1,106 @@
+fr:
+  billing:
+    show:
+      title: Ma Facturation
+      subtitle: Gérer votre abonnement et vos informations de paiement
+      current_subscription: Abonnement en cours
+      no_plan: Aucun plan
+      status_label: 'Statut :'
+      trial_period_active: Période d'essai active
+      trial_days_remaining_html: Vous avez <strong>%{days}</strong> jours restants dans votre période d'essai.
+      trial_ended: Votre période d'essai a expiré.
+      trial_ends_on: 'La période d''essai se termine le:'
+      started: Débuté
+      expires: Expiration
+      no_active_subscription: Vous n'avez pas d'abonnement actif.
+      view_plans: Voir les plans
+      payment_management: Gestion des paiements
+      setup_payment_method: Configurez la méthode de paiement
+      setup_payment_trial: Sélectionnez un plan ci-dessous pour configurer le paiement. Vous pouvez vous abonner à votre plan d'essai actuel ou choisir un autre plan.
+      setup_payment_current: Sélectionnez un plan ci-dessous pour configurer le paiement.
+      setup_payment_current_plan: Configurer le paiement pour le plan actuel
+      subscribe_to_plan: S'abonner à %{plan}
+      setup_payment: Configurer le paiement
+      manage_payment_methods: Gérer vos méthodes de paiement, informations de facturation et factures
+      need_help: Avez-vous besoin d'aide ?
+      need_help_description: Avez-vous des questions concernant votre facturation ou abonnement ? Notre équipe de facturation est là pour vous aider.
+      contact_billing_team: Contactez notre équipe de facturation
+      contact_form_coming_soon: Formulaire de contact bientôt disponibles.
+      js_loading: Chargement...
+      js_manage_billing: Gérer la facturation
+      js_setup_payment: Configurer le paiement
+      billing_portal: Portail de facturation
+      switch_plan: Passer à ce forfait
+      confirm_plan_change: Passer à ce forfait ? Un montant au prorata peut être facturé aujourd’hui.
+      confirm_plan_change_with_amount: 'Montant estimé dû aujourd’hui :'
+      proration_disclaimer: 'Les changements de forfait utilisent le prorata Stripe : les surclassements sont facturés immédiatement ; les rétrogradations ajoutent un crédit pour les factures futures (pas de remboursement en espèces).'
+      account_credit_html: Vous avez <strong>%{amount}</strong> de crédit qui sera appliqué aux prochaines factures.
+      subscription_actions_title: Annuler ou reprendre l’abonnement
+      pending_cancel_html: Votre abonnement est prévu pour se terminer le <strong>%{date}</strong>. Aucun autre prélèvement ne sera effectué après cette date.
+      period_end_unknown: la fin de la période de facturation en cours
+      resume_subscription: Reprendre l’abonnement
+      refund_window_active: Vous êtes dans les trois jours suivant le premier paiement. L’annulation met fin à l’abonnement immédiatement et rembourse les paiements éligibles sur votre moyen de paiement.
+      cancel_no_refund: L’annulation conserve l’accès jusqu’à la fin de la période de facturation en cours. Aucun remboursement pour les montants déjà payés.
+      cancel_subscription: Annuler l’abonnement
+      cancel_confirm: Voulez-vous vraiment annuler votre abonnement ?
+  pricing:
+    interval:
+      monthly: Mensuel
+      annual: Annuel
+      save_annual: Économisez 10 %
+    public:
+      title: Tarification
+    upgrade:
+      title: Mise à niveau de votre plan
+      subtitle: Sélectionnez le plan parfait pour vos besoins en gestion de guilde. Tous les forfaits incluent nos fonctionnalités de base.
+      most_popular: Plus Populaire
+      trial_ends_in:
+        one: Votre essai expire dans 1 jour.
+        other: Votre essai expire dans %{count} jours
+      current_plan: Plan actuel
+      start_free_trial: Commencez votre essai gratuit
+      subscribe_now: Abonne-toi maintenant
+      switch_to_free_plan: Passer au Plan gratuit
+      trial_message: Vous êtes actuellement dans votre essai gratuit de 14 jours. Ajoutez une méthode de paiement pour continuer après la fin de l'essai.
+      payment_required: Mettre à niveau vers un plan payant nécessite une méthode de paiement. Aucune nouvelle période d'essai n'est disponible après votre essai initial.
+      questions_contact: Des questions ? %{link} pour plus d'informations.
+      free_trial_box:
+        title: Essai gratuit / mode limité
+        description: Les nouveaux comptes démarrent sur l'offre gratuite (fonctions limitées). Vous pouvez lancer un essai Basique de 14 jours si vous y êtes éligible, ou souscrire à Basique, Avancé ou Élite via le paiement.
+        features:
+        - Essai de 14 jours sur Basique (app ou Stripe selon activation)
+        - 'Avancé et Élite : abonnement payant — pas de deuxième essai'
+        - Pas de carte requise pour lancer l'essai Basique depuis l'offre gratuite
+        - Retour à l'offre gratuite à tout moment
+        - Fonctions limitées sur l'offre gratuite après l'essai
+      free_user_mode_box:
+        title: Offre gratuite et mode utilisateur gratuit
+        description: 'Sur l''offre gratuite ou après y être passé suite à un essai, vous êtes en mode utilisateur gratuit. Cela signifie :'
+        features:
+        - Vous gardez l'accès à une guilde et à un nombre de membres limité
+        - Les fonctionnalités essentielles restent disponibles avec des plafonds réduits
+        - Vous pouvez passer à Basique, Avancé ou Élite quand vous voulez
+        - Vos données sont conservées en cas de rétrogradation ou à la fin d'un essai
+      contact_us: Contactez-nous
+      loading: Chargement...
+    public_pricing:
+      title: Optez pour votre plan
+      subtitle: Sélectionnez le plan parfait pour vos besoins en gestion de guilde. Tous les forfaits incluent nos fonctionnalités de base.
+      no_plans: Il n'y a pas de plans tarifaires disponibles pour le moment.
+      most_popular: Plus Populaire
+      trial_included: Essai 14 jours sur Basique (si proposé)
+      start_free_trial: Commencez votre essai gratuit
+      subscribe_now: Abonne-toi maintenant
+      plan_suffix: Plan
+      whats_included: 'Qu’est inclus :'
+      free_plan_intro: Tous les nouveaux comptes commencent sur l'offre gratuite (fonctions limitées). Vous pouvez lancer un essai Basique de 14 jours si vous y êtes éligible, ou souscrire à Basique, Avancé ou Élite via le checkout.
+      trial_info: L'essai de 14 jours concerne uniquement Basique. Avancé et Élite passent par un checkout payant sans essai dans l'app. Après l'essai Basique, vous pouvez rester en Gratuit (limité) ou vous abonner.
+      questions_contact: Des questions ? %{link} pour plus d'informations.
+      contact_us: Contactez-nous
+      after_trial_title: Qu'est-ce qui se passe après votre essai ?
+      after_trial_paragraph_html: Lorsque votre essai se termine, vous serez automatiquement redirigé vers notre <strong class="text-theme-accent">Formule Gratuite</strong>. Vous pouvez continuer à l'utiliser ou choisir de l'upgrade à tout moment.
+      free_plan_includes_title: 'Voici ce que le Plan gratuit comprend :'
+      free_plan_feature_1_guild: 1 guilde
+      free_plan_feature_50_users: 50 utilisateurs
+      free_plan_feature_events: Planification et programmation d'événements
+      free_plan_feature_members: Gestion des membres

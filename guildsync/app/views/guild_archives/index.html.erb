@@ -1,0 +1,58 @@
+<% glass = "rounded-xl border border-white/10 bg-[rgba(15,23,43,0.5)] p-6 shadow-lg" %>
+<% btn_pri = "rounded-lg bg-theme-brand-gradient px-4 py-2 text-sm font-semibold text-white transition-opacity hover:opacity-95" %>
+
+<div class="mx-auto max-w-5xl p-6 font-[family-name:Inter,ui-sans-serif,system-ui,sans-serif]">
+  <div class="mb-6">
+    <h1 class="mb-2 text-3xl font-bold text-white"><%= t("guild_archives.index.title") %></h1>
+    <p class="text-[#90A1B9]"><%= t("guild_archives.index.subtitle") %></p>
+    <div class="mt-4 flex gap-3 rounded-lg border border-amber-500/40 bg-amber-950/20 p-4 text-sm text-amber-100/95" role="note">
+      <svg class="mt-0.5 h-6 w-6 flex-shrink-0 text-amber-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path>
+      </svg>
+      <div>
+        <span class="sr-only"><%= t("guild_archives.index.recovery_note_label") %></span>
+        <p><%= t("guild_archives.index.long_recovery_hint") %></p>
+      </div>
+    </div>
+  </div>
+
+  <% if @archived_guilds.empty? %>
+    <div class="<%= glass %>">
+      <p class="text-[#90A1B9]"><%= t("guild_archives.index.empty") %></p>
+    </div>
+  <% else %>
+    <div class="space-y-4">
+      <% @archived_guilds.each do |guild| %>
+        <div class="<%= glass %> p-5">
+          <div class="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
+            <div>
+              <h2 class="text-xl font-semibold text-white"><%= guild.name %></h2>
+              <p class="text-sm text-[#90A1B9]">
+                <%= t("guild_archives.index.archived_on", date: l(guild.archived_at, format: :long)) %>
+              </p>
+              <p class="text-sm text-[#90A1B9]">
+                <%= t("guild_archives.index.auto_delete_on", date: l(guild.scheduled_purge_at, format: :long)) %>
+              </p>
+            </div>
+
+            <div class="flex flex-wrap gap-2">
+              <%= button_to t("guild_archives.index.unarchive_button"),
+                            unarchive_guild_archive_path(guild),
+                            method: :post,
+                            class: "#{btn_pri} cursor-pointer border-0 [&_input]:cursor-pointer [&_input]:border-0 [&_input]:bg-transparent [&_input]:p-0 [&_input]:text-inherit" %>
+
+              <%= button_to t("guild_archives.index.permanent_delete_button"),
+                            guild_archive_path(guild),
+                            method: :delete,
+                            disabled: !guild.eligible_for_purge?,
+                            data: {
+                              confirm: t("guild_archives.index.permanent_delete_confirm", guild_name: guild.name)
+                            },
+                            class: "cursor-pointer rounded-lg bg-red-600 px-4 py-2 text-sm font-semibold text-white transition-colors hover:bg-red-700 disabled:cursor-not-allowed disabled:opacity-50 [&_input]:cursor-pointer [&_input]:border-0 [&_input]:bg-transparent [&_input]:p-0 [&_input]:text-inherit" %>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  <% end %>
+</div>

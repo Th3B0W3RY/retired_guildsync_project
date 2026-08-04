@@ -1,0 +1,618 @@
+<div class="space-y-6 font-[family-name:Inter,ui-sans-serif,system-ui,sans-serif]">
+  <div>
+    <h1 class="mb-2 text-4xl font-bold text-white"><%= t('guilds.new.title') %></h1>
+    <p class="text-lg text-[#90A1B9]"><%= t('guilds.new.subtitle') %></p>
+  </div>
+
+  <%= form_with model: @guild, url: guilds_path, local: true, class: "space-y-6", html: { novalidate: true } do |f| %>
+    <% if @guild.errors.any? %>
+      <div class="p-4 bg-red-900/50 border border-red-700 text-red-100 rounded-lg">
+        <ul class="list-disc list-inside space-y-1">
+          <% @guild.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+    <% recruiting_name_blocked = @guild.name.present? && !RecruitingVisibilityService.publicly_recruitable?(@guild.name) %>
+    <div>
+      <%= f.label :name, t('guilds.new.guild_name'), class: "block mb-2 text-theme-secondary font-medium" %>
+      <%= f.text_field :name, required: true, autofocus: true, id: "guild_name_field",
+          class: "w-full px-4 py-3 bg-theme-secondary border border-theme-primary rounded-lg text-theme-primary focus:outline-none focus:ring-2 focus:ring-theme-accent focus:border-transparent transition-all",
+          data: { recruiting_blocklist: RecruitingVisibilityService::BLOCKLIST.to_json } %>
+      <p id="guild-name-recruiting-hint"
+         class="text-xs text-amber-400 mt-2 <%= "hidden" unless recruiting_name_blocked %>"
+         role="status"
+         aria-live="polite"><%= t("guilds.new.recruiting_name_warning") %></p>
+    </div>
+    
+    <div>
+      <%= f.label :description, t('common.labels.description'), class: "block mb-2 text-theme-secondary font-medium" %>
+      <%= f.text_area :description, rows: 5,
+          class: "w-full px-4 py-3 bg-theme-secondary border border-theme-primary rounded-lg text-theme-primary focus:outline-none focus:ring-2 focus:ring-theme-accent focus:border-transparent transition-all" %>
+    </div>
+    
+    <div>
+      <label class="block mb-2 text-theme-secondary font-medium">
+        <%= t('guilds.new.games.label') %> <span class="text-red-500">*</span>
+      </label>
+      <p class="text-sm text-theme-secondary mb-3">
+        <%= t('guilds.new.games.help_text') %>
+      </p>
+      
+      <!-- Search Bar -->
+      <div class="mb-3">
+        <input type="text" 
+               id="game-search-input" 
+               class="w-full px-3 py-2 bg-theme-secondary border border-theme-primary rounded text-theme-primary focus:outline-none focus:ring-2 focus:ring-theme-accent"
+               placeholder="<%= t('guilds.new.games.search_placeholder') %>"
+               autocomplete="off">
+        <div id="game-search-results" class="hidden mt-2 border border-theme-primary rounded-lg bg-theme-secondary max-h-48 overflow-y-auto">
+          <!-- Search results will be populated here -->
+        </div>
+      </div>
+      
+      <!-- Featured Games Box -->
+      <div class="mb-3 p-4 bg-theme-primary border border-theme-secondary rounded-lg">
+        <h4 class="text-sm font-semibold text-theme-primary mb-2"><%= t('guilds.new.games.featured_games') %></h4>
+        <div id="featured-games-list" class="space-y-2 max-h-48 overflow-y-auto">
+          <% 
+            # Show active games first, then pending games
+            featured_active = Game.active.order(:name).limit(10)
+            featured_pending = Game.pending.order(:name).limit(5)
+            featured_games = featured_active.to_a + featured_pending.to_a
+          %>
+          <% if featured_games.any? %>
+            <% featured_games.each do |game| %>
+              <label class="flex items-center space-x-3 cursor-pointer hover:bg-theme-hover p-2 rounded">
+                <%= check_box_tag "guild[game_ids][]", game.id, false, 
+                    class: "w-4 h-4 text-theme-accent border-theme-primary rounded focus:ring-theme-accent",
+                    required: false,
+                    data: { game_id: game.id } %>
+                <div class="flex-1">
+                  <div class="font-medium text-theme-primary"><%= game.name %></div>
+                  <% unless game.active? %>
+                    <div class="text-xs text-yellow-400"><%= t('guilds.new.games.pending_approval') %></div>
+                  <% end %>
+                  <% if game.description.present? %>
+                    <div class="text-sm text-theme-secondary"><%= truncate(game.description, length: 80) %></div>
+                  <% end %>
+                </div>
+                <%= radio_button_tag "guild[primary_game_id]", game.id, false,
+                    class: "w-4 h-4 text-theme-accent border-theme-primary focus:ring-theme-accent",
+                    data: { primary_for: game.id } %>
+                <span class="text-sm text-theme-secondary"><%= t('common.labels.primary') %></span>
+              </label>
+            <% end %>
+          <% else %>
+            <p class="text-theme-secondary text-sm text-center py-2">
+              <%= t('guilds.new.games.no_games') %>
+            </p>
+          <% end %>
+        </div>
+      </div>
+      
+      <p class="text-xs text-theme-secondary mt-2">
+        <%= t('guilds.new.games.select_primary') %>
+      </p>
+      
+      <div id="game-selection-error" class="hidden mt-2 p-2 bg-red-900/50 border border-red-700 text-red-100 rounded text-sm">
+        <%= t('guilds.new.games.select_one_error') %>
+      </div>
+      
+      <!-- Add Custom Game Section: <details> works without JavaScript so "Add it here" always works -->
+      <details id="custom-game-details" class="mt-4">
+        <summary class="text-sm text-theme-accent hover:text-theme-accent-hover underline cursor-pointer focus:outline-none focus:ring-2 focus:ring-theme-accent focus:ring-offset-2 rounded">
+          <%= t('guilds.new.custom_game.add_link') %>
+        </summary>
+        <div id="custom-game-section" class="mt-3 p-4 bg-theme-primary border border-theme-secondary rounded-lg">
+          <label class="block text-sm font-medium text-theme-primary mb-2">
+            <%= t('guilds.new.custom_game.label') %> <span class="text-red-500">*</span>
+          </label>
+          <input type="text" 
+                 id="custom-game-input" 
+                 class="w-full px-3 py-2 bg-theme-secondary border border-theme-primary rounded text-theme-primary focus:outline-none focus:ring-2 focus:ring-theme-accent"
+                 placeholder="<%= t('guilds.new.custom_game.placeholder') %>"
+                 autocomplete="off">
+          
+          <div id="game-suggestions" class="mt-2 hidden border border-theme-primary rounded-lg bg-theme-secondary max-h-48 overflow-y-auto">
+            <!-- Suggestions will be populated here -->
+          </div>
+          
+          <div id="game-suggest-error" class="hidden mt-2 p-2 bg-yellow-900/50 border border-yellow-700 text-yellow-200 rounded text-sm">
+            <!-- Error messages -->
+          </div>
+          
+          <div class="mt-3 flex gap-2">
+            <div id="confirm-add-game-btn-wrap" role="button" tabindex="0" class="inline-block cursor-pointer"
+                 onclick="var i=document.getElementById('custom-game-input'); if(i){ var n=i.value.trim(); if(n.length>=2){ window.__guildSyncPendingSuggestName=n; var m=document.getElementById('game-confirmation-modal'); var s=document.getElementById('modal-game-name'); if(m)m.classList.remove('hidden'); if(s)s.textContent='\"'+n+'\"'; } }"
+                 onkeydown="if(event.key==='Enter'||event.key===' '){ event.preventDefault(); this.onclick(); }">
+              <button type="button" 
+                      id="confirm-add-game-btn" 
+                      class="px-4 py-2 bg-theme-accent text-white rounded hover:bg-theme-accent-hover disabled:opacity-50 disabled:cursor-not-allowed pointer-events-none"
+                      disabled>
+                <%= t('guilds.new.custom_game.add_button') %>
+              </button>
+            </div>
+            <button type="button" 
+                    id="cancel-custom-game-btn" 
+                    class="px-4 py-2 bg-theme-secondary text-theme-primary rounded hover:bg-theme-hover border border-theme-primary">
+              <%= t('common.buttons.cancel') %>
+            </button>
+          </div>
+        </div>
+      </details>
+    </div>
+    
+    <div>
+      <%= f.submit t('guilds.new.create_button'), 
+          class: "px-6 py-3 bg-theme-accent text-white rounded-lg hover:bg-theme-accent-hover transition-colors cursor-pointer font-semibold text-lg" %>
+      <%= link_to t('common.buttons.cancel'), dashboard_path, 
+          class: "ml-4 px-6 py-3 bg-theme-secondary text-theme-accent rounded-lg hover:bg-theme-hover transition-colors font-semibold text-lg border border-theme-primary" %>
+    </div>
+  <% end %>
+</div>
+
+<!-- Game Confirmation Modal -->
+<div id="game-confirmation-modal" class="hidden fixed inset-0 bg-black/50 z-50 flex items-center justify-center">
+  <div class="bg-theme-secondary rounded-lg border border-theme-primary p-6 max-w-md w-full mx-4">
+    <div class="flex justify-between items-center mb-4">
+      <h3 class="text-xl font-semibold text-theme-primary"><%= t('guilds.new.modal.title') %></h3>
+      <button type="button" id="close-game-modal" class="text-theme-primary hover:text-theme-accent text-2xl leading-none">×</button>
+    </div>
+    <div class="space-y-4">
+      <p class="text-theme-secondary">
+        <%= t('guilds.new.modal.confirm_text', name: '') %><span id="modal-game-name" class="font-semibold text-theme-primary"></span>
+      </p>
+      <p class="text-sm text-yellow-400">
+        ⚠️ <%= t('guilds.new.modal.warning') %>
+      </p>
+      <div class="flex gap-3 pt-4">
+        <button type="button" id="confirm-game-modal-btn" class="flex-1 px-4 py-2 bg-theme-accent text-white rounded-lg hover:bg-theme-accent-hover transition-colors font-semibold cursor-pointer">
+          <%= t('guilds.new.modal.yes_add') %>
+        </button>
+        <button type="button" id="cancel-game-modal-btn" class="flex-1 px-4 py-2 bg-theme-secondary text-theme-primary rounded-lg hover:bg-theme-primary transition-colors font-semibold border border-theme-primary">
+          <%= t('common.buttons.cancel') %>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  (function() {
+    // Run when the Create Guild page is in the DOM. Use the form that contains the custom game details
+    // so we never bind to the wrong form (e.g. sign-out in nav). Works for full page load and Turbo.
+    function initGuildNewPage() {
+    const customGameDetails = document.getElementById('custom-game-details');
+    const form = customGameDetails && customGameDetails.closest('form');
+    if (!form) {
+      return; // Not on Create Guild page or DOM not ready
+    }
+    if (form._guildNewInitDone) return;
+    form._guildNewInitDone = true;
+
+    const nameField = document.getElementById('guild_name_field');
+    const recruitingHint = document.getElementById('guild-name-recruiting-hint');
+    let recruitingBlocklist = [];
+    if (nameField && nameField.dataset.recruitingBlocklist) {
+      try {
+        recruitingBlocklist = JSON.parse(nameField.dataset.recruitingBlocklist);
+      } catch (e) {
+        recruitingBlocklist = [];
+      }
+    }
+    function recruitingNameMatchesBlocklist(value) {
+      const n = (value || '').toLowerCase();
+      return recruitingBlocklist.some(function(w) {
+        return n.includes(String(w).toLowerCase());
+      });
+    }
+    function updateRecruitingNameHint() {
+      if (!nameField || !recruitingHint) return;
+      if (recruitingNameMatchesBlocklist(nameField.value)) {
+        recruitingHint.classList.remove('hidden');
+      } else {
+        recruitingHint.classList.add('hidden');
+      }
+    }
+    if (nameField) {
+      nameField.addEventListener('input', updateRecruitingNameHint);
+      nameField.addEventListener('change', updateRecruitingNameHint);
+      updateRecruitingNameHint();
+    }
+
+    // Game search functionality
+    const gameSearchInput = document.getElementById('game-search-input');
+    const gameSearchResults = document.getElementById('game-search-results');
+    let searchTimeout = null;
+    
+    if (gameSearchInput && gameSearchResults) {
+      gameSearchInput.addEventListener('input', function() {
+        const query = this.value.trim();
+        
+        // Clear previous timeout
+        if (searchTimeout) {
+          clearTimeout(searchTimeout);
+        }
+        
+        if (query.length < 2) {
+          gameSearchResults.classList.add('hidden');
+          return;
+        }
+        
+        // Debounce search
+        searchTimeout = setTimeout(async () => {
+          try {
+            const response = await fetch(`/games/search?q=${encodeURIComponent(query)}`);
+            const data = await response.json();
+            
+            if (data.suggestions && data.suggestions.length > 0) {
+              gameSearchResults.innerHTML = '';
+              gameSearchResults.classList.remove('hidden');
+              
+              data.suggestions.forEach(suggestion => {
+                const item = document.createElement('div');
+                item.className = 'p-3 hover:bg-theme-hover cursor-pointer border-b border-theme-primary last:border-b-0';
+                item.innerHTML = `
+                  <div class="flex items-center justify-between">
+                    <div class="flex-1">
+                      <div class="font-medium text-theme-primary">${suggestion.name}</div>
+                      ${!suggestion.active ? '<div class="text-xs text-yellow-400 mt-1"><%= j t('guilds.new.games.pending_approval') %></div>' : ''}
+                    </div>
+                    <button type="button" class="ml-2 px-3 py-1 bg-theme-accent text-white text-sm rounded hover:bg-theme-accent-hover" data-game-id="${suggestion.id}">
+                      <%= t('guilds.new.games.select_button') %>
+                    </button>
+                  </div>
+                `;
+                
+                // Handle select button click
+                item.querySelector('button').addEventListener('click', () => {
+                  selectGame(suggestion.id, suggestion.name, suggestion.active);
+                  gameSearchInput.value = '';
+                  gameSearchResults.classList.add('hidden');
+                });
+                
+                gameSearchResults.appendChild(item);
+              });
+            } else {
+              gameSearchResults.classList.add('hidden');
+            }
+          } catch (error) {
+            console.error('Search error:', error);
+            gameSearchResults.classList.add('hidden');
+          }
+        }, 300);
+      });
+      
+      // Hide results when clicking outside
+      document.addEventListener('click', (e) => {
+        if (!gameSearchInput.contains(e.target) && !gameSearchResults.contains(e.target)) {
+          gameSearchResults.classList.add('hidden');
+        }
+      });
+    }
+    
+    // Function to select a game from search results
+    function selectGame(gameId, gameName, isActive) {
+      // Check if game is already in featured list
+      const existingCheckbox = document.querySelector(`input[name="guild[game_ids][]"][value="${gameId}"]`);
+      if (existingCheckbox) {
+        existingCheckbox.checked = true;
+        // Also set as primary if no primary is selected
+        const primaryRadio = document.querySelector(`input[name="guild[primary_game_id]"][value="${gameId}"]`);
+        if (primaryRadio && !document.querySelector('input[name="guild[primary_game_id]"]:checked')) {
+          primaryRadio.checked = true;
+        }
+        return;
+      }
+      
+      // Add to featured games list if not already there
+      const featuredList = document.getElementById('featured-games-list');
+      if (featuredList) {
+        const newLabel = document.createElement('label');
+        newLabel.className = 'flex items-center space-x-3 cursor-pointer hover:bg-theme-hover p-2 rounded';
+        newLabel.setAttribute('data-game-id', gameId);
+        
+        const checkbox = document.createElement('input');
+        checkbox.type = 'checkbox';
+        checkbox.name = 'guild[game_ids][]';
+        checkbox.value = gameId;
+        checkbox.className = 'w-4 h-4 text-theme-accent border-theme-primary rounded focus:ring-theme-accent';
+        checkbox.required = false;
+        checkbox.checked = true;
+        checkbox.setAttribute('data-game-id', gameId);
+        
+        const gameInfoDiv = document.createElement('div');
+        gameInfoDiv.className = 'flex-1';
+        
+        const gameNameDiv = document.createElement('div');
+        gameNameDiv.className = 'font-medium text-theme-primary';
+        gameNameDiv.textContent = gameName;
+        
+        gameInfoDiv.appendChild(gameNameDiv);
+        
+        if (!isActive) {
+          const pendingDiv = document.createElement('div');
+          pendingDiv.className = 'text-xs text-yellow-400';
+          pendingDiv.textContent = '<%= j t('guilds.new.games.pending_approval') %>';
+          gameInfoDiv.appendChild(pendingDiv);
+        }
+        
+        const radio = document.createElement('input');
+        radio.type = 'radio';
+        radio.name = 'guild[primary_game_id]';
+        radio.value = gameId;
+        radio.className = 'w-4 h-4 text-theme-accent border-theme-primary focus:ring-theme-accent';
+        radio.setAttribute('data-primary-for', gameId);
+        
+        // Set as primary if no primary is selected
+        if (!document.querySelector('input[name="guild[primary_game_id]"]:checked')) {
+          radio.checked = true;
+        }
+        
+        const primaryLabel = document.createElement('span');
+        primaryLabel.className = 'text-sm text-theme-secondary';
+        primaryLabel.textContent = '<%= j t('common.labels.primary') %>';
+        
+        newLabel.appendChild(checkbox);
+        newLabel.appendChild(gameInfoDiv);
+        newLabel.appendChild(radio);
+        newLabel.appendChild(primaryLabel);
+        
+        if (featuredList.firstChild) {
+          featuredList.insertBefore(newLabel, featuredList.firstChild);
+        } else {
+          featuredList.appendChild(newLabel);
+        }
+      }
+    }
+    
+    // Ensure at least one game is selected
+    form.addEventListener('submit', (e) => {
+      console.log('Form submit event triggered');
+      
+      // Get ALL game checkboxes (not just checked ones) and filter by checked property
+      // This ensures we catch dynamically added elements that might not be recognized by :checked selector
+      const allGameCheckboxes = Array.from(form.querySelectorAll('input[name="guild[game_ids][]"]'))
+        .concat(Array.from(document.querySelectorAll('input[name="guild[game_ids][]"]')))
+        .filter((cb, index, self) => self.indexOf(cb) === index); // Remove duplicates
+      
+      // Filter to only checked ones by checking the actual property
+      const checkedGames = allGameCheckboxes.filter(cb => {
+        const isChecked = cb.checked === true || cb.getAttribute('checked') !== null;
+        console.log('Checking checkbox:', { value: cb.value, checked: cb.checked, attribute: cb.getAttribute('checked'), isChecked });
+        return isChecked;
+      });
+      
+      console.log('Form submission - checked games:', checkedGames.length, checkedGames.map(cb => ({ 
+        value: cb.value, 
+        checked: cb.checked,
+        hasAttribute: cb.hasAttribute('checked'),
+        inForm: form.contains(cb),
+        element: cb
+      })));
+      
+      if (checkedGames.length === 0) {
+        e.preventDefault();
+        const errorDiv = document.getElementById('game-selection-error');
+        if (errorDiv) {
+          errorDiv.classList.remove('hidden');
+          errorDiv.textContent = '<%= j t('guilds.new.games.select_one_error') %>';
+        }
+        console.error('Form submission prevented: No games selected. All checkboxes:', allGameCheckboxes.map(cb => ({ value: cb.value, checked: cb.checked })));
+        return false;
+      }
+      
+      const gamesToCheck = checkedGames;
+      
+      // Ensure primary game is selected from checked games
+      // Get all primary game radios and check the actual property
+      const allPrimaryRadios = Array.from(form.querySelectorAll('input[name="guild[primary_game_id]"]'))
+        .concat(Array.from(document.querySelectorAll('input[name="guild[primary_game_id]"]')))
+        .filter((rb, index, self) => self.indexOf(rb) === index); // Remove duplicates
+      
+      const primaryGame = allPrimaryRadios.find(rb => {
+        return rb.checked === true || rb.getAttribute('checked') !== null;
+      });
+      
+      console.log('Form submission - primary game:', primaryGame ? { 
+        value: primaryGame.value, 
+        checked: primaryGame.checked,
+        hasAttribute: primaryGame.hasAttribute('checked'),
+        inForm: form.contains(primaryGame)
+      } : 'none', 'All radios:', allPrimaryRadios.map(rb => ({ value: rb.value, checked: rb.checked })));
+      
+      if (!primaryGame) {
+        e.preventDefault();
+        const errorDiv = document.getElementById('game-selection-error');
+        if (errorDiv) {
+          errorDiv.classList.remove('hidden');
+          errorDiv.textContent = '<%= j t('guilds.new.games.select_primary_error') %>';
+        }
+        console.error('Form submission prevented: No primary game selected');
+        return false;
+      }
+      
+      const primaryGameId = primaryGame.value;
+      const isPrimaryGameChecked = Array.from(gamesToCheck).some(cb => cb.value === primaryGameId);
+      console.log('Form submission - primary game checked:', isPrimaryGameChecked, 'primaryGameId:', primaryGameId, 'gamesToCheck:', Array.from(gamesToCheck).map(cb => cb.value));
+      
+      if (!isPrimaryGameChecked) {
+        e.preventDefault();
+        const errorDiv = document.getElementById('game-selection-error');
+        if (errorDiv) {
+          errorDiv.classList.remove('hidden');
+          errorDiv.textContent = '<%= j t('guilds.new.games.primary_must_be_selected') %>';
+        }
+        console.error('Form submission prevented: Primary game not in checked games');
+        return false;
+      }
+      
+      // Clear any error messages if validation passes
+      const errorDiv = document.getElementById('game-selection-error');
+      if (errorDiv) {
+        errorDiv.classList.add('hidden');
+      }
+      
+      console.log('Form submission allowed - proceeding with submit');
+      // Don't prevent default - let the form submit normally
+    });
+  
+  // Auto-check primary radio when game is checked
+  document.querySelectorAll('input[name="guild[game_ids][]"]').forEach(checkbox => {
+    checkbox.addEventListener('change', function() {
+      if (this.checked && !document.querySelector('input[name="guild[primary_game_id]"]:checked')) {
+        const primaryRadio = document.querySelector(`input[name="guild[primary_game_id]"][value="${this.value}"]`);
+        if (primaryRadio) primaryRadio.checked = true;
+      }
+    });
+  });
+  
+  // Custom game addition: open/close is handled by <details>; we only wire input, cancel, and close-after-add.
+  const customGameSection = document.getElementById('custom-game-section');
+  const customGameInput = document.getElementById('custom-game-input');
+  const gameSuggestions = document.getElementById('game-suggestions');
+  const gameSuggestError = document.getElementById('game-suggest-error');
+  const confirmAddGameBtn = document.getElementById('confirm-add-game-btn');
+  const cancelCustomGameBtn = document.getElementById('cancel-custom-game-btn');
+  
+  // Separate debounce timer from the main game search above to avoid name clashes
+  let customGameSearchTimeout = null;
+  let selectedGameName = null;
+  
+  function closeCustomGameDetails() {
+    customGameDetails?.removeAttribute('open');
+  }
+  
+  cancelCustomGameBtn?.addEventListener('click', () => {
+    closeCustomGameDetails();
+    customGameInput.value = '';
+    gameSuggestions.classList.add('hidden');
+    gameSuggestError.classList.add('hidden');
+    confirmAddGameBtn.disabled = true;
+    selectedGameName = null;
+  });
+  
+  customGameInput?.addEventListener('input', () => {
+    const query = customGameInput.value.trim();
+    
+    clearTimeout(customGameSearchTimeout);
+    gameSuggestions.classList.add('hidden');
+    gameSuggestError.classList.add('hidden');
+    confirmAddGameBtn.disabled = true;
+    selectedGameName = null;
+    
+    if (query.length < 2) {
+      return;
+    }
+    
+    customGameSearchTimeout = setTimeout(async () => {
+      try {
+        const response = await fetch(`/games/search?q=${encodeURIComponent(query)}`);
+        const data = await response.json();
+        
+        if (data.suggestions && data.suggestions.length > 0) {
+          // Show suggestions
+          gameSuggestions.innerHTML = '';
+          gameSuggestions.classList.remove('hidden');
+          
+          data.suggestions.forEach(suggestion => {
+            const item = document.createElement('div');
+            item.className = 'p-2 hover:bg-theme-hover cursor-pointer border-b border-theme-primary last:border-b-0';
+            item.innerHTML = `
+              <div class="font-medium text-theme-primary">${suggestion.name}</div>
+              ${!suggestion.active ? '<div class="text-xs text-yellow-400"><%= j t('guilds.new.games.pending_approval') %></div>' : ''}
+            `;
+            item.addEventListener('click', () => {
+              // Add this game to the selection
+              const gameId = suggestion.id;
+              const checkbox = document.querySelector(`input[name="guild[game_ids][]"][value="${gameId}"]`);
+              if (checkbox) {
+                checkbox.checked = true;
+                const primaryRadio = document.querySelector(`input[name="guild[primary_game_id]"][value="${gameId}"]`);
+                if (primaryRadio && !document.querySelector('input[name="guild[primary_game_id]"]:checked')) {
+                  primaryRadio.checked = true;
+                }
+                closeCustomGameDetails();
+                customGameInput.value = '';
+                gameSuggestions.classList.add('hidden');
+              }
+            });
+            gameSuggestions.appendChild(item);
+          });
+        } else if (data.can_create) {
+          // No suggestions found, allow creation
+          selectedGameName = query;
+          confirmAddGameBtn.disabled = false;
+          gameSuggestError.classList.remove('hidden');
+          gameSuggestError.className = 'mt-2 p-2 bg-blue-900/50 border border-blue-700 text-blue-200 rounded text-sm';
+          gameSuggestError.textContent = '<%= j t('guilds.new.custom_game.js_no_similar_found', query: "%{query}") %>'.replace('%{query}', query);
+        } else if (data.exact_match) {
+          // Exact match exists
+          gameSuggestError.classList.remove('hidden');
+          gameSuggestError.className = 'mt-2 p-2 bg-green-900/50 border border-green-700 text-green-200 rounded text-sm';
+          gameSuggestError.textContent = '<%= j t('guilds.new.custom_game.js_game_exists', name: "%{name}") %>'.replace('%{name}', data.exact_match.name);
+        }
+      } catch (error) {
+        console.error('Search error:', error);
+        gameSuggestError.classList.remove('hidden');
+        gameSuggestError.className = 'mt-2 p-2 bg-red-900/50 border border-red-700 text-red-200 rounded text-sm';
+        gameSuggestError.textContent = '<%= j t('guilds.new.custom_game.js_search_error') %>';
+      }
+    }, 300);
+  });
+  
+  // Modal elements
+  const gameModal = document.getElementById('game-confirmation-modal');
+  const modalGameName = document.getElementById('modal-game-name');
+  const closeGameModal = document.getElementById('close-game-modal');
+  const cancelGameModalBtn = document.getElementById('cancel-game-modal-btn');
+  const confirmGameModalBtn = document.getElementById('confirm-game-modal-btn');
+  
+  // Function to show modal
+  function showGameModal(gameName) {
+    modalGameName.textContent = `"${gameName}"`;
+    gameModal.classList.remove('hidden');
+  }
+  
+  // Function to hide modal
+  function hideGameModal() {
+    gameModal.classList.add('hidden');
+  }
+  
+  // Close modal handlers
+  closeGameModal?.addEventListener('click', hideGameModal);
+  cancelGameModalBtn?.addEventListener('click', hideGameModal);
+  
+  // Close modal on background click
+  gameModal?.addEventListener('click', (e) => {
+    if (e.target === gameModal) {
+      hideGameModal();
+    }
+  });
+  
+  // Close modal on Escape key
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && !gameModal.classList.contains('hidden')) {
+      hideGameModal();
+    }
+  });
+  
+  // Add Game and modal confirm are handled by delegated script so they work without init.
+    }
+    function scheduleInit() {
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', runInit);
+      } else {
+        runInit();
+      }
+    }
+    function runInit() {
+      setTimeout(initGuildNewPage, 0);
+    }
+    scheduleInit();
+    document.addEventListener('turbo:load', runInit);
+  })();
+</script>

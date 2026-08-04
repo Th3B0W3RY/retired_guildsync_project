@@ -1,0 +1,483 @@
+# English translations for GuildSync
+# See https://guides.rubyonrails.org/i18n.html for Rails I18n guide
+
+en:
+  # ============================================================================
+  # APPLICATION-WIDE
+  # ============================================================================
+  app_name: "GuildSync"
+
+  plan_entitlements:
+    upgrade_required: "Upgrade your plan to access this feature."
+
+  signup_plan_choices:
+    title: "Choose how to get started"
+    intro: "You selected %{plan}. You can start a 14-day Basic trial first, or continue to paid checkout for %{plan}."
+    basic_trial_button: "Start 14-day Basic trial"
+    pay_for_plan_button: "Continue to paid checkout — %{plan}"
+    basic_trial_started: "Your Basic trial is active. Welcome to GuildSync."
+    trial_unavailable: "A trial is not available for this account."
+    missing_basic: "Basic plan is not configured. Contact support."
+
+  account_creation:
+    invalid_email: "Enter a valid email address."
+    sent_notice: "We sent a verification email. Please check your inbox to continue creating your account."
+    resent_notice: "We sent another verification email. Please use the latest link."
+    start_over: "Start account creation again."
+    already_verified: "This email has already been verified."
+    invalid_or_expired: "That verification link is invalid or expired. Request a new verification email."
+    verified_notice: "Email successfully verified."
+    email_taken: "That email address is already connected to an account."
+    use_new_flow: "Start by verifying your email address."
+    resend_cooldown: "Please wait %{seconds} seconds before resending the verification email."
+    show:
+      title: "Create Account"
+      subtitle: "Enter your email address first. We will send a verification link before you choose MFA or Discord."
+      submit: "Send Verification Email"
+      have_account: "Already have an account?"
+    sent:
+      title: "Check your inbox"
+      body: "We sent a verification email. Please check your inbox to continue creating your account."
+      latest_link: "If you request another email, only the latest verification link will work."
+      resend: "Resend verification email"
+      change_email: "Use a different email"
+    backup_code:
+      title: "Save your backup code"
+      body: "This one-time recovery code can help you recover your account if you lose access. We will not show it again."
+      confirm_text: "I've copied my backup code and I have saved it somewhere safe."
+      confirm: "Confirm backup code saved"
+      confirm_required: "Confirm that you saved your backup code before continuing."
+      must_confirm: "Save and confirm your backup code before continuing."
+    choose:
+      title: "Choose how to finish"
+      subtitle: "Your email is verified and your backup code is saved. Choose how you want to finish account setup."
+      mfa:
+        title: "Create account with MFA"
+        body: "Use a password plus an authenticator app for secure sign-in."
+      discord:
+        title: "Create account with Discord"
+        body: "Continue through Discord OAuth using your verified email address."
+      google:
+        title: "Create account with Gmail"
+        body: "Use Gmail sign-in with the same email you verified (Gmail or Google Workspace)."
+      microsoft:
+        title: "Create account with Outlook"
+        body: "Use Outlook sign-in with the same email you verified (personal Microsoft accounts such as Outlook.com and Hotmail)."
+    standard:
+      title: "Finish account setup"
+      submit: "Continue to MFA Setup"
+      created: "Account created. Now set up MFA."
+    gated_oauth:
+      verify_first: "Verify your email and save your backup code before continuing with Discord, Gmail, or Outlook."
+    mailer:
+      signoff: "- GuildSync Team"
+      verify_email:
+        subject: "Verify your GuildSync email address"
+        heading: "Verify your email address"
+        greeting: "Hi,"
+        body: "Welcome to GuildSync. Please verify this email address to continue creating your account."
+        cta: "Verify Email Address"
+        expires: "This link expires in 24 hours."
+        fallback: "If the button does not work, copy and paste this URL into your browser:"
+        ignore: "If you did not create a GuildSync account, you can safely ignore this message."
+      backup_code_regenerated:
+        subject: "Your new GuildSync backup code"
+        heading: "Your backup code was regenerated"
+        greeting: "Hi %{username},"
+        body: "A new GuildSync backup code was generated for your account. Store this code somewhere safe."
+        warning: "Your previous backup code has been invalidated."
+        store_safely: "Keep this code offline or in a trusted password manager. We will not show it again."
+        unrequested: "If you did not request this, secure your account and contact support."
+
+  account_deletion:
+    mailer:
+      deletion_code:
+        subject: "Your GuildSync account deletion code"
+        heading: "Confirm account deletion"
+        greeting: "Hi %{username},"
+        body: "Use this one-time code on the Account Settings page to finish deleting your GuildSync account and related data."
+        expires: "This code expires in about 45 minutes. If you did not request account deletion, secure your account and contact support immediately."
+        ignore: "If you did not start this request, someone else may be using your active browser session."
+    flash:
+      code_sent: "We emailed a verification code to your address."
+      resend_cooldown: "Please wait %{seconds} seconds before requesting another code."
+      request_missing: "Send yourself a verification code first."
+      too_many_attempts: "Too many incorrect attempts. Request a new verification code."
+      code_expired: "That code has expired. Request a new code."
+      code_invalid: "That code is not valid."
+      completed: "Your account is closed and we are removing your data. You have been signed out."
+      blocked:
+        generic: "You cannot delete your account until the items below are resolved."
+        already_closed: "This account is already closed."
+        purge_in_progress: "Deletion is already being processed."
+        alliance_leader: "Leave or disband any alliances you lead before deleting your account."
+        owned_guild_has_members: "For each guild you own that still has other members, transfer ownership, remove members, or dissolve the guild first."
+
+  api:
+    auth:
+      captcha_invalid: "Security verification failed. Please try again."
+      invalid_sign_in: "Invalid email or password"
+      me_user_missing: "User not found"
+      authentication_failed: "Authentication failed"
+      internal_error: "Internal server error"
+      user_created: "User created successfully"
+      confirmation_required: "Check your email to confirm your account before signing in."
+      unconfirmed_sign_in: "Confirm your email address before signing in."
+      archived_sign_in: "This account has been archived and cannot sign in."
+      signed_in: "Signed in successfully"
+      signed_out: "Signed out successfully"
+      confirmation_required: "Your account was created but cannot sign in yet. Complete registration using the web app."
+      unconfirmed_sign_in: "You must confirm your email before signing in."
+      archived_sign_in: "This account has been archived."
+      pending_registration_sign_in: "Finish creating your account on the web before signing in."
+    discord:
+      not_connected: "Discord not connected for this guild"
+      fetch_channels_failed: "Failed to fetch channels: %{message}"
+      channels_updated: "Channels updated successfully"
+      event_not_found: "Event not found"
+      missing_discord_identity: "Missing discord_user_id or discord_username"
+      signup_success: "Successfully signed up for event"
+      signup_failed: "Failed to sign up: %{message}"
+    users:
+      account_archived: "Account archived successfully"
+    v1:
+      authentication_required: "Authentication required"
+      not_authorized: "You are not authorized to perform this action."
+      resource_not_found: "Resource not found"
+      guild_id_required: "Guild ID required."
+      not_participating: "You are not participating in this event."
+      guild_applications:
+        invalid_status: "Invalid status. Use 'accepted' or 'rejected'."
+        not_pending: "Application is not in a pending state."
+      guild_invites:
+        not_pending: "Invite is not in a pending state."
+
+  gear:
+    activity:
+      uploaded: "Uploaded stat screenshot (%{game})"
+      uploaded_shared_guild_plan: "Uploaded stat screenshot (%{game}); OCR counted toward guild leader %{leader_name}'s plan"
+      requested: "Requested stat update from %{name}"
+    api:
+      screenshot_required: "Screenshot required"
+      invalid_file_type: "Invalid file type. Please upload PNG, JPEG, or WebP."
+      file_too_large: "File too large. Maximum size is %{max_mb}MB."
+      specify_game: "Please specify a game for this guild (required for storage)"
+      guild_needs_game: "Guild must be associated with at least one game"
+      ocr_failed: "OCR processing failed"
+      stats_not_extracted: "We saved your screenshot, but couldn't read any stats from it. Try a clearer capture of your character stats panel."
+      mfa_required: "Verify your identity (MFA) and try uploading again."
+      attach_screenshot_failed: "Failed to attach screenshot"
+      attach_screenshot_invalid: "Screenshot attachment failed. Please ensure the file is a valid image and under 10MB."
+      snapshot_save_failed: "Failed to save stat snapshot"
+      upload_error: "An error occurred while processing your upload"
+      request_already_pending: "Stat update request already pending for %{name}"
+      request_created: "Stat update requested for %{name}"
+      create_request_failed: "Failed to create stat update request"
+      no_members_match: "No members found matching the selected criteria"
+      all_members_already_pending: "All matching members already have pending stat update requests"
+      bulk_create_failed: "Failed to create stat update requests"
+      bulk_process_failed: "Failed to process bulk request"
+      guild_id_required: "Guild ID required"
+      not_a_member: "Not a member of this guild"
+      reach_guildsync_support: "If this keeps happening, reach out to GuildSync Support."
+      created_requests:
+        one: "Created 1 stat update request"
+        other: "Created %{count} stat update requests"
+
+  discord_roles:
+    api:
+      fetch_failed: "Failed to fetch Discord roles: %{message}"
+      role_id_and_name_required: "role_id and role_name are required"
+      already_synced: "Role already synced"
+      synced_successfully: "Role synced successfully"
+      sync_failed: "Failed to sync role: %{message}"
+      role_id_required: "role_id is required"
+      removed_successfully: "Role sync removed successfully"
+      sync_not_found: "Role sync not found"
+      remove_sync_failed: "Failed to remove role sync: %{message}"
+      per_role_sync_failed: "Failed to sync role %{name}: %{message}"
+      sync_all_failed: "Failed to sync all roles: %{message}"
+      destroy_all_failed: "Failed to remove all role syncs: %{message}"
+      synced_roles_count:
+        zero: "Synced 0 roles"
+        one: "Synced 1 role"
+        other: "Synced %{count} roles"
+      removed_syncs_count:
+        zero: "Removed 0 role syncs"
+        one: "Removed 1 role sync"
+        other: "Removed %{count} role syncs"
+
+  # Language names (always in native script so users can identify their language)
+  language_names:
+    en: "English"
+    de: "Deutsch"
+    es: "Español"
+    fr: "Français"
+    it: "Italiano"
+    ja: "日本語"
+    ko: "한국어"
+    pt: "Português"
+    ru: "Русский"
+    zh: "中文"
+
+  # ============================================================================
+  # COMMON UI ELEMENTS
+  # ============================================================================
+  flash:
+    signed_in: "Signed in successfully."
+    signed_out: "Signed out successfully."
+    created: "Created successfully."
+    saved: "Saved successfully."
+    updated: "Updated successfully."
+
+  # Profile / guild / alliance logo uploads (Active Storage → same service as production S3 when configured)
+  image_attachments:
+    invalid_type: "must be a JPEG, PNG, GIF, or WebP image"
+    too_large: "must be no larger than %{max_mb} MB"
+
+  common:
+    "yes": "Yes"
+    "no": "No"
+    buttons:
+      sign_in: "Sign In"
+      sign_out: "Sign Out"
+      sign_up: "Sign Up"
+      create_account: "Create Account"
+      cancel: "Cancel"
+      save: "Save"
+      create: "Create"
+      update: "Update"
+      delete: "Delete"
+      submit: "Submit"
+      confirm: "Confirm"
+      back: "Back"
+      next: "Next"
+      close: "Close"
+      add: "Add"
+      remove: "Remove"
+      edit: "Edit"
+      view: "View"
+      logout: "Logout"
+      select: "Select"
+
+    labels:
+      email: "Email"
+      password: "Password"
+      name: "Name"
+      description: "Description"
+      status: "Status"
+      actions: "Actions"
+      owner: "Owner"
+      members: "Members"
+      created_at: "Created"
+      updated_at: "Updated"
+      primary: "Primary"
+
+    placeholders:
+      search: "Search..."
+      email: "Enter your email"
+      password: "Enter your password"
+      enter_name: "Enter name..."
+
+    messages:
+      searching: "Searching..."
+      no_results: "No results found"
+      loading: "Loading..."
+      success: "Success!"
+      error: "An error occurred"
+      confirm_delete: "Are you sure you want to delete this?"
+      required_field: "This field is required"
+      popup_blocked: "Popup was blocked. Please allow popups for this site and try again."
+
+    or: "or"
+    and: "and"
+    ago: "ago"
+    none: "None"
+    all: "All"
+    pending: "Pending"
+    active: "Active"
+    inactive: "Inactive"
+    connected: "Connected"
+    disconnected: "Disconnected"
+
+  # ============================================================================
+  # EVENTS
+  # ============================================================================
+  events:
+    schedule:
+      title: "Schedule Events"
+      subtitle: "Create and manage events for your guild"
+      coming_soon: "Event scheduling functionality coming soon!"
+      back_to_dashboard: "Back to Dashboard"
+    guild_battle:
+      title: "Schedule Guild Battle"
+      subtitle: "Organize competitive battles between guilds"
+      coming_soon: "Guild battle scheduling functionality coming soon!"
+      back_to_dashboard: "Back to Dashboard"
+
+  # ============================================================================
+  # SUPPORT
+  # ============================================================================
+  support:
+    disclaimer: "All support requests are handled through our support center. Your GuildSync account and your Support Center account are separate and are not linked."
+    contact:
+      title: "Contact Support"
+      subtitle: "Get help with your guild management needs"
+      email_support: "Email Support"
+      send_email: "Send us an email at:"
+      response_time: "Response Time"
+      response_time_note: "We typically respond within 24-48 hours."
+      back_to_dashboard: "Back to Dashboard"
+      english_only_notice: "All support communication is conducted in English"
+
+  # ============================================================================
+  # ANALYTICS
+  # ============================================================================
+  analytics:
+    guilds:
+      title: "Guild Analytics"
+      subtitle: "Track performance and insights for your guilds"
+      coming_soon: "Guild analytics functionality coming soon!"
+      back_to_dashboard: "Back to Dashboard"
+
+  # ============================================================================
+  # LEADERBOARD
+  # ============================================================================
+  leaderboard:
+    index:
+      title: "Guild Participation Leaderboard"
+      subtitle: "Weighted score across your guilds: on-time event attendance and poll votes count heavily; each entry in a completed loot roll adds a small amount."
+      rank: "Rank"
+      discord_username: "Discord Username"
+      discord_server: "Discord Server"
+      score: "Score"
+      no_data: "No participation data available yet."
+      no_data_hint: "Schedule events, run polls, and close loot rolls to build leaderboard activity."
+
+  # ============================================================================
+  # MESSAGE CENTER
+  # ============================================================================
+  message_center:
+    title: "Message Center"
+    subtitle: "Message guild members and other guild owners"
+    search_placeholder: "Search by username or email..."
+    select_recipient: "Select a recipient to start messaging"
+    no_recipient: "Select someone from the search above to view or send messages."
+    type_member: "Guild member"
+    type_owner: "Guild owner"
+    send: "Send"
+    sending: "Sending..."
+    invalid_recipient: "Invalid recipient."
+    content_blank: "Message cannot be empty."
+    access_denied: "You don't have access to this guild's message center."
+
+  # ============================================================================
+  # JOIN GUILD (one-time invite link)
+  # ============================================================================
+  join:
+    title: "Join this guild"
+    subtitle: "You've been invited to join %{guild_name}."
+    cta: "Sign in with your existing account, or create an account to join this guild."
+    sign_in: "Sign in"
+    create_account: "Create account"
+    one_time_hint: "This invite link is one-time use. After you join, the link will no longer work."
+    invalid_title: "Invalid or used invite link"
+    invalid_message: "This invite link is invalid or has already been used."
+    back_home: "Back to home"
+    invalid_or_used: "This invite link is invalid or has already been used."
+    already_member: "You are already a member of %{name}."
+    welcome: "Welcome to %{name}!"
+    invite_link_section: "One-time invite link"
+    invite_link_description: "Generate a link that anyone can use once to join this guild. New members will get the default role from guild settings."
+    generate_link: "Generate invite link"
+    link_copied: "Link copied to clipboard."
+    copy_link: "Copy link"
+    no_link_yet: "Click \"Generate invite link\" to create a one-time link. Share it with anyone; they'll sign in or create an account and join at the default role."
+    invite_links_limit: "This guild already has %{count} active invite links. Remove or wait for one to expire before creating another."
+    conflicting_alliance: "You cannot join this guild because you are already in another alliance. Leave your current alliance first."
+
+  # ============================================================================
+  # STORAGE
+  # ============================================================================
+  storage:
+    show:
+      title: "File Storage"
+      subtitle: "Manage files for %{guild_name}"
+      root: "Root"
+      new_folder: "New Folder"
+      select: "Select"
+      files_selected:
+        zero: "0 files selected"
+        one: "1 file selected"
+        other: "%{count} files selected"
+      move: "Move"
+      delete: "Delete"
+      cancel: "Cancel"
+      folders: "Folders"
+      no_folders_yet: "No folders yet"
+      drag_drop: "Drag & drop files"
+      paste_clipboard: "or paste from clipboard (Ctrl+V / Cmd+V)"
+      browse_files: "Browse Files"
+      download: "Download"
+      no_files_yet: "No files yet"
+      no_files_uploaded: "No files have been uploaded to this location."
+      create_folder_title: "Create Folder"
+      folder_name: "Folder Name"
+      create: "Create"
+      move_files_title: "Move Files"
+      select_folder: "Select Folder"
+      confirm_delete_title: "Confirm Delete"
+      confirm_delete_message: "Are you sure you want to delete this item?"
+
+  # ============================================================================
+  # MEMBER DASHBOARD
+  # ============================================================================
+  member_dashboard:
+    index:
+      title: "View Guilds"
+      subtitle: "Browse all available guilds and manage your memberships."
+      my_applications: "My Applications"
+      no_applications_yet: "No applications yet."
+      view_all_applications: "View All Applications"
+      my_guilds: "My Guilds"
+      view_guild: "View Guild"
+      no_guilds_yet: "You haven't been accepted to any guilds yet."
+      available_guilds: "Available Guilds"
+      no_description: "No description available."
+      view_details: "View Details"
+      apply: "Apply"
+      no_guilds_available: "No guilds available at this time."
+      applied: "Applied:"
+
+  # ============================================================================
+  # INTEGRATIONS
+  # ============================================================================
+  integrations:
+    discord:
+      title: "Connect with Discord"
+      subtitle: "Integrate your guild with Discord for seamless communication"
+      coming_soon: "Discord integration functionality coming soon!"
+      back_to_dashboard: "Back to Dashboard"
+
+  # ============================================================================
+  # MEMBERS
+  # ============================================================================
+  members:
+    invite:
+      title: "Invite Members to Your Guild"
+      subtitle: "Send invitations to join your gaming community"
+      coming_soon: "Member invitation functionality coming soon!"
+      back_to_dashboard: "Back to Dashboard"
+
+  # ============================================================================
+  # GAMES
+  # ============================================================================
+  games:
+    index:
+      title: "Games"
+
+  compliance:
+    ip_conflict:
+      banner_title: "Account compliance warning"
+      warning_message: "You have multiple accounts coming from the same IP address. This IP address with multiple accounts cannot be in multiple guilds. Please leave one of your guilds, then try again. You are abusing GuildSync features, this is a warning. If you do this multiple times you may be flagged and removed from our service."
+      lock_message: "Your account has been locked for repeated IP-based multi-account guild abuse. Archive all guilds on one account and leave all guilds on the other account, then contact support if this warning does not clear."

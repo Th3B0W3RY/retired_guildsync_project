@@ -1,0 +1,42 @@
+<div class="max-w-3xl mx-auto p-6">
+  <div class="mb-6 flex items-center justify-between">
+    <div>
+      <h1 class="text-3xl font-bold text-theme-primary mb-2"><%= t('alliances.invites.index.title') %></h1>
+      <p class="text-theme-secondary"><%= t('alliances.invites.index.subtitle', alliance_name: @alliance.name) %></p>
+    </div>
+    <%= link_to "&larr; #{t('alliances.nav.back_to_alliance')}".html_safe, alliance_path(@alliance),
+        class: "text-sm text-theme-accent hover:text-theme-accent-hover" %>
+  </div>
+
+  <!-- Invite a Guild -->
+  <div class="bg-theme-secondary rounded-lg border border-theme-primary p-6 mb-6">
+    <h2 class="text-lg font-semibold text-theme-primary mb-4"><%= t('alliances.invites.index.invite_guild') %></h2>
+    <% if @can_invite %>
+      <%= render "alliance_invites/invite_guild_search", alliance: @alliance %>
+    <% else %>
+      <p class="text-sm text-theme-secondary"><%= t("alliances.invites.index.invite_restricted") %></p>
+    <% end %>
+  </div>
+
+  <!-- Pending Invites -->
+  <div class="bg-theme-secondary rounded-lg border border-theme-primary p-6">
+    <h2 class="text-lg font-semibold text-theme-primary mb-4"><%= t('alliances.invites.index.pending') %></h2>
+    <% if @pending_invites.any? %>
+      <div class="space-y-3">
+        <% @pending_invites.each do |invite| %>
+          <div class="flex items-center justify-between p-4 bg-theme-primary rounded-lg">
+            <div>
+              <span class="font-medium text-theme-primary"><%= invite.guild.name %></span>
+              <p class="text-xs text-theme-secondary mt-0.5">
+                <%= t('alliances.invites.index.invited_by', name: invite.invited_by_user.display_name) %> &bull;
+                <%= time_ago_in_words(invite.created_at) %> <%= t('common.ago') %>
+              </p>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    <% else %>
+      <p class="text-theme-secondary"><%= t('alliances.invites.index.no_pending') %></p>
+    <% end %>
+  </div>
+</div>

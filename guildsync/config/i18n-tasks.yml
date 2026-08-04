@@ -1,0 +1,181 @@
+# i18n-tasks — https://github.com/glebm/i18n-tasks
+# Run from app root: bundle exec i18n-tasks health
+
+base_locale: en
+
+# Keep in sync with config/application.rb (config.i18n.available_locales)
+locales:
+  - en
+  - de
+  - es
+  - fr
+  - it
+  - ja
+  - ko
+  - pt
+  - ru
+  - zh
+
+data:
+  # pattern_router: route new keys by key prefix (first match wins; last line is catch-all)
+  router: pattern_router
+  read:
+    - config/locales/%{locale}/**/*.{yml,yaml}
+  write:
+    # app/views + JS-related strings live under the `js` tree
+    - - "js.*"
+      - "config/locales/%{locale}/javascript.%{locale}.yml"
+    # Auth/account flows (see auth.{locale}.yml)
+    - - "sessions.*"
+      - "config/locales/%{locale}/auth.%{locale}.yml"
+    - - "registrations.*"
+      - "config/locales/%{locale}/auth.%{locale}.yml"
+    - - "passwords.*"
+      - "config/locales/%{locale}/auth.%{locale}.yml"
+    - - "confirmations.*"
+      - "config/locales/%{locale}/auth.%{locale}.yml"
+    - - "backup_codes.*"
+      - "config/locales/%{locale}/auth.%{locale}.yml"
+    - - "recoveries.*"
+      - "config/locales/%{locale}/auth.%{locale}.yml"
+    - - "mfa_setup.*"
+      - "config/locales/%{locale}/auth.%{locale}.yml"
+    - - "mfa_verification.*"
+      - "config/locales/%{locale}/auth.%{locale}.yml"
+    - - "profile_completion.*"
+      - "config/locales/%{locale}/auth.%{locale}.yml"
+    - - "mfa.*"
+      - "config/locales/%{locale}/auth.%{locale}.yml"
+    # Guild feature trees (see guilds.{locale}.yml)
+    - - "guilds.*"
+      - "config/locales/%{locale}/guilds.%{locale}.yml"
+    - - "guild_archives.*"
+      - "config/locales/%{locale}/guilds.%{locale}.yml"
+    - - "polls.*"
+      - "config/locales/%{locale}/guilds.%{locale}.yml"
+    - - "loot_rolls.*"
+      - "config/locales/%{locale}/guilds.%{locale}.yml"
+    - - "guild_applications.*"
+      - "config/locales/%{locale}/guilds.%{locale}.yml"
+    - - "guild_battles.*"
+      - "config/locales/%{locale}/guilds.%{locale}.yml"
+    - - "guild_documents.*"
+      - "config/locales/%{locale}/guilds.%{locale}.yml"
+    - - "guild_warnings.*"
+      - "config/locales/%{locale}/guilds.%{locale}.yml"
+    # Discord trees (see discord.{locale}.yml)
+    - - "discord_connections.*"
+      - "config/locales/%{locale}/discord.%{locale}.yml"
+    - - "discord_user_auth.*"
+      - "config/locales/%{locale}/discord.%{locale}.yml"
+    - - "discord_events.*"
+      - "config/locales/%{locale}/discord.%{locale}.yml"
+    - - "discord.*"
+      - "config/locales/%{locale}/discord.%{locale}.yml"
+    - - "discord_oauth.*"
+      - "config/locales/%{locale}/discord.%{locale}.yml"
+    - - "discord_onboarding.*"
+      - "config/locales/%{locale}/discord.%{locale}.yml"
+    # Billing trees (see billing.{locale}.yml)
+    - - "billing.*"
+      - "config/locales/%{locale}/billing.%{locale}.yml"
+    - - "pricing.*"
+      - "config/locales/%{locale}/billing.%{locale}.yml"
+    # Controllers tree (see controllers.{locale}.yml)
+    - - "controllers.*"
+      - "config/locales/%{locale}/controllers.%{locale}.yml"
+    - - "account_creation.*"
+      - "config/locales/%{locale}/%{locale}.yml"
+    # Home/landing trees (see home.{locale}.yml)
+    - - "home.*"
+      - "config/locales/%{locale}/home.%{locale}.yml"
+    - - "homepage_features.*"
+      - "config/locales/%{locale}/home.%{locale}.yml"
+    - - "sidebar.*"
+      - "config/locales/%{locale}/home.%{locale}.yml"
+    - - "dashboard.*"
+      - "config/locales/%{locale}/home.%{locale}.yml"
+    - - "user_activity.*"
+      - "config/locales/%{locale}/home.%{locale}.yml"
+    - - "layouts.*"
+      - "config/locales/%{locale}/home.%{locale}.yml"
+    - - "activity_feed.*"
+      - "config/locales/%{locale}/home.%{locale}.yml"
+    - - "alliance_activity_feed.*"
+      - "config/locales/%{locale}/home.%{locale}.yml"
+    # Settings tree (see settings.{locale}.yml)
+    - - "settings.*"
+      - "config/locales/%{locale}/settings.%{locale}.yml"
+    # Custom validation copy under activerecord.errors.models (see models.{locale}.yml)
+    - - "activerecord.errors.models.*"
+      - "config/locales/%{locale}/models.%{locale}.yml"
+    # Model labels and attribute labels also live in models.{locale}.yml
+    - - "activerecord.models.*"
+      - "config/locales/%{locale}/models.%{locale}.yml"
+    - - "activerecord.attributes.*"
+      - "config/locales/%{locale}/models.%{locale}.yml"
+    # OCR strings kept alongside model-related messages in this project
+    - - "ocr.messages.*"
+      - "config/locales/%{locale}/models.%{locale}.yml"
+    # Devise (see devise.{locale}.yml)
+    - - "devise.*"
+      - "config/locales/%{locale}/devise.%{locale}.yml"
+    # Transactional mailer copy (see mailers.{locale}.yml)
+    - - "mailers.*"
+      - "config/locales/%{locale}/mailers.%{locale}.yml"
+    # IP-account policy copy sits under errors.* but belongs in devise.{locale}.yml
+    - - "errors.attributes.user.one_account_per_ip"
+      - "config/locales/%{locale}/devise.%{locale}.yml"
+    # Alliance feature — all keys live under the `alliances.*` tree (see alliances.{locale}.yml)
+    - - "alliances.*"
+      - "config/locales/%{locale}/alliances.%{locale}.yml"
+    - - "alliance_members.*"
+      - "config/locales/%{locale}/alliance_members.%{locale}.yml"
+    - - "alliance_polls.*"
+      - "config/locales/%{locale}/alliance_polls.%{locale}.yml"
+    # Roadmap & feature request keys (see roadmap.{locale}.yml)
+    - - "roadmap.*"
+      - "config/locales/%{locale}/roadmap.%{locale}.yml"
+    # Admin keys (see admin.{locale}.yml)
+    - - "admin.*"
+      - "config/locales/%{locale}/admin.%{locale}.yml"
+    # Remaining UI keys (unrouted namespaces) — locale catch-all file
+    - config/locales/%{locale}/%{locale}.yml
+  yaml:
+    write:
+      line_width: -1
+
+search:
+  paths:
+    - app/
+  exclude:
+    - app/assets/images
+    - app/assets/fonts
+    - app/assets/videos
+    - app/assets/builds
+    - app/javascript/
+
+# Do not report these as missing (often supplied by rails-i18n / ActiveRecord)
+ignore_missing:
+  - "activerecord.errors.messages.*"
+  - "activerecord.errors.template.*"
+  - "errors.format"
+  - "errors.messages.*"
+  - "number.*"
+  - "time.*"
+  - "date.*"
+
+# Keys looked up by Rails / gems by convention (not static t('...') in scanned paths).
+# See https://github.com/glebm/i18n-tasks#fine-tuning
+ignore_unused:
+  - "activerecord.*"
+  - "activemodel.*"
+  - "helpers.*"
+  - "datetime.*"
+  - "support.*"
+  - "devise.*"
+  - "ocr.*"
+
+missing:
+  # Report keys missing in a locale even when present in base_locale (stricter)
+  consider_fallbacks: false

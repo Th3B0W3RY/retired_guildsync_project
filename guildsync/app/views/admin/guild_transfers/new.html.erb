@@ -1,0 +1,14 @@
+<% gt_new = "admin.guild_transfers.new" %>
+<div class="space-y-6">
+  <div class="flex justify-between items-center">
+    <h1 class="text-3xl font-bold text-theme-accent"><%= t("#{gt_new}.page_title") %></h1>
+    <%= link_to t("#{gt_new}.back"), admin_root_path,
+          class: "px-4 py-2 bg-theme-secondary text-theme-primary rounded-lg hover:bg-theme-hover transition-colors",
+          data: { turbo_frame: "_top" } %>
+  </div>
+
+  <%= turbo_frame_tag Admin::GuildTransfersController::GUILD_TRANSFERS_NEW_MAIN_FRAME do %>
+    <%= render "guild_transfers_new_main" %>
+  <% end %>
+</div>
+

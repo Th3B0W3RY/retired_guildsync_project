@@ -1,0 +1,10 @@
+<%# locals: (card:, card_bg:, icon_gradient:) %>
+<%# Hover: brand purple/blue glow + lift; motion-reduce skips transitions for accessibility. %>
+<%= link_to homepage_feature_path(card.slug),
+      class: "#{card_bg} group p-5 flex flex-col items-start gap-3 text-left no-underline block h-full w-full transition-all duration-300 ease-out motion-reduce:transition-none hover:border-[#7C86FF]/90 hover:bg-[#2a2f48] hover:shadow-[0_0_0_1px_rgba(124,134,255,0.55),0_10px_36px_-6px_rgba(79,57,246,0.42),0_0_32px_rgba(152,16,250,0.2)] hover:-translate-y-0.5 motion-reduce:hover:translate-y-0 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#615FFF] focus-visible:ring-offset-2 focus-visible:ring-offset-[#0b0e14]" do %>
+  <div class="<%= icon_gradient %> w-10 h-10 rounded-xl flex items-center justify-center shrink-0 transition-transform duration-300 ease-out motion-reduce:transition-none group-hover:scale-105 motion-reduce:group-hover:scale-100 group-hover:shadow-lg group-hover:shadow-[#615FFF]/35" aria-hidden="true">
+    <%= render "home/feature_icon_svg", icon_key: card.icon_key %>
+  </div>
+  <h3 class="text-white text-sm font-semibold leading-5 transition-colors duration-300 group-hover:text-[#F0F4FA]"><%= card.title %></h3>
+  <p class="text-[#90A1B9] text-xs font-normal leading-4 transition-colors duration-300 group-hover:text-[#C5D0E0]"><%= card.description %></p>
+<% end %>

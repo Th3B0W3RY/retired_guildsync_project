@@ -1,0 +1,6 @@
+---
+ko:
+  mailers:
+    trial_mailer:
+      trial_expiring:
+        subject: GuildSync 체험이 곧 종료됩니다

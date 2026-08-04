@@ -1,0 +1,115 @@
+<% cm = "admin.content_moderation.index" %>
+<% mod_frame = Admin::ContentModerationController::CONTENT_MODERATION_INDEX_MAIN_FRAME %>
+<div class="flex flex-wrap gap-2 border-b border-theme-primary pb-2">
+  <%= link_to admin_content_moderation_index_path(tab: "pending"),
+        class: "px-4 py-2 rounded-lg #{@tab == 'pending' ? 'bg-blue-600 text-white' : 'bg-theme-card text-theme-secondary hover:bg-theme-hover'}",
+        data: { turbo_frame: mod_frame } do %>
+    <%= t("#{cm}.tab_pending") %><span id="admin_content_moderation_pending_badge_host" class="contents"><% if @pending_count.to_i > 0 %><span class="ml-1 font-semibold">(<%= @pending_count %>)</span><% end %></span>
+  <% end %>
+  <%= link_to admin_content_moderation_index_path(tab: "statistics"),
+        class: "px-4 py-2 rounded-lg #{@tab == 'statistics' ? 'bg-blue-600 text-white' : 'bg-theme-card text-theme-secondary hover:bg-theme-hover'}",
+        data: { turbo_frame: mod_frame } do %>
+    <%= t("#{cm}.tab_statistics") %>
+  <% end %>
+  <%= link_to admin_content_moderation_index_path(tab: "blocked_words"),
+        class: "px-4 py-2 rounded-lg #{@tab == 'blocked_words' ? 'bg-blue-600 text-white' : 'bg-theme-card text-theme-secondary hover:bg-theme-hover'}",
+        data: { turbo_frame: mod_frame } do %>
+    <%= t("#{cm}.tab_blocked_words") %>
+  <% end %>
+  <%= link_to admin_content_moderation_index_path(tab: "profanity_list"),
+        class: "px-4 py-2 rounded-lg #{@tab == 'profanity_list' ? 'bg-blue-600 text-white' : 'bg-theme-card text-theme-secondary hover:bg-theme-hover'}",
+        data: { turbo_frame: mod_frame } do %>
+    <%= t("#{cm}.tab_profanity_list") %>
+  <% end %>
+  <%= link_to admin_content_moderation_index_path(tab: "audit"),
+        class: "px-4 py-2 rounded-lg #{@tab == 'audit' ? 'bg-blue-600 text-white' : 'bg-theme-card text-theme-secondary hover:bg-theme-hover'}",
+        data: { turbo_frame: mod_frame } do %>
+    <%= t("#{cm}.tab_audit") %>
+  <% end %>
+  <%= link_to admin_content_moderation_index_path(tab: "health"),
+        class: "px-4 py-2 rounded-lg #{@tab == 'health' ? 'bg-blue-600 text-white' : 'bg-theme-card text-theme-secondary hover:bg-theme-hover'}",
+        data: { turbo_frame: mod_frame } do %>
+    <%= t("#{cm}.tab_health") %>
+  <% end %>
+</div>
+
+<% if @tab == "pending" %>
+  <div id="admin_content_moderation_pending_wrap">
+    <%= render "pending_panel" %>
+  </div>
+<% end %>
+
+<% if @tab == "statistics" %>
+  <div class="bg-theme-card border border-theme-primary rounded-lg p-6 shadow-lg">
+    <h2 class="text-xl font-semibold text-theme-primary mb-4"><%= t("#{cm}.statistics_heading") %></h2>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <div>
+        <h3 class="font-medium text-theme-secondary mb-2"><%= t("#{cm}.period_7d") %></h3>
+        <ul class="space-y-1 text-theme-primary">
+          <li><%= t("#{cm}.stat_flagged", count: @stats_7d[:flagged]) %></li>
+          <li><%= t("#{cm}.stat_approved", count: @stats_7d[:approved]) %></li>
+          <li><%= t("#{cm}.stat_rejected", count: @stats_7d[:rejected]) %></li>
+        </ul>
+      </div>
+      <div>
+        <h3 class="font-medium text-theme-secondary mb-2"><%= t("#{cm}.period_30d") %></h3>
+        <ul class="space-y-1 text-theme-primary">
+          <li><%= t("#{cm}.stat_flagged", count: @stats_30d[:flagged]) %></li>
+          <li><%= t("#{cm}.stat_approved", count: @stats_30d[:approved]) %></li>
+          <li><%= t("#{cm}.stat_rejected", count: @stats_30d[:rejected]) %></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+<% end %>
+
+<% if @tab == "profanity_list" %>
+  <div id="admin_content_moderation_profanity_wrap">
+    <%= render "profanity_list_panel" %>
+  </div>
+<% end %>
+
+<% if @tab == "blocked_words" %>
+  <div id="admin_content_moderation_blocked_words_wrap">
+    <%= render "blocked_words_panel" %>
+  </div>
+<% end %>
+
+<% if @tab == "audit" %>
+  <div class="bg-theme-card border border-theme-primary rounded-lg p-6 shadow-lg">
+    <h2 class="text-xl font-semibold text-theme-primary mb-4"><%= t("#{cm}.audit_heading") %></h2>
+    <div class="overflow-x-auto">
+      <table class="w-full text-sm text-theme-primary">
+        <thead>
+          <tr class="border-b border-theme-primary">
+            <th class="text-left py-2"><%= t("#{cm}.audit_when") %></th>
+            <th class="text-left py-2"><%= t("#{cm}.audit_admin") %></th>
+            <th class="text-left py-2"><%= t("#{cm}.audit_action") %></th>
+            <th class="text-left py-2"><%= t("#{cm}.audit_content") %></th>
+            <th class="text-left py-2"><%= t("#{cm}.audit_notes") %></th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @moderation_audit_logs.each do |log| %>
+            <tr class="border-b border-theme-primary">
+              <td class="py-2"><%= l(log.created_at, format: :short) %></td>
+              <td><%= log.admin_email %></td>
+              <td><%= log.action %></td>
+              <td><%= log.content_type %> #<%= log.content_id %></td>
+              <td><%= truncate(log.notes.to_s, length: 40) %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+    <% if @moderation_audit_logs.empty? %>
+      <p class="text-theme-secondary py-4"><%= t("#{cm}.audit_empty") %></p>
+    <% end %>
+  </div>
+<% end %>
+
+<% if @tab == "health" %>
+  <div id="admin_content_moderation_health_wrap">
+    <%= render "health_panel" %>
+  </div>
+<% end %>

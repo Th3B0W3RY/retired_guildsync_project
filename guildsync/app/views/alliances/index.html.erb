@@ -1,0 +1,13 @@
+<% glass = "rounded-xl border border-white/10 bg-[rgba(15,23,43,0.5)] p-6 shadow-lg" %>
+<% primary_cta = "inline-flex items-center justify-center rounded-lg bg-theme-brand-gradient px-5 py-2.5 text-base font-semibold text-white transition-opacity hover:opacity-95" %>
+
+<div class="mx-auto max-w-4xl space-y-8 p-6 font-[family-name:Inter,ui-sans-serif,system-ui,sans-serif]" data-testid="alliances-hub">
+  <% if @alliance.present? %>
+    <div class="sr-only"><%= t("alliances.index.title") %></div>
+    <div class="<%= glass %>">
+      <h1 class="mb-2 text-2xl font-semibold text-white"><%= @alliance.name %></h1>
+      <p class="mb-4 text-[#90A1B9]"><%= @alliance.description %></p>
+      <%= link_to t("alliances.index.open_alliance"), alliance_path(@alliance), class: primary_cta %>
+    </div>
+  <% end %>
+</div>

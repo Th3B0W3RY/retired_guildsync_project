@@ -1,0 +1,26 @@
+fr:
+  alliance_members:
+    removed: "Membre retiré de l’alliance."
+    bulk_removed: "Les membres sélectionnés ont été retirés de l’alliance."
+    errors:
+      not_found: "Membre introuvable."
+      unauthorized: "Vous n’êtes pas autorisé à faire cela."
+      protected_target: "Vous ne pouvez pas retirer les propriétaires de guilde ni les gestionnaires d’alliance."
+      tags_owner_only: "Seul le créateur de l’alliance peut créer des étiquettes d’alliance."
+    index:
+      title: "Membres de l’alliance"
+      subtitle: "Tous les membres de %{alliance_name}, regroupés par guilde."
+      export_csv: "Exporter CSV"
+      your_guild: "Votre guilde"
+      remove: "Retirer"
+      remove_confirm: "Retirer %{name} de cette alliance ?"
+      no_members: "Aucun membre dans cette guilde pour le moment."
+    tags:
+      manage_title: "Gérer les étiquettes d’alliance"
+      name: "Nom de l’étiquette"
+      color: "Couleur de l’étiquette"
+      create: "Créer une étiquette"
+      created: "Étiquette d’alliance créée."
+      assigned: "Étiquette assignée."
+      removed: "Étiquette supprimée."
+      not_found: "Étiquette ou membre introuvable."

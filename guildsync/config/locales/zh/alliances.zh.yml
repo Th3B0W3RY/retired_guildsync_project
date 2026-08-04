@@ -1,0 +1,399 @@
+zh:
+  # ============================================================================
+  # ALLIANCES FEATURE
+  # ============================================================================
+  alliances:
+    created: "联盟创建成功！"
+    updated: "联盟设置已保存。"
+    disbanded: "联盟已解散。"
+    left: "您已退出联盟。"
+    guild_kicked: "公会已从联盟中移除。"
+
+    errors:
+      join_requires_paid_plan: "需要使用付费方案下的有效订阅或试用；免费方案以及已过期的订阅或试用不符合条件。"
+      plan_required_for_alliance_hub: "若您尚未在 GuildSync 加入任何联盟，则需要付费方案才能打开联盟中心。请让 GM 同步您的账户，或升级方案。"
+      not_found: "未找到联盟。"
+      not_member: "您不是该联盟的成员。"
+      not_leader: "仅盟主可执行此操作。"
+      kick_unauthorized: "只有公会会长或自定义联盟管理员可以移除公会。"
+      no_eligible_guild: "以您当前的公会身份无法创建联盟。"
+      plan_required: "当前方案不支持创建联盟，请升级。"
+      disband_unauthorized: "您无权解散此联盟。"
+      leave_unauthorized: "只有公会会长可以退出联盟。"
+      leader_cannot_leave: "创始公会不能退出联盟，请改为解散联盟。"
+      guild_not_found: "未找到公会。"
+      cannot_kick_leader_guild: "不能将创始公会移出联盟。"
+      conflicting_alliance_membership: "不能同时加入属于不同联盟的公会。"
+    index:
+      title: "联盟"
+      open_alliance: "打开联盟"
+      invite_from: "邀请人：%{name}"
+      accept: "接受"
+      decline: "拒绝"
+      request_join_hint: "搜索已在联盟内的公开列表公会，选择您的公会，然后申请加入该联盟。"
+      search_label: "搜索公会"
+      search_placeholder: "输入公会名称…"
+      search_select_target: "目标公会（须已在联盟内）"
+      submit_join_request: "发送入盟申请"
+      searching: "搜索中…"
+      no_results: "未找到公会。"
+      load_more_results: "加载更多结果"
+
+    roles:
+      leader_guild: "创始公会"
+    new:
+      title: "创建联盟"
+      subtitle: "将多个公会团结在同一旗帜下。"
+
+    edit:
+      title: "联盟设置"
+      back: "返回联盟"
+      danger_zone: "危险操作"
+      disband: "解散联盟"
+      disband_confirm: "确定要解散该联盟吗？此操作不可撤销。"
+
+    form:
+      name: "联盟名称"
+      name_placeholder: "输入联盟名称…"
+      description: "描述"
+      description_placeholder: "介绍您的联盟…"
+      logo: "联盟标志"
+      choose_logo_button: "选择图片"
+      no_file_chosen: "未选择文件"
+      logo_hint: "可选。建议：正方形图片，至少 256×256 px。"
+      logo_replace_hint: "上传新文件以替换当前标志。"
+      creating_for: "为以下对象创建联盟："
+      size_info: "联盟可包含 1 至 20 个公会。从您的公会开始，再邀请其他公会。"
+      create_button: "创建联盟"
+      save_button: "保存更改"
+
+    show:
+      guilds: "成员公会"
+      guilds_count:
+        one: "1 个公会"
+        other: "%{count} 个公会"
+      leader: "盟主：%{name}"
+      edit: "编辑"
+      leave: "退出联盟"
+      leave_confirm: "确定要退出该联盟吗？"
+      invite_guild: "邀请公会"
+      kick_guild: "移除"
+      kick_guild_confirm: "将 %{name} 移出联盟？"
+      members_preview: "成员"
+      view_all_members: "查看全部成员"
+      more_members:
+        one: "还有 1 名成员…"
+        other: "还有 %{count} 名成员…"
+
+    nav:
+      members: "成员"
+      events: "联盟活动"
+      polls: "联盟投票"
+      rolls: "联盟战利品掷骰"
+      chat: "联盟聊天"
+      activity_feed: "动态"
+      gm_chat: "GM 聊天"
+      invites: "待处理邀请"
+      join_requests: "入盟申请"
+      disband_vote: "解散表决"
+      back_to_alliance: "返回联盟"
+
+    invites:
+      sent: "已向 %{guild_name} 发送邀请。"
+      accepted: "您已加入 %{alliance_name}！"
+      declined: "已拒绝邀请。"
+
+      errors:
+        not_found: "未找到邀请。"
+        guild_not_found: "未找到公会。请按名称搜索并选择公开列表中的公会。"
+        already_in_alliance: "该公会已属于此联盟。"
+        already_invited: "该公会有待处理的邀请。"
+        pending_join_request: "该公会对此联盟有待处理的入盟申请。"
+        max_guilds: "该联盟已达 20 个公会上限。"
+        invite_unauthorized: "只有公会会长或自定义联盟管理员可以邀请公会。"
+        accept_unauthorized: "只有目标公会的会长可以接受此邀请。"
+        decline_unauthorized: "只有目标公会的会长可以拒绝此邀请。"
+
+      index:
+        title: "待处理邀请"
+        subtitle: "%{alliance_name} 的邀请"
+        invite_guild: "邀请公会"
+        search_label: "搜索公开列表公会"
+        search_placeholder: "输入公会名称…"
+        search_hint: "仅匹配公会名称。仅显示选择公开列表的公会。"
+        search_unauthorized: "您不能在此页面搜索。"
+        load_more_results: "加载更多结果"
+        selected_guild: "正在邀请"
+        already_in_alliance_suffix: "已在联盟中（无法邀请）"
+        invite_restricted: "只有盟主可以发送邀请。"
+        send_invite: "发送邀请"
+        pending: "待处理邀请"
+        no_pending: "暂无待处理邀请。"
+        invited_by: "邀请人：%{name}"
+
+    events:
+      created: "联盟活动已创建！"
+      updated: "活动已更新。"
+      deleted: "活动已删除。"
+      rsvp_saved: "您的出席回复已保存。"
+      discord_rsvp:
+        errors:
+          link_required: "回复前请将 Discord 账户连接到 GuildSync。"
+          event_not_found: "未找到联盟活动。"
+          invalid_status: "出席回复状态无效。"
+          not_alliance_member: "您须为联盟的活跃成员方可回复出席。"
+          save_failed: "无法保存出席回复：%{error}"
+          unexpected: "保存联盟出席回复时发生错误。"
+
+      errors:
+        not_found: "未找到活动。"
+        manage_unauthorized: "只有公会会长可以管理活动。"
+        invalid_rsvp: "出席回复状态无效。"
+
+      index:
+        title: "联盟活动"
+        subtitle: "%{alliance_name} 的活动"
+        create: "创建活动"
+        upcoming: "即将开始"
+        past: "往期活动"
+        no_events: "尚无活动，创建一个开始吧。"
+        attending: "参加"
+        upcoming_label: "即将举行"
+
+      new:
+        title: "创建联盟活动"
+
+      edit:
+        title: "编辑活动"
+
+      show:
+        back: "返回活动列表"
+        minutes: "分钟"
+        your_rsvp: "您的出席回复"
+        attending: "参加"
+        maybe: "待定"
+        declined: "不参加"
+        participants: "参与者"
+        no_participants: "尚无人回复出席。"
+        delete_confirm: "删除此活动？"
+        status:
+          attending: "参加"
+          maybe: "待定"
+          declined: "不参加"
+
+      form:
+        title: "活动标题"
+        description: "描述"
+        scheduled_at: "日期与时间"
+        duration: "时长（分钟）"
+        duration_placeholder: "例如 60"
+        location: "地点 / 服务器"
+        location_placeholder: "例如 Discord 舞台、游戏服务器名称…"
+        create_button: "创建活动"
+        save_button: "保存活动"
+        event_type: "活动类型"
+        event_type_general: "常规"
+        max_participants: "人数上限（可选）"
+        squad_leader: "队长（可选）"
+        squad_leader_placeholder: "可选 — 留空则默认为您"
+        role_categories_section: "Discord 报名角色"
+        role_categories_hint: "在 Discord 公告中显示为按钮的角色（与公会 Discord 活动相同思路）。"
+    polls:
+      created: "联盟投票已创建！"
+      deleted: "投票已删除。"
+
+      errors:
+        not_found: "未找到投票。"
+        manage_unauthorized: "只有公会会长或自定义联盟管理员可以创建投票。"
+        poll_closed: "该投票已结束。"
+        invalid_choice: "无效的投票选项。"
+
+      index:
+        title: "联盟投票"
+        subtitle: "%{alliance_name} 的投票"
+        create: "创建投票"
+        no_polls: "目前还没有联盟投票。"
+        created_by: "由 %{name} 创建"
+        deadline: "截止时间："
+        open: "进行中"
+        closed: "已结束"
+        anonymous: "匿名"
+        maybe: "待定"
+        voters_heading: "投票者"
+        view_vote: "投票"
+        view_results: "结果"
+        delete_confirm: "删除此投票？"
+
+        "yes": "是"
+        "no": "否"
+      new:
+        title: "创建联盟投票"
+
+      show:
+        back: "返回投票列表"
+        deadline: "截止时间：%{date}"
+        anonymous: "匿名"
+        open: "进行中"
+        closed: "已结束"
+        your_vote: "投票"
+        maybe: "待定"
+        voters_heading: "投票者"
+
+        "yes": "是"
+        "no": "否"
+      form:
+        title: "投票问题"
+        description: "描述"
+        deadline: "截止时间"
+        anonymous: "匿名投票（隐藏单项选择）"
+        create_button: "创建投票"
+
+    loot_rolls:
+      created: "联盟战利品掷骰已创建！"
+      deleted: "掷骰已删除。"
+      closed: "掷骰已关闭并决出获胜者。"
+      entered: "您掷出了 %{roll}！"
+
+      errors:
+        not_found: "未找到掷骰。"
+        manage_unauthorized: "只有公会会长或自定义联盟管理员可以管理战利品掷骰。"
+        already_closed: "该掷骰已关闭。"
+        not_open: "该战利品掷骰当前未开放。"
+        already_entered: "您已参与该掷骰。"
+
+      index:
+        title: "联盟战利品掷骰"
+        subtitle: "%{alliance_name} 的掷骰"
+        create: "创建掷骰"
+        no_rolls: "尚无战利品掷骰。"
+        range: "范围：%{min}–%{max}"
+        deadline: "截止时间："
+        winner: "🏆 获胜者：%{name}（%{roll}）"
+        open: "开放中"
+        closed: "已结束"
+        view: "查看掷骰"
+
+      new:
+        title: "创建联盟战利品掷骰"
+
+      show:
+        back: "返回掷骰列表"
+        range: "掷骰范围：%{min}–%{max}"
+        deadline: "截止时间：%{date}"
+        open: "开放中"
+        closed: "已结束"
+        winner: "🏆 获胜者：%{name}（%{roll}）"
+        enter: "参与掷骰"
+        your_roll: "您的点数：%{roll}"
+        close: "关闭并选出获胜者"
+        close_confirm: "关闭该掷骰并确定获胜者？"
+        entries: "参与记录"
+        no_entries: "尚无参与记录。"
+        anonymous_entry: "匿名"
+        entries_line:
+          zero: "%{count} 条记录"
+          one: "%{count} 条记录"
+          other: "%{count} 条记录"
+
+      form:
+        title: "掷骰标题"
+        description: "描述"
+        min_roll: "最小点数"
+        max_roll: "最大点数"
+        deadline: "截止时间（可选）"
+        deadline_hint: "留空表示无截止时间。"
+        anonymous: "匿名掷骰"
+        create_button: "创建掷骰"
+
+    disband_votes:
+      vote_cast: "您的解散表决已记录。"
+      majority_disbanded: "过半 GM 投票解散，联盟已解散。"
+
+      errors:
+        not_gm: "只有公会会长可以投票解散。"
+
+      index:
+        title: "解散表决"
+        vote_tally: "当前票数"
+        votes_to_disband: "%{total} 位 GM 中有 %{count} 位赞成解散"
+        threshold_note: "须有过半数 GM 赞成解散方可通过。"
+        your_vote: "您的表决"
+        vote_disband: "投票解散"
+        vote_disband_confirm: "确定要投票解散该联盟吗？"
+        vote_keep: "投票保留联盟"
+        current_vote: "您当前的选择：%{vote}"
+        all_votes: "全部 GM 表决"
+        no_votes_yet: "尚未有人投票。"
+        disband: "解散"
+        keep: "保留"
+
+    messages:
+      errors:
+        gm_only: "只有公会会长可访问 GM 聊天。"
+        blank: "消息不能为空。"
+
+      index:
+        gm_chat: "GM 聊天"
+        alliance_chat: "联盟聊天"
+        switch_to_gm: "切换到 GM 聊天"
+        switch_to_all: "切换到联盟聊天"
+        gm_only_notice: "此频道仅对本联盟的公会会长可见。"
+        no_messages: "暂无消息，打个招呼吧！"
+        you: "您"
+        send: "发送"
+        placeholder: "输入消息…"
+        message_time_format: "%Y-%m-%d %H:%M"
+
+    join_requests:
+      created: "入盟申请已发送至 **%{alliance_name}**。"
+      accepted: "**%{guild_name}** 已加入联盟。"
+      declined: "入盟申请已拒绝。"
+
+      index:
+        title: "入盟申请"
+        subtitle: "申请加入 **%{alliance_name}** 的公会"
+        back: "返回联盟"
+        none: "暂无待处理入盟申请。"
+
+      errors:
+        not_found: "未找到入盟申请。"
+        guild_not_found: "未找到公会。"
+        unauthorized: "您不能代表该公会发起申请。"
+        already_in_alliance: "该公会已在联盟中。"
+        alliance_inactive: "该联盟已不再有效。"
+        requesting_already_in_alliance: "申请被接受前，该公会已加入其他联盟。"
+        max_guilds: "该联盟暂时无法再接受更多公会。"
+        pending_invite: "该联盟与此公会的邀请已在处理中。"
+        create_failed: "无法创建入盟申请。"
+        accept_failed: "无法接受入盟申请。"
+        manage_unauthorized: "只有盟主、公会会长或联盟官员可以管理入盟申请。"
+
+    outgoing_join_requests:
+      new:
+        title: "申请加入联盟"
+        subtitle: "您的公会：%{guild_name}。搜索已在联盟内的公开列表公会。"
+        back: "返回公会"
+      status:
+        title: "入盟申请状态"
+        subtitle: "**%{guild_name}** 发出的申请"
+        none: "该公会暂无待处理入盟申请。"
+        pending: "待处理"
+      search_unauthorized: "您不能在此页面搜索。"
+      not_in_alliance_suffix: "不在联盟中"
+
+    received_invites:
+      pending:
+        title: "待处理的联盟邀请"
+        subtitle: "**%{guild_name}** 的邀请"
+        none: "暂无待处理联盟邀请。"
+
+    discord:
+      invite_embed:
+        title: "联盟邀请：%{alliance_name}"
+        body: "%{inviter} 邀请您。请在 GuildSync 中接受或拒绝。"
+      join_request_embed:
+        title: "入盟申请：%{guild_name}"
+        body: "%{guild_name} 申请加入 **%{alliance_name}**。请在 GuildSync 中查看。"
+      member_joined_embed:
+        title: "%{guild_name} 已加入联盟"
+        body: "**%{guild_name}** 现已成为 **%{alliance_name}** 的一员。"

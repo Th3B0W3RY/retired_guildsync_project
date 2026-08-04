@@ -1,0 +1,106 @@
+it:
+  billing:
+    show:
+      title: La mia fatturazione
+      subtitle: Gestione della sottoscrizione e delle informazioni di pagamento
+      current_subscription: Sottoscrizione attuale
+      no_plan: Nessun piano
+      status_label: 'Stato:'
+      trial_period_active: Il periodo di prova è attivo
+      trial_days_remaining_html: Hai <strong>%{days}</strong> restanti nel periodo di prova.
+      trial_ended: Il tuo periodo di prova è terminato.
+      trial_ends_on: 'Scadenza del periodo di prova:'
+      started: Iniziato
+      expires: Scade
+      no_active_subscription: Non hai un'abbonamento attivo.
+      view_plans: Vedi piani
+      payment_management: Gestione del Pagamento
+      setup_payment_method: Impostare il Metodo di Pagamento
+      setup_payment_trial: Seleziona un piano qui sotto per configurare il pagamento. Puoi iscriverti al tuo piano attuale di prova o scegliere un altro piano.
+      setup_payment_current: Seleziona un piano sotto per configurare il pagamento.
+      setup_payment_current_plan: Configurazione Pagamento per Piano Corrente
+      subscribe_to_plan: Sottoscriviti a %{plan}
+      setup_payment: Impostazione del Pagamento
+      manage_payment_methods: Gestione dei metodi di pagamento, informazioni relative alla fatturazione e fatture.
+      need_help: Hai bisogno di aiuto?
+      need_help_description: Hai domande riguardante la tua fatturazione o l'iscrizione? Il nostro team di fatturazione è qui per aiutarti.
+      contact_billing_team: Contatta il nostro team di fatturazione
+      contact_form_coming_soon: Il modulo di contatto arriverà ben presto
+      js_loading: Caricamento...
+      js_manage_billing: Gestione Fatture
+      js_setup_payment: Impostazione del Pagamento
+      billing_portal: Portale di fatturazione
+      switch_plan: Passa a questo piano
+      confirm_plan_change: Passare a questo piano? Oggi potrebbe essere addebitato un importo prorata.
+      confirm_plan_change_with_amount: 'Importo stimato dovuto oggi:'
+      proration_disclaimer: 'I cambi piano usano la prorata Stripe: gli upgrade vengono fatturati subito; i downgrade aggiungono credito per fatture future (nessun rimborso in contanti).'
+      account_credit_html: Hai <strong>%{amount}</strong> di credito che verrà applicato alle prossime fatture.
+      subscription_actions_title: Annulla o riprendi l’abbonamento
+      pending_cancel_html: Il tuo abbonamento è programmato per terminare il <strong>%{date}</strong>. Non verranno addebitati ulteriori pagamenti dopo quella data.
+      period_end_unknown: la fine del periodo di fatturazione corrente
+      resume_subscription: Riprendi abbonamento
+      refund_window_active: Sei entro tre giorni dal primo pagamento. Annullando ora l’abbonamento termina subito e i pagamenti idonei vengono rimborsati sul metodo di pagamento.
+      cancel_no_refund: Annullando mantieni l’accesso fino alla fine del periodo di fatturazione corrente. Nessun rimborso per importi già pagati.
+      cancel_subscription: Annulla abbonamento
+      cancel_confirm: Sei sicuro di voler annullare l’abbonamento?
+  pricing:
+    interval:
+      monthly: Mensile
+      annual: Annuale
+      save_annual: Risparmia il 10%
+    public:
+      title: Prezzi
+    upgrade:
+      title: Aggiorna il tuo piano
+      subtitle: Seleziona il piano perfetto per le esigenze della tua gestione del guild. Tutti i piani includono le nostre caratteristiche base.
+      most_popular: Più Popolare
+      trial_ends_in:
+        one: La tua prova scade tra 1 giorno
+        other: Il tuo tentativo termina tra %{count} giorni
+      current_plan: Piano attuale
+      start_free_trial: Inizia la tua Prova Gratuita
+      subscribe_now: Iscriviti Ora
+      switch_to_free_plan: Passa al piano gratuito
+      trial_message: Sei attualmente nel tuo periodo di prova gratuito di 14 giorni. Aggiungi un metodo di pagamento per continuare dopo la fine del periodo di prova.
+      payment_required: Aggiornamento al piano a pagamento richiede un metodo di pagamento. Nessun altro tentativo è disponibile dopo il tuo primo tentativo iniziale.
+      questions_contact: Domande? %{link} per ulteriori informazioni.
+      free_trial_box:
+        title: Prova gratuita / modalità limitata
+        description: I nuovi account partono dal piano gratuito (funzioni limitate). Puoi avviare una prova Base di 14 giorni se sei idoneo, o abbonarti a Base, Avanzato o Élite con pagamento.
+        features:
+        - Prova di 14 giorni su Base (app o Stripe dove attivo)
+        - 'Avanzato e Élite: abbonamento a pagamento — nessuna seconda prova'
+        - Nessuna carta richiesta per avviare la prova Base dal piano gratuito
+        - Passaggio al piano gratuito in qualsiasi momento
+        - Funzioni limitate sul piano gratuito dopo la prova
+      free_user_mode_box:
+        title: Piano gratuito e modalità utente gratuito
+        description: 'Con il piano gratuito o dopo essere passato a esso al termine di una prova, sei in modalità utente gratuito. Significa che:'
+        features:
+        - Conservi l'accesso a una gilda e a un numero limitato di membri
+        - Le funzioni principali restano disponibili con limiti ridotti
+        - Puoi passare a Base, Avanzato o Élite quando vuoi
+        - I tuoi dati sono conservati in caso di downgrade o fine prova
+      contact_us: Contattaci
+      loading: Caricamento...
+    public_pricing:
+      title: Scegli il tuo piano
+      subtitle: Seleziona il piano perfetto per le esigenze della tua gestione del guild. Tutti i piani includono le nostre caratteristiche base.
+      no_plans: Nessun piano tariffario disponibile al momento.
+      most_popular: Più Popolare
+      trial_included: Prova 14 giorni su Base (se offerta)
+      start_free_trial: Inizia la tua Prova Gratuita
+      subscribe_now: Iscriviti Ora
+      plan_suffix: Piano
+      whats_included: 'Cosa è incluso:'
+      free_plan_intro: Tutti i nuovi account iniziano sul piano gratuito (funzioni limitate). Puoi avviare una prova Base di 14 giorni se sei idoneo, o abbonarti a Base, Avanzato o Élite tramite checkout.
+      trial_info: La prova di 14 giorni vale solo per Base. Avanzato e Élite usano il checkout a pagamento senza prova nell'app. Dopo la prova Base puoi restare su Gratuito (limitato) o abbonarti.
+      questions_contact: Domande? %{link} per ulteriori informazioni.
+      contact_us: Contattaci
+      after_trial_title: Cosa succede dopo il tuo periodo di prova?
+      after_trial_paragraph_html: Al termine del periodo di prova, passerai automaticamente al nostro <strong class="text-theme-accent">Piano gratuito</strong>, che potrai continuare a utilizzare o aggiornare in qualsiasi momento.
+      free_plan_includes_title: 'Ecco cosa include il Piano Gratis:'
+      free_plan_feature_1_guild: 1 gilda
+      free_plan_feature_50_users: 50 utenti
+      free_plan_feature_events: Organizzazione e pianificazione degli eventi
+      free_plan_feature_members: Gestione dei membri

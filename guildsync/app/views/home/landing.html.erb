@@ -1,0 +1,199 @@
+<%# Inter fonts: loaded from application layout when home#landing (use_inter_marketing_fonts) %>
+<%# Figma node 54:158 — Homepage design %>
+<%# Background video: Pixabay 254532 (HUD / sci-fi) — https://pixabay.com/videos/ai-generated-hud-interface-space-254532/ %>
+<% poster_path = asset_path("landing/hero-poster.jpg") %>
+<% content_for :head do %>
+  <style>
+    /* Poster under video until frames decode; video is shown on all viewports (muted + playsinline
+       for iOS/Android autoplay). Hiding video only on small screens made the hero look “broken”. */
+    .landing-hero-cinematic {
+      --hero-poster-url: url("<%= poster_path %>");
+      background-image: var(--hero-poster-url);
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+    }
+    .landing-hero-video {
+      display: block;
+      /* Windows Chrome: promote compositing layer (avoids blank/black decoded frames on some GPUs). */
+      transform: translateZ(0);
+      -webkit-backface-visibility: hidden;
+      backface-visibility: hidden;
+    }
+    /* Once layout is wide enough, rely on the <video poster> + film; drop duplicate CSS bg. */
+    @media (min-width: 768px) {
+      .landing-hero-cinematic {
+        background-image: none;
+      }
+    }
+    /* Decode / network failure: keep poster (Windows-safe fallback). */
+    .landing-hero-cinematic.landing-hero-video-failed .landing-hero-video {
+      display: none !important;
+    }
+    /* Dual-layer crossfade (~1.1s); vignette z-[8] stays above video z-3 during swap. */
+    .landing-hero-video-crossfade {
+      transition: opacity 1100ms cubic-bezier(0.42, 0, 0.58, 1);
+    }
+    .landing-hero-vignette {
+      transition: background-color 320ms ease-out;
+    }
+    .landing-hero-vignette.landing-hero-crossfade-dim {
+      background-color: rgba(0, 0, 0, 0.82);
+    }
+    .landing-hero-cinematic.landing-hero-video-failed {
+      background-image: var(--hero-poster-url);
+      background-size: cover;
+      background-position: center;
+    }
+  </style>
+<% end %>
+<% card_bg = "bg-[#252836] border border-[#2d3142] rounded-2xl" %>
+<% icon_gradient = "bg-gradient-to-br from-[#615FFF] to-[#9810FA]" %>
+<% primary_cta = "inline-flex w-full min-w-0 items-center justify-center h-12 px-6 md:px-9 rounded-lg bg-theme-brand-gradient text-white text-base font-medium hover:opacity-95 transition-opacity md:w-auto" %>
+<% secondary_cta = "inline-flex w-full min-w-0 items-center justify-center h-12 px-6 md:px-9 rounded-lg border border-[#2d3142] text-white text-base font-medium hover:bg-[rgba(29,41,61,0.5)] transition-colors md:w-auto" %>
+
+<div class="font-[family-name:Inter,ui-sans-serif,system-ui,sans-serif] flex flex-col w-full">
+
+  <%# ===== HERO + WHY HEADING (full-bleed video / poster) ===== %>
+  <div class="landing-hero-cinematic relative flex min-h-[36rem] w-[100vw] max-w-[100vw] flex-col ml-[calc(50%-50vw)] overflow-hidden md:min-h-[44rem]" data-controller="landing-hero-video">
+    <%# Hybrid seamless loop: FFmpeg tail→head xfade in file + dual <video> crossfade (no native loop — avoids decoder hitch). See README_HERO_VIDEO.md. %>
+    <% hero_vc = "landing-hero-video landing-hero-video-crossfade pointer-events-none absolute inset-0 h-full w-full max-h-none max-w-none min-h-full min-w-full object-cover" %>
+    <%= tag.video(
+          src: asset_path("hero-background.mp4"),
+          poster: poster_path,
+          autoplay: true,
+          muted: true,
+          playsinline: true,
+          preload: "auto",
+          width: 1920,
+          height: 1080,
+          class: "#{hero_vc} z-[2] opacity-100",
+          data: { landing_hero_video_target: "media" },
+          "aria-hidden": true,
+          disablepictureinpicture: true,
+          disableremoteplayback: true
+        ) %>
+    <%= tag.video(
+          src: asset_path("hero-background.mp4"),
+          poster: poster_path,
+          autoplay: false,
+          muted: true,
+          playsinline: true,
+          preload: "auto",
+          width: 1920,
+          height: 1080,
+          class: "#{hero_vc} z-[1] opacity-0",
+          data: { landing_hero_video_target: "media" },
+          "aria-hidden": true,
+          disablepictureinpicture: true,
+          disableremoteplayback: true
+        ) %>
+    <div
+      class="landing-hero-vignette pointer-events-none absolute inset-0 z-[8] bg-black/[0.55]"
+      aria-hidden="true"
+      data-landing-hero-video-target="dimOverlay"
+    ></div>
+    <div class="relative z-10 mx-auto flex w-full max-w-[1200px] flex-1 flex-col items-center justify-center px-4 py-12 text-center sm:py-16 md:py-20">
+      <%# Full-width row + flex keeps the balanced, wrapping headline centered (min-w-0 avoids flex sizing pushing it right) %>
+      <div class="mb-6 flex w-full min-w-0 justify-center px-1">
+        <h1 class="max-w-[min(100%,22ch)] lg:max-w-full text-balance break-words text-center text-5xl font-bold leading-[1.06] tracking-tight text-white [text-shadow:0_2px_10px_rgba(0,0,0,0.5)] sm:text-6xl lg:text-7xl xl:text-8xl">
+          <%= t("home.landing.title") %>
+        </h1>
+      </div>
+      <p class="mb-10 max-w-6xl px-1 text-xl font-normal leading-snug text-balance text-[#E8EDF5] sm:text-2xl lg:text-3xl lg:leading-relaxed">
+        <%= t("home.landing.subtitle") %>
+      </p>
+      <div class="flex w-full max-w-md flex-col items-stretch gap-3 px-1 md:max-w-none md:flex-row md:flex-wrap md:items-center md:justify-center">
+        <% if mfa_verified_for_session? %>
+          <%= link_to t("home.landing.cta.button_hero"), dashboard_path, class: primary_cta %>
+        <% else %>
+          <%= link_to t("home.landing.cta.button_hero"), pricing_path, class: primary_cta %>
+        <% end %>
+        <%= link_to t("home.landing.explore_pricing"), pricing_path, class: secondary_cta %>
+      </div>
+    </div>
+  </div>
+
+  <%# ===== USER FEEDBACK CAROUSEL (admin CMS) — between hero and feature grid (same section rhythm as elsewhere) ===== %>
+  <%= render "home/landing_user_feedback_section", feedbacks: @landing_user_feedbacks %>
+
+  <%# ===== FEATURES (why headline + CTA + grid; #features id on grid for footer) ===== %>
+  <%= render "home/landing_features_section", card_bg: card_bg, icon_gradient: icon_gradient %>
+
+  <%# ===== GUILDSYNC VS COMPETITORS (DB-backed; see LandingCompare::Repository fallback) ===== %>
+  <section class="px-4 pb-20">
+    <h2 class="text-white text-3xl sm:text-[36px] font-bold leading-tight tracking-tight text-center mb-10">
+      <%= @landing_compare_section_title %>
+    </h2>
+
+    <div class="flex flex-col gap-10 max-w-[1200px] mx-auto">
+      <% @landing_compare_tables.each do |table| %>
+        <%= render "home/landing_compare_table", table: table, card_bg: card_bg %>
+      <% end %>
+    </div>
+  </section>
+
+  <%# ===== CTA ===== %>
+  <section class="px-4 pb-20">
+    <div class="<%= card_bg %> p-10 sm:p-16 flex flex-col items-center text-center max-w-[1200px] mx-auto">
+      <h2 class="text-white text-3xl sm:text-[36px] font-bold leading-tight tracking-tight mb-3">
+        <%= t("home.landing.cta.title") %>
+      </h2>
+      <p class="text-[#90A1B9] text-base font-normal leading-6 mb-8 max-w-xl">
+        <%= t("home.landing.cta.description") %>
+      </p>
+      <% if mfa_verified_for_session? %>
+        <%= link_to t("home.landing.cta.button"), dashboard_path, class: primary_cta %>
+      <% else %>
+        <%= link_to t("home.landing.cta.button"), pricing_path, class: primary_cta %>
+      <% end %>
+    </div>
+  </section>
+
+  <%# ===== FOOTER ===== %>
+  <footer class="w-[100vw] max-w-[100vw] ml-[calc(50%-50vw)] shrink-0 bg-[#252836] border-t border-[#2d3142] px-6 py-10">
+    <div class="max-w-[1200px] mx-auto">
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-8 mb-8">
+        <%# Brand %>
+        <div class="lg:col-span-2">
+          <div class="flex items-center gap-2 mb-3">
+            <span class="w-8 h-8 rounded-[10px] bg-gradient-to-br from-[#615FFF] to-[#9810FA] flex items-center justify-center text-white text-sm font-bold">GS</span>
+            <span class="text-lg font-semibold bg-clip-text text-transparent bg-gradient-to-r from-[#7C86FF] to-[#C27AFF]"><%= t("app_name") %></span>
+          </div>
+          <p class="text-[#90A1B9] text-sm font-normal leading-5 max-w-xs"><%= t("home.landing.footer.tagline") %></p>
+        </div>
+        <%# Product %>
+        <div>
+          <h4 class="text-white text-sm font-semibold mb-3"><%= t("home.landing.footer.product") %></h4>
+          <ul class="flex flex-col gap-2">
+            <li><%= link_to t("home.landing.footer.features"), "#features", class: "text-[#90A1B9] text-sm hover:text-white transition-colors" %></li>
+            <li><%= link_to t("home.landing.footer.pricing_link"), pricing_path, class: "text-[#90A1B9] text-sm hover:text-white transition-colors" %></li>
+            <li><%= link_to t("home.landing.footer.roadmap_link"), roadmap_path, class: "text-[#90A1B9] text-sm hover:text-white transition-colors" %></li>
+          </ul>
+        </div>
+        <%# Support %>
+        <div>
+          <h4 class="text-white text-sm font-semibold mb-3"><%= t("home.landing.footer.support") %></h4>
+          <ul class="flex flex-col gap-2">
+            <li><%= link_to t("home.landing.footer.documentation"), footer_support_documentation_path, class: "text-[#90A1B9] text-sm hover:text-white transition-colors" %></li>
+            <li><%= link_to t("home.landing.footer.contact"), footer_support_contact_path, class: "text-[#90A1B9] text-sm hover:text-white transition-colors" %></li>
+            <li><%= link_to "Discord", footer_support_discord_path, class: "text-[#90A1B9] text-sm hover:text-white transition-colors" %></li>
+            <li><%= link_to t("home.landing.footer.disaster_recovery"), disaster_recovery_page_path, class: "text-[#90A1B9] text-sm hover:text-white transition-colors" %></li>
+          </ul>
+        </div>
+        <%# Legal %>
+        <div>
+          <h4 class="text-white text-sm font-semibold mb-3"><%= t("home.landing.footer.legal") %></h4>
+          <ul class="flex flex-col gap-2">
+            <li><%= link_to t("home.landing.footer.privacy"), privacy_policy_path, class: "text-[#90A1B9] text-sm hover:text-white transition-colors" %></li>
+            <li><%= link_to t("home.landing.footer.terms"), terms_of_service_path, class: "text-[#90A1B9] text-sm hover:text-white transition-colors" %></li>
+            <li><%= link_to t("home.landing.footer.security_link"), security_page_path, class: "text-[#90A1B9] text-sm hover:text-white transition-colors" %></li>
+          </ul>
+        </div>
+      </div>
+      <div class="border-t border-[#2d3142] pt-6 text-center">
+        <p class="text-[#90A1B9] text-sm font-normal"><%= t("home.landing.footer_copyright", year: Time.current.year) %></p>
+      </div>
+    </div>
+  </footer>
+</div>

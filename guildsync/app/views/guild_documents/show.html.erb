@@ -1,0 +1,43 @@
+<div class="max-w-5xl mx-auto p-6">
+  <div class="flex items-center justify-between mb-6">
+    <div>
+      <h1 class="text-3xl font-bold text-theme-primary mb-2"><%= @document.title %></h1>
+      <p class="text-theme-secondary">
+        Created by <%= @document.user.username %> • 
+        Updated <%= time_ago_in_words(@document.updated_at) %> ago
+      </p>
+    </div>
+    <div class="flex items-center gap-2">
+      <% if @document.can_edit?(current_user) %>
+        <%= link_to edit_guild_document_path(@guild, @document), class: "px-4 py-2 bg-theme-accent text-white rounded-lg hover:bg-theme-accent-hover transition-colors" do %>
+          Edit
+        <% end %>
+      <% end %>
+      <%= link_to share_guild_document_path(@guild, @document, slug: @document.slug), class: "px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors", target: "_blank" do %>
+        Share Link
+      <% end %>
+    </div>
+  </div>
+
+  <div class="mb-4">
+    <% case @document.visibility %>
+    <% when "public_doc" %>
+      <span class="px-3 py-1 text-sm font-semibold rounded-full bg-green-600 text-white">Public</span>
+    <% when "private_doc" %>
+      <span class="px-3 py-1 text-sm font-semibold rounded-full bg-red-600 text-white">Private</span>
+    <% when "unlisted_doc" %>
+      <span class="px-3 py-1 text-sm font-semibold rounded-full bg-yellow-600 text-white">Unlisted</span>
+    <% end %>
+  </div>
+
+  <div class="bg-theme-card border border-theme-primary rounded-lg p-6">
+    <div
+      data-controller="document-renderer"
+      data-document-renderer-content-value="<%= (@document.content || { type: "doc", content: [] }).to_json %>"
+      class="prose prose-invert max-w-none"
+    >
+      <!-- Content will be rendered by Stimulus controller -->
+    </div>
+  </div>
+</div>
+

@@ -1,0 +1,164 @@
+<div class="max-w-2xl mx-auto p-6">
+  <div class="mb-6">
+    <h1 class="text-3xl font-bold text-theme-primary mb-2"><%= t('loot_rolls.new.title') %></h1>
+    <p class="text-theme-secondary"><%= t('loot_rolls.new.subtitle', guild_name: @guild.name) %></p>
+  </div>
+
+  <%= form_with model: [@guild, @loot_roll], local: true, class: "bg-theme-secondary rounded-lg border border-theme-primary p-6 space-y-6" do |f| %>
+    <% if @loot_roll.errors.any? %>
+      <div class="bg-red-900/20 border border-red-500 rounded-lg p-4">
+        <ul class="list-disc list-inside text-red-400">
+          <% @loot_roll.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+    <div>
+      <%= f.label :title, t('loot_rolls.new.loot_title'), class: "block text-sm font-medium text-theme-primary mb-2" %>
+      <%= f.text_field :title, class: "w-full px-4 py-2 bg-theme-primary border border-theme-secondary rounded-lg text-theme-primary", placeholder: t('loot_rolls.new.loot_title_placeholder'), required: true %>
+    </div>
+
+    <div>
+      <%= f.label :description, t('loot_rolls.new.description'), class: "block text-sm font-medium text-theme-primary mb-2" %>
+      <%= f.text_area :description, rows: 3, class: "w-full px-4 py-2 bg-theme-primary border border-theme-secondary rounded-lg text-theme-primary", placeholder: t('loot_rolls.new.description_placeholder') %>
+    </div>
+
+    <div class="grid grid-cols-2 gap-4">
+      <div>
+        <%= f.label :min_roll, t('loot_rolls.new.min_roll'), class: "block text-sm font-medium text-theme-primary mb-2" %>
+        <%= f.number_field :min_roll, value: @loot_roll.min_roll || 1, min: 1, class: "w-full px-4 py-2 bg-theme-primary border border-theme-secondary rounded-lg text-theme-primary", required: true %>
+      </div>
+      <div>
+        <%= f.label :max_roll, t('loot_rolls.new.max_roll'), class: "block text-sm font-medium text-theme-primary mb-2" %>
+        <%= f.number_field :max_roll, value: @loot_roll.max_roll || 100, min: 2, class: "w-full px-4 py-2 bg-theme-primary border border-theme-secondary rounded-lg text-theme-primary", required: true %>
+      </div>
+    </div>
+
+    <% if @synced_roles&.any? %>
+      <div>
+        <h3 class="text-lg font-semibold text-theme-primary mb-2"><%= t('loot_rolls.new.allowed_roles_title') %></h3>
+        <p class="text-sm text-theme-secondary mb-2"><%= t('loot_rolls.new.allowed_roles_hint') %></p>
+        
+        <div id="selected-roles-container" class="flex flex-wrap gap-2 mb-3 min-h-[2.5rem]">
+          <!-- Selected roles will appear here as chips -->
+        </div>
+        
+        <div class="space-y-2 max-h-48 overflow-y-scroll border border-theme-secondary rounded-lg p-3 bg-theme-primary role-selector-scroll">
+          <% @synced_roles.each do |role| %>
+            <label class="flex items-center justify-between p-2 rounded hover:bg-theme-secondary cursor-pointer transition-colors role-checkbox-label" data-role-id="<%= role.role_id %>" data-role-name="<%= role.role_name %>">
+              <div class="flex items-center gap-3">
+                <input 
+                  type="checkbox" 
+                  name="allowed_role_ids[]" 
+                  value="<%= role.role_id %>"
+                  class="role-checkbox w-5 h-5 rounded border-theme-secondary bg-theme-primary text-theme-accent focus:ring-theme-accent"
+                >
+                <span class="text-theme-primary"><%= role.role_name %></span>
+              </div>
+            </label>
+          <% end %>
+        </div>
+      </div>
+    <% end %>
+
+    <div>
+      <%= f.label :deadline_at, t('loot_rolls.new.deadline'), class: "block text-sm font-medium text-theme-primary mb-2" %>
+      <%= f.datetime_local_field :deadline_at, class: "w-full px-4 py-2 bg-theme-primary border border-theme-secondary rounded-lg text-theme-primary date-input-white-calendar", min: Time.current.strftime('%Y-%m-%dT%H:%M') %>
+      <p class="text-xs text-theme-secondary mt-1"><%= t('loot_rolls.new.deadline_hint') %></p>
+    </div>
+
+    <div class="bg-blue-900/20 border border-blue-500 rounded-lg p-4">
+      <div class="flex items-center gap-2 text-blue-400">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+        </svg>
+        <span class="font-medium"><%= t('loot_rolls.new.auto_post_title') %></span>
+      </div>
+      <p class="text-sm text-theme-secondary mt-1"><%= t('loot_rolls.new.auto_post_hint') %></p>
+    </div>
+
+    <div class="flex gap-4">
+      <%= f.submit t('loot_rolls.new.create_button'), class: "px-6 py-3 bg-theme-accent text-white rounded-lg hover:bg-theme-accent-hover transition-colors font-semibold cursor-pointer" %>
+      <%= link_to t('common.buttons.cancel'), guild_loot_rolls_path(@guild), class: "px-6 py-3 bg-theme-secondary text-theme-primary rounded-lg hover:bg-theme-primary transition-colors font-semibold" %>
+    </div>
+  <% end %>
+
+  <style>
+    .date-input-white-calendar::-webkit-calendar-picker-indicator {
+      filter: invert(1);
+      cursor: pointer;
+    }
+    
+    .date-input-white-calendar::-moz-calendar-picker-indicator {
+      filter: invert(1);
+      cursor: pointer;
+    }
+    
+    .role-selector-scroll::-webkit-scrollbar {
+      width: 8px;
+    }
+    .role-selector-scroll::-webkit-scrollbar-track {
+      background: transparent;
+    }
+    .role-selector-scroll::-webkit-scrollbar-thumb {
+      background-color: rgba(156, 163, 175, 0.5);
+      border-radius: 4px;
+    }
+    .role-selector-scroll::-webkit-scrollbar-thumb:hover {
+      background-color: rgba(156, 163, 175, 0.7);
+    }
+  </style>
+  
+  <script>
+    (function() {
+      const container = document.getElementById('selected-roles-container');
+      const checkboxes = document.querySelectorAll('.role-checkbox');
+      
+      if (!container || checkboxes.length === 0) return;
+      
+      function updateSelectedRoles() {
+        container.innerHTML = '';
+        const selected = Array.from(checkboxes).filter(cb => cb.checked);
+        
+        if (selected.length === 0) {
+          container.classList.add('min-h-[2.5rem]');
+          return;
+        }
+        
+        container.classList.remove('min-h-[2.5rem]');
+        
+        selected.forEach(checkbox => {
+          const label = checkbox.closest('.role-checkbox-label');
+          const roleId = label.dataset.roleId;
+          const roleName = label.dataset.roleName;
+          
+          const chip = document.createElement('div');
+          chip.className = 'inline-flex items-center gap-2 px-3 py-1.5 bg-theme-accent text-white rounded-lg text-sm font-medium shadow-sm';
+          chip.innerHTML = `
+            <span>${roleName}</span>
+            <button 
+              type="button" 
+              class="ml-1 hover:bg-white/20 rounded p-0.5 transition-colors flex items-center justify-center"
+              onclick="const cb = document.querySelector('.role-checkbox[value=\\'${roleId}\\']'); if(cb) { cb.checked = false; updateSelectedRoles(); }"
+            >
+              <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                <path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path>
+              </svg>
+            </button>
+          `;
+          container.appendChild(chip);
+        });
+      }
+      
+      window.updateSelectedRoles = updateSelectedRoles;
+      
+      checkboxes.forEach(checkbox => {
+        checkbox.addEventListener('change', updateSelectedRoles);
+      });
+      
+      updateSelectedRoles();
+    })();
+  </script>
+</div>

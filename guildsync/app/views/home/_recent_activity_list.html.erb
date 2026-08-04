@@ -1,0 +1,18 @@
+<% if activities.blank? %>
+  <p class="text-sm text-slate-400"><%= t("dashboard.activity_empty") %></p>
+<% else %>
+  <ul class="space-y-0" id="dashboard-recent-activity-list">
+    <% activities.each do |activity| %>
+      <li class="flex items-center justify-between gap-2 border-b border-white/5 py-3 last:border-0">
+        <% if activity.linkable? %>
+          <%= link_to activity.link_path, class: "min-w-0 flex-1 truncate text-sm font-normal text-indigo-400 hover:underline" do %>
+            <span class="truncate"><%= activity.label %></span>
+          <% end %>
+        <% else %>
+          <span class="min-w-0 flex-1 truncate text-sm font-normal text-slate-300"><%= activity.label %></span>
+        <% end %>
+        <span class="flex-shrink-0 whitespace-nowrap text-xs text-slate-400" title="<%= activity.created_at.iso8601 %>"><%= time_ago_in_words(activity.created_at) %> ago</span>
+      </li>
+    <% end %>
+  </ul>
+<% end %>

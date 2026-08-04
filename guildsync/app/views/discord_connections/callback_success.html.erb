@@ -1,0 +1,125 @@
+<div class="loading">
+  <div style="color: #44ff44; font-size: 64px; margin-bottom: 20px; text-align: center;">✓</div>
+  <h2 style="color: #44ff44; margin-bottom: 10px; text-align: center; font-size: 24px;"><%= t('discord_connections.callback_success.title') %></h2>
+  <p style="color: #cccccc; margin-bottom: 20px; text-align: center; font-size: 16px;">
+    <%= t('discord_connections.callback_success.message') %>
+  </p>
+  <p style="color: #888; font-size: 14px; text-align: center;"><%= t('discord_connections.callback_success.closing') %></p>
+</div>
+
+<script>
+  (function() {
+    'use strict';
+    
+    var messageSent = false;
+    var closeTimer = null;
+    var messageInterval = null;
+    var messageAttempts = 0;
+    var maxAttempts = 5;
+    
+    function sendSuccessMessage() {
+      messageAttempts++;
+      
+      try {
+        var message = {
+          type: 'DISCORD_OAUTH_SUCCESS',
+          username: '<%= j(discord_connection&.discord_username || 'Discord') %>'
+        };
+        
+        // Try sendToParent first (if available)
+        if (typeof window.sendToParent === 'function') {
+          try {
+            window.sendToParent('DISCORD_OAUTH_SUCCESS', {
+              username: '<%= j(discord_connection&.discord_username || 'Discord') %>'
+            });
+            messageSent = true;
+          } catch (e) {
+            console.error('Error with sendToParent:', e);
+          }
+        }
+        
+        // Always try postMessage to opener (this is the most reliable)
+        if (window.opener && !window.opener.closed) {
+          try {
+            window.opener.postMessage(message, window.location.origin);
+            messageSent = true;
+            console.log('Success message sent to opener:', message);
+          } catch (e) {
+            console.error('Error posting message to opener:', e);
+            // Try with wildcard origin as fallback
+            try {
+              window.opener.postMessage(message, '*');
+              messageSent = true;
+              console.log('Success message sent with wildcard origin');
+            } catch (e2) {
+              console.error('Error with wildcard origin:', e2);
+            }
+          }
+        } else {
+          console.warn('Window opener not available or closed');
+        }
+      } catch (e) {
+        console.error('Error sending message to parent:', e);
+      }
+    }
+    
+    function closeWindow() {
+      try {
+        // Try closePopup first (if available)
+        if (typeof window.closePopup === 'function') {
+          window.closePopup();
+          return;
+        }
+        
+        // Fallback to window.close
+        if (window.opener && !window.opener.closed) {
+          window.close();
+        } else {
+          window.close();
+        }
+      } catch (e) {
+        console.error('Error closing popup:', e);
+      }
+    }
+    
+    // Send message immediately and repeatedly
+    function startMessaging() {
+      sendSuccessMessage();
+      
+      // Send message multiple times to ensure it's received
+      messageInterval = setInterval(function() {
+        if (messageAttempts < maxAttempts) {
+          sendSuccessMessage();
+        } else {
+          clearInterval(messageInterval);
+        }
+      }, 200);
+      
+      // Close after 1 second
+      closeTimer = setTimeout(function() {
+        if (messageInterval) {
+          clearInterval(messageInterval);
+        }
+        closeWindow();
+      }, 1000);
+    }
+    
+    // Start immediately if DOM is ready, otherwise wait
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', startMessaging);
+    } else {
+      startMessaging();
+    }
+    
+    // Cleanup on unload
+    window.addEventListener('beforeunload', function() {
+      if (closeTimer) {
+        clearTimeout(closeTimer);
+      }
+      if (messageInterval) {
+        clearInterval(messageInterval);
+      }
+      sendSuccessMessage(); // Send one more time on unload
+    });
+  })();
+</script>

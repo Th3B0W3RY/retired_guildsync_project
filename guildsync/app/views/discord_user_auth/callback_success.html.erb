@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title><%= t('discord_user_auth.callback_success.title') %></title>
+  <meta http-equiv="refresh" content="0;url=<%= redirect_to || dashboard_path %>">
+  <script>
+  // CRITICAL: This MUST run immediately
+  (function() {
+    // Send message to parent IMMEDIATELY
+    var sendMessage = function() {
+      if (window.opener && !window.opener.closed) {
+        try {
+          // Send both message types for compatibility
+          window.opener.postMessage({ type: "discord-auth-success" }, "*");
+          window.opener.postMessage({ 
+            type: 'DISCORD_USER_AUTH_SUCCESS',
+            message: '<%= j(message || "Discord authentication successful!") %>',
+            <% if username.present? %>
+            username: '<%= j(username) %>',
+            <% end %>
+            <% if redirect_to.present? %>
+            redirectTo: '<%= j(redirect_to) %>'
+            <% end %>
+          }, "*");
+          console.log('Discord auth success message sent to opener');
+        } catch (e) {
+          console.error('Error sending message:', e);
+        }
+      }
+    };
+    
+    // Send immediately
+    sendMessage();
+    
+    // Send again after brief delays to ensure message is received
+    setTimeout(sendMessage, 100);
+    setTimeout(sendMessage, 300);
+    
+    // Close window after ensuring message is sent
+    setTimeout(function() {
+      try {
+        window.close();
+      } catch (e) {
+        console.error('Error closing window:', e);
+        // If we can't close, redirect to blank page
+        window.location.href = 'about:blank';
+      }
+    }, 400);
+  })();
+  </script>
+</head>
+<body>
+  <!-- This page should never be visible - window closes immediately -->
+  <p><%= t('discord_user_auth.callback_success.closing') %></p>
+</body>
+</html>
+

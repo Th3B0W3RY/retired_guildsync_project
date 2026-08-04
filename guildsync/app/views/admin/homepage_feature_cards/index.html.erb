@@ -1,0 +1,93 @@
+<div class="space-y-8 max-w-5xl">
+  <div class="flex flex-wrap items-center justify-between gap-4">
+    <div>
+      <h1 class="text-3xl font-bold text-theme-accent"><%= t("admin.homepage_feature_cards.page_title") %></h1>
+      <p class="text-theme-secondary mt-2"><%= t("admin.homepage_feature_cards.page_subtitle") %></p>
+    </div>
+    <div class="flex flex-wrap gap-3">
+      <%= link_to t("admin.homepage_feature_cards.new"), new_admin_homepage_feature_card_path,
+            class: "px-4 py-2 rounded-lg bg-theme-brand-gradient text-white font-medium hover:opacity-95",
+            data: { turbo_frame: "_top" } %>
+      <%= link_to t("admin.homepage_feature_cards.back_dashboard"), admin_root_path,
+            class: "px-4 py-2 bg-theme-secondary text-theme-accent border border-theme-primary rounded-lg hover:bg-theme-hover font-medium",
+            data: { turbo_frame: "_top" } %>
+    </div>
+  </div>
+
+  <div class="flex flex-wrap items-center gap-3 text-sm">
+    <span class="text-theme-secondary"><%= t("admin.homepage_feature_cards.recovery_filter.label") %>:</span>
+    <% %w[active deleted all].each do |st| %>
+      <% active_link = (@recovery_status == st) %>
+      <%= link_to t("admin.homepage_feature_cards.recovery_filter.#{st}"),
+            admin_homepage_feature_cards_path(recovery_status: st),
+            class: active_link ? "font-semibold text-violet-300" : "text-theme-secondary hover:text-white",
+            data: { turbo_frame: "_top" } %>
+    <% end %>
+    <span class="text-theme-secondary">·</span>
+    <%= link_to t("admin.homepage_feature_cards.recovery_center"), admin_soft_deleted_records_path,
+          class: "text-violet-400 hover:underline",
+          data: { turbo_frame: "_top" } %>
+  </div>
+
+  <% if @recovery_status == "active" %>
+    <p class="text-sm text-theme-secondary"><%= t("admin.homepage_feature_cards.reorder_hint") %></p>
+  <% end %>
+
+  <div class="rounded-xl border border-white/10 bg-[rgba(15,23,43,0.5)] overflow-hidden">
+    <table class="w-full text-left text-sm">
+      <thead class="border-b border-white/10 text-theme-secondary">
+        <tr>
+          <% if @recovery_status == "active" %>
+            <th class="w-10 px-4 py-3" scope="col"></th>
+          <% end %>
+          <th class="px-4 py-3" scope="col"><%= t("admin.homepage_feature_cards.table.slug") %></th>
+          <th class="px-4 py-3" scope="col"><%= t("admin.homepage_feature_cards.table.title") %></th>
+          <th class="px-4 py-3" scope="col"><%= t("admin.homepage_feature_cards.table.visible") %></th>
+          <th class="px-4 py-3 text-right" scope="col"><%= t("admin.homepage_feature_cards.table.actions") %></th>
+        </tr>
+      </thead>
+      <tbody
+        <% if @recovery_status == "active" %>
+        data-controller="admin-order-list"
+        data-admin-order-list-reorder-url-value="<%= reorder_admin_homepage_feature_cards_path %>"
+        <% end %>
+      >
+        <% @homepage_feature_cards.each do |card| %>
+          <tr
+            class="border-b border-white/5 hover:bg-white/5<%= " opacity-70" if card.deleted? %>"
+            <% if @recovery_status == "active" %>
+            data-admin-order-list-target="row"
+            data-id="<%= card.id %>"
+            <% end %>
+          >
+            <% if @recovery_status == "active" %>
+              <td class="px-4 py-3 cursor-grab active:cursor-grabbing text-theme-secondary select-none" title="<%= t("admin.homepage_feature_cards.reorder_hint") %>">⠿</td>
+            <% end %>
+            <td class="px-4 py-3 font-mono text-xs text-violet-300">
+              <% if card.deleted? %>
+                <span class="mr-2 rounded bg-red-500/20 px-2 py-0.5 text-xs text-red-300"><%= t("admin.homepage_feature_cards.deleted_badge") %></span>
+              <% end %>
+              <%= card.slug %>
+            </td>
+            <td class="px-4 py-3 text-theme-primary"><%= card.title %></td>
+            <td class="px-4 py-3"><%= card.visible? ? "✓" : "—" %></td>
+            <td class="px-4 py-3 text-right space-x-2 whitespace-nowrap">
+              <% unless card.deleted? %>
+                <%= link_to t("admin.homepage_feature_cards.view_public"), homepage_feature_path(card.slug),
+                      class: "text-emerald-400 hover:underline",
+                      target: "_blank", rel: "noopener noreferrer",
+                      data: { turbo_frame: "_top" } %>
+              <% end %>
+              <%= link_to t("admin.homepage_feature_cards.edit"), edit_admin_homepage_feature_card_path(card), class: "text-violet-400 hover:underline", data: { turbo_frame: "_top" } %>
+              <% unless card.deleted? %>
+                <%= button_to t("admin.homepage_feature_cards.destroy"), admin_homepage_feature_card_path(card), method: :delete,
+                      form: { data: { turbo_confirm: t("admin.homepage_feature_cards.confirm_destroy"), turbo_frame: "_top" } },
+                      class: "text-red-400 hover:underline bg-transparent border-0 p-0 cursor-pointer inline" %>
+              <% end %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>

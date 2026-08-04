@@ -1,0 +1,54 @@
+<div class="space-y-6">
+  <div>
+    <h1 class="text-4xl font-bold text-theme-primary mb-2"><%= t('leaderboard.index.title') %></h1>
+    <p class="text-theme-secondary text-lg"><%= t('leaderboard.index.subtitle') %></p>
+  </div>
+
+  <% if @leaderboard_data.any? %>
+    <div class="bg-theme-card rounded-lg border border-theme-primary overflow-hidden">
+      <div class="overflow-x-auto">
+        <table class="w-full">
+          <thead class="bg-theme-secondary border-b border-theme-primary">
+            <tr>
+              <th class="px-6 py-4 text-left text-sm font-semibold text-theme-primary"><%= t('leaderboard.index.rank') %></th>
+              <th class="px-6 py-4 text-left text-sm font-semibold text-theme-primary"><%= t('leaderboard.index.discord_username') %></th>
+              <th class="px-6 py-4 text-left text-sm font-semibold text-theme-primary"><%= t('leaderboard.index.discord_server') %></th>
+              <th class="px-6 py-4 text-right text-sm font-semibold text-theme-primary"><%= t('leaderboard.index.score') %></th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-theme-primary">
+            <% @leaderboard_data.each_with_index do |entry, index| %>
+              <tr class="hover:bg-theme-secondary transition-colors">
+                <td class="px-6 py-4 text-theme-primary font-semibold">
+                  <% if index == 0 %>
+                    <span class="text-yellow-500">🥇</span>
+                  <% elsif index == 1 %>
+                    <span class="text-gray-400">🥈</span>
+                  <% elsif index == 2 %>
+                    <span class="text-orange-600">🥉</span>
+                  <% else %>
+                    #<%= index + 1 %>
+                  <% end %>
+                </td>
+                <td class="px-6 py-4 text-theme-primary">
+                  <%= clean_discord_username(entry[:discord_username]) %>
+                </td>
+                <td class="px-6 py-4 text-theme-secondary">
+                  <%= entry[:discord_server_name] %>
+                </td>
+                <td class="px-6 py-4 text-right text-theme-primary font-semibold">
+                  <%= entry[:score] %>
+                </td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  <% else %>
+    <div class="p-8 bg-theme-card rounded-lg border border-theme-primary text-center">
+      <p class="text-theme-secondary mb-4"><%= t('leaderboard.index.no_data') %></p>
+      <p class="text-theme-secondary text-sm"><%= t('leaderboard.index.no_data_hint') %></p>
+    </div>
+  <% end %>
+</div>

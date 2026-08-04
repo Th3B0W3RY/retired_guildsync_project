@@ -1,0 +1,13 @@
+{
+  "ignored_warnings": [
+    {
+      "fingerprint": "43c46edff066d192094db07e2424b70e6702a27aea612c8290a4f1da729fbaf3",
+      "note": "Python argv[0] comes from GUILDSYNC_PYTHON_CMD after Guildsync::SafePythonExecutable validation (no shell metacharacters, path checks)."
+    },
+    {
+      "fingerprint": "4db842b0de45f2b713ca68c26436e19333d08df4641473930a8004102152df56",
+      "note": "Same as gear_embedding_service: SafePythonExecutable resolves GUILDSYNC_PYTHON_CMD before Open3.popen3."
+    }
+  ],
+  "preview": []
+}

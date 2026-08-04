@@ -1,0 +1,83 @@
+# GuildSync — Nginx site (TLS via Let's Encrypt)
+#
+# Provisioning: deploy/provision.sh uploads this file (phase 2) after certs exist.
+# Phase 1 (no cert files yet): deploy/guildsync-nginx-http-only
+#
+# Install on the server (Debian/Ubuntu examples):
+#   sudo mkdir -p /var/www/certbot
+#   sudo cp deploy/guildsync-nginx /etc/nginx/sites-available/guildsync
+#   sudo ln -sf /etc/nginx/sites-available/guildsync /etc/nginx/sites-enabled/
+#   sudo nginx -t && sudo systemctl reload nginx
+#
+# Obtain / renew certificates (pick one workflow):
+#   sudo certbot certonly --webroot -w /var/www/certbot -d guild-sync.net -d www.guild-sync.net
+#   # or: sudo certbot --nginx -d guild-sync.net -d www.guild-sync.net
+#
+# After certbot creates it, you may add to the ssl server block (optional, stronger defaults):
+#   include /etc/letsencrypt/options-ssl-nginx.conf;
+#   ssl_dhparam /etc/letsencrypt/ssl-dhparams.pem;
+
+server {
+    listen 80;
+    listen [::]:80;
+    server_name guild-sync.net www.guild-sync.net;
+
+    # HTTP-01 challenges (renewals) — must not redirect before this
+    location ^~ /.well-known/acme-challenge/ {
+        root /var/www/certbot;
+        default_type "text/plain";
+    }
+
+    location / {
+        return 301 https://guild-sync.net$request_uri;
+    }
+}
+
+server {
+    listen 443 ssl http2;
+    listen [::]:443 ssl http2;
+    server_name guild-sync.net www.guild-sync.net;
+
+    ssl_certificate     /etc/letsencrypt/live/guild-sync.net/fullchain.pem;
+    ssl_certificate_key /etc/letsencrypt/live/guild-sync.net/privkey.pem;
+
+    # Baseline TLS (works without certbot's optional include files)
+    ssl_protocols TLSv1.2 TLSv1.3;
+    ssl_prefer_server_ciphers off;
+    ssl_session_cache shared:SSL:10m;
+    ssl_session_timeout 1d;
+
+    client_max_body_size 12M;
+
+    if (-f /var/www/maintenance/enable) {
+        return 503;
+    }
+
+    error_page 503 @maintenance;
+
+    location @maintenance {
+        root /var/www/maintenance;
+        rewrite ^ /index.html break;
+    }
+
+    location ^~ /assets/ {
+        root /var/www/guildsync/guildsync/public;
+        gzip_static on;
+        expires max;
+        add_header Cache-Control public;
+    }
+
+    location / {
+        proxy_pass http://127.0.0.1:3000;
+
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Proto $scheme;
+
+        proxy_buffer_size 128k;
+        proxy_buffers 4 128k;
+        proxy_busy_buffers_size 128k;
+        proxy_temp_file_write_size 128k;
+    }
+}

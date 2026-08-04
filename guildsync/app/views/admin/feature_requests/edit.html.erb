@@ -1,0 +1,13 @@
+<div class="space-y-6">
+  <div class="flex items-center gap-4">
+    <%= link_to "← #{t('roadmap.admin.panel_title')}", admin_feature_requests_path,
+          class: "text-theme-accent hover:underline",
+          data: { turbo_frame: "_top" } %>
+  </div>
+
+  <h1 class="text-2xl font-bold text-theme-primary"><%= t('roadmap.admin.edit') %>: <%= @feature_request.title %></h1>
+
+  <%= turbo_frame_tag Admin::FeatureRequestsController::FEATURE_REQUESTS_EDIT_MAIN_FRAME do %>
+    <%= render "feature_requests_edit_main" %>
+  <% end %>
+</div>

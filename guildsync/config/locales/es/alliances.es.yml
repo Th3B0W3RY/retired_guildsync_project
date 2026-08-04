@@ -1,0 +1,399 @@
+es:
+  # ============================================================================
+  # ALLIANCES FEATURE
+  # ============================================================================
+  alliances:
+    created: "¡Alianza creada correctamente!"
+    updated: "Configuración de la alianza guardada."
+    disbanded: "La alianza se ha disuelto."
+    left: "Has abandonado la alianza."
+    guild_kicked: "El gremio ha sido eliminado de la alianza."
+
+    errors:
+      join_requires_paid_plan: "Necesitas una suscripción o prueba activa en un plan de pago. El plan gratuito y las suscripciones o pruebas caducadas no son elegibles."
+      plan_required_for_alliance_hub: "Se requiere un plan de pago para abrir el centro de Alianzas, salvo que ya seas miembro de una alianza en GuildSync. Pide a tu GM que te sincronice o mejora tu plan."
+      not_found: "Alianza no encontrada."
+      not_member: "No eres miembro de esta alianza."
+      not_leader: "Solo el líder de la alianza puede hacer eso."
+      kick_unauthorized: "Solo los dueños del gremio o gestores personalizados de la alianza pueden eliminar gremios."
+      no_eligible_guild: "No cumples los requisitos para crear una alianza con tus membresías actuales de gremio."
+      plan_required: "Tu plan actual no permite crear alianzas. Mejora tu plan."
+      disband_unauthorized: "No estás autorizado a disolver esta alianza."
+      leave_unauthorized: "Solo los dueños del gremio pueden salir de una alianza."
+      leader_cannot_leave: "El gremio fundador no puede abandonar la alianza. Disuélvela en su lugar."
+      guild_not_found: "Gremio no encontrado."
+      cannot_kick_leader_guild: "No puedes eliminar el gremio fundador de la alianza."
+      conflicting_alliance_membership: "No puedes pertenecer a gremios de más de una alianza a la vez."
+    index:
+      title: "Alianza"
+      open_alliance: "Abrir alianza"
+      invite_from: "Invitado por %{name}"
+      accept: "Aceptar"
+      decline: "Rechazar"
+      request_join_hint: "Busca un gremio listado que ya esté en una alianza, elige tu gremio y solicita unirte a esa alianza."
+      search_label: "Buscar gremios"
+      search_placeholder: "Escribe el nombre del gremio..."
+      search_select_target: "Gremio objetivo (debe estar en una alianza)"
+      submit_join_request: "Enviar solicitud"
+      searching: "Buscando..."
+      no_results: "No se encontraron gremios."
+      load_more_results: "Cargar más resultados"
+
+    roles:
+      leader_guild: "Gremio fundador"
+    new:
+      title: "Crear una alianza"
+      subtitle: "Reúne varios gremios bajo un mismo estandarte."
+
+    edit:
+      title: "Configuración de la alianza"
+      back: "Volver a la alianza"
+      danger_zone: "Zona de peligro"
+      disband: "Disolver alianza"
+      disband_confirm: "¿Seguro que quieres disolver la alianza? Esta acción no se puede deshacer."
+
+    form:
+      name: "Nombre de la alianza"
+      name_placeholder: "Introduce el nombre de la alianza..."
+      description: "Descripción"
+      description_placeholder: "Describe tu alianza..."
+      logo: "Logo de la alianza"
+      choose_logo_button: "Elegir imagen"
+      no_file_chosen: "Ningún archivo seleccionado"
+      logo_hint: "Opcional. Recomendado: imagen cuadrada, al menos 256×256 px."
+      logo_replace_hint: "Sube un archivo nuevo para reemplazar el logo actual."
+      creating_for: "Creando alianza para:"
+      size_info: "Las alianzas pueden incluir entre 1 y 20 gremios. Empieza con el tuyo e invita a otros."
+      create_button: "Crear alianza"
+      save_button: "Guardar cambios"
+
+    show:
+      guilds: "Gremios miembros"
+      guilds_count:
+        one: "1 gremio"
+        other: "%{count} gremios"
+      leader: "Dirigida por %{name}"
+      edit: "Editar"
+      leave: "Salir de la alianza"
+      leave_confirm: "¿Seguro que quieres salir de la alianza?"
+      invite_guild: "Invitar un gremio"
+      kick_guild: "Expulsar"
+      kick_guild_confirm: "¿Eliminar a %{name} de la alianza?"
+      members_preview: "Miembros"
+      view_all_members: "Ver todos los miembros"
+      more_members:
+        one: "y 1 miembro más..."
+        other: "y %{count} miembros más..."
+
+    nav:
+      members: "Miembros"
+      events: "Eventos de alianza"
+      polls: "Encuestas de alianza"
+      rolls: "Tiradas de alianza"
+      chat: "Chat de alianza"
+      activity_feed: "Actividad"
+      gm_chat: "Chat de GM"
+      invites: "Invitaciones pendientes"
+      join_requests: "Solicitudes de ingreso"
+      disband_vote: "Votación para disolver"
+      back_to_alliance: "Volver a la alianza"
+
+    invites:
+      sent: "Invitación enviada a %{guild_name}."
+      accepted: "¡Te has unido a %{alliance_name}!"
+      declined: "Invitación rechazada."
+
+      errors:
+        not_found: "Invitación no encontrada."
+        guild_not_found: "Gremio no encontrado. Busca por nombre y selecciona un gremio listado públicamente."
+        already_in_alliance: "Ese gremio ya forma parte de esta alianza."
+        already_invited: "Ese gremio ya tiene una invitación pendiente."
+        pending_join_request: "Ese gremio ya tiene una solicitud de ingreso pendiente para esta alianza."
+        max_guilds: "Esta alianza ha alcanzado el máximo de 20 gremios."
+        invite_unauthorized: "Solo dueños del gremio o gestores de alianza pueden invitar gremios."
+        accept_unauthorized: "Solo el dueño del gremio objetivo puede aceptar esta invitación."
+        decline_unauthorized: "Solo el dueño del gremio objetivo puede rechazar esta invitación."
+
+      index:
+        title: "Invitaciones pendientes"
+        subtitle: "Invitaciones para %{alliance_name}"
+        invite_guild: "Invitar un gremio"
+        search_label: "Buscar gremios listados públicamente"
+        search_placeholder: "Escribe el nombre del gremio..."
+        search_hint: "La búsqueda coincide solo con el nombre del gremio. Solo aparecen gremios con listado público."
+        search_unauthorized: "No puedes buscar desde esta página."
+        load_more_results: "Cargar más resultados"
+        selected_guild: "Invitando a"
+        already_in_alliance_suffix: "ya en una alianza (invitación no disponible)"
+        invite_restricted: "Solo el líder de la alianza puede enviar invitaciones."
+        send_invite: "Enviar invitación"
+        pending: "Invitaciones pendientes"
+        no_pending: "No hay invitaciones pendientes."
+        invited_by: "Invitado por %{name}"
+
+    events:
+      created: "¡Evento de alianza creado!"
+      updated: "Evento actualizado."
+      deleted: "Evento eliminado."
+      rsvp_saved: "Tu confirmación (RSVP) se ha guardado."
+      discord_rsvp:
+        errors:
+          link_required: "Conecta tu cuenta de Discord a GuildSync antes de confirmar asistencia."
+          event_not_found: "Evento de alianza no encontrado."
+          invalid_status: "Estado de confirmación no válido."
+          not_alliance_member: "Debes ser miembro activo de la alianza para confirmar."
+          save_failed: "No se pudo guardar la confirmación: %{error}"
+          unexpected: "Ocurrió un error al guardar la confirmación de la alianza."
+
+      errors:
+        not_found: "Evento no encontrado."
+        manage_unauthorized: "Solo los dueños del gremio pueden gestionar eventos."
+        invalid_rsvp: "Estado de confirmación no válido."
+
+      index:
+        title: "Eventos de alianza"
+        subtitle: "Eventos de %{alliance_name}"
+        create: "Crear evento"
+        upcoming: "Próximos eventos"
+        past: "Eventos pasados"
+        no_events: "Aún no hay eventos. Crea uno para empezar."
+        attending: "asistentes"
+        upcoming_label: "Próximos"
+
+      new:
+        title: "Crear evento de alianza"
+
+      edit:
+        title: "Editar evento"
+
+      show:
+        back: "Volver a eventos"
+        minutes: "min"
+        your_rsvp: "Tu confirmación"
+        attending: "Asistiré"
+        maybe: "Quizás"
+        declined: "No asistiré"
+        participants: "Participantes"
+        no_participants: "Aún no hay confirmaciones."
+        delete_confirm: "¿Eliminar este evento?"
+        status:
+          attending: "Asistiré"
+          maybe: "Quizás"
+          declined: "No asistiré"
+
+      form:
+        title: "Título del evento"
+        description: "Descripción"
+        scheduled_at: "Fecha y hora"
+        duration: "Duración (minutos)"
+        duration_placeholder: "p. ej. 60"
+        location: "Ubicación / servidor"
+        location_placeholder: "p. ej. Discord Stage, nombre del servidor..."
+        create_button: "Crear evento"
+        save_button: "Guardar evento"
+        event_type: "Tipo de evento"
+        event_type_general: "General"
+        max_participants: "Participantes máx. (opcional)"
+        squad_leader: "Líder de escuadra (opcional)"
+        squad_leader_placeholder: "Opcional — por defecto tú si está vacío"
+        role_categories_section: "Roles de registro en Discord"
+        role_categories_hint: "Qué roles aparecen como botones en el anuncio de Discord (igual que en eventos de gremio)."
+    polls:
+      created: "¡Encuesta de alianza creada!"
+      deleted: "Encuesta eliminada."
+
+      errors:
+        not_found: "Encuesta no encontrada."
+        manage_unauthorized: "Solo dueños del gremio o gestores de alianza pueden crear encuestas."
+        poll_closed: "Esta encuesta está cerrada."
+        invalid_choice: "Opción de voto no válida."
+
+      index:
+        title: "Encuestas de alianza"
+        subtitle: "Encuestas de %{alliance_name}"
+        create: "Crear encuesta"
+        no_polls: "No hay encuestas de alianzas por el momento."
+        created_by: "Creado por %{name}"
+        deadline: "Fecha límite:"
+        open: "Abierta"
+        closed: "Cerrada"
+        anonymous: "Anónima"
+        maybe: "Quizás"
+        voters_heading: "Votantes"
+        view_vote: "Votar"
+        view_results: "Resultados"
+        delete_confirm: "¿Eliminar esta encuesta?"
+
+        "yes": "Sí"
+        "no": "No"
+      new:
+        title: "Crear encuesta de alianza"
+
+      show:
+        back: "Volver a encuestas"
+        deadline: "Fecha límite: %{date}"
+        anonymous: "Anónima"
+        open: "Abierta"
+        closed: "Cerrada"
+        your_vote: "Emitir voto"
+        maybe: "Quizás"
+        voters_heading: "Votantes"
+
+        "yes": "Sí"
+        "no": "No"
+      form:
+        title: "Pregunta de la encuesta"
+        description: "Descripción"
+        deadline: "Fecha límite"
+        anonymous: "Votación anónima (ocultar votos individuales)"
+        create_button: "Crear encuesta"
+
+    loot_rolls:
+      created: "¡Tirada de botín de alianza creada!"
+      deleted: "Tirada eliminada."
+      closed: "Tirada cerrada y ganador determinado."
+      entered: "¡Has sacado %{roll}!"
+
+      errors:
+        not_found: "Tirada no encontrada."
+        manage_unauthorized: "Solo dueños del gremio o gestores de alianza pueden gestionar tiradas."
+        already_closed: "Esta tirada ya está cerrada."
+        not_open: "Esta tirada de botín no está abierta ahora."
+        already_entered: "Ya participaste en esta tirada."
+
+      index:
+        title: "Tiradas de botín de alianza"
+        subtitle: "Tiradas de %{alliance_name}"
+        create: "Crear tirada"
+        no_rolls: "Aún no hay tiradas."
+        range: "Rango: %{min}–%{max}"
+        deadline: "Fecha límite:"
+        winner: "🏆 Ganador: %{name} (tiró %{roll})"
+        open: "Abierta"
+        closed: "Cerrada"
+        view: "Ver tirada"
+
+      new:
+        title: "Crear tirada de botín de alianza"
+
+      show:
+        back: "Volver a tiradas"
+        range: "Rango de tirada: %{min}–%{max}"
+        deadline: "Fecha límite: %{date}"
+        open: "Abierta"
+        closed: "Cerrada"
+        winner: "🏆 Ganador: %{name} (tiró %{roll})"
+        enter: "Participar en la tirada"
+        your_roll: "Tu tirada: %{roll}"
+        close: "Cerrar y elegir ganador"
+        close_confirm: "¿Cerrar esta tirada y determinar al ganador?"
+        entries: "Participaciones"
+        no_entries: "Aún no hay participaciones."
+        anonymous_entry: "Anónimo"
+        entries_line:
+          zero: "%{count} participaciones"
+          one: "%{count} participación"
+          other: "%{count} participaciones"
+
+      form:
+        title: "Título de la tirada"
+        description: "Descripción"
+        min_roll: "Tirada mínima"
+        max_roll: "Tirada máxima"
+        deadline: "Fecha límite (opcional)"
+        deadline_hint: "Déjalo vacío para sin fecha límite."
+        anonymous: "Tiradas anónimas"
+        create_button: "Crear tirada"
+
+    disband_votes:
+      vote_cast: "Tu voto para disolver se ha registrado."
+      majority_disbanded: "La mayoría de GMs votó disolver. La alianza ha sido disuelta."
+
+      errors:
+        not_gm: "Solo los dueños del gremio pueden votar para disolver."
+
+      index:
+        title: "Votación para disolver"
+        vote_tally: "Recuento actual"
+        votes_to_disband: "%{count} de %{total} GMs votaron disolver"
+        threshold_note: "Más del 50 % de los GMs debe votar disolver para que pase la votación."
+        your_vote: "Tu voto"
+        vote_disband: "Votar disolver"
+        vote_disband_confirm: "¿Seguro que quieres votar para disolver esta alianza?"
+        vote_keep: "Votar mantener alianza"
+        current_vote: "Tu voto actual: %{vote}"
+        all_votes: "Todos los votos de GM"
+        no_votes_yet: "Aún no se ha votado."
+        disband: "Disolver"
+        keep: "Mantener"
+
+    messages:
+      errors:
+        gm_only: "Solo los dueños del gremio pueden acceder al chat de GM."
+        blank: "El mensaje no puede estar vacío."
+
+      index:
+        gm_chat: "Chat de GM"
+        alliance_chat: "Chat de alianza"
+        switch_to_gm: "Ir al chat de GM"
+        switch_to_all: "Ir al chat de alianza"
+        gm_only_notice: "Este canal solo lo ven los dueños del gremio en esta alianza."
+        no_messages: "Aún no hay mensajes. ¡Saluda!"
+        you: "Tú"
+        send: "Enviar"
+        placeholder: "Escribe un mensaje..."
+        message_time_format: "%d/%m/%Y %H:%M"
+
+    join_requests:
+      created: "Solicitud enviada a **%{alliance_name}**."
+      accepted: "**%{guild_name}** se ha unido a la alianza."
+      declined: "Solicitud rechazada."
+
+      index:
+        title: "Solicitudes de ingreso"
+        subtitle: "Gremios que solicitan unirse a **%{alliance_name}**."
+        back: "Volver a la alianza"
+        none: "No hay solicitudes pendientes."
+
+      errors:
+        not_found: "Solicitud no encontrada."
+        guild_not_found: "Gremio no encontrado."
+        unauthorized: "No puedes solicitar en nombre de ese gremio."
+        already_in_alliance: "Ese gremio ya está en una alianza."
+        alliance_inactive: "Esa alianza ya no está activa."
+        requesting_already_in_alliance: "Ese gremio se unió a otra alianza antes de aceptar esta solicitud."
+        max_guilds: "Esta alianza no puede aceptar más gremios ahora."
+        pending_invite: "Ya hay una invitación pendiente para esta alianza y este gremio."
+        create_failed: "No se pudo crear la solicitud."
+        accept_failed: "No se pudo aceptar la solicitud."
+        manage_unauthorized: "Solo líderes de alianza, dueños del gremio u oficiales pueden gestionar solicitudes."
+
+    outgoing_join_requests:
+      new:
+        title: "Solicitar unirse a una alianza"
+        subtitle: "Tu gremio: %{guild_name}. Busca un gremio listado que ya esté en una alianza."
+        back: "Volver al gremio"
+      status:
+        title: "Estado de la solicitud"
+        subtitle: "Solicitudes salientes desde **%{guild_name}**."
+        none: "No hay solicitudes pendientes desde este gremio."
+        pending: "Pendiente"
+      search_unauthorized: "No puedes buscar desde esta página."
+      not_in_alliance_suffix: "no está en una alianza"
+
+    received_invites:
+      pending:
+        title: "Invitaciones de alianza pendientes"
+        subtitle: "Invitaciones para **%{guild_name}**."
+        none: "No hay invitaciones de alianza pendientes."
+
+    discord:
+      invite_embed:
+        title: "Invitación de alianza: %{alliance_name}"
+        body: "Invitado por %{inviter}. Abre GuildSync para aceptar o rechazar."
+      join_request_embed:
+        title: "Solicitud de ingreso: %{guild_name}"
+        body: "%{guild_name} solicitó unirse a **%{alliance_name}**. Revísalo en GuildSync."
+      member_joined_embed:
+        title: "%{guild_name} se unió a la alianza"
+        body: "**%{guild_name}** ahora forma parte de **%{alliance_name}**."

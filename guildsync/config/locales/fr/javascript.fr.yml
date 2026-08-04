@@ -1,0 +1,50 @@
+fr:
+  js:
+    common:
+      popup_blocked: "La popup a été bloquée. Veuillez autoriser les popups pour ce site et réessayer."
+      error_occurred: "Une erreur s'est produite. Veuillez réessayer, s'il vous plaît."
+      unknown_error: "Erreur inconnue"
+    admin:
+      dashboard:
+        delete_success: "Toutes les données ont été supprimées avec succès !"
+        delete_error: "Erreur : %{error}"
+        delete_failed: "Échec de la suppression des données"
+    sessions:
+      popup_blocked: "La popup a été bloquée. Veuillez autoriser les popups pour ce site et réessayer."
+    pricing:
+      price_id_missing: "L'identifiant de prix est manquant. Veuillez contacter le support."
+      checkout_failed: "Impossible de lancer le paiement. Veuillez réessayer."
+    billing:
+      portal_failed: "N'a pas pu s'ouvrir le portail de facturation. Veuillez réessayer."
+      plan_change_failed: "Impossible de changer de forfait. Veuillez réessayer."
+    guilds:
+      members:
+        select_member: "Veuillez sélectionner au moins un membre."
+        select_role: "Veuillez choisir un rôle."
+        select_user: "Veuillez sélectionner un utilisateur d'abord."
+        security_token_missing: "Le jeton de sécurité n'a pas été trouvé. Veuillez rafraîchir la page et réessayer."
+        invite_error: "Une erreur s'est produite pendant l'invitation de l'utilisateur. Veuillez réessayer."
+      settings:
+        game_added: "Jeu ajouté avec succès !"
+        game_add_failed: "Échec de l'ajout du jeu : %{error}"
+        game_add_error: "Erreur lors de l'ajout du jeu : %{error}"
+        discord_role_sync:
+          section_title: "Synchronisation des rôles"
+          missing_role: "Informations de rôle manquantes ; actualisez la page et réessayez."
+          generic_error: "Une erreur s'est produite. Veuillez réessayer."
+      members_gear:
+        select_file: "Veuillez choisir un fichier"
+        select_game: "Veuillez sélectionner un jeu"
+        upload_failed: "Échec de l'upload : %{error}"
+        session_expired: "Votre session a expiré. Reconnectez-vous et réessayez l'envoi."
+        requests_sent: "%{count} demandes de mise à jour des statistiques envoyées avec succès"
+        requests_failed: "Impossible d'envoyer les demandes : %{error}"
+        request_failed: "Échec d'envoi de la requête : %{error}"
+    guild_applications:
+      select_guild: "Veuillez sélectionner une guilde dans les résultats de la recherche."
+    guild_documents:
+      link_copied: "Le lien a été copié dans le presse-papiers !"
+    discord_connections:
+      connection_failed: "Échec de connexion Discord : %{error}"
+      popup_blocked: "La popup a été bloquée. Veuillez autoriser les popups pour ce site et réessayer."
+      bot_auth_url_missing: "Erreur : L'URL d'autorisation du bot manque l'identifiant du serveur. Veuillez réessayer de sélectionner le serveur."

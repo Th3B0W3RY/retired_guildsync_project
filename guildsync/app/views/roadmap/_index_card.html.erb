@@ -1,0 +1,28 @@
+<%# locals: (fr:, card_inner:) %>
+<%= link_to roadmap_feature_request_path(fr), class: "block #{card_inner} cursor-pointer", data: { feature_id: fr.id } do %>
+  <div class="flex items-start justify-between gap-2">
+    <h3 class="text-sm font-medium text-white"><%= fr.title %></h3>
+    <% if fr.is_pinned %>
+      <span class="shrink-0 text-xs text-[#C27AFF]" title="<%= t("roadmap.admin.panel_title") %>">📌</span>
+    <% end %>
+  </div>
+  <p class="mt-1 line-clamp-2 text-xs leading-relaxed text-[#90A1B9]"><%= fr.description.truncate(120) %></p>
+  <div class="mt-2 flex flex-wrap items-center justify-between gap-1 text-xs text-[#90A1B9]">
+    <span><%= t("roadmap.requested_by") %> <%= fr.anonymized_requester_name %></span>
+    <span><%= l(fr.created_at, format: :short) %></span>
+  </div>
+  <div class="mt-2 flex items-center justify-between">
+    <div class="flex items-center gap-1">
+      <% if user_signed_in? %>
+        <button type="button" data-action="click->roadmap#vote" data-roadmap-id-param="<%= fr.id %>" data-roadmap-count-param="<%= fr.vote_count %>" data-roadmap-voted-param="<%= fr.voted_by?(current_user) %>" class="vote-btn rounded px-2 py-1 text-sm font-medium <%= fr.voted_by?(current_user) ? "bg-theme-brand-gradient text-white" : "bg-[rgba(29,41,61,0.5)] text-[#90A1B9] hover:text-white" %>">
+          ▲ <span class="vote-count"><%= fr.vote_count %></span>
+        </button>
+      <% else %>
+        <span class="rounded bg-[rgba(29,41,61,0.5)] px-2 py-1 text-sm text-[#90A1B9]">▲ <%= fr.vote_count %></span>
+      <% end %>
+    </div>
+    <% if fr.status == "finished" && fr.release_note_url.present? %>
+      <%= link_to t("roadmap.release_notes_link"), fr.release_note_url, target: "_blank", rel: "noopener noreferrer", class: "text-xs text-[#7C86FF] hover:underline", data: { action: "click->roadmap#stopPropagation" } %>
+    <% end %>
+  </div>
+<% end %>

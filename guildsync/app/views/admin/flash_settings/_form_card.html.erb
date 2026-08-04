@@ -1,0 +1,17 @@
+<%# locals: (duration_ms:) %>
+<div id="admin_flash_settings_form_card" class="max-w-2xl rounded-lg border border-theme-primary bg-theme-card p-6 shadow-lg">
+  <p class="mb-4 text-theme-secondary"><%= t("admin.flash_settings.intro") %></p>
+
+  <%= form_with url: admin_update_flash_settings_path, method: :patch, class: "space-y-4" do |f| %>
+    <div>
+      <label class="mb-1 block text-sm font-medium text-theme-secondary" for="flash_toast_duration_ms"><%= t("admin.flash_settings.duration_label") %></label>
+      <%= f.number_field :flash_toast_duration_ms, value: duration_ms, min: SiteSetting::FLASH_TOAST_DURATION_MIN_MS, max: SiteSetting::FLASH_TOAST_DURATION_MAX_MS, step: 100, required: true,
+          id: "flash_toast_duration_ms",
+          class: "w-full rounded-lg border border-theme-primary bg-theme-primary px-4 py-2 text-theme-primary placeholder-theme-secondary focus:outline-none focus:ring-2 focus:ring-theme-accent" %>
+      <p class="mt-1 text-xs text-theme-secondary"><%= t("admin.flash_settings.duration_hint", min: SiteSetting::FLASH_TOAST_DURATION_MIN_MS, max: SiteSetting::FLASH_TOAST_DURATION_MAX_MS) %></p>
+    </div>
+    <div>
+      <%= f.submit t("admin.flash_settings.save"), class: "cursor-pointer rounded-lg bg-blue-600 px-4 py-2 font-semibold text-white hover:bg-blue-700" %>
+    </div>
+  <% end %>
+</div>

@@ -1,0 +1,145 @@
+it:
+  sessions:
+    new:
+      title: Accedi
+      forgot_password: Ha dimenticato la password?
+      resend_confirmation: Reinvia e-mail di conferma
+      sign_in_with_discord: Accedi con Discord
+      sign_in_with_google: Accedi con Gmail
+      sign_in_with_microsoft: Accedi con Outlook
+      no_account: Non hai un account?
+      create_account: Crea uno qui
+      discord_login_failed: 'Accesso a Discord fallito:'
+  registrations:
+    new:
+      title: Iscriviti
+      have_account: Hai già un account?
+      sign_in_here: Accedi qui
+      signing_up_for: 'Iscrivendosi per:'
+      trial_after_mfa: Il periodo di prova inizierà dopo la verifica dell'autenticazione a più fattori.
+      username: Utente
+      username_hint: Tra 3 e 30 caratteri, solo lettere, numeri e underscore
+      password_hint: Almeno 6 caratteri
+      confirm_password: Conferma password
+      create_account_button: Crea Account
+      sign_up_with_discord: Iscriviti con Discord
+      discord_signup_failed: 'Registrazione Discord fallita:'
+      popup_blocked: Il popup è stato bloccato. Per favore, abilita i popup per questo sito e riprova.
+    errors:
+      captcha_invalid: Verifica di sicurezza non riuscita. Completa il controllo qui sotto e riprova.
+      discord_captcha_required: Usa il pulsante «Iscriviti con Discord» in questa pagina dopo aver completato la verifica di sicurezza.
+  confirmations:
+    new:
+      title: Reinvia le istruzioni di conferma
+      intro: Inserisci la tua e-mail e invieremo un nuovo link di conferma.
+      submit: Reinvia istruzioni
+      back_to_sign_in: Torna all'accesso
+    create:
+      already_registered: Questa e-mail è già registrata e confermata. Usa un altro indirizzo o accedi.
+  passwords:
+    new:
+      title: Password dimenticata?
+      instructions: Inserisci il tuo indirizzo email e ti invieremo le istruzioni per reimpostare la tua password.
+      send_instructions: Istruzioni per la reimpostazione
+      back_to_sign_in: Indietro all'accesso
+    edit:
+      title: Reimposta la tua Password
+      subtitle: Inserisci la tua nuova password qui sotto.
+      new_password: Nuova Password
+      confirm_password: Conferma password
+      confirm_new_password: Conferma nuova password
+      password_hint: Almeno 6 caratteri
+      reset_password: Resetta la password
+      back_to_sign_in: Indietro all'accesso
+    create:
+      instructions_sent: Se esiste un account con questa email, riceverai le istruzioni per reimpostare la password.
+      invalid_email: Indirizzo email non valido.
+    update:
+      success: La password è stata modificata. Hai effettuato l'accesso.
+    account_recovery:
+      title: Recupero account
+      page_intro: Scegli come rientrare nel tuo account.
+      email_section_title: Reimposta la password via email
+      email_section_intro: Invieremo un link al tuo indirizzo email. Usalo su questo dispositivo per impostare una nuova password.
+      email_send_button: Invia link di reimpostazione
+      email_link_hint: Hai già ricevuto una nostra email? Apri il link di reimpostazione in quel messaggio.
+      or_divider: oppure
+      backup_section_title: Usa un codice di backup
+      backup_section_intro: Se hai salvato codici di backup nelle Impostazioni account, inserisci email e un codice qui sotto.
+      backup_code_label: Codice di backup
+      backup_code_placeholder: XXXX-XXXX-XXXX-XXXX-XXXX-XXXX
+      backup_code_hint: Inserisci uno dei tuoi codici di backup da 24 caratteri (trattini facoltativi)
+      verify_backup_code: Verifica codice di backup
+      contact_support: Contatta il supporto
+  backup_codes:
+    verify:
+      invalid_email_or_code: Email o codice di backup non valido.
+      invalid_code: Codice di backup non valido.
+      success: Codice di backup accettato. Imposta una nuova password qui sotto.
+  recoveries:
+    edit:
+      title: Reimposta il tuo account
+      badge: Recupero con codice di backup
+      new_password: Nuova Password
+      confirm_password: Conferma nuova password
+      mfa_section: Autenticazione a più fattori (MFA)
+      mfa_warning: Il tuo account ha attualmente la MFA abilitata. Poiché stai usando un codice di backup, puoi scegliere di reimpostare la MFA.
+      reset_mfa_label: Reimposta MFA (disabilita e consenti una nuova configurazione)
+      mfa_not_enabled: La MFA non è abilitata nel tuo account.
+      submit: Salva modifiche e recupera account
+      note: Dopo il recupero, dovrai accedere con la nuova password. Se reimposti la MFA, potrai configurarla di nuovo dalle Impostazioni account.
+    update:
+      success: Il tuo account è stato recuperato. Accedi con la nuova password.
+    expired: Sessione di recupero scaduta. Ricomincia da capo.
+  mfa_setup:
+    show:
+      title: Abilita l'autenticazione a più fattori
+      subtitle: Scani il codice QR con l'applicazione di autenticazione per iniziare.
+      instructions_title: Istruzioni di Setup
+      step_1: Installa un'applicazione di autenticazione sul tuo telefono (Google Authenticator, Authy, Microsoft Authenticator, ecc.)
+      step_2: Apri l'app e fai clic su 'Aggiungere account' o sul pulsante '+'.
+      step_3: Scani il codice QR qui sotto con la fotocamera del telefono o lo scanner dell'app
+      step_4: Inserisci il codice a sei cifre dall'app per verificare.
+      manual_entry: 'Non riesci a scansionare il QR code? Inserisci questo segreto manualmente nell''app di autenticazione:'
+      cant_scan: 'Non puoi scansionare? Inserisci questo codice manualmente nell''app:'
+      code_label: Inserisci il codice a 6 cifre dall'applicazione autenticatrice
+      code_placeholder: '000000'
+      code_hint: Inserisci il codice a 6 cifre mostrato nell'applicazione autenticatrice del tuo dispositivo
+      verify_button: Verifica e Abilita MFA
+      recommended_apps: 'Applicazioni di autenticazione raccomandate:'
+      setup_unavailable: Non abbiamo potuto generare la chiave di configurazione. Aggiorna la pagina o riprova tra un momento. Se il problema persiste, contatta il supporto.
+  mfa_verification:
+    show:
+      title: Verifica la tua identità
+      subtitle: Inserisci il codice a 6 cifre dall'applicazione autenticatrice tua.
+      code_label: Codice di autenticazione
+      code_placeholder: '000000'
+      code_hint: Apri l'applicazione di autenticazione e inserisci il codice a sei cifre.
+      verify_button: Verificare
+      trouble_text: Problemi ad accedere?
+      having_trouble: Hai problemi?
+      contact_support: Contatta assistenza
+  profile_completion:
+    show:
+      title: Completa il tuo profilo
+      subtitle: Si prega di fornire i dettagli del conto per continuare
+      email_label: Indirizzo email
+      email_placeholder: Immettere l'indirizzo email
+      email_hint: Inserisci un indirizzo email valido per il tuo account
+      username_label: Utente
+      username_hint: Tra 3 e 30 caratteri, solo lettere, numeri e underscore
+      username_placeholder: Inserisci il tuo nome utente
+      password_label: Password
+      password_hint: Scegli una password sicura (minimo 6 caratteri)
+      password_confirmation_label: Conferma password
+      password_confirmation_hint: Riinserisci la tua password per confermare.
+      confirm_password_hint: Riinserisci la tua password per confermare.
+      submit_button: Completa il Profilo
+      complete_button: Completa configurazione
+    update:
+      success: Profilo completato. Ora configura MFA.
+  mfa:
+    setup:
+      title: Impostare AFM (Autenticazione Multifattore)
+    verification:
+      title: Verificare MFA

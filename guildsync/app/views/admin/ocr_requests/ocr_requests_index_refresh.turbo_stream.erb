@@ -1,0 +1,12 @@
+<%= turbo_stream.update "admin_ocr_requests_index_flash" do %>
+  <% if @admin_ocr_index_flash_message.present? %>
+    <%= render "admin/ocr_requests/ocr_flash_banner",
+        message: @admin_ocr_index_flash_message,
+        variant: @admin_ocr_index_flash_variant %>
+  <% end %>
+<% end %>
+<%= turbo_stream.replace "admin_ocr_requests_index_main_wrap" do %>
+  <div id="admin_ocr_requests_index_main_wrap" class="space-y-6">
+    <%= render "admin/ocr_requests/index_main" %>
+  </div>
+<% end %>

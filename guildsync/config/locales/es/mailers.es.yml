@@ -1,0 +1,6 @@
+---
+es:
+  mailers:
+    trial_mailer:
+      trial_expiring:
+        subject: Su prueba de GuildSync termina pronto

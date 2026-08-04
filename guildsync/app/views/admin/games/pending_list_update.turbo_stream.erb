@@ -1,0 +1,10 @@
+<% if @pending_games.empty? %>
+  <%= turbo_stream.replace "admin_games_pending_content" do %>
+    <%= render "admin/games/pending_content", pending_games: @pending_games %>
+  <% end %>
+<% else %>
+  <%= turbo_stream.remove "admin_pending_game_row_#{@removed_pending_game_id}" %>
+<% end %>
+<%= turbo_stream.update "admin_games_pending_flash" do %>
+  <%= render "admin/games/pending_flash_banner", message: @admin_games_notice, variant: :notice %>
+<% end %>

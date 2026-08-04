@@ -1,0 +1,111 @@
+<div class="space-y-8 max-w-5xl">
+  <div class="flex flex-wrap items-center justify-between gap-4">
+    <div>
+      <h1 class="text-3xl font-bold text-theme-accent"><%= t("admin.landing_user_feedbacks.page_title") %></h1>
+      <p class="text-theme-secondary mt-2">
+        <%= t("admin.landing_user_feedbacks.page_subtitle", max: LandingUserFeedback::MAX_ENTRIES) %>
+      </p>
+    </div>
+    <div class="flex flex-wrap gap-3">
+      <% if LandingUserFeedback.active.count < LandingUserFeedback::MAX_ENTRIES %>
+        <%= link_to t("admin.landing_user_feedbacks.new"), new_admin_landing_user_feedback_path,
+              class: "px-4 py-2 rounded-lg bg-theme-brand-gradient text-white font-medium hover:opacity-95",
+              data: { turbo_frame: "_top" } %>
+      <% else %>
+        <p class="text-amber-400 text-sm self-center max-w-xs"><%= t("admin.landing_user_feedbacks.at_limit", max: LandingUserFeedback::MAX_ENTRIES) %></p>
+      <% end %>
+      <%= link_to t("admin.landing_user_feedbacks.back_dashboard"), admin_root_path,
+            class: "px-4 py-2 bg-theme-secondary text-theme-accent border border-theme-primary rounded-lg hover:bg-theme-hover font-medium",
+            data: { turbo_frame: "_top" } %>
+    </div>
+  </div>
+
+  <div class="flex flex-wrap items-center gap-3 text-sm">
+    <span class="text-theme-secondary"><%= t("admin.landing_user_feedbacks.recovery_filter.label") %>:</span>
+    <% %w[active deleted all].each do |st| %>
+      <% active_link = (@recovery_status == st) %>
+      <%= link_to t("admin.landing_user_feedbacks.recovery_filter.#{st}"),
+            admin_landing_user_feedbacks_path(recovery_status: st),
+            class: active_link ? "font-semibold text-violet-300" : "text-theme-secondary hover:text-white",
+            data: { turbo_frame: "_top" } %>
+    <% end %>
+    <span class="text-theme-secondary">·</span>
+    <%= link_to t("admin.landing_user_feedbacks.recovery_center"), admin_soft_deleted_records_path,
+          class: "text-violet-400 hover:underline",
+          data: { turbo_frame: "_top" } %>
+  </div>
+
+  <div class="rounded-xl border border-white/10 bg-[rgba(15,23,43,0.5)] p-5 max-w-xl">
+    <h2 class="text-lg font-semibold text-theme-accent"><%= t("admin.landing_user_feedbacks.carousel_settings.heading") %></h2>
+    <%= form_with url: update_carousel_settings_admin_landing_user_feedbacks_path, method: :patch,
+          class: "mt-4 flex flex-wrap items-end gap-4", data: { turbo_frame: "_top" } do %>
+      <div class="flex flex-col gap-1">
+        <%= label_tag :carousel_interval_seconds, t("admin.landing_user_feedbacks.carousel_settings.interval_label"),
+              class: "text-sm font-medium text-theme-secondary" %>
+        <%= number_field_tag :carousel_interval_seconds, @carousel_interval_seconds,
+              min: 2, max: 60, step: 1, required: true,
+              class: "w-28 rounded-lg border border-white/15 bg-[rgba(15,23,43,0.8)] px-3 py-2 text-theme-primary focus:outline-none focus-visible:ring-2 focus-visible:ring-violet-500" %>
+        <p class="text-xs text-theme-secondary max-w-sm"><%= t("admin.landing_user_feedbacks.carousel_settings.interval_hint") %></p>
+      </div>
+      <%= submit_tag t("admin.landing_user_feedbacks.carousel_settings.save"),
+            class: "px-4 py-2 rounded-lg bg-theme-brand-gradient text-white font-medium hover:opacity-95 cursor-pointer border-0" %>
+    <% end %>
+  </div>
+
+  <% if @recovery_status == "active" %>
+    <p class="text-sm text-theme-secondary"><%= t("admin.landing_user_feedbacks.reorder_hint") %></p>
+  <% end %>
+
+  <div class="rounded-xl border border-white/10 bg-[rgba(15,23,43,0.5)] overflow-hidden">
+    <table class="w-full text-left text-sm">
+      <thead class="border-b border-white/10 text-theme-secondary">
+        <tr>
+          <% if @recovery_status == "active" %>
+            <th class="w-10 px-4 py-3" scope="col"><span class="sr-only"><%= t("admin.landing_user_feedbacks.reorder_hint") %></span></th>
+          <% end %>
+          <th class="px-4 py-3" scope="col"><%= t("admin.landing_user_feedbacks.table.preview") %></th>
+          <th class="px-4 py-3" scope="col"><%= t("admin.landing_user_feedbacks.table.visible") %></th>
+          <th class="px-4 py-3 text-right" scope="col"><%= t("admin.landing_user_feedbacks.table.actions") %></th>
+        </tr>
+      </thead>
+      <tbody
+        <% if @recovery_status == "active" %>
+        data-controller="admin-order-list"
+        data-admin-order-list-reorder-url-value="<%= reorder_admin_landing_user_feedbacks_path %>"
+        <% end %>
+      >
+        <% @landing_user_feedbacks.each do |feedback| %>
+          <tr
+            class="border-b border-white/5 hover:bg-white/5<%= " opacity-70" if feedback.deleted? %>"
+            <% if @recovery_status == "active" %>
+            data-admin-order-list-target="row"
+            data-id="<%= feedback.id %>"
+            <% end %>
+          >
+            <% if @recovery_status == "active" %>
+              <td class="px-4 py-3 cursor-grab active:cursor-grabbing text-theme-secondary select-none" title="<%= t("admin.landing_user_feedbacks.reorder_hint") %>">⠿</td>
+            <% end %>
+            <td class="px-4 py-3 text-theme-primary max-w-md truncate">
+              <% if feedback.deleted? %>
+                <span class="mr-2 rounded bg-red-500/20 px-2 py-0.5 text-xs text-red-300"><%= t("admin.landing_user_feedbacks.deleted_badge") %></span>
+              <% end %>
+              <%= feedback.body.to_plain_text.presence || "—" %>
+            </td>
+            <td class="px-4 py-3"><%= feedback.visible? ? "✓" : "—" %></td>
+            <td class="px-4 py-3 text-right space-x-2 whitespace-nowrap">
+              <%= link_to t("admin.landing_user_feedbacks.edit"), edit_admin_landing_user_feedback_path(feedback), class: "text-violet-400 hover:underline", data: { turbo_frame: "_top" } %>
+              <% unless feedback.deleted? %>
+                <%= button_to t("admin.landing_user_feedbacks.destroy"), admin_landing_user_feedback_path(feedback), method: :delete,
+                      form: { data: { turbo_confirm: t("admin.landing_user_feedbacks.confirm_destroy"), turbo_frame: "_top" } },
+                      class: "text-red-400 hover:underline bg-transparent border-0 p-0 cursor-pointer inline" %>
+              <% end %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+    <% if @landing_user_feedbacks.empty? %>
+      <p class="p-6 text-theme-secondary"><%= t("admin.landing_user_feedbacks.new") %> — <%= t("admin.landing_user_feedbacks.page_subtitle", max: LandingUserFeedback::MAX_ENTRIES) %></p>
+    <% end %>
+  </div>
+</div>

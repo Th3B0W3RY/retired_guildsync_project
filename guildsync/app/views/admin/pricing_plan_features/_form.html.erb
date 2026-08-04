@@ -1,0 +1,179 @@
+<%# locals: (plans:) %>
+<% if plans.empty? %>
+  <p class="text-theme-secondary"><%= t("admin.pricing_plan_features.empty_plans") %></p>
+<% else %>
+  <%= form_with url: admin_pricing_plan_features_path, method: :patch, class: "space-y-8" do %>
+    <% plans.each do |plan| %>
+      <div class="bg-theme-card border border-theme-primary rounded-lg p-6 shadow-lg">
+        <p class="text-xs text-theme-secondary mb-3 font-mono"><%= t("admin.pricing_plan_features.plan_id", id: plan.id) %></p>
+
+        <div class="grid gap-4 sm:grid-cols-2 mb-4">
+          <div class="sm:col-span-2">
+            <label class="block text-sm font-medium text-theme-secondary mb-2" for="plan_name_<%= plan.id %>">
+              <%= t("admin.pricing_plan_features.name_label") %>
+            </label>
+            <%= text_field_tag "pricing_plans[#{plan.id}][name]",
+                  plan.name,
+                  id: "plan_name_#{plan.id}",
+                  class: "w-full px-3 py-2 rounded-lg bg-theme-primary border border-theme-primary text-theme-primary text-sm focus:ring-2 focus:ring-theme-accent focus:border-transparent",
+                  autocomplete: "off",
+                  aria: { describedby: "plan_name_hint_#{plan.id}" } %>
+            <p class="text-xs text-theme-secondary mt-1" id="plan_name_hint_<%= plan.id %>">
+              <%= t("admin.pricing_plan_features.name_hint") %>
+            </p>
+          </div>
+          <div>
+            <label class="block text-sm font-medium text-theme-secondary mb-2" for="plan_period_<%= plan.id %>">
+              <%= t("admin.pricing_plan_features.period_label") %>
+            </label>
+            <%= text_field_tag "pricing_plans[#{plan.id}][period]",
+                  plan.period,
+                  id: "plan_period_#{plan.id}",
+                  class: "w-full px-3 py-2 rounded-lg bg-theme-primary border border-theme-primary text-theme-primary text-sm focus:ring-2 focus:ring-theme-accent focus:border-transparent",
+                  autocomplete: "off",
+                  aria: { describedby: "plan_period_hint_#{plan.id}" } %>
+            <p class="text-xs text-theme-secondary mt-1" id="plan_period_hint_<%= plan.id %>">
+              <%= t("admin.pricing_plan_features.period_hint") %>
+            </p>
+          </div>
+          <div>
+            <label class="block text-sm font-medium text-theme-secondary mb-2" for="plan_display_order_<%= plan.id %>">
+              <%= t("admin.pricing_plan_features.display_order_label") %>
+            </label>
+            <%= number_field_tag "pricing_plans[#{plan.id}][display_order]",
+                  plan.display_order,
+                  id: "plan_display_order_#{plan.id}",
+                  step: 1,
+                  class: "w-full px-3 py-2 rounded-lg bg-theme-primary border border-theme-primary text-theme-primary text-sm focus:ring-2 focus:ring-theme-accent focus:border-transparent",
+                  aria: { describedby: "plan_display_order_hint_#{plan.id}" } %>
+            <p class="text-xs text-theme-secondary mt-1" id="plan_display_order_hint_<%= plan.id %>">
+              <%= t("admin.pricing_plan_features.display_order_hint") %>
+            </p>
+          </div>
+          <div class="sm:col-span-2">
+            <label class="block text-sm font-medium text-theme-secondary mb-2" for="plan_description_<%= plan.id %>">
+              <%= t("admin.pricing_plan_features.description_label") %>
+            </label>
+            <%= text_area_tag "pricing_plans[#{plan.id}][description]",
+                  plan.description,
+                  id: "plan_description_#{plan.id}",
+                  rows: 3,
+                  class: "w-full px-3 py-2 rounded-lg bg-theme-primary border border-theme-primary text-theme-primary text-sm focus:ring-2 focus:ring-theme-accent focus:border-transparent",
+                  aria: { describedby: "plan_description_hint_#{plan.id}" } %>
+            <p class="text-xs text-theme-secondary mt-1" id="plan_description_hint_<%= plan.id %>">
+              <%= t("admin.pricing_plan_features.description_hint") %>
+            </p>
+          </div>
+          <div class="sm:col-span-2 flex flex-wrap gap-6 items-center">
+            <div class="flex items-center gap-2">
+              <%= hidden_field_tag "pricing_plans[#{plan.id}][popular]", "0" %>
+              <%= check_box_tag "pricing_plans[#{plan.id}][popular]", "1", plan.popular,
+                    id: "plan_popular_#{plan.id}",
+                    class: "h-4 w-4 rounded border-theme-primary text-theme-accent focus:ring-theme-accent" %>
+              <label class="text-sm text-theme-primary" for="plan_popular_<%= plan.id %>"><%= t("admin.pricing_plan_features.popular_label") %></label>
+            </div>
+            <div class="flex items-center gap-2">
+              <%= hidden_field_tag "pricing_plans[#{plan.id}][active]", "0" %>
+              <%= check_box_tag "pricing_plans[#{plan.id}][active]", "1", plan.active,
+                    id: "plan_active_#{plan.id}",
+                    class: "h-4 w-4 rounded border-theme-primary text-theme-accent focus:ring-theme-accent" %>
+              <label class="text-sm text-theme-primary" for="plan_active_<%= plan.id %>"><%= t("admin.pricing_plan_features.active_label") %></label>
+            </div>
+            <p class="text-xs text-theme-secondary w-full sm:w-auto"><%= t("admin.pricing_plan_features.popular_active_hint") %></p>
+          </div>
+        </div>
+
+        <div class="grid gap-4 sm:grid-cols-2 mb-4">
+          <div>
+            <label class="block text-sm font-medium text-theme-secondary mb-2" for="plan_price_display_<%= plan.id %>">
+              <%= t("admin.pricing_plan_features.price_display_label") %>
+            </label>
+            <%= text_field_tag "pricing_plans[#{plan.id}][price_display]",
+                  plan.price_display,
+                  id: "plan_price_display_#{plan.id}",
+                  class: "w-full px-3 py-2 rounded-lg bg-theme-primary border border-theme-primary text-theme-primary text-sm focus:ring-2 focus:ring-theme-accent focus:border-transparent",
+                  autocomplete: "off",
+                  aria: { describedby: "plan_price_display_hint_#{plan.id}" } %>
+            <p class="text-xs text-theme-secondary mt-1" id="plan_price_display_hint_<%= plan.id %>">
+              <%= t("admin.pricing_plan_features.price_display_hint") %>
+            </p>
+          </div>
+          <div>
+            <label class="block text-sm font-medium text-theme-secondary mb-2" for="plan_price_monthly_<%= plan.id %>">
+              <%= t("admin.pricing_plan_features.price_monthly_label") %>
+            </label>
+            <%= number_field_tag "pricing_plans[#{plan.id}][price_monthly]",
+                  plan.price,
+                  id: "plan_price_monthly_#{plan.id}",
+                  step: 0.01,
+                  min: 0,
+                  class: "w-full px-3 py-2 rounded-lg bg-theme-primary border border-theme-primary text-theme-primary text-sm focus:ring-2 focus:ring-theme-accent focus:border-transparent",
+                  aria: { describedby: "plan_price_monthly_hint_#{plan.id}" } %>
+            <p class="text-xs text-theme-secondary mt-1" id="plan_price_monthly_hint_<%= plan.id %>">
+              <%= t("admin.pricing_plan_features.price_monthly_hint") %>
+            </p>
+          </div>
+          <div class="sm:col-span-2">
+            <label class="block text-sm font-medium text-theme-secondary mb-2" for="plan_price_display_annual_<%= plan.id %>">
+              <%= t("admin.pricing_plan_features.price_display_annual_label") %>
+            </label>
+            <%= text_field_tag "pricing_plans[#{plan.id}][price_display_annual]",
+                  plan.price_display_annual,
+                  id: "plan_price_display_annual_#{plan.id}",
+                  class: "w-full px-3 py-2 rounded-lg bg-theme-primary border border-theme-primary text-theme-primary text-sm focus:ring-2 focus:ring-theme-accent focus:border-transparent",
+                  autocomplete: "off",
+                  aria: { describedby: "plan_price_display_annual_hint_#{plan.id}" } %>
+            <p class="text-xs text-theme-secondary mt-1" id="plan_price_display_annual_hint_<%= plan.id %>">
+              <%= t("admin.pricing_plan_features.price_display_annual_hint") %>
+            </p>
+          </div>
+        </div>
+        <p class="text-xs text-theme-secondary mb-4 border-l-2 border-theme-accent pl-3">
+          <%= t("admin.pricing_plan_features.stripe_note") %>
+        </p>
+
+        <% ent_row = PlanEntitlementService.entitlement_row_for(plan) %>
+        <div class="mb-6 rounded-lg border border-theme-primary bg-theme-primary/30 p-4 space-y-3">
+          <h3 class="text-sm font-semibold text-theme-primary"><%= t("admin.pricing_plan_features.entitlements_section_title") %></h3>
+          <p class="text-xs text-theme-secondary"><%= t("admin.pricing_plan_features.entitlements_section_hint") %></p>
+          <div class="grid gap-3 sm:grid-cols-2">
+            <% PlanEntitlementService.feature_flag_keys.each do |key| %>
+              <div class="flex items-center gap-2">
+                <%= hidden_field_tag "pricing_plans[#{plan.id}][entitlements][#{key}]", "0" %>
+                <%= check_box_tag "pricing_plans[#{plan.id}][entitlements][#{key}]",
+                      "1",
+                      ent_row[key] == true,
+                      id: "plan_ent_#{plan.id}_#{key}",
+                      class: "h-4 w-4 rounded border-theme-primary text-theme-accent focus:ring-theme-accent" %>
+                <label class="text-sm text-theme-primary" for="plan_ent_<%= plan.id %>_<%= key %>">
+                  <%= t("admin.pricing_plan_features.entitlement_feature_name", feature: key.to_s.humanize) %>
+                </label>
+              </div>
+            <% end %>
+          </div>
+        </div>
+
+        <label class="block text-sm font-medium text-theme-secondary mb-2" for="plan_features_<%= plan.id %>">
+          <%= t("admin.pricing_plan_features.features_label") %>
+        </label>
+        <%= text_area_tag "pricing_plans[#{plan.id}][features_text]",
+              Array(plan.features).join("\n"),
+              id: "plan_features_#{plan.id}",
+              rows: 8,
+              class: "w-full px-3 py-2 rounded-lg bg-theme-primary border border-theme-primary text-theme-primary font-mono text-sm focus:ring-2 focus:ring-theme-accent focus:border-transparent",
+              aria: { describedby: "plan_features_hint_#{plan.id}" } %>
+        <p class="text-xs text-theme-secondary mt-2" id="plan_features_hint_<%= plan.id %>">
+          <%= t("admin.pricing_plan_features.features_hint") %>
+        </p>
+      </div>
+    <% end %>
+
+    <div class="flex gap-4">
+      <%= submit_tag t("admin.pricing_plan_features.save_all"),
+            class: "px-6 py-3 bg-theme-accent text-white rounded-lg hover:bg-theme-accent-hover font-semibold cursor-pointer" %>
+      <%= link_to t("admin.pricing_plan_features.cancel"), admin_root_path,
+            class: "px-6 py-3 bg-theme-secondary text-theme-accent border border-theme-primary rounded-lg hover:bg-theme-hover font-semibold",
+            data: { turbo_frame: "_top" } %>
+    </div>
+  <% end %>
+<% end %>

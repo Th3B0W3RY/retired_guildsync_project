@@ -1,0 +1,35 @@
+<%# locals: (user:) %>
+<% su = "admin.users.show" %>
+<div id="admin_user_compliance_panel" class="bg-red-900/20 border-2 border-red-700 rounded-lg p-6 shadow-lg">
+  <h2 class="text-xl font-semibold mb-4 text-red-400"><%= t("#{su}.compliance_heading") %></h2>
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+    <%= button_to t("#{su}.force_logout"), force_logout_admin_user_compliance_index_path(user_id: user.id), method: :post,
+        class: "px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 transition-colors",
+        data: { turbo_confirm: t("#{su}.force_logout_confirm"), disable_with: false } %>
+    <%= button_to t("#{su}.reset_mfa"), reset_mfa_admin_user_compliance_index_path(user_id: user.id), method: :post,
+        class: "px-4 py-2 bg-orange-600 text-white rounded-lg hover:bg-orange-700 transition-colors",
+        data: { turbo_confirm: t("#{su}.reset_mfa_confirm"), disable_with: false } %>
+    <%= link_to t("#{su}.view_login_history"), login_history_admin_user_compliance_index_path(user_id: user.id),
+        class: "px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors text-center",
+        data: { turbo_frame: "_top" } %>
+    <% if user.locked_at.present? %>
+      <%= button_to t("#{su}.enable_account"), enable_account_admin_user_compliance_index_path(user_id: user.id), method: :post,
+          class: "px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors",
+          data: { disable_with: false } %>
+    <% else %>
+      <%= button_to t("#{su}.disable_account"), disable_account_admin_user_compliance_index_path(user_id: user.id), method: :post,
+          class: "px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 transition-colors",
+          data: { turbo_confirm: t("#{su}.disable_account_confirm"), disable_with: false } %>
+    <% end %>
+  </div>
+  <div class="mt-4">
+    <%= form_with url: reset_email_admin_user_compliance_index_path(user_id: user.id), method: :post, class: "flex gap-4 items-end" do |f| %>
+      <div class="flex-1">
+        <%= f.label :new_email, t("#{su}.reset_email_label"), class: "block text-theme-secondary font-medium mb-2" %>
+        <%= f.email_field :new_email, value: user.email, required: true,
+            class: "w-full px-4 py-2 bg-theme-primary border border-theme-secondary rounded-lg text-theme-primary focus:outline-none focus:ring-2 focus:ring-red-600" %>
+      </div>
+      <%= f.submit t("#{su}.update_email_submit"), class: "px-6 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 transition-colors", data: { disable_with: false } %>
+    <% end %>
+  </div>
+</div>

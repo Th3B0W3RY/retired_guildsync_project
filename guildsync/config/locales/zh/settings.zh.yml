@@ -1,0 +1,139 @@
+zh:
+  settings:
+    account:
+      title: 账户设置
+      subtitle: 管理账户安全和偏好
+      password:
+        title: 修改密码
+        description: 更新账户密码
+        button: 修改密码
+      discord:
+        title: Discord 账户
+        connected_as: 已连接为 %{username}
+        not_connected: Discord 账户未连接。
+        disconnect: 删除 Discord 连接
+        disconnect_confirm: 确定要断开 Discord 账户吗？连接将被移除，使用 Discord 功能需重新连接。
+        switch_to_mfa_first: 请先切换到 MFA 登录再断开 Discord
+        connect: 连接 Discord 账户
+      auth_method:
+        title: 认证方式
+        description: 选择登录账户的方式。
+        mfa:
+          title: MFA 登录
+          description: 使用密码与多重身份验证
+          button: 使用 MFA
+          button_active: 正在使用 MFA
+        discord:
+          title: Discord 登录
+          description: 使用 Discord 账户登录
+          button: 使用 Discord
+          button_active: 正在使用 Discord
+          connect_first: 请先连接 Discord 账户
+        google:
+          title: Gmail 登录
+          description: 你通过 Google 使用已绑定的 Gmail 或 Google Workspace 账户登录。
+          active: 正在使用 Gmail
+        microsoft:
+          title: Outlook 登录
+          description: 你通过 Microsoft 使用个人 Outlook、Hotmail 等账户登录。
+          active: 正在使用 Outlook
+        mfa_backup_warning: 建议设置 MFA 作为备用认证方式。
+        discord_connect_warning: 连接 Discord 可简化登录并获得更多功能。
+      language:
+        title: 语言
+        description: 选择首选语言。已登录账户默认为英语（未登录时，除非从菜单选择，否则仍可能使用浏览器语言）。
+        label: 首选语言
+        auto_detect: 默认（英语）
+        save: 保存语言
+        updated: 语言偏好已更新。
+        invalid: 无效的语言选择。
+      mfa:
+        title: 多重身份验证（MFA）
+        enabled: MFA 已启用。
+        not_enabled: 尚未设置 MFA。请配置以保护账户。
+        manage: 管理 MFA
+        setup: 设置 MFA
+      backup_codes:
+        title: 备用代码
+        description: 备用代码用于在无法使用 MFA 时重置密码并恢复账户。
+        warning: 请妥善保管此代码 — 它可绕过密码和 MFA！
+        current: 当前备用代码
+        no_codes: 你还没有有效的备用代码。
+        regenerate_button: 重新生成备用代码
+        regenerate_confirm: 重新生成将使当前代码失效，并通过邮件发送新代码。是否继续？
+        regenerate_description: 每 3 个月最多可重新生成一次备用代码。新代码将发送至你已验证的邮箱。
+        regenerated_notice: 我们已将新的备用代码发送至你已验证的邮箱。
+        cooldown_active: 你可以从 %{date} 起再次重新生成备用代码。
+        verify_email_first: 重新生成备用代码前请先验证邮箱地址。
+        how_it_works: 备用代码如何运作
+        bullet_length: 代码为 24 个字符（字母和数字）。
+        bullet_single_use: 代码仅限单次使用 — 使用后即失效。
+        bullet_use_case: 在忘记密码或无法使用 MFA 时使用备用代码。
+        bullet_store_offline: 请离线保存（打印或密码管理器）— 我们不会再次显示！
+        bullet_regenerate: 重新生成会使旧代码失效；新代码将通过邮件发送。
+      delete_account:
+        title: 删除账户
+        intro: 你可以永久关闭此账户并删除相关 GuildSync 数据。超过保留期限后不可恢复；此前运营方可能根据支持政策恢复部分数据。
+        privacy_link: 隐私政策
+        support_link: 联系支持
+        primary_cta: 我要删除我的账户
+        code_label: 邮件验证码
+        code_hint: 输入邮件中的一次性验证码（字母和数字）。
+        resend_wait: 你可以在 %{seconds} 秒后再次请求验证码。
+        continue_button: 继续删除账户
+        modal_title: 确定要删除账户吗？
+        modal_body: 将关闭账户并退出登录。超过保留期限后无法恢复。
+        modal_cancel: 取消
+        modal_confirm: 是的，删除我的账户
+        blocked:
+          generic: 在解决以下问题之前，无法删除账户。
+          already_closed: 此账户已关闭。
+          purge_in_progress: 删除已在进行中。
+          alliance_leader: 请先离开或解散你作为领袖的联盟。
+          owned_guild_has_members: 请处理你拥有且仍有其他活跃成员的公会（转让所有权、移除成员或解散公会）。
+    profile:
+      title: 个人资料设置
+      subtitle: 自定义个人资料
+      email_verification:
+        required_notice: 请在本页添加并验证真实邮箱地址以继续使用 GuildSync。
+        banner_title: 验证邮箱
+        banner_body: 你的账户使用的是占位或未验证邮箱。请在下方填写真实地址并确认我们发送的链接。
+        invalid_link: 此验证链接无效或已过期。请在下方重新请求邮件。
+        success_notice: 你的邮箱地址已验证。
+        update_failed: 无法更新你的邮箱。请重试或重新申请验证链接。
+      avatar:
+        title: 头像
+        change: 更换头像
+        upload: 上传头像
+        remove: 移除头像
+        remove_confirm: 确定要移除头像吗？
+        updated_notice: 头像已更新。
+        removed_notice: 头像已移除。
+      username:
+        title: 用户名
+        current: 当前用户名：
+        label: 新用户名
+        hint: 3–30 个字符：仅字母、数字和下划线。
+        save: 保存用户名
+        updated_notice: 用户名已更新。
+        update_failed: 无法更新用户名。
+      email:
+        title: 邮箱地址
+        current: 当前邮箱：
+        verified_badge: 已验证
+        unverified_badge: 未验证 — 请在下方填写真实邮箱
+        label: 待验证邮箱
+        placeholder: you@example.com
+        send_verification: 发送验证邮件
+        verification_sent_notice: 请查收收件箱中的确认链接。
+        pending_notice: 确认链接已发送至 %{email}。
+        taken: 该邮箱地址已被使用。
+        mailer:
+          subject: 验证您的 GuildSync 电子邮件地址
+          heading: 验证您的电子邮件地址
+          greeting: 您好，
+          body: 您请求验证此电子邮件地址以用于 GuildSync 个人资料。请使用下方按钮完成验证。
+          cta: 验证电子邮件地址
+          expires: 此链接将在 24 小时后失效。
+          fallback: 如果按钮无效，请复制此 URL 并粘贴到浏览器中：
+          ignore: 若非您本人请求此邮件验证，可忽略此邮件。

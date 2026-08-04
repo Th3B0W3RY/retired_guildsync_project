@@ -1,0 +1,38 @@
+<div class="bg-theme-card border border-theme-primary rounded-lg p-6 shadow-lg">
+  <h2 class="text-xl font-semibold mb-4"><%= t("admin.queries.index.saved_queries_heading") %></h2>
+  <div class="space-y-3">
+    <% @saved_queries.each do |key, query_def| %>
+      <div class="bg-theme-secondary rounded-lg p-4 border border-theme-primary">
+        <div class="flex justify-between items-start mb-2">
+          <div class="flex-1">
+            <h3 class="font-semibold text-theme-primary"><%= t("admin.queries.saved.#{key}.name") %></h3>
+            <p class="text-sm text-theme-secondary mt-1"><%= t("admin.queries.saved.#{key}.description") %></p>
+          </div>
+          <%= button_to t("admin.queries.index.run"), execute_admin_queries_path, method: :post,
+              params: { query_key: key },
+              class: "px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors",
+              data: { disable_with: false } %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>
+
+<div class="bg-theme-card border border-theme-primary rounded-lg p-6 shadow-lg">
+  <h2 class="text-xl font-semibold mb-4"><%= t("admin.queries.index.custom_query_heading") %></h2>
+  <p class="text-sm text-theme-secondary mb-4"><%= t("admin.queries.index.custom_query_help") %></p>
+  <%= form_with url: execute_admin_queries_path, method: :post, class: "space-y-4" do |f| %>
+    <div class="mb-4">
+      <%= f.text_area :custom_query, rows: 6,
+          placeholder: t("admin.queries.index.custom_query_placeholder"),
+          class: "w-full px-4 py-2 bg-theme-secondary border border-theme-primary rounded-lg text-theme-primary font-mono text-sm focus:outline-none focus:ring-2 focus:ring-theme-accent" %>
+    </div>
+    <%= f.submit t("admin.queries.index.execute"),
+        class: "px-6 py-2 bg-theme-accent text-white rounded-lg hover:bg-theme-accent-hover transition-colors",
+        data: { disable_with: false } %>
+  <% end %>
+</div>
+
+<div id="admin_queries_results_wrap">
+  <%= render "results_panel" %>
+</div>

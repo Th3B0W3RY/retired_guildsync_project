@@ -1,0 +1,27 @@
+# Alliance member directory + tag management (see alliance_members.* in i18n-tasks.yml)
+en:
+  alliance_members:
+    removed: "Member removed from the alliance."
+    bulk_removed: "Selected members were removed from the alliance."
+    errors:
+      not_found: "That member could not be found."
+      unauthorized: "You are not allowed to do that."
+      protected_target: "You cannot remove guild owners or custom alliance managers."
+      tags_owner_only: "Only the alliance creator can create alliance tags."
+    index:
+      title: "Alliance members"
+      subtitle: "Everyone in %{alliance_name}, grouped by guild."
+      export_csv: "Export CSV"
+      your_guild: "Your guild"
+      remove: "Remove"
+      remove_confirm: "Remove %{name} from this alliance?"
+      no_members: "No members in this guild yet."
+    tags:
+      manage_title: "Manage alliance tags"
+      name: "Tag name"
+      color: "Tag color"
+      create: "Create tag"
+      created: "Alliance tag created."
+      assigned: "Tag assigned."
+      removed: "Tag removed."
+      not_found: "Tag or member could not be found."

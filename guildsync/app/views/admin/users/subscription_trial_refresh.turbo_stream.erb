@@ -1,0 +1,9 @@
+<%= turbo_stream.update "admin_user_show_flash" do %>
+  <%= render "admin/users/compliance_flash_banner", message: @admin_trial_message, variant: :notice %>
+<% end %>
+<%= turbo_stream.replace "admin_user_subscription_trial_panel" do %>
+  <%= render "admin/users/subscription_trial_panel",
+      user: @user,
+      current_subscription: @current_subscription,
+      pricing_plans: @pricing_plans %>
+<% end %>

@@ -1,0 +1,111 @@
+<% roll_live_labels = {
+  open: t("alliances.loot_rolls.show.open"),
+  closed: t("alliances.loot_rolls.show.closed"),
+  anonymous_entry: t("alliances.loot_rolls.show.anonymous_entry"),
+  no_entries: t("alliances.loot_rolls.show.no_entries"),
+  enter: t("alliances.loot_rolls.show.enter"),
+  close: t("alliances.loot_rolls.show.close"),
+  close_confirm: t("alliances.loot_rolls.show.close_confirm"),
+  your_roll_line: t("alliances.loot_rolls.show.your_roll", roll: "___ROLL___"),
+  winner_line: t("alliances.loot_rolls.show.winner", name: "___NAME___", roll: "___ROLL___"),
+  entries_line_words: {
+    zero: t("alliances.loot_rolls.show.entries_line", count: 0),
+    one: t("alliances.loot_rolls.show.entries_line", count: 1),
+    two: t("alliances.loot_rolls.show.entries_line", count: 2),
+    few: t("alliances.loot_rolls.show.entries_line", count: 3),
+    many: t("alliances.loot_rolls.show.entries_line", count: 11),
+    other: t("alliances.loot_rolls.show.entries_line", count: 5)
+  }
+} %>
+<div class="max-w-3xl mx-auto p-6"
+     data-controller="alliance-loot-roll-live"
+     data-alliance-loot-roll-live-alliance-loot-roll-id-value="<%= @loot_roll.id %>"
+     data-alliance-loot-roll-live-current-user-id-value="<%= current_user.id %>"
+     data-alliance-loot-roll-live-anonymous-value="<%= @loot_roll.anonymous?.to_json %>"
+     data-alliance-loot-roll-live-can-manage-close-value="<%= can_manage_alliance_actions?(@alliance).to_json %>"
+     data-alliance-loot-roll-live-enter-url-value="<%= enter_alliance_alliance_loot_roll_path(@alliance, @loot_roll) %>"
+     data-alliance-loot-roll-live-close-url-value="<%= close_alliance_alliance_loot_roll_path(@alliance, @loot_roll) %>"
+     data-alliance-loot-roll-live-labels-value="<%= ERB::Util.html_escape(roll_live_labels.to_json) %>">
+  <div class="mb-4">
+    <%= link_to "&larr; #{t('alliances.loot_rolls.show.back')}".html_safe, alliance_alliance_loot_rolls_path(@alliance),
+        class: "text-sm text-theme-accent hover:text-theme-accent-hover" %>
+  </div>
+
+  <div class="bg-theme-secondary rounded-lg border border-theme-primary p-6 mb-6">
+    <div class="flex items-start justify-between">
+      <div>
+        <h1 class="text-2xl font-bold text-theme-primary"><%= @loot_roll.title %></h1>
+        <% if @loot_roll.description.present? %>
+          <p class="text-theme-secondary mt-2"><%= @loot_roll.description %></p>
+        <% end %>
+        <div class="flex items-center gap-4 mt-2 text-sm text-theme-secondary">
+          <span><%= t('alliances.loot_rolls.show.range', min: @loot_roll.min_roll, max: @loot_roll.max_roll) %></span>
+          <span>&bull;</span>
+          <span data-alliance-loot-roll-live-target="totalEntriesLine"><%= t("alliances.loot_rolls.show.entries_line", count: @loot_roll.total_entries) %></span>
+          <% if @loot_roll.deadline_at.present? %>
+            <span>&bull; <%= t('alliances.loot_rolls.show.deadline', date: @loot_roll.deadline_at.strftime("%B %d, %Y at %I:%M %p")) %></span>
+          <% end %>
+        </div>
+      </div>
+      <span class="px-3 py-1 rounded-full text-sm font-medium <%= @loot_roll.currently_open? ? 'bg-green-900/30 text-green-400' : 'bg-gray-900/30 text-gray-500' %>"
+            data-alliance-loot-roll-live-target="statusBadge">
+        <%= @loot_roll.currently_open? ? t('alliances.loot_rolls.show.open') : t('alliances.loot_rolls.show.closed') %>
+      </span>
+    </div>
+
+    <div data-alliance-loot-roll-live-target="winnerPanel">
+      <% if @loot_roll.winner_entry.present? %>
+        <div class="mt-4 p-4 bg-yellow-900/20 border border-yellow-500/30 rounded-lg">
+          <p class="text-yellow-300 font-semibold">
+            <%= t('alliances.loot_rolls.show.winner', name: @loot_roll.winner_entry.display_name, roll: @loot_roll.winner_entry.roll_value) %>
+          </p>
+        </div>
+      <% end %>
+    </div>
+
+    <div data-alliance-loot-roll-live-target="actionsRow">
+      <div class="mt-4 flex gap-3">
+        <% if @loot_roll.currently_open? && @my_entry.nil? %>
+          <%= button_to t('alliances.loot_rolls.show.enter'), enter_alliance_alliance_loot_roll_path(@alliance, @loot_roll), method: :post,
+              class: "px-6 py-2 bg-theme-accent text-white rounded-lg hover:bg-theme-accent-hover transition-colors font-semibold" %>
+        <% elsif @my_entry.present? %>
+          <div class="px-6 py-2 bg-green-900/30 text-green-400 rounded-lg font-medium">
+            <%= t('alliances.loot_rolls.show.your_roll', roll: @my_entry.roll_value) %>
+          </div>
+        <% end %>
+
+        <% if @loot_roll.currently_open? && can_manage_alliance_actions?(@alliance) %>
+          <%= button_to t('alliances.loot_rolls.show.close'), close_alliance_alliance_loot_roll_path(@alliance, @loot_roll), method: :post,
+              class: "px-6 py-2 bg-yellow-600 text-white rounded-lg hover:bg-yellow-700 transition-colors font-semibold",
+              data: { confirm: t('alliances.loot_rolls.show.close_confirm') } %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+
+  <div class="bg-theme-secondary rounded-lg border border-theme-primary p-6">
+    <h2 class="text-lg font-semibold text-theme-primary mb-4">
+      <%= t('alliances.loot_rolls.show.entries') %>
+    </h2>
+    <div data-alliance-loot-roll-live-target="entriesRegion">
+      <% if @entries.any? %>
+        <div class="space-y-2">
+          <% @entries.each_with_index do |entry, idx| %>
+            <div class="flex items-center justify-between py-2 px-3 rounded-lg
+              <%= @loot_roll.winner_entry == entry ? 'bg-yellow-900/20 border border-yellow-500/30' : 'bg-theme-primary' %>">
+              <div class="flex items-center gap-3">
+                <span class="text-theme-secondary text-sm">#<%= idx + 1 %></span>
+                <span class="text-theme-primary"><%= @loot_roll.anonymous? ? t('alliances.loot_rolls.show.anonymous_entry') : entry.display_name %></span>
+              </div>
+              <span class="text-2xl font-bold <%= @loot_roll.winner_entry == entry ? 'text-yellow-400' : 'text-theme-accent' %>">
+                <%= entry.roll_value %>
+              </span>
+            </div>
+          <% end %>
+        </div>
+      <% else %>
+        <p class="text-theme-secondary"><%= t('alliances.loot_rolls.show.no_entries') %></p>
+      <% end %>
+    </div>
+  </div>
+</div>

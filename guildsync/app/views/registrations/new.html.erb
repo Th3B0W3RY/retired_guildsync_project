@@ -1,0 +1,114 @@
+<div class="max-w-md mx-auto" data-turbo="false">
+  <% if turnstile_enforced? %>
+    <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
+  <% end %>
+
+  <h1 class="text-3xl font-bold text-theme-primary mb-8"><%= t('registrations.new.title') %></h1>
+
+  <%# Show selected plan if coming from pricing page - safe lookup %>
+  <% selected_plan = nil %>
+  <% if defined?(PricingPlan) && PricingPlan.table_exists? %>
+    <% plan_id = session[:selected_plan_id] || params[:plan_id] %>
+    <% if plan_id.present? %>
+      <% begin %>
+        <% selected_plan = PricingPlan.find_by(id: plan_id) %>
+      <% rescue => e %>
+        <% Rails.logger.warn("Could not load plan #{plan_id}: #{e.message}") %>
+      <% end %>
+    <% end %>
+  <% end %>
+  
+  <% if selected_plan %>
+    <div class="mb-6 p-4 bg-theme-card border border-theme-primary rounded-lg">
+      <p class="text-theme-secondary text-sm mb-1"><%= t('registrations.new.signing_up_for') %></p>
+      <p class="text-theme-primary font-semibold text-lg"><%= selected_plan.name %></p>
+      <% if !selected_plan.free? && selected_plan.period != 'forever' %>
+        <p class="text-theme-secondary text-sm mt-1"><%= t('registrations.new.trial_after_mfa') %></p>
+      <% end %>
+    </div>
+  <% end %>
+
+  <%= form_with model: @user, url: sign_up_path, method: :post, local: true, data: { turbo: false }, class: "space-y-6" do |f| %>
+    <% if @user.errors.any? %>
+      <div class="p-4 bg-red-900/50 border border-red-700 text-red-100 rounded-lg mb-4">
+        <ul class="list-disc list-inside space-y-1">
+          <% @user.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+    <%# Hidden field to pass selected_plan_id through form submission - only if plan exists %>
+    <% if selected_plan %>
+      <%= hidden_field_tag :selected_plan_id, selected_plan.id %>
+    <% elsif session[:selected_plan_id].present? || params[:plan_id].present? %>
+      <%# Fallback: pass through if we have a plan_id even if we couldn't load it (will be validated in controller) %>
+      <%= hidden_field_tag :selected_plan_id, session[:selected_plan_id] || params[:plan_id] %>
+    <% end %>
+
+    <div>
+      <%= f.label :email, t('common.labels.email'), class: "block mb-2 text-theme-secondary font-medium" %>
+      <%= f.email_field :email, required: true, autofocus: true, autocomplete: "email",
+          class: "w-full px-4 py-3 bg-theme-secondary border border-theme-primary rounded-lg text-theme-primary focus:outline-none focus:ring-2 focus:ring-theme-accent focus:border-transparent transition-all" %>
+    </div>
+    
+    <div>
+      <%= f.label :username, t('registrations.new.username'), class: "block mb-2 text-theme-secondary font-medium" %>
+      <%= f.text_field :username, required: true, autocomplete: "username",
+          class: "w-full px-4 py-3 bg-theme-secondary border border-theme-primary rounded-lg text-theme-primary focus:outline-none focus:ring-2 focus:ring-theme-accent focus:border-transparent transition-all" %>
+      <p class="mt-1 text-sm text-theme-secondary"><%= t('registrations.new.username_hint') %></p>
+    </div>
+    
+    <div>
+      <%= f.label :password, t('common.labels.password'), class: "block mb-2 text-theme-secondary font-medium" %>
+      <%= f.password_field :password, required: true, autocomplete: "new-password",
+          minlength: Devise.password_length.first,
+          class: "w-full px-4 py-3 bg-theme-secondary border border-theme-primary rounded-lg text-theme-primary focus:outline-none focus:ring-2 focus:ring-theme-accent focus:border-transparent transition-all" %>
+      <p class="mt-1 text-sm text-theme-secondary"><%= t('registrations.new.password_hint') %></p>
+    </div>
+    
+    <div>
+      <%= f.label :password_confirmation, t('registrations.new.confirm_password'), class: "block mb-2 text-theme-secondary font-medium" %>
+      <%= f.password_field :password_confirmation, required: true, autocomplete: "new-password",
+          class: "w-full px-4 py-3 bg-theme-secondary border border-theme-primary rounded-lg text-theme-primary focus:outline-none focus:ring-2 focus:ring-theme-accent focus:border-transparent transition-all" %>
+    </div>
+
+    <% if turnstile_enforced? %>
+      <div class="cf-turnstile" data-sitekey="<%= turnstile_site_key %>" data-theme="dark"></div>
+    <% end %>
+    
+    <div class="space-y-3">
+      <%= f.submit t('registrations.new.create_account_button'), 
+          class: "w-full px-4 py-3 bg-theme-accent text-white rounded-lg hover:bg-theme-accent-hover transition-colors cursor-pointer font-semibold text-lg shadow-lg" %>
+    </div>
+  <% end %>
+
+  <div class="relative flex items-center mt-4 mb-4">
+    <div class="flex-grow border-t border-theme-primary"></div>
+    <span class="px-4 text-sm text-theme-secondary"><%= t('common.or') %></span>
+    <div class="flex-grow border-t border-theme-primary"></div>
+  </div>
+
+  <%= form_with url: discord_login_path, method: :post, local: true, data: { turbo: false }, class: "w-full block", id: "discord-signup-form" do %>
+    <%= hidden_field_tag :signup, "true" %>
+    <% if turnstile_enforced? %>
+      <div class="cf-turnstile mb-4" data-sitekey="<%= turnstile_site_key %>" data-theme="dark"></div>
+    <% end %>
+    <button type="submit" id="discord-signup-btn"
+        class="w-full flex items-center justify-center gap-3 px-4 py-3 bg-[#5865F2] text-white rounded-lg hover:bg-[#4752C4] transition-colors cursor-pointer font-semibold text-lg shadow-lg border-0">
+      <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+        <path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515a.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0a12.64 12.64 0 0 0-.617-1.25a.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057a19.9 19.9 0 0 0 5.993 3.03a.078.078 0 0 0 .084-.028a14.09 14.09 0 0 0 1.226-1.994a.076.076 0 0 0-.041-.106a13.107 13.107 0 0 1-1.872-.892a.077.077 0 0 1-.008-.128a10.2 10.2 0 0 0 .372-.292a.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127a12.299 12.299 0 0 1-1.873.892a.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028a19.839 19.839 0 0 0 6.002-3.03a.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419c0-1.333.956-2.419 2.157-2.419c1.21 0 2.176 1.096 2.157 2.42c0 1.333-.956 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419c0-1.333.955-2.419 2.157-2.419c1.21 0 2.176 1.096 2.157 2.42c0 1.333-.946 2.418-2.157 2.418z"/>
+      </svg>
+      <span><%= t('registrations.new.sign_up_with_discord') %></span>
+    </button>
+  <% end %>
+
+  <div class="mt-8 pt-6 border-t border-theme-primary">
+    <p class="text-theme-secondary text-center">
+      <%= t('registrations.new.have_account') %> 
+      <%= link_to t('registrations.new.sign_in_here'), login_path, class: "text-theme-accent hover:text-dark-accent-hover font-medium underline" %>
+    </p>
+  </div>
+</div>
+

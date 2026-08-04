@@ -1,0 +1,33 @@
+<div class="max-w-3xl mx-auto p-6 space-y-6">
+  <div class="flex items-start justify-between gap-4">
+    <div>
+      <h1 class="text-3xl font-bold text-theme-primary mb-2"><%= t("alliances.join_requests.index.title") %></h1>
+      <p class="text-theme-secondary"><%= t("alliances.join_requests.index.subtitle", alliance_name: @alliance.name) %></p>
+    </div>
+    <%= link_to t("alliances.join_requests.index.back"), alliance_path(@alliance),
+        class: "text-sm text-theme-accent hover:text-theme-accent-hover whitespace-nowrap" %>
+  </div>
+
+  <% if @pending.any? %>
+    <ul class="space-y-3">
+      <% @pending.each do |jr| %>
+        <li class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 bg-theme-secondary border border-theme-primary rounded-lg p-4">
+          <div>
+            <p class="font-semibold text-theme-primary"><%= jr.requesting_guild.name %> → <%= @alliance.name %></p>
+            <p class="text-sm text-theme-secondary"><%= t("alliances.index.invite_from", name: jr.requested_by_user.username) %></p>
+          </div>
+          <div class="flex gap-2">
+            <%= button_to t("alliances.index.accept"), accept_alliance_alliance_join_request_path(@alliance, jr),
+                method: :post,
+                class: "px-4 py-2 bg-theme-accent text-white rounded-lg hover:bg-theme-accent-hover font-semibold" %>
+            <%= button_to t("alliances.index.decline"), decline_alliance_alliance_join_request_path(@alliance, jr),
+                method: :post,
+                class: "px-4 py-2 bg-theme-secondary text-theme-primary rounded-lg border border-theme-primary font-semibold" %>
+          </div>
+        </li>
+      <% end %>
+    </ul>
+  <% else %>
+    <p class="text-theme-secondary"><%= t("alliances.join_requests.index.none") %></p>
+  <% end %>
+</div>

@@ -1,0 +1,25 @@
+# Sidekiq Configuration File
+# This file configures Sidekiq worker behavior
+#
+# Start Sidekiq with: bundle exec sidekiq
+# Or with config: bundle exec sidekiq -C config/sidekiq.yml
+
+:concurrency: <%= ENV.fetch("SIDEKIQ_CONCURRENCY", "10").to_i %>
+:queues:
+  - default
+  - mailers
+  - critical
+  - low
+
+# Retry configuration
+:max_retries: 3
+
+# Timeout configuration
+:timeout: 25
+
+# Logging
+:verbose: true
+
+# Process title
+:tag: GuildSync
+

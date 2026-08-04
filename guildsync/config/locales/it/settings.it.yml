@@ -1,0 +1,139 @@
+it:
+  settings:
+    account:
+      title: Impostazioni account
+      subtitle: Gestisci sicurezza e preferenze dell'account
+      password:
+        title: Modifica password
+        description: Aggiorna la password dell'account
+        button: Modifica password
+      discord:
+        title: Account Discord
+        connected_as: Connesso come %{username}
+        not_connected: Account Discord non connesso
+        disconnect: Rimuovi connessione Discord
+        disconnect_confirm: Sei sicuro di voler disconnettere l'account Discord? La connessione verrà rimossa; dovrai riconnetterti per usare le funzioni Discord.
+        switch_to_mfa_first: Passa prima all'accesso MFA per disconnettere Discord
+        connect: Connetti account Discord
+      auth_method:
+        title: Metodo di autenticazione
+        description: Scegli come accedere al tuo account.
+        mfa:
+          title: Accesso MFA
+          description: Password e autenticazione a più fattori
+          button: Usa MFA
+          button_active: MFA attivo
+        discord:
+          title: Accesso Discord
+          description: Accedi con il tuo account Discord
+          button: Usa Discord
+          button_active: Discord attivo
+          connect_first: Connetti prima l'account Discord
+        google:
+          title: Accesso Gmail
+          description: Accedi con Google usando l'account Gmail o Google Workspace collegato.
+          active: Gmail attivo
+        microsoft:
+          title: Accesso Outlook
+          description: Accedi con Microsoft usando il tuo account personale (Outlook, Hotmail, ecc.).
+          active: Outlook attivo
+        mfa_backup_warning: Valuta MFA come metodo di backup.
+        discord_connect_warning: Collegare Discord può semplificare l'accesso e arricchire le funzionalità.
+      language:
+        title: Lingua
+        description: Scegli la lingua preferita. Predefinito inglese per account connessi (fuori sessione può ancora applicarsi la lingua del browser salvo scelta dal menu).
+        label: Lingua preferita
+        auto_detect: Predefinito (inglese)
+        save: Salva lingua
+        updated: Preferenza lingua aggiornata.
+        invalid: Selezione lingua non valida.
+      mfa:
+        title: Autenticazione a più fattori (MFA)
+        enabled: MFA è abilitata.
+        not_enabled: MFA non è configurata. Configurala per proteggere l'account.
+        manage: Gestisci MFA
+        setup: Configura MFA
+      backup_codes:
+        title: Codice di backup
+        description: Il codice di backup consente di reimpostare la password e recuperare l'account se perdi l'accesso a MFA.
+        warning: "Conserva questo codice in modo sicuro: può aggirare password e MFA!"
+        current: Il tuo codice di backup attuale
+        no_codes: Non hai un codice di backup attivo.
+        regenerate_button: Rigenera codice di backup
+        regenerate_confirm: La rigenerazione invaliderà il codice attuale e ti invieremo uno nuovo via e-mail. Continuare?
+        regenerate_description: Puoi rigenerare il codice di backup al massimo ogni 3 mesi. Il nuovo codice sarà inviato al tuo indirizzo e-mail verificato.
+        regenerated_notice: Abbiamo inviato il nuovo codice di backup al tuo indirizzo e-mail verificato.
+        cooldown_active: Puoi rigenerare il codice di backup il %{date}.
+        verify_email_first: Verifica prima il tuo indirizzo e-mail prima di rigenerare il codice di backup.
+        how_it_works: Come funziona il codice di backup
+        bullet_length: Il codice è di 24 caratteri (lettere e numeri).
+        bullet_single_use: Il codice è monouso — dopo l'uso non è più valido.
+        bullet_use_case: Usa il codice di backup se dimentichi la password O perdi l'accesso a MFA.
+        bullet_store_offline: Conservalo offline (stampa o gestore password) — non lo mostriamo di nuovo!
+        bullet_regenerate: Rigenerando invalidi il codice precedente; te ne inviamo uno nuovo via e-mail.
+      delete_account:
+        title: Elimina account
+        intro: Puoi chiudere definitivamente questo account ed eliminare i dati GuildSync associati. Dopo il nostro periodo di conservazione è irreversibile; prima, le operazioni possono ripristinare alcuni dati come descritto nelle politiche di supporto.
+        privacy_link: Informativa sulla privacy
+        support_link: Contatta il supporto
+        primary_cta: Voglio eliminare il mio account
+        code_label: Codice di verifica e-mail
+        code_hint: Inserisci il codice monouso ricevuto via e-mail (lettere e numeri).
+        resend_wait: Puoi richiedere un altro codice tra %{seconds} secondi.
+        continue_button: Continua per eliminare l'account
+        modal_title: Vuoi davvero eliminare il tuo account?
+        modal_body: Il tuo account verrà chiuso e verrai disconnesso. Dopo il periodo di conservazione non sarà più possibile annullare.
+        modal_cancel: Annulla
+        modal_confirm: Sì, elimina il mio account
+        blocked:
+          generic: L'eliminazione dell'account è bloccata finché non risolvi quanto segue.
+          already_closed: Questo account è già chiuso.
+          purge_in_progress: L'eliminazione è già in corso.
+          alliance_leader: Abbandona o sciogli prima le alleanze che guidi.
+          owned_guild_has_members: Gestisci le gilde di cui sei proprietario e che hanno ancora altri membri attivi (trasferisci la proprietà, rimuovi i membri o sciogli la gilda).
+    profile:
+      title: Impostazioni profilo
+      subtitle: Personalizza il tuo profilo
+      email_verification:
+        required_notice: Aggiungi e verifica un indirizzo e-mail reale in questa pagina per continuare a usare GuildSync.
+        banner_title: Verifica la tua e-mail
+        banner_body: Il tuo account usa un'email segnaposto o non verificata. Inserisci un indirizzo reale sotto e conferma il link che invieremo.
+        invalid_link: Questo link di verifica non è valido o è scaduto. Richiedi una nuova e-mail sotto.
+        success_notice: Il tuo indirizzo e-mail è verificato.
+        update_failed: Non siamo riusciti ad aggiornare la tua e-mail. Riprova o richiedi un nuovo link di verifica.
+      avatar:
+        title: Avatar profilo
+        change: Modifica avatar
+        upload: Carica avatar
+        remove: Rimuovi avatar
+        remove_confirm: Rimuovere l'avatar?
+        updated_notice: Avatar aggiornato con successo.
+        removed_notice: Avatar rimosso con successo.
+      username:
+        title: Nome utente
+        current: "Nome utente corrente:"
+        label: Nuovo nome utente
+        hint: "Da 3 a 30 caratteri: lettere, numeri e underscore."
+        save: Salva nome utente
+        updated_notice: Nome utente aggiornato.
+        update_failed: Impossibile aggiornare il nome utente.
+      email:
+        title: Indirizzo e-mail
+        current: "Indirizzo e-mail attuale:"
+        verified_badge: Verificato
+        unverified_badge: Non verificato — inserisci una email reale sotto
+        label: Email da verificare
+        placeholder: tu@esempio.com
+        send_verification: Invia e-mail di verifica
+        verification_sent_notice: Controlla la posta in arrivo per il link di conferma.
+        pending_notice: È stato inviato un link di conferma a %{email}.
+        taken: "Quell'indirizzo e-mail è già in uso."
+        mailer:
+          subject: Verifica il tuo indirizzo email GuildSync
+          heading: Verifica il tuo indirizzo email
+          greeting: Ciao,
+          body: Hai richiesto di verificare questo indirizzo email per il tuo profilo GuildSync. Usa il pulsante qui sotto per completare la verifica.
+          cta: Verifica indirizzo email
+          expires: Questo link scade tra 24 ore.
+          fallback: "Se il pulsante non funziona, copia e incolla questo URL nel browser:"
+          ignore: Se non hai richiesto questa verifica email, puoi ignorare questo messaggio.

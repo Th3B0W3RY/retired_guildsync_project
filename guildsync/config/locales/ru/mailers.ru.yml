@@ -1,0 +1,6 @@
+---
+ru:
+  mailers:
+    trial_mailer:
+      trial_expiring:
+        subject: Срок пробного периода GuildSync скоро истекает

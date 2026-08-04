@@ -1,0 +1,22 @@
+<div class="space-y-6">
+  <div>
+    <h1 class="text-4xl font-bold text-theme-primary mb-2"><%= t('roadmap.release_notes.title') %></h1>
+    <p class="text-theme-secondary text-lg"><%= t('roadmap.release_notes.version', version: Rails.application.config.version || "1.0.0") %></p>
+  </div>
+
+  <% if @release_notes_html.present? %>
+    <div class="release-notes-content prose prose-invert max-w-none text-theme-secondary">
+      <%= sanitize @release_notes_html, tags: %w[h1 h2 h3 h4 h5 h6 p div span ul ol li a strong em b i code pre blockquote hr br table thead tbody tr th td], attributes: %w[href class id style] %>
+    </div>
+    <p class="text-sm text-theme-secondary mt-4">
+      <%= link_to "View on Zoho Support", SiteSetting.release_notes_url, target: "_blank", rel: "noopener noreferrer", class: "text-theme-accent hover:underline" %>
+    </p>
+  <% else %>
+    <div class="bg-theme-secondary rounded-lg border border-theme-primary p-6">
+      <p class="text-theme-secondary mb-2">Release notes content is not loaded yet. An admin can use <strong>Scrape Release Notes</strong> in the admin panel to load them here.</p>
+      <p class="text-theme-secondary">
+        <%= link_to "Open release notes on Zoho Support", SiteSetting.release_notes_url, target: "_blank", rel: "noopener noreferrer", class: "text-theme-accent hover:underline font-medium" %>
+      </p>
+    </div>
+  <% end %>
+</div>

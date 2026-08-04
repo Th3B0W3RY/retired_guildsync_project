@@ -1,0 +1,448 @@
+# See https://guides.rubyonrails.org/i18n.html for Rails I18n guide
+
+ja:
+  # ============================================================================
+  # APPLICATION-WIDE
+  # ============================================================================
+  app_name: "GuildSync"
+
+  plan_entitlements:
+    upgrade_required: "この機能を利用するにはプランをアップグレードしてください。"
+
+  signup_plan_choices:
+    title: "始め方を選ぶ"
+    intro: "%{plan}を選択しました。14日間のBasicトライアルを開始するか、%{plan}の有料チェックアウトに進めます。"
+    basic_trial_button: "14日間のBasicトライアルを開始"
+    pay_for_plan_button: "有料チェックアウトへ進む — %{plan}"
+    basic_trial_started: "Basicトライアルが有効になりました。GuildSyncへようこそ。"
+    trial_unavailable: "このアカウントではトライアルを利用できません。"
+    missing_basic: "Basicプランが設定されていません。サポートにお問い合わせください。"
+
+  account_creation:
+    invalid_email: "Enter a valid email address."
+    sent_notice: "We sent a verification email. Please check your inbox to continue creating your account."
+    resent_notice: "We sent another verification email. Please use the latest link."
+    start_over: "Start account creation again."
+    already_verified: "This email has already been verified."
+    invalid_or_expired: "That verification link is invalid or expired. Request a new verification email."
+    verified_notice: "Email successfully verified."
+    email_taken: "That email address is already connected to an account."
+    use_new_flow: "Start by verifying your email address."
+    resend_cooldown: "Please wait %{seconds} seconds before resending the verification email."
+    show:
+      title: "Create Account"
+      subtitle: "Enter your email address first. We will send a verification link before you choose MFA or Discord."
+      submit: "Send Verification Email"
+      have_account: "Already have an account?"
+    sent:
+      title: "Check your inbox"
+      body: "We sent a verification email. Please check your inbox to continue creating your account."
+      latest_link: "If you request another email, only the latest verification link will work."
+      resend: "Resend verification email"
+      change_email: "Use a different email"
+    backup_code:
+      title: "Save your backup code"
+      body: "This one-time recovery code can help you recover your account if you lose access. We will not show it again."
+      confirm_text: "I've copied my backup code and I have saved it somewhere safe."
+      confirm: "Confirm backup code saved"
+      confirm_required: "Confirm that you saved your backup code before continuing."
+      must_confirm: "Save and confirm your backup code before continuing."
+    choose:
+      title: "Choose how to finish"
+      subtitle: "Your email is verified and your backup code is saved. Choose how you want to finish account setup."
+      mfa:
+        title: "Create account with MFA"
+        body: "Use a password plus an authenticator app for secure sign-in."
+      discord:
+        title: "Create account with Discord"
+        body: "Continue through Discord OAuth using your verified email address."
+      google:
+        title: "Create account with Gmail"
+        body: "Use Gmail sign-in with the same email you verified (Gmail or Google Workspace)."
+      microsoft:
+        title: "Create account with Outlook"
+        body: "Use Outlook sign-in with the same email you verified (personal Microsoft accounts such as Outlook.com and Hotmail)."
+    standard:
+      title: "Finish account setup"
+      submit: "Continue to MFA Setup"
+      created: "Account created. Now set up MFA."
+    gated_oauth:
+      verify_first: "Verify your email and save your backup code before continuing with Discord, Gmail, or Outlook."
+    mailer:
+      signoff: "- GuildSync Team"
+      verify_email:
+        subject: "GuildSync のメールアドレスを確認してください"
+        heading: "メールアドレスを確認してください"
+        greeting: "こんにちは、"
+        body: "GuildSync へようこそ。このメールアドレスを確認してアカウント作成を続けてください。"
+        cta: "メールアドレスを確認"
+        expires: "このリンクの有効期限は24時間です。"
+        fallback: "ボタンが動作しない場合は、この URL をコピーしてブラウザに貼り付けてください:"
+        ignore: "GuildSync アカウントを作成していない場合は、このメールを無視してかまいません。"
+      backup_code_regenerated:
+        subject: "Your new GuildSync backup code"
+        heading: "Your backup code was regenerated"
+        greeting: "Hi %{username},"
+        body: "A new GuildSync backup code was generated for your account. Store this code somewhere safe."
+        warning: "Your previous backup code has been invalidated."
+        store_safely: "Keep this code offline or in a trusted password manager. We will not show it again."
+        unrequested: "If you did not request this, secure your account and contact support."
+  
+  api:
+    auth:
+      captcha_invalid: "セキュリティ確認に失敗しました。もう一度お試しください。"
+      invalid_sign_in: "メールアドレスまたはパスワードが正しくありません。"
+      me_user_missing: "ユーザーが見つかりません。"
+      authentication_failed: "認証に失敗しました。"
+      internal_error: "サーバー内部エラーが発生しました。"
+      user_created: "ユーザーを作成しました。"
+      confirmation_required: "サインインする前に、メールでアカウントを確認してください。"
+      unconfirmed_sign_in: "サインインする前にメールアドレスを確認してください。"
+      archived_sign_in: "このアカウントはアーカイブされており、サインインできません。"
+      signed_in: "サインインに成功しました。"
+      signed_out: "サインアウトしました。"
+      pending_registration_sign_in: "Finish creating your account on the web before signing in."
+    discord:
+      not_connected: "このギルドではDiscordが接続されていません。"
+      fetch_channels_failed: "チャンネルの取得に失敗しました: %{message}"
+      channels_updated: "チャンネルを更新しました。"
+      event_not_found: "イベントが見つかりません。"
+      missing_discord_identity: "discord_user_id または discord_username がありません。"
+      signup_success: "イベントへの登録が完了しました。"
+      signup_failed: "登録に失敗しました: %{message}"
+    users:
+      account_archived: "アカウントをアーカイブしました。"
+    v1:
+      authentication_required: "認証が必要です。"
+      not_authorized: "この操作を実行する権限がありません。"
+      resource_not_found: "リソースが見つかりません。"
+      guild_id_required: "ギルドIDが必要です。"
+
+  gear:
+    activity:
+      uploaded: "ステータス画像をアップロード（%{game}）"
+      uploaded_shared_guild_plan: "ステータス画像をアップロード（%{game}）；OCRはギルドリーダー%{leader_name}の枠で計上"
+      requested: "%{name}にステータス更新を依頼"
+    api:
+      screenshot_required: "スクリーンショットが必要です"
+      invalid_file_type: "ファイル形式が無効です。PNG、JPEG、またはWebPをアップロードしてください。"
+      file_too_large: "ファイルが大きすぎます。最大サイズは%{max_mb}MBです。"
+      specify_game: "この装備スクリーンショットがどのゲーム用か指定してください"
+      guild_needs_game: "ギルドは少なくとも1つのゲームに関連付けられている必要があります"
+      ocr_failed: "OCR処理に失敗しました"
+      stats_not_extracted: "スクリーンショットは保存しましたが、ステータスを読み取れませんでした。キャラクターのステータス画面をより鮮明に撮影してお試しください。"
+      mfa_required: "本人確認（MFA）を完了してから、もう一度アップロードしてください。"
+      attach_screenshot_failed: "スクリーンショットを添付できませんでした"
+      attach_screenshot_invalid: "添付に失敗しました。有効な画像で10MB未満であることを確認してください。"
+      snapshot_save_failed: "装備スナップショットを保存できませんでした"
+      upload_error: "アップロードの処理中にエラーが発生しました"
+      request_already_pending: "%{name}の装備更新リクエストは既に保留中です"
+      request_created: "%{name}の装備更新をリクエストしました"
+      create_request_failed: "装備リクエストを作成できませんでした"
+      no_members_match: "選択した条件に一致するメンバーがいません"
+      all_members_already_pending: "一致するメンバーはすべて既に装備リクエストが保留中です"
+      bulk_create_failed: "装備リクエストを作成できませんでした"
+      bulk_process_failed: "一括リクエストを処理できませんでした"
+      guild_id_required: "ギルドIDが必要です"
+      not_a_member: "このギルドのメンバーではありません"
+      reach_guildsync_support: "解決しない場合は GuildSync サポートまでお問い合わせください。"
+      created_requests:
+        one: "装備更新リクエストを1件作成しました"
+        other: "装備更新リクエストを%{count}件作成しました"
+
+  discord_roles:
+    api:
+      fetch_failed: "Discordロールの取得に失敗しました: %{message}"
+      role_id_and_name_required: "role_id と role_name が必要です"
+      already_synced: "このロールは既に同期済みです"
+      synced_successfully: "ロールを同期しました"
+      sync_failed: "ロールの同期に失敗しました: %{message}"
+      role_id_required: "role_id が必要です"
+      removed_successfully: "ロール同期を削除しました"
+      sync_not_found: "ロール同期が見つかりません"
+      remove_sync_failed: "ロール同期の削除に失敗しました: %{message}"
+      per_role_sync_failed: "ロール %{name} の同期に失敗しました: %{message}"
+      sync_all_failed: "すべてのロールの同期に失敗しました: %{message}"
+      destroy_all_failed: "すべてのロール同期の削除に失敗しました: %{message}"
+      synced_roles_count:
+        zero: "0件のロールを同期しました"
+        one: "1件のロールを同期しました"
+        other: "%{count}件のロールを同期しました"
+      removed_syncs_count:
+        zero: "0件のロール同期を削除しました"
+        one: "1件のロール同期を削除しました"
+        other: "%{count}件のロール同期を削除しました"
+
+  # Language names (always in native script so users can identify their language)
+  language_names:
+    en: "English"
+    de: "Deutsch"
+    es: "Español"
+    fr: "Français"
+    it: "Italiano"
+    ja: "日本語"
+    ko: "한국어"
+    pt: "Português"
+    ru: "Русский"
+    zh: "中文"
+
+  flash:
+    signed_in: "ログインしました。"
+    signed_out: "ログアウトしました。"
+    created: "作成しました。"
+    saved: "保存しました。"
+    updated: "更新しました。"
+
+  image_attachments:
+    invalid_type: "JPEG、PNG、GIF、または WebP の画像である必要があります"
+    too_large: "%{max_mb} MB 以下である必要があります"
+
+  # ============================================================================
+  # COMMON UI ELEMENTS
+  # ============================================================================
+  common:
+    "yes": "はい"
+    "no": "いいえ"
+    buttons:
+      sign_in: "サインイン"
+      sign_out: "サインアウト"
+      sign_up: "サインアップ"
+      create_account: "Create Account"
+      cancel: "キャンセル"
+      save: "保存"
+      create: "作成"
+      update: "更新"
+      delete: "削除"
+      submit: "送信"
+      confirm: "確認"
+      back: "戻る"
+      next: "次へ"
+      close: "閉じる"
+      add: "追加"
+      remove: "削除"
+      edit: "編集"
+      view: "表示"
+      logout: "ログアウト"
+      select: "選択"
+
+    labels:
+      email: "メールアドレス"
+      password: "パスワード"
+      name: "名前"
+      description: "説明"
+      status: "ステータス"
+      actions: "操作"
+      owner: "オーナー"
+      members: "メンバー"
+      created_at: "作成日"
+      updated_at: "更新日"
+      primary: "メイン"
+
+    placeholders:
+      search: "検索..."
+      email: "メールアドレスを入力"
+      password: "パスワードを入力"
+      enter_name: "名前を入力..."
+
+    messages:
+      searching: "検索中..."
+      no_results: "結果が見つかりません"
+      loading: "読み込み中..."
+      success: "成功しました！"
+      error: "エラーが発生しました"
+      confirm_delete: "これを削除してもよろしいですか？"
+      required_field: "この項目は必須です"
+      popup_blocked: "ポップアップがブロックされました。このサイトでポップアップを許可して、もう一度お試しください。"
+
+    or: "または"
+    and: "および"
+    ago: "前"
+    none: "なし"
+    all: "すべて"
+    pending: "保留中"
+    active: "有効"
+    inactive: "無効"
+    connected: "接続済み"
+    disconnected: "未接続"
+
+  # ============================================================================
+  # EVENTS
+  # ============================================================================
+  events:
+    schedule:
+      title: "イベントを作成"
+      subtitle: "ギルドのイベントを作成・管理します"
+      coming_soon: "イベント作成機能は近日対応予定です！"
+      back_to_dashboard: "ダッシュボードに戻る"
+    guild_battle:
+      title: "ギルドバトルを予定"
+      subtitle: "ギルド間の対戦を企画します"
+      coming_soon: "ギルドバトル作成機能は近日対応予定です！"
+      back_to_dashboard: "ダッシュボードに戻る"
+
+  # ============================================================================
+  # SUPPORT
+  # ============================================================================
+  support:
+    disclaimer: "サポートのお問い合わせはすべてサポートセンター経由で処理されます。GuildSyncアカウントとサポートセンターアカウントは別であり、連携されていません。"
+    contact:
+      title: "サポートに連絡"
+      subtitle: "ギルド管理に関するサポートを受けられます"
+      email_support: "メールサポート"
+      send_email: "以下のメールアドレスへご連絡ください:"
+      response_time: "返信時間"
+      response_time_note: "通常24〜48時間以内に返信します。"
+      back_to_dashboard: "ダッシュボードに戻る"
+      english_only_notice: "サポート対応は英語のみです"
+
+  # ============================================================================
+  # ANALYTICS
+  # ============================================================================
+  analytics:
+    guilds:
+      title: "ギルド分析"
+      subtitle: "ギルドのパフォーマンスとインサイトを追跡します"
+      coming_soon: "ギルド分析機能は近日対応予定です！"
+      back_to_dashboard: "ダッシュボードに戻る"
+
+  # ============================================================================
+  # LEADERBOARD
+  # ============================================================================
+  leaderboard:
+    index:
+      title: "ギルド参加ランキング"
+      subtitle: "所属ギルド全体の加重スコア：イベントの時間通り参加と投票は大きく、完了したルートロールのエントリーは少しだけ加点されます。"
+      rank: "順位"
+      discord_username: "Discordユーザー名"
+      discord_server: "Discordサーバー"
+      score: "スコア"
+      no_data: "参加データはまだありません。"
+      no_data_hint: "イベントを組み、アンケートを実施し、ルートロールを締めてランキングに反映させましょう。"
+
+  # ============================================================================
+  # MESSAGE CENTER
+  # ============================================================================
+  message_center:
+    title: "メッセージセンター"
+    subtitle: "ギルドメンバーや他のギルドオーナーにメッセージを送ります"
+    search_placeholder: "ユーザー名またはメールで検索..."
+    select_recipient: "受信者を選んでメッセージを開始"
+    no_recipient: "上の検索から相手を選ぶと、メッセージの表示や送信ができます。"
+    type_member: "ギルドメンバー"
+    type_owner: "ギルドオーナー"
+    send: "送信"
+    sending: "送信中..."
+    invalid_recipient: "無効な受信者です。"
+    content_blank: "メッセージを空にすることはできません。"
+    access_denied: "このギルドのメッセージセンターにアクセスする権限がありません。"
+
+  # ============================================================================
+  # JOIN GUILD (one-time invite link)
+  # ============================================================================
+  join:
+    title: "このギルドに参加"
+    subtitle: "%{guild_name} への招待が届いています。"
+    cta: "既存のアカウントでサインインするか、アカウントを作成して参加してください。"
+    sign_in: "サインイン"
+    create_account: "アカウント作成"
+    one_time_hint: "この招待リンクは1回限りです。参加後は使えなくなります。"
+    invalid_title: "無効または使用済みの招待リンク"
+    invalid_message: "この招待リンクは無効か、すでに使用されています。"
+    back_home: "ホームに戻る"
+    invalid_or_used: "この招待リンクは無効か、すでに使用されています。"
+    already_member: "すでに %{name} のメンバーです。"
+    welcome: "%{name} へようこそ！"
+    invite_link_section: "ワンタイム招待リンク"
+    invite_link_description: "誰でも1回だけ使ってこのギルドに参加できるリンクを生成します。新規メンバーにはギルド設定のデフォルトロールが付与されます。"
+    generate_link: "招待リンクを生成"
+    link_copied: "リンクをクリップボードにコピーしました。"
+    copy_link: "リンクをコピー"
+    no_link_yet: "「招待リンクを生成」をクリックしてワンタイムリンクを作成し、共有してください。相手はサインインまたはアカウント作成後、デフォルトロールで参加します。"
+    invite_links_limit: "このギルドには既に%{count}件のアクティブな招待リンクがあります。削除するか期限切れになるまで待ってから新しく作成してください。"
+    conflicting_alliance: "別のアライアンスに所属しているため、このギルドに参加できません。先に現在のアライアンスを離れてください。"
+
+  # ============================================================================
+  # STORAGE
+  # ============================================================================
+  storage:
+    show:
+      title: "ファイルストレージ"
+      subtitle: "%{guild_name} のファイルを管理"
+      root: "ルート"
+      new_folder: "新しいフォルダ"
+      select: "選択"
+      files_selected:
+        zero: "0件のファイルを選択中"
+        one: "1件のファイルを選択中"
+        other: "%{count} 件のファイルを選択中"
+      move: "移動"
+      delete: "削除"
+      cancel: "キャンセル"
+      folders: "フォルダ"
+      no_folders_yet: "まだフォルダはありません"
+      drag_drop: "ファイルをドラッグ&ドロップ"
+      paste_clipboard: "またはクリップボードから貼り付け（Ctrl+V / Cmd+V）"
+      browse_files: "ファイルを参照"
+      download: "ダウンロード"
+      no_files_yet: "まだファイルはありません"
+      no_files_uploaded: "この場所にはまだファイルがアップロードされていません。"
+      create_folder_title: "フォルダを作成"
+      folder_name: "フォルダ名"
+      create: "作成"
+      move_files_title: "ファイルを移動"
+      select_folder: "フォルダを選択"
+      confirm_delete_title: "削除確認"
+      confirm_delete_message: "この項目を削除してもよろしいですか？"
+
+  # ============================================================================
+  # MEMBER DASHBOARD
+  # ============================================================================
+  member_dashboard:
+    index:
+      title: "ギルドを見る"
+      subtitle: "利用可能なギルドを閲覧し、所属状況を管理します。"
+      my_applications: "自分の申請"
+      no_applications_yet: "まだ申請はありません。"
+      view_all_applications: "すべての申請を見る"
+      my_guilds: "自分のギルド"
+      view_guild: "ギルドを見る"
+      no_guilds_yet: "まだどのギルドにも承認されていません。"
+      available_guilds: "利用可能なギルド"
+      no_description: "説明はありません。"
+      view_details: "詳細を見る"
+      apply: "申請"
+      no_guilds_available: "現在利用可能なギルドはありません。"
+      applied: "申請日:"
+
+  # ============================================================================
+  # INTEGRATIONS
+  # ============================================================================
+  integrations:
+    discord:
+      title: "Discordと連携"
+      subtitle: "ギルドをDiscordと連携し、シームレスにコミュニケーション"
+      coming_soon: "Discord連携機能は近日対応予定です！"
+      back_to_dashboard: "ダッシュボードに戻る"
+
+  # ============================================================================
+  # MEMBERS
+  # ============================================================================
+  members:
+    invite:
+      title: "ギルドにメンバーを招待"
+      subtitle: "ゲームコミュニティへの招待を送信します"
+      coming_soon: "メンバー招待機能は近日対応予定です！"
+      back_to_dashboard: "ダッシュボードに戻る"
+
+  # ============================================================================
+  # GAMES
+  # ============================================================================
+  games:
+    index:
+      title: "ゲーム"
+
+  compliance:
+    ip_conflict:
+      banner_title: "アカウント整合性のお知らせ"
+      warning_message: "複数のアカウントが同じIPアドレスを共有しています。そのIPでは異なるギルドに複数アカウントを持てません。いずれかのギルドを退会してから再試行してください。GuildSyncの機能の悪用です。繰り返すとアカウントが停止またはサービスから削除される場合があります。"
+      lock_message: "同一IPで複数アカウントをギルドで繰り返し悪用したためアカウントがロックされました。一方のアカウントですべてのギルドをアーカイブし、もう一方ですべてのギルドを退会してから、警告が消えない場合はサポートに連絡してください。"

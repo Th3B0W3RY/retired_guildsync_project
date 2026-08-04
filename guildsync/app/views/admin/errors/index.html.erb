@@ -1,0 +1,31 @@
+<div class="space-y-6">
+  <div class="flex justify-between items-center flex-wrap gap-4">
+    <h1 class="text-3xl font-bold text-theme-accent"><%= t("admin.errors.index.page_title") %></h1>
+    <%= link_to t("admin.errors.index.back_dashboard"), admin_root_path, class: "px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors font-semibold" %>
+  </div>
+
+  <div id="admin_errors_flash" class="min-h-0" aria-live="polite"></div>
+
+  <%= turbo_frame_tag Admin::ErrorsController::ERRORS_INDEX_MAIN_FRAME do %>
+    <%= render "errors_index_main" %>
+  <% end %>
+
+  <p class="text-theme-secondary text-sm"><%= t("admin.errors.index.footer", per_page: Admin::ErrorsController::PER_PAGE) %></p>
+</div>
+
+<script>
+  (function() {
+    if (window.__adminErrorsIndexDelegationBound) return;
+    window.__adminErrorsIndexDelegationBound = true;
+    document.addEventListener("change", function(e) {
+      var t = e.target;
+      if (!t) return;
+      if (t.id === "select-all-unresolved") {
+        document.querySelectorAll(".unresolved-checkbox").forEach(function(cb) { cb.checked = t.checked; });
+      }
+      if (t.id === "select-all-resolved") {
+        document.querySelectorAll(".resolved-checkbox").forEach(function(cb) { cb.checked = t.checked; });
+      }
+    });
+  })();
+</script>

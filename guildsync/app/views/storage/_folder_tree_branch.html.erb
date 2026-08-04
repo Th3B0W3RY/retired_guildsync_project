@@ -1,0 +1,11 @@
+<%# locals: tree (array of { folder:, level:, subfolders: }) %>
+<% tree.each do |node| %>
+  <% folder = node[:folder] %>
+  <% level = node[:level] %>
+  <div class="py-1 text-sm" style="padding-left: <%= level * 0.75 %>rem">
+    <%= link_to folder.name, guild_storage_path(@guild, folder_id: folder.id), class: "text-theme-primary hover:text-theme-accent" %>
+  </div>
+  <% if node[:subfolders].present? %>
+    <%= render "storage/folder_tree_branch", tree: node[:subfolders] %>
+  <% end %>
+<% end %>

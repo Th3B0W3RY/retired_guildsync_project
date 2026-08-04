@@ -1,0 +1,3 @@
+<%= turbo_stream.update "admin_games_pending_flash" do %>
+  <%= render "admin/games/pending_flash_banner", message: @admin_games_alert, variant: :alert %>
+<% end %>

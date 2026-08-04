@@ -1,0 +1,81 @@
+<div class="max-w-3xl mx-auto p-6">
+  <div class="mb-4">
+    <%= link_to "&larr; #{t('alliance_polls.show.back')}".html_safe, alliance_alliance_polls_path(@alliance),
+        class: "text-sm text-theme-accent hover:text-theme-accent-hover" %>
+  </div>
+
+  <div class="bg-theme-secondary rounded-lg border border-theme-primary p-6 mb-6"
+       <% if @poll.open? %>
+       data-controller="alliance-poll-vote"
+       data-alliance-poll-vote-poll-id-value="<%= @poll.id %>"
+       data-alliance-poll-vote-vote-url-value="<%= vote_alliance_alliance_poll_path(@alliance, @poll) %>"
+       data-alliance-poll-vote-anonymous-value="<%= @poll.anonymous? %>"
+       data-alliance-poll-vote-vote-noun-value="<%= j t('alliance_polls.show.vote_noun') %>"
+       data-alliance-poll-vote-votes-noun-value="<%= j t('alliance_polls.show.votes_noun') %>"
+       <% end %>>
+    <div class="flex items-start justify-between mb-4">
+      <div>
+        <h1 class="text-2xl font-bold text-theme-primary"><%= @poll.title %></h1>
+        <% if @poll.description.present? %>
+          <p class="text-theme-secondary mt-2"><%= @poll.description %></p>
+        <% end %>
+        <div class="flex items-center gap-4 mt-2 text-sm text-theme-secondary">
+          <span><%= t('alliance_polls.show.deadline', date: @poll.deadline.strftime("%B %d, %Y at %I:%M %p")) %></span>
+          <span>&bull;</span>
+          <span><%= @poll.total_votes %> <%= "vote".pluralize(@poll.total_votes) %></span>
+          <% if @poll.anonymous? %>
+            <span class="px-2 py-0.5 bg-blue-900/30 text-blue-400 rounded text-xs"><%= t('alliance_polls.show.anonymous') %></span>
+          <% end %>
+        </div>
+      </div>
+      <span class="px-3 py-1 rounded-full text-sm font-medium <%= @poll.open? ? 'bg-green-900/30 text-green-500' : 'bg-gray-900/30 text-gray-500' %>">
+        <%= @poll.open? ? t('alliance_polls.show.open') : t('alliance_polls.show.closed') %>
+      </span>
+    </div>
+
+    <% if @poll.open? %>
+      <div class="border-t border-theme-primary pt-4 mb-4">
+        <h3 class="text-sm font-medium text-theme-primary mb-3"><%= t('alliance_polls.show.your_vote') %></h3>
+        <div class="flex gap-3" id="vote-buttons">
+          <% [:yes, :no, :maybe].each_with_index do |choice, idx| %>
+            <button
+              type="button"
+              data-alliance-poll-vote-target="<%= %w[yesButton noButton maybeButton][idx] %>"
+              data-action="click->alliance-poll-vote#vote"
+              class="vote-btn px-6 py-2 rounded-lg font-medium transition-colors <%= @current_user_vote&.choice == choice.to_s ? 'bg-theme-accent text-white' : 'bg-theme-primary text-theme-secondary hover:text-theme-accent' %>"
+              data-choice="<%= idx %>">
+              <%= t("alliance_polls.show.#{choice}") %>
+            </button>
+          <% end %>
+        </div>
+      </div>
+    <% end %>
+
+    <div class="grid grid-cols-3 gap-4 pt-4 border-t border-theme-primary" id="alliance-poll-results">
+      <% [:yes, :no, :maybe].each do |choice| %>
+        <div data-ap-vote-type="<%= choice %>">
+          <div class="flex justify-between mb-1">
+            <span class="text-sm text-theme-secondary"><%= t("alliance_polls.show.#{choice}") %></span>
+            <span class="text-sm font-semibold text-theme-primary">
+              <span class="ap-vote-percent"><%= @vote_percentages[choice] %>%</span>
+            </span>
+          </div>
+          <div class="w-full bg-theme-primary rounded-full h-2">
+            <div class="<%= choice == :yes ? 'bg-green-500' : choice == :no ? 'bg-red-500' : 'bg-yellow-500' %> h-2 rounded-full ap-vote-bar transition-all duration-300"
+                 style="width: <%= @vote_percentages[choice] %>%"></div>
+          </div>
+          <p class="text-xs text-theme-secondary mt-1">
+            <span class="ap-vote-count-num"><%= @vote_counts[choice] %></span>
+            <span class="ap-vote-count-noun"><%= @vote_counts[choice] == 1 ? t('alliance_polls.show.vote_noun') : t('alliance_polls.show.votes_noun') %></span>
+          </p>
+          <% unless @poll.anonymous? %>
+            <p class="text-xs text-theme-secondary mt-1 ap-voter-block <%= 'hidden' if @voters_by_choice[choice].empty? %>">
+              <span class="font-medium text-theme-primary"><%= t("alliance_polls.show.voters_heading") %>:</span>
+              <span class="ap-voter-names"><%= @voters_by_choice[choice].join(", ") %></span>
+            </p>
+          <% end %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>

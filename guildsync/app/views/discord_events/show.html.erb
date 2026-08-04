@@ -1,0 +1,54 @@
+<div class="max-w-4xl mx-auto p-6">
+  <div class="mb-6">
+    <h1 class="text-3xl font-bold text-theme-primary mb-2"><%= @discord_event.title %></h1>
+    <p class="text-theme-secondary"><%= @discord_event.scheduled_at.strftime("%B %d, %Y at %I:%M %p") %></p>
+  </div>
+
+  <% if @discord_event.description.present? %>
+    <div class="bg-theme-secondary rounded-lg border border-theme-primary p-6 mb-6">
+      <p class="text-theme-primary"><%= @discord_event.description %></p>
+    </div>
+  <% end %>
+
+  <div class="bg-theme-secondary rounded-lg border border-theme-primary p-6 mb-6">
+    <h2 class="text-xl font-semibold text-theme-primary mb-4"><%= t('discord_events.show.signups_by_role') %></h2>
+    
+    <% DiscordEvent::ROLE_CATEGORIES.each do |role| %>
+      <% signups = @signups_by_role[role] || [] %>
+      <div class="mb-6">
+        <h3 class="text-lg font-semibold text-theme-primary mb-2">
+          <%= @role_emojis[role] %> <%= role.upcase %> (<%= signups.count %>)
+        </h3>
+        <% if signups.any? %>
+          <% status_groups = signups.group_by(&:status) %>
+          <% status_order = [:on_time, :tentative, :late, :absent] %>
+          <% status_labels = { on_time: "✅ #{t('discord_events.show.status.on_time')}", tentative: "❓ #{t('discord_events.show.status.tentative')}", late: "⏰ #{t('discord_events.show.status.late')}", absent: "❌ #{t('discord_events.show.status.absent')}" } %>
+          
+          <% status_order.each do |status| %>
+            <% status_signups = status_groups[status] || [] %>
+            <% if status_signups.any? %>
+              <div class="mb-3">
+                <h4 class="text-sm font-medium text-theme-secondary mb-1"><%= status_labels[status] %></h4>
+                <div class="grid grid-cols-2 md:grid-cols-3 gap-2">
+                  <% status_signups.each do |signup| %>
+                    <div class="p-2 bg-theme-primary rounded text-theme-secondary text-sm">
+                      <%= clean_discord_username(signup.discord_username) || signup.discord_user_id %>
+                    </div>
+                  <% end %>
+                </div>
+              </div>
+            <% end %>
+          <% end %>
+        <% else %>
+          <p class="text-theme-secondary text-sm"><%= t('discord_events.show.no_signups') %></p>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
+
+  <div class="flex gap-4">
+    <%= link_to t('discord_events.show.back_to_events'), guild_schedule_events_path(@guild), class: "px-6 py-3 bg-theme-secondary text-theme-primary rounded-lg hover:bg-theme-primary transition-colors font-semibold" %>
+    <%= button_to t('discord_events.show.delete_event'), guild_discord_event_path(@guild, @discord_event), method: :delete, class: "px-6 py-3 bg-red-600 text-white rounded-lg hover:bg-red-700 transition-colors font-semibold", data: { confirm: t('discord_events.show.delete_confirm') } %>
+  </div>
+</div>
+

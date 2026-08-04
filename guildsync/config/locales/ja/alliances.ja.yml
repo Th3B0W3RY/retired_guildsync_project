@@ -1,0 +1,399 @@
+ja:
+  # ============================================================================
+  # ALLIANCES FEATURE
+  # ============================================================================
+  alliances:
+    created: "アライアンスを作成しました。"
+    updated: "アライアンス設定を保存しました。"
+    disbanded: "アライアンスは解散されました。"
+    left: "アライアンスを抜けました。"
+    guild_kicked: "ギルドがアライアンスから外されました。"
+
+    errors:
+      join_requires_paid_plan: "有料プランで有効なサブスクリプションまたはトライアルが必要です。無料プランおよび期限切れのサブスクリプションやトライアルは対象外です。"
+      plan_required_for_alliance_hub: "GuildSync ですでにアライアンスに所属していない場合、アライアンス ハブを開くには有料プランが必要です。GM に同期を依頼するか、プランをアップグレードしてください。"
+      not_found: "アライアンスが見つかりません。"
+      not_member: "このアライアンスのメンバーではありません。"
+      not_leader: "アライアンス リーダーのみが実行できます。"
+      kick_unauthorized: "ギルドを外せるのはギルド オーナーまたはカスタム アライアンス管理者だけです。"
+      no_eligible_guild: "現在のギルド所属ではアライアンスを作成できません。"
+      plan_required: "お使いのプランではアライアンスを作成できません。アップグレードしてください。"
+      disband_unauthorized: "このアライアンスを解散する権限がありません。"
+      leave_unauthorized: "アライアンスを抜けられるのはギルド オーナーだけです。"
+      leader_cannot_leave: "母体ギルドはアライアンスから抜けられません。解散してください。"
+      guild_not_found: "ギルドが見つかりません。"
+      cannot_kick_leader_guild: "母体ギルドをアライアンスから外すことはできません。"
+      conflicting_alliance_membership: "同時に複数のアライアンスに所属するギルドには参加できません。"
+    index:
+      title: "アライアンス"
+      open_alliance: "アライアンスを開く"
+      invite_from: "招待者：%{name}"
+      accept: "承諾"
+      decline: "辞退"
+      request_join_hint: "すでにアライアンスに入っている掲載ギルドを検索し、自分のギルドを選んでそのアライアンスへの参加を申請します。"
+      search_label: "ギルド検索"
+      search_placeholder: "ギルド名を入力..."
+      search_select_target: "対象ギルド（アライアンス所属が必要）"
+      submit_join_request: "参加申請を送る"
+      searching: "検索中..."
+      no_results: "ギルドが見つかりません。"
+      load_more_results: "さらに結果を読み込む"
+
+    roles:
+      leader_guild: "母体ギルド"
+    new:
+      title: "アライアンスを作成"
+      subtitle: "複数のギルドを一つの旗の下にまとめます。"
+
+    edit:
+      title: "アライアンス設定"
+      back: "アライアンスに戻る"
+      danger_zone: "危険ゾーン"
+      disband: "アライアンスを解散"
+      disband_confirm: "このアライアンスを解散しますか？取り消せません。"
+
+    form:
+      name: "アライアンス名"
+      name_placeholder: "アライアンス名を入力..."
+      description: "説明"
+      description_placeholder: "アライアンスの説明..."
+      logo: "アライアンス ロゴ"
+      choose_logo_button: "画像を選ぶ"
+      no_file_chosen: "ファイル未選択"
+      logo_hint: "任意です。推奨：正方形、少なくとも 256×256 px。"
+      logo_replace_hint: "新しいファイルをアップロードすると現在のロゴが置き換わります。"
+      creating_for: "次のためのアライアンス作成："
+      size_info: "アライアンスにはギルドを1〜20まで登録できます。まず自分のギルドから始め、他を招待してください。"
+      create_button: "アライアンスを作成"
+      save_button: "変更を保存"
+
+    show:
+      guilds: "参加ギルド"
+      guilds_count:
+        one: "ギルド1件"
+        other: "ギルド%{count}件"
+      leader: "リーダー：%{name}"
+      edit: "編集"
+      leave: "アライアンスを抜ける"
+      leave_confirm: "このアライアンスから抜けますか？"
+      invite_guild: "ギルドを招待"
+      kick_guild: "キック"
+      kick_guild_confirm: "アライアンスから %{name} を外しますか？"
+      members_preview: "メンバー"
+      view_all_members: "すべてのメンバー"
+      more_members:
+        one: "ほか1名..."
+        other: "ほか%{count}名..."
+
+    nav:
+      members: "メンバー"
+      events: "アライアンス イベント"
+      polls: "アライアンス投票"
+      rolls: "アライアンス ルートロール"
+      chat: "アライアンス チャット"
+      activity_feed: "アクティビティ フィード"
+      gm_chat: "GM チャット"
+      invites: "保留中の招待"
+      join_requests: "参加申請"
+      disband_vote: "解散の投票"
+      back_to_alliance: "アライアンスに戻る"
+
+    invites:
+      sent: "%{guild_name} に招待を送りました。"
+      accepted: "%{alliance_name} に参加しました！"
+      declined: "招待を辞退しました。"
+
+      errors:
+        not_found: "招待が見つかりません。"
+        guild_not_found: "ギルドが見つかりません。名前で検索し、公開掲載のギルドを選んでください。"
+        already_in_alliance: "そのギルドはすでにこのアライアンスの一員です。"
+        already_invited: "そのギルドにはすでに保留中の招待があります。"
+        pending_join_request: "そのギルドにはこのアライアンスへの保留中の参加申請があります。"
+        max_guilds: "このアライアンスはギルド上限（20）に達しています。"
+        invite_unauthorized: "ギルドを招待できるのはギルド オーナーまたはカスタム アライアンス管理者だけです。"
+        accept_unauthorized: "この招待を承諾できるのは対象ギルドのオーナーだけです。"
+        decline_unauthorized: "この招待を辞退できるのは対象ギルドのオーナーだけです。"
+
+      index:
+        title: "保留中の招待"
+        subtitle: "%{alliance_name} への招待"
+        invite_guild: "ギルドを招待"
+        search_label: "公開掲載ギルドを検索"
+        search_placeholder: "ギルド名を入力..."
+        search_hint: "ギルド名のみ一致します。公開掲載を選んだギルドだけ表示されます。"
+        search_unauthorized: "このページからは検索できません。"
+        load_more_results: "さらに結果を読み込む"
+        selected_guild: "招待先"
+        already_in_alliance_suffix: "すでにアライアンス所属（招待不可）"
+        invite_restricted: "招待を送れるのはアライアンス リーダーだけです。"
+        send_invite: "招待を送る"
+        pending: "保留中の招待"
+        no_pending: "保留中の招待はありません。"
+        invited_by: "招待者：%{name}"
+
+    events:
+      created: "アライアンス イベントを作成しました。"
+      updated: "イベントを更新しました。"
+      deleted: "イベントを削除しました。"
+      rsvp_saved: "参加回答を保存しました。"
+      discord_rsvp:
+        errors:
+          link_required: "RSVP する前に Discord アカウントを GuildSync に連携してください。"
+          event_not_found: "アライアンス イベントが見つかりません。"
+          invalid_status: "参加回答の状態が不正です。"
+          not_alliance_member: "RSVP するにはアライアンスの有効メンバーである必要があります。"
+          save_failed: "参加回答を保存できませんでした：%{error}"
+          unexpected: "アライアンスの参加回答の保存中にエラーが発生しました。"
+
+      errors:
+        not_found: "イベントが見つかりません。"
+        manage_unauthorized: "イベントを管理できるのはギルド オーナーだけです。"
+        invalid_rsvp: "参加回答の状態が不正です。"
+
+      index:
+        title: "アライアンス イベント"
+        subtitle: "%{alliance_name} のイベント"
+        create: "イベントを作成"
+        upcoming: "今後のイベント"
+        past: "過去のイベント"
+        no_events: "まだイベントがありません。作成してください。"
+        attending: "参加予定"
+        upcoming_label: "予定"
+
+      new:
+        title: "アライアンス イベントを作成"
+
+      edit:
+        title: "イベントを編集"
+
+      show:
+        back: "イベント一覧に戻る"
+        minutes: "分"
+        your_rsvp: "自分の参加回答"
+        attending: "参加"
+        maybe: "未定"
+        declined: "不参加"
+        participants: "参加者"
+        no_participants: "まだ参加回答がありません。"
+        delete_confirm: "このイベントを削除しますか？"
+        status:
+          attending: "参加"
+          maybe: "未定"
+          declined: "不参加"
+
+      form:
+        title: "イベント名"
+        description: "説明"
+        scheduled_at: "日付と時刻"
+        duration: "所要時間（分）"
+        duration_placeholder: "例：60"
+        location: "場所／サーバー"
+        location_placeholder: "例：Discord ステージ、ゲーム サーバー名..."
+        create_button: "イベントを作成"
+        save_button: "イベントを保存"
+        event_type: "イベント種別"
+        event_type_general: "一般"
+        max_participants: "最大参加者（任意）"
+        squad_leader: "分隊長（任意）"
+        squad_leader_placeholder: "任意 — 空欄なら自分が既定"
+        role_categories_section: "Discord の参加ロール"
+        role_categories_hint: "Discord 告知でボタンになるロール（ギルドの Discord イベントと同じ考え方）。"
+    polls:
+      created: "アライアンス投票を作成しました。"
+      deleted: "投票を削除しました。"
+
+      errors:
+        not_found: "投票が見つかりません。"
+        manage_unauthorized: "投票を作成できるのはギルド オーナーまたはカスタム アライアンス管理者だけです。"
+        poll_closed: "この投票は締め切られています。"
+        invalid_choice: "無効な選択です。"
+
+      index:
+        title: "アライアンス投票"
+        subtitle: "%{alliance_name} の投票"
+        create: "投票を作成"
+        no_polls: "まだ連合アンケートはありません。"
+        created_by: "作成者: %{name}"
+        deadline: "締切："
+        open: "開催中"
+        closed: "終了"
+        anonymous: "匿名"
+        maybe: "未定"
+        voters_heading: "投票者"
+        view_vote: "投票する"
+        view_results: "結果"
+        delete_confirm: "この投票を削除しますか？"
+
+        "yes": "はい"
+        "no": "いいえ"
+      new:
+        title: "アライアンス投票を作成"
+
+      show:
+        back: "投票一覧に戻る"
+        deadline: "締切：%{date}"
+        anonymous: "匿名"
+        open: "開催中"
+        closed: "終了"
+        your_vote: "投票する"
+        maybe: "未定"
+        voters_heading: "投票者"
+
+        "yes": "はい"
+        "no": "いいえ"
+      form:
+        title: "投票の質問"
+        description: "説明"
+        deadline: "締切"
+        anonymous: "匿名投票（個票を非表示）"
+        create_button: "投票を作成"
+
+    loot_rolls:
+      created: "アライアンス ルートロールを作成しました。"
+      deleted: "ルートロールを削除しました。"
+      closed: "ルートロールを締め切り、勝者が決まりました。"
+      entered: "%{roll} が出ました！"
+
+      errors:
+        not_found: "ルートロールが見つかりません。"
+        manage_unauthorized: "ルートロールを管理できるのはギルド オーナーまたはカスタム アライアンス管理者だけです。"
+        already_closed: "このルートロールはすでに締め切られています。"
+        not_open: "このルートロールは現在受け付けていません。"
+        already_entered: "すでにこのルートロールに参加済みです。"
+
+      index:
+        title: "アライアンス ルートロール"
+        subtitle: "%{alliance_name} のルートロール"
+        create: "ルートロールを作成"
+        no_rolls: "まだルートロールがありません。"
+        range: "範囲：%{min}～%{max}"
+        deadline: "締切："
+        winner: "🏆 勝者：%{name}（%{roll}）"
+        open: "受付中"
+        closed: "終了"
+        view: "ルートロールを見る"
+
+      new:
+        title: "アライアンス ルートロールを作成"
+
+      show:
+        back: "ルートロール一覧に戻る"
+        range: "出目の範囲：%{min}～%{max}"
+        deadline: "締切：%{date}"
+        open: "受付中"
+        closed: "終了"
+        winner: "🏆 勝者：%{name}（%{roll}）"
+        enter: "参加する"
+        your_roll: "あなたの出目：%{roll}"
+        close: "締め切って勝者を決める"
+        close_confirm: "このルートロールを締め切り、勝者を決めますか？"
+        entries: "エントリー"
+        no_entries: "まだエントリーがありません。"
+        anonymous_entry: "匿名"
+        entries_line:
+          zero: "%{count}件のエントリー"
+          one: "%{count}件のエントリー"
+          other: "%{count}件のエントリー"
+
+      form:
+        title: "ルートロールのタイトル"
+        description: "説明"
+        min_roll: "最小ロール"
+        max_roll: "最大ロール"
+        deadline: "締切（任意）"
+        deadline_hint: "空欄なら締切なし。"
+        anonymous: "匿名のルートロール"
+        create_button: "ルートロールを作成"
+
+    disband_votes:
+      vote_cast: "解散への投票を記録しました。"
+      majority_disbanded: "GM の過半数が解散に賛成しました。アライアンスは解散されました。"
+
+      errors:
+        not_gm: "解散に投票できるのはギルド オーナーだけです。"
+
+      index:
+        title: "解散の投票"
+        vote_tally: "現在の集計"
+        votes_to_disband: "解散に賛成した GM：%{total} 人中 %{count} 人"
+        threshold_note: "可決には GM の 50％超が解散に賛成する必要があります。"
+        your_vote: "あなたの票"
+        vote_disband: "解散に賛成する"
+        vote_disband_confirm: "このアライアンスの解散に賛成しますか？"
+        vote_keep: "アライアンスを維持する"
+        current_vote: "現在の投票：%{vote}"
+        all_votes: "全 GM の票"
+        no_votes_yet: "まだ投票がありません。"
+        disband: "解散"
+        keep: "維持"
+
+    messages:
+      errors:
+        gm_only: "GM チャットはギルド オーナーだけが利用できます。"
+        blank: "メッセージを空にできません。"
+
+      index:
+        gm_chat: "GM チャット"
+        alliance_chat: "アライアンス チャット"
+        switch_to_gm: "GM チャットへ"
+        switch_to_all: "アライアンス チャットへ"
+        gm_only_notice: "このチャンネルはこのアライアンスのギルド オーナーだけに表示されます。"
+        no_messages: "まだメッセージがありません。あいさつしてみましょう。"
+        you: "あなた"
+        send: "送信"
+        placeholder: "メッセージを入力..."
+        message_time_format: "%Y/%m/%d %H:%M"
+
+    join_requests:
+      created: "**%{alliance_name}** へ参加申請を送りました。"
+      accepted: "**%{guild_name}** がアライアンスに加わりました。"
+      declined: "参加申請が却下されました。"
+
+      index:
+        title: "参加申請"
+        subtitle: "**%{alliance_name}** への参加を申し込んだギルド"
+        back: "アライアンスに戻る"
+        none: "保留中の参加申請はありません。"
+
+      errors:
+        not_found: "参加申請が見つかりません。"
+        guild_not_found: "ギルドが見つかりません。"
+        unauthorized: "そのギルドに代わって申請できません。"
+        already_in_alliance: "そのギルドはすでにアライアンスに入っています。"
+        alliance_inactive: "そのアライアンスはもう有効ではありません。"
+        requesting_already_in_alliance: "申請が承認される前に、そのギルドは別アライアンスに入りました。"
+        max_guilds: "現在このアライアンスはこれ以上ギルドを受け入れられません。"
+        pending_invite: "このアライアンスとギルドにはすでに保留中の招待があります。"
+        create_failed: "参加申請を作成できませんでした。"
+        accept_failed: "参加申請を承認できませんでした。"
+        manage_unauthorized: "参加申請を管理できるのはアライアンス リーダー、ギルド オーナー、またはアライアンス オフィサーだけです。"
+
+    outgoing_join_requests:
+      new:
+        title: "アライアンス参加を申請"
+        subtitle: "自分のギルド：%{guild_name}。すでにアライアンスに入っている掲載ギルドを検索してください。"
+        back: "ギルドに戻る"
+      status:
+        title: "参加申請の状態"
+        subtitle: "**%{guild_name}** から送った申請"
+        none: "このギルドからの保留中の参加申請はありません。"
+        pending: "保留中"
+      search_unauthorized: "このページからは検索できません。"
+      not_in_alliance_suffix: "アライアンス未所属"
+
+    received_invites:
+      pending:
+        title: "保留中のアライアンス招待"
+        subtitle: "**%{guild_name}** 向けの招待"
+        none: "保留中のアライアンス招待はありません。"
+
+    discord:
+      invite_embed:
+        title: "アライアンス招待：%{alliance_name}"
+        body: "招待者：%{inviter}。承諾または辞退は GuildSync で行ってください。"
+      join_request_embed:
+        title: "参加申請：%{guild_name}"
+        body: "%{guild_name} が **%{alliance_name}** への参加を申請しました。GuildSync で確認してください。"
+      member_joined_embed:
+        title: "%{guild_name} がアライアンスに参加"
+        body: "**%{guild_name}** は **%{alliance_name}** の一員になりました。"

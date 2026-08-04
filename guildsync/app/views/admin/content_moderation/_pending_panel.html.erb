@@ -1,0 +1,59 @@
+<% cm = "admin.content_moderation.index" %>
+<div class="bg-theme-card border border-theme-primary rounded-lg p-6 shadow-lg space-y-6">
+  <h2 class="text-xl font-semibold text-theme-primary"><%= t("#{cm}.pending_heading") %></h2>
+
+  <div>
+    <h3 class="text-lg font-medium text-theme-secondary mb-2"><%= t("#{cm}.feature_requests_heading", count: @pending_requests.count) %></h3>
+    <% if @pending_requests.any? %>
+      <div class="space-y-4">
+        <% @pending_requests.each do |req| %>
+          <div class="border border-theme-primary rounded-lg p-4 bg-theme-background">
+            <div class="flex justify-between items-start flex-wrap gap-2">
+              <div>
+                <p class="font-medium text-theme-primary"><%= t("#{cm}.feature_request_title_line", id: req.id, title: truncate(req.title, length: 60)) %></p>
+                <p class="text-sm text-theme-secondary mt-1"><%= t("#{cm}.user_meta", username: req.user&.username.presence || t("#{cm}.username_unknown"), time: l(req.created_at, format: :short)) %></p>
+                <% if req.moderation_triggered_words_list.any? %>
+                  <p class="text-sm text-amber-500 mt-1"><%= t("#{cm}.triggered_label", words: req.moderation_triggered_words_list.join(", ")) %></p>
+                <% end %>
+              </div>
+              <div class="flex gap-2">
+                <%= button_to t("#{cm}.approve"), approve_content_admin_content_moderation_index_path(format: :turbo_stream), method: :post, params: { content_type: "FeatureRequest", content_id: req.id }, class: "px-3 py-1.5 bg-green-600 text-white rounded hover:bg-green-700 text-sm" %>
+                <%= button_to t("#{cm}.reject"), hide_content_admin_content_moderation_index_path(format: :turbo_stream), method: :post, params: { content_type: "FeatureRequest", content_id: req.id }, class: "px-3 py-1.5 bg-red-600 text-white rounded hover:bg-red-700 text-sm" %>
+              </div>
+            </div>
+            <p class="text-sm text-theme-secondary mt-2"><%= truncate(req.description, length: 200) %></p>
+          </div>
+        <% end %>
+      </div>
+    <% else %>
+      <p class="text-theme-secondary"><%= t("#{cm}.no_pending_requests") %></p>
+    <% end %>
+  </div>
+
+  <div>
+    <h3 class="text-lg font-medium text-theme-secondary mb-2"><%= t("#{cm}.comments_heading", count: @pending_comments.count) %></h3>
+    <% if @pending_comments.any? %>
+      <div class="space-y-4">
+        <% @pending_comments.each do |com| %>
+          <div class="border border-theme-primary rounded-lg p-4 bg-theme-background">
+            <div class="flex justify-between items-start flex-wrap gap-2">
+              <div>
+                <p class="text-theme-primary"><%= truncate(com.body, length: 80) %></p>
+                <p class="text-sm text-theme-secondary mt-1"><%= t("#{cm}.comment_meta", username: com.user&.username.presence || t("#{cm}.username_unknown"), request_id: com.feature_request_id, time: l(com.created_at, format: :short)) %></p>
+                <% if com.moderation_triggered_words_list.any? %>
+                  <p class="text-sm text-amber-500 mt-1"><%= t("#{cm}.triggered_label", words: com.moderation_triggered_words_list.join(", ")) %></p>
+                <% end %>
+              </div>
+              <div class="flex gap-2">
+                <%= button_to t("#{cm}.approve"), approve_content_admin_content_moderation_index_path(format: :turbo_stream), method: :post, params: { content_type: "FeatureRequestComment", content_id: com.id }, class: "px-3 py-1.5 bg-green-600 text-white rounded hover:bg-green-700 text-sm" %>
+                <%= button_to t("#{cm}.reject"), hide_content_admin_content_moderation_index_path(format: :turbo_stream), method: :post, params: { content_type: "FeatureRequestComment", content_id: com.id }, class: "px-3 py-1.5 bg-red-600 text-white rounded hover:bg-red-700 text-sm" %>
+              </div>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    <% else %>
+      <p class="text-theme-secondary"><%= t("#{cm}.no_pending_comments") %></p>
+    <% end %>
+  </div>
+</div>

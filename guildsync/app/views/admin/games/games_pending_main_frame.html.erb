@@ -1,0 +1,5 @@
+<%= turbo_frame_tag Admin::GamesController::GAMES_PENDING_MAIN_FRAME do %>
+  <div id="admin_games_pending_content">
+    <%= render "admin/games/pending_content", pending_games: @pending_games %>
+  </div>
+<% end %>

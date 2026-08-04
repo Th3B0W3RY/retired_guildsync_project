@@ -1,0 +1,65 @@
+<%# locals: (user:, current_subscription:, pricing_plans:, account_deletion_eligible_reactivate: false) %>
+<% retention_months = (SoftDeletable::RETENTION_PERIOD / 1.month).to_i %>
+<div id="admin_user_show_flash" class="min-h-0" aria-live="polite"></div>
+
+<div class="bg-theme-card border border-theme-primary rounded-lg p-6 shadow-lg">
+  <% su = "admin.users.show" %>
+  <h2 class="text-xl font-semibold mb-4"><%= t("#{su}.user_information_heading") %></h2>
+  <% if user.account_closed_at.present? %>
+    <div class="mb-4 p-3 rounded-lg border border-amber-500/40 bg-amber-500/10 text-amber-200 text-sm" role="status">
+      <%= t("#{su}.account_closed_badge", closed_at: l(user.account_closed_at, format: :long)) %>
+      <% if user.account_data_purged_at.blank? && user.account_closure_soft_completed_at.blank? %>
+        <div class="mt-2 text-theme-secondary"><%= t("#{su}.account_closure_pending_note") %></div>
+      <% elsif user.account_data_purged_at.blank? && user.account_closure_soft_completed_at.present? %>
+        <div class="mt-2 text-theme-secondary"><%= t(
+          "#{su}.account_retention_hold_note",
+          hard_purge_due_at: l(user.account_closure_hard_purge_due_at, format: :long),
+          months: retention_months
+        ) %></div>
+      <% end %>
+      <% if user.account_data_purged_at.present? %>
+        <div class="mt-2 text-theme-secondary"><%= t("#{su}.account_data_purged_note", purged_at: l(user.account_data_purged_at, format: :long)) %></div>
+      <% end %>
+    </div>
+  <% end %>
+  <div class="space-y-2">
+    <div><strong class="text-theme-secondary"><%= t("#{su}.email_label") %></strong> <span id="admin_user_show_email" class="text-theme-primary"><%= user.email %></span></div>
+    <div><strong class="text-theme-secondary"><%= t("#{su}.username_label") %></strong> <span class="text-theme-primary"><%= user.username %></span></div>
+    <div><strong class="text-theme-secondary"><%= t("#{su}.created_label") %></strong> <span class="text-theme-primary"><%= l(user.created_at, format: :long) %></span></div>
+    <% if user.owned_guilds.any? %>
+      <div class="mt-4">
+        <strong class="text-theme-secondary"><%= t("#{su}.owned_guilds_heading") %></strong>
+        <div class="mt-2 space-y-2">
+          <% user.owned_guilds.each do |guild| %>
+            <div class="flex justify-between items-center p-2 bg-theme-secondary rounded">
+              <span class="text-theme-primary"><%= guild.name %></span>
+              <%= link_to t("#{su}.transfer_ownership"), new_guild_transfer_admin_guild_transfers_path(guild_id: guild.id),
+                  class: "px-3 py-1 bg-orange-600 text-white rounded hover:bg-orange-700 transition-colors text-sm",
+                  data: { turbo_frame: "_top" } %>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>
+
+<%= render "admin/users/subscription_trial_panel",
+    user: user,
+    current_subscription: current_subscription,
+    pricing_plans: pricing_plans %>
+
+<%= render "admin/users/compliance_panel", user: user %>
+
+<% if account_deletion_eligible_reactivate %>
+  <div class="bg-theme-card border border-green-700/40 rounded-lg p-6 shadow-lg mt-6">
+    <% su = "admin.users.show" %>
+    <h3 class="text-lg font-semibold text-theme-primary mb-2"><%= t("#{su}.reactivate_heading") %></h3>
+    <p class="text-sm text-theme-secondary mb-4"><%= t("#{su}.reactivate_body", months: retention_months) %></p>
+    <%= button_to t("#{su}.reactivate_submit"),
+        reactivate_account_admin_user_path(user),
+        method: :post,
+        class: "px-4 py-2 bg-green-700 text-white rounded-lg hover:bg-green-800 transition-colors",
+        data: { turbo_confirm: t("#{su}.reactivate_confirm") } %>
+  </div>
+<% end %>

@@ -1,0 +1,145 @@
+fr:
+  sessions:
+    new:
+      title: Se connecter
+      forgot_password: Mot de passe oublié?
+      resend_confirmation: Renvoyer l'e-mail de confirmation
+      sign_in_with_discord: Se connecter avec Discord
+      sign_in_with_google: Se connecter avec Gmail
+      sign_in_with_microsoft: Se connecter avec Outlook
+      no_account: N'avez-vous pas de compte?
+      create_account: Créer un compte ici
+      discord_login_failed: 'Échec de connexion Discord:'
+  registrations:
+    new:
+      title: S'inscrire
+      have_account: Déjà un compte ?
+      sign_in_here: Connectez-vous ici
+      signing_up_for: 'S''inscrire à :'
+      trial_after_mfa: Le essai commencera après la vérification MFA.
+      username: Nom d'utilisateur
+      username_hint: 3-30 caractères, lettres, nombres et underscores uniquement
+      password_hint: Minimum de 6 caractères
+      confirm_password: Confirmer le mot de passe
+      create_account_button: Créer un compte
+      sign_up_with_discord: S'inscrire avec Discord
+      discord_signup_failed: 'Connexion Discord échouée :'
+      popup_blocked: La popup a été bloquée. Veuillez autoriser les popups pour ce site et réessayer.
+    errors:
+      captcha_invalid: La vérification de sécurité a échoué. Complétez la vérification ci-dessous et réessayez.
+      discord_captcha_required: Utilisez le bouton « S'inscrire avec Discord » sur cette page après avoir terminé la vérification de sécurité.
+  confirmations:
+    new:
+      title: Renvoyer les instructions de confirmation
+      intro: Entrez votre e-mail et nous enverrons un nouveau lien de confirmation.
+      submit: Renvoyer les instructions
+      back_to_sign_in: Retour à la connexion
+    create:
+      already_registered: Cette adresse e-mail est déjà enregistrée et confirmée. Essayez une autre adresse ou connectez-vous.
+  passwords:
+    new:
+      title: Mot de passe oublié?
+      instructions: Entrez votre adresse e-mail et nous vous enverrons les instructions pour réinitialiser votre mot de passe.
+      send_instructions: Envoyer les instructions de réinitialisation
+      back_to_sign_in: Retour à la connexion
+    edit:
+      title: Réinitialisez votre mot de passe
+      subtitle: Mot de passe
+      new_password: Nouveau mot de passe
+      confirm_password: Confirmer le mot de passe
+      confirm_new_password: Confirmer le nouveau mot de passe
+      password_hint: Minimum de 6 caractères
+      reset_password: Réinitialiser le mot de passe
+      back_to_sign_in: Retour à la connexion
+    create:
+      instructions_sent: Si un compte existe avec cet e-mail, vous recevrez les instructions de réinitialisation.
+      invalid_email: Adresse e-mail invalide.
+    update:
+      success: Votre mot de passe a été modifié. Vous êtes maintenant connecté.
+    account_recovery:
+      title: Récupération de compte
+      page_intro: Choisissez comment réaccéder à votre compte.
+      email_section_title: Réinitialiser le mot de passe par e-mail
+      email_section_intro: Nous enverrons un lien à votre adresse e-mail. Utilisez-le sur cet appareil pour définir un nouveau mot de passe.
+      email_send_button: Envoyer le lien de réinitialisation
+      email_link_hint: Vous avez déjà reçu un e-mail de notre part ? Ouvrez le lien dans ce message.
+      or_divider: ou
+      backup_section_title: Utiliser un code de secours
+      backup_section_intro: Si vous avez enregistré des codes de secours dans les paramètres du compte, saisissez votre e-mail et un code ci-dessous.
+      backup_code_label: Code de secours
+      backup_code_placeholder: XXXX-XXXX-XXXX-XXXX-XXXX-XXXX
+      backup_code_hint: Entrez l'un de vos codes de secours à 24 caractères (tirets facultatifs)
+      verify_backup_code: Vérifier le code de secours
+      contact_support: Contacter le support
+  backup_codes:
+    verify:
+      invalid_email_or_code: E-mail ou code de secours invalide.
+      invalid_code: Code de secours invalide.
+      success: Code de secours accepté. Définissez un nouveau mot de passe ci-dessous.
+  recoveries:
+    edit:
+      title: Réinitialiser votre compte
+      badge: Récupération avec code de secours
+      new_password: Nouveau mot de passe
+      confirm_password: Confirmer le nouveau mot de passe
+      mfa_section: Authentification multifacteur (MFA)
+      mfa_warning: Votre compte a actuellement la MFA activée. Comme vous utilisez un code de secours, vous pouvez choisir de réinitialiser la MFA.
+      reset_mfa_label: Réinitialiser la MFA (désactiver et autoriser une nouvelle configuration)
+      mfa_not_enabled: La MFA n'est pas activée sur votre compte.
+      submit: Enregistrer les modifications et récupérer le compte
+      note: Après récupération, vous devrez vous connecter avec votre nouveau mot de passe. Si vous réinitialisez la MFA, vous pourrez la configurer à nouveau dans les paramètres du compte.
+    update:
+      success: Votre compte a été récupéré. Veuillez vous connecter avec votre nouveau mot de passe.
+    expired: La session de récupération a expiré. Veuillez recommencer.
+  mfa_setup:
+    show:
+      title: Activer l'authentification à plusieurs facteurs
+      subtitle: Scannez le code QR avec votre application d'authentification pour commencer
+      instructions_title: Configuration Instructions
+      step_1: Installez une application d'authentification sur votre téléphone (Google Authenticator, Authy, Microsoft Authenticator, etc.)
+      step_2: Ouvrez l'application et tapez sur 'Ajouter un compte' ou le bouton '+'
+      step_3: Scanner le code QR ci-dessous avec la caméra de votre téléphone ou le scanner de l'application
+      step_4: Entrez le code à six chiffres de votre application pour valider
+      manual_entry: 'Impossible de scanner le QR code ? Saisissez ce secret manuellement dans votre application d’authentification :'
+      cant_scan: 'Ne peut pas scanner ? Entrez ce code à la main dans votre application :'
+      code_label: Entrez le code à 6 chiffres de votre application d'authentification.
+      code_placeholder: '000000'
+      code_hint: Entrez le code à six chiffres affiché dans votre application d'authentification.
+      verify_button: Vérifier et activer MFA
+      recommended_apps: 'Applications d''authentification recommandées :'
+      setup_unavailable: Impossible de générer votre clé de configuration. Actualisez la page ou réessayez dans un instant. Si le problème persiste, contactez le support.
+  mfa_verification:
+    show:
+      title: Vérifier votre identité
+      subtitle: Saisissez le code à six chiffres de votre application d'authentification.
+      code_label: Code d'authentification
+      code_placeholder: '000000'
+      code_hint: Ouvrez votre application d'authentification et saisissez le code à six chiffres
+      verify_button: Vérifier
+      trouble_text: Un problème pour vous connecter ?
+      having_trouble: Avez-vous des difficultés?
+      contact_support: Contactez le support
+  profile_completion:
+    show:
+      title: Complétez votre profil
+      subtitle: S'il vous plaît fournir vos détails de compte pour continuer
+      email_label: Adresse e-mail
+      email_placeholder: Entrez votre adresse e-mail
+      email_hint: Saisissez une adresse e-mail valide pour votre compte.
+      username_label: Nom d'utilisateur
+      username_hint: 3-30 caractères, lettres, nombres et underscores uniquement
+      username_placeholder: Entrez votre nom d'utilisateur
+      password_label: Mot de passe
+      password_hint: Choisir un mot de passe sécurisé (au minimum 6 caractères)
+      password_confirmation_label: Confirmation du mot de passe
+      password_confirmation_hint: Saisissez à nouveau votre mot de passe pour confirmer
+      confirm_password_hint: Saisissez à nouveau votre mot de passe pour confirmer
+      submit_button: Completer le profil
+      complete_button: Finaliser la configuration
+    update:
+      success: Profil terminé. Configurez maintenant MFA.
+  mfa:
+    setup:
+      title: Configurer l'authentification à plusieurs facteurs
+    verification:
+      title: Vérifier l'authentification multi-facteur

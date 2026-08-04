@@ -1,0 +1,12 @@
+<%# locals: (pending_games:) %>
+<% if pending_games.any? %>
+  <div class="space-y-4">
+    <% pending_games.each do |game| %>
+      <%= render "admin/games/pending_game_card", game: game %>
+    <% end %>
+  </div>
+<% else %>
+  <div class="bg-theme-card border border-theme-primary rounded-lg p-6 shadow-lg text-center">
+    <p class="text-theme-secondary text-lg"><%= t("admin.games.pending.empty") %></p>
+  </div>
+<% end %>

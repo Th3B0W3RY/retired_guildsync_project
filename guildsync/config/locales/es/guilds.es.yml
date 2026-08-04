@@ -1,0 +1,822 @@
+es:
+  guilds:
+    index:
+      title: Mis Gremios
+      subtitle: Administra tus comunidades de juego
+      create_new_guild: Crear Nuevo Gremio
+      view_guild: Ver Gremio
+      no_guilds: Aun no has unido ningún gremio
+      create_first_guild: Crea tu primer gremio
+    new:
+      title: Crear una Guilda
+      subtitle: Empieza tu propia comunidad de juego
+      guild_name: Nombre del Gremio
+      create_button: Crear Gremio
+      recruiting_name_warning: Este nombre coincide con términos que ocultamos del directorio público de reclutamiento. Tu gremio empezará sin aparecer en listados públicos; puedes cambiar la visibilidad en la configuración del gremio si tu rol lo permite.
+      games:
+        label: Juegos
+        required: Requerido
+        help_text: Seleccione al menos un juego que su hermandad juegue. Puede agregar más juegos posteriormente en la configuración.
+        search_placeholder: Buscar un juego...
+        featured_games: Juegos Destacados
+        no_games: Aún no hay juegos disponibles. Utilice la barra de búsqueda superior o agregue un juego personalizado en el siguiente campo.
+        pending_approval: Pendiente de aprobación
+        select_primary: Seleccione su juego principal (el juego principal en el que se centra su gremio)
+        select_one_error: Por favor, seleccione al menos un juego.
+        select_primary_error: Por favor, seleccione un juego principal de los juegos seleccionados.
+        primary_must_be_selected: Juego principal debe ser uno de los juegos seleccionados.
+        approve_pending_html: "<strong>Para aprobar juegos pendientes:</strong> Vaya a %{link} y haga clic en «Habilitar» en cualquier juego pendiente para activarlo."
+        games_management: Gestión de Juegos
+        select_button: Seleccionar
+      custom_game:
+        add_link: "¿No encuentras tu juego? Áñadilo aquí"
+        label: Nombre del juego
+        placeholder: Introduce el nombre del juego...
+        add_button: Agregar Juego
+        no_similar: No se encontraron juegos similares. Haga clic en 'Agregar Juego' para crear "%{name}". Por favor revise la ortografía.
+        already_exists: Juego "%{name}" ya existe. Por favor, selecciónelo de la lista que hay arriba.
+        search_error: Error al buscar juegos. Por favor, inténtelo de nuevo.
+        js_no_similar_found: No se encontraron juegos similares. Haz clic en 'Add Game' para crear "%{query}". Por favor, revisa la ortografía.
+        js_game_exists: Juego "%{name}" ya existe. Por favor, selecciónelo de la lista que hay arriba.
+        js_search_error: Error al buscar juegos. Por favor, inténtelo de nuevo.
+        js_adding: Agregando...
+        js_server_error: Error del servidor. Por favor, refresque la página y vuelva a intentarlo.
+        pending_admin_approval: Esperando aprobación del administrador
+        js_game_added_success: "¡Juego agregado exitosamente! Estará disponible después de la aprobación del administrador."
+        js_failed_add: 'No se pudo agregar el juego: '
+        js_error_adding: 'Error al agregar juego: '
+      modal:
+        title: Confirmar la adición del juego
+        confirm_text: "¿Estás seguro de que quieres agregar %{name} como un nuevo juego?"
+        warning: Por favor, verifique que la escritura es correcta. El juego se creará como pendiente y requerirá la aprobación del administrador.
+        yes_add: Sí, Añadir Juego
+      pending_admin_info: 'Para aprobar juegos pendientes: Vaya a la gestión de los juegos y haga clic en "Habilitar/Deshabilitar" en cualquier juego pendiente para activarlo.'
+    show:
+      guild_information: Información del gremio
+      quick_actions: Acciones rápidas
+      invite_members: Invitar Miembros
+      schedule_event: Programar Evento
+      about: Acerca de
+      no_description: Aún no hay descripción.
+      discord_public_invite: Invitación pública a Discord
+      join_discord: Unirse a Discord
+      discord_invite_missing: Añade un enlace de invitación público para que los miembros abran tu servidor de Discord con un clic.
+      discord_invite_none: Este gremio no ha publicado un enlace de invitación a Discord.
+    settings:
+      title: Configuración del gremio
+      subtitle: Administra tu configuración y preferencias de la guilda.
+      guild_profile:
+        title: Perfil del gremio
+        description: La descripción y la invitación pública opcional a Discord aparecen en el panel del gremio para todos los miembros.
+        description_label: Descripción
+        discord_invite_label: URL de invitación pública a Discord
+        discord_invite_hint: Opcional. Pega un enlace de invitación de Discord (por ejemplo https://discord.gg/…). Visible para quien vea el panel del gremio.
+        save_button: Guardar perfil
+      logo:
+        title: Logotipo del Gremio
+        description: Carga un logo para tu gremio. El logo aparecerá junto al nombre de tu gremio en toda la aplicación.
+        recommended: 'Dimensiones recomendadas:'
+        dimensions_info: '256x256 píxeles (el formato cuadrado funciona mejor). Formats admitidos: JPG, PNG, GIF, WebP.'
+        current_logo: 'Logo actual:'
+        note: 'Nota:'
+        click_update: Haz clic en 'ActualizarLogo' para seleccionar un nuevo archivo y guardarlo.
+        update_button: Actualizar Logotipo
+        delete_button: Eliminar Logo
+        delete_confirm: "¿Estás seguro de que quieres eliminar el logo de la hermandad?"
+        save_button: GuardarLogo
+      application_messages:
+        title: Mensajes de Aplicación
+        description: Personalice los mensajes enviados a los solicitantes cuando sean aceptados o rechazados. Si se deja en blanco, se usarán los mensajes predeterminados.
+        accept_label: Aceptar Mensaje
+        accept_default_message: "¡Felicidades! Has sido aceptado en la hermandad %{guild_name}!"
+        accept_hint: 'Mensaje enviado cuando se acepta a un solicitante. Usa %{guild_name} para incluir el nombre de la guild. Predeterminado: "%{default_message}"'
+        reject_label: Mensaje de rechazo
+        reject_default_message: Lo siento, no eres la persona adecuada para nuestra hermandad, pero sientete libre de reaplicar más tarde.
+        reject_hint: 'Mensaje enviado cuando un solicitante es rechazado. Predeterminado: "%{default_message}"'
+        save_button: Guardar Mensajes
+      discord_channels:
+        title: Configuración del canal de Discord
+        description: Seleccione qué canales de Discord deberían recibir notificaciones para diferentes tipos de contenido.
+        events_channel: Canal de Eventos
+        events_hint: Seleccione el canal donde se publicarán los eventos de Discord.
+        battles_channel: Gremio de Batallas Canal
+        battles_hint: Selecciona el canal donde se publicarán las notificaciones de la batalla de la hermandad.
+        gear_channel: Canal de Equipo para Miembros
+        gear_hint: Seleccione el canal donde se publicarán las actualizaciones de la membresía del equipo.
+        polls_channel: Canal de Encuestas del Servidor
+        polls_hint: Selecciona el canal donde se publicarán las encuestas de la hermandad.
+        loot_channel: Canal de rollaje de botín
+        loot_hint: Selecciona el canal donde se publicarán los sorteos de botín. Esto es obligatorio para los sorteos de botín.
+        select_channel: Seleccione un canal...
+        save_button: Guardar Configuraciones del Canal
+        unable_to_load: No se pueden cargar los canales
+        load_error: No se pudieron cargar los canales de Discord. Por favor, verifique su conexión de Discord bot.
+        alliance_section_title: Canales de alianza (entre gremios)
+        alliance_section_description: 'Elige dónde se publican invitaciones de alianza, eventos, encuestas y tiradas de botín usando tu bot de GuildSync conectado. Si solo algunos canales están configurados, las notificaciones de invitación usarán el primer canal disponible en este orden: Invitaciones, Eventos, Encuestas, Botín.'
+        alliance_invites_channel: Invitaciones y solicitudes de alianza
+        alliance_invites_hint: Notificaciones cuando tu gremio es invitado a una alianza o cuando otro gremio solicita unirse a la tuya.
+        alliance_events_channel: Eventos de alianza
+        alliance_events_hint: Publica un mensaje incrustado cuando se crea un evento para toda la alianza.
+        alliance_polls_channel: Encuestas de alianza
+        alliance_polls_hint: Publica un mensaje incrustado cuando se crea una encuesta para toda la alianza.
+        alliance_loot_channel: Tiradas de botín de alianza
+        alliance_loot_hint: Publica un mensaje incrustado cuando se crea una tirada de botín para toda la alianza.
+      discord_bot:
+        not_connected: No Conectado
+        not_connected_authorize: El bot GuildSync no está conectado al servidor de Discord. Por favor, autoriza el bot.
+        not_connected_connect: Por favor, conecte el bot GuildSync a un servidor de Discord antes de configurar los canales.
+        authorize_button: Autorizar Bot
+        connect_button: Conectar el bot con el servidor de Discord
+      role_sync:
+        title: Sincronización de Roles en Discord
+        description: Gestionar qué roles de Discord se sincronizan en la base de datos. Los roles sincronizados se actualizan automáticamente cada 30 minutos.
+        sync_all: Sincronizar todos los roles
+        remove_all: Eliminar todas las sincronizaciones
+        refresh: Actualizar Roles
+        loading: Cargando roles...
+        role_name: Nombre del Rol
+        role_id: Rol ID
+        sync_status: Estatus de sincronización
+        action: acción
+        click_refresh: Haz clic en 'Actualizar Roles' para cargar los roles de Discord
+      games:
+        title: Juegos
+        description: Gestionar qué juegos reproduce tu hermandad. Al menos un juego es obligatorio.
+        no_games: No hay juegos disponibles actualmente. Por favor, contacte con un administrador para agregar juegos.
+        required_note: Al menos un juego debe ser seleccionado
+        update_button: Actualizar Juegos
+        cant_find: "¿No encuentras tu juego? Áñadilo aquí"
+        game_name_label: Nombre del juego
+        enter_game_name: Introduce el nombre del juego...
+        pending_approval: Esperando aprobación del administrador
+        primary_label: Principal
+        add_game_button: Agregar Juego
+        pending_approval_short: Pendiente de aprobación
+        pending_admin_approval: Esperando aprobación del administrador
+        js_no_similar_found: No se encontraron juegos similares. Haz clic en 'Add Game' para crear "%{query}". Por favor, revisa la ortografía.
+        js_game_exists: Juego "%{name}" ya existe. Por favor, selecciónelo de la lista que hay arriba.
+        js_search_error: Error al buscar juegos. Por favor, inténtelo de nuevo.
+        js_confirm_add: ¿Estás seguro que quieres agregar "%{name}" como un nuevo juego? Por favor verifica que la escritura es correcta.
+        js_adding: Agregando...
+        js_server_error: Error del servidor. Por favor, refresque la página y vuelva a intentarlo.
+      permissions:
+        title: Permisos del rol
+        description: Seleccione hasta cuatro roles de Discord que puedan tener permisos para gestionar roles, aplicaciones y configuración del servidor. Marque las casillas para habilitar cada permiso.
+        select_discord_role: Seleccione su rol en Discord
+        none: Ninguno
+        can_manage_roles: Puede gestionar roles
+        can_manage_applications: Puede Gestionar Aplicaciones
+        can_manage_guild_settings: Pueden gestionar la configuración del gremio
+        can_kick_members: Puede Expulsionar Miembros
+        can_invite_alliance_guilds: Puede invitar gremios aliados
+        can_kick_alliance_guilds: Puede expulsar gremios aliados
+        can_manage_tags: Puede gestionar etiquetas
+        can_manage_warnings: Puede gestionar advertencias
+        can_manage_documents: Puede gestionar documentos
+        can_manage_files: Puede gestionar archivos
+        can_manage_events: Puede gestionar eventos
+        can_manage_polls: Puede gestionar encuestas
+        can_manage_loot_rolls: Puede gestionar tiradas de botín
+        can_manage_discord_channels: Puede gestionar canales de Discord
+        can_view_activity_feed: Puede ver el feed de actividad
+        can_export_members_csv: Puede exportar CSV de miembros
+        can_use_message_center: Puede usar el centro de mensajes
+        can_manage_gear_requests: Puede gestionar solicitudes de equipo
+        can_edit_gear_scanned_stats: Puede editar estadísticas de equipo escaneadas
+        save_button: Guardar permisos
+        default_role:
+          title: Rol por defecto para los nuevos miembros
+          description: Seleccione un rol de Discord que se asignará automáticamente a todos los nuevos miembros cuando se unan al gremio.
+          label: Predeterminado Rol
+          save_button: Guardar Rol Predeterminado
+        role_n: Rol %{n}
+      visibility:
+        title: Visibilidad del gremio
+        description: Controla si tu gremio aparece en listados públicos. Los gremios privados solo pueden ser encontrados por miembros existentes.
+        toggle_label: Mostrar este gremio en listados públicos
+        toggle_hint: Si está desactivado, tu gremio no aparecerá en la lista de gremios disponibles ni en resultados de búsqueda. Los miembros y solicitantes existentes no se ven afectados.
+        save_button: Guardar visibilidad
+      react_roles:
+        title: Roles por reacción
+        description: 'Configura hasta 3 asignaciones de emoji a rol. Publica un mensaje incrustado en un canal de Discord: los usuarios reaccionan con un emoji para recibir el rol correspondiente y lo pierden al quitar la reacción.'
+        channel_label: Canal (donde se publicará el mensaje incrustado)
+        slot_title: Rol por reacción %{n}
+        role_label: Rol de Discord
+        select_role: Selecciona un rol...
+        emoji_label: Emoji
+        select_emoji: Selecciona emoji...
+        emoji_hint: Admite emojis Unicode estándar y emojis personalizados del servidor.
+        server_emojis: Emojis del servidor
+        standard_emojis: Emojis estándar
+        save_button: Guardar roles por reacción
+        deploy_button: Publicar en Discord
+        remove_button: Eliminar de Discord
+        remove_confirm: Esto eliminará el mensaje incrustado de roles por reacción de Discord. ¿Estás seguro?
+        select_channel: Seleccione un canal...
+        loading_emojis: Cargando...
+      back_to_dashboard: Volver al Dashboard
+    members:
+      title: Miembros del gremio
+      subtitle: Ver y gestionar todos los miembros de la guilde.
+      select_all: Seleccionar todo
+      deselect_all: Deseleccionar todo
+      select_role: Seleccione Rol...
+      update_selected: Actualizar Seleccionados
+      search_placeholder: Buscar usuario por nombre de usuario o Discord...
+      invite_user: Invitar usuario
+      kick_selected: Expulsion de seleccionados
+      discord_verified: Verificado en Discord
+      discord_not_connected: No conectado
+      role_none: Ninguno
+      owner: Propietario
+      kick: Expulsar
+      kick_confirm: "¿Estás seguro de que quieres expulsar %{username}? Esta acción no se puede deshacer."
+      kick_final_confirm: 'Confirmación final: ¿Estás absolutamente seguro de que deseas expulsar %{username} del gremio?'
+      bulk_kick_confirm: "¿Estás seguro de que quieres expulsar %{count} miembro(s)? Esta acción no se puede deshacer."
+      bulk_kick_final: 'Confirmación final: ¿Estás absolutamente seguro de que quieres expulsar %{count} miembro(s) del gremio?'
+      no_roles_synced: Ningún rol sincronizado
+      no_users_found: No usuarios encontrados
+      select_at_least_one: Por favor, seleccione al menos un miembro.
+      select_a_role: Por favor, elige un rol.
+      select_user_first: Por favor, seleccione un usuario primero.
+      back_to_dashboard: Volver al Dashboard
+      js_error_searching_users: Error al buscar usuarios
+      js_inviting: Invitando...
+      tags:
+        manage_title: Gestionar etiquetas del gremio
+        name: Nombre de la etiqueta
+        color: Color de la etiqueta
+        create: Crear etiqueta
+        filter_label: Ordenar / filtrar por etiqueta
+        filter_all: Todas las etiquetas
+        filter_untagged: Miembros sin etiqueta
+        clear_filter: Borrar
+      export_csv: Exportar CSV
+      search_load_more: Cargar más usuarios
+    members_gear:
+      title: Escáner de equipo IA para %{guild_name}
+      pending_request_officer_banner: "%{requester} te ha pedido que actualices la captura de tu equipo. Súbela abajo cuando estés listo."
+      filter_by_game: 'Filtrar por juego:'
+      all_games: Todos los juegos
+      no_games_configured: Este gremio no tiene juegos configurados. Por favor, agrega juegos en la configuración del gremio.
+      gear_status_overview: Estado del Equipo
+      request_missing_gear: Solicitar equipo faltante (%{count})
+      request_outdated_gear: Solicitar equipo obsoleto (%{count})
+      request_all_missing_outdated: Solicitar todos los ausentes/obsoletos (%{count})
+      total_members: Miembros totales
+      missing_gear: Guerrero sin equipo
+      outdated_gear: Equipo obsoleto
+      up_to_date: Actualizado
+      pending_gear_requests:
+        one: 1 Solicitud de Equipo Pendiente
+        other: "%{count} Pendientes de Equipo"
+      view_pending_requests: Ver Solicitudes Pendientes
+      filter_all: Todo
+      filter_missing: Faltante
+      filter_outdated: Desactualizado
+      filter_up_to_date: Actualizado
+      request_updates_from_missing_outdated: Solicitar actualizaciones desde Perdidos/Otros
+      th_avatar: Ávatar
+      th_member: Miembro
+      th_last_updated: Última actualización
+      th_status: Estado
+      th_key_stats: Claves de estadísticas
+      th_actions: Acciones
+      ago: hace
+      never: Nunca
+      view_gear: Ver Equipo
+      pending_request: Solicitud Pendiente
+      request_update: Actualizar Solicitud
+      view_image: Imagen
+      screenshot_unavailable: Esa captura de estadísticas ya no está disponible. Puede haber caducado tras el periodo de retención o no hay ninguna subida.
+      no_members_with_status: 'No se han encontrado miembros con estado: %{status}'
+      no_members_found: No se han encontrado miembros
+      your_gear_screenshot: Captura de pantalla de tu equipo
+      last_updated: Última actualización
+      select_game: 'Seleccione el juego:'
+      select_game_prompt: "-- Seleccionar Juego --"
+      choose_file: Elegir Archivo
+      upload_screenshot: Cargar captura de pantalla
+      parsed_data_preview: 'Vista previa de datos analizados:'
+      back_to_dashboard: Volver al Dashboard
+      gear_details: Detalle del Equipo
+      js_processing: Procesando...
+      js_processing_message: Procesando imagen y extrayendo datos del equipo... Esto puede tardar un momento.
+      js_upload_success: "¡Éxito! Imagen procesada y datos del equipo extraídos. Recargando la página..."
+      upload_success_notice: Captura subida correctamente. Tus estadísticas más recientes se han actualizado.
+      js_loading_gear: Cargando datos de equipo...
+      js_no_gear_data: No hay datos de equipo disponibles
+      js_error_loading_gear: 'Error al cargar los datos del equipo: '
+      js_confirm_bulk_all: Enviar solicitudes de actualización de equipo a todos los miembros que estén pendientes o tengan equipo desactualizado.
+      js_confirm_bulk_status: Enviar solicitudes de actualización de equipos a todos los miembros con equipo en %{status}?
+      js_confirm_request_user: "¿Enviar solicitud de actualización de estadísticas a %{name}?"
+      view_stats: Ver estadísticas
+      upload_preview_heading: Vista previa de estadísticas
+      upload_preview_truncated: "… y %{count} más"
+      stats_hidden: "—"
+    member_stats:
+      back_to_scanner: Volver al escáner de estadísticas IA
+      title: Estadísticas de %{name}
+      guild_context: "%{guild_name}"
+      last_updated: Última actualización
+      extracted_heading: Estadísticas extraídas
+      stat_count:
+        one: 1 estadística
+        other: "%{count} estadísticas"
+      empty_title: Aún no hay captura
+      empty_body: Este miembro aún no ha subido una captura de estadísticas.
+      partial_title: Sin estadísticas en la última captura
+      partial_body: Se guardó la captura, pero no se pudieron extraer pares etiqueta/valor.
+      member_not_found: Miembro no encontrado.
+      unnamed_stat: Estadística
+      unparsed_label: Valor
+      remove_stat: Quitar esta estadística
+      undo_stat: Restaurar esta estadística
+      edit_stat: Editar
+      save_stat: Guardar
+      cancel_edit: Cancelar
+      stat_saved: Estadística guardada.
+      stat_name_label: Nombre de la estadística
+      stat_value_label: Valor de la estadística
+      api_error: No se pudieron actualizar las estadísticas. Actualiza la página e inténtalo de nuevo.
+      cannot_view_other_member_stats: Solo puedes ver tus propias estadísticas de equipo en este gremio.
+      modify_own_gear_only: Solo puedes modificar tu propio equipo.
+      cannot_edit_scanned_stats: Solo el líder del gremio o un rol con permiso para editar estadísticas escaneadas puede cambiar los valores extraídos. Los miembros no pueden editar los resultados de su propio escaneo.
+    analytics:
+      title: Análisis para %{guild_name}
+      subtitle: Ver analíticas detalladas e insights para tu gremio.
+      back_to_dashboard: Volver al Dashboard
+    connect_discord:
+      title: Conectar el bot con el servidor de Discord
+      subtitle: Selecciona un servidor de Discord para conectar el bot GuildSync y gestionar eventos y notificaciones.
+      connected:
+        title: Discord Conectado
+        connected_to: 'Conectado a:'
+      channel_config:
+        title: Configuración del canal
+        subtitle: Seleccione los canales de Discord que recibirán diferentes tipos de contenido.
+        events_channel:
+          label: Canal de Eventos
+          placeholder: Seleccione un canal...
+          hint: Canal donde se publicarán los anuncios de eventos
+        guild_battles_channel:
+          label: Gremio de Batallas Canal
+          placeholder: Seleccione un canal...
+          hint: Canal donde se publicarán las noticias de batallas de gremios.
+        gear_channel:
+          label: Engrenaje Canal
+          placeholder: Seleccione un canal...
+          hint: El canal donde se publicarán las subidas de equipo por los miembros
+        save_button: Guardar Configuración del Canal
+      select_server:
+        title: Seleccionar Servidor de Discord
+        already_connected: Tu cuenta de Discord ya está conectada. Seleccione qué servidor de Discord desea conectar la bot de GuildSync a. Tiene que ser administrador del servidor.
+        not_connected: Primero, conecta tu cuenta de Discord (configuración única). Luego elige el servidor de Discord al que quieres conectar el bot GuildSync. Debes ser administrador del servidor.
+        select_button: Seleccionar Servidor de Discord
+        connect_button: Conectar Cuenta de Discord
+      back_to_dashboard: Volver al Dashboard
+      popup_blocked: La ventana emergente fue bloqueada. Por favor, habilite las ventanas emergentes para este sitio y vuelva a intentarlo.
+      connection_failed: 'La conexión de Discord ha fallido: %{error}'
+    activity_feed:
+      title: Feed de actividad para %{guild_name}
+      subtitle: Actividad reciente en este gremio. Los registros se conservan durante 3 meses.
+      back_to_dashboard: Volver al Dashboard
+    review_applications:
+      title: Revisar Aplicaciones para %{name}
+      subtitle: Revisa y gestiona las solicitudes pendientes de membresía de tu gremio.
+      invited_members: Miembros Invitados
+      invited_by: 'Invitado por:'
+      invited: 'Invitado:'
+      discord_verified: Verificado en Discord
+      dismiss: Rechazar
+      dismiss_confirm: "¿Ignorar esta invitación de tu vista?"
+      pending_applications: Solicitudes pendientes
+      discord_not_connected: 'Discord: No conectado'
+      applied: 'Aplicado:'
+      message_label: 'Mensaje:'
+      accept: Aceptar
+      accept_confirm: Aceptar esta solicitud y agrega el miembro al gremio?
+      reject: Rechazar
+      reject_confirm: "¿Rechazar esta solicitud?"
+      message_applicant: Mensaje al solicitante
+      message: Mensaje
+      enter_message_placeholder: Escribe tu mensaje...
+      send: Enviar
+      cancel: Cancelar
+      no_pending: No hay aplicaciones pendientes por el momento.
+      back_to_dashboard: Volver al Dashboard
+    invite_members:
+      title: Invita a los miembros a %{name}
+      subtitle: Enviar invitaciones para unirse a tu gremio y revisar las solicitudes pendientes.
+      pending_applications: Solicitudes pendientes
+      discord_server_unknown: Desconocido
+      discord_server_not_available: 'Servidor de Discord: No disponible'
+      applied: 'Aplicado:'
+      message_label: 'Mensaje:'
+      character_details: 'Detalles del personaje:'
+      accept: Aceptar
+      accept_confirm: Aceptar esta solicitud y agrega el miembro al gremio?
+      reject: Rechazar
+      reject_confirm: "¿Rechazar esta solicitud?"
+      message_applicant: Mensaje al solicitante
+      message: Mensaje
+      enter_message_placeholder: Escribe tu mensaje...
+      send: Enviar
+      cancel: Cancelar
+      back_to_dashboard: Volver al Dashboard
+    schedule_events:
+      title: Programar Eventos para %{name}
+      subtitle: Crear y gestionar eventos de Discord para tu servidor.
+      create_new_event: Crear un Nuevo Evento de Discord
+      create_event: Crear Evento
+      recent_events: Eventos recientes
+      signups: 'Inscripciones:'
+      view: Ver
+      delete: Eliminar
+      delete_confirm: "¿Estás seguro?"
+      bot_not_connected: No Conectado
+      discord_server_not_selected: Discord Servidor no ha sido seleccionado
+      bot_not_connected_message: El bot GuildSync no está conectado al servidor de Discord. Por favor, autoriza el bot.
+      select_server_message: Tu cuenta de Discord está conectada, pero necesitas seleccionar un servidor de Discord para conectar el bot de GuildSync.
+      connect_bot_message: Por favor, conecta el bot de GuildSync a un servidor de Discord antes de crear eventos.
+      authorize_bot: Autorizar Bot
+      select_discord_server: Seleccionar Servidor de Discord
+      connect_bot_to_guild: Conectar el bot con el servidor de Discord
+      back_to_dashboard: Volver al Dashboard
+    schedule_guild_battle:
+      title: Programar Batalla de Gremio para %{name}
+      subtitle: Organizar y programar batallas entre diferentes guildas.
+      management_title: Administración del Gremio de Batalla
+      management_desc: Retar a otras guildas, responder a los desafíos y coordinar batallas.
+      view_all_battles: Ver todas las batallas
+      challenge_another_guild: ProgramarBatalla delGremio
+      notifications: Notificaciones
+      back_to_dashboard: Volver al Dashboard
+  guild_archives:
+    alerts:
+      archived_unavailable: Este gremio está archivado y no se puede acceder a él.
+      archived_success: '"%{guild_name}" se ha archivado. Puede eliminarse de forma permanente después de un año.'
+      unarchived_success: '"%{guild_name}" se ha restaurado.'
+      unarchive_plan_limit: No puedes restaurar este gremio porque has alcanzado el límite de gremios activos. Archiva o elimina primero otro gremio activo.
+      purge_not_ready: Este gremio aún no puede eliminarse de forma permanente. Debe permanecer archivado al menos un año.
+      purged_success: '"%{guild_name}" se eliminó de forma permanente.'
+      not_found: Gremio archivado no encontrado.
+      name_confirmation_mismatch: La confirmación del nombre no coincide. Escribe el nombre exacto del gremio.
+    index:
+      title: Gremios archivados
+      subtitle: Los gremios archivados no cuentan para tu límite de gremios activos. Se eliminan automáticamente al cabo de un año.
+      recovery_note_label: Información sobre la recuperación de datos
+      long_recovery_hint: Conservamos los registros eliminados hasta un máximo de seis meses. Transcurrido ese plazo, se eliminan definitivamente. Ponte en contacto con soporte si tus datos están aún dentro de ese plazo y deseas solicitar su recuperación.
+      empty: No tienes gremios archivados.
+      archived_on: 'Archivado el: %{date}'
+      auto_delete_on: 'Fecha de borrado automático: %{date}'
+      unarchive_button: Restaurar gremio
+      permanent_delete_button: Eliminar permanentemente
+      permanent_delete_confirm: "¿Eliminar permanentemente %{guild_name}? Esta acción no se puede deshacer."
+    settings:
+      title: Zona de peligro
+      warning: Archivar desactiva el acceso a este gremio para todos. Los datos se conservan un año antes de la eliminación permanente.
+      type_name_hint: 'Escribe el nombre del gremio exactamente para archivarlo: %{guild_name}'
+      confirmation_label: Confirmación del nombre del gremio
+      archive_button: Archivar gremio
+      archive_confirm_prompt: "¿Archivar %{guild_name}? Este gremio dejará de ser accesible."
+  polls:
+    index:
+      title: Encuestas del Gremio
+      subtitle: Ver y participar en encuestas para %{guild_name}
+      create_poll: Crear Encuesta
+      created_by: Creado por %{name}
+      deadline: 'Plazo de validez:'
+      vote_count: "%{count} voto"
+      vote_count_plural: "%{count} votos"
+      anonymous: Anónimo
+      open: Abrir
+      closed: Cerrado
+      maybe: Quizás
+      view_vote: Ver y Votar
+      view_results: Ver Resultados
+      delete: Eliminar
+      delete_confirm: "¿Estás seguro de que quieres eliminar esta encuesta? Esta acción no se puede deshacer."
+      no_polls: Aún no hay encuestas.
+      create_first: Crear la primera encuesta
+      'yes': Sí
+      'no': 'No'
+    new:
+      title: Crear nueva encuesta
+      subtitle: Crea una encuesta para %{guild_name}
+      poll_title: Título de la encuesta
+      poll_title_placeholder: Introducir el título de la encuesta
+      description: Descripción
+      description_placeholder: Introduzca la descripción de la encuesta
+      discord_roles_title: Menciones a los Roles de Discord@
+      discord_roles_hint: Seleccione una o más roles de Discord para mencionar cuando publique la encuesta.
+      deadline: fecha límite
+      deadline_hint: La encuesta se cerrará a esta fecha y hora.
+      anonymous_voting: Votación Anónima
+      anonymous_hint: Si activado, las identidades de los votantes quedarán ocultas en los resultados.
+      create_button: Crear Encuesta
+    show:
+      back_to_polls: "← Volver a las encuestas"
+      created_by: Creado por %{name}
+      deadline: 'Plazo de validez:'
+      description: Descripción
+      cast_vote: Lanza tu voto
+      maybe: "\U0001F914 Quizás"
+      change_vote_hint: Puedes cambiar tu voto en cualquier momento antes de la fecha límite.
+      results: Resultados
+      votes: votos
+      no_votes: Aún no hay votos. ¡Sé el primero en votar!
+      delete_poll: Eliminar Encuesta
+      'yes': "✅ Sí"
+      'no': "❌ No"
+  loot_rolls:
+    index:
+      title: Gremio Rollo de Botín
+      subtitle: Ver y participar en sorteos de botín para %{guild_name}
+      create_loot_roll: Crear Ruleta de Botín
+      created_by: Creado por %{name}
+      range: 'Rango:'
+      roll_count: "%{count} tiro"
+      roll_count_plural: "%{count} tiradas"
+      deadline: 'Plazo de validez:'
+      open: Abrir
+      closed: Cerrado
+      highest_roll: 'Mayor Tirada:'
+      winner: 'Ganador:'
+      view_roll: Ver & Rol
+      view_results: Ver Resultados
+      delete: Eliminar
+      delete_confirm: "¿Estás seguro de que quieres eliminar este rol de botín? Esta acción no se puede deshacer."
+      no_loot_rolls: Aún no hay rolls de botín.
+      create_first: Crear el primer-roll de botín
+    new:
+      title: Crear Nuevo Roll de Loot
+      subtitle: Crear un sorteo de botín para %{guild_name}
+      loot_title: Título
+      loot_title_placeholder: Introduce el título del rollo de botín
+      description: Descripción (opcional)
+      description_placeholder: Introduce una descripción (opcional)
+      min_roll: Rol Mínimo
+      max_roll: Rollo Máximo
+      allowed_roles_title: Roles permitidos (Opcional)
+      allowed_roles_hint: Seleccione cuáles son los roles de Discord que pueden participar. Deje en blanco para permitir a todos.
+      deadline: Plazo de validez (opcional)
+      deadline_hint: La rifa se cerrará automáticamente en este momento. Deje en blanco para sin fecha límite.
+      auto_post_title: Publicación automática a Discord
+      auto_post_hint: Este sorteo de botín se publicará automáticamente en tu canal configurado de Sorteos de Botín.
+      create_button: Crear
+    show:
+      back_to_loot_rolls: "← Volver al Rollo de Botín"
+      created_by: Creado por %{name}
+      range: 'Rango: %{min} - %{max}'
+      roll_count:
+        one: rolleos
+        other: tiradas
+      deadline: fecha límite
+      open: Abrir
+      closed: Cerrado
+      description: Descripción
+      time_remaining: Tiempo restante
+      calculating: Calculando...
+      expired: Vencido
+      tie_detected: "¡Empate detectado!"
+      are_tied_at: están empatados en
+      tied_reroll_hint: Los usuarios empatados deben reiniciar la rifa utilizando el botón de Discord.
+      winner: "¡Ganador!"
+      with_roll_of: con una rifa de
+      leaderboard: Clasificación
+      tied: EMPATADO
+      force_reroll: Forzar reintento de rollo
+      force_reroll_confirm: Esto invalidará el sorteo de %{name} y les permitirá hacer otro sorteo. ¿Continuar?
+      no_rolls_yet: Aún no hay intentos. ¡Usa el botón de Discord para rodar!
+      close_loot_roll: Cerrar Rollo de botín
+      close_confirm: "¿Estás seguro de que quieres cerrar este sorteo de botín prematuramente? Se determinará un ganador."
+      delete_loot_roll: Eliminar Rollo de Botín
+      delete_confirm: "¿Estás seguro de que quieres eliminar este rol de botín? Esta acción no se puede deshacer."
+  guild_applications:
+    index:
+      title: Mis aplicaciones
+      subtitle: Revisa y sigue el estado de tus aplicaciones de gremio.
+      apply_to_guild: Aplicar a la Guilda
+      guild_invitations: Invitaciones a la Gremial
+      invited_by: 'Invitado por:'
+      invited: 'Invitado:'
+      pending: Pendiente
+      accept_invitation: Aceptar Invitación
+      decline: Rechazar
+      applied: 'Aplicado:'
+      your_message: 'Tu mensaje:'
+      view_guild: Ver Gremio
+      no_applications: Aún no hay aplicaciones. ¡Aplica a una hermandad para comenzar!
+    new:
+      title: Aplicar a la Guilda
+      subtitle: Enviar una solicitud para unirse a un gremio
+      select_guild: Seleccionar Gremio
+      search_placeholder: Buscar una gremio por nombre...
+      start_typing: Empieza a escribir para buscar gremios...
+      discord_username: Nombre de usuario en Discord
+      discord_placeholder: Tu Discord#1234
+      message_label: Mensaje (Opcional)
+      message_placeholder: Dile al gremio por qué te gustaría unirte...
+      character_details_label: Detalles del personaje (Opcional)
+      character_details_placeholder: Incluye tus estadísticas de personaje, qué juego juegas, nombre del personaje, nivel, clase, equipo, etc...
+      character_details_hint: Comparte detalles sobre tu personaje, estadísticas, juego y cualquier otra información relevante.
+      submit: Enviar Aplicación
+      cancel: Cancelar
+      no_guilds_found: No se han encontrado gremios
+      owner_unknown: Desconocido
+      error_searching: Error buscando Gremios
+      load_more_guilds: Cargar más gremios
+    create:
+      guild_not_available: Ese gremio no está listado, fue archivado o no acepta solicitudes.
+  guild_battles:
+    index:
+      title: Batallas de Gremios para %{name}
+      subtitle: Gestionar los desafíos y respuestas de batallas entre guildas.
+      challenge_another_guild: ProgramarBatalla delGremio
+      your_guild_battles: Tu Batallas de Gremios
+      you_challenged: Has desafiado %{name}
+      challenged_you: "%{name} te ha desafiado"
+      scheduled: 'Programados:'
+      location: 'Ubicación:'
+      max_participants: 'Máx. Participantes:'
+      view_details: Ver Detalles
+      delete: Eliminar
+      delete_confirm: "¿Estás seguro de que quieres eliminar esta batalla gremial? Esta acción no se puede deshacer."
+      empty: "¡No hay batallas de gremios aún! ¡Desafia a otro gremio para comenzar!"
+    new:
+      title: ProgramarBatalla delGremio
+      subtitle: Selecciona una hermandad para desafiar y configura los detalles de la batalla.
+      battle_details: Detalles de la batalla
+      select_guild_to_challenge: Seleccionar Guild para Desafiar
+      search_placeholder: Busca un gremio por nombre, descripción o dueño...
+      search_hint: Empieza a escribir para buscar gremios...
+      scheduled_date_time: Fecha y hora programadas
+      location: Ubicación
+      location_placeholder: Introducir ubicación de la batalla
+      max_participants: Máximo Participantes
+      optional: Opcional
+      notes: Notas
+      notes_placeholder: Detalles adicionales de la batalla o requisitos...
+      role_categories: Categorías de Rol
+      role_categories_hint: Seleccione las funciones que los usuarios pueden registrarse para. Todas las funciones seleccionadas estarán disponibles para el registro en Discord.
+      role_dps: DPS
+      role_tank: Tanque
+      role_healer: Sanador
+      role_ranged: Lanzado
+      send_challenge: Enviar Desafío
+      cancel: Cancelar
+      owner_label: Propietario
+      search_error: Error buscando Gremios
+    show:
+      title: Detalles de la batalla del gremio
+      subtitle: Reto de Batalla del Gremio
+      battle_details: Detalles de la batalla
+      status: Estado
+      scheduled: Programado
+      location: Ubicación
+      max_participants: Máximo Participantes
+      notes: Notas
+      respond_to_challenge: Responder al desafío
+      scheduled_date_time: Fecha y hora programadas
+      accept: Aceptar
+      request_changes: Solicitar Cambios
+      decline: Rechazar
+      communication: Comunicación
+      communication_visit_html: Para enviar mensajes o ver el hilo de mensajes, por favor, visite el %{link}.
+      notifications_page: Página de notificaciones
+      communication_discord: También puedes enviar mensajes directamente a través del bot de Discord GuildSync.
+      cancellation_requested: Solicitud de Cancelación
+      cancellation_by_challenger: El reto ha solicitado cancelar esta batalla.
+      cancellation_by_defender: El defensor ha solicitado anular esta batalla.
+      cancellation_waiting: Has solicitado cancelar esta batalla. Esperando que el otro dueño responda.
+      accept_cancellation: Aceptar Cancelación
+      accept_cancellation_confirm: Aceptar cancelará y eliminará esta batalla. ¿Estás seguro?
+      decline_cancellation: Rechazar Cancelación
+      back_to_guild_battles: Volver a las batallas del gremio
+      request_cancellation: Cancelar Solicitud
+      request_cancellation_confirm: Esto solicitará la cancelación. El otro propietario debe estar de acuerdo. ¿Continuar?
+      delete_battle: Eliminar Batalla
+      delete_battle_confirm: "¿Estás seguro de que quieres eliminar permanentemente esta batalla de gremio? Esta acción no se puede deshacer y eliminará todos los eventos asociados de Discord. El otro propietario será notificado."
+    notifications:
+      title: Notificaciones de batallas de gremios
+      subtitle: Gestionar desafíos, mensajes y comunicaciones en la batalla.
+      back_to_battle_home: "← Volver al Inicio de la Batalla de Guild"
+      pending_incoming: Pendientes de desafíos venideros
+      pending_outgoing: Retos Pendientes de Salida
+      accepted_battles: Batallas aceptadas
+      declined_battles: Batallas declinadas
+      reschedule_requests: Solicitudes de reprogramación
+      cancelled_battles: Batallas Canceladas
+      empty: No hay notificaciones de batallas de gremios por el momento. ¡Retada a otro gremio para comenzar!
+    battle_notification_card:
+      you_challenged: Has desafiado %{name}
+      challenged_you: "%{name} te ha desafiado"
+      scheduled: 'Programados:'
+      location: 'Ubicación:'
+      max_participants: 'Máx. Participantes:'
+      notes: 'Notas:'
+      messages: Mensajes
+      no_messages: Aún no hay mensajes. ¡Empieza la conversación!
+      message_placeholder: Escribe un mensaje...
+      send: Enviar
+      view_details: Ver Detalles
+      accept: Aceptar
+      decline: Rechazar
+  guild_documents:
+    index:
+      title: Documentos de Guilda
+      subtitle: Gestionar y compartir documentos para %{guild_name}
+      new_folder: Nueva Carpeta
+      new_document: Crear documento
+      create_document: Crear Documento
+      folder_name: Nombre de la carpeta
+      folder_name_placeholder: Nombre de la carpeta
+      color: color
+      create_folder: Crear Carpeta
+      documents_count: documentos
+      edit: Editar
+      delete_folder_confirm: "¿Estás seguro? Esto moverá todos los documentos en esta carpeta a 'Carpeta sin nombre'."
+      delete: Eliminar
+      by_author: Por %{author}
+      visibility_public: Público
+      visibility_private: Privado
+      visibility_unlisted: Oculto
+      share: Compartir
+      no_documents_in_folder: No hay documentos en esta carpeta
+      no_folder: Sin carpeta
+      no_documents_yet: No documentos aún.
+      create_first_hint: Crea tu primer documento o carpeta para empezar.
+      edit_folder_title: Editar carpeta
+      cancel: Cancelar
+      update_folder: Actualizar Carpeta
+    new:
+      title: Crear documento
+      subtitle: Crear un nuevo documento para %{guild_name}
+      fix_errors: 'Por favor corregir los siguientes errores:'
+      document_title_placeholder: Título del documento
+      visibility_private: Privado - Solo para los miembros del gremio
+      visibility_public: Público - Cualquiera que tenga el enlace
+      visibility_unlisted: Sin listar - Sin indexar, pero visible a través de un enlace
+      folder_optional: Carpeta (opcional)
+      no_folder: Sin carpeta
+      content: Texto
+      cancel: Cancelar
+      create_document: Crear Documento
+    toolbar:
+      image: Subir imagen
+    edit:
+      title: Editar documento
+      subtitle: Editar documento para el %{guild_name}
+      fix_errors: 'Por favor corregir los siguientes errores:'
+      document_title_placeholder: Título del documento
+      visibility_private: Privado - Solo para los miembros del gremio
+      visibility_public: Público - Cualquiera que tenga el enlace
+      visibility_unlisted: Sin listar - Sin indexar, pero visible a través de un enlace
+      folder_optional: Carpeta (opcional)
+      no_folder: Sin carpeta
+      content: Texto
+      cancel: Cancelar
+      update_document: Actualizar Documento
+  guild_warnings:
+    title: "Centro de advertencias del gremio"
+    subtitle: "Haz un seguimiento de las advertencias a miembros y organiza las listas de estado."
+    send_title: "Enviar advertencia"
+    send_description: "Envía un mensaje directo de Discord a través del bot de GuildSync cuando el miembro tenga cuenta de Discord vinculada."
+    member_label: "Miembro del gremio"
+    select_member: "Seleccionar un miembro"
+    reason_label: "Motivo de la advertencia"
+    send_button: "Enviar advertencia"
+    warning_count: "Advertencias: %{count}/%{limit}"
+    empty_column: "No hay miembros en esta lista."
+    save_lists_button: "Guardar listas"
+    back_to_guild: "Volver al panel del gremio"
+    columns:
+      no_warnings: Sin advertencias
+      warned: Lista de advertidos
+      banned: Lista de vetados
+    alerts:
+      access_denied: No tienes permiso para gestionar advertencias en este gremio.
+      member_not_found: No se encontró al miembro del gremio.
+      protected_member: No puedes advertir ni reclasificar al propietario del gremio ni a quienes gestionan advertencias.
+      reason_required: El motivo de la advertencia es obligatorio.
+      warning_sent: Advertencia enviada a %{user}.
+      warning_failed: 'No se pudo enviar la advertencia: %{error}'
+      lists_updated: Las listas de advertencias se actualizaron.
+      list_update_failed: 'No se pudieron actualizar las listas de advertencias: %{error}'
+    discord:
+      warning_dm: |-
+        Has recibido una advertencia en **%{guild_name}**.
+        Motivo: %{reason}
+        Advertencias: %{warning_count}/%{warning_limit}
+    my_status:
+      title: Tu estado de advertencias
+      subtitle: Advertencias oficiales registradas para ti en este gremio.
+      access_denied: Debes ser miembro de este gremio para ver esta página.
+      none_title: Sin advertencias registradas
+      none_body: No tienes un registro activo de advertencias en este gremio.
+      state_label: Estado
+      count_label: Número de advertencias
+      last_reason: Motivo más reciente
+      last_at: Última advertencia el
+      discord_note: Si tu cuenta de Discord está vinculada en GuildSync, también deberías recibir un mensaje directo del bot cuando se emita una nueva advertencia.

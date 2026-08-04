@@ -1,0 +1,94 @@
+<div class="space-y-8">
+  <div class="flex justify-between items-center">
+    <h1 class="text-3xl font-bold text-theme-accent"><%= t("admin.games.index.page_title") %></h1>
+    <div class="flex gap-4">
+      <%= link_to t("admin.games.index.link_pending"), pending_games_admin_games_path, class: "px-4 py-2 bg-yellow-600 text-white rounded-lg hover:bg-yellow-700 transition-colors" %>
+      <%= link_to t("admin.users.index.back_to_dashboard"), admin_root_path, class: "px-4 py-2 bg-theme-secondary text-theme-primary rounded-lg hover:bg-theme-hover transition-colors" %>
+    </div>
+  </div>
+
+  <div class="bg-theme-card border border-theme-primary rounded-lg p-6 shadow-lg">
+    <div class="flex flex-wrap gap-4 items-end">
+      <%= form_with url: admin_games_path, method: :get,
+          data: { turbo_frame: Admin::GamesController::GAMES_INDEX_RESULTS_FRAME },
+          class: "flex flex-wrap gap-4 flex-1 items-end" do |f| %>
+        <div class="flex-1 relative min-w-[12rem]">
+          <%= f.text_field :q, value: @query, placeholder: t("admin.games.index.search_placeholder"),
+              id: "game-search-input",
+              class: "w-full px-4 py-2 bg-theme-secondary border border-theme-primary rounded-lg text-theme-primary focus:outline-none focus:ring-2 focus:ring-theme-accent",
+              autocomplete: "off" %>
+          <div id="game-search-results" class="hidden absolute z-50 w-full mt-1 bg-theme-card border border-theme-primary rounded-lg shadow-xl max-h-64 overflow-y-auto"></div>
+        </div>
+        <%= f.submit t("admin.users.index.search_submit"), class: "px-6 py-2 bg-theme-accent text-white rounded-lg hover:bg-theme-accent-hover transition-colors" %>
+      <% end %>
+      <% if @query.present? %>
+        <%= link_to t("admin.users.index.clear"), admin_games_path,
+          class: "px-6 py-2 bg-theme-secondary text-theme-primary rounded-lg hover:bg-theme-hover transition-colors",
+          data: { turbo_frame: Admin::GamesController::GAMES_INDEX_RESULTS_FRAME } %>
+      <% end %>
+    </div>
+  </div>
+
+  <%= turbo_frame_tag Admin::GamesController::GAMES_INDEX_RESULTS_FRAME do %>
+    <%= render "games_index_results" %>
+  <% end %>
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const searchInput = document.getElementById('game-search-input');
+    const resultsDiv = document.getElementById('game-search-results');
+    let searchTimeout = null;
+
+    if (searchInput && resultsDiv) {
+      searchInput.addEventListener('input', function() {
+        const query = this.value.trim();
+
+        clearTimeout(searchTimeout);
+
+        if (query.length < 1) {
+          resultsDiv.classList.add('hidden');
+          return;
+        }
+
+        searchTimeout = setTimeout(async () => {
+          try {
+            const response = await fetch(`<%= search_admin_games_path %>?q=${encodeURIComponent(query)}`);
+            const data = await response.json();
+
+            resultsDiv.innerHTML = '';
+
+            if (data.games && data.games.length > 0) {
+              data.games.forEach(game => {
+                const item = document.createElement('div');
+                item.className = 'p-3 hover:bg-theme-secondary cursor-pointer border-b border-theme-primary last:border-b-0';
+                item.innerHTML = `
+                  <div class="font-medium text-theme-primary">${game.name}</div>
+                  ${game.description ? `<div class="text-sm text-theme-secondary">${game.description}</div>` : ''}
+                `;
+                item.addEventListener('click', () => {
+                  searchInput.value = game.name;
+                  resultsDiv.classList.add('hidden');
+                  searchInput.form.submit();
+                });
+                resultsDiv.appendChild(item);
+              });
+              resultsDiv.classList.remove('hidden');
+            } else {
+              resultsDiv.classList.add('hidden');
+            }
+          } catch (error) {
+            console.error('Search error:', error);
+            resultsDiv.classList.add('hidden');
+          }
+        }, 300);
+      });
+
+      document.addEventListener('click', (e) => {
+        if (!searchInput.contains(e.target) && !resultsDiv.contains(e.target)) {
+          resultsDiv.classList.add('hidden');
+        }
+      });
+    }
+  });
+</script>

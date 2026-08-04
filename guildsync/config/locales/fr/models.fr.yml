@@ -1,0 +1,147 @@
+fr:
+  activerecord:
+    models:
+      user: "Utilisateur"
+      guild: "Guilde"
+      game: "Jeu"
+      event: "événement"
+      poll: "Sondage"
+      guild_document: "Document"
+      guild_member: "Membre"
+      guild_application: "Demande"
+      loot_roll: "Roll du butin"
+    attributes:
+      user:
+        email: "Courriel"
+        password: "Mot de passe"
+        display_name: "Nom d'affichage"
+      guild:
+        name: "Nom"
+        description: "Description"
+      game:
+        name: "Nom"
+        description: "Description"
+    errors:
+      models:
+        landing_user_feedback:
+          attributes:
+            base:
+              entry_limit_reached: "Au plus %{max} avis sont autorisés sur la page d’accueil. Supprimez un avis pour en ajouter un autre."
+        homepage_feature_card:
+          attributes:
+            icon_key:
+              invalid_fontawesome_icon: "n’est pas dans le catalogue Font Awesome Free synchronisé. Lancez la synchronisation ou choisissez une autre icône."
+        user:
+          attributes:
+            username:
+              invalid_format: "Peut contenir uniquement des lettres, des numères et des tirets bas."
+        guild:
+          attributes:
+            name:
+              already_owned: "Vous avez déjà une guilde portant ce nom."
+            base:
+              subscription_required: "Vous devez avoir un abonnement actif pour créer une guilde"
+              guild_limit_reached: "Vous avez atteint le nombre maximal de guildes (%{max_guilds}) pour votre %{plan_name}."
+        guild_member:
+          attributes:
+            user_id:
+              already_member: "est déjà membre de cette guilde"
+            base:
+              member_limit_reached: "La guilde a atteint la limite maximale des membres (%{max_members}) pour le plan %{plan_name}."
+        guild_discord_setting:
+          attributes:
+            discord_guild_id:
+              already_connected: "Ce serveur Discord est déjà connecté à une autre guilde"
+            guild_id:
+              one_connection_only: "La guilde ne peut disposer que d'une seule connexion Discord."
+        feature_request:
+          attributes:
+            description:
+              too_short: "doit comporter au moins 50 caractères pour que d'autres puissent comprendre votre demande"
+        poll_vote:
+          attributes:
+            user_id:
+              one_vote_only: "Vous ne pouvez voter qu'une fois par sondage"
+            base:
+              user_or_discord_required: "Soit un compte d'utilisateur ou un Identifiant Discord est obligatoire."
+        loot_roll:
+          attributes:
+            max_roll:
+              must_be_greater: "Doit être supérieur au jet minimal"
+        loot_roll_entry:
+          attributes:
+            discord_user_id:
+              already_rolled: "Tu as déjà roulé."
+            roll_value:
+              out_of_bounds: "doit être entre %{min} et %{max}"
+            base:
+              loot_roll_closed: "Ce roulement de butin est fermé."
+        guild_battle:
+          attributes:
+            defender_guild_id:
+              same_as_challenger: "ne peut pas être la même que la guilde du défiant"
+        gear_snapshot:
+          attributes:
+            data:
+              blank: "Ne peut pas être vide"
+            screenshot:
+              must_be_attached: "doit être joint"
+        gear_upload_request:
+          attributes:
+            requester:
+              no_permission: "N'a pas les droits de demander les mises à jour des équipements"
+        guild_application:
+          attributes:
+            user_id:
+              already_applied: "Vous avez déjà appliqué à cette guilde"
+        guild_invite:
+          attributes:
+            user_id:
+              already_invited: "a déjà été invité(e) à cette guilde"
+              already_member: "est déjà membre de cette guilde"
+        discord_event_signup:
+          attributes:
+            discord_user_id:
+              one_role_per_event: "Vous ne pouvez signer que un rôle par événement."
+        discord_event_participation:
+          attributes:
+            discord_user_id:
+              already_signed_up: "a déjà s'inscrit pour cet événement"
+        event_participation:
+          attributes:
+            user_id:
+              already_responded: "a déjà répondu à cet événement"
+            base:
+              user_or_discord_required: "Soit un compte d'utilisateur ou un Identifiant Discord est obligatoire."
+        discord_connection:
+          attributes:
+            guild_id:
+              one_connection_only: "La guilde ne peut disposer que d'une seule connexion Discord."
+        subscription:
+          attributes:
+            expires_at:
+              must_be_after_started: "doit être postérieur à la date de début"
+        guild_game:
+          attributes:
+            primary:
+              only_one_allowed: "Seulement un jeu principal autorisé par guilde"
+
+        alliance_poll_vote:
+          attributes:
+            base:
+              user_or_discord_required: "Soit un compte d'utilisateur ou un Identifiant Discord est obligatoire."
+        alliance_event_participation:
+          attributes:
+            base:
+              user_or_discord_required: "Soit un compte d'utilisateur ou un Identifiant Discord est obligatoire."
+        alliance_loot_roll_entry:
+          attributes:
+            base:
+              user_or_discord_required: "Soit un compte d'utilisateur ou un Identifiant Discord est obligatoire."
+  ocr:
+    messages:
+      limit_reached: "Vous avez utilisé toutes vos requêtes OCR pour cette période de facturation. Votre forfait %{plan_name} autorise %{limit} requêtes par mois. Contactez le support."
+      hard_locked: "Votre accès OCR a été temporairement suspendu. Contactez le support."
+      trial_expired: "Vos requêtes OCR d'essai gratuit sont épuisées. Souscrivez à un forfait pour continuer à utiliser l'OCR."
+      free_blocked: "Vous avez utilisé toutes vos requêtes OCR gratuites. Souscrivez à un forfait pour en débloquer davantage."
+      ip_abuse: "Une activité OCR inhabituelle a été détectée depuis votre réseau. Contactez le support si ce n'est pas attendu."

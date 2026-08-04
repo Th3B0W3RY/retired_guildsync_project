@@ -1,0 +1,155 @@
+en:
+  sessions:
+    new:
+      title: "Sign In"
+      forgot_password: "Forgot your password?"
+      resend_confirmation: "Resend confirmation email"
+      sign_in_with_discord: "Sign in with Discord"
+      sign_in_with_google: "Sign in with Gmail"
+      sign_in_with_microsoft: "Sign in with Outlook"
+      no_account: "Don't have an account?"
+      create_account: "Create one here"
+      discord_login_failed: "Discord Login Failed:"
+
+  registrations:
+    new:
+      title: "Sign Up"
+      have_account: "Already have an account?"
+      sign_in_here: "Sign in here"
+      signing_up_for: "Signing up for:"
+      trial_after_mfa: "Trial will begin after MFA verification"
+      username: "Username"
+      username_hint: "3-30 characters, letters, numbers, and underscores only"
+      password_hint: "Minimum 10 characters with at least one letter and one number"
+      confirm_password: "Confirm Password"
+      create_account_button: "Create Account"
+      sign_up_with_discord: "Sign up with Discord"
+      discord_signup_failed: "Discord Signup Failed:"
+      popup_blocked: "Popup was blocked. Please allow popups for this site and try again."
+    errors:
+      captcha_invalid: "Security verification failed. Complete the check below and try again."
+      discord_captcha_required: "Use the “Sign up with Discord” button on this page after completing the security check."
+
+  confirmations:
+    new:
+      title: "Resend confirmation instructions"
+      intro: "Enter your email and we will send a new confirmation link."
+      submit: "Resend instructions"
+      back_to_sign_in: "Back to sign in"
+    create:
+      already_registered: "This email is already registered and verified. Please try another email, or sign in."
+
+  passwords:
+    new:
+      title: "Forgot Your Password?"
+      instructions: "Enter your email and we'll send you instructions to reset your password."
+      send_instructions: "Send Reset Instructions"
+      back_to_sign_in: "Back to Sign In"
+    edit:
+      title: "Reset Your Password"
+      subtitle: "Enter your new password below."
+      new_password: "New Password"
+      confirm_password: "Confirm Password"
+      confirm_new_password: "Confirm New Password"
+      password_hint: "Minimum 10 characters with at least one letter and one number"
+      reset_password: "Reset Password"
+      back_to_sign_in: "Back to Sign In"
+    
+    create:
+      instructions_sent: "If an account with that email exists, you will receive password reset instructions."
+      invalid_email: "Invalid email address."
+    update:
+      success: "Your password has been changed successfully. You are now signed in."
+    account_recovery:
+      title: "Account Recovery"
+      page_intro: "Choose how you want to get back into your account."
+      email_section_title: "Reset password with email"
+      email_section_intro: "We will send a link to your email address. Use it on this device to choose a new password."
+      email_send_button: "Send reset link"
+      email_link_hint: "Already have an email from us? Open the reset link in that message."
+      or_divider: "or"
+      backup_section_title: "Use a backup code"
+      backup_section_intro: "If you saved backup codes in Account Settings, enter your email and one code below."
+      backup_code_label: "Backup code"
+      backup_code_placeholder: "XXXX-XXXX-XXXX-XXXX-XXXX-XXXX"
+      backup_code_hint: "Enter one of your 24-character backup codes (dashes optional)"
+      verify_backup_code: "Verify backup code"
+      contact_support: "Contact support"
+
+  backup_codes:
+    verify:
+      invalid_email_or_code: "Invalid email or backup code."
+      invalid_code: "Invalid backup code."
+      success: "Backup code accepted. Set a new password below."
+
+  recoveries:
+    edit:
+      title: "Reset Your Account"
+      badge: "Recovering with Backup Code"
+      new_password: "New Password"
+      confirm_password: "Confirm New Password"
+      mfa_section: "Multi-Factor Authentication (MFA)"
+      mfa_warning: "Your account currently has MFA enabled. Since you're using a backup code, you can choose to reset MFA."
+      reset_mfa_label: "Reset MFA (disable and allow reconfiguration)"
+      mfa_not_enabled: "MFA is not enabled on your account."
+      submit: "Save Changes & Recover Account"
+      note: "After recovery, you'll need to sign in with your new password. If you reset MFA, you can set it up again from Account Settings."
+    update:
+      success: "Your account has been recovered. Please sign in with your new password."
+    expired: "Recovery session expired. Please start over."
+
+  mfa_setup:
+    show:
+      title: "Enable Multi-Factor Authentication"
+      subtitle: "Scan the QR code with your authenticator app to get started"
+      instructions_title: "Setup Instructions"
+      step_1: "Install an authenticator app on your phone (Google Authenticator, Authy, Microsoft Authenticator, etc.)"
+      step_2: "Open the app and tap \"Add account\" or the \"+\" button"
+      step_3: "Scan the QR code below with your phone's camera or the app's scanner"
+      step_4: "Enter the 6-digit code from your app to verify"
+      manual_entry: "Can't scan the QR code? Enter this secret in your authenticator app:"
+      cant_scan: "Can't scan? Enter this code manually in your app:"
+      code_label: "Enter 6-digit code from your authenticator app"
+      code_placeholder: "000000"
+      code_hint: "Enter the 6-digit code shown in your authenticator app"
+      verify_button: "Verify and Enable MFA"
+      recommended_apps: "Recommended authenticator apps:"
+      setup_unavailable: "We could not generate your setup key. Refresh the page or try again in a moment. If this keeps happening, contact support."
+
+  mfa_verification:
+    show:
+      title: "Verify Your Identity"
+      subtitle: "Enter the 6-digit code from your authenticator app"
+      code_label: "Authentication Code"
+      code_placeholder: "000000"
+      code_hint: "Open your authenticator app and enter the 6-digit code"
+      verify_button: "Verify"
+      trouble_text: "Having trouble?"
+      having_trouble: "Having trouble?"
+      contact_support: "Contact support"
+
+  profile_completion:
+    show:
+      title: "Complete Your Profile"
+      subtitle: "Please provide your account details to continue"
+      email_label: "Email Address"
+      email_placeholder: "Enter your email address"
+      email_hint: "Enter a valid email address for your account"
+      username_label: "Username"
+      username_hint: "3-30 characters, letters, numbers, and underscores only"
+      username_placeholder: "Enter your username"
+      password_label: "Password"
+      password_hint: "Choose a secure password (minimum 10 characters, with at least one letter and one number)"
+      password_confirmation_label: "Password Confirmation"
+      password_confirmation_hint: "Re-enter your password to confirm"
+      confirm_password_hint: "Re-enter your password to confirm"
+      submit_button: "Complete Profile"
+      complete_button: "Complete Setup"
+    update:
+      success: "Profile completed. Now set up MFA."
+
+  mfa:
+    setup:
+      title: "Setup MFA"
+    verification:
+      title: "Verify MFA"
